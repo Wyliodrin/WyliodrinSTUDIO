@@ -1,7 +1,7 @@
 {
   "name": "wyliodrin-studio",
   "version": "9.0.0",
-  "description": "Wyliodrin STUDIO is an IDE for software and hardware development in IoT and Embedded Linux",
+  "description": "Wyliodrin STUDIO is a Chrome based IDE for software and hardware development in IoT and Embedded Linux",
   "author": "Wyliodrin SRL",
   "license": "GPL-3.0",
   "repository": "https://www.github.com/wyliodrin/wyliodrin-studio",

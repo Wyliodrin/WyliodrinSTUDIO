@@ -1,6 +1,0 @@
-
-build:
-
-run: main.js firmware
-	node main.js
-	

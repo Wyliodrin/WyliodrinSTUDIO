@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Wyliodrin STUDIO by alexandruradovici</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- start Mixpanel -->
+    <script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+mixpanel.init("80665e4b3e444110cc43501ca874816c");
+
+mixpanel.track ('Presentation Site');
+</script><!-- end Mixpanel -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name"><img src="images/wyliodrinstudio-logo.png" alt="Wyliodrin STUDIO"></h1>
+      <h2 class="project-tagline">Wyliodrin STUDIO is an IDE for software and hardware development in IoT and Embedded Linux</h2>
+      <a href="https://chrome.google.com/webstore/detail/wyliodrin-studio/eajalplbgimhaodcnncciojhbpcogkan" target="_blank" class="btn">Download from Google Chrome Store</a>
+      <a href="https://github.com/Wyliodrin/WyliodrinSTUDIO/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Wyliodrin/WyliodrinSTUDIO/tarball/master" class="btn">Download .tar.gz</a>
+      <a href="https://github.com/Wyliodrin/WyliodrinSTUDIO" class="btn">View on GitHub</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="wyliodrin-studio" class="anchor" href="#wyliodrin-studio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wyliodrin STUDIO</h1>
+
+<p>Wyliodrin STUDIO is an IDE for software and hardware development for IoT and Embedded Linux systems.</p>
+
+<p><img src="https://raw.githubusercontent.com/Wyliodrin/WyliodrinSTUDIO/master/extra/wyliodrin.png" alt="Wyliodrin"></p>
+
+<ul>
+<li>Connect to devices using TCP/IP or serial port</li>
+<li>Develop software and firmware for IoT in several programming languages</li>
+<li>Shell access to the device</li>
+<li>Import and export Wyliodrin STUDIO projects</li>
+<li>Visual dashboard for displaying sensor data</li>
+<li>Display the hardware schematics</li>
+<li>Manage packages for Python and Javascript</li>
+<li>Task manager for managing the device</li>
+<li>Network connection manager for the device  (Ethernet and WiFi)</li>
+<li>Interactive electronics documentation (resistor color code)</li>
+<li>Example projects and firmware</li>
+<li>Wyliodrin API documentation in C/C++, Python and Javascript</li>
+</ul>
+
+<h2>
+<a id="supported-devices" class="anchor" href="#supported-devices" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported devices:</h2>
+
+<ul>
+<li>UDOO Neo </li>
+<li>Raspberry Pi and Arduino </li>
+<li>BeagleBone Black </li>
+<li>Arduino Yun</li>
+</ul>
+
+<h2>
+<a id="supported-languages" class="anchor" href="#supported-languages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported languages</h2>
+
+<ul>
+<li>Visual Programming (translates to Python)</li>
+<li>Javascript</li>
+<li>Python</li>
+<li>Shell Script (bash)</li>
+</ul>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<p>You may find Wyliodrin STUDIO on the <a href="https://goo.gl/Sgj9HB">Chrome Store</a></p>
+
+<p><img src="https://github.com/Wyliodrin/WyliodrinSTUDIO/raw/master/extra/wyliodrin_studio_qr.png" alt="Wyliodrin STUDIO QR Code"></p>
+
+<h2>
+<a id="device" class="anchor" href="#device" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Device</h2>
+
+<p>The device needs to run</p>
+
+<ul>
+<li><a href="https://www.github.com/wyliodrin/wyliodrin-app-server">wyliodrin-app-server</a></li>
+<li><a href="https://www.github.com/wyliodrin/wyliodrin-server">wyliodrin-server</a></li>
+<li><a href="https://www.github.com/wyliodrin/libwyliodrin">libwyliodrin</a></li>
+</ul>
+
+<p>You may download device images that have them installed from Wyliodrin.</p>
+
+<ul>
+<li>UDOO Neo <a href="http://www.wyliodrin.com/images/beta/udooneo">Download Image</a>
+</li>
+<li>Raspberry Pi and Arduino <a href="http://www.wyliodrin.com/images/beta/raspberrypi">Download Image</a>
+</li>
+<li>BeagleBone Black <a href="http://www.wyliodrin.com/images/beta/beagleboneblack">Download Image</a>
+</li>
+<li>Arduino Yun</li>
+</ul>
+
+<h2>
+<a id="build" class="anchor" href="#build" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build</h2>
+
+<p>You will need </p>
+
+<ul>
+<li>
+<a href="http://www.nodejs.org">NodeJS</a> version 4 or higher.</li>
+<li><a href="http://bower.io/">bower</a></li>
+<li><a href="http://gruntjs.com/">grunt</a></li>
+</ul>
+
+<p>You may build Wyliodrin STUDIO yourself</p>
+
+<pre><code>git clone https://www.github.com/Wyliodrin/WyliodrinSTUDIO
+cd WyliodrinSTUDIO
+npm install
+bower install
+patch node_modules/highcharts-ng/dist/highcharts-ng.js patches/highcharts-ng.patch
+grunt
+</code></pre>
+
+<h3>
+<a id="install-grunt-and-bower" class="anchor" href="#install-grunt-and-bower" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install grunt and bower</h3>
+
+<pre><code>sudo npm install -g grunt-cli bower
+</code></pre>
+
+<p>The build is in the <em>build</em> folder</p>
+
+<h3>
+<a id="parameters" class="anchor" href="#parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parameters</h3>
+
+<ul>
+<li>DEBUG_WYLIODRIN='wyliodrin.*' - enable debug messages (this will have a performance impact)</li>
+<li>MIXPANEL_WYLIODRIN='' - mixpanel token for user tracking</li>
+</ul>
+
+<h2>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h2>
+
+<p>Wyliodrin STUDIO is a product of <a href="http://www.wyliodrin.com">Wyliodrin</a></p>
+
+<ul>
+<li>
+<a href="https://www.github.com/alexandruradovici">Alexandru Radovici</a> - Maintainer</li>
+<li>
+<a href="https://www.github.com/ioanaculic">Ioana Culic</a> - Developer</li>
+<li>
+<a href="https://www.github.com/oviska">Ovidiu Stoica</a> - UX / UI</li>
+</ul>
+
+<p>Contributions</p>
+
+<ul>
+<li>
+<a href="https://www.github.com/serban-razvan">Razvan Serban</a> - Developer</li>
+<li>
+<a href="https://www.github.com/paula-elena">Paula Margarit</a> - Developer</li>
+<li>
+<a href="https://www.github.com/mhpopescu">Mihai Popescu</a> - Developer</li>
+</ul>
+
+<p>Wyliodrin is a trademark of Wyliodrin SRL. All rights reservered.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>This software is available under several licenses, depending of the use.</p>
+
+<p>Non-commercial &amp; educational - GPLv3
+Please contact us at <a href="mailto:office@wyliodrin.com">office@wyliodrin.com</a> for a commercial license.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Wyliodrin/WyliodrinSTUDIO">WyliodrinSTUDIO</a> is maintained by <a href="https://github.com/Wyliodrin">Wyliodrin</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>

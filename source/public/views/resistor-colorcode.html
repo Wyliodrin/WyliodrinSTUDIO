@@ -72,7 +72,7 @@
         </md-tab>
         <md-tab>
             <md-tab-label>
-                From Number to Color
+                {{ 'RESISTOR-COLORCODE_FromNumberToColor' | translate }}
             </md-tab-label>
             <md-tab-body>
                <!--start code second page-->
@@ -80,7 +80,7 @@
                 <md-dialog-content style="text-align:center;">
                     <div layout="row" layout-padding>
                         <md-input-container>
-                            <label>Resistance</label>
+                            <label>{{ 'RESISTOR-COLORCODE_Resistance' | translate }}</label>
                         <input placeholder="Enter a number" ng-model="second.value.number">
                         </md-input-container>
                         <md-input-container>
@@ -88,14 +88,14 @@
                             <b>&Omega;</b>
                         </md-input-container>
                         <md-input-container>
-                            <label>Stripes</label>
+                            <label>{{ 'RESISTOR-COLORCODE_Stripes' | translate }}</label>
                             <md-select ng-model="second.value.stripes">
-                                <md-option value="4">Four</md-option>
-                                <md-option value="5">Five</md-option>
+                                <md-option value="4">{{ 'VALUE_Four' | translate }}</md-option>
+                                <md-option value="5">{{ 'VALUE_Five' | translate }}</md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container>
-                            <label>Tolerance</label>
+                            <label>{{ 'VALUE_Tolerance' | translate }}</label>
                             <md-select ng-model="second.value.tolerance">
                                 <md-option value="{{value.color}}" ng-repeat="value in second.tolerance">{{value.value}}</md-option>
                             </md-select>
@@ -118,7 +118,7 @@
                     
                 <md-dialog-actions layout="row" style="position:relative;">
                     <div style="position:absolute; left:10px; top:12px; font-size:18px;">
-                        <span><b>Value: </b> {{second.r | number}} {{second.u}}&Omega;</span>
+                        <span><b>{{ 'VALUE_Value' | translate }}: </b> {{second.r | number}} {{second.u}}&Omega;</span>
                     </div>
                 </md-dialog-actions>
 

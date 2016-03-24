@@ -11,6 +11,8 @@ var debug = require ('debug')('wyliodrin:lacy:wydevice');
 
 var compare_versions = require ('compare-versions');
 
+var uuid = require ('uuid');
+
 var _ = require ('lodash');
 
 debug ('Loading');
@@ -64,13 +66,13 @@ module.exports = function ()
 						};
 					}
 					else
-					if (t === 'v')
+					if (t === 'v' || t === 'sv')
 					{
 						if (deviceService.device)
 						{
 							deviceService.device.version = d.v;
 						}
-						$http.get('https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json')
+						$http.get('https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json?'+uuid.v4())
 					       .then(function(res){
 						       	try
 						       	{

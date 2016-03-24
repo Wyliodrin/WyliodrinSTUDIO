@@ -175,7 +175,7 @@ module.exports = function ()
 					// console.log (scope.signal.title);
 					if (t === 'v')
 					{
-						var v = values.s[scope.signal.title];
+						var v = (values.s?values.s[scope.signal.title]:undefined);
 						// console.log (v);
 						if (v !== undefined)
 						{

@@ -155,11 +155,14 @@
 
 
   "RESISTOR-COLORCODE_FromColorToNumber" : "De couleur à la valeur",
+  "RESISTOR-COLORCODE_FromNumberToColor" : "De valeur à couleur",
   "RESISTOR-COLORCODE_Stripes" : "Bandes",
   "VALUE_Four" : "Quatre",
   "VALUE_Five" : "Cinq",
   "RESISTOR-COLORCODE_Stripe" : "Bande",
   "VALUE_Value" : "Valeur",
+  "RESISTOR-COLORCODE_Resistance" : "Résistance",
+  "RESISTOR-COLORCODE_Tolerance" : "Tolérance",
 
 
   "SIGNAL-PROPERTIES_Signal" : "Signal",

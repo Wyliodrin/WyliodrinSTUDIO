@@ -78,6 +78,7 @@ export default class WyliodrinDevice extends EventEmitter
 					// 		that.publishStatus ();
 					// 	}
 					// }
+					debug ('Received tag '+m.t+' '+JSON.stringify (m.d));
 					that.emit ('message', m.t, m.d);
 				}
 				else
@@ -89,6 +90,7 @@ export default class WyliodrinDevice extends EventEmitter
 			catch (e)
 			{
 				debug ('Error in packet '+data.toString ());
+				debug (e);
 				that.packetsWithErrors++;
 				that.emit ('packet_error', data);
 			}
@@ -117,9 +119,17 @@ export default class WyliodrinDevice extends EventEmitter
 			if (that.options.type === 'chrome-socket')
 			{
 				that.send ('login', {username:that.options.username, password:that.options.password});
+				setTimeout (function ()
+				{
+					that.send ('ping', null);
+					that.send ('i', null);
+				}, 1000);
 			}
-			that.send ('ping', null);
-			that.send ('i', null);
+			else
+			{
+				that.send ('ping', null);
+				that.send ('i', null);
+			}
 			that.publishStatus ();
 		});
 

@@ -93,7 +93,11 @@ module.exports = function ()
 			$timeout (function ()
 			{
 				$scope.connected = (status === 'PING' || status === 'CONNECTING' || status === 'SEPARATOR' || status === 'CONNECTED');
-				if ($scope.connected === false) $scope.device.category = 'board';
+				if ($scope.connected === false) 
+				{
+					$scope.device.category = 'board';
+					$scope.update = false;
+				}
 				$scope.status = status;
 				if (status === 'CONNECTED') $scope.shell_disable = false;
 			});

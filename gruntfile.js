@@ -174,7 +174,7 @@ module.exports = function(grunt) {
             {
               expand: true,     // Enable dynamic expansion.
               cwd: '',      // Src matches are relative to this path.
-              src: ['manifest.json', 'wyliodrin-app-icon.png', 'LICENSE'], // Actual pattern(s) to match.
+              src: ['manifest.json', 'wyliodrin-studio-icon.png', 'LICENSE'], // Actual pattern(s) to match.
               dest: 'build/',   // Destination path prefix.
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
@@ -255,6 +255,24 @@ module.exports = function(grunt) {
     if (!process.env.DEBUG_WYLIODRIN) process.env.DEBUG_WYLIODRIN = '';
     else if (TARGET === 'publish') grunt.fail.warn ('Please erase the environment variable DEBUG_WYLIODRIN');
     fs.writeFileSync (CONFIG+'/debug.js', '"use strict";\n module.exports = \''+process.env.DEBUG_WYLIODRIN+'\';');
+  });
+
+  grunt.registerTask ('makefile', 'Makefile', function ()
+  {
+    var MAKEFILE_FOLDER = 'source/embedded';
+    var listmakefile = fs.readdirSync (MAKEFILE_FOLDER);
+    var makefile = {};
+    _.each (listmakefile, function (mf)
+    {
+      if (mf.startsWith ('Makefile'))
+      {
+        var ln = path.extname (mf).substring (1);
+        console.log ('makefile '+ln);
+        makefile[ln] = fs.readFileSync (MAKEFILE_FOLDER+'/'+mf).toString ();
+      }
+    });
+    mkdirp.sync (CONFIG);
+    fs.writeFileSync ('source/config/makefile.js', '"use strict";\n module.exports = '+JSON.stringify (makefile)+';');
   });
 
   grunt.registerTask ('example', 'Example', function ()
@@ -365,7 +383,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'languages', 'example', 'jshint', 
+  grunt.registerTask('default', ['mixpanel', 'debug', 'makefile', 'languages', 'example', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',

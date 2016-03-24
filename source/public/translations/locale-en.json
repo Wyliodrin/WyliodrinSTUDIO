@@ -70,7 +70,7 @@
   "AndPassword" : "and password",
   "RunTheWyliodrin" : "Run the Wyliodrin install script.",
   "ResetYour" : "Reset your Arduino Yun.",
-  "DownloadImage" : "Download the <a href='{{link1}}' target='_blank'>SD Card image</a>, unzip it and write it on the card. You can find more information on how to write the SD card image on our <a href='{{link2}}' target='_blank'>tutorial page</a>.",
+  "DownloadImage" : "Download the <a href='{{link1}}' target='_blank'>SD Card image (beta)</a>, unzip it and write it on the card. You can find more information on how to write the SD card image on our <a href='{{link2}}' target='_blank'>tutorial page</a>.",
   "AdvancedUser" : "If you are an advanced user, you may install the <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
   "InsertTheCard" : "Insert the card into the {{device}}, connect the {{device}} to the <b>serial cable</b> or to the <b>network cable</b> and power it on",
   "CablePurchase" : "You can purchase the serial cable from the <a href='{{link1}}' target='_blank'>{{name1}}</a> and <a href='{{link2}}' target='_blank'>{{name2}}</a> online stores.",
@@ -161,7 +161,7 @@
   "RESISTOR-COLORCODE_Stripe" : "Stripe",
   "VALUE_Value" : "Value",
   "RESISTOR-COLORCODE_Resistance" : "Resistance",
-  "RESISTOR-COLORCODE_Tolerance" : "Tolerance",
+  "VALUE_Tolerance" : "Tolerance",
 
 
   "SIGNAL-PROPERTIES_Signal" : "Signal",

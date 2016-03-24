@@ -165,7 +165,7 @@ export default class SerialChromeDevice extends EventEmitter
 				{
 					if (sendInfo.error)
 					{
-						debug ('Sending '+arraydata.byteLength+' to port '+that.port+' retuned an error '+sendInfo.error);
+						debug ('Sending '+arraydata.byteLength+' to port '+that.port+' retuned an error '+sendInfo.error+' '+chrome.runtime.lastError);
 						if (sendInfo.error === 'system_error')
 						{
 							if (that.status <= ERROR)

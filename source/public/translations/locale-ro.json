@@ -70,7 +70,7 @@
   "AndPassword" : "și parola",
   "RunTheWyliodrin" : "Rulați scriptul de instalare Wyliodrin.",
   "ResetYour" : "Resetați Arduino Yun.",
-  "DownloadImage" : "Descărcați <a href='{{link1}}' target='_blank'>imaginea de SD card</a>, dezarhivați-o și scrieți-o pe card. Puteți găsi mai multe informații despre scrierea imaginii pe SD card pe  <a href='{{link2}}' target='_blank'>pagina de tutoriale</a>.",
+  "DownloadImage" : "Descărcați <a href='{{link1}}' target='_blank'>imaginea de SD card (beta)</a>, dezarhivați-o și scrieți-o pe card. Puteți găsi mai multe informații despre scrierea imaginii pe SD card pe  <a href='{{link2}}' target='_blank'>pagina de tutoriale</a>.",
   "AdvancedUser" : "Dacă sunteți un utilizator avansat, puteți instala <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
   "InsertTheCard" : "Inserați cardul in {{device}}, conectați {{device}} la <b>cablul serial</b> sau <cablul de rețea</b> și alimentați-l.",
   "CablePurchase" : "Puteți achiziționa cablul serial de la următoarele magazine online<a href='{{link1}}' target='_blank'>{{name1}}</a> si <a href='{{link2}}' target='_blank'>{{name2}}</a>.",
@@ -147,18 +147,21 @@
   "NETWORK_Disc/ChangeNet" : "Deconectare / Schimbare rețea",
 
 
-  "PACKAGE-MANAGER_LinkToTheLibrary" : "Link to the library",
+  "PACKAGE-MANAGER_LinkToTheLibrary" : "Link către bibliotecă",
 
 
   "RENAME_RenameApp" : "Redenumire aplicație",
 
 
   "RESISTOR-COLORCODE_FromColorToNumber" : "Din culoare în valoare",
+  "RESISTOR-COLORCODE_FromNumberToColor" : "Din număr în culoare",
   "RESISTOR-COLORCODE_Stripes" : "Linii",
   "VALUE_Four" : "Patru",
   "VALUE_Five" : "Cinci",
   "RESISTOR-COLORCODE_Stripe" : "Linie",
   "VALUE_Value" : "Valoare",
+  "RESISTOR-COLORCODE_Resistance" : "Rezistență",
+  "VALUE_Tolerance" : "Toleranță",
 
 
   "SIGNAL-PROPERTIES_Signal" : "Semnal",

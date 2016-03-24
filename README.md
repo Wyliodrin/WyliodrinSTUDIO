@@ -1,6 +1,6 @@
 # Wyliodrin STUDIO
 
-Wyliodrin STUDIO is an IDE for software and hardware development for IoT and Embedded Linux systems.
+Wyliodrin STUDIO is a Chrome based IDE for software and hardware development for IoT and Embedded Linux systems.
 
 ![Wyliodrin](https://raw.githubusercontent.com/Wyliodrin/WyliodrinSTUDIO/master/extra/wyliodrin.png)
 

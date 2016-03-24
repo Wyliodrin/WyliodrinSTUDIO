@@ -163,7 +163,7 @@ export default class SocketChromeDevice extends EventEmitter
 				{
 					if (sendInfo.error)
 					{
-						debug ('Sending '+arraydata.byteLength+' to port '+that.address+' retuned an error '+sendInfo.error);
+						debug ('Sending '+arraydata.byteLength+' to port '+that.address+' retuned an error '+sendInfo.error+' '+chrome.runtime.lastError);
 						if (sendInfo.error === 'system_error')
 						{
 							if (that.status <= ERROR)

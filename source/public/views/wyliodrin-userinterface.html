@@ -126,16 +126,16 @@
                           {{ 'WYLIODRIN-USERINTERFACE_StopProject' | translate }}
                         </md-tooltip>
                     </md-button>
+                    <md-button ng-show="update && status === 'CONNECTED'" class="icon-btn update-btn" ng-click="t.update()">
+                      <md-icon md-svg-src="/public/drawable/update-icon.svg" class="s24" aria-label="Update" ></md-icon>
+                        <md-tooltip md-direction="bottom">
+                          {{ 'TOOLBAR_UPDATE' | translate }}
+                        </md-tooltip>
+                    </md-button>
                     <md-button ng-show="status === 'CONNECTED'" class="icon-btn" ng-click="t.packagemanager()">
                     	<md-icon md-svg-src="/public/drawable/library-icon.svg" class="s24" aria-label="{ackage Manager" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'NETWORK_PackageManager' | translate }}
-                        </md-tooltip>
-                    </md-button>
-                    <md-button ng-show="update && status === 'CONNECTED'" class="icon-btn" ng-click="t.update()">
-                      <md-icon md-svg-src="/public/drawable/update-icon.svg" class="s24" aria-label="Update" ></md-icon>
-                        <md-tooltip md-direction="bottom">
-                          {{ 'TOOLBAR_UPDATE' | translate }}
                         </md-tooltip>
                     </md-button>
                     <md-button ng-show="status === 'CONNECTED'" class="icon-btn" ng-click="t.taskmanager()">

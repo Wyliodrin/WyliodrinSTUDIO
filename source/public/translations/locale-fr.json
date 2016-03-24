@@ -47,8 +47,8 @@
   "PROJECT_PINLAYOUT":"Plan de broches",
   "PROJECT_SHELL":"Shell",
 
-  "PROJECT_ShowConsole":"Show Console",
-  "PROJECT_HideConsole":"Hide Console",
+  "PROJECT_ShowConsole":"Montrer la console",
+  "PROJECT_HideConsole":"Cacher la console",
 
   "DISCONNECTED":"DÉCONNECTÉ",
   "CONNECTED":"CONNECTÉ",
@@ -70,7 +70,7 @@
   "AndPassword" : "et le mot de passe",
   "RunTheWyliodrin" : "Exécutez le script d'installation Wyliodrin.",
   "ResetYour" : "Réinitialiser votre Arduino Yun.",
-  "DownloadImage" : "Téléchargez l' <a href='{{link1}}' target='_blank'>image de la carte SD</a>, ouvrir-la et écrivez-la sur la carte SD. Vous pouvez trouver plus d'informations sur la façon d'écrire l'image de la carte SD sur<a href='{{link2}}' target='_blank'>la page des tutoriels</a>.",
+  "DownloadImage" : "Téléchargez l' <a href='{{link1}}' target='_blank'>image de la carte SD (bêta)</a>, ouvrir-la et écrivez-la sur la carte SD. Vous pouvez trouver plus d'informations sur la façon d'écrire l'image de la carte SD sur<a href='{{link2}}' target='_blank'>la page des tutoriels</a>.",
   "AdvancedUser" : "Si vous êtes un utilisateur avancé, vous pouvez installer <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
   "InsertTheCard" : "Insérez la carte SD dans le {{device}}, connectez le {{device}} au <b>câble série</b> ou au <b>câble du réseau</b> et allumer-le",
   "CablePurchase" : "Vous pouvez acheter le câble série dans les magasins en ligne: <a href='{{link1}}' target='_blank'>{{name1}}</a> et <a href='{{link2}}' target='_blank'>{{name2}}</a>.",
@@ -162,7 +162,7 @@
   "RESISTOR-COLORCODE_Stripe" : "Bande",
   "VALUE_Value" : "Valeur",
   "RESISTOR-COLORCODE_Resistance" : "Résistance",
-  "RESISTOR-COLORCODE_Tolerance" : "Tolérance",
+  "VALUE_Tolerance" : "Tolérance",
 
 
   "SIGNAL-PROPERTIES_Signal" : "Signal",

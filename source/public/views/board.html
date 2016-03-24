@@ -1,0 +1,46 @@
+<md-dialog aria-label="{{ 'BOARD_GetStart' | translate }}" style="width: 600px; max-height:600px;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ 'BOARD_GetStart' | translate }}</h2>
+		</div>
+        <md-input-container style="position:absolute; right:15px; top:15px;" class="serial-select">
+                <md-select ng-model="device" aria-label="device">
+                    <md-option ng-value="devicename" ng-repeat="(devicename, device) in LABEL">{{device.text}}</md-option>
+                </md-select>
+        </md-input-container>
+	</md-toolbar>
+    
+	<md-dialog-content layout-padding>
+    
+    <div>
+
+	    <center ng-show="device==='board'">
+	    
+	        <h2 style="margin-bottom:20px;">{{ 'BOARD_SelectBoard' | translate }}</h2>
+	        <md-button md-parent-scope="this" ng-repeat="(boardname, boardvalue) in LABEL" ng-if="boardname!=='board'" class="board-setup-btn" ng-click="s.select(boardname)">
+	            <img ng-src="/public/drawable/board/{{boardname}}.png">
+	            <md-tooltip md-direction="bottom">
+	              {{boardvalue.text}}
+	            </md-tooltip>
+	        </md-button>
+	        
+	        <!-- <md-button class="board-setup-btn" ng-click="device='udooneo'">
+	            <img src="/public/drawable/udooneo.png">
+	            <md-tooltip md-direction="bottom">
+	              Udoo Neo
+	            </md-tooltip>
+	        </md-button> -->
+	    
+	    </center>
+
+	</div>
+        
+    <div ng-include="'/public/views/board/'+device+'.html'"></div>
+        
+    </md-dialog-content>
+    
+    
+	<md-dialog-actions layout="row">
+		<md-button ng-click="s.exit()">{{ 'TOOLBAR_EXIT' | translate }}</md-button>
+	</md-dialog-actions>
+</md-dialog>

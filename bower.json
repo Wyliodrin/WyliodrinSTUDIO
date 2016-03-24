@@ -1,0 +1,30 @@
+{
+  "name": "wyliodrin-app",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Alexandru Radovici <alexandru.radovici@wyliodrin.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.2",
+    "jquery": "~2.1.4",
+    "angular-ui": "~0.4.0",
+    "xterm.js": "~0.9.3",
+    "angular-ui-tree": "~2.13.0",
+    "angular-ui-ace": "~0.2.3",
+    "blockly": "https://github.com/google/blockly.git"
+  },
+  "resolutions": {
+    "angular": "~1.5.2"
+  }
+}

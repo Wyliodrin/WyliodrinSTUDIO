@@ -1,0 +1,64 @@
+<div>
+    <md-grid-tile-header>
+    <div style="position:relative;">
+      	<div class="warning-graph" ng-hide="signal.title">
+          <img src="/public/drawable/warning-icon.png" alt="Warning"></img>
+            <md-tooltip md-direction="bottom">
+              {{ 'DASHBOARD-VIEWER_InvalidSignal' | translate }}
+            </md-tooltip>
+        </div>
+        <h3  class="graph-title">{{ signal.title }}</h3>
+      	<!-- <md-button ng-click="d.reset ()" class="dash-btn right">Reset</md-button> -->
+        <md-button ng-click="left ({signal:signal})" class="dash-btn right">
+          <md-icon md-svg-src="/public/drawable/move-left-icon.svg" class="s24" aria-label="{{ 'DASHBOARD-VIEWER_MoveLeft' | translate }}" ></md-icon>
+            <md-tooltip md-direction="bottom">
+              {{ 'DASHBOARD-VIEWER_MoveLeft' | translate }}
+            </md-tooltip>
+        </md-button>
+        <md-button ng-click="right ({signal:signal})" class="dash-btn right">
+          <md-icon md-svg-src="/public/drawable/move-right-icon.svg" class="s24" aria-label="{{ 'DASHBOARD-VIEWER_MoveRight' | translate }}" ></md-icon>
+            <md-tooltip md-direction="bottom">
+             {{ 'DASHBOARD-VIEWER_MoveRight' | translate }}
+            </md-tooltip>
+        </md-button>
+      	<md-button ng-click="d.setup ()" class="dash-btn right">
+        	<md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="{{ 'DASHBOARD-VIEWER_GraphSettings' | translate }}" ></md-icon>
+            <md-tooltip md-direction="bottom">
+              {{ 'DASHBOARD-VIEWER_GraphSettings' | translate }}
+            </md-tooltip>
+        </md-button>
+      	<md-button ng-click="erase({signal:signal})" class="dash-btn right">
+        	<md-icon md-svg-src="/public/drawable/erase-icon.svg" class="s24" aria-label="{{ 'DASHBOARD-VIEWER_EraseGraph' | translate }}" ></md-icon>
+            <md-tooltip md-direction="bottom">
+              {{ 'DASHBOARD-VIEWER_EraseGraph' | translate }}
+            </md-tooltip>
+        </md-button>
+    </div>
+    <div>
+    	<span class="graph-descr">{{ signal.description }}</span>
+
+      <div ng-hide="signal.values || (signal.style==='switch' || signal.style==='slider')" style="margin: 10px 0;">
+            <div ng-show="language === 'visual'" class="signal-info"><img src="/public/drawable/info-icon.png"> {{ 'DASHBOARD-VIEWER_BlockSendSignalValues' | translate }}</div>
+            <div ng-show="language === 'python'" class="signal-info"><img src="/public/drawable/info-icon.png"> {{ 'DASHBOARD-VIEWER_SendSignalValues' | translate }} ( sendSignal ('{{signal.title}}', value) )</div>
+            <div ng-show="language === 'javascript'" class="signal-info"><img src="/public/drawable/info-icon.png"> {{ 'DASHBOARD-VIEWER_SendSignalValues' | translate }} ( wyliodrin.sendSignal ('{{signal.title}}', value) )</div>
+  	  </div>
+    </div>
+  </md-grid-tile-header>
+    <div class="md-list-item-text secondary-button-padding graph-box" layout="column" style="width:100%;">
+	 
+	  <div ng-show="signal.title" style="margin-top:20px;">
+	  <line ng-if="signal.style === 'line'" signal="signal"></line>
+	  <thermometer ng-if="signal.style === 'thermometer'" signal="signal"></thermometer>
+	  <speedometer ng-if="signal.style === 'speedometer'" signal="signal"></speedometer>
+	  <vumeter ng-if="signal.style === 'vumeter'" signal="signal"></vumeter>
+	  <gauge ng-if="signal.style === 'gauge'" signal="signal"></gauge>
+	  <extra ng-if="signal.style === 'extra'" signal="signal"></extra>
+	  <switch ng-if="signal.style === 'switch'" signal="signal"></switch>
+	  <slider ng-if="signal.style === 'slider'" signal="signal"></slider>
+	  </div>
+	  <div ng-hide="signal.title">
+	  	{{ 'DASHBOARD-VIEWER_SignalName' | translate }}
+	  </div>
+	</div>
+</div>
+

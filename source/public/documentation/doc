@@ -1,0 +1,261 @@
+
+	{
+		name:"sendSignal",
+		description:"Sends a signal to the dashboard.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"label",
+				description:"the label of the signal",
+				optional:false
+			},
+			{
+				name:"value",
+				description:"the value of the signal",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"sendSignalAndFlag",
+		description:"Sends a signal to the dashboard and puts a flag on the graph.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"flag",
+				description:"the name of the flag that appears on the graph",
+				optional:false
+			},
+			{
+				name:"label",
+				description:"the label of the signal",
+				optional:false
+			},
+			{
+				name:"value",
+				description:"the value of the signal",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"putFlag",
+		description:"Attaches a flag to a signal on the graph.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"label",
+				description:"the label of the signal the flag is attached to",
+				optional:false
+			},
+			{
+				name:"flag",
+				description:"the name of the flag that appears on the graph",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"sendSignalsList",
+		description:"Sends a list of signals to the dashboard. The list of signal labels and values should have the same number of elements.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"listOfLabels",
+				description:"a list of labels, each identifying a different signal",
+				optional:false
+			},
+			{
+				name:"listOfValues",
+				description:"a list of the values to be displayed in tha dashboard; each value has a correspondent label",
+				optional:false
+			},
+			{
+				name:"noOfElements",
+				description:"the number of elements in the labels and values lists",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"sendSignalsListAndFlag",
+		description:"Sends a list of signals to the dashboard and puts a flag on the graph. The list of signal labels and values should have the same number of elements.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"flag",
+				description:"the name of the flag that appears on the graph",
+				optional:false
+			},
+			{
+				name:"listOfLabels",
+				description:"a list of labels, each identifying a different signal",
+				optional:false
+			},
+			{
+				name:"listOfValues",
+				description:"a list of the values to be displayed in tha dashboard; each value has a correspondent label",
+				optional:false
+			},
+			{
+				name:"noOfElements",
+				description:"the number of elements in the labels and values lists",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"sendCoordinates",
+		description:"Sends a signal described by latitude and longitude to be displayed on a maps dashboard element.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"label",
+				description:"the label of the signal",
+				optional:false
+			},
+			{
+				name:"latitude",
+				description:"the latitude to be displayed on the maps",
+				optional:false
+			},
+			{
+				name:"longitude",
+				description:"the longitude to be displayed on the maps",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"sendCoordinatesAndFlag",
+		description:"Sends a signal described by latitude and longitude together with a flag to be displayed on a maps dashboard element.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"label",
+				description:"the label of the signal",
+				optional:false
+			},
+			{
+				name:"latitude",
+				description:"the latitude to be displayed on the maps",
+				optional:false
+			},
+			{
+				name:"longitude",
+				description:"the longitude to be displayed on the maps",
+				optional:false
+			},
+			{
+				name:"flag",
+				description:"the name of the flag that appears on the maps",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"sendSignalXY",
+		description:"Sends a signal described by two coordinates.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"label",
+				description:"the label of the signal",
+				optional:false
+			},
+			{
+				name:"x",
+				description:"the x coordinate of the signal",
+				optional:false
+			},
+			{
+				name:"y",
+				description:"the y coordinate of the signal; y is considered the timestamp of the x value",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"sendSignalXYAndFlag",
+		description:"Sends a signal described by two coordinates and puts a flag on the graph.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"label",
+				description:"the label of the signal",
+				optional:false
+			},
+			{
+				name:"x",
+				description:"the x coordinate of the signal",
+				optional:false
+			},
+			{
+				name:"y",
+				description:"the y coordinate of the signal; y is considered the timestamp of the x value",
+				optional:false
+			},
+			{
+				name:"flag",
+				description:"the name of the flag that appears on the graph",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"initCommunication",
+		description:"Initiates the sending of messages to the same or other board(s). The function needs to be called only once, followed by no matter how many calls of the \"sendMessage\" function.",
+		returns:"None",
+		params:[]
+	},
+	{
+		name:"sendMessage",
+		description:"Sends a message to one or multiple board(s)",
+		returns:"None",
+		params:
+		[
+			{
+				name:"id(s)",
+				description:"the id or a list of ids of the board(s) to which the message is sent",
+				optional:false
+			},
+			{
+				name:"label",
+				description:"the label that identifies the connection through which the message is sent",
+				optional:false
+			},
+			{
+				name:"message",
+				description:"the message to be sent",
+				optional:false
+			}
+		]
+	},
+	{
+		name:"openConnection",
+		description:"Opens a connection and waits for messages from the same or other board(s) to be received.",
+		returns:"None",
+		params:
+		[
+			{
+				name:"label",
+				description:"the label that identifies the connection through which the message is sent",
+				optional:false
+			},
+			{
+				name:"myFunction",
+				description:"myFunction (sender, label, error, message); the function is called once a message is received",
+				optional:false
+			}
+		]
+	}
+]

@@ -1,0 +1,4 @@
+8a9,11
+>     var Highcharts = require ('highcharts/highstock');
+>     require ('highcharts/highcharts-more')(Highcharts);
+>     require ('highcharts/modules/solid-gauge')(Highcharts);

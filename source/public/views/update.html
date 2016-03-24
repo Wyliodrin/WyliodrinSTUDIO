@@ -1,0 +1,20 @@
+<md-dialog aria-label="{{ 'TOOLBAR_UPDATE' | translate }}" style="width: 550px; max-height:400px;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ 'TOOLBAR_UPDATE' | translate }}</h2>
+		</div>
+	</md-toolbar>
+    
+    <md-dialog-content>
+    	<md-progress-linear ng-show="runupdate" md-mode="indeterminate" class="loading-bar"></md-progress-linear>
+        <md-content class="pre-box">
+        	<pre>{{runoutput}}</pre>
+        </md-content>
+    </md-dialog-content>
+    
+    
+	<md-dialog-actions layout="row">
+        <md-button ng-show="runupdate" ng-click="u.exit()">{{ 'TOOLBAR_STOP' | translate }}</md-button>
+		<md-button ng-hide="runupdate" ng-click="u.exit()">{{ 'TOOLBAR_EXIT' | translate }}</md-button>
+	</md-dialog-actions>
+</md-dialog>

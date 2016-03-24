@@ -1,0 +1,90 @@
+
+"use strict";
+
+var settings = require ('settings');
+require ('debug').enable (settings.debug);
+var debug = require ('debug')('wyliodrin:mixpanel');
+var api = 'https://api.mixpanel.com';
+var uuid = require ('uuid');
+var _ = require ('lodash');
+var app = window.app = window.app || {};
+var library = require ('library');
+
+var mixpanel = {};
+
+library.retrieveValue ('usage', true, function (value)
+{
+  debug ('Usage '+value);
+  global.usage = value;
+});
+
+function init(token, userid) {
+  debug ('startup');
+  if (token && token !== '')
+  {
+    mixpanel.token = token;
+    mixpanel.distinct_id = userid;
+
+    var payload = {
+      $token: mixpanel.token,
+      $distinct_id: userid,
+      $set_once: {
+        $name: userid
+      }
+    };
+
+    chrome.runtime.getPlatformInfo (function (system)
+    {
+      mixpanel.os = system.os;
+      mixpanel.architecture = system.arch;
+      payload.$set_once.$os = mixpanel.os;
+      var data = new Buffer (JSON.stringify(payload)).toString ('base64');
+      var url = api + '/engage?data=' + data;
+
+      $.get(url);
+    });
+  }
+}
+
+// chrome.runtime.getPlatformInfo (function (info)
+// {
+//   console.log (info);
+// });
+
+function track(event, properties) {
+  debug (event);
+  if (userid && global.usage && mixpanel.token)
+  {
+    var payload = {
+        event: event,
+        properties: _.assign ({
+            distinct_id: mixpanel.distinct_id,
+            token: mixpanel.token,
+            version: settings.VERSION,
+            $os: mixpanel.os,
+            architecture: mixpanel.architecture
+            // browser: app.browser.name
+        }, 
+        properties)
+    };
+
+    var data = new Buffer (JSON.stringify(payload)).toString ('base64');
+    var url = api + '/track?data=' + data;
+
+    // console.log (url);
+
+    $.get(url);
+  }
+}
+
+var userid = null;
+library.retrieveValue ('userid', uuid.v4(), function (user)
+{
+  userid = user;
+  if (userid) init (settings.MIXPANEL, userid);
+});
+
+mixpanel.init = init;
+mixpanel.track = track;
+
+module.exports = mixpanel;

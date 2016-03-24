@@ -1,0 +1,20 @@
+<md-dialog aria-label="{{ 'RENAME_RenameApp' | translate }}">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ 'RENAME_RenameApp' | translate }}</h2>
+		</div>
+	</md-toolbar>
+    
+	<md-dialog-content>
+        <md-content layout-gt-sm="row" layout-padding>
+            <md-input-container class="rename-title">
+                <label>{{ 'ADD-APP_Title' | translate }}</label>
+                <input ng-model="title" minlength="3" ng-trim="true">
+           </md-input-container>
+        </md-content>
+    </md-dialog-content>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="a.rename()">{{ 'TOOLBAR_RENAME' | translate }}</md-button>
+		<md-button ng-click="a.cancel()">{{ 'TOOLBAR_CANCEL' | translate }}</md-button>
+	</md-dialog-actions>
+</md-dialog>

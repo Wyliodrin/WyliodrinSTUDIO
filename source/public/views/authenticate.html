@@ -1,0 +1,40 @@
+<md-dialog aria-label="{{ 'AUTHENTICATE_ConnectToAddress' | translate }}" style="max-width:400px;" class="auth-box">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ 'AUTHENTICATE_ConnectToAddress' | translate }}</h2>
+		</div>
+	</md-toolbar>
+    
+	<md-dialog-content layout-padding>
+        <md-content>
+            <md-input-container style="width:64%;">
+                <label>IP</label>
+                <input ng-model="device.ip" ng-trim="true">
+           </md-input-container>
+           <md-input-container style="width:30%;">
+                <label>{{ 'DEVICE_PORT' | translate }}</label>
+                <input ng-model="device.port" ng-trim="true" type="number">
+           </md-input-container>
+           
+           {{ 'AUTHENTICATE_Login' | translate }}
+
+           <md-input-container style="width:47%;">
+                <label>{{ 'USER_Username' | translate }}</label>
+                <input ng-model="device.username" ng-trim="true">
+           </md-input-container>
+           <md-input-container style="width:47%;">
+                <label>{{ 'USER_Password' | translate }}</label>
+                <input ng-model="device.password" type="{{passwordCheckbox ? 'text' : 'password'}}">
+           </md-input-container>
+        </md-content>
+    </md-dialog-content>
+    
+    
+	<md-dialog-actions layout="row">
+    	<md-checkbox ng-model="passwordCheckbox" arial-label="{{ 'USER_ShowPassword' | translate }}">
+	        {{ 'USER_ShowPassword' | translate }}
+      </md-checkbox>
+		<md-button ng-click="a.connect()">{{ 'DEVICE_CONNECT' | translate }}</md-button>
+		<md-button ng-click="a.exit()">{{ 'TOOLBAR_EXIT' | translate }}</md-button>
+	</md-dialog-actions>
+</md-dialog>

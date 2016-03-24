@@ -1,0 +1,1 @@
+{"title":"add python","language":"python","main":"# python application\n\nfrom wyliodrin import *\n\nprint \"Hello\"\n","visualproject":"","date":1456044836446,"firmware":"/* \n\nRemove this to use Arduino\n\nvoid setup ()\n{\n    \n}\n\nvoid loop ()\n{\n    \n}\n*/"}

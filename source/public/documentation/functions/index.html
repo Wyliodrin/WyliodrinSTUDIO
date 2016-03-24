@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>Peripheral Control - Wyliodrin Documentation</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Peripheral Control";
+    var mkdocs_page_input_path = "functions.md";
+    var mkdocs_page_url = "/functions/index.html";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> Wyliodrin Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../index.html">Overview</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>libwyliodrin</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../constants/index.html">Constants</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="index.html">Peripheral Control</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#pinmode">pinMode()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#digitalwrite">digitalWrite()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#digitalread">digitalRead()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#analogwrite">analogWrite()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#analogread">analogRead()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#analogwriteraw">analogWriteRaw()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#analogreadraw">analogReadRaw()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#pulsein">pulseIn()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#shiftin">shiftIn()</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#shiftout">shiftOut()</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../timing/index.html">Time</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../math/index.html">Math</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../bits/index.html">Bits and Bytes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../spi/index.html">SPI Communication</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../i2c/index.html">I2C Communication</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../signal/index.html">Signal</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Wyliodrin Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>libwyliodrin &raquo;</li>
+        
+      
+    
+    <li>Peripheral Control</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="pinmode">pinMode()</h2>
+<p><em><strong>Description</strong></em><br />
+Configures the specified pin to behave either as an input or an output.</p>
+<p><em><strong>Syntax</strong></em><br />
+pinMode (pin, mode)</p>
+<p><em><strong>Parameters</strong></em><br />
+- pin: the number of the pin whose mode you wish to set (int);<br />
+- mode: <a href="../constants/index.html#input">INPUT</a>, <a href="../constants/index.html#output">OUTPUT</a> (int).</p>
+<p><em><strong>Returns</strong></em><br />
+None</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import * # imports wyliodrin module
+
+pinMode (1, INPUT)      # sets pin 1 as input  
+pinMode (2, OUTPUT)     # sets pin 2 as output
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');   // imports wyliodrin module
+
+wyliodrin.pinMode (1, wyliodrin.INPUT);  // sets pin 1 as input  
+wyliodrin.pinMode (2, wyliodrin.OUTPUT); // sets pin 2 as output
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;          //imports wyliodrin library
+
+int main()
+{
+    pinMode (1, INPUT);         // sets pin 1 as input  
+    pinMode (2, OUTPUT);        // sets pin 2 as output
+    return 0;
+}
+</code></pre>
+
+<h2 id="digitalwrite">digitalWrite()</h2>
+<p><em><strong>Description</strong></em><br />
+Write a <a href="../constants/index.html#high">HIGH</a> or a <a href="../constants/index.html#low">LOW</a> value to a digital pin.<br />
+NOTE: If you do not set the pinMode() to <a href="../constants/index.html#output">OUTPUT</a>, and connect an LED to a pin, when calling digitalWrite(HIGH), the LED may appear dim. Without explicitly setting pinMode(), on most of the boards, the pin will have enabled the internal pull-up resistor, which acts like a large current-limiting resistor.</p>
+<p><em><strong>Syntax</strong></em><br />
+digitalWrite (pin, value)</p>
+<p><em><strong>Parameters</strong></em><br />
+- pin: the number of the pin you wish to control (int);<br />
+- value: <a href="../constants/index.html#high">HIGH</a>, <a href="../constants/index.html#low">LOW</a> (int).</p>
+<p><em><strong>Returns</strong></em><br />
+None</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import * # imports wyliodrin module
+
+pinMode (1, OUTPUT)    # sets pin 1 as output
+digitalWrite (1, HIGH) # sets the pin on
+delay (1000)           # waits for a second
+digitalWrite (1, LOW)  # sets the pin off
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');      // imports wyliodrin module
+
+wyliodrin.pinMode (1, wyliodrin.OUTPUT);    // sets pin 1 as output
+wyliodrin.digitalWrite (1, wyliodrin.HIGH); // sets the pin on
+wyliodrin.delay (1000);                     //waits for a second
+wyliodrin.digitalWrite (1, wyliodrin.LOW);  // sets the pin off
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;       //imports wyliodrin library
+
+int main()
+{
+    pinMode (1, OUTPUT);     // sets pin 1 as output
+    digitalWrite (1, HIGH);  // sets the pin on
+    delay (1000);            // waits for a second
+    digitalWrite (1, LOW);   // sets the pin off
+    return 0;
+}
+</code></pre>
+
+<h2 id="digitalread">digitalRead()</h2>
+<p><em><strong>Description</strong></em><br />
+Reads the value from a specified digital pin, either <a href="../constants/index.html#high">HIGH</a> or <a href="../constants/index.html#low">LOW</a>.
+Note: If the pin isn't connected to anything, digitalRead() can return either HIGH or LOW (and this can change randomly).</p>
+<p><em><strong>Syntax</strong></em><br />
+digitalRead (pin)</p>
+<p><em><strong>Parameters</strong></em><br />
+- pin: the number of the pin you wish to read (int).  </p>
+<p><em><strong>Returns</strong></em><br />
+<a href="../constants/index.html#high">HIGH</a> or <a href="../constants/index.html#low">LOW</a> (int)</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import *  # imports wyliodrin module
+
+pinMode (1, INPUT)       # sets pin 1 as input
+value = digitalRead (1)  # reads the input pin and stores the value
+print value              # prints the value on the screen
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');  // imports wyliodrin module
+
+wyliodrin.pinMode (1, wyliodrin.INPUT); // sets pin 1 as input
+var value = wyliodrin.digitalRead (1);  // reads the input pin and stores the value
+console.log (value);                    // prints the value on the screen
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;        //imports wyliodrin library
+
+int main()
+{
+    int value; 
+    pinMode (1, INPUT);       // sets pin 1 as input
+    value = digitalRead (1);  // reads the input pin and stores the value
+    printf(&quot;%d\n&quot;, value);    // prints the value on the screen
+    return 0;
+}
+</code></pre>
+
+<h2 id="analogwrite">analogWrite()</h2>
+<p><em><strong>Description</strong></em><br />
+Writes an analog value (<a href="http://ocw.cs.pub.ro/courses/iot/courses/02#pwm_-_pulse-width_modulation">PWM wave</a>) to a pin. Can be used to light a LED at varying brightnesses or drive a motor at various speeds.<br />
+NOTE: The frequency of the PWM signal is different depending on the board you are using. We suggest reading the specifications of the board before using PWM signals.</p>
+<p><em><strong>Syntax</strong></em><br />
+analogWrite (pin, value)</p>
+<p><em><strong>Parameters</strong></em><br />
+- pin: the number of the pin you wish to control (int); 
+- value: the duty cycle, in the interval [0,255] (int).</p>
+<p><em><strong>Returns</strong></em><br />
+None</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import *  # imports wyliodrin module
+
+pinMode (1, OUTPUT)      # sets pin 1 as output
+for i in range (0,256):  # i gets values from 0 to 255
+    analogWrite (1, i)   # write value of i on pin 1
+    delay (100)          # waits for 100 milliseconds
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');  //imports wyliodrin module
+
+wyliodrin.pinMode (1, OUTPUT);          // sets pin 1 as output
+var i;
+for (i = 0; i &lt; 256; i++)               // i gets values from 0 to 255
+{
+    wyliodrin.analogWrite (1, i);       // write value of i on pin 1
+    wyliodrin.delay (100);              // waits for 100 milliseconds
+}
+
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;          //imports wyliodrin library
+
+int main()
+{
+    int i;
+    pinMode (1, OUTPUT);        // sets pin 1 as output
+    for (i = 0; i &lt; 256; i++)   // i gets values from 0 to 255
+    {
+        analogWrite (1, i);     // write value of i on pin 1
+        delay (100);            // waits for 100 milliseconds
+    }
+    return 0;
+}
+</code></pre>
+
+<h2 id="analogread">analogRead()</h2>
+<p><em><strong>Description</strong></em><br />
+Reads the value from the specified analog pin. The function scales the values to 0-1023 interval.<br />
+Note: If the analog input pin is not connected to anything, the value returned by analogRead() will fluctuate based on a number of factors (e.g. the values of the other analog inputs, how close your hand is to the board etc.).</p>
+<p><em><strong>Syntax</strong></em><br />
+analogRead (pin)</p>
+<p><em><strong>Parameters</strong></em><br />
+- pin: the number of the pin you wish to read (int).<br />
+//imports wyliodrin module
+<em><strong>Returns</strong></em><br />
+a value in the interval [0,1023] (int)</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import *  # imports wyliodrin module
+
+value = analogRead (1)   # reads the input pin and stores the value
+print value              # prints the value on the screen
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');  //imports wyliodrin module
+
+var value = wyliodrin.analogRead (1);   // reads the input pin and stores the value
+console.log (value);                    // prints the value on the screen
+
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;                  //imports wyliodrin library
+
+int main()
+{
+    int value;
+    value = analogRead (1);             // reads the input pin and stores the value
+    printf (&quot;value is : %d\n&quot;, value);  // prints the value on the screen
+    return 0;
+}
+</code></pre>
+
+<h2 id="analogwriteraw">analogWriteRaw()</h2>
+<p><em><strong>Description</strong></em><br />
+Writes a raw analog value (<a href="http://ocw.cs.pub.ro/courses/iot/courses/02#pwm_-_pulse-width_modulation">PWM wave</a>) to a pin. Can be used to light a LED at varying brightnesses or drive a motor at various speeds.<br />
+NOTE: The values that can be written to the pin depend on each board.</p>
+<p><em><strong>Syntax</strong></em><br />
+analogWriteRaw (pin, value)</p>
+<p><em><strong>Parameters</strong></em><br />
+- pin: the number of the pin you wish to control (int); 
+- value: the raw duty cycle, depends on the board  (int).</p>
+<p><em><strong>Returns</strong></em><br />
+None</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import *   # imports wyliodrin module
+
+pinMode (1, OUTPUT)       # sets pin 1 as output
+for i in range (0,256):   # i gets values from 0 to 255
+    analogWriteRaw (1, i) # write value of i on pin 1
+    delay (100) 
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');  //imports wyliodrin module
+
+wyliodrin.pinMode (1, OUTPUT);          // sets pin 1 as output
+var i;
+for (i = 0; i &lt; 256; i++)               // i gets values from 0 to 255
+{
+    wyliodrin.analogWriteRaw (1, i);    // write value of i on pin 1
+    wyliodrin.delay (100);              // waits for 100 milliseconds
+}
+
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;          //imports wyliodrin library
+
+int main()
+{
+    int i;
+    pinMode (1, OUTPUT);        // sets pin 1 as output
+    for (i = 0; i &lt; 256; i++)   // i gets values from 0 to 255
+    {
+        analogWriteRaw (1, i);  // write value of i on pin 1
+        delay (100);            // waits for 100 milliseconds
+    }
+    return 0;
+}
+</code></pre>
+
+<h2 id="analogreadraw">analogReadRaw()</h2>
+<p><em><strong>Description</strong></em><br />
+Reads the raw value from the specified analog pin. The values depend on the board.</p>
+<p><em><strong>Syntax</strong></em><br />
+analogReadRaw (pin)</p>
+<p><em><strong>Parameters</strong></em><br />
+- pin: the number of the pin you wish to read (int). </p>
+<p><em><strong>Returns</strong></em><br />
+a value from an interval depending on the board (int)</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import *   # imports wyliodrin module
+
+value = analogReadRaw (1) # reads the input pin and stores the raw value
+print value               # prints the value on the screen
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');      //imports wyliodrin module
+
+var value = wyliodrin.analogReadRaw (1);   // reads the input pin and stores the value
+console.log (value);                       // prints the value on the screen
+
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;                      //imports wyliodrin library
+
+int main()
+{
+    int value;
+    value = analogReadRaw (1);              // reads the input pin and stores the value
+    printf (&quot;raw value is : %d\n&quot;, value);  // prints the value on the screen
+    return 0;
+}
+</code></pre>
+
+<h2 id="pulsein">pulseIn()</h2>
+<p><em><strong>Description</strong></em><br />
+Reads a pulse (either <a href="../constants/index.html#high">HIGH</a> or <a href="../constants/index.html#low">LOW</a>) on a pin. For example, if value is HIGH, pulseIn() waits for the pin to go HIGH, starts timing, then waits for the pin to go LOW and stops timing. Returns the length of the pulse in microseconds.</p>
+<p><em><strong>Syntax</strong></em><br />
+pulseIn (pin, value) </p>
+<p><em><strong>Parameters</strong></em><br />
+- pin: the number of the pin on which wish to read the pulse (uint8_t);<br />
+- value: type of pulse to read, either HIGH or LOW (uint8_t). </p>
+<p><em><strong>Returns</strong></em><br />
+the length of the pulse in microseconds (unsigned long)</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import *         # imports wyliodrin module
+
+pinMode (1, INPUT)              # sets pin 1 as input
+while True:
+    value = pulseIn (1, HIGH)   # reads the microseconds between LOW and HIGH stores the value
+    print value                 # prints the value on the screen
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');  //imports wyliodrin module
+
+wyliodrin.pinMode (1, wyliodrin.INPUT); // sets pin 1 as input
+while (true)
+{
+    // reads the microseconds between LOW and HIGH stores the value
+    var value = wyliodrin.pulseIn (1, wyliodrin.HIGH); 
+    console.log (value);                // prints the value on the screen
+}
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;              //imports wyliodrin library
+
+int main()
+{
+    unsigned long value;
+    pinMode (1, INPUT);             // sets pin 1 as input
+    while (true)
+    {
+
+        value = pulseIn (1, HIGH); // reads the microseconds between LOW and HIGH stores the value
+        printf (&quot;%d\n&quot;, value);    // prints the value on the screen
+    }
+    return 0;
+}
+</code></pre>
+
+<h2 id="shiftin">shiftIn()</h2>
+<p><em><strong>Description</strong></em><br />
+Shifts in a byte of data one bit at a time. Starts from either the most (the leftmost) or least (the rightmost) significant bit. For each bit, the clock pin is pulled high, the next bit is read from the data line, and then the clock pin is taken low.</p>
+<p><em><strong>Syntax</strong></em><br />
+shiftIn (dataPin, clockPin, bitOrder)</p>
+<p><em><strong>Parameters</strong></em><br />
+- dataPin: the pin on which to input each bit (uint8_t);<br />
+- clockPin: the pin to toggle to signal a read from dataPin (uint8_t);<br />
+- bitOrder: which order to shift in the bits (<a href="../constants/index.html#msbfirst">MSBFIRST</a> or <a href="../constants/index.html#lsbfirst">LSBFIRST</a>) (uint8_t). </p>
+<p><em><strong>Returns</strong></em><br />
+the value read (uint8_t)</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import *     # imports wyliodrin module
+
+latchPin = 8
+clockPin = 12
+dataPin  = 11
+
+pinMode (latchPin, OUTPUT) # sets latch pin as output
+
+# sets pins to input
+pinMode (clockPin, INPUT)
+pinMode (dataPin, INPUT)
+
+# set latchPin to low and hold low for as long as you are reading
+digitalWrite(latchPin, LOW)
+
+# read the first byte and store it
+firstByte = shiftIn(dataPin, clockPin, LSBFIRST)
+
+# return the latch pin high to signal chip that it can send the next byte
+digitalWrite(latchPin, HIGH)
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');  //imports wyliodrin module
+
+var latchPin = 8;
+var clockPin = 12;
+var dataPin  = 11;
+
+wyliodrin.pinMode (latchPin, wyliodrin.OUTPUT); // sets latch pin as output
+
+// sets pins to input
+wyliodrin.pinMode (clockPin, wyliodrin.INPUT);
+wyliodrin.pinMode (dataPin, wyliodrin.INPUT);
+
+// set latchPin to low and hold low for as long as you are reading
+wyliodrin.digitalWrite(latchPin, wyliodrin.LOW);
+
+// read the first byte and store it
+var firstByte = wyliodrin.shiftIn(dataPin, clockPin, wyliodrin.LSBFIRST);
+
+// return the latch pin high to signal chip that it can send the next byte
+wyliodrin.digitalWrite(latchPin, wyliodrin.HIGH);
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;          //imports wyliodrin library
+
+int main()
+{
+    uint8_t latchPin = 8;
+    uint8_t clockPin = 12;
+    uint8_t dataPin  = 11;
+
+    uint8_t firstByte;
+
+    pinMode (latchPin, OUTPUT); // sets latch pin as output
+
+    // sets pins to input
+    pinMode (clockPin, INPUT);
+    pinMode (dataPin, INPUT);
+
+    // set latchPin to low and hold low for as long as you are reading
+    digitalWrite(latchPin, LOW);
+
+    // read the first byte and store it
+    firstByte = shiftIn(dataPin, clockPin, LSBFIRST);
+
+    // return the latch pin high to signal chip that it can send the next byte
+    digitalWrite(latchPin, HIGH);
+    return 0;
+}
+</code></pre>
+
+<h2 id="shiftout">shiftOut()</h2>
+<p><em><strong>Description</strong></em><br />
+Shifts out a byte of data one bit at a time. Starts from either the most (the leftmost) or least (the rightmost) significant bit. For each bit, the clock pin is pulled high, the next bit is sent to the data line, and then the clock pin is taken low to indicate that the bit is available.<br />
+NOTE: The <strong>dataPin</strong> and <strong>clockPin</strong> must already be configured as outputs by a call to <a href="#pinmode">pinMode()</a>.</p>
+<p><em><strong>Syntax</strong></em><br />
+shiftOut(dataPin, clockPin, bitOrder, value)</p>
+<p><em><strong>Parameters</strong></em><br />
+- dataPin: the pin on which to input each bit (uint8_t);<br />
+- clockPin: the pin to toggle to signal a read from dataPin (uint8_t);<br />
+- bitOrder: which order to shift in the bits (<a href="../constants/index.html#msbfirst">MSBFIRST</a> or <a href="../constants/index.html#lsbfirst">LSBFIRST</a>) (uint8_t);<br />
+- value: the byte to shift out (uint8_t).</p>
+<p><em><strong>Returns</strong></em><br />
+None</p>
+<p><em><strong>Example</strong></em><br />
+Python:</p>
+<pre><code>from wyliodrin import *              # imports wyliodrin module
+
+latchPin = 8
+clockPin = 12
+dataPin  = 11
+
+# sets pins to output
+pinMode (latchPin, OUTPUT)
+pinMode (clockPin, OUTPUT)
+pinMode (dataPin, OUTPUT)
+
+# set latchPin to low and hold low for as long as you are transmitting
+digitalWrite(latchPin, LOW) 
+shiftOut(dataPin, clockPin, LSBFIRST, 200) # write the value 200
+# return the latch pin high to signal chip that it no longer needs to listen for information
+digitalWrite(latchPin, HIGH)
+</code></pre>
+
+<p>JavaScript:</p>
+<pre><code>var wyliodrin = require ('wyliodrin');  //imports wyliodrin module
+
+var latchPin = 8;
+var clockPin = 12;
+var dataPin  = 11;
+
+// sets pins to output
+wyliodrin.pinMode (latchPin, wyliodrin.OUTPUT);
+wyliodrin.pinMode (clockPin, wyliodrin.OUTPUT);
+wyliodrin.pinMode (dataPin, wyliodrin.OUTPUT);
+
+// set latchPin to low and hold low for as long as you are transmitting
+wyliodrin.digitalWrite(latchPin, wyliodrin.LOW); 
+wyliodrin.shiftOut(dataPin, clockPin, wyliodrin.LSBFIRST, 200); // write the value 200
+// return the latch pin high to signal chip that it no longer needs to listen for information
+wyliodrin.digitalWrite(latchPin, wyliodrin.HIGH);
+</code></pre>
+
+<p>C/C++:</p>
+<pre><code>#include &lt;Wyliodrin.h&gt;          //imports wyliodrin library
+
+int main()
+{
+    uint8_t latchPin = 8;
+    uint8_t clockPin = 12;
+    uint8_t dataPin  = 11;
+
+    // sets pins to output
+    pinMode (latchPin, OUTPUT);
+    pinMode (clockPin, OUTPUT);
+    pinMode (dataPin, OUTPUT);
+
+    // set latchPin to low and hold low for as long as you are transmitting
+    digitalWrite(latchPin, LOW); 
+    shiftOut(dataPin, clockPin, LSBFIRST, 200); // write the value 200
+    // return the latch pin high to signal chip that it no longer needs to listen for information
+    digitalWrite(latchPin, HIGH);
+    return 0;
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../timing/index.html" class="btn btn-neutral float-right" title="Time">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../constants/index.html" class="btn btn-neutral" title="Constants"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../constants/index.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../timing/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+Protocol
+========
+
+When connecting, send packet for separator and ping
+t:''
+d:null
+ping
+status
+
+--->
+t:'ping'
+d:null
+<----
+t:'pong'
+d:null
+
+Shell
+
+Open
+->
+t:'s'
+d: {a:'o', c:columns, r:rows}
+
+<-
+t:'s'
+d: {a:'o', r:'d'}
+
+t:'s'
+d: {a:'o', r:'e', e:error}
+
+Keys
+<->
+t:'s'
+d:{a:'k', t:keys}
+
+<-
+t:'s'
+d:{a:'e', e:error}
+
+if shell not open, send open
+
+Resize
+t:'s'
+d:{a:'r', c:columns, r:rows}
+
+Stop
+<-
+t:'s'
+d:{a:'s'}
+
+->
+t:'s'
+d:{a:'s', e:error}
+
+->
+t:'s'
+d:{a:'s', r:'d'}
+
+t:'s'
+d:{a:'s', r:'e', e:error}
+
+Project
+Run
+
+<-
+t:'p'
+d:{a:'start', p:main, m:makefile, a:arduino - optional}
+
+->
+
+t:'p'
+d:{a:'start', r:'s', s:'o', t:stream}
+d:{a:'start', r:'s', s:'e', t:stream}
+
+t:'p'
+d:{a:'start', r:'d'}
+
+t:'p'
+d:{a:'start', r:'e', e:error}
+
+Send status
+
+Keys
+->
+t:'p'
+d:{a:'k', t:keys}
+
+Resize
+<-
+t:'p'
+d:{a:'r', c:columns, r:rows}
+
+Stop
+->
+t:'p'
+d:{a:'stop', e:error}
+
+Send status
+
+
+Signals (values)
+-> timestamp
+t:'v'
+d:{s:signal, v:value, t:timestamp}
+
+-> array
+t:'v'
+d:{s:signal, a:true, v:value, i:index}
+
+t:'v'
+d:{s:signal, v:values}
+
+Board
+->
+t:'i'
+d:null
+
+<-
+t:'i'
+d:{c:category, n:name, r:program_running}
+
+<--
+t: pm
+d:{a:'p', l:language_title}
+
+-->
+t:pm
+d:{a:'p', l:language_title, p:package}
+
+<--
+t: tm
+d:{a: 'run', optional s:seconds=5}
+
+-->
+t: tm
+d:[{PID:pid, %CPU:cpu, COMMAND:name, VSZ: mem}]
+
+<--
+t:'net'
+d:{a:'l'}
+
+-->
+t:'net'
+d:{a:'l', n:[{ip:ipv4, m:ipv4_mask, b:ipv4_broadcast, h:mac, i:interface, t:e/w, u:up}]}
+
+<--
+t:'net'
+d:{a:'s', i:interface}
+
+-->
+t:'net'
+d:{a:'s', i:interface, n:[{s:ssid, t:security, rss:signal, q:quality}]}
+
+<--
+t:'net'
+d:{a:'c', i:interface, s:ssid, p:psk}
+
+-->
+t:'net'
+d:{a:'c', i:interface, e:error}

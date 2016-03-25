@@ -74,7 +74,7 @@ The build is in the *build* folder
 ### Parameters
 
 * DEBUG_WYLIODRIN='wyliodrin.*' - enable debug messages (this will have a performance impact)
-* MIXPANEL_WYLIODRIN='' - mixpanel token for user tracking
+* MIXPANEL_WYLIODRIN='' - mixpanel token for anonymous statistics sending
 
 ## Authors
 

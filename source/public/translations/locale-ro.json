@@ -191,6 +191,13 @@
   "SIGNAL-gauge":"Cadran",
   "SIGNAL-extra":"Extra",
   "SIGNAL-switch":"Buton",
-  "SIGNAL-slider":"Potențiometru"
+  "SIGNAL-slider":"Potențiometru",
 
+  "TOOLBAR_ExitQuestion":"Sunteți sigur că doriți să inchideți?",
+  "YES":"Da",
+  "NO":"Nu",
+
+  "LIBRARY_ProjectErase":"Doriși să ștergeți proiectul {{title}}?",
+
+  "SCHEMATICS_ERASE":"Doriți să ștergeți schema?"
 }

@@ -19,7 +19,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('SchematicsController', function($scope, $element, $wyapp, $timeout, $wysignalproperties, $mdDialog){
+	app.controller('SchematicsController', function($scope, $filter, $element, $wyapp, $timeout, $wysignalproperties, $mdDialog){
 		debug ('Registering');
 		$scope.project = 
 		{
@@ -61,12 +61,12 @@ module.exports = function ()
 		{
 			var that = this;
 			var message = $mdDialog.confirm()
-		          .title('Would you like to delete the schematics?')
+		          .title($filter('translate')('SCHEMATICS_ERASE'))
 		          // .textContent('All of the banks have agreed to forgive you your debts.')
 		          // .ariaLabel('Lucky day')
 		          // .targetEvent(ev)
-		          .ok('Yes')
-		          .cancel('No');
+		          .ok($filter('translate')('YES'))
+		          .cancel($filter('translate')('NO'));
 		    $mdDialog.show(message).then(function() {
 		    	$scope.project.schematics = '';
 		    	mixpanel.track ('Schematics Erase', {

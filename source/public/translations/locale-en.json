@@ -191,6 +191,13 @@
   "SIGNAL-gauge":"Gauge",
   "SIGNAL-extra":"Extra",
   "SIGNAL-switch":"Switch",
-  "SIGNAL-slider":"Slider"
+  "SIGNAL-slider":"Slider",
 
+  "TOOLBAR_ExitQuestion":"Are you sure you want to exit?",
+  "YES":"Yes",
+  "NO":"No",
+
+  "LIBRARY_ProjectErase":"Would you like to delete project {{title}}?",
+
+  "SCHEMATICS_ERASE":"Would you like to erase the scematics?"
 }

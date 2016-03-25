@@ -16,7 +16,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('ToolbarController', function ($scope, $mdDialog, $wyapp, $wydevice)
+	app.controller ('ToolbarController', function ($scope, $filter, $mdDialog, $wyapp, $wydevice)
 	{
 		debug ('Registering');
 
@@ -42,12 +42,12 @@ module.exports = function ()
 		this.exit = function ()
 		{
 			var message = $mdDialog.confirm()
-		          .title('Are you sure you want to exit?')
+		          .title($filter('translate')('TOOLBAR_ExitQuestion'))
 		          // .textContent('All of the banks have agreed to forgive you your debts.')
 		          // .ariaLabel('Lucky day')
 		          // .targetEvent(ev)
-		          .ok('Yes')
-		          .cancel('No');
+		          .ok($filter('translate')('YES'))
+		          .cancel($filter('translate')('NO'));
 		    $mdDialog.show(message).then(function() {
 		      chrome.app.window.current().close ();
 		    }, function() {

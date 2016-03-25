@@ -29,7 +29,7 @@ function init(token, userid) {
       $token: mixpanel.token,
       $distinct_id: userid,
       $set_once: {
-        $name: userid
+        $name: userid,
       }
     };
 
@@ -38,6 +38,7 @@ function init(token, userid) {
       mixpanel.os = system.os;
       mixpanel.architecture = system.arch;
       payload.$set_once.$os = mixpanel.os;
+      payload.version = settings.VERSION;
       var data = new Buffer (JSON.stringify(payload)).toString ('base64');
       var url = api + '/engage?data=' + data;
 

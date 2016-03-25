@@ -192,5 +192,13 @@
   "SIGNAL-gauge":"Jauge",
   "SIGNAL-extra":"Extra",
   "SIGNAL-switch":"Commutateur",
-  "SIGNAL-slider":"Potentiomètre"
+  "SIGNAL-slider":"Potentiomètre",
+
+  "TOOLBAR_ExitQuestion":"Êtes-vous sûr de vouloir quitter?",
+  "YES":"Oui",
+  "NO":"Non",
+
+  "LIBRARY_ProjectErase":"Voulez-vous supprimer le projet {{title}}?",
+
+  "SCHEMATICS_ERASE":"Voulez-vous effacer la schémas?"
 }

@@ -20,7 +20,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('LibraryController', function ($scope, $mdDialog, $wyapp, $wydevice)
+	app.controller ('LibraryController', function ($scope, $filter, $mdDialog, $wyapp, $wydevice)
 	{
 		debug ('Registering');
 		var that = this;
@@ -175,12 +175,12 @@ module.exports = function ()
 			$mdDialog.hide ();
 			var that = this;
 			var message = $mdDialog.confirm()
-		          .title('Would you like to delete project '+project.title+'?')
+		          .title($filter('translate')('LIBRARY_ProjectErase', {title:project.title}))
 		          // .textContent('All of the banks have agreed to forgive you your debts.')
 		          // .ariaLabel('Lucky day')
 		          // .targetEvent(ev)
-		          .ok('Yes')
-		          .cancel('No');
+		          .ok($filter('translate')('YES'))
+		          .cancel($filter('translate')('NO'));
 		    $mdDialog.show(message).then(function() {
 		    	$wyapp.emit ('library');
 		      library.erase (project.id);

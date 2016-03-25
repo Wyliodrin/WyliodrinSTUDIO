@@ -11,6 +11,18 @@ mixpanel.init("80665e4b3e444110cc43501ca874816c");
 
 mixpanel.track ('Presentation Site');
 </script><!-- end Mixpanel -->
+<script>
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  if (getParameterByName ('chromestore')==='true')
+  {
+    window.location.href= "https://goo.gl/Sgj9HB";
+  }
+</script>
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">

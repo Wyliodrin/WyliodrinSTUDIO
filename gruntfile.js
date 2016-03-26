@@ -368,6 +368,34 @@ module.exports = function(grunt) {
     fs.writeFileSync ('source/config/languages.js', '"use strict";\n module.exports = '+JSON.stringify (result)+';');
   });
 
+  grunt.registerTask ('locale', 'Locale', function ()
+  {
+    var TRANSLATION_FOLDER = 'source/public/translations';
+
+    var languagelist = fs.readdirSync (TRANSLATION_FOLDER);
+
+    _.each (languagelist, function(file)
+    {
+      var filename = path.basename(file, '.json');
+      if (filename.startsWith('locale-'))
+      {
+        var language = JSON.parse(fs.readFileSync(path.join(TRANSLATION_FOLDER,file)).toString());
+        console.log ('Locale ' + filename.substring(7).toString() + ' added.');
+        mkdirp.sync ('build/_locales/'+filename.substring(7));
+        fs.writeFileSync ('build/_locales/'+filename.substring(7)+'/messages.json', JSON.stringify ({
+          appName:
+          {
+            message:language.appName
+          },
+          appDesc:
+          {
+            message:language.appDesc
+          }
+        }, null, 2));
+      }
+    });
+  });
+
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -387,7 +415,8 @@ module.exports = function(grunt) {
     'browserify',
     'ngAnnotate',
     'copy',
-    'less', 
+    'less',
+    'locale', 
     // 'cssmin',
     // 'uglify',
     // 'htmlmin'

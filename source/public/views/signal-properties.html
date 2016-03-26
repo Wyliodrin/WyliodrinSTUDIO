@@ -1,21 +1,21 @@
-<md-dialog aria-label="{{ 'SIGNAL-PROPERTIES_Signal' | translate }}">
+<md-dialog aria-label="{{ 'SIGNAL_PROPERTIES_Signal' | translate }}">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			<h2>{{ 'SIGNAL-'+ signal.style | translate }} - {{ 'SIGNAL-PROPERTIES_AddSignal' | translate }}</h2>
+			<h2>{{ 'SIGNAL_'+ signal.style | translate }} - {{ 'SIGNAL_PROPERTIES_AddSignal' | translate }}</h2>
 		</div>
 	</md-toolbar>
 	   <md-dialog-content>
         <md-content layout-gt-sm="row" layout-padding class="signal-details">
             <md-input-container>
-                <label>{{ 'SIGNAL-PROPERTIES_SignalName' | translate }}</label>
+                <label>{{ 'SIGNAL_PROPERTIES_SignalName' | translate }}</label>
                 <input ng-model="signal.title" minlength="1" ng-required="true" ng-trim="true" ng-pattern="/^[a-z][a-z0-9]*$/">
             </md-input-container>
            <md-input-container>
-                <label>{{ 'SIGNAL-PROPERTIES_Description' | translate }}</label>
+                <label>{{ 'SIGNAL_PROPERTIES_Description' | translate }}</label>
                 <input ng-model="signal.description">
             </md-input-container>
             <md-input-container>
-                <label>{{ 'SIGNAL-PROPERTIES_SignalColor' | translate }}</label>
+                <label>{{ 'SIGNAL_PROPERTIES_SignalColor' | translate }}</label>
                 <input type="color" ng-model="signal.color" class="signalcolor">
             </md-input-container>
             <!-- {{signal.style}} -->

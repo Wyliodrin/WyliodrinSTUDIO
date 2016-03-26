@@ -4,6 +4,7 @@ var angular = require ('angular');
 var settings = require ('settings');
 
 var library = require ('library');
+var mixpanel = require ('mixpanel');
 
 require ('debug').enable (settings.debug);
 
@@ -74,7 +75,11 @@ module.exports = function ()
 
       library.retrieveValue ('language', null, function (language)
       {
-        if (language) that.changeLanguage (language);
+        if (language)
+        {
+          mixpanel.language (language);
+          that.changeLanguage (language);
+        }
       });
 
       // console.log (available);
@@ -88,6 +93,7 @@ module.exports = function ()
                 title: available[languagecode]
               };
             // });
+            mixpanel.language (langKey);
             library.storeValue ('language', languagecode);
           };
     });

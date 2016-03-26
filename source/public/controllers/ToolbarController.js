@@ -218,10 +218,10 @@ module.exports = function ()
 		//     });
 		// };
 
-		this.board = function ()
+		this.forum = function ()
 		{
-			debug ('Board request');
-			$wyapp.emit ('board');
+			debug ('Forum');
+			window.open ('http://www.wyliodrin.com/forum');
 		};
 
 		$wyapp.on ('about', function ()

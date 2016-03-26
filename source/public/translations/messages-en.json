@@ -1,0 +1,610 @@
+{
+  "LANGUAGE": {
+    "message": "English",
+    "description": ""
+  },
+  "WYLIODRIN_STUDIO": {
+    "message": "Wyliodrin STUDIO",
+    "description": ""
+  },
+  "WYLIODRIN_STUDIO_DESCRIPTION": {
+    "message": "Wyliodrin STUDIO is a Chrome based IDE for software and hardware development for IoT and Embedded Linux systems.",
+    "description": ""
+  },
+  "DEVICE_CONNECT": {
+    "message": "Connect",
+    "description": ""
+  },
+  "DEVICE_ADDRESS": {
+    "message": "Address",
+    "description": ""
+  },
+  "DEVICE_PORT": {
+    "message": "Port",
+    "description": ""
+  },
+  "DEVICE_DISCONNECT": {
+    "message": "Disconnect",
+    "description": ""
+  },
+  "DEVICE_Network": {
+    "message": "Network",
+    "description": ""
+  },
+  "DEVICE_Serial": {
+    "message": "Serial",
+    "description": ""
+  },
+  "USER_Username": {
+    "message": "Username",
+    "description": ""
+  },
+  "USER_Password": {
+    "message": "Password",
+    "description": ""
+  },
+  "USER_ShowPassword": {
+    "message": "Show Password",
+    "description": ""
+  },
+  "TOOLBAR_PROJECTS": {
+    "message": "Projects",
+    "description": ""
+  },
+  "TOOLBAR_HELP": {
+    "message": "Help",
+    "description": ""
+  },
+  "TOOLBAR_EXIT": {
+    "message": "Exit",
+    "description": ""
+  },
+  "TOOLBAR_FULLSCREEN": {
+    "message": "Fullscreen",
+    "description": ""
+  },
+  "TOOLBAR_RESTORE": {
+    "message": "Restore",
+    "description": ""
+  },
+  "TOOLBAR_MINIMIZE": {
+    "message": "Minimize",
+    "description": ""
+  },
+  "TOOLBAR_SETUP": {
+    "message": "Setup",
+    "description": ""
+  },
+  "TOOLBAR_RESISTOR_COLOR_CODE": {
+    "message": "Resistor Color Code",
+    "description": ""
+  },
+  "TOOLBAR_ABOUT": {
+    "message": "About",
+    "description": ""
+  },
+  "TOOLBAR_CREATE": {
+    "message": "Create",
+    "description": ""
+  },
+  "TOOLBAR_CANCEL": {
+    "message": "Cancel",
+    "description": ""
+  },
+  "TOOLBAR_EXPORT": {
+    "message": "Export",
+    "description": ""
+  },
+  "TOOLBAR_OPTIONS": {
+    "message": "Options",
+    "description": ""
+  },
+  "TOOLBAR_RENAME": {
+    "message": "Rename",
+    "description": ""
+  },
+  "TOOLBAR_DELETE": {
+    "message": "Delete",
+    "description": ""
+  },
+  "TOOLBAR_IMPORT": {
+    "message": "Import",
+    "description": ""
+  },
+  "TOOLBAR_INSTALL": {
+    "message": "Install",
+    "description": ""
+  },
+  "TOOLBAR_UNINSTALL": {
+    "message": "Uninstall",
+    "description": ""
+  },
+  "TOOLBAR_ADD": {
+    "message": "Add",
+    "description": ""
+  },
+  "TOOLBAR_CLOSE": {
+    "message": "Close",
+    "description": ""
+  },
+  "TOOLBAR_STOP": {
+    "message": "Stop",
+    "description": ""
+  },
+  "TOOLBAR_UPDATE": {
+    "message": "Update",
+    "description": ""
+  },
+  "TOOLBAR_NETWORK": {
+    "message": "Network",
+    "description": ""
+  },
+  "SCHEMATICS_LOAD": {
+    "message": "Load",
+    "description": ""
+  },
+  "TOOLBAR_ERASE": {
+    "message": "Erase",
+    "description": ""
+  },
+  "PROJECT_APPLICATION": {
+    "message": "Application",
+    "description": ""
+  },
+  "PROJECT_DASHBOARD": {
+    "message": "Dashboard",
+    "description": ""
+  },
+  "PROJECT_SCHEMATICS": {
+    "message": "Schematics",
+    "description": ""
+  },
+  "PROJECT_PINLAYOUT": {
+    "message": "Pin Layout",
+    "description": ""
+  },
+  "PROJECT_SHELL": {
+    "message": "Shell",
+    "description": ""
+  },
+  "PROJECT_ShowConsole": {
+    "message": "Show Console",
+    "description": ""
+  },
+  "PROJECT_HideConsole": {
+    "message": "Hide Console",
+    "description": ""
+  },
+  "DISCONNECTED": {
+    "message": "DISCONNECTED",
+    "description": ""
+  },
+  "CONNECTED": {
+    "message": "CONNECTED",
+    "description": ""
+  },
+  "CONNECTING": {
+    "message": "CONNECTING",
+    "description": ""
+  },
+  "SEPARRATOR": {
+    "message": "WAITING",
+    "description": ""
+  },
+  "ERROR": {
+    "message": "ERROR",
+    "description": ""
+  },
+  "PING": {
+    "message": "PING",
+    "description": ""
+  },
+  "SD_CARD4_GetAMinimum": {
+    "message": "Get a minimum 4 GB SD Card (we recommend 8 GB class 10)",
+    "description": ""
+  },
+  "InsertTheCard": {
+    "message": "Insert the card into the {{device}}, connect the {{device}} to the <b>serial cable</b> or to the <b>network cable</b> and power it on",
+    "description": ""
+  },
+  "MakeSureYou": {
+    "message": "Make sure you connect it to the Internet (Ethernet or WiFi)",
+    "description": ""
+  },
+  "YouMightHave": {
+    "message": "You might have to install drivers for the cables:",
+    "description": ""
+  },
+  "MakeSureThat": {
+    "message": "Make sure that your Arduino Yun is up to date. Please follow this",
+    "description": ""
+  },
+  "tutorial": {
+    "message": "tutorial",
+    "description": ""
+  },
+  "InstallNodeJSOn": {
+    "message": "Install NodeJS on the Arduino Yun following this",
+    "description": ""
+  },
+  "ConnectViaSsh": {
+    "message": "Connect via ssh to your Arduino Yun. The address is",
+    "description": ""
+  },
+  "AndTheUser": {
+    "message": "and the user",
+    "description": ""
+  },
+  "AndPassword": {
+    "message": "and password",
+    "description": ""
+  },
+  "RunTheWyliodrin": {
+    "message": "Run the Wyliodrin install script.",
+    "description": ""
+  },
+  "ResetYour": {
+    "message": "Reset your Arduino Yun.",
+    "description": ""
+  },
+  "DownloadImage": {
+    "message": "Download the <a href='{{link1}}' target='_blank'>SD Card image (beta)</a>, unzip it and write it on the card. You can find more information on how to write the SD card image on our <a href='{{link2}}' target='_blank'>tutorial page</a>.",
+    "description": ""
+  },
+  "AdvancedUser": {
+    "message": "If you are an advanced user, you may install the <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
+    "description": ""
+  },
+  "CablePurchase": {
+    "message": "You can purchase the serial cable from the <a href='{{link1}}' target='_blank'>{{name1}}</a> and <a href='{{link2}}' target='_blank'>{{name2}}</a> online stores.",
+    "description": ""
+  },
+  "PortSelectNetwork": {
+    "message": "Your board should appear in the Network list. You will need to login with a username that exists on the device.",
+    "description": ""
+  },
+  "PortSelectSerial": {
+    "message": "Select the serial port and press Connect. Port names are different in every OS:",
+    "description": ""
+  },
+  "YouMightSerial": {
+    "message": "You might have to install drivers for the serial:",
+    "description": ""
+  },
+  "ABOUT_Version": {
+    "message": "Version",
+    "description": ""
+  },
+  "ABOUT_DevelopedBy": {
+    "message": "Developed By",
+    "description": ""
+  },
+  "ABOUT_ContributionsBy": {
+    "message": "Contributions By",
+    "description": ""
+  },
+  "ABOUT_Maintainer": {
+    "message": "Maintainer",
+    "description": ""
+  },
+  "ABOUT_Development": {
+    "message": "Development",
+    "description": ""
+  },
+  "ABOUT_UI_UX": {
+    "message": "UI / UX",
+    "description": ""
+  },
+  "ABOUT_UsageParam": {
+    "message": "Allow sending usage parameters",
+    "description": ""
+  },
+  "ABOUT_AnonymousUsageParam": {
+    "message": "Allow sending anonymous usage parameters in order to help us improve the software",
+    "description": ""
+  },
+  "ABOUT_ProvidedBy": {
+    "message": "Provided by",
+    "description": ""
+  },
+  "ABOUT_Sponsor": {
+    "message": "Sponsor",
+    "description": ""
+  },
+  "ABOUT_License": {
+    "message": "License",
+    "description": ""
+  },
+  "ADD_APP_AddApp": {
+    "message": "Add Application",
+    "description": ""
+  },
+  "TOOLBAR_AddNewApp": {
+    "message": "Add new application",
+    "description": ""
+  },
+  "ADD_APP_Title": {
+    "message": "Title",
+    "description": ""
+  },
+  "ADD_APP_Language": {
+    "message": "Language",
+    "description": ""
+  },
+  "WELCOME_Welcome": {
+    "message": "Welcome to Wyliodrin STUDIO",
+    "description": ""
+  },
+  "WELCOME_StartWork": {
+    "message": "Start working on your projects right away!",
+    "description": ""
+  },
+  "WELCOME_CreateNewApp": {
+    "message": "Create new application",
+    "description": ""
+  },
+  "WELCOME_ConnectBoard": {
+    "message": "Connect board",
+    "description": ""
+  },
+  "WELCOME_SendUsageParam": {
+    "message": "Allow sending usage parameters",
+    "description": ""
+  },
+  "WELCOME_SendAnonUsageParam": {
+    "message": "Allow sending anonymous usage parameters in order to help us improve the software",
+    "description": ""
+  },
+  "AUTHENTICATE_ConnectToAddress": {
+    "message": "Connect to address",
+    "description": ""
+  },
+  "AUTHENTICATE_Login": {
+    "message": "Login using any user from the device",
+    "description": ""
+  },
+  "BOARD_GetStart": {
+    "message": "Getting Started",
+    "description": ""
+  },
+  "BOARD_SelectBoard": {
+    "message": "Please select the board you want to setup",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_InvalidSignal": {
+    "message": "Signal name invalid",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveLeft": {
+    "message": "Move left",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveRight": {
+    "message": "Move right",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_GraphSettings": {
+    "message": "Graph settings",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_EraseGraph": {
+    "message": "Erase graph",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_BlockSendSignalValues": {
+    "message": "Use the sendSignal block to send signal values",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SendSignalValues": {
+    "message": "Use the sendSignal function to send signal values",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SignalName": {
+    "message": "Signal name must be at lowercase without spaces",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_SelectFirmware": {
+    "message": "Select firmware",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunAndFlash": {
+    "message": "Run and flash",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunWithoutFlash": {
+    "message": "Run without flash",
+    "description": ""
+  },
+  "LIBRARY_Library": {
+    "message": "Library",
+    "description": ""
+  },
+  "LIBRARY_LoadAnExample": {
+    "message": "Load an example",
+    "description": ""
+  },
+  "LICENSE_UsageLicense": {
+    "message": "Usage License",
+    "description": ""
+  },
+  "NETWORK_NetworkManager": {
+    "message": "Network Manager",
+    "description": ""
+  },
+  "NETWORK_PackageManager": {
+    "message": "Package Manager",
+    "description": ""
+  },
+  "NETWORK_SSID": {
+    "message": "SSID",
+    "description": ""
+  },
+  "NETWORK_IP": {
+    "message": "IP",
+    "description": ""
+  },
+  "NETWORK_Mask": {
+    "message": "Mask",
+    "description": ""
+  },
+  "NETWORK_Broadcast": {
+    "message": "Broadcast",
+    "description": ""
+  },
+  "NETWORK_SignalStrength": {
+    "message": "Signal strength",
+    "description": ""
+  },
+  "NETWORK_Disc_ChangeNet": {
+    "message": "Disconnect / Change network",
+    "description": ""
+  },
+  "PACKAGE_MANAGER_LinkToTheLibrary": {
+    "message": "Link to the library",
+    "description": ""
+  },
+  "RENAME_RenameApp": {
+    "message": "Rename Appication",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromColorToNumber": {
+    "message": "From Color to Number",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromNumberToColor": {
+    "message": "From Number to Color",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripes": {
+    "message": "Stripes",
+    "description": ""
+  },
+  "VALUE_Four": {
+    "message": "Four",
+    "description": ""
+  },
+  "VALUE_Five": {
+    "message": "Five",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripe": {
+    "message": "Stripe",
+    "description": ""
+  },
+  "VALUE_Value": {
+    "message": "Value",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Resistance": {
+    "message": "Resistance",
+    "description": ""
+  },
+  "VALUE_Tolerance": {
+    "message": "Tolerance",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Signal": {
+    "message": "Signal",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_AddSignal": {
+    "message": "Add signal",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalName": {
+    "message": "Signal Name",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Description": {
+    "message": "Description",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalColor": {
+    "message": "Color",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_Example": {
+    "message": "Example",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_SelectSoftware": {
+    "message": "Select software",
+    "description": ""
+  },
+  "TASK_MANAGER_TaskManager": {
+    "message": "Task Manager",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Error": {
+    "message": "might have an error",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_RunProject": {
+    "message": "Run project",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_StopProject": {
+    "message": "Stop project",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_NoInternet": {
+    "message": "has no Internet",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Examples": {
+    "message": "examples",
+    "description": ""
+  },
+  "SIGNAL_line": {
+    "message": "Line",
+    "description": ""
+  },
+  "SIGNAL_thermometer": {
+    "message": "Thermometer",
+    "description": ""
+  },
+  "SIGNAL_speedometer": {
+    "message": "Speedometer",
+    "description": ""
+  },
+  "SIGNAL_vumeter": {
+    "message": "VUMeter",
+    "description": ""
+  },
+  "SIGNAL_gauge": {
+    "message": "Gauge",
+    "description": ""
+  },
+  "SIGNAL_extra": {
+    "message": "Extra",
+    "description": ""
+  },
+  "SIGNAL_switch": {
+    "message": "Switch",
+    "description": ""
+  },
+  "SIGNAL_slider": {
+    "message": "Slider",
+    "description": ""
+  },
+  "TOOLBAR_ExitQuestion": {
+    "message": "Are you sure you want to exit?",
+    "description": ""
+  },
+  "YES": {
+    "message": "Yes",
+    "description": ""
+  },
+  "NO": {
+    "message": "No",
+    "description": ""
+  },
+  "LIBRARY_ProjectErase": {
+    "message": "Would you like to delete project {{title}}?",
+    "description": ""
+  },
+  "SCHEMATICS_ERASE": {
+    "message": "Would you like to erase the scematics?",
+    "description": ""
+  }
+}

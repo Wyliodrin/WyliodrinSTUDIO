@@ -12,6 +12,8 @@ var library = require ('library');
 
 var mixpanel = {};
 
+var ln = null;
+
 library.retrieveValue ('usage', true, function (value)
 {
   debug ('Usage '+value);
@@ -39,6 +41,7 @@ function init(token, userid) {
       mixpanel.architecture = system.arch;
       payload.$set_once.$os = mixpanel.os;
       payload.version = settings.VERSION;
+      payload.ui_lang = ln;
       var data = new Buffer (JSON.stringify(payload)).toString ('base64');
       var url = api + '/engage?data=' + data;
 
@@ -63,7 +66,8 @@ function track(event, properties) {
             token: mixpanel.token,
             version: settings.VERSION,
             $os: mixpanel.os,
-            architecture: mixpanel.architecture
+            architecture: mixpanel.architecture,
+            ui_lang: ln
             // browser: app.browser.name
         }, 
         properties)
@@ -78,6 +82,11 @@ function track(event, properties) {
   }
 }
 
+function language (l)
+{
+  ln = l;
+}
+
 var userid = null;
 library.retrieveValue ('userid', uuid.v4(), function (user)
 {
@@ -87,5 +96,6 @@ library.retrieveValue ('userid', uuid.v4(), function (user)
 
 mixpanel.init = init;
 mixpanel.track = track;
+mixpanel.language = language;
 
 module.exports = mixpanel;

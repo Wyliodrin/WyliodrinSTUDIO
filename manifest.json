@@ -1,7 +1,9 @@
 {
-  "name": "Wyliodrin STUDIO",
+  "name": "__MSG_appName__",
+  "description":"__MSG_appDesc__",
   "version": "10.1",
   "manifest_version": 2,
+  "default_locale":"en",
   "author":"Wyliodrin SRL",
   "app": {
     "background": {

@@ -59,6 +59,11 @@
                   Examples
                 </md-button>
               </md-menu-item> -->
+              <md-menu-item>
+                <md-button ng-click="t.forum()">
+                  {{ 'TOOLBAR_FORUM' | translate }}
+                </md-button>
+              </md-menu-item>
                     <md-menu-item>
                     <md-button ng-click="t.resistorcolorcode()">
                       {{ 'TOOLBAR_RESISTOR_COLOR_CODE' | translate }}
@@ -107,7 +112,7 @@
                     <div ng-show="status === 'PING'" class="warning">
                     	<img src="/public/drawable/warning-icon.png" alt="Warning"></img>
                         <md-tooltip md-direction="bottom">
-                          {{ label[device.category].text }} {{ 'WYLIODRIN-USERINTERFACE_Error' | translate }}
+                          {{ label[device.category].text }} {{ 'WYLIODRIN_USERINTERFACE_Error' | translate }}
                         </md-tooltip>
                     </div>
                    	<div layout="column" class="device-box">
@@ -117,13 +122,13 @@
                     <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
                     	<md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run project" ></md-icon>
                         <md-tooltip md-direction="bottom">
-                          {{ 'WYLIODRIN-USERINTERFACE_RunProject' | translate }}
+                          {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
                         </md-tooltip>
                     </md-button>
                     <md-button ng-show="running && status === 'CONNECTED'" ng-click="t.stop()" class="stop-bt">
                         <md-icon md-svg-src="/public/drawable/stop-icon.svg" class="s24" aria-label="Stop project" ></md-icon>
                         <md-tooltip md-direction="bottom">
-                          {{ 'WYLIODRIN-USERINTERFACE_StopProject' | translate }}
+                          {{ 'WYLIODRIN_USERINTERFACE_StopProject' | translate }}
                         </md-tooltip>
                     </md-button>
                     <md-button ng-show="update && status === 'CONNECTED'" class="icon-btn update-btn" ng-click="t.update()">
@@ -141,7 +146,7 @@
                     <md-button ng-show="status === 'CONNECTED'" class="icon-btn" ng-click="t.taskmanager()">
                     	<md-icon md-svg-src="/public/drawable/task-manager-icon.svg" class="s24" aria-label="Task manager" ></md-icon>
                         <md-tooltip md-direction="bottom">
-                          {{ 'TASK-MANAGER_TaskManager' | translate }}
+                          {{ 'TASK_MANAGER_TaskManager' | translate }}
                         </md-tooltip>
                     </md-button>
                     <md-button ng-show="status === 'CONNECTED'" class="icon-btn" ng-click="t.network()">
@@ -152,7 +157,7 @@
                         <div ng-hide="device.network" class="warning2">
                           <img src="/public/drawable/warning-icon.png" alt="Warning"></img>
                             <md-tooltip md-direction="bottom">
-                              {{ label[device.category].text }} {{ 'WYLIODRIN-USERINTERFACE_NoInternet' | translate }}
+                              {{ label[device.category].text }} {{ 'WYLIODRIN_USERINTERFACE_NoInternet' | translate }}
                             </md-tooltip>
                         </div>
                     </md-button>
@@ -274,7 +279,7 @@
                                               onLoad: aceFirmwareLoaded,
                                               onChange: aceFirmwareChanged,
                                             }" ng-model="project.firmware"></div>
-                                            <a href="#" class="examplestatus show" id="examplestatus" ng-click="p.firmwareexample()"><br>{{ 'WYLIODRIN-USERINTERFACE_Examples' | translate }}</a>
+                                            <a href="#" class="examplestatus show" id="examplestatus" ng-click="p.firmwareexample()"><br>{{ 'WYLIODRIN_USERINTERFACE_Examples' | translate }}</a>
                                         </div>
                                     </md-tab-body>
                                 </md-tab>
@@ -305,7 +310,7 @@
                                 <ul class="widgets_grid">
                                     <li ng-repeat="style in styles" class="widget_item">
                                         <md-button class="widget_btn">
-                                            <p class="widget_title">{{ 'SIGNAL-' + style | translate }}</p>
+                                            <p class="widget_title">{{ 'SIGNAL_' + style | translate }}</p>
                                             <img ng-src="{{'/public/drawable/'+style+'.png'}}" ng-click="d.add(style)">
                                         </md-button>
                                     </li>

@@ -1,0 +1,610 @@
+{
+  "LANGUAGE": {
+    "message": "Română",
+    "description": ""
+  },
+  "WYLIODRIN_STUDIO": {
+    "message": "Wyliodrin STUDIO",
+    "description": ""
+  },
+  "WYLIODRIN_STUDIO_DESCRIPTION": {
+    "message": "Wyliodrin STUDIO este un IDE bazat pe Chrome pentru realizarea de software și hardware pentru IoT și sisteme Linux integrate.",
+    "description": ""
+  },
+  "DEVICE_CONNECT": {
+    "message": "Conectare",
+    "description": ""
+  },
+  "DEVICE_ADDRESS": {
+    "message": "Adresa",
+    "description": ""
+  },
+  "DEVICE_PORT": {
+    "message": "Port",
+    "description": ""
+  },
+  "DEVICE_DISCONNECT": {
+    "message": "Deconectare",
+    "description": ""
+  },
+  "DEVICE_Network": {
+    "message": "Rețea",
+    "description": ""
+  },
+  "DEVICE_Serial": {
+    "message": "Serial",
+    "description": ""
+  },
+  "USER_Username": {
+    "message": "Utilizator",
+    "description": ""
+  },
+  "USER_Password": {
+    "message": "Parola",
+    "description": ""
+  },
+  "USER_ShowPassword": {
+    "message": "Afișează parola",
+    "description": ""
+  },
+  "TOOLBAR_PROJECTS": {
+    "message": "Proiecte",
+    "description": ""
+  },
+  "TOOLBAR_HELP": {
+    "message": "Ajutor",
+    "description": ""
+  },
+  "TOOLBAR_EXIT": {
+    "message": "Ieșire",
+    "description": ""
+  },
+  "TOOLBAR_FULLSCREEN": {
+    "message": "Ecran complet",
+    "description": ""
+  },
+  "TOOLBAR_RESTORE": {
+    "message": "Refacere ecran",
+    "description": ""
+  },
+  "TOOLBAR_MINIMIZE": {
+    "message": "Minimizare",
+    "description": ""
+  },
+  "TOOLBAR_SETUP": {
+    "message": "Setări",
+    "description": ""
+  },
+  "TOOLBAR_RESISTOR_COLOR_CODE": {
+    "message": "Codul culorilor pentru rezistențe",
+    "description": ""
+  },
+  "TOOLBAR_ABOUT": {
+    "message": "Despre",
+    "description": ""
+  },
+  "TOOLBAR_CREATE": {
+    "message": "Creare",
+    "description": ""
+  },
+  "TOOLBAR_CANCEL": {
+    "message": "Renunțare",
+    "description": ""
+  },
+  "TOOLBAR_EXPORT": {
+    "message": "Export",
+    "description": ""
+  },
+  "TOOLBAR_OPTIONS": {
+    "message": "Opțiuni",
+    "description": ""
+  },
+  "TOOLBAR_RENAME": {
+    "message": "Redenumire",
+    "description": ""
+  },
+  "TOOLBAR_DELETE": {
+    "message": "Șterge",
+    "description": ""
+  },
+  "TOOLBAR_IMPORT": {
+    "message": "Import",
+    "description": ""
+  },
+  "TOOLBAR_INSTALL": {
+    "message": "Instalare",
+    "description": ""
+  },
+  "TOOLBAR_UNINSTALL": {
+    "message": "Dezinstalare",
+    "description": ""
+  },
+  "TOOLBAR_ADD": {
+    "message": "Adaugă",
+    "description": ""
+  },
+  "TOOLBAR_CLOSE": {
+    "message": "Închide",
+    "description": ""
+  },
+  "TOOLBAR_STOP": {
+    "message": "Oprire",
+    "description": ""
+  },
+  "TOOLBAR_UPDATE": {
+    "message": "Aducere la zi",
+    "description": ""
+  },
+  "TOOLBAR_NETWORK": {
+    "message": "Rețea",
+    "description": ""
+  },
+  "SCHEMATICS_LOAD": {
+    "message": "Încarcă",
+    "description": ""
+  },
+  "TOOLBAR_ERASE": {
+    "message": "Șterge",
+    "description": ""
+  },
+  "PROJECT_APPLICATION": {
+    "message": "Aplicație",
+    "description": ""
+  },
+  "PROJECT_DASHBOARD": {
+    "message": "Tablou de bord",
+    "description": ""
+  },
+  "PROJECT_SCHEMATICS": {
+    "message": "Schemă",
+    "description": ""
+  },
+  "PROJECT_PINLAYOUT": {
+    "message": "Așezarea pinilor",
+    "description": ""
+  },
+  "PROJECT_SHELL": {
+    "message": "Shell",
+    "description": ""
+  },
+  "PROJECT_ShowConsole": {
+    "message": "Afișare Consolă",
+    "description": ""
+  },
+  "PROJECT_HideConsole": {
+    "message": "Ascundere Consolă",
+    "description": ""
+  },
+  "DISCONNECTED": {
+    "message": "DECONECTAT",
+    "description": ""
+  },
+  "CONNECTED": {
+    "message": "CONECTAT",
+    "description": ""
+  },
+  "CONNECTING": {
+    "message": "CONECTARE",
+    "description": ""
+  },
+  "SEPARRATOR": {
+    "message": "ÎN AȘTEPTARE",
+    "description": ""
+  },
+  "ERROR": {
+    "message": "EROARE",
+    "description": ""
+  },
+  "PING": {
+    "message": "PING",
+    "description": ""
+  },
+  "SD_CARD4_GetAMinimum": {
+    "message": "Faceți rost de un SD Card cu o capacitate de minimum 4 GB (recomandăm 8 GB, clasă 10)",
+    "description": ""
+  },
+  "InsertTheCard": {
+    "message": "Inserați cardul in {{device}}, conectați {{device}} la <b>cablul serial</b> sau <cablul de rețea</b> și alimentați-l.",
+    "description": ""
+  },
+  "MakeSureYou": {
+    "message": "Asigurați-vă că are o conexiune la Internet (Ethernet sau WiFi)",
+    "description": ""
+  },
+  "YouMightHave": {
+    "message": "Există posibilitatea să trebuiască să instalați drivere pentru cabluri:",
+    "description": ""
+  },
+  "MakeSureThat": {
+    "message": "Asigurați-vă că Arduino Yun rulează ultima versiune de software. Urmăriți pașii",
+    "description": ""
+  },
+  "tutorial": {
+    "message": "tutorial",
+    "description": ""
+  },
+  "InstallNodeJSOn": {
+    "message": "Instalați NodeJS pe Arduino Yun urmând următorii pași",
+    "description": ""
+  },
+  "ConnectViaSsh": {
+    "message": "Conectați-vă la Arduino Yun prin SSH. Aresa este",
+    "description": ""
+  },
+  "AndTheUser": {
+    "message": "adăugați utilizatorul",
+    "description": ""
+  },
+  "AndPassword": {
+    "message": "și parola",
+    "description": ""
+  },
+  "RunTheWyliodrin": {
+    "message": "Rulați scriptul de instalare Wyliodrin.",
+    "description": ""
+  },
+  "ResetYour": {
+    "message": "Resetați Arduino Yun.",
+    "description": ""
+  },
+  "DownloadImage": {
+    "message": "Descărcați <a href='{{link1}}' target='_blank'>imaginea de SD card (beta)</a>, dezarhivați-o și scrieți-o pe card. Puteți găsi mai multe informații despre scrierea imaginii pe SD card pe  <a href='{{link2}}' target='_blank'>pagina de tutoriale</a>.",
+    "description": ""
+  },
+  "AdvancedUser": {
+    "message": "Dacă sunteți un utilizator avansat, puteți instala <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
+    "description": ""
+  },
+  "CablePurchase": {
+    "message": "Puteți achiziționa cablul serial de la următoarele magazine online<a href='{{link1}}' target='_blank'>{{name1}}</a> si <a href='{{link2}}' target='_blank'>{{name2}}</a>.",
+    "description": ""
+  },
+  "PortSelectNetwork": {
+    "message": "Placa dumneavoastră ar trebui să apară în lista de plăci legate prin rețea. Trebuie sa vă logați cu unul dintre utilizatorii existenți pe sistemul de pe placă.",
+    "description": ""
+  },
+  "PortSelectSerial": {
+    "message": "Selectați portul serial și apăsați butonul de Conectare. Numele porturilor sunt diferite pentru fiecare sistem de operare:",
+    "description": ""
+  },
+  "YouMightSerial": {
+    "message": "Există posibilitatea să trebuiască să instalați drivere pentru serială:",
+    "description": ""
+  },
+  "ABOUT_Version": {
+    "message": "Versiunea",
+    "description": ""
+  },
+  "ABOUT_DevelopedBy": {
+    "message": "Realizat de",
+    "description": ""
+  },
+  "ABOUT_ContributionsBy": {
+    "message": "Contribuții de la",
+    "description": ""
+  },
+  "ABOUT_Maintainer": {
+    "message": "Menținător",
+    "description": ""
+  },
+  "ABOUT_Development": {
+    "message": "Programare",
+    "description": ""
+  },
+  "ABOUT_UI_UX": {
+    "message": "UI / UX",
+    "description": ""
+  },
+  "ABOUT_UsageParam": {
+    "message": "Acceptați trimiterea de statistici de utilizare",
+    "description": ""
+  },
+  "ABOUT_AnonymousUsageParam": {
+    "message": "Acceptați trimiterea de statistici de utilizare anonime pentru a ne ajuta să îmbunătățim produsul",
+    "description": ""
+  },
+  "ABOUT_ProvidedBy": {
+    "message": "Din partea",
+    "description": ""
+  },
+  "ABOUT_Sponsor": {
+    "message": "Sponsorizați",
+    "description": ""
+  },
+  "ABOUT_License": {
+    "message": "Licență",
+    "description": ""
+  },
+  "ADD_APP_AddApp": {
+    "message": "Adăugarea unei aplicații",
+    "description": ""
+  },
+  "TOOLBAR_AddNewApp": {
+    "message": "Adăugarea unei aplicații",
+    "description": ""
+  },
+  "ADD_APP_Title": {
+    "message": "Titlu",
+    "description": ""
+  },
+  "ADD_APP_Language": {
+    "message": "Limbaj",
+    "description": ""
+  },
+  "WELCOME_Welcome": {
+    "message": "Bine ați venit la Wyliodrin STUDIO",
+    "description": ""
+  },
+  "WELCOME_StartWork": {
+    "message": "Începeți lucrul la proiecte imediat!",
+    "description": ""
+  },
+  "WELCOME_CreateNewApp": {
+    "message": "Crează o nouă aplicație",
+    "description": ""
+  },
+  "WELCOME_ConnectBoard": {
+    "message": "Conectează placa",
+    "description": ""
+  },
+  "WELCOME_SendUsageParam": {
+    "message": "Acceptați trimiterea de statistici de utilizare",
+    "description": ""
+  },
+  "WELCOME_SendAnonUsageParam": {
+    "message": "Acceptați trimiterea de statistici de utilizare anonime pentru a ne ajuta să îmbunătățim produsului",
+    "description": ""
+  },
+  "AUTHENTICATE_ConnectToAddress": {
+    "message": "Conectează-te la adresa",
+    "description": ""
+  },
+  "AUTHENTICATE_Login": {
+    "message": "Conectează-te folosind orice utilizator al dispozitivului",
+    "description": ""
+  },
+  "BOARD_GetStart": {
+    "message": "Primii pași",
+    "description": ""
+  },
+  "BOARD_SelectBoard": {
+    "message": "Selectați placa pe care doriți să o configurați",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_InvalidSignal": {
+    "message": "Nume de semnal invalid",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveLeft": {
+    "message": "Stânga",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveRight": {
+    "message": "Dreapta",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_GraphSettings": {
+    "message": "Setări grafic",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_EraseGraph": {
+    "message": "Șerge grafic",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_BlockSendSignalValues": {
+    "message": "Folosiți blocul sendSignal pentru a trimite valorile semnalului",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SendSignalValues": {
+    "message": "Folosiți funcția sendSignal pentru a trimite valorile semnalului",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SignalName": {
+    "message": "Denumirea semnalului admite doar litere mici, fără spații",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_SelectFirmware": {
+    "message": "Selectează firmware",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunAndFlash": {
+    "message": "Rulează și scrie",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunWithoutFlash": {
+    "message": "Rulează fără a scrie",
+    "description": ""
+  },
+  "LIBRARY_Library": {
+    "message": "Biblioteca",
+    "description": ""
+  },
+  "LIBRARY_LoadAnExample": {
+    "message": "Deschide un exemplu",
+    "description": ""
+  },
+  "LICENSE_UsageLicense": {
+    "message": "Licență de folosire",
+    "description": ""
+  },
+  "NETWORK_NetworkManager": {
+    "message": "Setări rețea",
+    "description": ""
+  },
+  "NETWORK_PackageManager": {
+    "message": "Administrare pachete",
+    "description": ""
+  },
+  "NETWORK_SSID": {
+    "message": "SSID",
+    "description": ""
+  },
+  "NETWORK_IP": {
+    "message": "IP",
+    "description": ""
+  },
+  "NETWORK_Mask": {
+    "message": "Masca",
+    "description": ""
+  },
+  "NETWORK_Broadcast": {
+    "message": "Broadcast",
+    "description": ""
+  },
+  "NETWORK_SignalStrength": {
+    "message": "Putere semnal",
+    "description": ""
+  },
+  "NETWORK_Disc_ChangeNet": {
+    "message": "Deconectare / Schimbare rețea",
+    "description": ""
+  },
+  "PACKAGE_MANAGER_LinkToTheLibrary": {
+    "message": "Link către bibliotecă",
+    "description": ""
+  },
+  "RENAME_RenameApp": {
+    "message": "Redenumire aplicație",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromColorToNumber": {
+    "message": "Din culoare în valoare",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromNumberToColor": {
+    "message": "Din număr în culoare",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripes": {
+    "message": "Linii",
+    "description": ""
+  },
+  "VALUE_Four": {
+    "message": "Patru",
+    "description": ""
+  },
+  "VALUE_Five": {
+    "message": "Cinci",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripe": {
+    "message": "Linie",
+    "description": ""
+  },
+  "VALUE_Value": {
+    "message": "Valoare",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Resistance": {
+    "message": "Rezistență",
+    "description": ""
+  },
+  "VALUE_Tolerance": {
+    "message": "Toleranță",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Signal": {
+    "message": "Semnal",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_AddSignal": {
+    "message": "Adăugare semnal",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalName": {
+    "message": "Nume semnal",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Description": {
+    "message": "Descriere",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalColor": {
+    "message": "Culoare",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_Example": {
+    "message": "Exemplu",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_SelectSoftware": {
+    "message": "Selecție aplicație",
+    "description": ""
+  },
+  "TASK_MANAGER_TaskManager": {
+    "message": "Administrare procese",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Error": {
+    "message": "poate exista o eroare",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_RunProject": {
+    "message": "Rulare proiect",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_StopProject": {
+    "message": "Stop",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_NoInternet": {
+    "message": "nu are conexiune Internet",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Examples": {
+    "message": "exemple",
+    "description": ""
+  },
+  "SIGNAL_line": {
+    "message": "Linie",
+    "description": ""
+  },
+  "SIGNAL_thermometer": {
+    "message": "Termometru",
+    "description": ""
+  },
+  "SIGNAL_speedometer": {
+    "message": "Vitezometru",
+    "description": ""
+  },
+  "SIGNAL_vumeter": {
+    "message": "VUMetru",
+    "description": ""
+  },
+  "SIGNAL_gauge": {
+    "message": "Cadran",
+    "description": ""
+  },
+  "SIGNAL_extra": {
+    "message": "Extra",
+    "description": ""
+  },
+  "SIGNAL_switch": {
+    "message": "Buton",
+    "description": ""
+  },
+  "SIGNAL_slider": {
+    "message": "Potențiometru",
+    "description": ""
+  },
+  "TOOLBAR_ExitQuestion": {
+    "message": "Sunteți sigur că doriți să inchideți?",
+    "description": ""
+  },
+  "YES": {
+    "message": "Da",
+    "description": ""
+  },
+  "NO": {
+    "message": "Nu",
+    "description": ""
+  },
+  "LIBRARY_ProjectErase": {
+    "message": "Doriși să ștergeți proiectul {{title}}?",
+    "description": ""
+  },
+  "SCHEMATICS_ERASE": {
+    "message": "Doriți să ștergeți schema?",
+    "description": ""
+  }
+}

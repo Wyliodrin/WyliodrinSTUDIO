@@ -34,6 +34,14 @@ module.exports = function ()
 		var ip = '';
 		var port = 7000;
 
+		setInterval (function ()
+		{
+			chrome.mdns.forceDiscovery (function ()
+			{
+				debug ('mdns discovery');
+			});
+		}, settings.INTERVAL_MDNS);
+
 		chrome.mdns.onServiceList.addListener (function (services)
 		{
 			debug (services);

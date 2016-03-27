@@ -109,6 +109,7 @@ export default class WyliodrinDevice extends EventEmitter
 			that.pingReceived = false;
 			clearInterval (that.sender);
 			debug (that.device);
+			that.port = null;
 			devices.delete (that.device);
 		});
 
@@ -160,6 +161,7 @@ export default class WyliodrinDevice extends EventEmitter
 			that.pingReceived = false;
 			clearInterval (that.sender);
 			debug (that.device);
+			that.port = null;
 			devices.delete (that.device);
 		});
 
@@ -232,6 +234,6 @@ export default class WyliodrinDevice extends EventEmitter
 	disconnect ()
 	{
 		clearInterval (this.timerstatus);
-		this.port.disconnect ();
+		if (this.port) this.port.disconnect ();
 	}
 }

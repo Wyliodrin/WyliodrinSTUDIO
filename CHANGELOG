@@ -1,4 +1,6 @@
 Wyliodrin STUDIO 10.1
 * added anonymoys statistics data (version, ui_lang)
+* added forum
 * fixed translation for popup dialogs
 * fixed horizontal scrollbar in license dialog 
+* fixed connection after error for serial and socket connections

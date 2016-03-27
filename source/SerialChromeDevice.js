@@ -114,6 +114,7 @@ export default class SerialChromeDevice extends EventEmitter
 						that.status = ERROR;
 						that.emit ('error');
 					}
+					ports.delete (that.port);
 				}
 			});
 		});

@@ -9,6 +9,7 @@ var EventEmitter = require ('events').EventEmitter;
 var msgpack = require ('msgpack-lite');
 var dict = require ('dict');
 
+
 import SerialChromeDevice from './SerialChromeDevice.js';
 import SocketChromeDevice from './SocketChromeDevice.js';
 
@@ -33,6 +34,9 @@ export default class WyliodrinDevice extends EventEmitter
 		debug (this.options);
 		this.status = 'DISCONNECTED';
 		debug ('Device setup for '+device);
+		this.WasInConnected = false;
+		this.WasInSeparator = false;
+		this.ShowedErrorMessage = false;
 		this.events  = new EventEmitter ();
 		this.device = device;
 		this.sender = null;
@@ -108,7 +112,18 @@ export default class WyliodrinDevice extends EventEmitter
 			that.publishStatus ();
 			that.pingReceived = false;
 			clearInterval (that.sender);
-			debug (that.device);
+			debug ('status ERROR');
+			if (that.WasInSeparator === false)
+			{
+				that.emit ('connection_timeout');
+				that.ShowedErrorMessage = true;
+			}
+			else
+			if (that.WasInConnected === false)
+			{
+				that.emit ('connection_login_failed');
+				that.ShowedErrorMessage = true;
+			}
 			devices.delete (that.device);
 		});
 
@@ -131,12 +146,14 @@ export default class WyliodrinDevice extends EventEmitter
 				that.send ('i', null);
 			}
 			that.publishStatus ();
+			that.WasInSeparator = true;
 		});
 
 		this.port.on ('connected', function ()
 		{
 			that.status = 'CONNECTED';
 			that.pingReceived = true;
+			that.WasInConnected = true;
 			that.publishStatus ();
 			that.sender = setInterval (function ()
 			{
@@ -157,6 +174,7 @@ export default class WyliodrinDevice extends EventEmitter
 		{
 			that.status = 'DISCONNECTED';
 			that.publishStatus ();
+			if (that.WasInConnected === false && that.ShowedErrorMessage === false) that.emit ('connection_login_failed');
 			that.pingReceived = false;
 			clearInterval (that.sender);
 			debug (that.device);

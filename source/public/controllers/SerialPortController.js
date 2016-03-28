@@ -17,7 +17,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('SerialPortsController', function($scope, $timeout, $filter, $wydevice, $mdDialog){
+	app.controller('SerialPortsController', function($scope, $timeout, $filter, $wydevice, $mdDialog, $wyapp){
 		debug ('Registering');
 		$scope.serialPorts = [];
 		$scope.serialPort = null;
@@ -84,6 +84,33 @@ module.exports = function ()
 			{
 				$scope.status = status;
 			});
+		});
+
+		$wydevice.on ('connection_timeout', function ()
+		{
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('Connection timeout, please check your board\'s IP and make sure it is running the Wyliodrin Image.'))
+		          .ok($filter('translate')('Setup'))
+		          .cancel('OK');
+		    $mdDialog.show(message).then(function() {
+		      $wyapp.emit ('board');
+		    }, function() {
+		     	
+		    });
+		});
+
+		$wydevice.on ('connection_login_failed', function ()
+		{
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('Connection failed'))
+		          //.ok('Setup')
+		          .cancel($filter('translate')('OK'));
+		          // Should be a retry button???
+		    $mdDialog.show(message).then(function() {
+		      $wyapp.emit ('board');
+		    }, function() {
+		     	
+		    });
 		});
 
 		this.open = function ()

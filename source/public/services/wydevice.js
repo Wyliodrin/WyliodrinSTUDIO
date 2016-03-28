@@ -43,6 +43,18 @@ module.exports = function ()
 				if (device && device.status !== 'DISCONNECTED') device.disconnect();
 				device = new WyliodrinDevice (strdevice, options);
 				var that = this;
+				
+				
+				device.on ('connection_login_failed', function ()
+							{
+								that.emit ('connection_login_failed');
+							});
+
+				device.on ('connection_timeout', function ()
+							{
+								that.emit ('connection_timeout');
+							});
+				
 				device.on ('status', function (_status)
 				{
 					status = _status;

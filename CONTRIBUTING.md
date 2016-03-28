@@ -4,7 +4,7 @@ We would love your help with
 
  - [Translating](#translating)
  - [Issues](#issues)
- - [Pull Request](#pull_request)
+ - [Pull Request](#pull-request)
  - [Features](#features)
 
 ## Translating

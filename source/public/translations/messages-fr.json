@@ -614,5 +614,20 @@
   "FIRMWARE_EXAMPLE_Example": {
     "message": "Exemple",
     "description": ""
+  },
+  "DEVICE_CONNECTION_TIMEOUT":
+  {
+    "message":"Délai de connexion, s'il vous plaît vérifier l'adresse IP de votre carte et assurez-vous qu'il est en cours d'exécution de la Wyliodrin Image.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_ERROR":
+  {
+    "message":"Erreur de connexion, s'il vous plaît vérifier l'adresse IP de votre carte et assurez-vous qu'il est en cours d'exécution de la Wyliodrin Image.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_FAILED":
+  {
+    "message":"Échec de la connexion, s'il vous plaît vérifier votre nom d'utilisateur et mot de passe.",
+    "description":""
   }
 }

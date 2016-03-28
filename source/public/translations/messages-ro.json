@@ -614,5 +614,20 @@
   "FIRMWARE_EXAMPLE_Example": {
     "message": "Exemplu",
     "description": ""
+  },
+  "DEVICE_CONNECTION_TIMEOUT":
+  {
+    "message":"Conexiunea nu a putut fi realizată, vă rugăm verificați adresa de IP a plăcii și imaginea de pe placă să fie Wyliodrin.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_ERROR":
+  {
+    "message":"Conexiunea nu a putut fi realizată, vă rugăm verificați adresa de IP a plăcii și imaginea de pe placă să fie Wyliodrin.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_FAILED":
+  {
+    "message":"Logare eșuată, vă rugăm să verificați utilizatorul și parola.",
+    "description":""
   }
 }

@@ -614,5 +614,20 @@
   "FIRMWARE_EXAMPLE_Example": {
     "message": "Example",
     "description": ""
+  },
+  "DEVICE_CONNECTION_TIMEOUT":
+  {
+    "message":"Connection timeout, please check your board's IP and make sure it is running the Wyliodrin Image.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_ERROR":
+  {
+    "message":"Connection error, please check your board's IP and make sure it is running the Wyliodrin Image.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_FAILED":
+  {
+    "message":"Login failed, please check your username and password.",
+    "description":""
   }
 }

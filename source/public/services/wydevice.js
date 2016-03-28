@@ -43,6 +43,23 @@ module.exports = function ()
 				if (device && device.status !== 'DISCONNECTED') device.disconnect();
 				device = new WyliodrinDevice (strdevice, options);
 				var that = this;
+				
+				
+				device.on ('connection_login_failed', function ()
+							{
+								if (device) that.emit ('connection_login_failed');
+							});
+
+				device.on ('connection_error', function ()
+							{
+								if (device) that.emit ('connection_error');
+							});
+
+				device.on ('connection_timeout', function ()
+							{
+								if (device) that.emit ('connection_timeout');
+							});
+				
 				device.on ('status', function (_status)
 				{
 					status = _status;
@@ -51,7 +68,11 @@ module.exports = function ()
 						category: 'board',
 						network: false
 					};
-					if (status === 'DISCONNECTED') device = null;
+					if (status === 'ERROR' || status === 'DISCONNECTED')
+					{
+						device.removeAllListeners ();
+						device = null;
+					}
 					that.emit ('status', _status);
 				});
 
@@ -126,7 +147,6 @@ module.exports = function ()
 				if (device)
 				{
 					device.disconnect ();
-					device = null;
 				}
 			}
 		};

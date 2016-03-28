@@ -17,7 +17,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('SerialPortsController', function($scope, $timeout, $filter, $wydevice, $mdDialog){
+	app.controller('SerialPortsController', function($scope, $timeout, $filter, $wydevice, $mdDialog, $wyapp){
 		debug ('Registering');
 		$scope.serialPorts = [];
 		$scope.serialPort = null;
@@ -92,6 +92,47 @@ module.exports = function ()
 			{
 				$scope.status = status;
 			});
+		});
+
+		$wydevice.on ('connection_timeout', function ()
+		{
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
+		          .ok($filter('translate')('TOOLBAR_SETUP'))
+		          .cancel('OK');
+		    $mdDialog.show(message).then(function() {
+		      $wyapp.emit ('board');
+		    }, function() {
+		     	
+		    });
+		});
+
+		$wydevice.on ('connection_error', function ()
+		{
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
+		          .ok($filter('translate')('TOOLBAR_SETUP'))
+		          .cancel('OK');
+		    $mdDialog.show(message).then(function() {
+		      $wyapp.emit ('board');
+		    }, function() {
+		     	
+		    });
+		});
+
+		$wydevice.on ('connection_login_failed', function ()
+		{
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
+		          .ok($filter('translate')('DEVICE_CONNECT'))
+		          .cancel($filter('translate')('OK'));
+		          // Should be a retry button???
+		    $mdDialog.show(message).then(function() {
+		      // $wyapp.emit ('board');
+		      that.open ();
+		    }, function() {
+		     	
+		    });
 		});
 
 		this.open = function ()

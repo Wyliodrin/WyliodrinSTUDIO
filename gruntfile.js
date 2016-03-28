@@ -361,7 +361,7 @@ module.exports = function(grunt) {
         var fileTranslated = path.basename( file, '.json' );
         if (fileTranslated.startsWith('messages-'))
         {
-          var newObject = {}
+          var newObject = {};
 
           _.forEach( require('./'+TRANSLATION_READ+fileTranslated), function( value, key ) {
             newObject[key] = value.message;

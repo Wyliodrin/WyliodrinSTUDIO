@@ -17,7 +17,7 @@ is a two letter code for each language.
 
 To get started, clone the repository and start translating the messages.
 
-The format of [source/public/translations/messages-en.json](source/public/messages-en.json) the file is the following:
+The format of [source/public/translations/messages-en.json](source/public/translations/messages-en.json) the file is the following:
 
     {
     	"LANGUAGE": {

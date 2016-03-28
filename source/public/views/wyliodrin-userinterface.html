@@ -173,8 +173,9 @@
                 
 				<div class="{{a.status()}}" >{{status | translate}}</div>
                 <div class="triangle"></div>
-        {{ project_name | limitTo:30 }}
 			</div>
+            
+            <div class="projname">{{ project_name | limitTo:45 }}</div>
             
             <div class="title-button window-control">
                 <md-button class="window-button" ng-click="t.exit()">

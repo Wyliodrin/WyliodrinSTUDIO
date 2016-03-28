@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+ - "4"
+before_install: npm install -g grunt-cli bower
+install: npm install; bower install
+before_script: grunt
+# uncomment this line if your project needs to run something other than `rake`:
+# script: bundle exec rspec spec

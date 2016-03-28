@@ -43,6 +43,10 @@
     "angular-translate": "~2.10.0",
     "angular-translate-loader-static-files": "~2.10.0"
   },
+  "scripts":
+  {
+    "test":"true"
+  },
   "browser": {
     "jquery": "./bower_components/jquery/dist/jquery.js",
     "angular": "./bower_components/angular/angular.js",

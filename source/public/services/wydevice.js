@@ -126,6 +126,7 @@ module.exports = function ()
 				if (device)
 				{
 					device.disconnect ();
+					device = null;
 				}
 			}
 		};

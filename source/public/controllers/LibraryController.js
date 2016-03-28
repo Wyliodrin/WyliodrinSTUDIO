@@ -236,7 +236,6 @@ module.exports = function ()
 							});
 							that.listProjects ();
 						}
-
 					};
 					fileReader.onerror = function (err)
 					{

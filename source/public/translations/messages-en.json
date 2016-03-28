@@ -3,11 +3,11 @@
     "message": "English",
     "description": ""
   },
-  "WYLIODRIN_STUDIO": {
+  "appName": {
     "message": "Wyliodrin STUDIO",
     "description": ""
   },
-  "WYLIODRIN_STUDIO_DESCRIPTION": {
+  "appDesc": {
     "message": "Wyliodrin STUDIO is a Chrome based IDE for software and hardware development for IoT and Embedded Linux systems.",
     "description": ""
   },
@@ -605,6 +605,14 @@
   },
   "SCHEMATICS_ERASE": {
     "message": "Would you like to erase the scematics?",
+    "description": ""
+  },
+  "TOOLBAR_FORUM": {
+    "message": "Forum",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_Example": {
+    "message": "Example",
     "description": ""
   }
 }

@@ -3,11 +3,11 @@
     "message": "Français",
     "description": ""
   },
-  "WYLIODRIN_STUDIO": {
+  "appName": {
     "message": "Wyliodrin STUDIO",
     "description": ""
   },
-  "WYLIODRIN_STUDIO_DESCRIPTION": {
+  "appDesc": {
     "message": "Wyliodrin STUDIO est un IDE basé sur Chrome pour les logiciels et le développement de matériel pour IdO et les systèmes Linux embarqués.",
     "description": ""
   },
@@ -605,6 +605,14 @@
   },
   "SCHEMATICS_ERASE": {
     "message": "Voulez-vous effacer la schémas?",
+    "description": ""
+  },
+  "TOOLBAR_FORUM": {
+    "message": "Forum",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_Example": {
+    "message": "Exemple",
     "description": ""
   }
 }

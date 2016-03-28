@@ -3,11 +3,11 @@
     "message": "Română",
     "description": ""
   },
-  "WYLIODRIN_STUDIO": {
+  "appName": {
     "message": "Wyliodrin STUDIO",
     "description": ""
   },
-  "WYLIODRIN_STUDIO_DESCRIPTION": {
+  "appDesc": {
     "message": "Wyliodrin STUDIO este un IDE bazat pe Chrome pentru realizarea de software și hardware pentru IoT și sisteme Linux integrate.",
     "description": ""
   },
@@ -605,6 +605,14 @@
   },
   "SCHEMATICS_ERASE": {
     "message": "Doriți să ștergeți schema?",
+    "description": ""
+  },
+  "TOOLBAR_FORUM": {
+    "message": "Forum",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_Example": {
+    "message": "Exemplu",
     "description": ""
   }
 }

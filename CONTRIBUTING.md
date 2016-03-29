@@ -3,6 +3,7 @@
 We would love your help with
 
  - [Translating](#translating)
+ - [Examples](#examples)
  - [Issues](#issues)
  - [Pull Request](#pull-request)
  - [Features](#features)
@@ -65,6 +66,15 @@ It would be very good for the project if you could transalte it in:
  - Dutch
  - Portuguese
  - Hungarian
+
+## Examples
+Another way to contribute is to write examples. To make an example,
+create a new project, add your code for the software and the firmware
+and add the schematics.
+
+Export the project and place it in [source/embedded/example/software/](source/embedded/example/software/) in the specific board's folder.
+
+If the example is for all the boards, place it in the *board* folder
 
 ## Issues
 Please send us any issues that you have using the github issues option.

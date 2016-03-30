@@ -47,7 +47,7 @@ Schematics Controller
 	Schematics Erase - erase schematics (language of the project)
 
 Serial Port Controller
-	SerialPort Connect - connect (connection style serial, address ...)
+	SerialPort Connect - connect (connection style serial, address, serial port ...)
 
 Software Example Controller
 	Software Example - open the software example (language of the project)

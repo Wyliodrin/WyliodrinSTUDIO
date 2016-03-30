@@ -20,12 +20,6 @@ library.retrieveValue ('usage', true, function (value)
   global.usage = value;
 });
 
-library.retrieveValue ('language', true, function (value)
-{
-  debug ('Language '+value);
-  language (value);
-});
-
 function init(token, userid) {
   debug ('startup');
   if (token && token !== '')
@@ -73,7 +67,7 @@ function track(event, properties) {
             version: settings.VERSION,
             $os: mixpanel.os,
             architecture: mixpanel.architecture,
-            ui_lang: ln
+            ui_lang: ln?ln:'en'
             // browser: app.browser.name
         }, 
         properties)

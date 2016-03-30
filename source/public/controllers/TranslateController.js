@@ -77,8 +77,12 @@ module.exports = function ()
       {
         if (language)
         {
-          mixpanel.language (language);
+          // mixpanel.language (language);
           that.changeLanguage (language);
+        }
+        else
+        {
+          mixpanel.language ($translate.use ());
         }
       });
 

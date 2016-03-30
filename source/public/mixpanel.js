@@ -20,6 +20,12 @@ library.retrieveValue ('usage', true, function (value)
   global.usage = value;
 });
 
+library.retrieveValue ('language', true, function (value)
+{
+  debug ('Language '+value);
+  language (value);
+});
+
 function init(token, userid) {
   debug ('startup');
   if (token && token !== '')

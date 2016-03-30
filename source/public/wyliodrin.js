@@ -15,6 +15,7 @@ var angular = require ('angular');
 require ('angular-sanitize');
 require ('angular-translate');
 require ('angular-translate-loader-static-files');
+require ('angular-ui-tree');
 var angular_material = require ('angular-material');
 
 // console.log (makefile);
@@ -22,7 +23,7 @@ var angular_material = require ('angular-material');
 /* escape key */
 window.onkeydown = window.onkeyup = function(e) { if (e.keyCode == 27 /* ESC */) { e.preventDefault(); } };
 
-var app = angular.module ("wyliodrinApp", ['ui.ace', 'ngSanitize', 'highcharts-ng', 'ngMaterial', 'pascalprecht.translate'], function ($provide)
+var app = angular.module ("wyliodrinApp", ['ui.tree', 'ui.ace', 'ngSanitize', 'highcharts-ng', 'ngMaterial', 'pascalprecht.translate'], function ($provide)
 {
 	$provide.decorator('$window', function($delegate) 
 	{
@@ -51,6 +52,7 @@ app.config(function($mdThemingProvider) {
 
 require ('./controllers/TranslateController.js')();
 
+require ('./controllers/TreeController.js')();
 require ('./controllers/AppController.js')();
 require ('./controllers/DashboardController.js')();
 require ('./controllers/LibraryController.js')();

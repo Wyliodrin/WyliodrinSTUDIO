@@ -217,7 +217,54 @@
             <md-tab ng-disabled="project_disable">
                 <md-tab-label>{{ 'PROJECT_APPLICATION' | translate }}</md-tab-label>
                 <md-tab-body>
-                    <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">
+                    <div ng-controller="TreeController as tr">
+                        <div style="width: {{r}}px; float: left;"> 
+
+
+
+
+                            Left:
+                            <md-select ng-model="caa">
+                                    <md-option value="4">Four</md-option>
+                                    <md-option value="5">Five</md-option>
+                            </md-select>
+
+                           
+
+
+
+
+
+
+
+
+
+
+                        <div ui-tree="treeOptions">
+                          <ol ui-tree-nodes ng-model="list">
+                            <li ng-repeat="node in list" ui-tree-node>{{node}}</li>
+                          </ol>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">
                         <div flex="{{showXterm?65:100}}" layout="row">
     
                             <md-tabs md-align-tabs="bottom" flex="100" class="tabs-box software_label">
@@ -292,6 +339,7 @@
                             <div style="width: 100%; height: 100%; position:absolute; background:#000;" id="xterm"></div>
                         </div>
                         <!-- <input type="button" value="Run" ng-click="p.send ()" flex /> -->
+                        </div>
                     </div>
                 </md-tab-body>
             </md-tab>

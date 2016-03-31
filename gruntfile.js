@@ -155,6 +155,14 @@ module.exports = function(grunt) {
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
             },
+            {
+              expand: true,     // Enable dynamic expansion.
+              cwd: 'source/',      // Src matches are relative to this path.
+              src: ['public/fonts/**'], // Actual pattern(s) to match.
+              dest: 'build/',   // Destination path prefix.
+              // ext: '.html',   // Dest filepaths will have this extension.
+              extDot: 'first'   // Extensions in filenames begin after the first dot
+            },
             /*{
               expand: true,     // Enable dynamic expansion.
               cwd: 'source/',      // Src matches are relative to this path.

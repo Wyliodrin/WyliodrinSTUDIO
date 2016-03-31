@@ -52,7 +52,7 @@ app.config(function($mdThemingProvider) {
 
 require ('./controllers/TranslateController.js')();
 
-require ('./controllers/TreeController.js')();
+require ('./controllers/DirController.js')();
 require ('./controllers/AppController.js')();
 require ('./controllers/DashboardController.js')();
 require ('./controllers/LibraryController.js')();

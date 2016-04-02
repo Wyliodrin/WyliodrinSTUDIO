@@ -105,7 +105,7 @@ module.exports = function ()
 		
 		setBoxSize ();
 	});
-	
+
 	function setBoxSize ()
 		{
 			$('.tabs-box-container').height( $(window).height() - $('.main-toolbar').height() );

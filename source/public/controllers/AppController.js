@@ -32,17 +32,18 @@ module.exports = function ()
 		$scope.status = 'DISCONNECTED';
 		$scope.project_disable = true;
 		$scope.shell_disable = true;
-		
+		$scope.project_name = "";
 		this.status = function ()
 		{
 			return 'status label c-status label-'+$scope.status;
 		};
 
-		$wyapp.on ('load', function ()
+		$wyapp.on ('load', function (project)
 		{
 			$timeout (function ()
 			{
 				$scope.project_disable = false;
+				$scope.project_name = project.title; 
 			});
 		});
 

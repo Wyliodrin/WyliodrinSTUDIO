@@ -5,6 +5,8 @@ var angular = require ('angular');
 
 var mixpanel = require ('mixpanel');
 
+var _ = require ('lodash');
+
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:SerialPortController');
@@ -34,6 +36,14 @@ module.exports = function ()
 		var ip = '';
 		var port = 7000;
 
+		// setInterval (function ()
+		// {
+		// 	chrome.mdns.forceDiscovery (function ()
+		// 	{
+		// 		debug ('mdns discovery');
+		// 	});
+		// }, settings.INTERVAL_MDNS);
+
 		chrome.mdns.onServiceList.addListener (function (services)
 		{
 			debug (services);
@@ -48,6 +58,20 @@ module.exports = function ()
 				if ($scope.serialPort === null) $scope.serialPort = $scope.devices[$scope.devices.length-1];
 			});
 		}, {serviceType: '_wyapp._tcp.local'});
+
+		chrome.mdns.onServiceList.addListener (function (services)
+		{
+			debug (services);
+			var regex = /([^[]+)\[([0-9a-f:]+)\]/;
+			_.each (services, function (service)
+			{
+				var data = service.serviceName.match (regex);
+				if (data && data[2])
+				{
+					debug (data[2]);
+				}
+			});
+		}, {serviceType: '_workstation._tcp.local'});
 
 		this.getPorts = function ()
 		{
@@ -89,8 +113,21 @@ module.exports = function ()
 		$wydevice.on ('connection_timeout', function ()
 		{
 			var message = $mdDialog.confirm()
-		          .title($filter('translate')('Connection timeout, please check your board\'s IP and make sure it is running the Wyliodrin Image.'))
-		          .ok($filter('translate')('Setup'))
+		          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
+		          .ok($filter('translate')('TOOLBAR_SETUP'))
+		          .cancel('OK');
+		    $mdDialog.show(message).then(function() {
+		      $wyapp.emit ('board');
+		    }, function() {
+		     	
+		    });
+		});
+
+		$wydevice.on ('connection_error', function ()
+		{
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
+		          .ok($filter('translate')('TOOLBAR_SETUP'))
 		          .cancel('OK');
 		    $mdDialog.show(message).then(function() {
 		      $wyapp.emit ('board');
@@ -102,12 +139,13 @@ module.exports = function ()
 		$wydevice.on ('connection_login_failed', function ()
 		{
 			var message = $mdDialog.confirm()
-		          .title($filter('translate')('Connection failed, please check your board.'))
-		          //.ok('Setup')
+		          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
+		          .ok($filter('translate')('DEVICE_CONNECT'))
 		          .cancel($filter('translate')('OK'));
 		          // Should be a retry button???
 		    $mdDialog.show(message).then(function() {
-		      $wyapp.emit ('board');
+		      // $wyapp.emit ('board');
+		      that.open ();
 		    }, function() {
 		     	
 		    });
@@ -121,7 +159,8 @@ module.exports = function ()
 			{
 				$wydevice.connect ($scope.serialPort.path);
 				mixpanel.track ('SerialPort Connect',{
-					style:'serial'
+					style:'serial',
+					device: $scope.serialPort.path
 				});
 			}
 			else

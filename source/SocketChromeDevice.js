@@ -67,7 +67,7 @@ export default class SocketChromeDevice extends EventEmitter
 		else
 		{
 			debug ('Connection to '+this.address+' already exists');
-			return addresses.get (port);
+			return addresses.get (this.address);
 		}
 
 		debug ('Connecting to '+this.address);
@@ -111,6 +111,7 @@ export default class SocketChromeDevice extends EventEmitter
 							that.status = ERROR;
 							that.emit ('error');
 						}
+						addresses.delete (that.address);
 					}
 				});
 			});

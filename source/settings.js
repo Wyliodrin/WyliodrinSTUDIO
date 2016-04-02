@@ -136,6 +136,8 @@ settings.MAKE_FIRMWARE = {
 	}
 };
 
+settings.INTERVAL_MDNS = 10*1000;
+
 settings.SIGNAL_PROPERTIES = {
 	'line':
 	{

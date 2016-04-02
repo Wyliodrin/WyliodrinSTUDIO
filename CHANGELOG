@@ -1,4 +1,14 @@
+Wyliodrin STUDIO 10.2
+* added serial port title to mixpanel
+* fixed ui_lang in mixpanel
+* fixed board mdns list (removed forceDiscovery)
+
 Wyliodrin STUDIO 10.1
-* added anonymoys statistics data (version)
+* added anonymoys statistics data (version, ui_lang)
+* added forum
+* added project title display next to the tabs
+* added translation file layout to comply with translation standards
 * fixed translation for popup dialogs
+* fixed project name length when showing in the library
 * fixed horizontal scrollbar in license dialog 
+* fixed connection after error for serial and socket connections

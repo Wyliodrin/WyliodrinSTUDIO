@@ -653,6 +653,10 @@ md-menu-item > .md-button, md-option .md-text {font-size:14px !important;}
 .main-toolbar{height:90px;}
 
 .tabs-box-container{position:relative; display: flex; flex-flow: column;}
+.tabs-box-container md-pagination-wrapper {
+	right:0 !important;
+	left:initial;
+}
 
 md-progress-linear .md-container {background:#e5eef1;}
 md-progress-linear .md-bar{background:#e54225;}
@@ -684,21 +688,25 @@ md-progress-linear .md-bar{background:#e54225;}
 
 .show-hide-console {
 	position: absolute;
-    top: -35px;
-    right: 40px;
+    top: -49px;
+    height: 29px;
+    left: 0px;
+    text-align: center;
+    line-height: 27px;
+    width: 154px;
     z-index: 60;
     color: #fff;
-    background: rgba(0, 0, 0, 0.6);
+	background: #3c5459;
     padding: 10px 15px;
-    -webkit-border-radius: 5px 5px 0 0;
+    /* -webkit-border-radius: 5px 5px 0 0; */
     -moz-border-radius: 5px 5px 0 0;
-    border-radius: 5px 5px 0 0;
+    /* border-radius: 5px 5px 0 0; */
     text-decoration: none !important;
 }
 
 .show-hide-console:hover {
 	color: #fff;
-    background: rgba(0, 0, 0, 1);
+    background: #e54225;
 }
 
 md-tabs .md-tab.md-active md-icon {color:rgb(0, 0, 0) !important;}
@@ -817,4 +825,13 @@ md-pagination-wrapper, md-tab-item {width:initial !important;}
 	background: rgba(255,255,255,0.1); 
 }
 
+}
+
+
+.projname {
+position:absolute;
+background:none;
+top:100px;
+left:20px;
+color:#000;
 }

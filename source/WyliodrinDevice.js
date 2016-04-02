@@ -36,6 +36,7 @@ export default class WyliodrinDevice extends EventEmitter
 		debug ('Device setup for '+device);
 		this.WasInConnected = false;
 		this.WasInSeparator = false;
+		this.ShowedErrorMessage = false;
 		this.events  = new EventEmitter ();
 		this.device = device;
 		this.sender = null;
@@ -108,13 +109,23 @@ export default class WyliodrinDevice extends EventEmitter
 		this.port.on ('error', function ()
 		{
 			that.status = 'ERROR';
-			that.publishStatus ();
 			that.pingReceived = false;
 			clearInterval (that.sender);
-			debug ('status ERROR');
-			if (that.WasInSeparator === false) that.emit ('connection_timeout');
+			// debug (that.device);
+			if (that.WasInSeparator === false)
+			{
+				that.emit ('connection_error');
+				that.ShowedErrorMessage = true;
+			}
 			else
-			if (that.WasInConnected === false) that.emit ('connection_login_failed');
+			if (that.WasInConnected === false)
+			{
+				that.emit ('connection_login_failed');
+				that.ShowedErrorMessage = true;
+			}
+			that.publishStatus ();
+			that.port = null;
+			debug ('status ERROR');
 			devices.delete (that.device);
 		});
 
@@ -164,11 +175,18 @@ export default class WyliodrinDevice extends EventEmitter
 		this.port.on ('disconnected', function ()
 		{
 			that.status = 'DISCONNECTED';
-			that.publishStatus ();
-			if (that.WasInConnected === false) that.emit ('connection_login_failed');
+			if (that.WasInSeparator === false && that.ShowedErrorMessage === false) that.emit ('connection_timeout');
+			else
+			if (that.WasInConnected === false && that.ShowedErrorMessage === false) 
+			{
+				if (that.options.type.indexOf ('serial') >= 0) that.emit ('connection_timeout');
+				else that.emit ('connection_login_failed');
+			}
 			that.pingReceived = false;
 			clearInterval (that.sender);
-			debug (that.device);
+			// debug (that.device);
+			that.publishStatus ();
+			that.port = null;
 			devices.delete (that.device);
 		});
 
@@ -241,6 +259,6 @@ export default class WyliodrinDevice extends EventEmitter
 	disconnect ()
 	{
 		clearInterval (this.timerstatus);
-		this.port.disconnect ();
+		if (this.port) this.port.disconnect ();
 	}
 }

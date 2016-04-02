@@ -1,4 +1,4 @@
-<md-dialog aria-label="{{ 'ADD-APP_AddApp' | translate }}">
+<md-dialog aria-label="{{ 'ADD_APP_AddApp' | translate }}">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>{{ 'TOOLBAR_AddNewApp' | translate }}</h2>
@@ -9,10 +9,14 @@
         <md-content layout-gt-sm="row" layout-padding>
             <md-input-container class="add-app-title">
                 <label>{{ 'ADD_APP_Title' | translate }}</label>
+<<<<<<< HEAD
                 <input ng-model="project.title" minlength="3" ng-trim="true" md-autofocus="true">
+=======
+                <input ng-model="project.title" minlength="3" ng-trim="true">
+>>>>>>> d3732a84a6818e938d66bdfd185a8a6cbde38e7a
            </md-input-container>
             <md-input-container>
-                <label>{{ 'ADD-APP_Language' | translate }}</label>
+                <label>{{ 'ADD_APP_Language' | translate }}</label>
                 <md-select ng-model="project.language">
                   <md-option ng-repeat="language in languages" value="{{language.title}}">
                     {{language.text}}

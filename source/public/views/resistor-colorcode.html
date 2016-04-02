@@ -8,7 +8,7 @@
     <md-tabs md-dynamic-height md-dynamic-width>
         <md-tab>
             <md-tab-label>
-                {{ 'RESISTOR-COLORCODE_FromColorToNumber' | translate }}
+                {{ 'RESISTOR_COLORCODE_FromColorToNumber' | translate }}
             </md-tab-label>
             <md-tab-body>
                 
@@ -16,38 +16,38 @@
                 <md-dialog-content style="text-align:center;">
                     <div layout="row" layout-padding>
                         <md-input-container>
-                            <label>{{ 'RESISTOR-COLORCODE_Stripes' | translate }}</label>
+                            <label>{{ 'RESISTOR_COLORCODE_Stripes' | translate }}</label>
                             <md-select ng-model="value.number">
                                 <md-option value="4">{{ 'VALUE_Four' | translate }}</md-option>
                                 <md-option value="5">{{ 'VALUE_Five' | translate }}</md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container style="background: {{value.color1}};">
-                            <label>{{ 'RESISTOR-COLORCODE_Stripe' | translate }} 1</label>
+                            <label>{{ 'RESISTOR_COLORCODE_Stripe' | translate }} 1</label>
                             <md-select ng-model="value.color1">
                                 <md-option value="{{colorvalue}}" ng-repeat="(colorvalue, colorname) in colors">{{colorname}}</md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container>
-                            <label>{{ 'RESISTOR-COLORCODE_Stripe' | translate }} 2</label>
+                            <label>{{ 'RESISTOR_COLORCODE_Stripe' | translate }} 2</label>
                             <md-select ng-model="value.color2" style="background: value.color2;">
                                 <md-option value="{{colorvalue}}" ng-repeat="(colorvalue, colorname) in colors">{{colorname}}</md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container ng-show="value.number == 5">
-                            <label>{{ 'RESISTOR-COLORCODE_Stripe' | translate }} 3</label>
+                            <label>{{ 'RESISTOR_COLORCODE_Stripe' | translate }} 3</label>
                             <md-select ng-model="value.color3">
                                 <md-option value="{{colorvalue}}" ng-repeat="(colorvalue, colorname) in colors">{{colorname}}</md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container>
-                            <label>{{ 'RESISTOR-COLORCODE_Stripe' | translate }} {{4-(5-value.number)}}</label>
+                            <label>{{ 'RESISTOR_COLORCODE_Stripe' | translate }} {{4-(5-value.number)}}</label>
                             <md-select ng-model="value.color4">
                                 <md-option value="{{color.value}}" ng-repeat="color in multiplier">{{color.color}}</md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container>
-                            <label>{{ 'RESISTOR-COLORCODE_Stripe' | translate }} {{5-(5-value.number)}}</label>
+                            <label>{{ 'RESISTOR_COLORCODE_Stripe' | translate }} {{5-(5-value.number)}}</label>
                             <md-select ng-model="value.color5">
                                 <md-option value="{{color.value}}" ng-repeat="color in tolerance">{{color.color}}</md-option>
                             </md-select>
@@ -72,7 +72,7 @@
         </md-tab>
         <md-tab>
             <md-tab-label>
-                {{ 'RESISTOR-COLORCODE_FromNumberToColor' | translate }}
+                {{ 'RESISTOR_COLORCODE_FromNumberToColor' | translate }}
             </md-tab-label>
             <md-tab-body>
                <!--start code second page-->
@@ -80,7 +80,7 @@
                 <md-dialog-content style="text-align:center;">
                     <div layout="row" layout-padding>
                         <md-input-container>
-                            <label>{{ 'RESISTOR-COLORCODE_Resistance' | translate }}</label>
+                            <label>{{ 'RESISTOR_COLORCODE_Resistance' | translate }}</label>
                         <input placeholder="Enter a number" ng-model="second.value.number">
                         </md-input-container>
                         <md-input-container>
@@ -88,7 +88,7 @@
                             <b>&Omega;</b>
                         </md-input-container>
                         <md-input-container>
-                            <label>{{ 'RESISTOR-COLORCODE_Stripes' | translate }}</label>
+                            <label>{{ 'RESISTOR_COLORCODE_Stripes' | translate }}</label>
                             <md-select ng-model="second.value.stripes">
                                 <md-option value="4">{{ 'VALUE_Four' | translate }}</md-option>
                                 <md-option value="5">{{ 'VALUE_Five' | translate }}</md-option>

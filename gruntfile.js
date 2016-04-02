@@ -155,14 +155,14 @@ module.exports = function(grunt) {
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
             },
-            {
+            /*{
               expand: true,     // Enable dynamic expansion.
               cwd: 'source/',      // Src matches are relative to this path.
               src: ['public/translations/**'], // Actual pattern(s) to match.
               dest: 'build/',   // Destination path prefix.
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
-            },
+            }, */
             {
               expand: true,     // Enable dynamic expansion.
               cwd: 'source/',      // Src matches are relative to this path.
@@ -350,22 +350,61 @@ module.exports = function(grunt) {
 
   grunt.registerTask ('languages', 'Languages', function ()
   {
-    var TRANSLATION_FOLDER = 'source/public/translations';
+    var TRANSLATION_READ = 'source/public/translations/';
+    var TRANSLATION_WRITE = 'build/public/translations/';
+    var languageList = fs.readdirSync (TRANSLATION_READ);
+
     var result = {};
+
+    _.forEach (languageList, function(file)
+       {
+        var fileTranslated = path.basename( file, '.json' );
+        if (fileTranslated.startsWith('messages-'))
+        {
+          var newObject = {};
+
+          _.forEach( require('./'+TRANSLATION_READ+fileTranslated), function( value, key ) {
+            newObject[key] = value.message;
+          });
+
+          result[fileTranslated.substring(9)] = JSON.parse(fs.readFileSync(path.join(TRANSLATION_READ,file)).toString()).LANGUAGE.message;
+          console.log ('Language ' + fileTranslated.substring(9).toString() + ' added.');
+
+          mkdirp.sync(TRANSLATION_WRITE);
+          fs.writeFileSync( './'+TRANSLATION_WRITE+"locale-"+fileTranslated.substring(9)+".json", JSON.stringify (newObject));     
+        }
+       });
+
+    mkdirp.sync (CONFIG);
+    fs.writeFileSync ('source/config/languages.js', '"use strict";\n module.exports = '+JSON.stringify (result)+';');  
+  });
+
+  grunt.registerTask ('locale', 'Locale', function ()
+  {
+    var TRANSLATION_FOLDER = 'source/public/translations';
 
     var languagelist = fs.readdirSync (TRANSLATION_FOLDER);
 
     _.each (languagelist, function(file)
     {
       var filename = path.basename(file, '.json');
-      if (filename.startsWith('locale-'))
+      if (filename.startsWith('messages-'))
       {
-        result[filename.substring(7)] = JSON.parse(fs.readFileSync(path.join(TRANSLATION_FOLDER,file)).toString()).LANGUAGE;
-        console.log ('Language ' + filename.substring(7).toString() + ' added.');
+        var language = JSON.parse(fs.readFileSync(path.join(TRANSLATION_FOLDER,file)).toString());
+        console.log ('Locale ' + filename.substring(9).toString() + ' added.');
+        mkdirp.sync ('build/_locales/'+filename.substring(9));
+        fs.writeFileSync ('build/_locales/'+filename.substring(9)+'/messages.json', JSON.stringify ({
+          appName:
+          {
+            message:language.appName.message
+          },
+          appDesc:
+          {
+            message:language.appDesc.message
+          }
+        }, null, 2));
       }
     });
-    mkdirp.sync (CONFIG);
-    fs.writeFileSync ('source/config/languages.js', '"use strict";\n module.exports = '+JSON.stringify (result)+';');
   });
 
 
@@ -387,7 +426,8 @@ module.exports = function(grunt) {
     'browserify',
     'ngAnnotate',
     'copy',
-    'less', 
+    'less',
+    'locale', 
     // 'cssmin',
     // 'uglify',
     // 'htmlmin'

@@ -1,5 +1,8 @@
 # Wyliodrin STUDIO
 
+[![Build Status](https://travis-ci.org/Wyliodrin/WyliodrinSTUDIO.svg?branch=master)](https://travis-ci.org/Wyliodrin/WyliodrinSTUDIO)
+[![Dependency Status](https://gemnasium.com/Wyliodrin/WyliodrinSTUDIO.svg)](https://gemnasium.com/Wyliodrin/WyliodrinSTUDIO)
+
 Wyliodrin STUDIO is a Chrome based IDE for software and hardware development for IoT and Embedded Linux systems.
 
 ![Wyliodrin](https://raw.githubusercontent.com/Wyliodrin/WyliodrinSTUDIO/master/extra/wyliodrin.png)
@@ -88,6 +91,7 @@ Contributions
 
 * [Razvan Serban](https://www.github.com/serban-razvan) - Developer
 * [Paula Margarit](https://www.github.com/paula-elena) - Developer
+* [Daniel Dosaru](https://www.github.com/dosarudaniel) - Developer
 * [Mihai Popescu](https://www.github.com/mhpopescu) - Developer
 
 Wyliodrin is a trademark of Wyliodrin SRL. All rights reservered.

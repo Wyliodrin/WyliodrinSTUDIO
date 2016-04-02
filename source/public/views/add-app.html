@@ -5,11 +5,11 @@
 		</div>
 	</md-toolbar>
     
-	<md-dialog-content>
+	<md-dialog-content ng-escape="a.cancel()">
         <md-content layout-gt-sm="row" layout-padding>
             <md-input-container class="add-app-title">
                 <label>{{ 'ADD_APP_Title' | translate }}</label>
-                <input ng-model="project.title" minlength="3" ng-trim="true">
+                <input ng-model="project.title" minlength="3" ng-trim="true" ng-enter="a.add()">
            </md-input-container>
             <md-input-container>
                 <label>{{ 'ADD_APP_Language' | translate }}</label>

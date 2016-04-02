@@ -4,9 +4,9 @@
 			<h2>{{ 'SIGNAL_'+ signal.style | translate }} - {{ 'SIGNAL_PROPERTIES_AddSignal' | translate }}</h2>
 		</div>
 	</md-toolbar>
-	   <md-dialog-content>
+	   <md-dialog-content ng-escape="s.close()" >
         <md-content layout-gt-sm="row" layout-padding class="signal-details">
-            <md-input-container>
+            <md-input-container ng-enter="s.add ()">
                 <label>{{ 'SIGNAL_PROPERTIES_SignalName' | translate }}</label>
                 <input ng-model="signal.title" minlength="1" ng-required="true" ng-trim="true" ng-pattern="/^[a-z][a-z0-9]*$/">
             </md-input-container>
@@ -21,6 +21,7 @@
             <!-- {{signal.style}} -->
         </md-content>
 	      
+
 		      <!-- <md-select ng-model="signal.description">
 		          <md-option ng-repeat="language in languages" value="{{language.title}}">
 		            {{language.text}}

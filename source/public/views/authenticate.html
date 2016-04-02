@@ -6,7 +6,7 @@
 	</md-toolbar>
     
 	<md-dialog-content layout-padding>
-        <md-content>
+        <md-content ng-enter="a.connect()" ng-escape="a.exit()">
             <md-input-container style="width:64%;">
                 <label>IP</label>
                 <input ng-model="device.ip" ng-trim="true">

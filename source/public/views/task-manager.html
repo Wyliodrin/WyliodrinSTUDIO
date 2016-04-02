@@ -5,7 +5,7 @@
 		</div>
 	</md-toolbar>
     
-	<md-dialog-content class="task-box">
+	<md-dialog-content class="task-box" ng-escape="tm.exit()">
         <md-list>
             <md-list-item ng-repeat="task in tasks | orderBy: '-TT'" layout-padding class="separator-line task">
                 <md-icon ng-show="task.TT!=='?'" md-svg-src="/public/drawable/process-icon.svg" class="s24" aria-label="Process" ></md-icon>

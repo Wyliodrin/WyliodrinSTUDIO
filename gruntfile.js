@@ -31,6 +31,16 @@ module.exports = function(grunt) {
         }
       }
     },
+
+    jsdoc: {
+      dist: {
+        src: ['source/public/controllers/*.js','source/*.js'],
+        options: {
+          destination :'doc'
+        }
+      } 
+    },
+
     browserify: {
       client: {
         files: {
@@ -407,7 +417,7 @@ module.exports = function(grunt) {
     });
   });
 
-
+  grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-ng-annotate');
@@ -422,7 +432,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'makefile', 'languages', 'example', 'jshint', 
+  grunt.registerTask('default', [ 'jsdoc','mixpanel', 'debug', 'makefile', 'languages', 'example', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',

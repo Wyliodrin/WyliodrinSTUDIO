@@ -173,7 +173,7 @@ module.exports = function ()
 			      	{
 			      		ip: (scope.serialPort.ip.length>0?scope.serialPort.ip:ip),
 			      		port: (scope.serialPort.port >= 0?scope.serialPort.port:port),
-			      		username: users[(scope.serialPort.ip.length>0?scope.serialPort.ip:ip)]
+			      		username: users[(scope.serialPort.ip.length>0?scope.serialPort.ip:ip)] || ''
 			      	};
 
 			      	this.connect = function ()

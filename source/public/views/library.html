@@ -10,7 +10,7 @@
 			      <md-grid-tile class="lib-app" ng-repeat="program in programs | orderBy:'-date'" ng-click="l.load(program)">
 			        <img ng-src="/public/drawable/{{program.language}}project.png" alt="{{program.language}}" />
 			        <div flex="100">
-			          <h3>{{ program.title | limitTo:35 }} <span>{{ program.language }}</span></h3>
+			          <h3>{{ program.title | limitTo:20 }} <span>{{ program.language }}</span></h3>
 			          
 			          <p>{{ program.date | date:'MMMM d, yyyy @ HH:MM' }}</p>
                       <md-button class="md-secondary lib-app-btn" ng-click="l.export (program); $event.stopPropagation();">{{ 'TOOLBAR_EXPORT' | translate }}</md-button>

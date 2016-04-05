@@ -1,4 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: SerialChromeDevice.js</title>
 
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: SerialChromeDevice.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
 "use strict";
 
 var settings = require ('settings');
@@ -41,7 +69,7 @@ const SEPARRATOR = 2;
 const CONNECTED = 3;
 const ERROR = 4;
 const DISCONNECTED = 5;
-/** The following class */
+/** The following class is going to explode in 10 seconds...*/
 export default class SerialChromeDevice extends EventEmitter
 {
 	static listDevices (done)
@@ -81,7 +109,7 @@ export default class SerialChromeDevice extends EventEmitter
 		process.nextTick (function ()
 		{
 			console.log (that.status);
-			if (that.staus <= CONNECTING);
+			if (that.staus &lt;= CONNECTING);
 			that.emit ('connecting');
 			chrome.serial.connect (that.port, options, function (connection)
 			{
@@ -96,7 +124,7 @@ export default class SerialChromeDevice extends EventEmitter
 					if (!that.shouldDisconnect)
 					{
 						debug ('Connected to '+that.port+' with connectionId '+connection.connectionId);
-						if (that.status < SEPARRATOR)
+						if (that.status &lt; SEPARRATOR)
 						{
 							that.status = SEPARRATOR;
 							that.emit ('separator');
@@ -109,7 +137,7 @@ export default class SerialChromeDevice extends EventEmitter
 				else
 				{
 					// TODO error
-					if (that.status <= ERROR)
+					if (that.status &lt;= ERROR)
 					{
 						that.status = ERROR;
 						that.emit ('error');
@@ -122,7 +150,7 @@ export default class SerialChromeDevice extends EventEmitter
 	_escape (buffer)
 	{
 		var l = 0;
-		for (let i=0; i<buffer.length; i++)
+		for (let i=0; i&lt;buffer.length; i++)
 		{
 			if (buffer[i]===PACKET_SEPARATOR) l = l+2;
 			else l = l+1;
@@ -132,7 +160,7 @@ export default class SerialChromeDevice extends EventEmitter
 		{
 			var data = new Buffer (l);
 			var li=0;
-			for (let i=0; i<buffer.length; i++)
+			for (let i=0; i&lt;buffer.length; i++)
 			{
 				if (buffer[i] === PACKET_SEPARATOR)
 				{
@@ -156,7 +184,7 @@ export default class SerialChromeDevice extends EventEmitter
 		if (this.isConnected ())
 		{
 			var that = this;
-			if (!this.isSending && this.buffers.length > 0)
+			if (!this.isSending &amp;&amp; this.buffers.length > 0)
 			{
 				this.isSending = true;
 				var arraydata = this.buffers[0];
@@ -168,7 +196,7 @@ export default class SerialChromeDevice extends EventEmitter
 						debug ('Sending '+arraydata.byteLength+' to port '+that.port+' retuned an error '+sendInfo.error+' '+chrome.runtime.lastError);
 						if (sendInfo.error === 'system_error')
 						{
-							if (that.status <= ERROR)
+							if (that.status &lt;= ERROR)
 							{
 								that.status = ERROR;
 								that.emit ('error');
@@ -180,7 +208,7 @@ export default class SerialChromeDevice extends EventEmitter
 					else
 					{
 						debug ('Sent '+sendInfo.bytesSent+' of '+arraydata.byteLength+' to '+that.port+' using connectionId '+that.connection.connectionId);
-						if (sendInfo.bytesSent < arraydata.byteLength)
+						if (sendInfo.bytesSent &lt; arraydata.byteLength)
 						{
 							// console.log ('Sent less bytes than request');
 							debug ('Sent less bytes than in data, sending '+(that.buffers[0].byteLength-sendInfo.bytesSent)+' into the bytes next data');
@@ -224,9 +252,9 @@ export default class SerialChromeDevice extends EventEmitter
 			{
 				arraydata = new ArrayBuffer (SERIAL_BUFFER_SIZE);
 				arraydatauint = new Uint8Array (arraydata);
-				for (pos = 0; pos<SERIAL_BUFFER_SIZE; pos++)
+				for (pos = 0; pos&lt;SERIAL_BUFFER_SIZE; pos++)
 				{
-					if (split === 0 && (pos === SERIAL_BUFFER_SIZE-2 || pos === SERIAL_BUFFER_SIZE-1) && additional === false)
+					if (split === 0 &amp;&amp; (pos === SERIAL_BUFFER_SIZE-2 || pos === SERIAL_BUFFER_SIZE-1) &amp;&amp; additional === false)
 					{
 						arraydatauint[pos] = PACKET_SEPARATOR;
 					}
@@ -245,9 +273,9 @@ export default class SerialChromeDevice extends EventEmitter
 				arraydata = new ArrayBuffer (size % SERIAL_BUFFER_SIZE);
 				arraydatauint = new Uint8Array (arraydata);
 				var additional_size = size%SERIAL_BUFFER_SIZE;
-				for (pos = 0; pos<additional_size; pos++)
+				for (pos = 0; pos&lt;additional_size; pos++)
 				{
-					if (pos !== additional_size-2 && pos !== additional_size-1)
+					if (pos !== additional_size-2 &amp;&amp; pos !== additional_size-1)
 					{
 						arraydatauint[pos] = data[offset];
 						offset++;
@@ -281,7 +309,7 @@ export default class SerialChromeDevice extends EventEmitter
 			debug ('Data size exceeded, enlarging data with '+this.receivedData.length+' for port '+this.port+' using connectionId '+this.connection.connectionId);
 			var receivedData = this.receivedData;
 			this.receivedData = new Buffer (receivedData.length*2);
-			for (var pos=0; pos < receivedData.length; pos++)
+			for (var pos=0; pos &lt; receivedData.length; pos++)
 			{
 				this.receivedData[pos] = receivedData[pos];
 			}
@@ -305,7 +333,7 @@ export default class SerialChromeDevice extends EventEmitter
 		debug ('Received '+data.byteLength+' bytes for port '+this.port+' using connectionId '+this.connection.connectionId);
 		var datauint = new Uint8Array (data);
 		// TODO more efficient to string
-		for (var pos=0; pos<datauint.length; pos++)
+		for (var pos=0; pos&lt;datauint.length; pos++)
 		{
 			// console.log (datauint[pos]);
 			if (this.receivedFirstPacketSeparator)
@@ -349,11 +377,11 @@ export default class SerialChromeDevice extends EventEmitter
 			}
 			else
 			{
-				if (datauint[pos] === PACKET_SEPARATOR && this.previousByte === PACKET_SEPARATOR) 
+				if (datauint[pos] === PACKET_SEPARATOR &amp;&amp; this.previousByte === PACKET_SEPARATOR) 
 				{
 					debug ('Received first packet separataor for port '+this.port+' using connectionId '+this.connection.connectionId);
 					this.receivedFirstPacketSeparator = true;
-					if (this.status < CONNECTED)
+					if (this.status &lt; CONNECTED)
 					{
 						this.status = CONNECTED;
 						this.emit ('connected');
@@ -368,7 +396,7 @@ export default class SerialChromeDevice extends EventEmitter
 			}
 		}
 	}
-	/** */
+	/** This method is deleting the connection informations*/
 	flush ()
 	{
 		debug ('Flushing '+this.port+' using connectionId '+this.connection.connectionId);
@@ -403,4 +431,26 @@ export default class SerialChromeDevice extends EventEmitter
 			this.connection = null;
 		}
 	}
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Apr 02 2016 14:43:30 GMT+0300 (EEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

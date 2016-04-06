@@ -206,7 +206,7 @@ module.exports = function ()
 			      		ip: (scope.serialPort.ip.length>0?scope.serialPort.ip:ip),
 			      		port: (scope.serialPort.port >= 0?scope.serialPort.port:port),
 			      		secureport: (scope.serialPort.secureport >= 0?scope.serialPort.secureport:secureport),
-			      		username: users[(scope.serialPort.ip.length>0?scope.serialPort.ip:ip)] || ''
+			      		username: users[(scope.serialPort.ip.length>0?scope.serialPort.ip:ip)] || '',
 			      		category: scope.serialPort.category
 			      	};
 

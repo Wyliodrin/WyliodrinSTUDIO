@@ -1,5 +1,7 @@
 # Wyliodrin STUDIO
 
+[![Join the chat at https://gitter.im/Wyliodrin/WyliodrinSTUDIO](https://badges.gitter.im/Wyliodrin/WyliodrinSTUDIO.svg)](https://gitter.im/Wyliodrin/WyliodrinSTUDIO?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/Wyliodrin/WyliodrinSTUDIO.svg?branch=master)](https://travis-ci.org/Wyliodrin/WyliodrinSTUDIO)
 [![Dependency Status](https://gemnasium.com/Wyliodrin/WyliodrinSTUDIO.svg)](https://gemnasium.com/Wyliodrin/WyliodrinSTUDIO)
 

@@ -9,7 +9,7 @@
         <md-content>
             <md-input-container style="width:64%;">
                 <label>IP</label>
-                <input ng-model="device.ip" ng-trim="true">
+                <input ng-model="device.ip" ng-trim="true" md-autofocus="device.ip.length === 0">
            </md-input-container>
            <md-input-container ng-hide="device.secure" style="width:30%;">
                 <label>{{ 'DEVICE_PORT' | translate }}</label>
@@ -24,11 +24,12 @@
 
            <md-input-container style="width:47%;">
                 <label>{{ 'USER_Username' | translate }}</label>
-                <input ng-model="device.username" ng-trim="true">
+                <input ng-model="device.username" ng-trim="true" md-autofocus="device.username.length === 0 && device.ip.length != 0">
            </md-input-container>
            <md-input-container style="width:47%;">
                 <label>{{ 'USER_Password' | translate }}</label>
-                <input ng-model="device.password" type="{{passwordCheckbox ? 'text' : 'password'}}">
+                <input ng-model="device.password" type="{{passwordCheckbox ? 'text' : 'password'}}"
+                md-autofocus="device.username.length > 0">
            </md-input-container>
            <!--<md-checkbox ng-hide="device.category" ng-model="device.secure" arial-label="{{ 'USER_SecureConnection' | translate }}">
           {{ 'USER_SecureConnection' | translate }}

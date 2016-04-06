@@ -5,7 +5,7 @@
 		</div>
 	</md-toolbar>
     
-    <md-dialog-content>
+    <md-dialog-content ng-escape="u.exit()">
     	<md-progress-linear ng-show="runupdate" md-mode="indeterminate" class="loading-bar"></md-progress-linear>
         <md-content class="pre-box">
         	<pre>{{runoutput}}</pre>

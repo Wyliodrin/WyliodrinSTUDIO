@@ -4,7 +4,7 @@
 			<h2>{{ 'TOOLBAR_PROJECTS' | translate }}</h2>
 		</div>
 	</md-toolbar>
-	<md-dialog-content layout="row">
+	<md-dialog-content layout="row" ng-escape="l.cancel()">
 			<md-content flex="100" class="projects-container" style="{{programs.length > 0?'background:none;':''}}">
 				<md-grid-list md-cols="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3" md-row-height="8:3" md-gutter="8px" md-gutter-gt-sm="4px">
 			      <md-grid-tile class="lib-app" ng-repeat="program in programs | orderBy:'-date'" ng-click="l.load(program)">

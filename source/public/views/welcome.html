@@ -1,5 +1,5 @@
 <md-dialog aria-label="Wyliodrin App" class="about-box" style="width: 550px; height:500px;">
-	<md-dialog-content class="pre-box">
+	<md-dialog-content class="pre-box" ng-escape="p.exit()">
         <div class="about-logo">
         	<img src="/public/drawable/wyliodrin-studio-about-logo.png" />
             <span>{{ 'ABOUT_Version' | translate }} {{VERSION}}</span>

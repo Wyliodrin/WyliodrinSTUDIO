@@ -11,7 +11,7 @@
             </md-input-container>
 	</md-toolbar>
     
-    <md-dialog-content>
+    <md-dialog-content ng-escape="f.exit()">
             <md-list>
             <span ng-repeat="(examplefoldername, examplefolder) in EXAMPLE[firmware]">
                 <md-subheader class="firmware-title">{{examplefoldername}}</md-subheader>

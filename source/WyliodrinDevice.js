@@ -12,6 +12,7 @@ var dict = require ('dict');
 
 import SerialChromeDevice from './SerialChromeDevice.js';
 import SocketChromeDevice from './SocketChromeDevice.js';
+import SSHChromeDevice from './SSHChromeDevice.js';
 
 var devices = dict ();
 
@@ -29,11 +30,12 @@ export default class WyliodrinDevice extends EventEmitter
 		devices.set (device, this);
 		this.options = _.assign ({
 			type: 'chrome-serial',
-			port: 7000
+			port: 22
 		}, options);
 		debug (this.options);
 		this.status = 'DISCONNECTED';
 		debug ('Device setup for '+device);
+		this.WasInInstall = false;
 		this.WasInConnected = false;
 		this.WasInSeparator = false;
 		this.ShowedErrorMessage = false;
@@ -43,7 +45,7 @@ export default class WyliodrinDevice extends EventEmitter
 		this.pingReceived = false;
 		this.packetsWithErrors = 0;
 		this.name = 'Unknown';
-		this.category = 'unknown';
+		this.category = options.category || 'unknown';
 		this.timerstatus = setInterval (function ()
 		{
 			if (this.status === 'CONNECTED') this.send ('ping', null);
@@ -51,12 +53,20 @@ export default class WyliodrinDevice extends EventEmitter
 		var that = this;
 		if (this.options.type === 'chrome-serial') this.port = new SerialChromeDevice (device, {bitrate: 115200});
 		else
-		if (this.options.type === 'chrome-socket') this.port = new SocketChromeDevice (device, this.options.port);
+		if (this.options.type === 'chrome-socket') this.port = new SocketChromeDevice (device, this.options.port, options);
+		else 
+		if (this.options.type === 'chrome-ssh') this.port = new SSHChromeDevice (device, this.options.port, options);
 		else 
 		{
 			console.error ('Device '+device+ ' has unknown type '+this.options.type);
 			throw new Error ('Device '+device+ ' has unknown type '+this.options.type);
 		}
+
+		this.port.on ('message', function (tag, data)
+		{
+			that.emit ('message', tag, data);
+		});
+
 		this.port.on ('data', function (data)
 		{
 			debug ('Received '+data.length+' bytes from device '+that.device);
@@ -112,12 +122,12 @@ export default class WyliodrinDevice extends EventEmitter
 			that.pingReceived = false;
 			clearInterval (that.sender);
 			// debug (that.device);
-			if (that.WasInSeparator === false)
-			{
-				that.emit ('connection_error');
-				that.ShowedErrorMessage = true;
-			}
-			else
+			// if (that.WasInSeparator === false)
+			// {
+			// 	that.emit ('connection_error');
+			// 	that.ShowedErrorMessage = true;
+			// }
+			// else
 			if (that.WasInConnected === false)
 			{
 				that.emit ('connection_login_failed');
@@ -129,11 +139,17 @@ export default class WyliodrinDevice extends EventEmitter
 			devices.delete (that.device);
 		});
 
+		this.port.on ('connection_login_failed', function ()
+		{
+			that.emit ('connection_login_failed');
+			that.ShowedErrorMessage = true;
+		});
+
 		this.port.on ('separator', function ()
 		{
 			that.status = 'SEPARATOR';
 			that.send ('', null);
-			if (that.options.type === 'chrome-socket')
+			if (that.options.type === 'chrome-socket' || that.options.type === 'chrome-ssh')
 			{
 				that.send ('login', {username:that.options.username, password:that.options.password});
 				setTimeout (function ()
@@ -149,6 +165,13 @@ export default class WyliodrinDevice extends EventEmitter
 			}
 			that.publishStatus ();
 			that.WasInSeparator = true;
+		});
+
+		this.port.on ('install', function ()
+		{
+			that.status = 'INSTALL';
+			that.WasInInstall = true;
+			that.publishStatus ();
 		});
 
 		this.port.on ('connected', function ()
@@ -175,9 +198,9 @@ export default class WyliodrinDevice extends EventEmitter
 		this.port.on ('disconnected', function ()
 		{
 			that.status = 'DISCONNECTED';
-			if (that.WasInSeparator === false && that.ShowedErrorMessage === false) that.emit ('connection_timeout');
+			if (that.WasInSeparator === false && that.WasInInstall === false && that.ShowedErrorMessage === false) that.emit ('connection_timeout');
 			else
-			if (that.WasInConnected === false && that.ShowedErrorMessage === false) 
+			if (that.WasInConnected === false && that.WasInInstall === false && that.ShowedErrorMessage === false) 
 			{
 				if (that.options.type.indexOf ('serial') >= 0) that.emit ('connection_timeout');
 				else that.emit ('connection_login_failed');
@@ -242,11 +265,21 @@ export default class WyliodrinDevice extends EventEmitter
 
 	send (tag, data)
 	{
-		debug ('Sending '+JSON.stringify(data)+' with tag '+tag+' to device '+this.device);
-		var buffer = msgpack.encode ({t:tag, d:data});
+		if (this.status !== 'INSTALL')
+		{
+			debug ('Sending '+JSON.stringify(data)+' with tag '+tag+' to device '+this.device);
+			var buffer = msgpack.encode ({t:tag, d:data});
 
-		// console.log (this.port.send);
-		this.port.send (buffer);
+			// console.log (this.port.send);
+			// console.log (Buffer.isBuffer (buffer));
+			this.port.send (buffer);
+		}
+		else if (this.options.type === 'chrome-ssh')
+		{
+			if (tag === 's') this.port.shell (data);
+			else
+			if (tag === 'install') this.port.install (data);
+		}
 	}
 
 	getStatistics ()

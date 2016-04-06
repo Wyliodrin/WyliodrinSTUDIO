@@ -11,9 +11,13 @@
                 <label>IP</label>
                 <input ng-model="device.ip" ng-trim="true">
            </md-input-container>
-           <md-input-container style="width:30%;">
+           <md-input-container ng-hide="device.secure" style="width:30%;">
                 <label>{{ 'DEVICE_PORT' | translate }}</label>
                 <input ng-model="device.port" ng-trim="true" type="number">
+           </md-input-container>
+           <md-input-container ng-show="device.secure" style="width:30%;">
+                <label>{{ 'DEVICE_PORT' | translate }}</label>
+                <input ng-model="device.secureport" ng-trim="true" type="number">
            </md-input-container>
            
            {{ 'AUTHENTICATE_Login' | translate }}
@@ -26,6 +30,9 @@
                 <label>{{ 'USER_Password' | translate }}</label>
                 <input ng-model="device.password" type="{{passwordCheckbox ? 'text' : 'password'}}">
            </md-input-container>
+           <!--<md-checkbox ng-hide="device.category" ng-model="device.secure" arial-label="{{ 'USER_SecureConnection' | translate }}">
+          {{ 'USER_SecureConnection' | translate }}
+      </md-checkbox>-->
         </md-content>
     </md-dialog-content>
     

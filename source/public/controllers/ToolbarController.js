@@ -369,6 +369,21 @@ module.exports = function ()
 		    });
 		});
 
+		$wyapp.on ('install',function ()
+		{
+			debug ('Install');
+			$mdDialog.show({
+		      controller: 'InstallController',
+		      controllerAs: 'u',
+		      templateUrl: '/public/views/install.html',
+		      // parent: angular.element(document.body),
+		      // targetEvent: ev,
+		      escapeToClose: false,
+		      clickOutsideToClose: false,
+		      fullscreen: false
+		    });
+		});
+
 		$wyapp.on ('library', function ()
 		{
 			debug ('Library');

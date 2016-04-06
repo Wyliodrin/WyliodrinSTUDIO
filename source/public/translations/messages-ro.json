@@ -28,7 +28,7 @@
     "description": ""
   },
   "DEVICE_Network": {
-    "message": "Rețea",
+    "message": "Retea",
     "description": ""
   },
   "DEVICE_Serial": {
@@ -629,5 +629,34 @@
   {
     "message":"Logare eșuată, vă rugăm să verificați utilizatorul și parola.",
     "description":""
+  },
+  "DEVICE_QUESTION_INSTALL_SHELL":
+  {
+    "message":"Wyliodrin nu este instalat pe acest dispozitiv, doriți să instalați sau doar să deschideți un shell?",
+    "description":""
+  },
+  "DEVICE_INSTALL":
+  {
+    "message":"Instalare",
+    "description":""
+  },
+  "TOOLBAR_INSTALL":
+  {
+    "message":"Instalare",
+    "description":""
+  },
+  "USER_SecureConnection":
+  {
+    "message":"Utilizați o conexiune sigură - ssh (funcționeaza încet)",
+    "description":""
+  },
+  "DEVICE_Install":
+  {
+    "message":"Instalabile",
+    "description":""
+  },
+  "INSTALL_SelectBoard": {
+    "message": "Vă rugăm să selectați placa pe care doriți să instalați",
+    "description": ""
   }
 }

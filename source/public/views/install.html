@@ -1,0 +1,44 @@
+<md-dialog aria-label="{{ 'TOOLBAR_INSTALL' | translate }}" style="width: 590px; max-height:490px;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ 'TOOLBAR_INSTALL' | translate }}</h2>
+		</div>
+	</md-toolbar>
+    
+    <md-dialog-content>
+    	<md-progress-linear ng-show="runinstall" md-mode="indeterminate" class="loading-bar"></md-progress-linear>
+
+    	<div ng-show="!runinstall">
+
+		    <center>
+		    
+		        <h2 style="margin-bottom:20px;">{{ 'INSTALL_SelectBoard' | translate }}</h2>
+		        <md-button md-parent-scope="this" ng-repeat="(boardname, boardvalue) in LABEL" ng-if="boardname!=='board'" class="board-setup-btn" ng-click="u.install(boardname)">
+		            <img ng-src="/public/drawable/board/{{boardname}}.png">
+		            <md-tooltip md-direction="bottom">
+		              {{boardvalue.text}}
+		            </md-tooltip>
+		        </md-button>
+		        
+		        <!-- <md-button class="board-setup-btn" ng-click="device='udooneo'">
+		            <img src="/public/drawable/udooneo.png">
+		            <md-tooltip md-direction="bottom">
+		              Udoo Neo
+		            </md-tooltip>
+		        </md-button> -->
+		    
+		    </center>
+
+		</div>
+
+        <md-content class="pre-box">
+        	<pre>{{runoutput}}</pre>
+        </md-content>
+    </md-dialog-content>
+    
+    
+	<md-dialog-actions layout="row">
+        <!-- <md-button ng-show="runinstall" ng-click="u.exit()">{{ 'TOOLBAR_STOP' | translate }}</md-button> -->
+		<md-button ng-hide="runinstall" ng-click="u.exit()">{{ 'TOOLBAR_EXIT' | translate }}</md-button>
+	</md-dialog-actions>
+</md-dialog>

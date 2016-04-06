@@ -25,7 +25,9 @@ module.exports = function ()
 		$scope.serialPort = null;
 		$scope.status = $wydevice.getStatus ();
 
-		$scope.devices = [{ip: '', port: 7000, name: $filter('translate')('DEVICE_ADDRESS')}];
+		$scope.devices = [{ip: '', port: 7000, secureport: 22, name: $filter('translate')('DEVICE_ADDRESS')}];
+
+		$scope.devicesinstall = [];
 
 		var ctrl = this;
 
@@ -35,6 +37,7 @@ module.exports = function ()
 
 		var ip = '';
 		var port = 7000;
+		var secureport = 22;
 
 		// setInterval (function ()
 		// {
@@ -50,10 +53,12 @@ module.exports = function ()
 			$timeout (function ()
 			{
 				$scope.devices = [];
-				for (var index=0; index<services.length; index++)
+				_.each (services, function (service)
 				{
-					$scope.devices.push ({ip: services[index].ipAddress, port: parseInt(services[index].serviceHostPort.substring (services[index].serviceHostPort.lastIndexOf (':')+1)), name: services[index].serviceName.split('.')[0]+' ('+services[index].ipAddress+')'});
-				}
+					$scope.devices.push ({ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: service.serviceName.split('.')[0]+' ('+service.ipAddress+')'});
+					var deviceindex = _.findIndex ($scope.devicesinstall, function (device) { return device.ip === service.ipAddress; });
+					if (deviceindex >= 0) $scope.devicesinstall.splice (deviceindex, 1);
+				});
 				$scope.devices.push ({ip: '', port: -1000, name: $filter('translate')('DEVICE_ADDRESS')});
 				if ($scope.serialPort === null) $scope.serialPort = $scope.devices[$scope.devices.length-1];
 			});
@@ -63,13 +68,26 @@ module.exports = function ()
 		{
 			debug (services);
 			var regex = /([^[]+)\[([0-9a-f:]+)\]/;
-			_.each (services, function (service)
+			$timeout (function ()
 			{
-				var data = service.serviceName.match (regex);
-				if (data && data[2])
+				$scope.devicesinstall = [];
+				_.each (services, function (service)
 				{
-					debug (data[2]);
-				}
+					var data = service.serviceName.match (regex);
+					if (data && data[2])
+					{
+						var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
+						if (deviceindex < 0 && data[2].toLowerCase().startsWith ('b8:27:eb'))
+						{
+							$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')'});
+						}
+						else
+						if (deviceindex < 0 && data[2].toLowerCase().startsWith ('d0:5f:b8'))
+						{
+							$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')'});
+						}
+					}
+				});
 			});
 		}, {serviceType: '_workstation._tcp.local'});
 
@@ -107,6 +125,20 @@ module.exports = function ()
 			$timeout (function ()
 			{
 				$scope.status = status;
+
+				if (status === 'INSTALL')
+				{
+					var message = $mdDialog.confirm()
+				          .title($filter('translate')('DEVICE_QUESTION_INSTALL_SHELL'))
+				          .ok($filter('translate')('DEVICE_INSTALL'))
+				          .cancel($filter('translate')('PROJECT_SHELL'));
+				    $mdDialog.show(message).then(function() {
+				   		$wyapp.emit ('install');
+				    }, function() {
+				     	
+				    });
+				}
+
 			});
 		});
 
@@ -115,7 +147,7 @@ module.exports = function ()
 			var message = $mdDialog.confirm()
 		          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
 		          .ok($filter('translate')('TOOLBAR_SETUP'))
-		          .cancel('OK');
+		          .cancel($filter('translate')('OK'));
 		    $mdDialog.show(message).then(function() {
 		      $wyapp.emit ('board');
 		    }, function() {
@@ -128,7 +160,7 @@ module.exports = function ()
 			var message = $mdDialog.confirm()
 		          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
 		          .ok($filter('translate')('TOOLBAR_SETUP'))
-		          .cancel('OK');
+		          .cancel($filter('translate')('OK'));
 		    $mdDialog.show(message).then(function() {
 		      $wyapp.emit ('board');
 		    }, function() {
@@ -173,8 +205,12 @@ module.exports = function ()
 			      	{
 			      		ip: (scope.serialPort.ip.length>0?scope.serialPort.ip:ip),
 			      		port: (scope.serialPort.port >= 0?scope.serialPort.port:port),
-			      		username: users[(scope.serialPort.ip.length>0?scope.serialPort.ip:ip)]
+			      		secureport: (scope.serialPort.secureport >= 0?scope.serialPort.secureport:secureport),
+			      		username: users[(scope.serialPort.ip.length>0?scope.serialPort.ip:ip)],
+			      		category: scope.serialPort.category
 			      	};
+
+			      	$scope.device.secure = true;
 
 			      	this.connect = function ()
 			      	{
@@ -183,7 +219,13 @@ module.exports = function ()
 			      		users[$scope.device.ip] = $scope.device.username;
 			      		ip = $scope.device.ip;
 			      		port = $scope.device.port;
-			      		$wydevice.connect ($scope.device.ip, {type:'chrome-socket', port: $scope.device.port, username:$scope.device.username, password:$scope.device.password});
+			      		var type = 'chrome-socket';
+			      		if ($scope.device.secure) 
+			      		{
+			      			type = 'chrome-ssh';
+			      			port = $scope.device.secureport;
+			      		}
+			      		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:scope.serialPort.category});
 			      		$mdDialog.hide ();
 			      		mixpanel.track ('SerialPort Connect', {
 			      			style: 'address'

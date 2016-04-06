@@ -5,6 +5,8 @@ var fs = require ('fs');
 
 var example = require ('./config/example.js');
 
+var install = require ('./config/install.js');
+
 var translate = require ('./config/languages.js');
 
 var settings = {
@@ -116,6 +118,8 @@ settings.MAKEFILE_STOARGE = {
 };
 
 settings.EXAMPLE = example;
+
+settings.INSTALL = install;
 
 settings.TRANSLATE = translate;
 

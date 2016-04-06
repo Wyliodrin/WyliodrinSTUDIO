@@ -93,14 +93,14 @@ module.exports = function ()
 			});
 			$timeout (function ()
 			{
-				$scope.connected = (status === 'PING' || status === 'CONNECTING' || status === 'SEPARATOR' || status === 'CONNECTED');
+				$scope.connected = (status === 'INSTALL' || status === 'PING' || status === 'CONNECTING' || status === 'SEPARATOR' || status === 'CONNECTED');
 				if ($scope.connected === false) 
 				{
 					$scope.device.category = 'board';
 					$scope.update = false;
 				}
 				$scope.status = status;
-				if (status === 'CONNECTED') $scope.shell_disable = false;
+				if (status === 'CONNECTED' || status === 'INSTALL') $scope.shell_disable = false;
 			});
 		});
 		

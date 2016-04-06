@@ -28,7 +28,7 @@
     "description": ""
   },
   "DEVICE_Network": {
-    "message": "Réseau",
+    "message": "Reseau",
     "description": ""
   },
   "DEVICE_Serial": {
@@ -629,5 +629,29 @@
   {
     "message":"Échec de la connexion, s'il vous plaît vérifier votre nom d'utilisateur et mot de passe.",
     "description":""
+  },
+  "DEVICE_QUESTION_INSTALL_SHELL":
+  {
+    "message":"Wyliodrin est pas installé sur cet appareil, souhaitez-vous l'installer ou juste ouvrir un shell?",
+    "description":""
+  },
+  "DEVICE_INSTALL":
+  {
+    "message":"Installer",
+    "description":""
+  },
+  "TOOLBAR_INSTALL":
+  {
+    "message":"Installer",
+    "description":""
+  },
+  "USER_SecureConnection":
+  {
+    "message":"Utiliser une connexion sécurisée - ssh (fonctionne plus lent)",
+    "description":""
+  },
+  "INSTALL_SelectBoard": {
+    "message": "S'il vous plaît sélectionner la carte que vous souhaitez installer sur",
+    "description": ""
   }
 }

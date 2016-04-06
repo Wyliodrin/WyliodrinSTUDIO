@@ -99,11 +99,14 @@
               <div ng-if="!connected" class="serial-select-title">{{ 'DEVICE_PORT' | translate }}:</div>
                 <md-input-container ng-hide="connected" class="serial-select">
                     <md-select ng-model="serialPort" aria-label="serial port">
+                        <md-optgroup ng-if="devicesinstall.length > 0" class="title-button" label="{{ 'DEVICE_Install' | translate }}">
+                          <md-option class="title-button" ng-value="device" ng-repeat="device in devicesinstall">{{device.name}}</md-option>
+                        </md-optgroup>
                         <md-optgroup class="title-button" label="{{ 'DEVICE_Network' | translate }}">
-                        <md-option class="title-button" ng-value="device" ng-repeat="device in devices">{{device.name}}</md-option>
+                          <md-option class="title-button" ng-value="device" ng-repeat="device in devices">{{device.name}}</md-option>
                         </md-optgroup>
                         <md-optgroup class="title-button" label="{{ 'DEVICE_Serial' | translate }}">
-                        <md-option class="title-button" ng-value="serialport" ng-repeat="serialport in serialPorts">{{serialport.path}}</md-option>
+                          <md-option class="title-button" ng-value="serialport" ng-repeat="serialport in serialPorts">{{serialport.path}}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>

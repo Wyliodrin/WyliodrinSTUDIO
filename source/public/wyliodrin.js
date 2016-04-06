@@ -63,6 +63,7 @@ require ('./controllers/BoardController.js')();
 require ('./controllers/FirmwareExampleController.js')();
 require ('./controllers/SerialPortController.js')();
 require ('./controllers/ResistorColorCodeController.js')();
+require ('./controllers/InstallController.js')();
 require ('./controllers/SoftwareExampleController.js')();
 require ('./controllers/NetworkController.js')();
 require ('./controllers/ToolbarController.js')();

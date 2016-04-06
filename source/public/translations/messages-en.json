@@ -629,5 +629,34 @@
   {
     "message":"Login failed, please check your username and password.",
     "description":""
+  },
+  "DEVICE_QUESTION_INSTALL_SHELL":
+  {
+    "message":"Wyliodrin is not installed on this device, would you like to install it or just open a shell?",
+    "description":""
+  },
+  "DEVICE_INSTALL":
+  {
+    "message":"Install",
+    "description":""
+  },
+  "TOOLBAR_INSTALL":
+  {
+    "message":"Install",
+    "description":""
+  },
+  "USER_SecureConnection":
+  {
+    "message":"Use a secure connection - ssh (works slower)",
+    "description":""
+  },
+  "DEVICE_Install":
+  {
+    "message":"Installable",
+    "description":""
+  },
+  "INSTALL_SelectBoard": {
+    "message": "Please select the board you want to install on to",
+    "description": ""
   }
 }

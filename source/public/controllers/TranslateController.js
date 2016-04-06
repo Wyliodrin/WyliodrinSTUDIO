@@ -44,12 +44,12 @@ module.exports = function ()
       //to specific irregularities of languages
 
 
-      .registerAvailableLanguageKeys(['en', 'de'], {
-	    'en-US': 'en',
-        'en-UK': 'en',
-        'de-DE': 'de',
-        'de-CH': 'de'
-      })
+     //  .registerAvailableLanguageKeys(['en', 'de'], {
+	    // 'en-US': 'en',
+     //    'en-UK': 'en',
+     //    'de-DE': 'de',
+     //    'de-CH': 'de'
+     //  })
       //.registerAvailableLanguageKeys(['en', 'de'], {
 	  //  'en-*': 'en',
       //  'de-*': 'de'
@@ -90,6 +90,7 @@ module.exports = function ()
       this.changeLanguage = function (langKey) {
             $translate.use(langKey);
             var languagecode = $translate.proposedLanguage() || $translate.use();
+            console.log (languagecode);
             // $timeout (function ()
             // {
               $scope.language = {

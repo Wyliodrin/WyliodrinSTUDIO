@@ -38,6 +38,9 @@ module.exports = function(grunt) {
           'build/public/wyliodrin.js': ['source/public/**/*.js', '!source/public/blockly/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js']
         },
         options: {
+          browserifyOptions: {
+            debug: true
+          },
           transform: [
                   ["babelify", { "presets": ["es2015"], "ignore":/.*\/bower_components\/.*/ }],
                   ["brfs", {}]
@@ -346,6 +349,23 @@ module.exports = function(grunt) {
     fs.writeFileSync (CONFIG+'/example.js', '"use strict";\n module.exports = '+JSON.stringify (example)+';');
   });
 
+  grunt.registerTask ('install', 'Install', function ()
+  {
+    var INSTALL_FOLDER = 'source/embedded/install';
+    var listinstall = fs.readdirSync (INSTALL_FOLDER);
+    var install = {};
+    _.each (listinstall, function (installfile)
+    {
+      if (path.extname (installfile) === '.sh')
+      {
+        install[path.basename(installfile, '.sh')] = fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString();  
+        install[path.basename(installfile, '.sh')] = install[path.basename(installfile, '.sh')].replace (/\r?\n/g, ' ');
+        console.log ('Install: '+path.basename(installfile, '.sh'));
+      }      
+    });
+    mkdirp.sync (CONFIG);
+    fs.writeFileSync (CONFIG+'/install.js', '"use strict";\n module.exports = '+JSON.stringify (install)+';');
+  });
 
 
   grunt.registerTask ('languages', 'Languages', function ()
@@ -422,7 +442,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'makefile', 'languages', 'example', 'jshint', 
+  grunt.registerTask('default', ['mixpanel', 'debug', 'makefile', 'languages', 'example', 'install', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',

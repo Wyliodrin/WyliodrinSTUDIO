@@ -11,7 +11,7 @@
             </md-input-container>
 	</md-toolbar>
     
-    <md-dialog-content>
+    <md-dialog-content ng-escape="s.exit()">
             <md-list>
             <md-list-item ng-show="software && software !== 'board'" ng-repeat="(examplename, example) in EXAMPLE[software]" layout-padding class="task separator-line">
             

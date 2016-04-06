@@ -4,7 +4,7 @@
 			<h2>{{ 'LICENSE_UsageLicense' | translate }}</h2>
 		</div>
 	</md-toolbar>
-	<md-dialog-content class="pre-box">
+	<md-dialog-content class="pre-box" ng-escape="p.exit()">
         <pre>{{LICENSE}}</pre>
     </md-dialog-content>
     

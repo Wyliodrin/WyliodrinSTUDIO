@@ -5,7 +5,7 @@
 		</div>
 	</md-toolbar>
     
-    <md-dialog-content>
+    <md-dialog-content ng-escape="net.exit()">
         <md-tabs ng-show="interfaces.length > 0" class="packages-tabs-box">
             <md-tab ng-repeat="interface in interfaces track by $index">
                 <md-tab-label>

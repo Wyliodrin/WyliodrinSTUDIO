@@ -32,8 +32,9 @@
                 md-autofocus="device.username.length > 0">
            </md-input-container>
            <md-checkbox ng-hide="device.category" ng-model="device.secure" arial-label="{{ 'USER_SecureConnection' | translate }}">
-          {{ 'USER_SecureConnection' | translate }}
-      </md-checkbox>
+	          <md-icon md-svg-src="/public/drawable/secure-icon.svg" class="s14" ></md-icon>
+              {{ 'USER_SecureConnection' | translate }}
+	       </md-checkbox>
         </md-content>
     </md-dialog-content>
     

@@ -20,7 +20,7 @@
                 <input ng-model="device.secureport" ng-trim="true" type="number">
            </md-input-container>
            
-           {{ 'AUTHENTICATE_Login' | translate }}
+           <!-- {{ 'AUTHENTICATE_Login' | translate }} -->
 
            <md-input-container style="width:47%;">
                 <label>{{ 'USER_Username' | translate }}</label>
@@ -32,15 +32,15 @@
                 md-autofocus="device.username.length > 0">
            </md-input-container>
            <md-checkbox ng-hide="device.category" ng-model="device.secure" arial-label="{{ 'USER_SecureConnection' | translate }}">
-	          <md-icon md-svg-src="/public/drawable/secure-icon.svg" class="s14" ></md-icon>
+              <md-icon md-svg-src="/public/drawable/secure-icon.svg" class="s14" ></md-icon>
               {{ 'USER_SecureConnection' | translate }}
-	       </md-checkbox>
+           </md-checkbox>
         </md-content>
     </md-dialog-content>
     
     
 	<md-dialog-actions layout="row">
-    	<md-checkbox ng-model="passwordCheckbox" arial-label="{{ 'USER_ShowPassword' | translate }}">
+    	<md-checkbox class="showpass" ng-model="passwordCheckbox" arial-label="{{ 'USER_ShowPassword' | translate }}">
 	        {{ 'USER_ShowPassword' | translate }}
       </md-checkbox>
 		<md-button ng-click="a.connect()">{{ 'DEVICE_CONNECT' | translate }}</md-button>

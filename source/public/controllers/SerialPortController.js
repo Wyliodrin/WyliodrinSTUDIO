@@ -228,7 +228,8 @@ module.exports = function ()
 			      		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:scope.serialPort.category});
 			      		$mdDialog.hide ();
 			      		mixpanel.track ('SerialPort Connect', {
-			      			style: 'address'
+			      			style: 'address',
+			      			type: type
 			      		});
 			      	};
 

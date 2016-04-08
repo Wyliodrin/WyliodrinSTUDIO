@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         },
         options: {
           browserifyOptions: {
-            debug: true
+            debug: process.env.DEBUG_WYLIODRIN && process.env.DEBUG_WYLIODRIN !== ''
           },
           transform: [
                   ["babelify", { "presets": ["es2015"], "ignore":/.*\/bower_components\/.*/ }],
@@ -200,7 +200,7 @@ module.exports = function(grunt) {
           {
             expand: true,     // Enable dynamic expansion.
             cwd: 'build/',      // Src matches are relative to this path.
-            src: ['**/*.js', '!public/blockly/blockly/**'], // Actual pattern(s) to match.
+            src: ['public/**/*.js', '!public/blockly/blockly/**'], // Actual pattern(s) to match.
             dest: 'build/',   // Destination path prefix.
             ext: '.js',   // Dest filepaths will have this extension.
             extDot: 'first'   // Extensions in filenames begin after the first dot

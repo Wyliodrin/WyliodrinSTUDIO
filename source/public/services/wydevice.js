@@ -41,7 +41,7 @@ module.exports = function ()
 			{
 				if (!WyliodrinDevice) throw ('Wyliodrin device not initialised');
 				if (device && device.status !== 'DISCONNECTED') device.disconnect();
-				var categoryhint = options.category;
+				var categoryhint = (options?options.category:undefined);
 				device = new WyliodrinDevice (strdevice, options);
 				var that = this;
 				
@@ -144,7 +144,7 @@ module.exports = function ()
 
 			disconnect: function ()
 			{
-				console.log (device);
+				// console.log (device);
 				if (device)
 				{
 					device.disconnect ();

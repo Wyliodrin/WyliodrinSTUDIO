@@ -653,5 +653,10 @@
   "INSTALL_SelectBoard": {
     "message": "S'il vous plaît sélectionner la carte que vous souhaitez installer sur",
     "description": ""
+  },
+  "INSTALL_Success":
+  {
+    "message":"l'installation Wyliodrin a réussi, s'il vous plaît déconnecter et se reconnecter à votre carte",
+    "description":""
   }
 }

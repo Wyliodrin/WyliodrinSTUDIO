@@ -1,11 +1,11 @@
-<md-dialog aria-label="{{ 'NETWORK_PackageManager' | translate }}" style="width: 550px; max-height:400px;">
+<md-dialog aria-label="{{ 'NETWORK_PackageManager' | translate }}" style="width: 550px; max-height:400px;" ng-escape="pm.exit()">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>{{ 'NETWORK_PackageManager' | translate }}</h2>
 		</div>
 	</md-toolbar>
     
-    <md-dialog-content ng-escape="pm.exit()">
+    <md-dialog-content>
         <div ng-show="runmanager">
         	<md-progress-linear md-mode="indeterminate" class="loading-bar"></md-progress-linear>
             <md-content class="pre-box">

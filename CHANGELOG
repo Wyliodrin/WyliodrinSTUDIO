@@ -1,3 +1,11 @@
+Wyliodrin STUDIO 10.3
+* added ssh connection
+* added automatic install
+* added detection of Raspberry Pi and BeagleBone Black
+* added autofocus for add project, rename project and connect
+* added ENTER key shortcut and ESC key shortcut
+* fixed translation language
+
 Wyliodrin STUDIO 10.2
 * added serial port title to mixpanel
 * fixed ui_lang in mixpanel

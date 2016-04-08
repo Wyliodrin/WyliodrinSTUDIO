@@ -1,11 +1,11 @@
-<md-dialog aria-label="{{ 'TASK_MANAGER_TaskManager' | translate }}" style="width: 550px; max-height:400px;">
+<md-dialog aria-label="{{ 'TASK_MANAGER_TaskManager' | translate }}" style="width: 550px; max-height:400px;" ng-escape="tm.exit()">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>{{ 'TASK_MANAGER_TaskManager' | translate }}</h2>
 		</div>
 	</md-toolbar>
     
-	<md-dialog-content class="task-box" ng-escape="tm.exit()">
+	<md-dialog-content class="task-box">
         <md-list>
             <md-list-item ng-repeat="task in tasks | orderBy: '-TT'" layout-padding class="separator-line task">
                 <md-icon ng-show="task.TT!=='?'" md-svg-src="/public/drawable/process-icon.svg" class="s24" aria-label="Process" ></md-icon>

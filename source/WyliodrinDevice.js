@@ -45,7 +45,7 @@ export default class WyliodrinDevice extends EventEmitter
 		this.pingReceived = false;
 		this.packetsWithErrors = 0;
 		this.name = 'Unknown';
-		this.category = options.category || 'unknown';
+		this.category = (options?options.category || 'board':'board');
 		this.timerstatus = setInterval (function ()
 		{
 			if (this.status === 'CONNECTED') this.send ('ping', null);
@@ -128,9 +128,9 @@ export default class WyliodrinDevice extends EventEmitter
 			// 	that.ShowedErrorMessage = true;
 			// }
 			// else
-			if (that.WasInConnected === false)
+			if (that.WasInConnected === false && !that.ShowedErrorMessage)
 			{
-				that.emit ('connection_login_failed');
+				if (that.options.type !== 'chrome-serial') that.emit ('connection_login_failed');
 				that.ShowedErrorMessage = true;
 			}
 			that.publishStatus ();
@@ -141,8 +141,11 @@ export default class WyliodrinDevice extends EventEmitter
 
 		this.port.on ('connection_login_failed', function ()
 		{
-			that.emit ('connection_login_failed');
-			that.ShowedErrorMessage = true;
+			if (!that.ShowedErrorMessage)
+			{
+				that.emit ('connection_login_failed');
+				that.ShowedErrorMessage = true;
+			}
 		});
 
 		this.port.on ('separator', function ()

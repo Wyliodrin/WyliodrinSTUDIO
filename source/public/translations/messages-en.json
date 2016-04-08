@@ -658,5 +658,10 @@
   "INSTALL_SelectBoard": {
     "message": "Please select the board you want to install on to",
     "description": ""
+  },
+  "INSTALL_Success":
+  {
+    "message":"Wyliodrin installation was successful, please disconnect and reconnect to your board",
+    "description":""
   }
 }

@@ -658,5 +658,10 @@
   "INSTALL_SelectBoard": {
     "message": "Vă rugăm să selectați placa pe care doriți să instalați",
     "description": ""
+  },
+  "INSTALL_Success":
+  {
+    "message":"Instalarea Wyliodrin a fost de succes, vă rugăm să vă deconectați și reconectați la dispozitiv",
+    "description":""
   }
 }

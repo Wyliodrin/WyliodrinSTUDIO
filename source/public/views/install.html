@@ -14,7 +14,7 @@
 		    
 		        <h2 style="margin-bottom:20px;">{{ 'INSTALL_SelectBoard' | translate }}</h2>
 		        <md-button md-parent-scope="this" ng-repeat="(boardname, boardvalue) in LABEL" ng-if="boardname!=='board'" class="board-setup-btn" ng-click="u.install(boardname)">
-		            <img ng-src="/public/drawable/board/{{boardname}}.png">
+		            <img ng-src="/public/drawable/board/{{boardname}}.png" ng-class="{'separator':!INSTALL[boardname]}">
 		            <md-tooltip md-direction="bottom">
 		              {{boardvalue.text}}
 		            </md-tooltip>

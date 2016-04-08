@@ -18,7 +18,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('InstallController', function($scope, $timeout, $wydevice, $mdDialog){
+	app.controller('InstallController', function($scope, $timeout, $filter, $wydevice, $mdDialog){
 		debug ('Registering');
 
 		$scope.runoutput = '';
@@ -31,6 +31,7 @@ module.exports = function ()
 		}
 
 		$scope.LABEL = settings.LABEL;
+		$scope.INSTALL = settings.INSTALL;
 
 		var that = this;
 
@@ -57,6 +58,16 @@ module.exports = function ()
 						$timeout (function ()
 						{
 							$scope.runinstall = false;
+							that.exit ();
+							var alert = $mdDialog.alert({
+						        title: $filter('translate')('INSTALL_Success'),
+						        ok: $filter('translate')('OK')
+						      });
+						      $mdDialog
+						        .show (alert)
+						        .finally (function() {
+						          alert = undefined;
+						        });
 						});
 					}
 					else

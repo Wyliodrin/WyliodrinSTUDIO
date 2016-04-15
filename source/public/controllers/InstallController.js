@@ -24,20 +24,10 @@ module.exports = function ()
 		$scope.runoutput = '';
 		$scope.runinstall = false;
 
-		if ($wydevice.device.category && $wydevice.device.category !== 'board')
-		{
-			$wydevice.send ('install', {a:'i', c:$wydevice.device.category});
-			$scope.runinstall = true;
-		}
-
 		$scope.LABEL = settings.LABEL;
 		$scope.INSTALL = settings.INSTALL;
 
 		var that = this;
-
-		mixpanel.track ('Install', {
-			category: $wydevice.device.category
-		});
 
 		var message = function (t, p)
 		{
@@ -96,7 +86,15 @@ module.exports = function ()
 		{
 			$wydevice.send ('install', {a:'i', c:device});
 			$scope.runinstall = true;
+				mixpanel.track ('Install', {
+				category: $wydevice.device.category
+			});
 		};
+
+		if ($wydevice.device.category && $wydevice.device.category !== 'board')
+		{
+			this.install ($wydevice.device.category);
+		}
 
 		this.exit = function ()
 		{

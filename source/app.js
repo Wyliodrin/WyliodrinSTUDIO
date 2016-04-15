@@ -15,7 +15,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 	log ('onLaunched');
 	log (launchData);
 	chrome.app.window.create('public/views/wyliodrin.html', {
-		id: 'wyliodrin-app',
+		id: 'wyliodrin-studio',
 		frame: { type: "none" },
 		innerBounds: {
 			width: 1180,

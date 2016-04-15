@@ -18,10 +18,12 @@ require('./../tools/snippets/python.js');
 require('./../tools/snippets/c_cpp.js');
 require('./../tools/snippets/javascript.js');
 require('./../tools/snippets/sh.js');
+require('./../tools/snippets/csharp.js');
 require('brace/mode/javascript');
 require('brace/mode/c_cpp');
 require('brace/mode/python');
 require('brace/mode/sh');
+require('brace/mode/csharp');
 require('brace/theme/chrome');
 var lang = ace.acequire("ace/lib/lang");
 var languageTools = ace.acequire ('ace/ext/language_tools');
@@ -443,6 +445,10 @@ var app = angular.module ('wyliodrinApp');
 			if (project.language === "visual")
 			{
 				program.load (project);
+			}
+			if (project.language === "csharp")
+			{
+				softwareEditor.getSession().setMode ('ace/mode/csharp');
 			}
 			$timeout (function ()
 			{

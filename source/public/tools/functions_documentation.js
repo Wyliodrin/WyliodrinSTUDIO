@@ -668,7 +668,8 @@ var functionsDoc = {
 	]),
 	nodejs: libwyliodrin.concat([
 	]),
-	shell: []
+	shell: [],
+	csharp: []
 
 };
 

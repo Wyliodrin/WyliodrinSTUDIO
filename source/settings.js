@@ -114,7 +114,8 @@ settings.MAKEFILE_STOARGE = {
 	nodejs: fs.readFileSync (__dirname+'/embedded/Makefile.nodejs').toString(),
 	python: fs.readFileSync (__dirname+'/embedded/Makefile.python').toString(),
 	shell: fs.readFileSync (__dirname+'/embedded/Makefile.shell').toString(),
-	visual: fs.readFileSync (__dirname+'/embedded/Makefile.visual').toString()
+	visual: fs.readFileSync (__dirname+'/embedded/Makefile.visual').toString(),
+	csharp: fs.readFileSync (__dirname+'/embedded/Makefile.csharp').toString()
 };
 
 settings.EXAMPLE = example;
@@ -679,6 +680,14 @@ settings.LANGUAGES = [
 			enable: false
 		}
 	},
+	{
+		title: 'csharp',
+		text: 'C#',
+		packagemanager: 
+		{
+			enable: false
+		}
+	}
 ];
 
 settings.MIXPANEL = require ('./config/mixpanel.js');

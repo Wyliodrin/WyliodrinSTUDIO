@@ -52,6 +52,12 @@ settings.LABEL = {
 		username: 'udooer',
 		password: 'udooer'
 	},
+	'chrome':
+	{
+		'software':'JavaScript',
+		'firmware':'',
+		text:'Chrome'
+	}
 };
 
 settings.STYLE_NAMES = {

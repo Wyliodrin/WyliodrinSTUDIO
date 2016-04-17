@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
   var tasks = {
     jshint: {
-      files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js'],
+      files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/interpreter.js'],
       options: {
         jquery:true,
         esnext: true,
@@ -27,7 +27,8 @@ module.exports = function(grunt) {
           document: true,
           DEBUG: true,
           Blob: true,
-          FileReader: true
+          FileReader: true,
+          navigator: true
         }
       }
     },

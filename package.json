@@ -26,6 +26,7 @@
     "mkdirp": "^0.5.1"
   },
   "dependencies": {
+    "acorn": "^3.0.4",
     "angular-material": "^1.0.6",
     "angular-sanitize": "^1.5.0",
     "angular-translate": "~2.11.0",
@@ -35,6 +36,7 @@
     "debug": "^2.2.0",
     "dexie": "^1.2.0",
     "dict": "^1.4.0",
+    "firmata": "^0.11.3",
     "highcharts": "^4.2.1",
     "highcharts-ng": "0.0.11",
     "lodash": "^4.0.1",

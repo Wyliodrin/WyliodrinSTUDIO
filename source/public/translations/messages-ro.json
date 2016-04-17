@@ -663,5 +663,15 @@
   {
     "message":"Instalarea Wyliodrin a fost de succes, vă rugăm să vă deconectați și reconectați la dispozitiv",
     "description":""
+  },
+  "DEVICE_Chrome":
+  {
+    "message":"Chrome",
+    "description":""
+  },
+  "chrome":
+  {
+    "message":"Calculatorul Local",
+    "description":""
   }
 }

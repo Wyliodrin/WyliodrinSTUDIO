@@ -187,6 +187,15 @@ module.exports = function ()
 		{
 			debug ('Opening serialport '+$scope.serialPort);
 			// console.log ('Opening serialport '+$scope.serialPort);
+			if ($scope.serialPort.path === 'chrome')
+			{
+				$wydevice.connect ($scope.serialPort.path, {type:'chrome'});
+				mixpanel.track ('SerialPort Connect',{
+					style:'chrome',
+					device: 'chrome'
+				});
+			}
+			else
 			if ($scope.serialPort.path)
 			{
 				$wydevice.connect ($scope.serialPort.path);

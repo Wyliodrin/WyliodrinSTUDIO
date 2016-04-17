@@ -658,5 +658,15 @@
   {
     "message":"l'installation Wyliodrin a réussi, s'il vous plaît déconnecter et se reconnecter à votre carte",
     "description":""
+  },
+  "DEVICE_Chrome":
+  {
+    "message":"Chrome",
+    "description":""
+  },
+  "chrome":
+  {
+    "message":"Ordinateur Local",
+    "description":""
   }
 }

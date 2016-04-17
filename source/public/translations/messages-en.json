@@ -663,5 +663,15 @@
   {
     "message":"Wyliodrin installation was successful, please disconnect and reconnect to your board",
     "description":""
+  },
+  "DEVICE_Chrome":
+  {
+    "message":"Chrome",
+    "description":""
+  },
+  "chrome":
+  {
+    "message":"Local Computer",
+    "description":""
   }
 }

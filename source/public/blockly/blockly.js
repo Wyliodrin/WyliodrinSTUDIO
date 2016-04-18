@@ -142,22 +142,22 @@ var program = null;
           // console.log (program);
           program.device = function (runningDevice)
           {
-            device = runningDevice;
-          },
-          program.load = function (_project, runningDevice)
-          {
+            console.log (device);
             device = runningDevice;
             if (device && device.category === 'chrome')
             {
               toolbox = document.getElementById('toolbox_chrome')
-              Blockly.updateToolbox (toolbox);
+              Blockly.mainWorkspace.updateToolbox (toolbox);
             }
             else
             {
               toolbox = document.getElementById('toolbox')
-              Blockly.updateToolbox (toolbox);
+              Blockly.mainWorkspace.updateToolbox (toolbox);
             }
-
+            generateSource ();
+          },
+          program.load = function (_project)
+          {
             project = _project;
             // console.log (project);
             debug ('Load project '+project.title+', loading project visual');
@@ -198,12 +198,9 @@ var program = null;
         //   }
         // }
 
-        Blockly.mainWorkspace.addChangeListener (function ()
+        function generateSource ()
         {
-          debug ('Visual program changes, store '+project);
-          if (project && project.language === 'visual')
-          {
-            debug ('Storing program for project with id '+project.id);
+          debug ('Storing program for project with id '+project.id);
             var source = '';
             if (device && device.category === 'chrome')
             {
@@ -226,6 +223,14 @@ var program = null;
             }
             // console.log (versions);
             program.storeProject ();
+        }
+
+        Blockly.mainWorkspace.addChangeListener (function ()
+        {
+          debug ('Visual program changes, store '+project);
+          if (project && project.language === 'visual')
+          {
+            generateSource ();
           }
         });
 
@@ -299,8 +304,9 @@ var program = null;
         });
 
         $("#undo-btn").on ('click', function (e){
-          e.preventDefault ();
-          undo();
+          // e.preventDefault ();
+          undo ();
+          // Blockly.mainWorkspace.undo();
         });
 
         // $("#import-btn").on ('click', function (){
@@ -310,7 +316,8 @@ var program = null;
         // trigger undo from wyliodio.js
         $(document).keydown(function(e){
             if( e.which === 90 && e.ctrlKey ){
-            undo();
+            // Blockly.mainWorkspace.undo();
+            undo ();
             }          
         });
       }

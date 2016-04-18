@@ -388,12 +388,18 @@ var app = angular.module ('wyliodrinApp');
 
 		$wydevice.on ('status', function (status)
 		{
-			program.device ($wydevice.device);
 			if (status === 'CONNECTED')
 			{
 				$timeout (function ()
 				{
 					setSizes ();
+				});
+			}
+			if ($scope.project.language === 'visual')
+			{
+				process.nextTick (function ()
+				{
+					program.device ($wydevice.device);
 				});
 			}
 		});
@@ -408,6 +414,17 @@ var app = angular.module ('wyliodrinApp');
 			if (t === 'v')
 			{
 				// console.log (p);
+			}
+			else
+			if (t === 'i')
+			{
+				if ($scope.project.language === 'visual')
+				{
+					process.nextTick (function ()
+					{
+						program.device ($wydevice.device);
+					});
+				}
 			}
 		});
 
@@ -525,7 +542,7 @@ var app = angular.module ('wyliodrinApp');
 			}
 
 
-			// console.log ($scope.device);
+			console.log ($scope.device);
 
 			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
 			{

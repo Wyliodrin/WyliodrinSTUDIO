@@ -136,27 +136,27 @@ var program = null;
 
         setTimeout (function ()
         {
-          program = window.parent.getProgram ();
-          // console.log (program);
-          program.load = function (_project)
-          {
-            project = _project;
-            // console.log (project);
-            debug ('Load project '+project.title+', loading project visual');
-            Blockly.mainWorkspace.clear ();
-            try
-            {
-             versions = [];
-              versions.push (project.visualproject);
-              var xml = Blockly.Xml.textToDom(project.visualproject);
-              Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);  
-              Blockly.mainWorkspace.zoomReset ();
-            }
-            catch (e)
-            {
-              console.log (e);
-            }
-          };
+          // program = window.parent.getProgram ();
+          // // console.log (program);
+          // program.load = function (_project)
+          // {
+          //   project = _project;
+          //   // console.log (project);
+          //   debug ('Load project '+project.title+', loading project visual');
+          //   Blockly.mainWorkspace.clear ();
+          //   try
+          //   {
+          //    versions = [];
+          //     versions.push (project.visualproject);
+          //     var xml = Blockly.Xml.textToDom(project.visualproject);
+          //     Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);  
+          //     Blockly.mainWorkspace.zoomReset ();
+          //   }
+          //   catch (e)
+          //   {
+          //     console.log (e);
+          //   }
+          // };
         }, 1000);
 
         // if (window.parent.getProject)

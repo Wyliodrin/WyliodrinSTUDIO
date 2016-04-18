@@ -134,12 +134,30 @@ var program = null;
 
        // debug ('Load visual for project with nr '+nrfile);
 
+       var device = null;
+
         setTimeout (function ()
         {
           program = window.parent.getProgram ();
           // console.log (program);
-          program.load = function (_project)
+          program.device = function (runningDevice)
           {
+            device = runningDevice;
+          },
+          program.load = function (_project, runningDevice)
+          {
+            device = runningDevice;
+            if (device && device.category === 'chrome')
+            {
+              toolbox = document.getElementById('toolbox_chrome')
+              Blockly.updateToolbox (toolbox);
+            }
+            else
+            {
+              toolbox = document.getElementById('toolbox')
+              Blockly.updateToolbox (toolbox);
+            }
+
             project = _project;
             // console.log (project);
             debug ('Load project '+project.title+', loading project visual');
@@ -186,7 +204,15 @@ var program = null;
           if (project && project.language === 'visual')
           {
             debug ('Storing program for project with id '+project.id);
-            var source = Blockly.Python.workspaceToCode (Blockly.mainWorkspace);
+            var source = '';
+            if (device && device.category === 'chrome')
+            {
+              source = Blockly.JavaScript.workspaceToCode (Blockly.mainWorkspace);
+            }
+            else
+            {
+              source = Blockly.Python.workspaceToCode (Blockly.mainWorkspace);
+            }
             var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
             project.visualproject = Blockly.Xml.domToText (xml);
             project.main = source;

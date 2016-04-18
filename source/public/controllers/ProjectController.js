@@ -153,6 +153,11 @@ var app = angular.module ('wyliodrinApp');
 		$scope.showhidecode = false;
 
 		var program = {
+			device: function (device)
+			{
+
+			},
+
 			load: function (project)
 			{
 
@@ -383,6 +388,7 @@ var app = angular.module ('wyliodrinApp');
 
 		$wydevice.on ('status', function (status)
 		{
+			program.device ($wydevice.device);
 			if (status === 'CONNECTED')
 			{
 				$timeout (function ()
@@ -444,7 +450,7 @@ var app = angular.module ('wyliodrinApp');
 			else
 			if (project.language === "visual")
 			{
-				program.load (project);
+				program.load (project, $wydevice.device);
 			}
 			if (project.language === "csharp")
 			{

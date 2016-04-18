@@ -258,7 +258,7 @@
                                                   rendererOptions: { 
                                                     fontSize: 14 
                                                   },
-                                                  mode: 'python',
+                                                  mode: (device.category!=='chrome'?'python':'javascript'),
                                                   theme:'chrome',
                                                   firstLineNumber: 1,
                                                   onLoad: aceShowLoaded

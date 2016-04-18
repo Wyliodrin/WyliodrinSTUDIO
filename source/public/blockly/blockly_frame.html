@@ -2157,6 +2157,7 @@ content: "Import/Export";
           </block>
         </category>
         <category name="Arduino">
+          <block type="firmata_serial"></block>
             <block type="firmata_init">
                 <value name="port">
                     <block type="text">
@@ -3042,7 +3043,6 @@ content: "Import/Export";
         </category>
     </category>
         <category name="Arduino">
-            <block type="firmata_serial"></block>
             <block type="firmata_init">
                 <value name="port">
                     <block type="text">
@@ -3224,115 +3224,6 @@ content: "Import/Export";
             <value name="value_value">
                 <block type="math_number">
                     <field name="NUM">0</field>
-                </block>
-            </value>
-        </block>
-        <block type="signal_receivesignal">
-            <value name="signal">
-                <block type="text">
-                    <field name="TEXT"></field>
-                </block>
-            </value>
-            <value name="signalvalue">
-                <block type="variables_get">
-                    <field name="VAR">signalvalue</field>
-                </block>
-            </value>
-        </block>
-        <block type="sendsignals">
-            <value name="value_signal">
-                <block type="lists_create_with">
-                    <mutation items="1"/>
-                </block>
-            </value>
-            <value name="value_value">
-                <block type="lists_create_with">
-                    <mutation items="1"/>
-                </block>
-            </value>
-        </block>
-        <block type="sendsignalsandflag">
-            <value name="value_signal">
-                <block type="lists_create_with">
-                    <mutation items="1"/>
-                </block>
-            </value>
-            <value name="value_value">
-                <block type="lists_create_with">
-                    <mutation items="1"/>
-                </block>
-            </value>
-            <value name="debug_text">
-                <block type="text">
-                    <field name="TEXT"></field>
-                </block>
-            </value>
-        </block>
-        <block type="signal_sendanddebug">
-            <value name="signal_text">
-                <block type="text">
-                    <field name="TEXT"></field>
-                </block>
-            </value>
-            <value name="signal_value">
-                <block type="math_number">
-                    <field name="NUM">0</field>
-                </block>
-            </value>
-            <value name="debug_text">
-                <block type="text">
-                    <field name="TEXT"></field>
-                </block>
-            </value>
-        </block>
-        <block type="signal_putflag">
-            <value name="signal_text">
-                <block type="text">
-                    <field name="TEXT"></field>
-                </block>
-            </value>
-            <value name="flag_text">
-                <block type="text">
-                    <field name="TEXT"></field>
-                </block>
-            </value>
-        </block>
-        <block type="sendcoord">
-            <value name="name">
-                <block type="text">
-                    <field name="TEXT">...</field>
-                </block>
-            </value>
-            <value name="latitudine">
-                <block type="math_number">
-                    <field name="NUM">0</field>
-                </block>
-            </value>
-            <value name="longitudine">
-                <block type="math_number">
-                    <field name="NUM">0</field>
-                </block>
-            </value>
-        </block>
-        <block type="sendcoordandflag">
-            <value name="name">
-                <block type="text">
-                    <field name="TEXT">...</field>
-                </block>
-            </value>
-            <value name="latitudine">
-                <block type="math_number">
-                    <field name="NUM">0</field>
-                </block>
-            </value>
-            <value name="longitudine">
-                <block type="math_number">
-                    <field name="NUM">0</field>
-                </block>
-            </value>
-            <value name="flag">
-                <block type="text">
-                    <field name="TEXT">...</field>
                 </block>
             </value>
         </block>

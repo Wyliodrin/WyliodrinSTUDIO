@@ -748,7 +748,7 @@ content: "Import/Export";
      <xml id="toolbox_readonly" style="display: none">
      </xml>
 
-    <xml id="toolbox" style="display: none">
+    <xml id="toolbox2" style="display: none">
     <category name="Program">
         <category name="Functions" custom="PROCEDURE"></category>
         <category name="Loops">
@@ -2157,7 +2157,6 @@ content: "Import/Export";
           </block>
         </category>
         <category name="Arduino">
-            <block type="firmata_serial"></block>
             <block type="firmata_init">
                 <value name="port">
                     <block type="text">
@@ -2694,6 +2693,649 @@ content: "Import/Export";
             </value>
         </block>
         <block type="get_volume_audio"></block>
+    </category>
+  </xml>
+
+  <xml id="toolbox" style="display: none">
+    <category name="Program">
+        <category name="Functions" custom="PROCEDURE"></category>
+        <category name="Loops">
+            <block type="repeat_timing">
+                <value name="VALUE">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="controls_repeat_ext">
+                <value name="TIMES">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+            </block>
+            <block type="controls_whileUntil"></block>
+            <block type="controls_for">
+                <value name="FROM">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="TO">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+                <value name="BY">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="controls_forEach"></block>
+            <block type="controls_flow_statements"></block>
+        </category>
+        <category name="Logic">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_negate"></block>
+            <block type="logic_boolean"></block>
+            <block type="logic_null"></block>
+            <block type="logic_ternary"></block>
+            <block type="value_changed"></block>
+        </category>
+        <category name="Events">
+            <block type="runif_statements">
+                <value name="every">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+        <category name="Variables" custom="VARIABLE"></category>
+        <category name="JSON">
+            <block type="json_key">
+                <value name="key">
+                    <block type="text">
+                        <field name="TEXT">key</field>
+                    </block>
+                </value>
+            </block>
+            <block type="json_index">
+                <value name="index">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+            </block>
+            <block type="json_items"></block>
+        </category>
+        <category name="Language">
+            <block type="language_line_return"></block>
+            <block type="language_encode"></block>
+            <block type="language_line"></block>
+        </category>
+        <category name="Lists">
+            <block type="lists_create_empty"></block>
+            <block type="lists_create_with"></block>
+            <block type="lists_repeat">
+                <value name="NUM">
+                    <block type="math_number">
+                        <field name="NUM">5</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_length"></block>
+            <block type="lists_isEmpty"></block>
+            <block type="lists_indexOf">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">list</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_getIndex">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">list</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_setIndex">
+                <value name="LIST">
+                    <block type="variables_get">
+                        <field name="VAR">list</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_getSublist">
+                <value name="LIST">
+                    <block type="variables_get">
+                        <field name="VAR">list</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+        <category name="Dictionaries">
+          <block type="dicts_create_with">
+          </block>
+          <block type="dict_get">
+          </block>
+          <block type="dict_get_literal">
+          </block>
+          <block type="dict_keys">
+          </block>
+        </category>
+        <category name="Types">
+            <block type="types_number"></block>
+            <block type="types_real"></block>
+            <block type="types_text"></block>
+        </category>
+        <category name="Numbers and Maths">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <block type="math_single"></block>
+            <block type="math_trig"></block>
+            <block type="rapiro_angle"></block>
+            <block type="math_constant"></block>
+            <block type="math_number_property"></block>
+            <block type="math_change">
+                <value name="DELTA">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="math_round"></block>
+            <block type="truncate"></block>
+            <block type="kelvintocelsius">
+                <value name="degrees">
+                    <block type="math_number">
+                        <field name="NUM">300</field>
+                    </block>
+                </value>
+            </block>
+            <block type="fahrenheittocelsius">
+                <value name="degrees">
+                    <block type="math_number">
+                        <field name="NUM">80</field>
+                    </block>
+                </value>
+            </block>
+            <block type="celsiustofahrenheit">
+                <value name="degrees">
+                    <block type="math_number">
+                        <field name="NUM">25</field>
+                    </block>
+                </value>
+            </block>
+            <block type="celsiustokelvin">
+                <value name="degrees">
+                    <block type="math_number">
+                        <field name="NUM">25</field>
+                    </block>
+                </value>
+            </block>
+            <block type="map_block">
+                <value name="value">
+                    <block type="math_number">
+                        <field name="NUM">100</field>
+                    </block>
+                </value>
+                <value name="from_low">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+                <value name="to_low">
+                    <block type="math_number">
+                        <field name="NUM">100</field>
+                    </block>
+                </value>
+                <value name="from_high">
+                    <block type="math_number">
+                        <field name="NUM">150</field>
+                    </block>
+                </value>
+                <value name="to_high">
+                    <block type="math_number">
+                        <field name="NUM">255</field>
+                    </block>
+                </value>
+            </block>
+            <block type="math_on_list"></block>
+            <block type="math_modulo"></block>
+            <block type="math_constrain">
+                <value name="LOW">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="HIGH">
+                    <block type="math_number">
+                        <field name="NUM">100</field>
+                    </block>
+                </value>
+            </block>
+            <block type="math_random_int">
+                <value name="FROM">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="TO">
+                    <block type="math_number">
+                        <field name="NUM">100</field>
+                    </block>
+                </value>
+            </block>
+            <block type="math_random_float"></block>
+        </category>
+        <category name="Text">
+            <block type="text"></block>
+            <block type="text_string"></block>
+            <block type="text_join"></block>
+            <block type="text_append">
+                <value name="TEXT">
+                    <block type="text"></block>
+                </value>
+            </block>
+            <block type="text_length"></block>
+            <block type="text_isEmpty"></block>
+            <block type="text_indexOf">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">text</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_charAt">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">text</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_getSubstring">
+                <value name="STRING">
+                    <block type="variables_get">
+                        <field name="VAR">text</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_changeCase"></block>
+            <block type="text_trim"></block>
+        </category>
+        <category name="Screen and keyboard">
+            <block type="print">
+                <value name="value">
+                    <block type="text">
+                        <field name="TEXT"></field>
+                    </block>
+                </value>
+            </block>
+            <block type="println">
+                <value name="value">
+                    <block type="text">
+                        <field name="TEXT"></field>
+                    </block>
+                </value>
+            </block>
+            <block type="read"></block>
+            <block type="readwrite">
+                <value name="value">
+                    <block type="text">
+                        <field name="TEXT">What is your name? </field>
+                    </block>
+                </value>
+            </block>
+        </category>
+        <category name="Timing">
+            <block type="delay">
+                <value name="millis">
+                    <block type="math_number">
+                        <field name="NUM">1000</field>
+                    </block>
+                </value>
+            </block>
+            <block type="millis"></block>
+            <block type="micros"></block>
+        </category>
+        <category name="Colors">
+            <block type="colour_picker">
+                <field name="COLOUR">#ff0000</field>
+            </block>
+            <block type="colour_picker">
+                <field name="COLOUR">#00ff00</field>
+            </block>
+            <block type="colour_picker">
+                <field name="COLOUR">#0000ff</field>
+            </block>
+            <block type="colour_picker">
+                <field name="COLOUR">#ffff00</field>
+            </block>
+            <block type="colour_picker">
+                <field name="COLOUR">#00ffff</field>
+            </block>
+            <block type="colour_picker">
+                <field name="COLOUR">#ff00ff</field>
+            </block>
+            <block type="colour_picker">
+                <field name="COLOUR">#ffffff</field>
+            </block>
+            <block type="colour_picker">
+                <field name="COLOUR">#000000</field>
+            </block>
+            <block type="colour_random"></block>
+            <block type="colour_rgb"></block>
+            <block type="colour_blend"></block>
+        </category>
+        <category name="Date and Hour">
+            <block type="get_date"></block>
+            <block type="get_time"></block>
+            <block type="format_numbers"></block>
+        </category>
+        <category name="Comment">
+            <block type="comment"></block>
+        </category>
+    </category>
+        <category name="Arduino">
+            <block type="firmata_serial"></block>
+            <block type="firmata_init">
+                <value name="port">
+                    <block type="text">
+                        <field name="TEXT">/dev/ttyUSB0</field>
+                    </block>
+                </value>
+            </block>
+            <block type="firmata_digitalwrite">
+                <value name="digitalPin">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+                <value name="value">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="firmata_digitalread">
+                <value name="digitalPin">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+            </block>
+            <block type="firmata_analogwrite">
+                <value name="analogPin">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+                <value name="analogValue">
+                    <block type="math_number">
+                        <field name="NUM">255</field>
+                    </block>
+                </value>
+            </block>
+            <block type="firmata_analogread">
+                <value name="analogPin">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+            </block>
+            <block type="firmata_set_rgb_led">
+                <value name="color">
+                    <block type="colour_picker">
+                        <field name="COLOUR">#ff0000</field>
+                    </block>
+                </value>
+                <value name="red">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+                <value name="green">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="blue">
+                    <block type="math_number">
+                        <field name="NUM">2</field>
+                    </block>
+                </value>
+            </block>
+            <block type="firmata_set_fine_rgb_led">
+                <value name="color">
+                    <block type="colour_picker">
+                        <field name="COLOUR">#ff9966</field>
+                    </block>
+                </value>
+                <value name="red">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+                <value name="green">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="blue">
+                    <block type="math_number">
+                        <field name="NUM">2</field>
+                    </block>
+                </value>
+            </block>
+            <block type="firmata_servo">
+                <value name="value_servo">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+                <value name="pin">
+                    <block type="math_number">
+                        <field name="NUM">0</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+    <category name="Internet">
+        <category name="Services">
+            <category name="Weather">
+              <block type="weather_init">
+                <value name="key">
+                  <block type="text">
+                    <field name="TEXT">key</field>
+                  </block>
+                </value>
+              </block>
+              <block type="weather_main">
+                <value name="city">
+                  <block type="text">
+                    <field name="TEXT">city</field>
+                  </block>
+                </value>
+              </block>
+              <block type="weather_coord">
+                <value name="lat">
+                  <block type="math_number">
+                    <field name="NUM">34</field>
+                  </block>
+                </value>
+                <value name="lon">
+                  <block type="math_number">
+                    <field name="NUM">118</field>
+                  </block>
+                </value>
+              </block>
+            </category>
+        </category>
+        <category name="HTTP">
+          <block type="variables_set" id="4" inline="true" x="70" y="47">
+            <field name="VAR">http response</field>
+            <value name="VALUE">
+              <block type="http_get">
+                <value name="link">
+                    <block type="text">
+                        <field name="text">http://</field>
+                    </block>
+                </value>
+              </block>
+            </value>
+          </block>
+          <block type="variables_set" id="4" inline="true" x="70" y="47">
+            <field name="VAR">http response</field>
+            <value name="VALUE">
+              <block type="http_post">
+                <value name="link">
+                    <block type="text">
+                        <field name="text">http://</field>
+                    </block>
+                </value>
+                <value name="data">
+                    <block type="dicts_create_with">
+                    </block>
+                </value>
+              </block>
+              </value>
+          </block>
+          <block type="http_format">
+            <value name="data">
+                <block type="variables_get">
+                    <field name="VAR">http response</field>
+                </block>
+            </value>
+          </block>
+        </category>
+    </category>
+    <category name="Signals">
+        <block type="send_signals">
+            <value name="value_signal">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+            <value name="value_value">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+        </block>
+        <block type="signal_receivesignal">
+            <value name="signal">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+            <value name="signalvalue">
+                <block type="variables_get">
+                    <field name="VAR">signalvalue</field>
+                </block>
+            </value>
+        </block>
+        <block type="sendsignals">
+            <value name="value_signal">
+                <block type="lists_create_with">
+                    <mutation items="1"/>
+                </block>
+            </value>
+            <value name="value_value">
+                <block type="lists_create_with">
+                    <mutation items="1"/>
+                </block>
+            </value>
+        </block>
+        <block type="sendsignalsandflag">
+            <value name="value_signal">
+                <block type="lists_create_with">
+                    <mutation items="1"/>
+                </block>
+            </value>
+            <value name="value_value">
+                <block type="lists_create_with">
+                    <mutation items="1"/>
+                </block>
+            </value>
+            <value name="debug_text">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+        </block>
+        <block type="signal_sendanddebug">
+            <value name="signal_text">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+            <value name="signal_value">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+            <value name="debug_text">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+        </block>
+        <block type="signal_putflag">
+            <value name="signal_text">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+            <value name="flag_text">
+                <block type="text">
+                    <field name="TEXT"></field>
+                </block>
+            </value>
+        </block>
+        <block type="sendcoord">
+            <value name="name">
+                <block type="text">
+                    <field name="TEXT">...</field>
+                </block>
+            </value>
+            <value name="latitudine">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+            <value name="longitudine">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+        </block>
+        <block type="sendcoordandflag">
+            <value name="name">
+                <block type="text">
+                    <field name="TEXT">...</field>
+                </block>
+            </value>
+            <value name="latitudine">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+            <value name="longitudine">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+            <value name="flag">
+                <block type="text">
+                    <field name="TEXT">...</field>
+                </block>
+            </value>
+        </block>
     </category>
   </xml>
 

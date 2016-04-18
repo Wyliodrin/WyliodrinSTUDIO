@@ -47,6 +47,18 @@ module.exports = function ()
 		// 	});
 		// }, settings.INTERVAL_MDNS);
 
+		function removeDevices (serviceType)
+		{
+			for (var index = 0; index < $scope.devicesinstall.length; index++)
+			{
+				if ($scope.install[index].type === '_workstation._tcp.local')
+				{
+					$scope.install.splice (index, 1);
+					index --;
+				}
+			}
+		}
+
 		chrome.mdns.onServiceList.addListener (function (services)
 		{
 			debug (services);
@@ -70,7 +82,7 @@ module.exports = function ()
 			var regex = /([^[]+)\[([0-9a-f:]+)\]/;
 			$timeout (function ()
 			{
-				$scope.devicesinstall = [];
+				removeDevices ('_workstation._tcp.local');
 				_.each (services, function (service)
 				{
 					var data = service.serviceName.match (regex);
@@ -79,17 +91,41 @@ module.exports = function ()
 						var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
 						if (deviceindex < 0 && data[2].toLowerCase().startsWith ('b8:27:eb'))
 						{
-							$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')'});
+							$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
 						}
 						else
 						if (deviceindex < 0 && data[2].toLowerCase().startsWith ('d0:5f:b8'))
 						{
-							$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')'});
+							$scope.devicesinstall.push ({category: 'beagleboneblack', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
 						}
 					}
 				});
 			});
 		}, {serviceType: '_workstation._tcp.local'});
+
+		chrome.mdns.onServiceList.addListener (function (services)
+		{
+			debug (services);
+			$timeout (function ()
+			{
+				removeDevices ('_sshsvc._tcp.local');
+				_.each (services, function (service)
+				{
+					var name = _.find (service.serviceData, function (serviceData)
+					{
+						return (serviceData.indexOf ('model=Raspberry Pi')>=0);
+					});
+					if (name)
+					{
+						var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
+						if (deviceindex < 0)
+						{
+							$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: name.substring (6)+' ('+service.ipAddress+')', type:'_sshsvc._tcp.local', platform:'windows'});
+						}
+					}
+				});
+			});
+		}, {serviceType: '_sshsvc._tcp.local'});
 
 		this.getPorts = function ()
 		{
@@ -234,7 +270,7 @@ module.exports = function ()
 			      			type = 'chrome-ssh';
 			      			port = $scope.device.secureport;
 			      		}
-			      		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:scope.serialPort.category});
+			      		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:scope.serialPort.category, platform: scope.serialPort.platform});
 			      		$mdDialog.hide ();
 			      		mixpanel.track ('SerialPort Connect', {
 			      			style: 'address',

@@ -83,7 +83,7 @@ export default class SSHChromeDevice extends EventEmitter
 						that.emit ('separator');
 						stream.on ('close', function ()
 						{
-							that.emit ('disconnected');
+							that.disconnect ();
 						});
 						stream.on ('data', function (data)
 						{
@@ -312,7 +312,7 @@ export default class SSHChromeDevice extends EventEmitter
 			this.buffers.push (BUFFER_SEPARRATOR);
 			this._send ();
 			
-			debug ('Seding '+data.length+' bytes to '+this.address+' using socketId '+this.connection.socketId);
+			debug ('Seding '+data.length+' bytes to '+this.address);
 			var that = this;
 		}
 		else
@@ -324,11 +324,11 @@ export default class SSHChromeDevice extends EventEmitter
 	_addToBuffer (data)
 	{
 		// TODO put maximum limit
-		// debug ('Adding '+data+' to receivedData for port '+this.address+' using socketId '+this.connection.socketId);
+		// debug ('Adding '+data+' to receivedData for port '+this.address);
 		if (this.receivedDataPosition >= this.receivedData.length)
 		{
 			// TODO verify a maximum size
-			debug ('Data size exceeded, enlarging data with '+this.receivedData.length+' for port '+this.address+' using socketId '+this.connection.socketId);
+			debug ('Data size exceeded, enlarging data with '+this.receivedData.length+' for port '+this.address);
 			var receivedData = this.receivedData;
 			this.receivedData = new Buffer (receivedData.length*2);
 			for (var pos=0; pos < receivedData.length; pos++)
@@ -343,7 +343,7 @@ export default class SSHChromeDevice extends EventEmitter
 
 	_packet ()
 	{
-		debug ('Packet of size '+this.receivedDataPosition+' received for port '+this.address+' using socketId '+this.connection.socketId);
+		debug ('Packet of size '+this.receivedDataPosition+' received for port '+this.address);
 		var data = this.receivedData.slice (0, this.receivedDataPosition);
 		this.receivedDataPosition = 0;
 		return data;
@@ -352,7 +352,7 @@ export default class SSHChromeDevice extends EventEmitter
 	receiveData (data)
 	{
 		// TODO event emitter
-		debug ('Received '+data.byteLength+' bytes for port '+this.address+' using socketId '+this.connection.socketId);
+		debug ('Received '+data.byteLength+' bytes for port '+this.address);
 		var datauint = new Uint8Array (data);
 		// TODO more efficient to string
 		for (var pos=0; pos<datauint.length; pos++)
@@ -390,7 +390,7 @@ export default class SSHChromeDevice extends EventEmitter
 				{
 					if (this.previousByte === PACKET_SEPARATOR)
 					{
-						debug ('Random bytes for port '+this.address+' using socketId '+this.connection.socketId);
+						debug ('Random bytes for port '+this.address);
 					}
 					// console.log ('adding byte to data');
 					this._addToBuffer(datauint[pos]);
@@ -401,7 +401,7 @@ export default class SSHChromeDevice extends EventEmitter
 			{
 				if (datauint[pos] === PACKET_SEPARATOR && this.previousByte === PACKET_SEPARATOR) 
 				{
-					debug ('Received first packet separataor for port '+this.address+' using socketId '+this.connection.socketId);
+					debug ('Received first packet separataor for port '+this.address);
 					this.receivedFirstPacketSeparator = true;
 					if (this.status < CONNECTED)
 					{
@@ -412,20 +412,11 @@ export default class SSHChromeDevice extends EventEmitter
 				}
 				else
 				{
-					debug ('Random bytes for port '+this.address+' using socketId '+this.connection.socketId);
+					debug ('Random bytes for port '+this.address);
 					this.previousByte = datauint[pos];
 				}
 			}
 		}
-	}
-
-	flush ()
-	{
-		debug ('Flushing '+this.address+' using socketId '+this.connection.socketId);
-		chrome.serial.flush (this.connection.socketId, function (result)
-		{
-			debug ('Flusing result '+result+' to '+this.address+' using socketId '+this.connection.socketId);
-		});
 	}
 
 	isConnected ()
@@ -584,7 +575,7 @@ export default class SSHChromeDevice extends EventEmitter
 			// var socketId = this.connection.socketId;
 			this.status = DISCONNECTED;
 			this.emit ('disconnected');
-			debug ('Disconnecting port '+this.address+' using socketId'+this.connection.socketId);
+			debug ('Disconnecting port '+this.address);
 			// chrome.sockets.tcp.disconnect (socketId, function ()
 			// {
 			// 	debug ('Disconnected '+socketId+' port '+this.address);
@@ -595,8 +586,8 @@ export default class SSHChromeDevice extends EventEmitter
 			// });
 			this.receivedFirstPacketSeparator = false;
 			addresses.delete (this.address);
-			if (this.stream) this.stream.end ();
 			connections.delete (''+this.connection.socketId);
+			if (this.stream) this.stream.end ();
 			this.connection = null;
 		}
 	}

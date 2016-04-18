@@ -80,6 +80,13 @@ module.exports = function ()
 					}
 				});
 			}
+			if (t === 'capabilities')
+			{
+				$timeout (function ()
+				{
+					$scope.device.capabilities = p;
+				});
+			}
 		});
 
 		$wydevice.on ('status', function (status)
@@ -97,14 +104,21 @@ module.exports = function ()
 				if ($scope.connected === false) 
 				{
 					$scope.device.category = 'board';
+					$scope.device.capabilities = null;
 					$scope.update = false;
 				}
 				$scope.status = status;
+				$scope.device.platform = $wydevice.device.platform;
 				if (status === 'CONNECTED' || status === 'INSTALL') $scope.shell_disable = false;
 			});
 		});
 		
 		setBoxSize ();
+
+		$(window).unload (function ()
+		{
+			$wydevice.disconnect ();
+		});
 	});
 	
 	app.directive('ngEnter', function () {

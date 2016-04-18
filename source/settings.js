@@ -18,7 +18,7 @@ settings.LABEL = {
 	{
 		'software':'Software',
 		'firmware':'Firmware',
-		text: 'Embedded Linux'
+		text: 'Embedded Device'
 	},
 	'raspberrypi':
 	{

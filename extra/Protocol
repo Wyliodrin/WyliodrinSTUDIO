@@ -158,3 +158,6 @@ d:{a:'c', i:interface, s:ssid, p:psk}
 -->
 t:'net'
 d:{a:'c', i:interface, e:error}
+
+t:'capabilities'
+d:{pm:true/false, net:true/false, tm:true/false}

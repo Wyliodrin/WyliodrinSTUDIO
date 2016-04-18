@@ -204,7 +204,7 @@ export default class WyliodrinDevice extends EventEmitter
 		this.port.on ('disconnected', function ()
 		{
 			that.status = 'DISCONNECTED';
-			if (that.WasInSeparator === false && that.WasInInstall === false && that.ShowedErrorMessage === false) that.emit ('connection_timeout');
+			if (that.WasInConnected === false && that.WasInSeparator === false && that.WasInInstall === false && that.ShowedErrorMessage === false) that.emit ('connection_timeout');
 			else
 			if (that.WasInConnected === false && that.WasInInstall === false && that.ShowedErrorMessage === false) 
 			{
@@ -216,6 +216,7 @@ export default class WyliodrinDevice extends EventEmitter
 			// debug (that.device);
 			that.publishStatus ();
 			that.port = null;
+			debug ('Delete device '+that.device);
 			devices.delete (that.device);
 		});
 
@@ -278,7 +279,8 @@ export default class WyliodrinDevice extends EventEmitter
 
 			// console.log (this.port.send);
 			// console.log (Buffer.isBuffer (buffer));
-			this.port.send (buffer);
+			if (tag === 's' && this.options.type === 'chrome-ssh') this.port.shell (data);
+			else this.port.send (buffer);
 		}
 		else if (this.options.type === 'chrome-ssh')
 		{
@@ -298,6 +300,10 @@ export default class WyliodrinDevice extends EventEmitter
 	disconnect ()
 	{
 		clearInterval (this.timerstatus);
-		if (this.port) this.port.disconnect ();
+		if (this.port)
+		{
+			this.send ('d', null);
+			setTimeout (this.port.disconnect, 400);
+		}
 	}
 }

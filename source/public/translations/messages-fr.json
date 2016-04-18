@@ -668,5 +668,15 @@
   {
     "message":"Ordinateur Local",
     "description":""
+  },
+  "PROJECT_no_language_capability":
+  {
+    "message":"Ce dispositif ne sait pas comment gérer un projet dans cette language",
+    "description":""
+  },
+  "PROJECT_library":
+  {
+    "message":"Bibliothèque projets",
+    "description":""
   }
 }

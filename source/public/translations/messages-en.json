@@ -673,5 +673,15 @@
   {
     "message":"Local Computer",
     "description":""
+  },
+  "PROJECT_no_language_capability":
+  {
+    "message":"This device does not know how to run a project in this language",
+    "description":""
+  },
+  "PROJECT_library":
+  {
+    "message":"Projects Library",
+    "description":""
   }
 }

@@ -127,7 +127,7 @@ module.exports = function ()
 
 var app = angular.module ('wyliodrinApp');
 
-	app.controller ('ProjectController', function ($scope, $element, $timeout, $mdDialog, $wyapp, $wydevice)
+	app.controller ('ProjectController', function ($scope, $element, $timeout, $mdDialog, $filter, $wyapp, $wydevice)
 	{
 		debug ('Registering');
 		this.scope = {
@@ -518,51 +518,71 @@ var app = angular.module ('wyliodrinApp');
 				});
 			}
 
+
 			// console.log ($scope.device);
 
-			if ($scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0)
+			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
 			{
-				var label = $scope.label;
-				var device = $scope.device;
-				$mdDialog.show({
-			      controller: function ($scope)
-			      {
+				if ($scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0)
+				{
+					var label = $scope.label;
+					var device = $scope.device;
+					$mdDialog.show({
+				      controller: function ($scope)
+				      {
 
-			      	$scope.firmwares = settings.FIRMWARES;
+				      	$scope.firmwares = settings.FIRMWARES;
 
-					// console.log ($scope.device);
+						// console.log ($scope.device);
 
-					$scope.label = label;
-					$scope.device = device;
-					if (!$scope.device.firmware) $scope.firmware = _.keys ($scope.firmwares[$scope.device.category])[0];
-					else $scope.firmware = $scope.device.firmware;
-					// console.log ($scope.firmware);
-					if (!$scope.device.port) $scope.port = 'auto';
-					else $scope.port = $scope.device.port;
+						$scope.label = label;
+						$scope.device = device;
+						if (!$scope.device.firmware) $scope.firmware = _.keys ($scope.firmwares[$scope.device.category])[0];
+						else $scope.firmware = $scope.device.firmware;
+						// console.log ($scope.firmware);
+						if (!$scope.device.port) $scope.port = 'auto';
+						else $scope.port = $scope.device.port;
 
-			      	this.runAndFlash = function ()
-			      	{
-			      		run ($scope.firmware, $scope.port);
-			      		$mdDialog.hide ();
-			      	};
+				      	this.runAndFlash = function ()
+				      	{
+				      		run ($scope.firmware, $scope.port);
+				      		$mdDialog.hide ();
+				      	};
 
-			      	this.run = function ()
-			      	{
-			      		run ();
-			      		$mdDialog.hide ();
-			      	};
-			      },
-			      controllerAs: 'f',
-			      templateUrl: '/public/views/flash-firmware.html',
-			      // parent: $element,
-			      // targetEvent: ev,
-			      clickOutsideToClose:true,
-			      fullscreen: false
-			    });
+				      	this.run = function ()
+				      	{
+				      		run ();
+				      		$mdDialog.hide ();
+				      	};
+				      },
+				      controllerAs: 'f',
+				      templateUrl: '/public/views/flash-firmware.html',
+				      // parent: $element,
+				      // targetEvent: ev,
+				      clickOutsideToClose:true,
+				      fullscreen: false
+				    });
+				}
+				else
+				{
+					run ();
+				}
 			}
 			else
 			{
-				run ();
+				var message = $mdDialog.confirm()
+			          .title($filter('translate')('PROJECT_no_language_capability'))
+			          // .textContent('All of the banks have agreed to forgive you your debts.')
+			          // .ariaLabel('Lucky day')
+			          // .targetEvent(ev)
+			          .ok($filter('translate')('PROJECT_library'))
+			          .cancel($filter('translate')('OK'));
+			    $mdDialog.show(message).then(function() {
+			    	$mdDialog.hide ();
+			    	$wyapp.emit ('library');
+			    }, function() {
+			     	$mdDialog.hide ();
+			    });
 			}
 		});
 

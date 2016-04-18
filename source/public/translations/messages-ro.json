@@ -673,5 +673,15 @@
   {
     "message":"Calculatorul Local",
     "description":""
+  },
+  "PROJECT_no_language_capability":
+  {
+    "message":"Acest dispozitiv nu știe să execute un proiect în aceast limbaj",
+    "description":""
+  },
+  "PROJECT_library":
+  {
+    "message":"Bibliotecă proiecte",
+    "description":""
   }
 }

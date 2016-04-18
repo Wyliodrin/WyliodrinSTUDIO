@@ -99,7 +99,9 @@
               <div ng-if="!connected" class="serial-select-title">{{ 'DEVICE_PORT' | translate }}:</div>
                 <md-input-container ng-hide="connected" class="serial-select">
                     <md-select ng-model="serialPort" aria-label="serial port">
-                        <md-option class="title-button" ng-value="{path:'chrome'}">{{ 'DEVICE_Chrome' | translate }}</md-option>
+                        <md-optgroup class="title-button" label="{{ 'DEVICE_Chrome' | translate }}">
+                          <md-option class="title-button" ng-value="{path:'chrome'}">{{ 'chrome' | translate }}</md-option>
+                        </md-optgroup>
                         <md-optgroup ng-if="devicesinstall.length > 0" class="title-button" label="{{ 'DEVICE_Install' | translate }}">
                           <md-option class="title-button" ng-value="device" ng-repeat="device in devicesinstall">{{device.name}}</md-option>
                         </md-optgroup>
@@ -112,7 +114,8 @@
                     </md-select>
                 </md-input-container>
               <div ng-if="connected" layout="row">
-                   	<img ng-src="/public/drawable/{{device.category}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
+                   	<img ng-if="device.category === 'board'" ng-src="/public/drawable/board_{{device.platform}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
+                    <img ng-if="device.category !== 'board'" ng-src="/public/drawable/{{device.category}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
                     <div ng-show="status === 'PING'" class="warning">
                     	<img src="/public/drawable/warning-icon.png" alt="Warning"></img>
                         <md-tooltip md-direction="bottom">
@@ -141,19 +144,19 @@
                           {{ 'TOOLBAR_UPDATE' | translate }}
                         </md-tooltip>
                     </md-button>
-                    <md-button ng-show="status === 'CONNECTED'" class="icon-btn" ng-click="t.packagemanager()">
+                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.pm)" class="icon-btn" ng-click="t.packagemanager()">
                     	<md-icon md-svg-src="/public/drawable/library-icon.svg" class="s24" aria-label="{ackage Manager" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'NETWORK_PackageManager' | translate }}
                         </md-tooltip>
                     </md-button>
-                    <md-button ng-show="status === 'CONNECTED'" class="icon-btn" ng-click="t.taskmanager()">
+                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.net)" class="icon-btn" ng-click="t.taskmanager()">
                     	<md-icon md-svg-src="/public/drawable/task-manager-icon.svg" class="s24" aria-label="Task manager" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'TASK_MANAGER_TaskManager' | translate }}
                         </md-tooltip>
                     </md-button>
-                    <md-button ng-show="status === 'CONNECTED'" class="icon-btn" ng-click="t.network()">
+                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.tm)" class="icon-btn" ng-click="t.network()">
                     	<md-icon md-svg-src="/public/drawable/network-icon.svg" class="s24" aria-label="Network" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'TOOLBAR_NETWORK' | translate }}

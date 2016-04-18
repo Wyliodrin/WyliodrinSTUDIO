@@ -98,6 +98,7 @@ export default class ChromeDevice extends EventEmitter
 
 			that.reply ('', null);
 			that.status_function ('i');
+			that.capabilities ();
 		});
 	}
 
@@ -117,13 +118,18 @@ export default class ChromeDevice extends EventEmitter
 		}
 	}
 
+	capabilities ()
+	{
+		this.reply ('capabilities', {l:{'visual':true, 'nodejs':true}});
+	}
+
 	program (t, p)
 	{
 		var that = this;
 
 		function log (text)
 		{
-			that.reply ('p', {a:'k', t:text.toString()+'\r\n'});
+			that.reply ('p', {a:'k', t:text.toString().replace (/\n/g,'\r\n')+'\r\n'});
 		}
 
 		function stringify (object)
@@ -229,12 +235,21 @@ export default class ChromeDevice extends EventEmitter
 					wyliodrin_firmata.firmata = null;
 				}
 			};
+			var wyliodrin = 
+			{
+				sendSignal: function (signal, value)
+				{
+					that.reply ('v', {s:signal.data, v:value.data});
+				}
+			};
 			interpreter.wyliodrin = 
 			{
 				environment: environment,
+				wyliodrin: wyliodrin,
 				firmata: wyliodrin_firmata
 			};
 			interpreter.setProperty (scope, 'console', interpreter.createConnectedObject (wyliodrin_console));
+			interpreter.setProperty (scope, 'wyliodrin', interpreter.createConnectedObject (wyliodrin));
 			interpreter.setProperty (scope, 'firmata', interpreter.createConnectedObject (wyliodrin_firmata));
 
 		}
@@ -269,6 +284,8 @@ export default class ChromeDevice extends EventEmitter
 							catch (e)
 							{
 								log (e.stack);
+								that.running = false;
+								that.status_function ('i');
 							}
 						};
 						setTimeout (function ()
@@ -326,7 +343,7 @@ export default class ChromeDevice extends EventEmitter
 			this.status = DISCONNECTED;
 			this.emit ('disconnected');
 			debug ('Disconnecting');
-			this.connection = null;
+			connection = null;
 		}
 	}
 }

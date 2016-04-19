@@ -683,5 +683,15 @@
   {
     "message":"Projects Library",
     "description":""
+  },
+  "PLATFORM_windows":
+  {
+    "message":"Windows 10 IoT Core",
+    "description":""
+  },
+  "PLATFORM_linux":
+  {
+    "message":"Linux",
+    "description":""
   }
 }

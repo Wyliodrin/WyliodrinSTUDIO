@@ -336,6 +336,7 @@ export default class ChromeDevice extends EventEmitter
 	disconnect ()
 	{
 		// TODO disconnect
+		console.log (this);
 		this.shouldDisconnect = true;
 		if (this.isConnected())
 		{

@@ -85,11 +85,16 @@ module.exports = function ()
 					if (t === 'i')
 					{
 						// console.log (d);
-						deviceService.device = {
-							category: d.c,
-							network: d.i,
-							platform: d.p || 'linux'
-						};
+						if (!deviceService.device) deviceService.device = {};
+						deviceService.device.category = d.c;
+						deviceService.device.network = d.i;
+						deviceService.device.platform = d.p || 'linux';
+					}
+					else
+					if (t === 'capabilities')
+					{
+						debug (d);
+						deviceService.device.capabilities = d;
 					}
 					else
 					if (t === 'v' || t === 'sv')

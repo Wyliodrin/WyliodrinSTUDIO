@@ -263,16 +263,30 @@ module.exports = function(grunt) {
 
   grunt.registerTask ('makefile', 'Makefile', function ()
   {
-    var MAKEFILE_FOLDER = 'source/embedded';
-    var listmakefile = fs.readdirSync (MAKEFILE_FOLDER);
-    var makefile = {};
+    var MAKEFILE_FOLDER_LINUX = 'source/embedded/makefile/linux';
+    var listmakefile = fs.readdirSync (MAKEFILE_FOLDER_LINUX);
+    var makefile = {
+      linux:{},
+      windows:{}
+    };
     _.each (listmakefile, function (mf)
     {
       if (mf.startsWith ('Makefile'))
       {
         var ln = path.extname (mf).substring (1);
         console.log ('makefile '+ln);
-        makefile[ln] = fs.readFileSync (MAKEFILE_FOLDER+'/'+mf).toString ();
+        makefile.linux[ln] = fs.readFileSync (MAKEFILE_FOLDER_LINUX+'/'+mf).toString ();
+      }
+    });
+    var MAKEFILE_FOLDER_WINDOWS = 'source/embedded/makefile/windows';
+    listmakefile = fs.readdirSync (MAKEFILE_FOLDER_WINDOWS);
+    _.each (listmakefile, function (mf)
+    {
+      if (mf.startsWith ('make'))
+      {
+        var ln = path.extname (mf).substring (1);
+        console.log ('makefile '+ln);
+        makefile.windows[ln] = fs.readFileSync (MAKEFILE_FOLDER_WINDOWS+'/'+mf).toString ();
       }
     });
     mkdirp.sync (CONFIG);

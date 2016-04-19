@@ -97,7 +97,7 @@ module.exports = function ()
 						deviceService.device.capabilities = d;
 					}
 					else
-					if (t === 'v' || t === 'sv')
+					if ((t === 'v' || t === 'sv') && !d.s)
 					{
 						if (deviceService.device)
 						{

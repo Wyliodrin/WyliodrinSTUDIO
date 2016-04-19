@@ -115,7 +115,7 @@ module.exports = function ()
 		
 		setBoxSize ();
 
-		$(window).unload (function ()
+		chrome.app.window.current().onClosed.addListener (function ()
 		{
 			$wydevice.disconnect ();
 		});

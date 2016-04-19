@@ -158,7 +158,7 @@ var program = null;
           },
           program.load = function (_project, device)
           {
-            if (device) program.device (device);
+            program.device (device);
             project = _project;
             // console.log (project);
             debug ('Load project '+project.title+', loading project visual');
@@ -201,29 +201,39 @@ var program = null;
 
         function generateSource ()
         {
-          debug ('Storing program for project with id '+project.id);
+          if (project)
+          {
+            debug ('Storing program for project with id '+project.id);
             var source = '';
-            if (device && device.category === 'chrome')
+            try
             {
-              source = Blockly.JavaScript.workspaceToCode (Blockly.mainWorkspace);
+              if (device && (device.category === 'chrome' || device.platform === 'windows'))
+              {
+                source = Blockly.JavaScript.workspaceToCode (Blockly.mainWorkspace);
+              }
+              else
+              {
+                source = Blockly.Python.workspaceToCode (Blockly.mainWorkspace);
+              }
+              var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+              project.visualproject = Blockly.Xml.domToText (xml);
+              project.main = source;
+             if (pendingUndo===false)
+             {
+                versions.push (project.visualproject);
+              }
+              else
+              {
+                pendingUndo = false;
+              }
             }
-            else
+            catch (e)
             {
-              source = Blockly.Python.workspaceToCode (Blockly.mainWorkspace);
-            }
-            var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-            project.visualproject = Blockly.Xml.domToText (xml);
-            project.main = source;
-           if (pendingUndo===false)
-           {
-              versions.push (project.visualproject);
-            }
-            else
-            {
-              pendingUndo = false;
+              debug (e.stack);
             }
             // console.log (versions);
             program.storeProject ();
+          }
         }
 
         Blockly.mainWorkspace.addChangeListener (function ()

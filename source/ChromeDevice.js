@@ -37,7 +37,7 @@ Interpreter.prototype.getProperty = function (obj, name)
 	{
 		var async = false;
 		var namestring = name.toString ();
-		console.log (namestring);
+		// console.log (namestring);
 		var member = obj.connectedObject [namestring];
 		if (!member)
 		{
@@ -129,6 +129,7 @@ export default class ChromeDevice extends EventEmitter
 
 		function log (text)
 		{
+			// console.log (text);
 			that.reply ('p', {a:'k', t:text.toString().replace (/\n/g,'\r\n')+'\r\n'});
 		}
 
@@ -140,7 +141,7 @@ export default class ChromeDevice extends EventEmitter
 		function initApi(interpreter, scope) 
 		{
 			var environment = {
-				delay: 100,
+				delay: 0,
 
 			};
 
@@ -164,7 +165,7 @@ export default class ChromeDevice extends EventEmitter
 				{
 					wyliodrin_firmata.firmata = new Firmata (port.data, function (err)
 					{
-						console.log (err);
+						// console.log (err);
 						if (err) callback (interpreter.createPrimitive (false));
 						else callback (interpreter.createPrimitive (true));
 					});
@@ -228,9 +229,13 @@ export default class ChromeDevice extends EventEmitter
 				{
 					wyliodrin_firmata.firmata.analogWrite (pin.data, value.data);
 				},
+				servoWrite: function (pin, value)
+				{
+					wyliodrin_firmata.firmata.servoWrite (pin.data, value.data);
+				},
 				disconnect: function ()
 				{
-					console.log (wyliodrin_firmata.firmata);
+					// console.log (wyliodrin_firmata.firmata);
 					if (wyliodrin_firmata.firmata) this.firmata.close ();
 					wyliodrin_firmata.firmata = null;
 				}
@@ -239,18 +244,45 @@ export default class ChromeDevice extends EventEmitter
 			{
 				sendSignal: function (signal, value)
 				{
-					that.reply ('v', {s:signal.data, v:value.data});
+					// console.log (signal);
+					var s = {};
+					s[signal.data] = value.data;
+					that.reply ('v', {t:new Date().getTime(), s:s});
 				}
 			};
+
+			var wyliodrin_libraries = {
+				firmata: wyliodrin_firmata,
+				request: wyliodrin_request,
+				wyliodrin: wyliodrin
+			};
+
 			interpreter.wyliodrin = 
 			{
 				environment: environment,
 				wyliodrin: wyliodrin,
 				firmata: wyliodrin_firmata
 			};
+
+			var libraries = {};
+
+			var wyliodrin_request = {
+
+			};
+
+			var wyliodrin_require = function (library)
+			{
+				if (!libraries[library.data])
+				{
+					libraries[library.data] = interpreter.createConnectedObject (wyliodrin_libraries[library.data]);
+				}
+				return libraries[library.data];
+			};
 			interpreter.setProperty (scope, 'console', interpreter.createConnectedObject (wyliodrin_console));
-			interpreter.setProperty (scope, 'wyliodrin', interpreter.createConnectedObject (wyliodrin));
-			interpreter.setProperty (scope, 'firmata', interpreter.createConnectedObject (wyliodrin_firmata));
+			interpreter.setProperty (scope, 'require', interpreter.createNativeFunction (wyliodrin_require));
+			interpreter.setProperty (scope, 'delay', interpreter.createAsyncFunction (wyliodrin_firmata.delay_async));
+			// interpreter.setProperty (scope, 'wyliodrin', interpreter.createConnectedObject (wyliodrin));
+			// interpreter.setProperty (scope, 'firmata', interpreter.createConnectedObject (wyliodrin_firmata));
 
 		}
 
@@ -283,7 +315,8 @@ export default class ChromeDevice extends EventEmitter
 							}
 							catch (e)
 							{
-								log (e.stack);
+								if (e.stack) log (e.stack);
+								else log (e);
 								that.running = false;
 								that.status_function ('i');
 							}
@@ -297,7 +330,8 @@ export default class ChromeDevice extends EventEmitter
 					}
 					catch (e)
 					{
-						log (e.stack);
+						if (e.stack) log (e.stack);
+						else log (e);
 					}
 				}
 				else
@@ -324,7 +358,7 @@ export default class ChromeDevice extends EventEmitter
 	send (data)
 	{
 		var packet = msgpack.decode (data);
-		console.log (packet);
+		// console.log (packet);
 		this.emit ('send', packet.t, packet.d);
 	}
 
@@ -336,7 +370,7 @@ export default class ChromeDevice extends EventEmitter
 	disconnect ()
 	{
 		// TODO disconnect
-		console.log (this);
+		// console.log (this);
 		this.shouldDisconnect = true;
 		if (this.isConnected())
 		{

@@ -1,5 +1,9 @@
 Wyliodrin STUDIO 10.4
 * added CSharp support
+* added PowerShell support
+* added Windows 10 IoT Core support
+* added Chrome support
+* added JavaScript and Visual for Chrome (firmata)
 * fixed mixpanel Install event track
 
 Wyliodrin STUDIO 10.3

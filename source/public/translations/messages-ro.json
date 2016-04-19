@@ -683,5 +683,15 @@
   {
     "message":"Bibliotecă proiecte",
     "description":""
+  },
+  "PortSelectSerialChrome":
+  {
+    "message":"Select Chrome as port and connect to it. Connect your Arduino to the USB port of your computer.",
+    "description":""
+  },
+  "PortSelectSerialFirmata":
+  {
+    "message":"You need to specify the port for your Arduino in firmata.connect()",
+    "description":""
   }
 }

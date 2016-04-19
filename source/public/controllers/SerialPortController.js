@@ -51,9 +51,9 @@ module.exports = function ()
 		{
 			for (var index = 0; index < $scope.devicesinstall.length; index++)
 			{
-				if ($scope.install[index].type === '_workstation._tcp.local')
+				if ($scope.devicesinstall[index].type === serviceType)
 				{
-					$scope.install.splice (index, 1);
+					$scope.devicesinstall.splice (index, 1);
 					index --;
 				}
 			}

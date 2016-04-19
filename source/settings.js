@@ -9,6 +9,8 @@ var install = require ('./config/install.js');
 
 var translate = require ('./config/languages.js');
 
+var makefile = require ('./config/makefile.js');
+
 var settings = {
 	debug: require ('./config/debug.js')
 };
@@ -116,13 +118,7 @@ settings.VERSION = JSON.parse(fs.readFileSync (__dirname+'/../manifest.json').to
 
 settings.SENDER = 6000;
 
-settings.MAKEFILE_STOARGE = {
-	nodejs: fs.readFileSync (__dirname+'/embedded/Makefile.nodejs').toString(),
-	python: fs.readFileSync (__dirname+'/embedded/Makefile.python').toString(),
-	shell: fs.readFileSync (__dirname+'/embedded/Makefile.shell').toString(),
-	visual: fs.readFileSync (__dirname+'/embedded/Makefile.visual').toString(),
-	csharp: fs.readFileSync (__dirname+'/embedded/Makefile.csharp').toString()
-};
+settings.MAKEFILE_STOARGE = makefile;
 
 settings.EXAMPLE = example;
 
@@ -689,6 +685,14 @@ settings.LANGUAGES = [
 	{
 		title: 'csharp',
 		text: 'C#',
+		packagemanager: 
+		{
+			enable: false
+		}
+	},
+	{
+		title: 'powershell',
+		text: 'PowerShell',
 		packagemanager: 
 		{
 			enable: false

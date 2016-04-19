@@ -156,8 +156,9 @@ var program = null;
             }
             generateSource ();
           },
-          program.load = function (_project)
+          program.load = function (_project, device)
           {
+            if (device) program.device (device);
             project = _project;
             // console.log (project);
             debug ('Load project '+project.title+', loading project visual');

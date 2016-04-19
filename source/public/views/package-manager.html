@@ -13,7 +13,7 @@
             </md-content>
         </div>
         <md-tabs ng-show="runmanager === false" class="packages-tabs-box">
-            <md-tab ng-if="language.packagemanager.enable === true" ng-repeat="language in LANGUAGES">
+            <md-tab ng-if="language.packagemanager.enable === true && packages[language.title]" ng-repeat="language in LANGUAGES">
                 <md-tab-label>{{language.text}}</md-tab-label>
                 <md-tab-body>
                     <md-list>

@@ -19,11 +19,13 @@ require('./../tools/snippets/c_cpp.js');
 require('./../tools/snippets/javascript.js');
 require('./../tools/snippets/sh.js');
 require('./../tools/snippets/csharp.js');
+require('./../tools/snippets/powershell.js');
 require('brace/mode/javascript');
 require('brace/mode/c_cpp');
 require('brace/mode/python');
 require('brace/mode/sh');
 require('brace/mode/csharp');
+require('brace/mode/powershell');
 require('brace/theme/chrome');
 var lang = ace.acequire("ace/lib/lang");
 var languageTools = ace.acequire ('ace/ext/language_tools');
@@ -469,9 +471,15 @@ var app = angular.module ('wyliodrinApp');
 			{
 				program.load (project, $wydevice.device);
 			}
+			else
 			if (project.language === "csharp")
 			{
 				softwareEditor.getSession().setMode ('ace/mode/csharp');
+			}
+			else
+			if (project.language === "powershell")
+			{
+				softwareEditor.getSession().setMode ('ace/mode/powershell');
 			}
 			$timeout (function ()
 			{
@@ -503,7 +511,7 @@ var app = angular.module ('wyliodrinApp');
 			debug ('Run');
 			function run (firmware, port)
 			{
-				var makefile = settings.MAKEFILE_STOARGE[$scope.project.language]+'firmware:\n\t';
+				var makefile = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language]+(firmwareAvailable?'firmware:\n\t':'');
 				var runmessage = {a:'start', l:$scope.project.language, p:$scope.project.main};
 				if (firmware && port)
 				{
@@ -544,9 +552,10 @@ var app = angular.module ('wyliodrinApp');
 
 			console.log ($scope.device);
 
+			var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
 			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
 			{
-				if ($scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0)
+				if (firmwareAvailable === true)
 				{
 					var label = $scope.label;
 					var device = $scope.device;

@@ -103,7 +103,7 @@ Blockly.JavaScript['firmata_analogread'] = function(block) {
 Blockly.JavaScript['firmata_analogwrite'] = function(block) {
   var value_analogvalue = Blockly.JavaScript.valueToCode(block, 'analogValue', Blockly.JavaScript.ORDER_ATOMIC);
   var value_analogpin = Blockly.JavaScript.valueToCode(block, 'analogPin', Blockly.JavaScript.ORDER_ATOMIC);
-  Blockly.JavaScript.firmataPinMode (value_analogpin, 1);
+  Blockly.JavaScript.firmataPinMode (value_analogpin, 3);
   var code = 'firmata.analogWrite ('+value_analogpin+', '+value_analogvalue+');\n';
   return code;
 };
@@ -111,7 +111,7 @@ Blockly.JavaScript['firmata_analogwrite'] = function(block) {
 Blockly.JavaScript['firmata_servo'] = function(block) {
   var value_analogvalue = Blockly.Python.valueToCode(block, 'value_servo', Blockly.Python.ORDER_ATOMIC);
   var value_analogpin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
-  Blockly.JavaScript.firmataPinMode (value_analogpin, 1);
+  Blockly.JavaScript.firmataPinMode (value_analogpin, 4);
   var code = 'firmata.servoWrite ('+value_analogpin+', '+value_analogvalue+');\n';
   return code;
 };

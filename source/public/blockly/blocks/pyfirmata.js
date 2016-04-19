@@ -143,7 +143,7 @@ Blockly.Blocks['firmata_analogwrite'] = {
 Blockly.Blocks['firmata_servo'] = {
   init: function() {
     this.setHelpUrl('https://projects.wyliodrin.com/wiki/languages/visual#servo');
-    this.setColour(130);
+    this.setColour(120);
     this.appendValueInput("value_servo")
         .appendField("Set servo angle");
     this.appendValueInput("pin")

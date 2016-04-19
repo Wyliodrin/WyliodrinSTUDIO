@@ -95,6 +95,12 @@
                   {{ 'TOOLBAR_PROJECTS' | translate }}
                </md-tooltip>
             </md-button>
+            <div class="os-icon">
+                <img src="/public/drawable/windows-icon.png" alt="Running on Microsoft Windows"></img>
+                <md-tooltip md-direction="bottom">
+                  {{ label[device.category].text }} {{ 'WYLIODRIN_USERINTERFACE_NoInternet' | translate }}
+                </md-tooltip>
+            </div>
 			<div ng-controller="SerialPortsController as sp" class="title-button toggle-connection">
               <div ng-if="!connected" class="serial-select-title">{{ 'DEVICE_PORT' | translate }}:</div>
                 <md-input-container ng-hide="connected" class="serial-select">
@@ -120,12 +126,6 @@
                     	<img src="/public/drawable/warning-icon.png" alt="Warning"></img>
                         <md-tooltip md-direction="bottom">
                           {{ label[device.category].text }} {{ 'WYLIODRIN_USERINTERFACE_Error' | translate }}
-                        </md-tooltip>
-                    </div>
-                    <div class="os-icon">
-	                    <img src="/public/drawable/windows-icon.png" alt="Running on Microsoft Windows"></img>
-                        <md-tooltip md-direction="bottom">
-                          {{ label[device.category].text }} {{ 'WYLIODRIN_USERINTERFACE_NoInternet' | translate }}
                         </md-tooltip>
                     </div>
                    	<div layout="column" class="device-box">

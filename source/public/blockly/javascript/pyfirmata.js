@@ -6,11 +6,21 @@ Blockly.JavaScript.firmataPinMode = function (pinNumber, pinMode)
     'firmata.pinMode ('+pinNumber+', '+pinMode+');\n';
   }
 }
+
+Blockly.JavaScript.firmataConnect = function (port)
+{
+  if (!Blockly.JavaScript.definitions_['firmata_connect'])
+  {
+    Blockly.JavaScript.definitions_['firmata_connect'] = 
+      'firmata.connect ('+port+');\n';
+  }
+}
 Blockly.JavaScript['firmata_init'] = function(block) {
   var dropdown_board = block.getFieldValue('board');
   var value_port = Blockly.JavaScript.valueToCode(block, 'port', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = 'firmata.connect ('+value_port+');\n';
+  Blockly.JavaScript.firmataConnect (value_port);
+  var code = '';
   return code;
 };
 

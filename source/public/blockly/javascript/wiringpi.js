@@ -276,6 +276,28 @@ Blockly.JavaScript['delay'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['delay'] = function(block) {
+  Blockly.JavaScript.wiringpi ();
+  var value_millis = Blockly.JavaScript.valueToCode(block, 'millis', Blockly.JavaScript.ORDER_ATOMIC);
+  var type = parseInt (block.getFieldValue("type"));
+  if (isNaN(type)) type = 0;
+  // TODO: Assemble Python into code variable.
+  var code = '';
+  if (type == 0)
+  {
+    code = Blockly.JavaScript.wyliodrin+'.delay ('+value_millis+');\n';
+  }
+  else if (type == 1)
+  {
+    code = Blockly.JavaScript.wyliodrin+'.delayMicroseconds ('+value_millis+');\n';
+  }
+  else
+  {
+    code = Blockly.JavaScript.wyliodrin+'.delay (('+value_millis+')*1000);\n';
+  }
+  return code;
+};
+
 Blockly.JavaScript['pinmode'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);

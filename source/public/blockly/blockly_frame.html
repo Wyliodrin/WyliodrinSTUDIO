@@ -150,6 +150,9 @@
     <script type="text/javascript" src="python/debug.js"></script>
     <script type="text/javascript" src="blocks/debug.js"></script>
 
+    <script type="text/javascript" src="javascript/chrome_functions.js"></script>
+    <script type="text/javascript" src="blocks/chrome_functions.js"></script>
+
     <script src="blockly.js"></script>
 
     <link rel="stylesheet" type="text/css" href="blockly-style.css" media="screen">
@@ -2984,25 +2987,6 @@ content: "Import/Export";
                     </block>
                 </value>
             </block>
-            <block type="read"></block>
-            <block type="readwrite">
-                <value name="value">
-                    <block type="text">
-                        <field name="TEXT">What is your name? </field>
-                    </block>
-                </value>
-            </block>
-        </category>
-        <category name="Timing">
-            <block type="delay">
-                <value name="millis">
-                    <block type="math_number">
-                        <field name="NUM">1000</field>
-                    </block>
-                </value>
-            </block>
-            <block type="millis"></block>
-            <block type="micros"></block>
         </category>
         <category name="Colors">
             <block type="colour_picker">
@@ -3141,6 +3125,13 @@ content: "Import/Export";
                 <value name="pin">
                     <block type="math_number">
                         <field name="NUM">0</field>
+                    </block>
+                </value>
+            </block>
+            <block type="delay_chrome">
+                <value name="millis">
+                    <block type="math_number">
+                        <field name="NUM">1000</field>
                     </block>
                 </value>
             </block>

@@ -11,8 +11,11 @@ Blockly.JavaScript.firmataConnect = function (port)
 {
   if (!Blockly.JavaScript.definitions_['firmata_connect'])
   {
-    Blockly.JavaScript.definitions_['firmata_connect'] = 
-      'firmata.connect ('+port+');\n';
+    var firmataVar = Blockly.JavaScript.variableDB_.getDistinctName(
+      'firmata', Blockly.Variables.NAME_TYPE);
+    Blockly.JavaScript.definitions_['firmata_connect'] =
+    'var '+firmataVar+'= require (\'firmata\');\n'+ 
+    'firmata.connect ('+port+');\n';
   }
 }
 Blockly.JavaScript['firmata_init'] = function(block) {

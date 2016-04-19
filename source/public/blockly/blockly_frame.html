@@ -2988,6 +2988,15 @@ content: "Import/Export";
                 </value>
             </block>
         </category>
+        <category name="Timing">
+          <block type="delay_chrome">
+                <value name="millis">
+                    <block type="math_number">
+                        <field name="NUM">1000</field>
+                    </block>
+                </value>
+            </block>
+        </category>
         <category name="Colors">
             <block type="colour_picker">
                 <field name="COLOUR">#ff0000</field>
@@ -3125,13 +3134,6 @@ content: "Import/Export";
                 <value name="pin">
                     <block type="math_number">
                         <field name="NUM">0</field>
-                    </block>
-                </value>
-            </block>
-            <block type="delay_chrome">
-                <value name="millis">
-                    <block type="math_number">
-                        <field name="NUM">1000</field>
                     </block>
                 </value>
             </block>

@@ -681,7 +681,7 @@
   },
   "PortSelectSerialChrome":
   {
-    "message":"Select Chrome as port and connect to it. Connect your Arduino to the USB port of your computer.",
+    "message":"Select Local Computer as port and connect to it. Connect your Arduino to the USB port of your computer.",
     "description":""
   },
   "PortSelectSerialFirmata":

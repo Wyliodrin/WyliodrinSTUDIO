@@ -6,5 +6,5 @@ run: main.cs firmware
 	mcs main.cs
 	mono main.exe
 	
-firmware: 
+firmware:
 	

@@ -511,7 +511,7 @@ var app = angular.module ('wyliodrinApp');
 			debug ('Run');
 			function run (firmware, port)
 			{
-				var makefile = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language]+(firmwareAvailable?'firmware:\n\t':'');
+				var makefile = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];//+(firmwareAvailable?'firmware:\n\t':'');
 				var runmessage = {a:'start', l:$scope.project.language, p:$scope.project.main};
 				if (firmware && port)
 				{

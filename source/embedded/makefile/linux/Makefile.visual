@@ -4,3 +4,5 @@ build:
 run: main.py firmware
 	python main.py
 
+firmware: 
+	

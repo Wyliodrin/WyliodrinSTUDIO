@@ -8,7 +8,7 @@
     "description": ""
   },
   "appDesc": {
-    "message": "Wyliodrin STUDIO is a Chrome based IDE for software and hardware development for IoT and Embedded Linux systems.",
+    "message": "Wyliodrin STUDIO is a Chrome based IDE for software and hardware development for IoT and Embedded Linux systems like Raspberry Pi, UDOO, BeagleBone, Arduino Yun.",
     "description": ""
   },
   "DEVICE_CONNECT": {

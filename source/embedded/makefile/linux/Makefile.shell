@@ -5,3 +5,5 @@ run: main.sh firmware
 	chmod u+x main.sh
 	./main.sh
 
+firmware: 
+	

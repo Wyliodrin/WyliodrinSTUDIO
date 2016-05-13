@@ -513,14 +513,16 @@ export default class SSHChromeDevice extends EventEmitter
 		if (this.isConnected())
 		{
 			var that = this;
+			console.log (that.options);
 			if (data.a === 'i' && this.openInstall === null)
 			{
-				if (settings.INSTALL[data.c])
+				if (settings.INSTALL[that.options.platform][data.c])
 				{
-					this.connection.exec (settings.INSTALL[data.c], function (error, stream)
+					this.connection.exec (settings.INSTALL[that.options.platform][data.c], function (error, stream)
 					{
 						if (error)
 						{
+							console.log (error);
 							that.emit ('message', 'install', {a:'i', e:error});
 						}
 						else
@@ -528,18 +530,22 @@ export default class SSHChromeDevice extends EventEmitter
 							that.openInstall = stream;
 							stream.on ('data', function (data)
 							{
+								console.log (data.toString());
 								that.emit ('message', 'install', {a:'i', out:data.toString()});
 							});
 							stream.stderr.on ('data', function (data)
 							{
+								console.log (data.toString());
 								that.emit ('message', 'install', {a:'i', err:data.toString()});
 							});
 							stream.on ('error', function (error)
 							{
+								console.log (error.toString());
 								that.emit ('message', 'install', {a:'i', e:error});
 							});
 							stream.on ('close', function (code, signal)
 							{
+								console.log (code);
 								if (code !== 0)
 								{
 									that.emit ('message', 'install', {a:'i', e:code});

@@ -111,16 +111,21 @@ module.exports = function ()
 				removeDevices ('_sshsvc._tcp.local');
 				_.each (services, function (service)
 				{
+					var category = null;
 					var name = _.find (service.serviceData, function (serviceData)
 					{
-						return (serviceData.indexOf ('model=Raspberry Pi')>=0);
+						if (serviceData.indexOf ('model=Raspberry Pi')>=0) category = 'raspberrypi';
+						else
+						if (serviceData.indexOf ('model=SBC')>=0) category = 'dragonboard';
+						return (category !== null);
 					});
 					if (name)
 					{
+
 						var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
 						if (deviceindex < 0)
 						{
-							$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: name.substring (6)+' ('+service.ipAddress+')', type:'_sshsvc._tcp.local', platform:'windows'});
+							$scope.devicesinstall.push ({category: category, ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: name.substring (6)+' ('+service.ipAddress+')', type:'_sshsvc._tcp.local', platform:'windows'});
 						}
 					}
 				});

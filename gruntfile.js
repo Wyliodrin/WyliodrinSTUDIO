@@ -368,18 +368,29 @@ module.exports = function(grunt) {
   {
     var INSTALL_FOLDER = 'source/embedded/install';
     var listinstall = fs.readdirSync (INSTALL_FOLDER);
-    var install = {};
+    var install = {
+      linux:{},
+      windows:{}
+    };
     _.each (listinstall, function (installfile)
     {
       if (path.extname (installfile) === '.sh')
       {
-        install[path.basename(installfile, '.sh')] = fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString();  
-        install[path.basename(installfile, '.sh')] = install[path.basename(installfile, '.sh')].replace (/\r?\n/g, ' ');
+        install.linux[path.basename(installfile, '.sh')] = fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString();  
+        install.linux[path.basename(installfile, '.sh')] = install.linux[path.basename(installfile, '.sh')].replace (/\r?\n/g, ' && ');
         console.log ('Install: '+path.basename(installfile, '.sh'));
+      }
+      else
+      if (path.extname (installfile) === '.cmd')
+      {
+        install.windows[path.basename(installfile, '.cmd')] = 'powershell.exe -EncodedCommand '+new Buffer (fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString(), 'utf16le').toString('base64');  
+        // install.windows[path.basename(installfile, '.cmd')] = install.windows[path.basename(installfile, '.cmd')].replace (/\r?\n/g, '^\r\n');
+        // install.windows[path.basename(installfile, '.cmd')] = install.windows[path.basename(installfile, '.cmd')] + '\r\n';
+        console.log ('Install: '+path.basename(installfile, '.cmd'));
       }      
     });
     mkdirp.sync (CONFIG);
-    fs.writeFileSync (CONFIG+'/install.js', '"use strict";\n module.exports = '+JSON.stringify (install)+';');
+    fs.writeFileSync (CONFIG+'/install.js', '"use strict";\n module.exports = '+JSON.stringify (install, null, 2)+';');
   });
 
 

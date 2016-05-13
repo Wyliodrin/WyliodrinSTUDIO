@@ -66,37 +66,41 @@ function Invoke-FastWebRequest
     }
 }
 
-#mkdir C:\wyliodrin\projects\build -force
+mkdir C:\wyliodrin\projects\build -force
+mkdir C:\wyliodrin\download -force
 
-#cd c:\wyliodrin
+cd c:\wyliodrin\download
 
 $url = "https://www.wyliodrin.com/public/scripts/wyliodrin_windows.zip"
 $output = "wyliodrin_windows.zip"
 
 Invoke-FastWebRequest -Uri $url -OutFile $output 
-
-$dllurl = "https://www.wyliodrin.com/public/scripts/System.IO.Compression.FileSystem.dll"
-$dlloutput = "System.IO.Compression.FileSystem.dll"
-
-Invoke-FastWebRequest -Uri $url -OutFile $output 
-
-Expand-Archive $output -dest 'tmp'
+Expand-Archive $output -dest 'tmp'   
 
 cd tmp
 
-dir
+xcopy /i /y node "C:\Program Files\node"
+xcopy /i /y wyliodrin-app-server-master C:\wyliodrin\wyliodrin-app-server-master
 
-<#
-xcopy node "C:\Program Files\node"
-xcopy wyliodrin-app-server-master C:\wyliodrin\wyliodrin-app-server-master
+xcopy /i /y serialport c:\Users\Default\AppData\Roaming\node_modules\seriaport
 
-xcopy serialport c:\Users\Default\AppData\Roaming\node_modules\seriaport
-
-setx PATH "%PATH%;C:\Program Files\node"
+setx PATH "%PATH%;C:\Program Files\node" /M
 setx APPDATA c:\Users\Default\AppData\Roaming /M
 set NODE_PATH=%APPDATA%\node_modules /M
 setx NODE_PATH %APPDATA%\node_modules /M
-#shutdown /r /t 0
-#>
+
+cd c:\wyliodrin
+"dragonboard" | Out-File -Encoding ASCII -NoNewline boardtype.txt
+
+'cd c:\wyliodrin\wyliodrin-app-server-master' | Out-File -Encoding ASCII wyliodrin.bat
+'"C:\Program Files\node\node.exe" startup.js' | Add-Content -Encoding ASCII wyliodrin.bat
+
+copy /y wyliodrin-app-server-master\setup\windows\settings_dragonboard.json settings_dragonboard.json
+
+
+schtasks /create /tn "wyliodrin-app-server" /tr c:\wyliodrin\wyliodrin.bat /sc onstart
+
+shutdown /r /t 0
+
 
 

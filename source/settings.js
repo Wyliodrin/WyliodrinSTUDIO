@@ -59,7 +59,15 @@ settings.LABEL = {
 		'software':'JavaScript',
 		'firmware':'',
 		text:'Chrome'
-	}
+	},
+	'dragonboard':
+	{
+		'software':'DragonBoard 410C',
+		'firmware':'',
+		text: 'DragonBoard 410C',
+		usename: '',
+		password: ''
+	},
 };
 
 settings.STYLE_NAMES = {

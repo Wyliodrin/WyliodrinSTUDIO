@@ -80,6 +80,10 @@ The build is in the *build* folder
 * DEBUG_WYLIODRIN='wyliodrin.*' - enable debug messages (this will have a performance impact)
 * MIXPANEL_WYLIODRIN='' - mixpanel token for anonymous statistics sending
 
+## Contribute
+
+We would love your help. Click [here](CONTRIBUTING.md) to find out how to contribute.
+
 ## Authors
 
 Wyliodrin STUDIO is a product of [Wyliodrin](http://www.wyliodrin.com)

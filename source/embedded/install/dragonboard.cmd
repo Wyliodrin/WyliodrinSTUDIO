@@ -1,4 +1,3 @@
-
 $ErrorActionPreference = "Stop"
 
 # Nano server does not include Invoke-WebRequest
@@ -75,14 +74,15 @@ $url = "https://www.wyliodrin.com/public/scripts/wyliodrin_windows.zip"
 $output = "wyliodrin_windows.zip"
 
 Invoke-FastWebRequest -Uri $url -OutFile $output 
-Expand-Archive $output -dest 'tmp'   
+Expand-Archive $output -Force -dest 'tmp'
 
-cd tmp
+cd tmp\wyliodrin_windows
 
-xcopy /i /y node "C:\Program Files\node"
-xcopy /i /y wyliodrin-app-server-master C:\wyliodrin\wyliodrin-app-server-master
+xcopy /e /i /y node "C:\Program Files\node"
+xcopy /e /i /y wyliodrin-app-server-master C:\wyliodrin\wyliodrin-app-server-master
 
-xcopy /i /y serialport c:\Users\Default\AppData\Roaming\node_modules\seriaport
+xcopy /e /i /y serialport c:\Users\Default\AppData\Roaming\node_modules\seriaport
+xcopy /e /i /y wyliodrin c:\Users\Default\AppData\Roaming\node_modules\wyliodrin
 
 setx PATH "%PATH%;C:\Program Files\node" /M
 setx APPDATA c:\Users\Default\AppData\Roaming /M
@@ -95,7 +95,7 @@ cd c:\wyliodrin
 'cd c:\wyliodrin\wyliodrin-app-server-master' | Out-File -Encoding ASCII wyliodrin.bat
 '"C:\Program Files\node\node.exe" startup.js' | Add-Content -Encoding ASCII wyliodrin.bat
 
-copy /y wyliodrin-app-server-master\setup\windows\settings_dragonboard.json settings_dragonboard.json
+copy wyliodrin-app-server-master\setup\windows\settings_dragonboard.json settings_dragonboard.json
 
 
 schtasks /create /tn "wyliodrin-app-server" /tr c:\wyliodrin\wyliodrin.bat /sc onstart

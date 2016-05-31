@@ -518,12 +518,13 @@ export default class SSHChromeDevice extends EventEmitter
 			{
 				if (settings.INSTALL[that.options.platform][data.c])
 				{
+					that.emit ('message', 'install', {a:'i', out:that.options.platform+' '+data.c});
+					that.emit ('message', 'install', {a:'i', out:data.toString()});
 					this.connection.exec (settings.INSTALL[that.options.platform][data.c], function (error, stream)
 					{
 						if (error)
 						{
 							console.log (error);
-							that.emit ('message', 'install', {a:'i', e:error});
 						}
 						else
 						{

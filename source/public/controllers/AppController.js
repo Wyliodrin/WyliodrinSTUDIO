@@ -15,9 +15,11 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('AppController', function ($scope, $wyapp, $timeout, $wydevice)
+	app.controller ('AppController', function ($scope, $wyapp, $timeout, $wydevice, $filter)
 	{
 		debug ('Registering');
+
+		document.title = $filter('translate')('__MSG_appName__');
 
 		mixpanel.track ('Startup');
 

@@ -227,76 +227,94 @@ module.exports = function ()
 		this.open = function ()
 		{
 			debug ('Opening serialport '+$scope.serialPort);
-			// console.log ('Opening serialport '+$scope.serialPort);
-			if ($scope.serialPort.path === 'chrome')
-			{
-				$wydevice.connect ($scope.serialPort.path, {type:'chrome'});
-				mixpanel.track ('SerialPort Connect',{
-					style:'chrome',
-					device: 'chrome'
-				});
-			}
-			else
-			if ($scope.serialPort.path)
-			{
-				$wydevice.connect ($scope.serialPort.path);
-				mixpanel.track ('SerialPort Connect',{
-					style:'serial',
-					device: $scope.serialPort.path
-				});
-			}
-			else
-			{
-				var scope = $scope;
-				$mdDialog.show({
+
+			$mdDialog.show({
 			      controller: function ($scope)
 			      {
-			      	$scope.device =
-			      	{
-			      		ip: (scope.serialPort.ip.length>0?scope.serialPort.ip:ip),
-			      		port: (scope.serialPort.port >= 0?scope.serialPort.port:port),
-			      		secureport: (scope.serialPort.secureport >= 0?scope.serialPort.secureport:secureport),
-			      		username: users[(scope.serialPort.ip.length>0?scope.serialPort.ip:ip)] || '',
-			      		category: scope.serialPort.category
-			      	};
-
-			      	$scope.device.secure = true;
-
-			      	this.connect = function ()
-			      	{
-			      		scope.serialPort.ip = $scope.device.ip;
-			      		scope.serialPort.port = $scope.device.port;
-			      		users[$scope.device.ip] = $scope.device.username;
-			      		ip = $scope.device.ip;
-			      		port = $scope.device.port;
-			      		var type = 'chrome-socket';
-			      		if ($scope.device.secure) 
-			      		{
-			      			type = 'chrome-ssh';
-			      			port = $scope.device.secureport;
-			      		}
-			      		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:scope.serialPort.category, platform: scope.serialPort.platform});
-			      		$mdDialog.hide ();
-			      		mixpanel.track ('SerialPort Connect', {
-			      			style: 'address',
-			      			type: type
-			      		});
-			      	};
-
 			      	this.exit = function ()
 			      	{
 			      		$mdDialog.hide ();
 			      	};
 			      },
-			      controllerAs: 'a',
-			      templateUrl: '/public/views/authenticate.html',
+			      controllerAs: 'c',
+			      templateUrl: '/public/views/connect.html',
 			      // parent: angular.element(document.body),
 			      // targetEvent: ev,
 			      escapeToClose: false,
 			      clickOutsideToClose: false,
 			      fullscreen: false
 			    });
-			}
+
+			// console.log ('Opening serialport '+$scope.serialPort);
+			// if ($scope.serialPort.path === 'chrome')
+			// {
+			// 	$wydevice.connect ($scope.serialPort.path, {type:'chrome'});
+			// 	mixpanel.track ('SerialPort Connect',{
+			// 		style:'chrome',
+			// 		device: 'chrome'
+			// 	});
+			// }
+			// else
+			// if ($scope.serialPort.path)
+			// {
+			// 	$wydevice.connect ($scope.serialPort.path);
+			// 	mixpanel.track ('SerialPort Connect',{
+			// 		style:'serial',
+			// 		device: $scope.serialPort.path
+			// 	});
+			// }
+			// else
+			// {
+			// 	var scope = $scope;
+			// 	$mdDialog.show({
+			//       controller: function ($scope)
+			//       {
+			//       	$scope.device =
+			//       	{
+			//       		ip: (scope.serialPort.ip.length>0?scope.serialPort.ip:ip),
+			//       		port: (scope.serialPort.port >= 0?scope.serialPort.port:port),
+			//       		secureport: (scope.serialPort.secureport >= 0?scope.serialPort.secureport:secureport),
+			//       		username: users[(scope.serialPort.ip.length>0?scope.serialPort.ip:ip)] || '',
+			//       		category: scope.serialPort.category
+			//       	};
+
+			//       	$scope.device.secure = true;
+
+			//       	this.connect = function ()
+			//       	{
+			//       		scope.serialPort.ip = $scope.device.ip;
+			//       		scope.serialPort.port = $scope.device.port;
+			//       		users[$scope.device.ip] = $scope.device.username;
+			//       		ip = $scope.device.ip;
+			//       		port = $scope.device.port;
+			//       		var type = 'chrome-socket';
+			//       		if ($scope.device.secure) 
+			//       		{
+			//       			type = 'chrome-ssh';
+			//       			port = $scope.device.secureport;
+			//       		}
+			//       		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:scope.serialPort.category, platform: scope.serialPort.platform});
+			//       		$mdDialog.hide ();
+			//       		mixpanel.track ('SerialPort Connect', {
+			//       			style: 'address',
+			//       			type: type
+			//       		});
+			//       	};
+
+			//       	this.exit = function ()
+			//       	{
+			//       		$mdDialog.hide ();
+			//       	};
+			//       },
+			//       controllerAs: 'a',
+			//       templateUrl: '/public/views/authenticate.html',
+			//       // parent: angular.element(document.body),
+			//       // targetEvent: ev,
+			//       escapeToClose: false,
+			//       clickOutsideToClose: false,
+			//       fullscreen: false
+			//     });
+			// }
 		};
 
 		this.exit = function ()

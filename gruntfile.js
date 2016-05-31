@@ -33,9 +33,23 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
+      chrome:
+      {
+        files: {
+          'build/wyliodrin.js': ['source/**/*.js', '!source/public/**']
+        },
+        options: {
+          browserifyOptions: {
+            debug: process.env.DEBUG_WYLIODRIN && process.env.DEBUG_WYLIODRIN !== ''
+          },
+          transform: [
+                  ["babelify", { "presets": ["es2015"], "ignore":/.*\/bower_components\/.*/ }],
+                  ["brfs", {}]
+               ]
+        }
+      },
       client: {
         files: {
-          'build/wyliodrin.js': ['source/**/*.js', '!source/public/**'],
           'build/public/wyliodrin.js': ['source/public/**/*.js', '!source/public/blockly/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js']
         },
         options: {
@@ -45,13 +59,7 @@ module.exports = function(grunt) {
           transform: [
                   ["babelify", { "presets": ["es2015"], "ignore":/.*\/bower_components\/.*/ }],
                   ["brfs", {}]
-               ],
-          insertGlobalVars: {
-            DEBUG: function (file, dir)
-            {
-              return "'wyliodrin:*'";
-            }
-          }
+               ]
         }
       },
       visualproject: {
@@ -383,7 +391,18 @@ module.exports = function(grunt) {
       else
       if (path.extname (installfile) === '.cmd')
       {
-        install.windows[path.basename(installfile, '.cmd')] = 'powershell.exe -EncodedCommand '+new Buffer (fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString(), 'utf16le').toString('base64');  
+        var data = fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString().split ('\n');
+        for (var i=0; i<data.length; i++)
+        {
+          data[i] = data[i].trim ();
+          if (data[i].length === 0 || data[i][0] === '#')
+          {
+            data.splice (i, 1);
+            i--;
+          }
+        }
+        var buffer = data.join ('\n');
+        install.windows[path.basename(installfile, '.cmd')] = 'powershell.exe -OutputFormat Text -EncodedCommand '+new Buffer (buffer, 'utf16le').toString('base64');  
         // install.windows[path.basename(installfile, '.cmd')] = install.windows[path.basename(installfile, '.cmd')].replace (/\r?\n/g, '^\r\n');
         // install.windows[path.basename(installfile, '.cmd')] = install.windows[path.basename(installfile, '.cmd')] + '\r\n';
         console.log ('Install: '+path.basename(installfile, '.cmd'));

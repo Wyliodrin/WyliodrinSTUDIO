@@ -693,5 +693,10 @@
   {
     "message":"You need to specify the port for your Arduino in firmata.connect()",
     "description":""
+  },
+  "BOARD_Connect":
+  {
+    "message":"Selectați un dispozitiv la care doriți să vă conectați",
+    "description":""
   }
 }

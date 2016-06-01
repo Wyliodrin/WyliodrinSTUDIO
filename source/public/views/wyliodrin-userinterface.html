@@ -96,7 +96,7 @@
                </md-tooltip>
             </md-button>
 			<div ng-controller="SerialPortsController as sp" class="title-button toggle-connection">
-              <div ng-if="!connected" class="serial-select-title">{{ 'DEVICE_PORT' | translate }}:</div>
+              <!--<div ng-if="!connected" class="serial-select-title">{{ 'DEVICE_PORT' | translate }}:</div>
                 <md-input-container ng-hide="connected" class="serial-select">
                     <md-select ng-model="serialPort" aria-label="serial port">
                         <md-optgroup class="title-button" label="{{ 'DEVICE_Chrome' | translate }}">
@@ -112,7 +112,7 @@
                           <md-option class="title-button" ng-value="serialport" ng-repeat="serialport in serialPorts">{{serialport.path}}</md-option>
                         </md-optgroup>
                     </md-select>
-                </md-input-container>
+                </md-input-container>-->
               <div ng-if="connected" layout="row">
                    	<img ng-if="device.category === 'board'" ng-src="/public/drawable/board_{{device.platform}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
                     <img ng-if="device.category !== 'board'" ng-src="/public/drawable/{{device.category}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">

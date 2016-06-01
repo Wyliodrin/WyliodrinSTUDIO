@@ -1,4 +1,3 @@
-
 $ErrorActionPreference = "Stop"
 
 # Nano server does not include Invoke-WebRequest
@@ -66,37 +65,42 @@ function Invoke-FastWebRequest
     }
 }
 
-#mkdir C:\wyliodrin\projects\build -force
+mkdir C:\wyliodrin\projects\build -force
+mkdir C:\wyliodrin\download -force
 
-#cd c:\wyliodrin
+cd c:\wyliodrin\download
 
 $url = "https://www.wyliodrin.com/public/scripts/wyliodrin_windows.zip"
 $output = "wyliodrin_windows.zip"
 
 Invoke-FastWebRequest -Uri $url -OutFile $output 
+Expand-Archive $output -Force -dest 'tmp'
 
-$dllurl = "https://www.wyliodrin.com/public/scripts/System.IO.Compression.FileSystem.dll"
-$dlloutput = "System.IO.Compression.FileSystem.dll"
+cd tmp\wyliodrin_windows
 
-Invoke-FastWebRequest -Uri $url -OutFile $output 
+xcopy /e /i /y node "C:\Program Files\node"
+xcopy /e /i /y wyliodrin-app-server-master C:\wyliodrin\wyliodrin-app-server-master
 
-Expand-Archive $output -dest 'tmp'
+xcopy /e /i /y serialport c:\Users\Default\AppData\Roaming\node_modules\seriaport
+xcopy /e /i /y wyliodrin c:\Users\Default\AppData\Roaming\node_modules\wyliodrin
 
-cd tmp
-
-dir
-
-<#
-xcopy node "C:\Program Files\node"
-xcopy wyliodrin-app-server-master C:\wyliodrin\wyliodrin-app-server-master
-
-xcopy serialport c:\Users\Default\AppData\Roaming\node_modules\seriaport
-
-setx PATH "%PATH%;C:\Program Files\node"
+setx PATH "%PATH%;C:\Program Files\node" /M
 setx APPDATA c:\Users\Default\AppData\Roaming /M
 set NODE_PATH=%APPDATA%\node_modules /M
 setx NODE_PATH %APPDATA%\node_modules /M
-#shutdown /r /t 0
-#>
+
+cd c:\wyliodrin
+"raspberrypi" | Out-File -Encoding ASCII -NoNewline boardtype.txt
+
+'cd c:\wyliodrin\wyliodrin-app-server-master' | Out-File -Encoding ASCII wyliodrin.bat
+'"C:\Program Files\node\node.exe" startup.js' | Add-Content -Encoding ASCII wyliodrin.bat
+
+copy wyliodrin-app-server-master\setup\windows\settings_raspberrypi.json settings_raspberrypi.json
+
+
+schtasks /create /tn "wyliodrin-app-server" /tr c:\wyliodrin\wyliodrin.bat /sc onstart
+
+shutdown /r /t 0
+
 
 

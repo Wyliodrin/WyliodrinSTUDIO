@@ -8,7 +8,10 @@ debug.enable (settings.debug);
 
 import WyliodrinDevice from './WyliodrinDevice';
 
+var Devices = require ('./Devices.js');
+
 global.WyliodrinDevice = WyliodrinDevice;
+global.Devices = Devices;
 
 var log = debug ('wyliodrin:background');
 chrome.app.runtime.onLaunched.addListener(function(launchData) {

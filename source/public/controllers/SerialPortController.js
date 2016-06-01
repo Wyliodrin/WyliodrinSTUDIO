@@ -25,9 +25,7 @@ module.exports = function ()
 		$scope.serialPort = null;
 		$scope.status = $wydevice.getStatus ();
 
-		$scope.devices = [{ip: '', port: 7000, secureport: 22, name: $filter('translate')('DEVICE_ADDRESS')}];
-
-		$scope.devicesinstall = [];
+		$scope.devices = [];
 
 		var ctrl = this;
 
@@ -47,119 +45,90 @@ module.exports = function ()
 		// 	});
 		// }, settings.INTERVAL_MDNS);
 
-		function removeDevices (serviceType)
-		{
-			for (var index = 0; index < $scope.devicesinstall.length; index++)
-			{
-				if ($scope.devicesinstall[index].type === serviceType)
-				{
-					$scope.devicesinstall.splice (index, 1);
-					index --;
-				}
-			}
-		}
+		// function removeDevices (serviceType)
+		// {
+		// 	for (var index = 0; index < $scope.devicesinstall.length; index++)
+		// 	{
+		// 		if ($scope.devicesinstall[index].type === serviceType)
+		// 		{
+		// 			$scope.devicesinstall.splice (index, 1);
+		// 			index --;
+		// 		}
+		// 	}
+		// }
 
-		chrome.mdns.onServiceList.addListener (function (services)
-		{
-			debug (services);
-			$timeout (function ()
-			{
-				$scope.devices = [];
-				_.each (services, function (service)
-				{
-					$scope.devices.push ({ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: service.serviceName.split('.')[0]+' ('+service.ipAddress+')'});
-					var deviceindex = _.findIndex ($scope.devicesinstall, function (device) { return device.ip === service.ipAddress; });
-					if (deviceindex >= 0) $scope.devicesinstall.splice (deviceindex, 1);
-				});
-				$scope.devices.push ({ip: '', port: -1000, name: $filter('translate')('DEVICE_ADDRESS')});
-				if ($scope.serialPort === null) $scope.serialPort = $scope.devices[$scope.devices.length-1];
-			});
-		}, {serviceType: '_wyapp._tcp.local'});
+		// chrome.mdns.onServiceList.addListener (function (services)
+		// {
+		// 	debug (services);
+		// 	$timeout (function ()
+		// 	{
+		// 		$scope.devices = [];
+		// 		_.each (services, function (service)
+		// 		{
+		// 			$scope.devices.push ({ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: service.serviceName.split('.')[0]+' ('+service.ipAddress+')'});
+		// 			var deviceindex = _.findIndex ($scope.devicesinstall, function (device) { return device.ip === service.ipAddress; });
+		// 			if (deviceindex >= 0) $scope.devicesinstall.splice (deviceindex, 1);
+		// 		});
+		// 		$scope.devices.push ({ip: '', port: -1000, name: $filter('translate')('DEVICE_ADDRESS')});
+		// 		if ($scope.serialPort === null) $scope.serialPort = $scope.devices[$scope.devices.length-1];
+		// 	});
+		// }, {serviceType: '_wyapp._tcp.local'});
 
-		chrome.mdns.onServiceList.addListener (function (services)
-		{
-			debug (services);
-			var regex = /([^[]+)\[([0-9a-f:]+)\]/;
-			$timeout (function ()
-			{
-				removeDevices ('_workstation._tcp.local');
-				_.each (services, function (service)
-				{
-					var data = service.serviceName.match (regex);
-					if (data && data[2])
-					{
-						var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
-						if (deviceindex < 0 && data[2].toLowerCase().startsWith ('b8:27:eb'))
-						{
-							$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
-						}
-						else
-						if (deviceindex < 0 && data[2].toLowerCase().startsWith ('d0:5f:b8'))
-						{
-							$scope.devicesinstall.push ({category: 'beagleboneblack', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
-						}
-					}
-				});
-			});
-		}, {serviceType: '_workstation._tcp.local'});
+		// chrome.mdns.onServiceList.addListener (function (services)
+		// {
+		// 	debug (services);
+		// 	var regex = /([^[]+)\[([0-9a-f:]+)\]/;
+		// 	$timeout (function ()
+		// 	{
+		// 		removeDevices ('_workstation._tcp.local');
+		// 		_.each (services, function (service)
+		// 		{
+		// 			var data = service.serviceName.match (regex);
+		// 			if (data && data[2])
+		// 			{
+		// 				var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
+		// 				if (deviceindex < 0 && data[2].toLowerCase().startsWith ('b8:27:eb'))
+		// 				{
+		// 					$scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
+		// 				}
+		// 				else
+		// 				if (deviceindex < 0 && data[2].toLowerCase().startsWith ('d0:5f:b8'))
+		// 				{
+		// 					$scope.devicesinstall.push ({category: 'beagleboneblack', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
+		// 				}
+		// 			}
+		// 		});
+		// 	});
+		// }, {serviceType: '_workstation._tcp.local'});
 
-		chrome.mdns.onServiceList.addListener (function (services)
-		{
-			debug (services);
-			$timeout (function ()
-			{
-				removeDevices ('_sshsvc._tcp.local');
-				_.each (services, function (service)
-				{
-					var category = null;
-					var name = _.find (service.serviceData, function (serviceData)
-					{
-						if (serviceData.indexOf ('model=Raspberry Pi')>=0) category = 'raspberrypi';
-						else
-						if (serviceData.indexOf ('model=SBC')>=0) category = 'dragonboard';
-						return (category !== null);
-					});
-					if (name)
-					{
+		// chrome.mdns.onServiceList.addListener (function (services)
+		// {
+		// 	debug (services);
+		// 	$timeout (function ()
+		// 	{
+		// 		removeDevices ('_sshsvc._tcp.local');
+		// 		_.each (services, function (service)
+		// 		{
+		// 			var category = null;
+		// 			var name = _.find (service.serviceData, function (serviceData)
+		// 			{
+		// 				if (serviceData.indexOf ('model=Raspberry Pi')>=0) category = 'raspberrypi';
+		// 				else
+		// 				if (serviceData.indexOf ('model=SBC')>=0) category = 'dragonboard';
+		// 				return (category !== null);
+		// 			});
+		// 			if (name)
+		// 			{
 
-						var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
-						if (deviceindex < 0)
-						{
-							$scope.devicesinstall.push ({category: category, ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: name.substring (6)+' ('+service.ipAddress+')', type:'_sshsvc._tcp.local', platform:'windows'});
-						}
-					}
-				});
-			});
-		}, {serviceType: '_sshsvc._tcp.local'});
-
-		this.getPorts = function ()
-		{
-			var that = this;
-			setTimeout (function ()
-			{
-				$wydevice.listDevices (function (err, list)
-				{
-					if (err)
-					{
-						that.getPorts ();
-					}
-					else
-					{
-						$timeout (function ()
-						{
-							if (list.length != $scope.serialPorts.length)
-							{
-								$scope.serialPorts = list;
-								// if ($scope.serialPort === null && $scope.serialPorts.length > 0) $scope.serialPort = $scope.serialPorts[0];
-							}					
-							that.getPorts ();
-						});
-					}
-				});
-			}, 1000);
-		};
-
-		this.getPorts ();
+		// 				var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
+		// 				if (deviceindex < 0)
+		// 				{
+		// 					$scope.devicesinstall.push ({category: category, ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: name.substring (6)+' ('+service.ipAddress+')', type:'_sshsvc._tcp.local', platform:'windows'});
+		// 				}
+		// 			}
+		// 		});
+		// 	});
+		// }, {serviceType: '_sshsvc._tcp.local'});
 
 		$wydevice.on ('status', function (status)
 		{
@@ -224,15 +193,142 @@ module.exports = function ()
 		    });
 		});
 
+		this.connect = function (device)
+		{
+			if (!device) device = {ip:'', port:7000, secureport:22};
+			debug ('Connecting to '+device);
+			if (device.platform === 'chrome')
+			{
+				$wydevice.connect ('', {type:'chrome'});
+				mixpanel.track ('SerialPort Connect',{
+					style:'chrome',
+					device: 'chrome'
+				});
+			}
+			else
+			if (device.platform === 'serial')
+			{
+				$wydevice.connect (device.ip);
+				mixpanel.track ('SerialPort Connect',{
+					style:'serial',
+					device: device.ip
+				});
+			}
+			else
+			{
+				$mdDialog.show({
+			      controller: function ($scope)
+			      {
+			      	$scope.device =
+			      	{
+			      		ip: (device.ip.length>0?device.ip:ip),
+			      		port: (device.port >= 0?device.port:port),
+			      		secureport: (device.secureport >= 0?device.secureport:secureport),
+			      		username: users[(device.ip.length>0?device.ip:ip)] || '',
+			      		category: device.category
+			      	};
+
+			      	$scope.device.secure = true;
+
+			      	this.connect = function ()
+			      	{
+			      		// device.ip = $scope.device.ip;
+			      		// device.port = $scope.device.port;
+			      		users[$scope.device.ip] = $scope.device.username;
+			      		ip = $scope.device.ip;
+			      		port = $scope.device.port;
+			      		var type = 'chrome-socket';
+			      		if ($scope.device.secure) 
+			      		{
+			      			type = 'chrome-ssh';
+			      			port = $scope.device.secureport;
+			      		}
+			      		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:device.category, platform: device.platform});
+			      		$mdDialog.hide ();
+			      		mixpanel.track ('SerialPort Connect', {
+			      			style: 'address',
+			      			type: type
+			      		});
+			      	};
+
+			      	this.exit = function ()
+			      	{
+			      		$mdDialog.hide ();
+			      	};
+			      },
+			      controllerAs: 'a',
+			      templateUrl: '/public/views/authenticate.html',
+			      // parent: angular.element(document.body),
+			      // targetEvent: ev,
+			      escapeToClose: false,
+			      clickOutsideToClose: false,
+			      fullscreen: false
+			    });
+			}
+
+		};
+
 		this.open = function ()
 		{
 			debug ('Opening serialport '+$scope.serialPort);
 
 			$mdDialog.show({
-			      controller: function ($scope)
+			      controller: function ($scope, $wydevice, $timeout)
 			      {
+			      	$scope.devices = [];
+			      	$scope.serialPorts = [];
+
+			      	this.listPorts = true;
+			      	var that = this;
+			      	this.getPorts = function ()
+					{
+						var that = this;
+						var ports = setTimeout (function ()
+						{
+							$wydevice.listSerialDevices (function (err, list)
+							{
+								if (err)
+								{
+									that.getPorts ();
+								}
+								else
+								{
+									$timeout (function ()
+									{
+										if (list.length != $scope.serialPorts.length)
+										{
+											$scope.serialPorts = list;
+											// if ($scope.serialPort === null && $scope.serialPorts.length > 0) $scope.serialPort = $scope.serialPorts[0];
+										}					
+										if (that.listPorts) that.getPorts ();
+									});
+								}
+							});
+						}, 1000);
+					};
+
+					this.getPorts ();
+
+			      	var listNetworkDevices = function (devices)
+			      	{
+			      		$timeout (function ()
+			      		{
+			      			$scope.devices = devices;
+			      		});
+			      	};
+
+			      	$wydevice.registerForNetworkDevices (listNetworkDevices);
+
+			      	this.connect = function (device)
+			      	{
+			      		this.exit ();
+			      		that.connect (device);
+			      	};
+
 			      	this.exit = function ()
 			      	{
+			      		$wydevice.unregisterForNetworkDevices (listNetworkDevices);
+			      		this.listPorts = false;
 			      		$mdDialog.hide ();
 			      	};
 			      },

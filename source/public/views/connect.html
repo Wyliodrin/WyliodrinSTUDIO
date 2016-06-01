@@ -3,11 +3,11 @@
 		<div class="md-toolbar-tools">
 			<h2>{{ 'BOARD_Connect' | translate }}</h2>
 		</div>
-        <md-input-container style="position:absolute; right:15px; top:15px;" class="serial-select">
+        <!--<md-input-container style="position:absolute; right:15px; top:15px;" class="serial-select">
                 <md-select ng-model="device" aria-label="device">
                     <md-option ng-value="category">category</md-option>
                 </md-select>
-        </md-input-container>
+        </md-input-container>-->
 	</md-toolbar>
     
 	<md-dialog-content layout-padding ng-escape="c.exit()">
@@ -22,68 +22,36 @@
 	            </md-tooltip>
 	        </md-button> -->
 	        
-	        <md-button class="board-connect-btn" ng-click="device='udooneo'">
-	            <img src="/public/drawable/udooneo.png">
+	        <md-button class="board-connect-btn" ng-repeat="device in devices" ng-click="c.connect (device)">
+	            <img src="/public/drawable/{{ device.category?device.category:'board' }}.png">
 	            <md-tooltip md-direction="bottom">
-	            	Udoo Neo
+	            	{{device.name}}
 	            </md-tooltip>
                 <div class="board-connect-title">
-                	UDOO Neo
+                	{{device.name}}
                 </div>
                 <div class="board-connect-type">
-                	Linux
+                	{{'PLATFORM_'+device.platform | translate }}
                 </div>
                 <div class="board-connect-address">
-                	//192.168.1.101
+                	//{{device.ip}}
                 </div>
 	        </md-button>
-            
-            <md-button class="board-connect-btn" ng-click="device='udooneo'">
-	            <img src="/public/drawable/raspberrypi.png">
-	            <md-tooltip md-direction="bottom">
-	            	Raspberry Pi
-	            </md-tooltip>
+
+            <md-button class="board-connect-btn" ng-click="c.connect ({ip:'chrome'})">
+                <img src="/public/drawable/chrome.png">
+                <md-tooltip md-direction="bottom">
+                    {{ 'DEVICE_chrome' | translate }}
+                </md-tooltip>
                 <div class="board-connect-title">
-                	Raspberry Pi
+                    {{ 'DEVICE_chrome' | translate }}
                 </div>
                 <div class="board-connect-type">
-                	Linux
+                    {{ 'chrome' | translate }}
                 </div>
-                <div class="board-connect-address">
-                	//raspberrypi
-                </div>
-	        </md-button>
+            </md-button>
             
-            <md-button class="board-connect-btn" ng-click="device='udooneo'">
-	            <img src="/public/drawable/chrome.png">
-	            <md-tooltip md-direction="bottom">
-	            	Chrome
-	            </md-tooltip>
-                <div class="board-connect-title">
-                	Chrome
-                </div>
-                <div class="board-connect-type">
-                	Windows
-                </div>
-                <div class="board-connect-address">
-                	Local computer
-                </div>
-	        </md-button>
-            
-            <md-button class="board-connect-btn" ng-click="device='udooneo'">
-	            <img src="/public/drawable/serial.png">
-	            <md-tooltip md-direction="bottom">
-	            	COM1
-	            </md-tooltip>
-                <div class="board-connect-title">
-                	COM1
-                </div>
-                <div class="board-connect-type">
-                	Serial
-                </div>
-	        </md-button>
-            
-            <md-button class="board-connect-btn" ng-click="device='udooneo'">
+            <md-button class="board-connect-btn" ng-click="c.connect ()">
 	            <img src="/public/drawable/network.png">
 	            <md-tooltip md-direction="bottom">
 	            	IP Address
@@ -95,6 +63,22 @@
                 	Network
                 </div>
 	        </md-button>
+
+            <md-button class="board-connect-btn" ng-repeat="port in serialPorts" ng-click="c.connect (port)">
+                <img src="/public/drawable/serial.png">
+                <md-tooltip md-direction="bottom">
+                    {{port.path}}
+                </md-tooltip>
+                <div class="board-connect-title">
+                    {{port.path}}
+                </div>
+                <div class="board-connect-type">
+                    {{ 'Serial' | translate }}
+                </div>
+                <div class="board-connect-address">
+                    //{{device.path}}
+                </div>
+            </md-button>
 	    
 	    </center>
 
@@ -104,8 +88,8 @@
     
     
 	<md-dialog-actions layout="row">
-		<md-button>Install</md-button>
-        <md-button>Connect</md-button>
+		<!--<md-button>Install</md-button>
+        <md-button>Connect</md-button>-->
         <md-button ng-click="c.exit()">{{ 'TOOLBAR_EXIT' | translate }}</md-button>
 	</md-dialog-actions>
 </md-dialog>

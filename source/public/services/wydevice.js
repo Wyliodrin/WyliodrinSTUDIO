@@ -28,12 +28,14 @@ module.exports = function ()
 		var device = null;
 
 		var WyliodrinDevice = null;
+		var Devices = null;
 		// var service = null;
 
 		var status = 'DISCONNECTED';
 
 		chrome.runtime.getBackgroundPage(function (backgroundPage) {
 		    WyliodrinDevice = backgroundPage.WyliodrinDevice;
+		    Devices = backgroundPage.Devices;
 		});
 
 		var deviceService = {
@@ -136,7 +138,7 @@ module.exports = function ()
 				}
 			},
 
-			listDevices: function (done)
+			listSerialDevices: function (done)
 			{
 				if (WyliodrinDevice)
 				{
@@ -148,6 +150,22 @@ module.exports = function ()
 				else
 				{
 					done (new Error ('Wyliodrin device not initialised'));
+				}
+			},
+
+			registerForNetworkDevices: function (done)
+			{
+				if (Devices)
+				{
+					Devices.registerListener (done);
+				}
+			},
+
+			unregisterForNetworkDevices: function (done)
+			{
+				if (Devices)
+				{
+					Devices.unregisterListener (done);
 				}
 			},
 

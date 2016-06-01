@@ -15,15 +15,8 @@
     <div>
 
 	    <center>
-	        <!-- <md-button md-parent-scope="this" ng-repeat="(boardname, boardvalue) in LABEL" ng-if="boardname!=='board'" class="board-setup-btn" ng-click="s.select(boardname)">
-	            <img ng-src="/public/drawable/board/{{boardname}}.png">
-	            <md-tooltip md-direction="bottom">
-	              {{boardvalue.text}}
-	            </md-tooltip>
-	        </md-button> -->
-	        
 	        <md-button class="board-connect-btn" ng-repeat="device in devices" ng-click="c.connect (device)">
-	            <img src="/public/drawable/{{ device.category?device.category:'board' }}.png">
+	            <img ng-src="/public/drawable/{{ device.category?device.category:'board' }}.png">
 	            <md-tooltip md-direction="bottom">
 	            	{{device.name}}
 	            </md-tooltip>
@@ -38,13 +31,13 @@
                 </div>
 	        </md-button>
 
-            <md-button class="board-connect-btn" ng-click="c.connect ({ip:'chrome'})">
+            <md-button class="board-connect-btn" ng-click="c.connect ({ip:'chrome', platform: 'chrome'})">
                 <img src="/public/drawable/chrome.png">
                 <md-tooltip md-direction="bottom">
-                    {{ 'DEVICE_chrome' | translate }}
+                    {{ 'DEVICE_Chrome' | translate }}
                 </md-tooltip>
                 <div class="board-connect-title">
-                    {{ 'DEVICE_chrome' | translate }}
+                    {{ 'DEVICE_Chrome' | translate }}
                 </div>
                 <div class="board-connect-type">
                     {{ 'chrome' | translate }}
@@ -70,13 +63,13 @@
                     {{port.path}}
                 </md-tooltip>
                 <div class="board-connect-title">
-                    {{port.path}}
+                    {{port.name}}
                 </div>
                 <div class="board-connect-type">
                     {{ 'Serial' | translate }}
                 </div>
                 <div class="board-connect-address">
-                    //{{device.path}}
+                    {{device.path}}
                 </div>
             </md-button>
 	    

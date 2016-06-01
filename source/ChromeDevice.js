@@ -6,6 +6,8 @@ require('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:chromedevice');
 var EventEmitter = require ('events').EventEmitter;
 
+var _ = require ('lodash');
+
 var Interpreter = require ('./interpreter.js');
 
 Interpreter.prototype.createConnectedObject = function (obj)
@@ -163,12 +165,31 @@ export default class ChromeDevice extends EventEmitter
 				},
 				connect_async: function (port, callback)
 				{
-					wyliodrin_firmata.firmata = new Firmata (port.data, function (err)
+					var connect = function ()
 					{
-						// console.log (err);
-						if (err) callback (interpreter.createPrimitive (false));
-						else callback (interpreter.createPrimitive (true));
-					});
+						wyliodrin_firmata.firmata = new Firmata (port.data, function (err)
+						{
+							// console.log (err);
+							if (err) callback (interpreter.createPrimitive (false));
+							else callback (interpreter.createPrimitive (true));
+						});
+					};
+					if (port.data === "auto")
+					{
+						chrome.serial.getDevices (function (list)
+						{
+							var regex = /usb|acm|^com/i;
+							_.each (list, function (serialPort)
+							{
+								if (regex.test (serialPort.path)) port.data = serialPort.path;
+							});
+							connect ();
+						});
+					}
+					else
+					{
+						connect ();
+					}
 				},
 				pinMode: function (pin, mode)
 				{

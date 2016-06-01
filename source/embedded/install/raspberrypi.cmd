@@ -76,12 +76,16 @@ $output = "wyliodrin_windows.zip"
 Invoke-FastWebRequest -Uri $url -OutFile $output 
 Expand-Archive $output -Force -dest 'tmp'
 
+
+
+
 cd tmp\wyliodrin_windows
 
 xcopy /e /i /y node "C:\Program Files\node"
 xcopy /e /i /y wyliodrin-app-server-master C:\wyliodrin\wyliodrin-app-server-master
 
-xcopy /e /i /y serialport c:\Users\Default\AppData\Roaming\node_modules\seriaport
+xcopy /e /i /y serialport c:\Users\Default\AppData\Roaming\node_modules\serialport
+xcopy /e /i /y serialport C:\wyliodrin\wyliodrin-app-server-master\node_modules\serialport
 xcopy /e /i /y wyliodrin c:\Users\Default\AppData\Roaming\node_modules\wyliodrin
 
 setx PATH "%PATH%;C:\Program Files\node" /M

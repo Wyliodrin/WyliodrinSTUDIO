@@ -181,7 +181,7 @@
 				<div class="{{a.status()}}" >{{status | translate}}</div>
                 <div class="triangle"></div>
         <div class="os-icon" ng-if="connected">
-            <img src="/public/drawable/{{device.platform}}-icon.png" alt="{{ 'PLATFORM_'+device.platform | translate }}"></img>
+            <img ng-src="/public/drawable/{{device.platform}}-icon.png" alt="{{ 'PLATFORM_'+device.platform | translate }}"></img>
             <md-tooltip md-direction="bottom">
               {{ 'PLATFORM_'+device.platform | translate }}
             </md-tooltip>
@@ -227,7 +227,7 @@
     
                 </md-tab-body>
             </md-tab> -->
-            <md-tab>
+            <md-tab ng-disabled="project_disable">
                 <md-tab-label>{{ 'PROJECT_APPLICATION' | translate }}</md-tab-label>
                 <md-tab-body>
                     <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">

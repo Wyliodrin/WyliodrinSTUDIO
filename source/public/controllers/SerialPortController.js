@@ -7,6 +7,8 @@ var mixpanel = require ('mixpanel');
 
 var _ = require ('lodash');
 
+var path = require ('path');
+
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:SerialPortController');
@@ -279,29 +281,46 @@ module.exports = function ()
 			      	$scope.serialPorts = [];
 
 			      	this.listPorts = true;
-			      	var that = this;
+			      	
 			      	this.getPorts = function ()
 					{
-						var that = this;
+						var that_ports = this;
 						var ports = setTimeout (function ()
 						{
 							$wydevice.listSerialDevices (function (err, list)
 							{
 								if (err)
 								{
-									that.getPorts ();
+									that_ports.getPorts ();
 								}
 								else
 								{
-									$timeout (function ()
+									if (list.length != $scope.serialPorts.length)
 									{
-										if (list.length != $scope.serialPorts.length)
+										$timeout (function ()
 										{
 											$scope.serialPorts = list;
+											_.each ($scope.serialPorts, function (serialPort)
+											{
+												serialPort.name = path.basename (serialPort.path);
+												if (serialPort.name.startsWith('cu.')) serialPort.name = serialPort.name.substring (3);
+												if (serialPort.name.startsWith('tty.')) serialPort.name = serialPort.name.substring (4);
+												serialPort.ip = serialPort.path;
+												serialPort.platform = 'serial';
+												if (serialPort.name.startsWith ('Bluetooth-'))
+												{
+													serialPort.priority = 6;
+												}
+												else
+												{
+													serialPort.priority = 1;
+												}
+											});
+											$scope.serialPorts = _.sortBy ($scope.serialPorts, "priority");
 											// if ($scope.serialPort === null && $scope.serialPorts.length > 0) $scope.serialPort = $scope.serialPorts[0];
-										}					
-										if (that.listPorts) that.getPorts ();
-									});
+											if (that_ports.listPorts) that_ports.getPorts ();
+										});
+									}
 								}
 							});
 						}, 1000);

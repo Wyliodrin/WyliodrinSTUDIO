@@ -92,7 +92,7 @@ class Device
 
 	hasProperties ()
 	{
-		return _.reduce (this.parametersArray, function (size, parameters) { size = size + (parameters === null?0:1); }, 0) !== 0;
+		return _.reduce (this.parametersArray, function (size, parameters) { return size + (parameters === null?0:1); }, 0) !== 0;
 	}
 }
 

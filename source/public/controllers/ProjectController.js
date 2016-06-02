@@ -252,6 +252,11 @@ var app = angular.module ('wyliodrinApp');
 
 			shell.resize (cols, rows);
 			$wydevice.send ('r', {a:'r', c:cols, r: rows});
+
+			var $divred = $element.find('#divred');
+			var $red = $element.find ('#red');
+			$red.width ($divred.width());
+			$red.height ($divred.height());
 		}
 
 		$scope.aceSoftwareLoaded = function (_editor)

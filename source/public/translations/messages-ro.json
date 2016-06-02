@@ -8,7 +8,7 @@
     "description": ""
   },
   "appDesc": {
-    "message": "Wyliodrin STUDIO este un IDE bazat pe Chrome pentru realizarea de software și hardware pentru IoT și sisteme Linux integrate",
+    "message": "Wyliodrin STUDIO este un IDE pentru realizarea de software și hardware pentru sisteme IoT precum Raspberry Pi, UDOO si Arduino",
     "description": ""
   },
   "DEVICE_CONNECT": {
@@ -16,7 +16,7 @@
     "description": ""
   },
   "DEVICE_ADDRESS": {
-    "message": "Adresa",
+    "message": "Adresa IP",
     "description": ""
   },
   "DEVICE_PORT": {

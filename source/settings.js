@@ -509,6 +509,14 @@ settings.LANGUAGES = [
 		}
 	},
 	{
+		title: 'streams',
+		text: 'Streams',
+		packagemanager: 
+		{
+			enable: false
+		}
+	},
+	{
 		title: 'nodejs',
 		text: 'Javascript',
 		packagemanager: 

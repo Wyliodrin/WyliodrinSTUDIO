@@ -1,3 +1,10 @@
+Wyliodrin STUDIO 10.8
+
+Wyliodrin STUDIO 10.7
+* Added new connect window
+* Added Chrome Device firmata port autodetect
+* Added Windows 10 IoT Core for DragonBoard and Raspberry Pi
+
 Wyliodrin STUDIO 10.6
 * fixed makefile
 

@@ -238,7 +238,7 @@
                                     <md-tab-label>{{label[device.category].software}}</md-tab-label>
                                     <md-tab-body>
                                         <div layout="column">
-                                            <div ng-show="project.language!=='visual'" flex="100" ui-ace="{
+                                            <div ng-show="project.language!=='visual' && project.language !== 'streams'" flex="100" ui-ace="{
                                               advanced: {
                                                   enableSnippets: true,
                                                   enableBasicAutocompletion: true,
@@ -269,6 +269,10 @@
                                                   firstLineNumber: 1,
                                                   onLoad: aceShowLoaded
                                                 }" ng-model="project.main"></div>
+                                            </div>
+                                            <div id="divred" ng-show="project.language==='streams'" flex="100">
+                                              <webview id="red" src="/public/red/red.html" partition="red">
+                                              </webview>
                                             </div>
                                         </div>
                                     </md-tab-body>

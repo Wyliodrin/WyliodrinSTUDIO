@@ -1,0 +1,502 @@
+[
+  {
+    "id": "node-red/ble",
+    "name": "ble",
+    "types": [
+      "scan ble",
+      "read ble",
+      "notify ble",
+      "write ble",
+      "ble in",
+      "ble out",
+      "ble-board"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/buffer",
+    "name": "buffer",
+    "types": [
+      "buffer",
+      "set event"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/multimedia",
+    "name": "multimedia",
+    "types": [
+      "say"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/print",
+    "name": "print",
+    "types": [
+      "print"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/ps",
+    "name": "ps",
+    "types": [
+      "playstation"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/run",
+    "name": "run",
+    "types": [
+      "run"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/signalprocessing",
+    "name": "signalprocessing",
+    "types": [
+      "octave",
+      "r language",
+      "fourier"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/value",
+    "name": "value",
+    "types": [
+      "value",
+      "message callback",
+      "set x value"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/visual",
+    "name": "visual",
+    "types": [
+      "visual"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/web",
+    "name": "web",
+    "types": [
+      "http request",
+      "web route",
+      "webserver",
+      "web response",
+      "web template"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/wiring",
+    "name": "wiring",
+    "types": [
+      "digitalwrite",
+      "digitalread",
+      "shift out",
+      "shift in",
+      "analogwrite",
+      "analogread",
+      "button",
+      "sendsignal"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/xmpp",
+    "name": "xmpp",
+    "types": [
+      "send",
+      "receive",
+      "receivesignal",
+      "mobile sensors"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/catch",
+    "name": "catch",
+    "types": [
+      "catch"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/exec",
+    "name": "exec",
+    "types": [
+      "exec"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/function",
+    "name": "function",
+    "types": [
+      "function"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/template",
+    "name": "template",
+    "types": [
+      "template"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/delay",
+    "name": "delay",
+    "types": [
+      "delay"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/trigger",
+    "name": "trigger",
+    "types": [
+      "trigger"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/comment",
+    "name": "comment",
+    "types": [
+      "comment"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/unknown",
+    "name": "unknown",
+    "types": [
+      "unknown"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/pidcontrol",
+    "name": "pidcontrol",
+    "types": [
+      "PID control"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/random",
+    "name": "random",
+    "types": [
+      "random"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/rbe",
+    "name": "rbe",
+    "types": [
+      "rbe"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/arduino",
+    "name": "arduino",
+    "types": [
+      "arduino in",
+      "arduino out",
+      "arduino-board"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/watch",
+    "name": "watch",
+    "types": [
+      "watch"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/serial",
+    "name": "serial",
+    "types": [
+      "serial in",
+      "serial out",
+      "serial-port"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/tcpin",
+    "name": "tcpin",
+    "types": [
+      "tcp in",
+      "tcp out",
+      "tcp request"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/udp",
+    "name": "udp",
+    "types": [
+      "udp in",
+      "udp out"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/switch",
+    "name": "switch",
+    "types": [
+      "switch"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/change",
+    "name": "change",
+    "types": [
+      "change"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/range",
+    "name": "range",
+    "types": [
+      "range"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/CSV",
+    "name": "CSV",
+    "types": [
+      "csv"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/HTML",
+    "name": "HTML",
+    "types": [
+      "html"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/JSON",
+    "name": "JSON",
+    "types": [
+      "json"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/XML",
+    "name": "XML",
+    "types": [
+      "xml"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/base64",
+    "name": "base64",
+    "types": [
+      "base64"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/msgpack",
+    "name": "msgpack",
+    "types": [
+      "msgpack"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/twitter",
+    "name": "twitter",
+    "types": [
+      "twitter-credentials",
+      "twitter in",
+      "twitter out"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/feedparse",
+    "name": "feedparse",
+    "types": [
+      "feedparse"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/twilio",
+    "name": "twilio",
+    "types": [
+      "twilio sms",
+      "twilio call out",
+      "twilio-api"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/email",
+    "name": "email",
+    "types": [
+      "e-mail",
+      "e-mail in"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/irc",
+    "name": "irc",
+    "types": [
+      "irc in",
+      "irc out",
+      "irc-server"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/tail",
+    "name": "tail",
+    "types": [
+      "tail"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/file",
+    "name": "file",
+    "types": [
+      "file",
+      "file in"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/redisout",
+    "name": "redisout",
+    "types": [
+      "redis out"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/daemon",
+    "name": "daemon",
+    "types": [
+      "daemon"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  }
+]

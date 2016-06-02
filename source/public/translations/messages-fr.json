@@ -8,7 +8,7 @@
     "description": ""
   },
   "appDesc": {
-    "message": "Wyliodrin STUDIO est un IDE basé sur Chrome pour les logiciels et le développement de matériel pour IdO et les systèmes Linux embarqués",
+    "message": "Wyliodrin STUDIO est un IDE pour le développement des logiciels et de matériel pour les systèmes IdO comme le Raspberry Pi, UDOO et Arduino",
     "description": ""
   },
   "DEVICE_CONNECT": {
@@ -16,7 +16,7 @@
     "description": ""
   },
   "DEVICE_ADDRESS": {
-    "message": "Adresse",
+    "message": "Adresse IP",
     "description": ""
   },
   "DEVICE_PORT": {

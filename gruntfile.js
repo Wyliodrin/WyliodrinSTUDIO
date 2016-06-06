@@ -138,6 +138,17 @@ module.exports = function(grunt) {
         }
       }
     },
+    sass: {
+      build: {
+        options: {
+            outputStyle: 'compressed'
+        },
+        files: [{
+            dest: 'build/public/red/red/style.min.css',
+            src: 'source/public/red/red/styles/style.scss'
+        }]
+      }
+    },
     cssmin: {
       client:
       {
@@ -496,6 +507,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -510,6 +522,7 @@ module.exports = function(grunt) {
     'ngAnnotate',
     'copy',
     'less',
+    'sass',
     'locale', 
     // 'cssmin',
     // 'uglify',

@@ -497,12 +497,12 @@ var app = angular.module ('wyliodrinApp');
 					console.log (red);
 					if (red)
 					{
-						red.addEventListener ('consolemessage', function (message)
+						window.addEventListener ('message', function (message)
 						{
 							console.log (message);
 							try
 							{
-								var parsedmessage = JSON.parse (message.message);
+								var parsedmessage = message.data;
 								console.log (parsedmessage);
 								console.log (project.id);
 								if (parsedmessage.type === 'flow' && parsedmessage.projectId === project.id)
@@ -516,6 +516,25 @@ var app = angular.module ('wyliodrinApp');
 
 							}
 						});
+						// red.addEventListener ('consolemessage', function (message)
+						// {
+						// 	console.log (message);
+						// 	try
+						// 	{
+						// 		var parsedmessage = JSON.parse (message.message);
+						// 		console.log (parsedmessage);
+						// 		console.log (project.id);
+						// 		if (parsedmessage.type === 'flow' && parsedmessage.projectId === project.id)
+						// 		{
+						// 			console.log ('store');
+						// 			library.storeMain (project.id,parsedmessage.flow);
+						// 		}
+						// 	}
+						// 	catch (e)
+						// 	{
+
+						// 	}
+						// });
 						red.addEventListener ('contentload', function ()
 						{
 							console.log ('contentload');

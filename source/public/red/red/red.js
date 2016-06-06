@@ -17,6 +17,7 @@
  var flow = [];
  var flowsLoaded = false;
  var project = null;
+ var wyliodrin = null;
 
  function loadMain ()
  {
@@ -30,6 +31,7 @@
 
 window.addEventListener ('message', function (message)
 {
+    wyliodrin = message.source;
     console.log ('message');
     console.log (message);
     project = message.data;
@@ -887,9 +889,9 @@ RED.nodes = (function() {
         dirty = d;
         if (dirty === true)
         {
-            if (project !== null)
+            if (project !== null && wyliodrin !== null)
             {
-                console.log (JSON.stringify ({type:'flow', projectId:project.id, flow:JSON.stringify(RED.nodes.createCompleteNodeSet())}));
+                wyliodrin.postMessage ({type:'flow', projectId:project.id, flow:JSON.stringify(RED.nodes.createCompleteNodeSet())}, '*');
             }
             dirty = false;
         }

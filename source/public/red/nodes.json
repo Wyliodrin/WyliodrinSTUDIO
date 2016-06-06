@@ -71,6 +71,7 @@
     "name": "signalprocessing",
     "types": [
       "octave",
+      "python",
       "r language",
       "fourier"
     ],

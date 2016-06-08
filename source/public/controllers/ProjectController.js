@@ -494,20 +494,20 @@ var app = angular.module ('wyliodrinApp');
 				if (red === null)
 				{
 					red = $element.find ('#red')[0];
-					console.log (red);
+					// console.log (red);
 					if (red)
 					{
 						window.addEventListener ('message', function (message)
 						{
-							console.log (message);
+							// console.log (message);
 							try
 							{
 								var parsedmessage = message.data;
-								console.log (parsedmessage);
-								console.log (project.id);
+								// console.log (parsedmessage);
+								// console.log (project.id);
 								if (parsedmessage.type === 'flow' && parsedmessage.projectId === project.id)
 								{
-									console.log ('store');
+									// console.log ('store');
 									library.storeMain (project.id,parsedmessage.flow);
 								}
 							}
@@ -537,16 +537,16 @@ var app = angular.module ('wyliodrinApp');
 						// });
 						red.addEventListener ('contentload', function ()
 						{
-							console.log ('contentload');
+							// console.log ('contentload');
 							if ($scope.project.language === 'streams')
 							{
-								console.log ($scope.project);
+								// console.log ($scope.project);
 								red.contentWindow.postMessage ($scope.project, '*');	
 							}
 						});
 					}
 				}
-				console.log ($scope.project.language);
+				// console.log ($scope.project.language);
 				if (red && $scope.project.language === 'streams')
 				{
 					red.reload ();
@@ -617,7 +617,7 @@ var app = angular.module ('wyliodrinApp');
 			}
 
 
-			console.log ($scope.device);
+			// console.log ($scope.device);
 
 			var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
 			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])

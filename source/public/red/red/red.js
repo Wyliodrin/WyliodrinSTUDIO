@@ -32,19 +32,19 @@
 window.addEventListener ('message', function (message)
 {
     wyliodrin = message.source;
-    console.log ('message');
-    console.log (message);
+    // console.log ('message');
+    // console.log (message);
     project = message.data;
     if (!project.id && project.id !== 0)
     {
         project = {id:-1};
     }
-    console.log (project);
+    // console.log (project);
     if (project.id >= 0)
     {
         flow = project.main;
     }
-    console.log (flow);
+    // console.log (flow);
     // console.log ({type:'flow', flow: JSON.stringify(flow)});
     if (flowsLoaded === true) loadMain ();
 });
@@ -2331,7 +2331,7 @@ RED.deploy = (function() {
         });
 
         RED.events.on('nodes:change',function(state) {
-            console.log ('change');
+            // console.log ('change');
             if (state.dirty) {
                 // window.onbeforeunload = function() {
                 //     return RED._("deploy.confirm.undeployedChanges");

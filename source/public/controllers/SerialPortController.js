@@ -23,9 +23,10 @@ module.exports = function ()
 
 	app.controller('SerialPortsController', function($scope, $timeout, $filter, $wydevice, $mdDialog, $wyapp){
 		debug ('Registering');
-		$scope.serialPorts = [];
-		$scope.serialPort = null;
+		// $scope.serialPorts = [];
+		// $scope.serialPort = null;
 		$scope.status = $wydevice.getStatus ();
+		$scope.connection = '';
 
 		$scope.devices = [];
 
@@ -201,6 +202,7 @@ module.exports = function ()
 			debug ('Connecting to '+device);
 			if (device.platform === 'chrome')
 			{
+				$scope.connection = 'chrome';
 				$wydevice.connect ('', {type:'chrome'});
 				mixpanel.track ('SerialPort Connect',{
 					style:'chrome',
@@ -210,6 +212,7 @@ module.exports = function ()
 			else
 			if (device.platform === 'serial')
 			{
+				$scope.connection = device.ip;
 				$wydevice.connect (device.ip);
 				mixpanel.track ('SerialPort Connect',{
 					style:'serial',
@@ -218,6 +221,7 @@ module.exports = function ()
 			}
 			else
 			{
+				var scope = $scope;
 				$mdDialog.show({
 			      controller: function ($scope)
 			      {
@@ -245,6 +249,7 @@ module.exports = function ()
 			      			type = 'chrome-ssh';
 			      			port = $scope.device.secureport;
 			      		}
+			      		scope.connection = ip;
 			      		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:device.category, platform: device.platform});
 			      		$mdDialog.hide ();
 			      		mixpanel.track ('SerialPort Connect', {
@@ -272,8 +277,7 @@ module.exports = function ()
 
 		this.open = function ()
 		{
-			debug ('Opening serialport '+$scope.serialPort);
-
+			// debug ('Opening serialport '+$scope.serialPort);
 			$mdDialog.show({
 			      controller: function ($scope, $wydevice, $timeout)
 			      {

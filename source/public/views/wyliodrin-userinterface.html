@@ -124,7 +124,7 @@
                     </div>
                    	<div layout="column" class="device-box">
 			          <div class="device-title">{{ label[device.category].text }}</div>
-			          <div class="device-port">{{serialPort.path | translate}} {{serialPort.ip}}</div>
+			          <div class="device-port">{{ connection | translate }}</div>
 			        </div>
                     <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
                     	<md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run project" ></md-icon>

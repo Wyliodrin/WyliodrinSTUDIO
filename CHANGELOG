@@ -1,4 +1,5 @@
 Wyliodrin STUDIO 10.8
+* Fixed connection string below device
 * Updated grunt
 * Updated grunt-contrib-htmlmin
 

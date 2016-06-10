@@ -26,8 +26,15 @@ var app = angular.module ("wyliodrinApp", ['ui.ace', 'ngSanitize', 'highcharts-n
 {
 	$provide.decorator('$window', function($delegate) 
 	{
+      try
+      {
         $delegate.history = null;
-        return $delegate;
+      }
+      catch (e)
+      {
+        
+      }
+      return $delegate;
     });
 });
 

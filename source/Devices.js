@@ -23,34 +23,41 @@ class Device
 	constructor (id)
 	{
 		this._id = id;
+		this.properties = {};
 		this.parametersArray = [null, null, null, null];
 	}
 
 	addParameters (priority, parameters)
 	{
+		this.properties = {};
 		this.parametersArray[priority] = parameters;
 	}
 
 	eraseProperties (priority)
 	{
+		this.properties = {};
 		this.parametersArray[priority] = null;
 	}
 
 	get (property)
 	{
 		debug ('Get '+property+' for '+this.id);
-		var data = null;
-		for (var i = this.parametersArray.length-1; i>=0; i--)
+		var data = this.properties[property];
+		if (data === undefined)
 		{
-			var parameters = this.parametersArray[i];
-			if (parameters !== null)
+			for (var i = this.parametersArray.length-1; i>=0; i--)
 			{
-				if (parameters[property])
+				var parameters = this.parametersArray[i];
+				if (parameters !== null)
 				{
-					debug ('Found '+property+' priority '+i+' for id '+this.id);
-					data = parameters[property];
+					if (parameters[property])
+					{
+						debug ('Found '+property+' priority '+i+' for id '+this.id);
+						data = parameters[property];
+					}
 				}
 			}
+			this.properties[property] = data;
 		}
 		return data;
 	}
@@ -150,9 +157,10 @@ function compactDevices ()
 {
 	for (var i=0; i<devices.length; i++)
 	{
+		debug ('Device hasProperties '+devices[i].hasProperties()+' for id '+devices[i].id);
 		if (!devices[i].hasProperties())
 		{
-			debug ('Device '+devices[i].name+' '+devices[i].ip+' has 0 properties');
+			debug ('Device '+devices[i].id+' has 0 properties');
 			devices.splice (i, 1);
 			i--;
 		}
@@ -280,8 +288,8 @@ chrome.mdns.onServiceList.addListener (function (services)
 				device.addParameters (WORKSTATION, parameters);
 			}
 		}
-		compactDevices ();
 	});
+	compactDevices ();
 }, {serviceType: '_workstation._tcp.local'});
 
 module.exports.getDevices = getDevices;

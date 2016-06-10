@@ -537,7 +537,7 @@ var app = angular.module ('wyliodrinApp');
 						// });
 						red.addEventListener ('contentload', function ()
 						{
-							// console.log ('contentload');
+							console.log ('contentload');
 							if ($scope.project.language === 'streams')
 							{
 								// console.log ($scope.project);

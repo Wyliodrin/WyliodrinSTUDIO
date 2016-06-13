@@ -18,6 +18,16 @@ const WORKSTATION = 2;
 
 var devices = [];
 
+function deviceId (hostPort)
+{
+	var id = "";
+	if (hostPort)
+	{
+		id = hostPort.substring (0, hostPort.lastIndexOf(':'));	
+	}
+	return id;
+}
+
 class Device
 {
 	constructor (id)
@@ -176,7 +186,7 @@ chrome.mdns.onServiceList.addListener (function (services)
 	eraseDevices (WYAPP);
 	_.each (services, function (service)
 	{
-		var id = service.ipAddress;
+		var id = deviceId (service.serviceHostPort);
 		var device = findDevice (id);
 		if (device === null)
 		{
@@ -215,7 +225,7 @@ chrome.mdns.onServiceList.addListener (function (services)
 		});
 		if (name)
 		{
-			var id = service.ipAddress;
+			var id = deviceId (service.serviceHostPort);
 			var device = findDevice (id);
 			if (device === null)
 			{
@@ -269,7 +279,7 @@ chrome.mdns.onServiceList.addListener (function (services)
 			}
 			if (category)
 			{
-				var id = service.ipAddress;
+				var id = deviceId (service.serviceHostPort);
 				var device = findDevice (id);
 				if (device === null)
 				{

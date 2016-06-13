@@ -1557,25 +1557,25 @@ RED.nodes.registerType('write ble',{
         }
     });
 
-    RED.nodes.registerType('message callback',{
-        color:"#e6e0f8",
-        category: 'function',
-        defaults: {
-            name: {value:""},
-        },
-        inputs:1,
-        outputs:2,
-        icon: "storage.png",
-        label: function() {
-            return this.value || this.name;
-        },
-        oneditprepare: function() {
+    // RED.nodes.registerType('message callback',{
+    //     color:"#e6e0f8",
+    //     category: 'function',
+    //     defaults: {
+    //         name: {value:""},
+    //     },
+    //     inputs:1,
+    //     outputs:2,
+    //     icon: "storage.png",
+    //     label: function() {
+    //         return this.value || this.name;
+    //     },
+    //     oneditprepare: function() {
             
-        },
-        oneditsave: function() {
+    //     },
+    //     oneditsave: function() {
             
-        }
-    });
+    //     }
+    // });
 
     RED.nodes.registerType('set x value',{
         color:"#e6e0f8",
@@ -1899,6 +1899,85 @@ RED.nodes.registerType('write ble',{
         },
     });
 
+    var html = window.atob ('PCFET0NUWVBFIGh0bWw+DQo8aHRtbCBuZy1hcHA9Im15QXBwIj4NCiAgPGhlYWQ+DQogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vYWpheC5nb29nbGVhcGlzLmNvbS9hamF4L2xpYnMvYW5ndWxhcmpzLzEuMy4xNC9hbmd1bGFyLm1pbi5qcyI+PC9zY3JpcHQ+DQogICAgPHNjcmlwdCBzcmM9Ii9zb2NrZXQuaW8vc29ja2V0LmlvLmpzIj48L3NjcmlwdD4NCiAgICA8c2NyaXB0Pg0KICAgICAgICBhbmd1bGFyLm1vZHVsZSgnbXlBcHAnLFtdKS5jb250cm9sbGVyICgnV3lsaW9kcmluQ3RybCcsIGZ1bmN0aW9uICgkc2NvcGUsICR0aW1lb3V0KQ0KICAgICAgICB7DQogICAgICAgICAgICB2YXIgc29ja2V0ID0gaW8oKTsNCiAgICAgICAgICAgIHNvY2tldC5vbigndmFsdWUnLCBmdW5jdGlvbiAoZGF0YSkgew0KICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nIChkYXRhKTsNCiAgICAgICAgICAgICAgICAkdGltZW91dCAoZnVuY3Rpb24gKCkNCiAgICAgICAgICAgICAgICB7DQogICAgICAgICAgICAgICAgICAgICRzY29wZVtkYXRhLnZhcmlhYmxlXSA9IGRhdGEudmFsdWU7ICAgICAgDQogICAgICAgICAgICAgICAgfSk7DQogICAgICAgICAgICAgICAgaWYgKHR5cGVvZiB3eWxpb2RyaW4ub25VcGRhdGUgPT09ICJmdW5jdGlvbiIpDQogICAgICAgICAgICAgICAgew0KICAgICAgICAgICAgICAgICAgICB3eWxpb2RyaW4ub25VcGRhdGUgKGRhdGEudmFyaWFibGUsIGRhdGEudmFsdWUpOw0KICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgIH0pOw0KICAgICAgICB9KTsNCiAgICAgICAgDQogICAgICAgIHZhciB3eWxpb2RyaW4gPSB7DQogICAgICAgICAgb25VcGRhdGU6IG51bGwsDQogICAgICAgIH07DQogICAgPC9zY3JpcHQ+DQogIDwvaGVhZD4NCiAgPGJvZHkgbmctY29udHJvbGxlcj0iV3lsaW9kcmluQ3RybCI+DQogICAgVmFsdWUge3sgdmFsdWUgfX0NCiAgICA8c2NyaXB0Pg0KICAgICAgLy8gVGhpcyBmdW5jdGlvbiBpcyBjYWxsZWQgZXZlcnl0aW1lIGEgdmFyaWFibGUgaXMgdXBkYXRlZA0KICAgICAgd3lsaW9kcmluLm9uVXBkYXRlID0gZnVuY3Rpb24gKHZhcmlhYmxlLCBkYXRhKQ0KICAgICAgew0KICAgICAgICBjb25zb2xlLmxvZyAodmFyaWFibGUrJyAnK2RhdGEpOw0KICAgICAgfQ0KICAgIDwvc2NyaXB0Pg0KICA8L2JvZHk+DQo8L2h0bWw+').toString();
+
+    // console.log (html);
+
+    RED.nodes.registerType('web html',{
+        color:"rgb(215, 215, 180)",
+        category: 'output',
+        defaults: {
+            name: {value:''},
+            template: {value:html},
+            replace: {value: false}
+            // outputs: {value:1}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "white-globe.png",
+        label: function() {
+            return (this.name.length>0)?this.name:'Web Html';
+        },
+        oneditprepare: function() {
+            var that = this;
+            // $( "#node-input-outputs" ).spinner({
+            //     min:1
+            // });
+            function functionDialogResize() {
+                var rows = $("#dialog-form>div:not(.node-text-editor-row)");
+                var height = $("#dialog-form").height();
+                for (var i=0;i<rows.size();i++) {
+                    height -= $(rows[i]).outerHeight(true);
+                }
+                var editorRow = $("#dialog-form>div.node-text-editor-row");
+                height -= (parseInt(editorRow.css("marginTop"))+parseInt(editorRow.css("marginBottom")));
+                $(".node-text-editor").css("height",height+"px");
+                that.editor.resize();
+            }
+            $( "#dialog" ).on("dialogresize", functionDialogResize);
+            $( "#dialog" ).one("dialogopen", function(ev) {
+                var size = $( "#dialog" ).dialog('option','sizeCache-function');
+                if (size) {
+                    $("#dialog").dialog('option','width',size.width);
+                    $("#dialog").dialog('option','height',size.height);
+                    functionDialogResize();
+                }
+            });
+            $( "#dialog" ).one("dialogclose", function(ev,ui) {
+                var height = $( "#dialog" ).dialog('option','height');
+                $( "#dialog" ).off("dialogresize",functionDialogResize);
+            });
+            this.editor = RED.editor.createEditor({
+                id: 'node-input-template-editor',
+                mode: 'ace/mode/html',
+                theme: 'ace/mode/chrome',
+                value: $("#node-input-template").val()
+            });
+            RED.library.create({
+                url:"functions", // where to get the data from
+                type:"function", // the type of object the library is for
+                editor:this.editor, // the field name the main text body goes to
+                mode:"ace/mode/html",
+                fields:['name','outputs']
+            });
+            this.editor.focus();
+        },
+        oneditsave: function() {
+            var annot = this.editor.getSession().getAnnotations();
+            this.noerr = 0;
+            $("#node-input-noerr").val(0);
+            for (var k=0; k < annot.length; k++) {
+                //console.log(annot[k].type,":",annot[k].text, "on line", annot[k].row);
+                if (annot[k].type === "error") {
+                    $("#node-input-noerr").val(annot.length);
+                    this.noerr = annot.length;
+                }
+            }
+            $("#node-input-template").val(this.editor.getValue());
+            delete this.editor;
+        }
+      });
+
     RED.nodes.registerType('web template',{
         color:"rgb(215, 215, 180)",
         category: 'output',
@@ -2008,6 +2087,22 @@ RED.nodes.registerType('write ble',{
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
+<script type="text/x-red" data-template-name="web html">
+    <div class="form-row" style="margin-bottom: 0px;">
+            <label for="node-input-template"><i class="fa fa-wrench"></i> HTML Template</label>
+            <input type="hidden" id="node-input-template" autofocus="autofocus">
+    </div>
+    <div class="form-row node-text-editor-row">
+        <div style="height: 250px;" class="node-text-editor" id="node-input-template-editor" ></div>
+    </div>
+    <div class="form-row" id="node-replace">
+        <input style="width: 30px;" type="checkbox" id="node-input-replace"><label style="width: 250px;" for="node-input-replace">Replace Variables</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
 <script type="text/x-red" data-template-name="web template">
     <div class="form-row">
         <label for="node-input-template"><i class="fa fa-tag"></i> Template</label>
@@ -2061,6 +2156,9 @@ RED.nodes.registerType('write ble',{
     Send a response for a web request. This must be the message returned from a web route.
     The <b>payload</b> is sent back.
           
+</script><script type="text/x-red" data-help-name="web html">
+  <p>A template where you can write <b>HTML</b> code.</p>
+  <p>If Replace variables is checked, the {{variable}} will be replaced from msg.payload.</p>
 </script><script type="text/x-red" data-help-name="web template">
     Send a template as response for a web request. It uses jinja templates lecated in the <b>templates</b> folder. Items in the template are replaced by <b>payload</b>.
 

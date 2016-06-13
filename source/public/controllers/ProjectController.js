@@ -508,6 +508,7 @@ var app = angular.module ('wyliodrinApp');
 								if (parsedmessage.type === 'flow' && parsedmessage.projectId === project.id)
 								{
 									// console.log ('store');
+									project.main = parsedmessage.flow;
 									library.storeMain (project.id,parsedmessage.flow);
 								}
 							}

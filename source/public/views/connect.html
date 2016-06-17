@@ -24,7 +24,7 @@
                 	{{device.name}}
                 </div>
                 <div class="board-connect-type">
-                	{{'PLATFORM_'+device.platform | translate }}
+                	{{ device.platform?'PLATFORM_'+device.platform:'' | translate }}
                 </div>
                 <div class="board-connect-address">
                 	//{{device.ip}}

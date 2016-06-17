@@ -7,8 +7,3 @@ sudo apt-get install -y --force-yes wyliodrin-shell
 sudo apt-get install -y --force-yes wyliodrin-app-server 
 sudo apt-get install -y --force-yes wyliodrin-social
 sudo apt-get install -y --force-yes node-red 
-# npm dependency
-# libusb
-# download node 4
-# npm --unsafe-perm
-# ln -s /usr/bin/swig3.0 /usr/bin/swig

@@ -46,6 +46,8 @@ module.exports = function ()
 				debug (options);
 				var categoryhint = (options?options.category:undefined);
 				var platformhint = (options?options.platform:undefined);
+				console.log (categoryhint);
+				console.log (platformhint);
 				device = new WyliodrinDevice (strdevice, options);
 				var that = this;
 				
@@ -79,6 +81,7 @@ module.exports = function ()
 						device.removeAllListeners ();
 						device = null;
 					}
+					console.log (deviceService.device);
 					that.emit ('status', _status);
 				});
 

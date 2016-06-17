@@ -182,14 +182,19 @@ function compactDevices ()
 debug ('mdns for _wyapp');
 chrome.mdns.onServiceList.addListener (function (services)
 {
+	debug ('Services _wyapp');
 	debug (services);
 	eraseDevices (WYAPP);
 	_.each (services, function (service)
 	{
+		debug ('Service');
+		debug (service);
 		var id = deviceId (service.serviceHostPort);
+		debug ('Device id '+id);
 		var device = findDevice (id);
 		if (device === null)
 		{
+			debug ('new device '+id);
 			device = new Device (id);
 			addDevice (device);
 		}
@@ -205,16 +210,20 @@ chrome.mdns.onServiceList.addListener (function (services)
 		// var deviceindex = _.findIndex ($scope.devicesinstall, function (device) { return device.ip === service.ipAddress; });
 		// if (deviceindex >= 0) $scope.devicesinstall.splice (deviceindex, 1);
 	});
+	debug ('Compacting devices');
 	compactDevices ();
 }, {serviceType: '_wyapp._tcp.local'});
 
 debug ('mdns for _sshsvc');
 chrome.mdns.onServiceList.addListener (function (services)
 {
+	debug ('Services _sshsvc');
 	debug (services);
 	eraseDevices (SSHSVC);
 	_.each (services, function (service)
 	{
+		debug ('Service');
+		debug (service);
 		var category = null;
 		var name = _.find (service.serviceData, function (serviceData)
 		{
@@ -225,10 +234,13 @@ chrome.mdns.onServiceList.addListener (function (services)
 		});
 		if (name)
 		{
+			debug ('Found '+name+' of type '+category);
 			var id = deviceId (service.serviceHostPort);
+			debug ('Device id '+id);
 			var device = findDevice (id);
 			if (device === null)
 			{
+				debug ('new device '+id);
 				device = new Device (id);
 				addDevice (device);
 			}
@@ -250,23 +262,27 @@ chrome.mdns.onServiceList.addListener (function (services)
 		}
 		
 	});
+	debug ('Compacting devices');
 	compactDevices ();
 }, {serviceType: '_sshsvc._tcp.local'});
 
 debug ('mdns for _workstation'); // Linux Raspberry Pi
 chrome.mdns.onServiceList.addListener (function (services)
 {
+	debug ('Services _workstation');
 	debug (services);
 	eraseDevices (WORKSTATION);
-	var regex = /([^[]+)\[([0-9a-f:]+)\]/;
+	var regex = /([^[]+) \[([0-9a-f:]+)\]/;
 	// removeDevices ('_workstation._tcp.local');
 	_.each (services, function (service)
 	{
+		debug ('Service');
+		debug (service);
 		var data = service.serviceName.match (regex);
 		if (data && data[2])
 		{
 			var category = null;
-			if (data[2].toLowerCase().startsWith ('b8:27:eb'))
+			if (data[2].toLowerCase().startsWith ('b8:27:eb') || data[1] === 'raspberrypi')
 			{
 				category = 'raspberrypi';
 				// $scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
@@ -279,10 +295,13 @@ chrome.mdns.onServiceList.addListener (function (services)
 			}
 			if (category)
 			{
+				debug ('Found '+category);
 				var id = deviceId (service.serviceHostPort);
+				debug ('Device id '+id);
 				var device = findDevice (id);
 				if (device === null)
 				{
+					debug ('new device '+id);
 					device = new Device (id);
 					addDevice (device);
 				}
@@ -299,6 +318,7 @@ chrome.mdns.onServiceList.addListener (function (services)
 			}
 		}
 	});
+	debug ('Compacting devices');
 	compactDevices ();
 }, {serviceType: '_workstation._tcp.local'});
 

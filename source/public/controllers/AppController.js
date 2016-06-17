@@ -111,6 +111,7 @@ module.exports = function ()
 				}
 				$scope.status = status;
 				$scope.device.platform = $wydevice.device.platform;
+				$scope.device.category = $wydevice.device.category;
 				if (status === 'CONNECTED' || status === 'INSTALL') $scope.shell_disable = false;
 			});
 		});

@@ -320,7 +320,7 @@ chrome.mdns.onServiceList.addListener (function (services)
 	});
 	debug ('Compacting devices');
 	compactDevices ();
-}, {serviceType: '_workstation._tcp.local'});
+}, {serviceType: '_wworkstation._tcp.local'});
 
 module.exports.getDevices = getDevices;
 module.exports.registerListener = registerListener;

@@ -889,6 +889,7 @@ RED.nodes = (function() {
         dirty = d;
         if (dirty === true)
         {
+            console.log (JSON.stringify(RED.nodes.createCompleteNodeSet()));
             if (project !== null && wyliodrin !== null)
             {
                 wyliodrin.postMessage ({type:'flow', projectId:project.id, flow:JSON.stringify(RED.nodes.createCompleteNodeSet())}, '*');

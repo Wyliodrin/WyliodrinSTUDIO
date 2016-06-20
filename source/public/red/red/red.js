@@ -220,14 +220,16 @@ var RED = (function() {
                     {id:"menu-item-sidebar",label:RED._("menu.label.sidebar.show"),toggle:true,onselect:RED.sidebar.toggleSidebar, selected: true}
                 ]},
                 null,
-                {id:"menu-item-import",label:RED._("menu.label.import"),options:[
-                    {id:"menu-item-import-clipboard",label:RED._("menu.label.clipboard"),onselect:RED.clipboard.import},
-                    {id:"menu-item-import-library",label:RED._("menu.label.library"),options:[]}
-                ]},
-                {id:"menu-item-export",label:RED._("menu.label.export"),disabled:true,options:[
-                    {id:"menu-item-export-clipboard",label:RED._("menu.label.clipboard"),disabled:true,onselect:RED.clipboard.export},
-                    {id:"menu-item-export-library",label:RED._("menu.label.library"),disabled:true,onselect:RED.library.export}
-                ]},
+                {id:"menu-item-import-clipboard",label:RED._("menu.label.import"),onselect:RED.clipboard.import},
+                // {id:"menu-item-import",label:RED._("menu.label.import"),options:[
+                    // {id:"menu-item-import-clipboard",label:RED._("menu.label.clipboard"),onselect:RED.clipboard.import},
+                    // {id:"menu-item-import-library",label:RED._("menu.label.library"),options:[]}
+                // ]},
+                {id:"menu-item-export-clipboard",label:RED._("menu.label.export"),disabled:true,onselect:RED.clipboard.export},
+                // {id:"menu-item-export",label:RED._("menu.label.export"),disabled:true,options:[
+                    // {id:"menu-item-export-clipboard",label:RED._("menu.label.clipboard"),disabled:true,onselect:RED.clipboard.export},
+                    // {id:"menu-item-export-library",label:RED._("menu.label.library"),disabled:true,onselect:RED.library.export}
+                // ]},
                 null,
                 {id:"menu-item-config-nodes",label:RED._("menu.label.displayConfig"),onselect:function(){}},
                 {id:"menu-item-workspace",label:RED._("menu.label.flows"),options:[
@@ -242,11 +244,11 @@ var RED = (function() {
                 ]},
                 null,
                 {id:"menu-item-keyboard-shortcuts",label:RED._("menu.label.keyboardShortcuts"),onselect:RED.keyboard.showHelp},
-                {id:"menu-item-help",
-                    label: RED.settings.theme("menu.menu-item-help.label","Node-RED Website"),
-                    href: RED.settings.theme("menu.menu-item-help.url","http://nodered.org/docs")
-                },
-                {id:"menu-item-node-red-version", label:"v"+RED.settings.version}
+                // {id:"menu-item-help",
+                //     label: RED.settings.theme("menu.menu-item-help.label","Node-RED Website"),
+                //     href: RED.settings.theme("menu.menu-item-help.url","http://nodered.org/docs")
+                // },
+                // {id:"menu-item-node-red-version", label:"v"+RED.settings.version}
             ]
         });
 

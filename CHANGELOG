@@ -1,7 +1,11 @@
 Wyliodrin STUDIO 10.8
+* Added Streams language
+* Added rename device
 * Fixed connection string below device
+* Fixed maximize button in Windows
 * Updated grunt
 * Updated grunt-contrib-htmlmin
+* Updated grunt-contrib-compress
 
 Wyliodrin STUDIO 10.7.1
 * Fixed Chrome 51 startup

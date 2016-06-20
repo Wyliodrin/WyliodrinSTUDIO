@@ -91,9 +91,11 @@ module.exports = function ()
 					{
 						// console.log (d);
 						if (!deviceService.device) deviceService.device = {};
+						deviceService.device.name = d.n;
 						deviceService.device.category = d.c;
 						deviceService.device.network = d.i;
 						deviceService.device.platform = d.p || 'linux';
+						that.emit ('status', status);
 					}
 					else
 					if (t === 'capabilities')

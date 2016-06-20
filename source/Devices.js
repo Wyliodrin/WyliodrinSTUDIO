@@ -198,10 +198,38 @@ chrome.mdns.onServiceList.addListener (function (services)
 			device = new Device (id);
 			addDevice (device);
 		}
+
+		var category = _.find (service.serviceData, function (serviceData)
+		{
+			return (serviceData.indexOf ('category=')===0);
+		});
+
+		if (category) category = category.substring (9);
+
+		var platform = _.find (service.serviceData, function (serviceData)
+		{
+			return (serviceData.indexOf ('platform=')===0);
+		});
+
+		if (platform) platform = platform.substring (9);
+
+		var name = _.find (service.serviceData, function (serviceData)
+		{
+			return (serviceData.indexOf ('name=')===0);
+		});
+
+		if (name) name = name.substring (5);
+		else
+		{
+			name = service.serviceName.split('.')[0];	
+		}
+
 		var parameters = 
 		{
-			name: service.serviceName.split('.')[0],
+			name: name,
 			ip: service.ipAddress,
+			category: category,
+			platform: platform,
 			port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)),
 			secureport: 22
 		};

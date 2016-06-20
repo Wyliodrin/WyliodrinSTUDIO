@@ -196,6 +196,49 @@ module.exports = function ()
 		    });
 		});
 
+		this.name = function ()
+		{
+			mixpanel.track ('Board Rename', {
+				
+			});
+			$mdDialog.hide ();
+			var renameBoardDialog = $mdDialog.show({
+		      controller: function ($scope)
+		      {
+
+				  
+				$scope.name = $wydevice.device.name;
+				  
+				  
+		      	this.rename = function ()
+		      	{
+					debug ('Rename board '+$wydevice.device.name);
+					if ($scope.name.trim().length >= 1)
+					{
+						$wydevice.send ('n', {n:$scope.name.trim()});
+						$mdDialog.hide ();
+					}
+					else
+					{
+						debug ("Board name is unacceptable");
+					}
+		      	};
+				
+				this.cancel = function ()
+		      	{
+					$mdDialog.hide ();
+		      	};
+
+		      },
+		      controllerAs: 'a',
+		      templateUrl: '/public/views/name.html',
+		      // parent: angular.element(window.body),
+		      // targetEvent: ev,
+		      clickOutsideToClose:true,
+		      fullscreen: false
+		    });	
+		};
+
 		this.connect = function (device)
 		{
 			if (!device) device = {ip:'', port:7000, secureport:22};

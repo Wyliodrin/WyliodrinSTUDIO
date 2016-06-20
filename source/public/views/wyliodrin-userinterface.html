@@ -123,8 +123,11 @@
                         </md-tooltip>
                     </div>
                    	<div layout="column" class="device-box">
-			          <div class="device-title" ng-click="sp.name()">{{ (device.name && device.name.length>0)?device.name:label[device.category].text }}</div>
+			          <div class="device-title" ng-click="sp.name()">{{ (device.name && device.name.length>0)?device.name:label[device.category].text | limitTo:25 }}</div>
 			          <div class="device-port">{{ connection | translate }}</div>
+                      <md-tooltip md-direction="bottom">
+                      	{{ 'WYLIODRIN_USERINTERFACE_devicename' | translate }}
+                      </md-tooltip>
 			        </div>
                     <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
                     	<md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run project" ></md-icon>

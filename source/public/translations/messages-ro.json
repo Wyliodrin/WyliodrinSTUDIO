@@ -698,5 +698,10 @@
   {
     "message":"Selectați un dispozitiv la care doriți să vă conectați",
     "description":""
+  },
+  "WYLIODRIN_USERINTERFACE_devicename":
+  {
+    "message":"Redenumiți dispozitivul",
+    "description":""
   }
 }

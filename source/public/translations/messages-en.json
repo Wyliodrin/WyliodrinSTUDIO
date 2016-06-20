@@ -708,5 +708,10 @@
   {
     "message":"Select a device to connect to",
     "description":""
+  },
+  "WYLIODRIN_USERINTERFACE_devicename":
+  {
+    "message":"Rename device",
+    "description":""
   }
 }

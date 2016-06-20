@@ -693,5 +693,10 @@
   {
     "message":"Sélectionnez un appareil pour se connecter à",
     "description":""
+  },
+  "WYLIODRIN_USERINTERFACE_devicename":
+  {
+    "message":"Renommer dispositif",
+    "description":""
   }
 }

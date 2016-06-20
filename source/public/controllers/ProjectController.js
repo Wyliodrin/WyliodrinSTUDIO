@@ -504,12 +504,12 @@ var app = angular.module ('wyliodrinApp');
 							{
 								var parsedmessage = message.data;
 								console.log (parsedmessage);
-								console.log (project.id);
-								if (parsedmessage.type === 'flow' && parsedmessage.projectId === $scope.project.id)
+								console.log ($scope.project.id);
+								if (parsedmessage.type === 'flow' && parsedmessage.projectId === project.id)
 								{
 									// console.log ('store');
 									project.main = parsedmessage.flow;
-									library.storeMain (project.id,parsedmessage.flow);
+									library.storeMain ($scope.project.id,parsedmessage.flow);
 								}
 							}
 							catch (e)

@@ -37,7 +37,7 @@
                     {{ 'DEVICE_Chrome' | translate }}
                 </md-tooltip>
                 <div class="board-connect-title">
-                    {{ 'DEVICE_Chrome' | translate }}
+                    {{ 'DEVICE_Chrome' | translate | limitTo:18 }}
                 </div>
                 <div class="board-connect-type">
                     {{ 'chrome' | translate }}
@@ -47,10 +47,10 @@
             <md-button class="board-connect-btn" ng-click="c.connect ()">
 	            <img src="/public/drawable/network.png">
 	            <md-tooltip md-direction="bottom">
-	            	{{ "IP Address" }}
+	            	{{ 'DEVICE_ADDRESS' | translate }}
 	            </md-tooltip>
                 <div class="board-connect-title">
-                	{{ "IP Address" | limitTo:18 }}
+                	{{ 'DEVICE_ADDRESS' | translate | limitTo:18 }}
                 </div>
                 <div class="board-connect-type">
                 	{{ 'DEVICE_Network' | translate }}
@@ -63,7 +63,7 @@
                     {{port.path}}
                 </md-tooltip>
                 <div class="board-connect-title">
-                    {{port.name}}
+                    {{port.name | limitTo:18}}
                 </div>
                 <div class="board-connect-type">
                     {{ 'DEVICE_Serial' | translate }}

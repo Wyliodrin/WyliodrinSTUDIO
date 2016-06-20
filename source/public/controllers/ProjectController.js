@@ -38,6 +38,8 @@ var _ = require ('lodash');
 
 var functionsDoc = require ('./../tools/functions_documentation.js');
 
+var red = null;
+
 debug ('Loading');
 
 function removeComments(str) {
@@ -252,6 +254,11 @@ var app = angular.module ('wyliodrinApp');
 
 			shell.resize (cols, rows);
 			$wydevice.send ('r', {a:'r', c:cols, r: rows});
+
+			var $divred = $element.find('#divred');
+			var $red = $element.find ('#red');
+			$red.width ($divred.width());
+			$red.height ($divred.height());
 		}
 
 		$scope.aceSoftwareLoaded = function (_editor)
@@ -484,6 +491,67 @@ var app = angular.module ('wyliodrinApp');
 			$timeout (function ()
 			{
 				$scope.project = project;
+				if (red === null)
+				{
+					red = $element.find ('#red')[0];
+					// console.log (red);
+					if (red)
+					{
+						window.addEventListener ('message', function (message)
+						{
+							// console.log (message);
+							try
+							{
+								var parsedmessage = message.data;
+								console.log (parsedmessage);
+								console.log ($scope.project.id);
+								if (parsedmessage.type === 'flow' && parsedmessage.projectId === $scope.project.id)
+								{
+									// console.log ('store');
+									project.main = parsedmessage.flow;
+									library.storeMain ($scope.project.id,parsedmessage.flow);
+								}
+							}
+							catch (e)
+							{
+
+							}
+						});
+						// red.addEventListener ('consolemessage', function (message)
+						// {
+						// 	console.log (message);
+						// 	try
+						// 	{
+						// 		var parsedmessage = JSON.parse (message.message);
+						// 		console.log (parsedmessage);
+						// 		console.log (project.id);
+						// 		if (parsedmessage.type === 'flow' && parsedmessage.projectId === project.id)
+						// 		{
+						// 			console.log ('store');
+						// 			library.storeMain (project.id,parsedmessage.flow);
+						// 		}
+						// 	}
+						// 	catch (e)
+						// 	{
+
+						// 	}
+						// });
+						red.addEventListener ('contentload', function ()
+						{
+							console.log ('contentload');
+							if ($scope.project.language === 'streams')
+							{
+								// console.log ($scope.project);
+								red.contentWindow.postMessage ($scope.project, '*');	
+							}
+						});
+					}
+				}
+				// console.log ($scope.project.language);
+				if (red && $scope.project.language === 'streams')
+				{
+					red.reload ();
+				}
 			});
 		});
 
@@ -550,7 +618,7 @@ var app = angular.module ('wyliodrinApp');
 			}
 
 
-			console.log ($scope.device);
+			// console.log ($scope.device);
 
 			var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
 			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])

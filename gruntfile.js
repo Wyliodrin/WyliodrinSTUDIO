@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
   var tasks = {
     jshint: {
-      files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/interpreter.js'],
+      files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/red/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/interpreter.js'],
       options: {
         jquery:true,
         esnext: true,
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       },
       client: {
         files: {
-          'build/public/wyliodrin.js': ['source/public/**/*.js', '!source/public/blockly/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js']
+          'build/public/wyliodrin.js': ['source/public/**/*.js', '!source/public/blockly/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/public/red/**/*.js']
         },
         options: {
           browserifyOptions: {
@@ -71,7 +71,17 @@ module.exports = function(grunt) {
                   ["brfs", {}]
                ],
         }
-      }
+      },
+      // streamsproject: {
+      //   files: {
+      //     'build/public/red/blockly.js': ['source/public/blockly/blockly.js']
+      //   },
+      //   options: {
+      //     transform: [
+      //             ["brfs", {}]
+      //          ],
+      //   }
+      // }
     },
     ngAnnotate:
     {
@@ -128,6 +138,17 @@ module.exports = function(grunt) {
         }
       }
     },
+    sass: {
+      build: {
+        options: {
+            outputStyle: 'compressed'
+        },
+        files: [{
+            dest: 'build/public/red/red/style.min.css',
+            src: 'source/public/red/red/styles/style.scss'
+        }]
+      }
+    },
     cssmin: {
       client:
       {
@@ -179,6 +200,14 @@ module.exports = function(grunt) {
               expand: true,     // Enable dynamic expansion.
               cwd: 'source/',      // Src matches are relative to this path.
               src: ['public/blockly/**', '!public/blockly/blockly.js'], // Actual pattern(s) to match.
+              dest: 'build/',   // Destination path prefix.
+              // ext: '.html',   // Dest filepaths will have this extension.
+              extDot: 'first'   // Extensions in filenames begin after the first dot
+            },
+            {
+              expand: true,     // Enable dynamic expansion.
+              cwd: 'source/',      // Src matches are relative to this path.
+              src: ['public/red/**'], // Actual pattern(s) to match.
               dest: 'build/',   // Destination path prefix.
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
@@ -478,6 +507,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -492,6 +522,7 @@ module.exports = function(grunt) {
     'ngAnnotate',
     'copy',
     'less',
+    'sass',
     'locale', 
     // 'cssmin',
     // 'uglify',

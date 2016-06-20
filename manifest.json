@@ -49,6 +49,10 @@
       {
         "name":"documentation",
         "accessible_resources":["/public/documentation/*"]
+      },
+      {
+        "name":"red",
+        "accessible_resources":["/public/red/*"]
       }
     ]
   },

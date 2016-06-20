@@ -458,6 +458,7 @@ var functionsDoc = {
 	arduino:libwyliodrin.concat ([
 	]),
 	visual:[],
+	streams:[],
 	python: libwyliodrin.concat ([
 		{
 			name:"GPIO.setmode",

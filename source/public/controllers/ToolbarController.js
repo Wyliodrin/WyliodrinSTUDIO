@@ -14,6 +14,13 @@ debug ('Loading');
 module.exports = function ()
 {
 
+	var os = '';
+
+	chrome.runtime.getPlatformInfo (function (system)
+	{
+	  os = system.os;
+	});
+
 	var app = angular.module ('wyliodrinApp');
 
 	app.controller ('ToolbarController', function ($scope, $filter, $mdDialog, $wyapp, $wydevice)
@@ -69,13 +76,22 @@ module.exports = function ()
 		{
 			debug ('Fullscreen');
 			var w = chrome.app.window.current();
-			if (w.isFullscreen ())
+			var maximize = w.maximize; 
+			var isMaximized = w.isMaximized;
+
+			if (os === 'mac')
+			{
+				maximize = w.fullscreen;
+				isMaximized = w.isFullscreen;
+			}
+
+			if (isMaximized ())
 			{
 				w.restore ();	
 			}
 			else
 			{
-				w.fullscreen ();
+				maximize ();
 			}
 		};
 

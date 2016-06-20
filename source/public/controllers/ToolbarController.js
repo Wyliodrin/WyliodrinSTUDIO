@@ -62,6 +62,11 @@ module.exports = function ()
 		    });
 		};
 
+		chrome.app.window.current().onMaximized.addListener (function ()
+		{
+			$scope.isFullscreen = true;
+		});
+
 		chrome.app.window.current().onFullscreened.addListener (function ()
 		{
 			$scope.isFullscreen = true;

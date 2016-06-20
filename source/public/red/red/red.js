@@ -42,7 +42,15 @@ window.addEventListener ('message', function (message)
     // console.log (project);
     if (project.id >= 0)
     {
-        flow = project.main;
+        try
+        {
+            JSON.parse(project.main);
+            flow = project.main;
+        }
+        catch (exception)
+        {
+            flow = [];
+        }
     }
     // console.log (flow);
     // console.log ({type:'flow', flow: JSON.stringify(flow)});

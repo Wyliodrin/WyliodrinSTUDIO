@@ -14,19 +14,22 @@
  * limitations under the License.
  **/
 
- var flow = [];
+ var flow = null;
  var flowsLoaded = false;
  var project = null;
  var wyliodrin = null;
 
  function loadMain ()
  {
-    setTimeout (function ()
+    if (flow !== null)
     {
-        RED.nodes.import(flow);
-        RED.nodes.dirty(false);
-        RED.view.redraw(true);
-    });
+        setTimeout (function ()
+        {
+            RED.nodes.import(flow);
+            RED.nodes.dirty(false);
+            RED.view.redraw(true);
+        });
+    }
  }
 
 window.addEventListener ('message', function (message)
@@ -44,8 +47,8 @@ window.addEventListener ('message', function (message)
     {
         try
         {
-            JSON.parse(project.main);
-            flow = project.main;
+            flow = JSON.parse(project.main);
+            // flow = project.main;
         }
         catch (exception)
         {
@@ -4672,7 +4675,8 @@ RED.view = (function() {
     }
 
     function nodeButtonClicked(d) {
-        if (!activeSubflow && !d.changed) {
+        if (!activeSubflow) // && !d.changed) {
+            {
             if (d._def.button.toggle) {
                 d[d._def.button.toggle] = !d[d._def.button.toggle];
                 d.dirty = true;

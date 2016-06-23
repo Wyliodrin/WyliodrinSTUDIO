@@ -6,4 +6,5 @@ sudo apt-get install -y --force-yes libusb-1.0.0-dev npm libstrophe=0.8.8 libstr
 sudo apt-get install -y --force-yes wyliodrin-shell 
 sudo apt-get install -y --force-yes wyliodrin-app-server 
 sudo apt-get install -y --force-yes wyliodrin-social
+sudo apt-get install -y --force-yes octave octave-signal r-base r-cran-rjson
 sudo apt-get install -y --force-yes node-red 

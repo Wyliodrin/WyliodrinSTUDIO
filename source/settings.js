@@ -68,6 +68,14 @@ settings.LABEL = {
 		usename: '',
 		password: ''
 	},
+	'cisco829':
+	{
+		'software':'Cisco IR 829',
+		'firmware':'',
+		text: 'Cisco IR 829',
+		usename: 'root',
+		password: ''
+	},
 };
 
 settings.STYLE_NAMES = {

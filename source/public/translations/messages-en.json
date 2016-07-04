@@ -713,5 +713,21 @@
   {
     "message":"Rename device",
     "description":""
+  },
+  "IR829_wiki1": {
+    "message": "Follow the instructions <a href='{{link1}}' target='_blank'>here</a> and reach a Linux environment within the router.",
+    "description": ""
+  },
+  "IR829_wiki2": {
+    "message": "The link contains all the necessary informations to get confortable with Cisco's IOS environment before you reach the Linux console.",
+    "description": ""
+  },
+  "IR829_wget": {
+    "message": "In the Linux environment, use wget and download the bundle pack for Wyliodrin server as a zip with the following command:",
+    "description": ""
+  },
+  "IR829_setup": {
+    "message": "Unzip, enter the folder and run the setup installer with the following commands:",
+    "description": ""
   }
 }

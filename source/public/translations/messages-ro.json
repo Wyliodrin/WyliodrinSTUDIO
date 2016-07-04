@@ -703,5 +703,21 @@
   {
     "message":"Redenumiți dispozitivul",
     "description":""
+  },
+  "IR829_wiki1": {
+    "message": "Folosiți instrucțiunile de <a href='{{link1}}' target='_blank'>aici</a> și ajungeți la un prompt de Linux.",
+    "description": ""
+  },
+  "IR829_wiki2": {
+    "message": "Link-ul conține toate informațiile necesare pentru a vă familiariza cu mediul Cisco IOS înainte de a ajunge la consola Linux.",
+    "description": ""
+  },
+  "IR829_wget": {
+    "message": "În mediul Linux, utilizați wget și descărcați pachetul pachet pentru serverul Wyliodrin ca zip cu următoarea comandă:",
+    "description": ""
+  },
+  "IR829_setup": {
+    "message": "Unzipuiți, intrați în folder și executați programul de instalare de configurare cu următoarele comenzi:",
+    "description": ""
   }
 }

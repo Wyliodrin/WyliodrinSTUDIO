@@ -158,6 +158,21 @@ module.exports = function ()
 		      fullscreen: false
 		    });
 		};
+
+		this.fileexplorer = function ()
+		{
+			debug ('File Explorer');
+			$mdDialog.show({
+		      controller: 'FileExplorerController',
+		      controllerAs: 'fe',
+		      templateUrl: '/public/views/file-explorer.html',
+		      // parent: angular.element(document.body),
+		      // targetEvent: ev,
+		      escapeToClose: false,
+		      clickOutsideToClose: false,
+		      fullscreen: false
+		    });
+		};
 		
 		this.network = function ()
 		{

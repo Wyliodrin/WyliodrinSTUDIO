@@ -1,0 +1,27 @@
+<md-dialog aria-label="File Explorer" style="width: 550px; max-height:400px;" ng-escape="tm.exit()">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>File Explorer</h2>
+			<md-button class="right" ng-click="fe.up()">Up</md-button>
+		</div>
+	</md-toolbar>
+    
+	<md-dialog-content class="task-box">
+        <md-list>
+            <md-list-item ng-repeat="file in files" layout-padding class="separator-line file">
+                <h3>{{file.name}}</h3>
+                <span ng-show="file.isfile">{{file.size}}</span>
+                <md-button ng-show="file.isdir" class="md-secondary lib-app-btn right" ng-click="fe.cd(file.name)">Enter</md-button>
+                <md-button ng-show="file.isfile || file.islink" class="md-secondary lib-app-btn right" ng-click="fe.download(file.name)">Download</md-button>
+            </md-list-item>
+        </md-list>
+    </md-dialog-content>
+
+
+    
+    
+	<md-dialog-actions layout="row">
+    	<label>{{cwd}}</label>
+		<md-button ng-click="fe.exit()">IESI ACAS</md-button>
+	</md-dialog-actions>
+</md-dialog>

@@ -94,6 +94,40 @@ module.exports = function ()
 
 		$wydevice.send ('fe', {a:'phd'});
 
+		function human_readable(number)
+		{
+			if (number>1000000000)
+			{
+				return (Math.round(number/10000000)/100).toString() + " GB";
+			}
+			else
+			{
+				if (number>1000000)
+				{
+					return (Math.round(number/10000)/100).toString() + " MB";
+				}
+				else
+				{
+					if (number>1000)
+					{
+						return (Math.round(number/10)/100).toString() + " KB";
+					}
+					else
+					{
+						return (Math.round(number*100)/100).toString() + " B";
+					}
+				}
+			}
+		}
+
+
+		$scope.$watchCollection("files", function(){
+			for (var i=0; i<$scope.files.length; i++)
+			{
+				$scope.files[i].size = human_readable($scope.files[i].size);
+			}
+		});
+
 
 
 		this.cd = function(folder)
@@ -129,6 +163,18 @@ module.exports = function ()
 		this.download = function(file)
 		{
 			$wydevice.send ('fe', {a:'down',b:$scope.cwd,c:file});
+		};
+
+		this.doubleclick = function(file)
+		{
+			if (file.isdir)
+			{
+				this.cd(file.name);
+			}
+			if (file.isfile || file.islink)
+			{
+				this.download(file.name);
+			}
 		};
 
 		this.exit = function ()

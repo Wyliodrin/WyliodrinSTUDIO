@@ -67,6 +67,7 @@ You may build Wyliodrin STUDIO yourself
     npm install
     bower install
     patch node_modules/highcharts-ng/dist/highcharts-ng.js patches/highcharts-ng.patch
+    patch node_modules/angular-tree-control/css/tree-control-attribute.css patches/tree-control-attribute.patch
     grunt
 
 ### Install grunt and bower

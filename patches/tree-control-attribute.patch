@@ -1,0 +1,28 @@
+47c47
+<     background: url("../images/folder.png") no-repeat;
+---
+>     background: url("../drawable/tree/folder.png") no-repeat;
+52c52
+<     background: url("../images/folder-closed.png") no-repeat;
+---
+>     background: url("../drawable/tree/folder-closed.png") no-repeat;
+57c57
+<     background: url("../images/file.png") no-repeat;
+---
+>     background: url("../drawable/tree/file.png") no-repeat;
+68c68
+<     background: url("../images/node-opened-2.png") no-repeat;
+---
+>     background: url("../drawable/tree/node-opened-2.png") no-repeat;
+73c73
+<     background: url("../images/node-closed-2.png") no-repeat;
+---
+>     background: url("../drawable/tree/node-closed-2.png") no-repeat;
+89c89
+<     background: url("../images/node-opened-light.png") no-repeat;
+---
+>     background: url("../drawable/tree/node-opened-light.png") no-repeat;
+94c94
+<     background: url("../images/node-closed-light.png") no-repeat;
+---
+>     background: url("../drawable/tree/node-closed-light.png") no-repeat;

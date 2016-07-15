@@ -6,9 +6,21 @@
 			<md-button class="md-raised" aria-label="Up" ng-click="fe.up()">Up</md-button>
 		</div>
 	</md-toolbar>
+
     
     <md-dialog-content layout="row">
-    	<md-content class="task-box" style="background:none;">
+
+
+    	<md-content treecontrol class="tree-classic"
+	   tree-model="treeData"
+	   options="treeOptions"
+	   on-selection="fe.absolutecd(node)"
+	   on-node-toggle="fe.getChildren(node,expanded)"
+	   selected-node="node1">{{node.name}}</md-content>
+
+
+
+    	<md-content flex class="task-box" style="background:none;max-height:284px">
 	        <md-list style="padding-top:8px;padding-bottom:8px;">
 	            <md-list-item ng-repeat="file in files" layout-padding class="separator-line file" ng-dblclick="fe.doubleclick(file)" style="min-height: 20px; height: 20px;">
 	            	<img ng-show="file.isfile" ng-src="/public/drawable/file-icon.png" />
@@ -20,14 +32,6 @@
 	            </md-list-item>
 	        </md-list>
 	    </md-content>
-
-
-	    <md-content treecontrol class="tree-classic"
-   tree-model="treeData"
-   options="treeOptions"
-   on-selection="showSelected(node)"
-   on-node-toggle="fe.getChildren(node,expanded)"
-   selected-node="node1">{{node.name}}</md-content>
 
 
     

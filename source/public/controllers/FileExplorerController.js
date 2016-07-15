@@ -177,6 +177,19 @@ module.exports = function ()
 			}
 		};
 
+		this.absolutecd = function(node)
+		{
+			if (node.d)
+			{
+				$scope.cwd = node.p;
+				$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
+			}
+			else
+			{
+				$wydevice.send ('fe', {a:'down',b:path.dirname(node.p),c:node.name});
+			}
+		};
+
 
 ////////////////////////////////////////////////
 		$scope.treeOptions = {
@@ -261,18 +274,13 @@ module.exports = function ()
 			{
 				$scope.cwd=$scope.cwd+folder;
 			}
+			//$scope.cwd = path.join($scope.cwd,folder)
 			$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
 		};
 
 		this.up = function ()
 		{
-			if ($scope.dataForTheTree[0].children[0].children.length ===0){
-			$scope.dataForTheTree[0].children[0].children = 
-			[{ "name" : "Vasile", "age" : "99", "children" : [] }];}
-			else{
-				$scope.dataForTheTree[0].children[0].children = [];
-			}
-			/*if ($scope.cwd != "/"){
+			if ($scope.cwd != "/"){
 
 				debug ('Going up');
 				//get rid of last folder entered
@@ -283,12 +291,7 @@ module.exports = function ()
 					$scope.cwd = "/"; 
 				}
 				$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
-			}*/
-		};
-
-		this.download = function(file)
-		{
-			$wydevice.send ('fe', {a:'down',b:$scope.cwd,c:file});
+			}
 		};
 
 		this.doubleclick = function(file)
@@ -299,7 +302,8 @@ module.exports = function ()
 			}
 			if (file.isfile || file.islink)
 			{
-				this.download(file.name);
+				//download
+				$wydevice.send ('fe', {a:'down',b:$scope.cwd,c:file});
 			}
 		};
 

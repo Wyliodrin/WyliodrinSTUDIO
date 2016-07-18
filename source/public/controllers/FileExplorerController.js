@@ -87,11 +87,11 @@ module.exports = function ()
 					 		
 				 			fileWriter.onerror = function (error)
 					 		{	
-					 			console.log ('Export project '+' error '+error);
+					 			console.log ('Filewriter error ' + error);
 					 		};
 					 		fileWriter.write (new Blob ([p.f], {type:''}), function (error)
 				 			{
-				 				console.log ('Export project '+' error '+error);
+				 				console.log ('Error on write '+ error);
 				 			});
 					 	});
 					});

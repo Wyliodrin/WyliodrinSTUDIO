@@ -73,7 +73,7 @@ module.exports = function ()
 				{
 					//p.n = 
 					//p.f = 
-					//am primit homeul, continui
+
 					chrome.fileSystem.chooseEntry(
 					{
 						type: 'saveFile',
@@ -81,13 +81,19 @@ module.exports = function ()
 					}, 
 					function(fileEntry) 
 					{
-						fs.writeFile(fileEntry, p.f, function(err) {
-						    if(err) {
-						        return console.log(err);
-						    }
+					 	fileEntry.createWriter(function(fileWriter) 
+					 	{
 
-						    console.log("The file was saved!");
-						}); 
+					 		
+				 			fileWriter.onerror = function (error)
+					 		{	
+					 			console.log ('Export project '+' error '+error);
+					 		};
+					 		fileWriter.write (new Blob ([p.f], {type:''}), function (error)
+				 			{
+				 				console.log ('Export project '+' error '+error);
+				 			});
+					 	});
 					});
 				});
 			}
@@ -303,7 +309,7 @@ module.exports = function ()
 			if (file.isfile || file.islink)
 			{
 				//download
-				$wydevice.send ('fe', {a:'down',b:$scope.cwd,c:file});
+				$wydevice.send ('fe', {a:'down',b:$scope.cwd,c:file.name});
 			}
 		};
 

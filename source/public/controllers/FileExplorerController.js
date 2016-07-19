@@ -30,6 +30,7 @@ module.exports = function ()
 		var that = this;
 
 
+
 		var message = function (t, p)
 		{
 			//change dir
@@ -48,10 +49,19 @@ module.exports = function ()
 						{
 							$scope.cwd = "/"; 
 						}
+						$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
 					}
 					else
 					{
-						$scope.files = p;
+						if ($scope.cwd != "/")
+						{
+							$scope.files = [{'name':'.. (Go up)','isup':true,'isdir':false,'isfile':false,'islink':false}];
+							$scope.files = $scope.files.concat(p);
+						}
+						else
+						{
+							$scope.files = p;
+						}
 					}	
 				});
 			}
@@ -70,40 +80,50 @@ module.exports = function ()
 			if (t === 'fe3')
 			{
 				$timeout (function ()
-				{
-					//p.n = 
-					//p.f = 
-
-					chrome.fileSystem.chooseEntry(
+				{	
+					if (p.f[0]=="ERROR")
 					{
-						type: 'saveFile',
-						suggestedName: p.n,
-					}, 
-					function(fileEntry) 
+						console.log("NU AI DREPTURI DE CITIRE");
+					}
+					else
 					{
-					 	fileEntry.createWriter(function(fileWriter) 
-					 	{
+						chrome.fileSystem.chooseEntry(
+						{
+							type: 'saveFile',
+							suggestedName: p.n,
+						}, 
+						function(fileEntry) 
+						{
+							if(chrome.runtime.lastError) 
+							{
+								
+							}
+							if (!fileEntry) 
+							{
+								debug ('File missing');
+						 		return;
+							}
+						 	fileEntry.createWriter(function(fileWriter) 
+						 	{
 
-					 		
-				 			fileWriter.onerror = function (error)
-					 		{	
-					 			console.log ('Filewriter error ' + error);
-					 		};
-					 		fileWriter.write (new Blob ([p.f], {type:''}), function (error)
-				 			{
-				 				console.log ('Error on write '+ error);
-				 			});
-					 	});
-					});
+						 		
+					 			fileWriter.onerror = function (error)
+						 		{	
+						 			console.log ('Filewriter error ' + error);
+						 		};
+						 		fileWriter.write (new Blob ([p.f], {type:''}), function (error)
+					 			{
+					 				console.log ('Error on write '+ error);
+					 			});
+						 	});
+						});
+					}
 				});
 			}
 			if (t === 'fe4')
 			{
 				$timeout (function ()
 				{
-					if (p[0] == "ERROR"){
-						console.log("GRESIT GRESIT GRESIT");
-					}
 
 
 					function search_tree (loc)
@@ -133,7 +153,6 @@ module.exports = function ()
 						else{
 							return search_tree_aux(list_loc,result.children);
 						}
-
 					}
 
 					function check_children (lista)
@@ -158,16 +177,26 @@ module.exports = function ()
 
 
 
-					p.a = check_children(p.a);
-
-					if (p.p == "/")
+					if (p.a[0] == "ERROR")
 					{
-						$scope.treeData=p.a; //put it directly
+						console.log("GRESIT GRESIT GRESIT");
+						search_tree(p.p).children=[];
 					}
 					else
 					{
-						var place = search_tree(p.p);
-						place.children = p.a;
+
+						p.a = check_children(p.a);
+
+						if (p.p == "/")
+						{
+							$scope.treeData=p.a; //put it directly
+						}
+						else
+						{
+							var place = search_tree(p.p);
+							place.children = p.a;
+						}
+
 					}
 				});
 			}
@@ -302,6 +331,10 @@ module.exports = function ()
 
 		this.doubleclick = function(file)
 		{
+			if (file.isup)
+			{
+				this.up();
+			}
 			if (file.isdir)
 			{
 				this.cd(file.name);

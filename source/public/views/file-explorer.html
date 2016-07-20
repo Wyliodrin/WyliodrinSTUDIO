@@ -1,4 +1,4 @@
-<md-dialog aria-label="File Explorer" style="width: 650px; max-height:400px;" ng-escape="tm.exit()">
+<md-dialog aria-label="File Explorer" style="width: 80%; max-height:80%;" ng-escape="tm.exit()">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>{{cwd}}</h2>
@@ -20,9 +20,9 @@
 
 
 
-    	<md-content flex class="task-box" style="background:none;max-height:284px">
+    	<md-content flex class="task-box" style="background:none;">
 	        <md-list style="padding-top:8px;padding-bottom:8px;">
-	            <md-list-item ng-repeat="file in files" layout-padding class="separator-line file" ng-dblclick="fe.doubleclick(file)" style="min-height: 20px; height: 20px;">
+	            <md-list-item ng-repeat="file in files" layout-padding class="separator-line file" ng-dblclick="fe.doubleclick(file)" style="min-height: 40px; height: 40px;">
 	            	<img ng-show="file.isfile" ng-src="/public/drawable/file-icon.png" />
 	            	<img ng-show="file.isdir" ng-src="/public/drawable/folder-icon.png" />
 	                <h3>{{file.name | limitTo:30}}{{file.name.length > 30 ? '...' : ''}}</h3>

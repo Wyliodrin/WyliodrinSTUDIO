@@ -2,8 +2,8 @@
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>{{cwd}}</h2>
-			<span flex></span>
-			<md-button class="md-raised" aria-label="Up" ng-click="fe.up()">Up</md-button>
+			<!--<span flex></span>
+			<md-button class="md-raised" aria-label="Up" ng-click="fe.up()">Up</md-button>-->
 		</div>
 	</md-toolbar>
 
@@ -23,6 +23,7 @@
     	<md-content flex class="task-box" style="background:none;">
 	        <md-list style="padding-top:8px;padding-bottom:8px;">
 	            <md-list-item ng-repeat="file in files" layout-padding class="separator-line file" ng-dblclick="fe.doubleclick(file)" style="min-height: 40px; height: 40px;">
+	            	<img ng-show="file.isup" ng-src="/public/drawable/up-icon.png" />
 	            	<img ng-show="file.isfile" ng-src="/public/drawable/file-icon.png" />
 	            	<img ng-show="file.isdir" ng-src="/public/drawable/folder-icon.png" />
 	                <h3>{{file.name | limitTo:30}}{{file.name.length > 30 ? '...' : ''}}</h3>

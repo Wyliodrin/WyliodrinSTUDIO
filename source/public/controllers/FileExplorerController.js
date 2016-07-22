@@ -24,9 +24,12 @@ module.exports = function ()
 		$scope.files = [];
 		$scope.cwd = "";
 		$scope.treeData = [];
-		/*mixpanel.track ('Task Manager', {
+		$scope.showHidden = false;
+
+
+		mixpanel.track ('File Explorer', {
 			category: $wydevice.device.category
-		});*/
+		});
 		var that = this;
 
 
@@ -294,6 +297,30 @@ module.exports = function ()
 				$scope.files[i].size = human_readable($scope.files[i].size);
 			}
 		});
+
+
+		this.hide = function(file)
+		{
+			if ($scope.showHidden)
+			{
+				return true;
+			}
+			else
+			{
+				if (file.isup)
+				{
+					return true;
+				}
+				if (file.name.startsWith("."))
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+		};
 
 
 

@@ -231,12 +231,14 @@ module.exports = function ()
 			}
 			else
 			{
-				$wydevice.send ('fe', {a:'down',b:path.dirname(node.p),c:node.name});
+				if (!node.isspecial)
+				{
+					this.download(path.dirname(node.p),node.name);
+				}
 			}
 		};
 
 
-////////////////////////////////////////////////
 		$scope.treeOptions = {
     nodeChildren: "children",
     dirSelectable: true,
@@ -251,21 +253,7 @@ module.exports = function ()
         labelSelected: "a8"
     }
 };
-/*$scope.treeData =
-[
-    { "name" : "Joe", "age" : "21", "children" : [
-        { "name" : "Smith", "age" : "42", "children" : [] },
-        { "name" : "Gary", "age" : "21", "children" : [
-            { "name" : "Jenifer", "age" : "23", "children" : [
-                { "name" : "Dani", "age" : "32", "children" : [] },
-                { "name" : "Max", "age" : "34", "children" : [] }
-            ]}
-        ]}
-    ]},
-    { "name" : "Albert", "age" : "33", "children" : [] },
-    { "name" : "Ron", "age" : "29", "children" : [] }
-];*/
-///////////////////////////////////////////////////
+
 
 		$wydevice.on ('message', message);
 
@@ -349,11 +337,52 @@ module.exports = function ()
 			{
 				this.cd(file.name);
 			}
-			if (file.isfile || file.islink)
+			if (file.isfile)
 			{
 				//download
-				$wydevice.send ('fe', {a:'down',b:$scope.cwd,c:file.name});
+				this.download($scope.cwd,file.name);
 			}
+		};
+
+		this.download = function(cwd,filename)
+		{
+			$wydevice.send ('fe', {a:'down',b:cwd,c:filename});
+		};
+
+		this.upload = function()
+		{
+			chrome.fileSystem.chooseEntry(
+			{
+				type: 'openFile'
+			}, 
+			function(fileEntry) {
+				if(chrome.runtime.lastError) 
+				{
+
+				}
+				if (!fileEntry) {
+					debug ('File missing');
+					return;
+			 	}
+
+			 	fileEntry.file(function(file) 
+			 	{
+					var fileReader = new FileReader ();
+					fileReader.onload = function (value)
+					{
+						var rawData = value.target.result;
+						$wydevice.send ('fe', {a:'up',b:$scope.cwd,c:file.name,d:rawData});
+
+
+					};
+					fileReader.onerror = function (err)
+					{
+						debug (err);
+						console.log("Eroare citire din calc");
+					};
+					fileReader.readAsBinaryString (file);
+			 	});
+			});
 		};
 
 		this.exit = function ()

@@ -11,11 +11,11 @@
     <md-dialog-content layout="row">
 
 
-    	<md-content treecontrol class="tree-classic" tree-model="treeData" options="treeOptions" on-selection="fe.absolutecd(node)" on-node-toggle="fe.getChildren(node,expanded)" selected-node="node1">{{node.name}}</md-content>
+    	<md-content treecontrol class="tree-classic" tree-model="treeData" options="treeOptions" on-selection="fe.absolutecd(node)" on-node-toggle="fe.getChildren(node,expanded)" selected-node="node1"><span ng-hide="node.isspecial">{{node.name}}</span></md-content>
 
 
 
-    	<md-content flex class="task-box" style="background:none;">
+    	<md-content flex class="task-box on-the-right" style="background:none;">
 	        <md-list style="padding-top:8px;padding-bottom:8px;">
 	            <md-list-item ng-repeat="file in files" layout-padding class="separator-line file" ng-dblclick="fe.doubleclick(file)" style="min-height: 40px; height: 40px;">
 	            	<img ng-show="file.isup" ng-src="/public/drawable/up-icon.png" />

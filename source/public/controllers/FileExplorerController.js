@@ -62,6 +62,8 @@ module.exports = function ()
 						{
 							$scope.files = p;
 						}
+						var treeHeight = $('.tree-classic').height();
+        				$('.on-the-right').css('height', treeHeight);  
 					}	
 				});
 			}
@@ -179,24 +181,32 @@ module.exports = function ()
 
 					if (p.a[0] == "ERROR")
 					{
+						//nu ai drepturi de a accesa
 						console.log("GRESIT GRESIT GRESIT");
-						search_tree(p.p).children=[];
+						search_tree(p.p).children=[{'isspecial':true}];
 					}
 					else
 					{
-
-						p.a = check_children(p.a);
-
-						if (p.p == "/")
+						if (p.a.length === 0)
 						{
-							$scope.treeData=p.a; //put it directly
+							//folderul e gol
+							search_tree(p.p).children=[{'isspecial':true}];
 						}
 						else
 						{
-							var place = search_tree(p.p);
-							place.children = p.a;
-						}
+							p.a = check_children(p.a);
 
+							if (p.p == "/")
+							{
+								$scope.treeData=p.a; //put it directly
+							}
+							else
+							{
+								var place = search_tree(p.p);
+								place.children = p.a;
+							}
+
+						}
 					}
 				});
 			}

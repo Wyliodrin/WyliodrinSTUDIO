@@ -170,7 +170,7 @@ module.exports = function ()
 							}
 							else
 							{
-								child.children=[{'visited':0,'name':'Loading . . .','children':[] }]; //fara d si p
+								child.children=[{'name':'Loading . . .','children':[],'isspecial':true }]; //fara d si p
 							}
 							final.push(child);
 						});
@@ -183,14 +183,14 @@ module.exports = function ()
 					{
 						//nu ai drepturi de a accesa
 						console.log("GRESIT GRESIT GRESIT");
-						search_tree(p.p).children=[{'isspecial':true}];
+						search_tree(p.p).children=[{'name':'Empty folder','children':[],'isspecial':true}];
 					}
 					else
 					{
 						if (p.a.length === 0)
 						{
 							//folderul e gol
-							search_tree(p.p).children=[{'isspecial':true}];
+							search_tree(p.p).children=[{'name':'Empty folder','children':[],'isspecial':true}];
 						}
 						else
 						{

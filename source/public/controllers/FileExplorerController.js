@@ -62,6 +62,7 @@ module.exports = function ()
 						{
 							$scope.files = p;
 						}
+						//make the right side be the same as the left
 						var treeHeight = $('.tree-classic').height();
         				$('.on-the-right').css('height', treeHeight);  
 					}	

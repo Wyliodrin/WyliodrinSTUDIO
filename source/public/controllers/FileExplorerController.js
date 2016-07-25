@@ -372,6 +372,17 @@ module.exports = function ()
 			}
 		};
 
+
+		this.click = function(file)
+		{
+			console.log("CLICK SIMPLU");
+			// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			// @@@@@@ AICI ADAUGA OVI CAND VREI SA SE ALBASTREASCA SAU IMI ZICI MIE @@@@@@
+			// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		};
+
 		this.download = function(cwd,filename)
 		{
 			$wydevice.send ('fe', {a:'down',b:cwd,c:filename});

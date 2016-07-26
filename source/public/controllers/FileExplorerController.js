@@ -10,6 +10,8 @@ var debug = require ('debug')('wyliodrin:lacy:FileExplorerController');
 var fs = require ('fs');
 var path = require ('path');
 
+var _ = require ('lodash');
+
 var mixpanel = require ('mixpanel');
 
 debug ('Loading');
@@ -25,6 +27,7 @@ module.exports = function ()
 		$scope.cwd = "";
 		$scope.treeData = [];
 		$scope.showHidden = false;
+		$scope.selectedRight = {};
 
 
 		mixpanel.track ('File Explorer', {
@@ -375,12 +378,21 @@ module.exports = function ()
 
 		this.click = function(file)
 		{
-			console.log("CLICK SIMPLU");
-			// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-			// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-			// @@@@@@ AICI ADAUGA OVI CAND VREI SA SE ALBASTREASCA SAU IMI ZICI MIE @@@@@@
-			// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-			// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+			$scope.selectedRight = file;
+		};
+
+		this.isSelected = function(file)
+		{
+			if (file.isdir == $scope.selectedRight.isdir &&
+				file.isfile == $scope.selectedRight.isfile &&
+				file.islink == $scope.selectedRight.islink &&
+				file.name == $scope.selectedRight.name &&
+				file.size == $scope.selectedRight.size)
+
+			{
+				return true;
+			}
+			return false;
 		};
 
 		this.download = function(cwd,filename)

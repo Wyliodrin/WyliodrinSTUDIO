@@ -129,13 +129,12 @@ module.exports = function ()
 					}
 				});
 			}
-			if (t === 'fe4')
+			if (t === 'fe4' || t === 'fe5')
 			{
 				$timeout (function ()
 				{
 
-
-					function search_tree (loc)
+					function splitPath (loc)
 					{
 						var list_loc=[];
 						//unshift is oposite of push
@@ -144,6 +143,13 @@ module.exports = function ()
 							list_loc.unshift(path.basename(loc));
 							loc = path.dirname(loc);
 						}
+						return list_loc;
+					}
+
+
+					function search_tree (loc)
+					{
+						var list_loc = splitPath(loc);
 						return search_tree_aux(list_loc,$scope.treeData);
 					}
 
@@ -164,24 +170,54 @@ module.exports = function ()
 						}
 					}
 
-					function check_children (lista)
+					function check_children (lista, place)
 					{
 						var final=[];
-						lista.forEach (function (child)
+
+						if (place == "/" || place.children[0].isunvisited === true)
 						{
-							child.visited = 0;
-							child.name = path.basename(child.p);
-							if (child.d === false)
+							lista.forEach (function (child)
 							{
-								child.children=[];
-							}
-							else
+								child.visited = 0;
+								child.name = path.basename(child.p);
+								if (child.d === false)
+								{
+									child.children=[];
+								}
+								else
+								{
+									child.children=[{'name':'Loading . . .','children':[],'isspecial':true, 'isunvisited':true }]; //fara d si p
+								}
+								final.push(child);
+							});
+							return final;
+						}
+						else
+						{
+							//in case its children already were taken previously
+							lista.forEach (function (child)
 							{
-								child.children=[{'name':'Loading . . .','children':[],'isspecial':true }]; //fara d si p
-							}
-							final.push(child);
-						});
-						return final;
+								child.name = path.basename(child.p); //let it like this
+
+								var real_place = place.children.find(function(sub)
+								{
+									return (sub.name == child.name);
+								});
+
+								child.visited = real_place.visited;
+
+								if (child.d === false)
+								{
+									child.children=[];
+								}
+								else
+								{
+									child.children=real_place.children;
+								}
+								final.push(child);
+							});
+							return final;
+						}
 					}
 
 
@@ -201,16 +237,20 @@ module.exports = function ()
 						}
 						else
 						{
-							p.a = check_children(p.a);
-
 							if (p.p == "/")
 							{
-								$scope.treeData=p.a; //put it directly
+								$scope.treeData = check_children(p.a,"/"); //put it directly
 							}
 							else
 							{
 								var place = search_tree(p.p);
-								place.children = p.a;
+								place.children = check_children(p.a,place);
+								$scope.selected_node.visited = 1;
+								if (t === 'fe5') //forced by right-side to go to there
+								{
+									$scope.expanded_nodes.push(place);
+									$scope.selected_node = place;
+								}
 							}
 
 						}
@@ -219,13 +259,24 @@ module.exports = function ()
 			}
 		};
 
+		this.splitPath = function(loc)
+		{
+			var list_loc=[];
+			//unshift is oposite of push
+			while (loc != "/")
+			{
+				list_loc.unshift(path.basename(loc));
+				loc = path.dirname(loc);
+			}
+			return list_loc;
+		};
+
 		
 		this.getChildren = function(node, expanded)
 		{
 			if (node.visited === 0)
 			{
 				$wydevice.send ('fe', {a:'tree',b:node.p});
-				node.visited=1;
 			}
 		};
 
@@ -245,21 +296,22 @@ module.exports = function ()
 			}
 		};
 
-
+		$scope.expanded_nodes = [];
+		$scope.selected_node = {};
 		$scope.treeOptions = {
-    nodeChildren: "children",
-    dirSelectable: true,
-    injectClasses: {
-        ul: "a1",
-        li: "a2",
-        liSelected: "a7",
-        iExpanded: "a3",
-        iCollapsed: "a4",
-        iLeaf: "a5",
-        label: "a6",
-        labelSelected: "a8"
-    }
-};
+		    nodeChildren: "children",
+		    dirSelectable: true,
+		    injectClasses: {
+		        ul: "a1",
+		        li: "a2",
+		        liSelected: "a7",
+		        iExpanded: "a3",
+		        iCollapsed: "a4",
+		        iLeaf: "a5",
+		        label: "a6",
+		        labelSelected: "a8"
+		    }
+		};
 
 
 		$wydevice.on ('message', message);
@@ -339,7 +391,13 @@ module.exports = function ()
 				$scope.cwd=$scope.cwd+folder;
 			}
 			//$scope.cwd = path.join($scope.cwd,folder)
+
 			$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
+
+			//tree part
+			var list_loc = this.splitPath($scope.cwd);
+			$wydevice.send ('fe', {a:'treeforce',b:list_loc});
+
 		};
 
 		this.up = function ()
@@ -350,11 +408,20 @@ module.exports = function ()
 				//get rid of last folder entered
 				$scope.cwd = $scope.cwd.slice(0,$scope.cwd.lastIndexOf("/"));
 				if ($scope.cwd === "")
-					//inseamna ca am ajuns la root
 				{
+					//reached root, only select on tree
 					$scope.cwd = "/"; 
+					$scope.selected_node = {};
 				}
+				else
+				{
+					//not root, get tree for left
+					var list_loc = this.splitPath($scope.cwd);
+					$wydevice.send ('fe', {a:'treeforce',b:list_loc});
+				}
+
 				$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
+
 			}
 		};
 

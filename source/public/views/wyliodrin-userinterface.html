@@ -147,7 +147,7 @@
                           {{ 'TOOLBAR_UPDATE' | translate }}
                         </md-tooltip>
                     </md-button>
-                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.pm)" class="icon-btn" ng-click="t.fileexplorer()">
+                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.fe)" class="icon-btn" ng-click="t.fileexplorer()">
                       <md-icon md-svg-src="/public/drawable/fileexplorer-icon.svg" class="s24" aria-label="File Explorer" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           File Explorer

@@ -29,6 +29,14 @@ module.exports = function ()
 		$scope.showHidden = false;
 		$scope.selectedRight = {};
 
+		$scope.showPopupDelete = 0;
+		$scope.showPopupRename = 0;
+		$scope.showPopupNewFolder = 0;
+		$scope.showPopupError = 0;
+		$scope.contentPopupRename = "";
+		$scope.contentPopupNewFolder = "";
+		$scope.contentPopupError = "";
+
 
 		mixpanel.track ('File Explorer', {
 			category: $wydevice.device.category
@@ -44,10 +52,12 @@ module.exports = function ()
 			{
 				$timeout (function ()
 				{
+					$scope.selectedRight = {}; //force deselectation
+
 					if (p[0] == "ERROR")
 					{
-						console.log("NU E BINE UNDE AI INTRAT");
-						//poate un mesaj de eroare
+						$scope.contentPopupError = "You have entered in an inexistent folder.";
+						$scope.showPopupError = 1;
 						//ne ducem inapoi
 						$scope.cwd = $scope.cwd.slice(0,$scope.cwd.lastIndexOf("/"));
 						if ($scope.cwd === "")
@@ -81,8 +91,7 @@ module.exports = function ()
 				{
 					$scope.cwd = p;
 					//am primit homeul, continui
-					$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
-					////mai e de facut
+					that.refresh();
 				});
 			}
 			//download
@@ -92,7 +101,8 @@ module.exports = function ()
 				{	
 					if (p.f[0]=="ERROR")
 					{
-						console.log("NU AI DREPTURI DE CITIRE");
+						$scope.contentPopupError = "You don't have read permissions here.";
+						$scope.showPopupError = 1;
 					}
 					else
 					{
@@ -117,39 +127,32 @@ module.exports = function ()
 
 						 		
 					 			fileWriter.onerror = function (error)
-						 		{	
-						 			console.log ('Filewriter error ' + error);
+						 		{
+						 			$scope.contentPopupError = "Writing file to disk failed.";
+						 			$scope.showPopupError = 1;
+						 			//console.log ('Filewriter error ' + error);
 						 		};
 						 		fileWriter.write (new Blob ([p.f], {type:''}), function (error)
 					 			{
-					 				console.log ('Error on write '+ error);
+					 				$scope.contentPopupError = "Writing file to disk failed.";
+					 				$scope.showPopupError = 1;
+					 				//console.log ('Error on write '+ error);
 					 			});
 						 	});
 						});
 					}
 				});
 			}
+			//tree and tree forced from right
 			if (t === 'fe4' || t === 'fe5')
 			{
 				$timeout (function ()
 				{
 
-					function splitPath (loc)
-					{
-						var list_loc=[];
-						//unshift is oposite of push
-						while (loc != "/")
-						{
-							list_loc.unshift(path.basename(loc));
-							loc = path.dirname(loc);
-						}
-						return list_loc;
-					}
-
 
 					function search_tree (loc)
 					{
-						var list_loc = splitPath(loc);
+						var list_loc = that.splitPath(loc);
 						return search_tree_aux(list_loc,$scope.treeData);
 					}
 
@@ -174,12 +177,25 @@ module.exports = function ()
 					{
 						var final=[];
 
-						if (place == "/" || place.children[0].isunvisited === true)
+						lista.forEach (function (child)
 						{
-							lista.forEach (function (child)
+							child.name = path.basename(child.p);
+
+							var real_place;
+							if (place != "/")
+							{
+								real_place = place.children.find(function(sub)
+								{
+									return (sub.name == child.name);
+								});
+							}
+
+							if (place == "/" || 
+								place.children[0].isunvisited === true || 
+								real_place === undefined)
 							{
 								child.visited = 0;
-								child.name = path.basename(child.p);
+
 								if (child.d === false)
 								{
 									child.children=[];
@@ -188,22 +204,9 @@ module.exports = function ()
 								{
 									child.children=[{'name':'Loading . . .','children':[],'isspecial':true, 'isunvisited':true }]; //fara d si p
 								}
-								final.push(child);
-							});
-							return final;
-						}
-						else
-						{
-							//in case its children already were taken previously
-							lista.forEach (function (child)
+							}
+							else
 							{
-								child.name = path.basename(child.p); //let it like this
-
-								var real_place = place.children.find(function(sub)
-								{
-									return (sub.name == child.name);
-								});
-
 								child.visited = real_place.visited;
 
 								if (child.d === false)
@@ -214,10 +217,11 @@ module.exports = function ()
 								{
 									child.children=real_place.children;
 								}
-								final.push(child);
-							});
-							return final;
-						}
+							}
+							final.push(child);
+
+						});
+						return final;
 					}
 
 
@@ -225,7 +229,6 @@ module.exports = function ()
 					if (p.a[0] == "ERROR")
 					{
 						//nu ai drepturi de a accesa
-						console.log("GRESIT GRESIT GRESIT");
 						search_tree(p.p).children=[{'name':'Empty folder','children':[],'isspecial':true}];
 					}
 					else
@@ -257,6 +260,80 @@ module.exports = function ()
 					}
 				});
 			}
+			//error messages from newfolder del rename
+			if (t === 'fe6')
+			{
+				$timeout (function ()
+				{
+					if (p.a === 'newf')
+					{
+						$scope.contentPopupError = "Creating a new folder failed. ";
+						if (p.e === 'EEXIST')
+						{
+							$scope.contentPopupError += "Another file/folder with the same name exists here.";
+						}
+						else if (p.e === 'EACCES')
+						{
+							$scope.contentPopupError += "You do not have permissions to write here.";
+						}
+						else
+						{
+							$scope.contentPopupError += "Unknown error.";
+						}
+					}
+					else if (p.a === 'del')
+					{
+						$scope.contentPopupError = "Deleting failed. ";
+						if (p.e === 'EACCES')
+						{
+							$scope.contentPopupError += "You do not have permissions to delete here.";
+						}
+						else
+						{
+							$scope.contentPopupError += "Unknown error.";
+						}
+					}
+					else if (p.a === 'ren')
+					{
+						$scope.contentPopupError = "Renaming failed. ";
+						if (p.e === 'EEXIST')
+						{
+							$scope.contentPopupError += "Another file/folder with the same name exists here.";
+						}
+						else if (p.e === 'ENOENT')
+						{
+							$scope.contentPopupError += "The file/folder does not exists anymore.";
+						}
+						else if (p.e === 'EACCES')
+						{
+							$scope.contentPopupError += "You do not have permissions to rename here.";
+						}
+						else
+						{
+							$scope.contentPopupError += "Unknown error.";
+						}
+					}
+					else if (p.a === 'up')
+					{
+						$scope.contentPopupError = "Uploading Failed. ";
+						if (p.e === 'EACCES')
+						{
+							$scope.contentPopupError += "You do not have permissions to write here.";
+						}
+					}
+					else
+					{
+						$scope.contentPopupError = "Unknown error.";
+					}
+
+
+					$scope.showPopupError = 1;
+				});
+			}
+			if (t === 'fe7')
+			{
+				that.refresh();
+			}
 		};
 
 		this.splitPath = function(loc)
@@ -274,7 +351,8 @@ module.exports = function ()
 		
 		this.getChildren = function(node, expanded)
 		{
-			if (node.visited === 0)
+			//if (node.visited === 0)
+			if (expanded == 1)
 			{
 				$wydevice.send ('fe', {a:'tree',b:node.p});
 			}
@@ -285,7 +363,7 @@ module.exports = function ()
 			if (node.d)
 			{
 				$scope.cwd = node.p;
-				$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
+				this.list();
 			}
 			else
 			{
@@ -392,12 +470,24 @@ module.exports = function ()
 			}
 			//$scope.cwd = path.join($scope.cwd,folder)
 
-			$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
+			this.refresh();
 
+		};
+
+		this.list = function ()
+		{
+			//let only up be on screen
+			$scope.files = [{'name':'.. (Go up)','isup':true,'isdir':false,'isfile':false,'islink':false}];
+			$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
+		};
+
+		this.refresh = function()
+		{
+			this.list();
 			//tree part
 			var list_loc = this.splitPath($scope.cwd);
 			$wydevice.send ('fe', {a:'treeforce',b:list_loc});
-
+			
 		};
 
 		this.up = function ()
@@ -409,19 +499,16 @@ module.exports = function ()
 				$scope.cwd = $scope.cwd.slice(0,$scope.cwd.lastIndexOf("/"));
 				if ($scope.cwd === "")
 				{
-					//reached root, only select on tree
+					//reached root, only select, on tree
 					$scope.cwd = "/"; 
 					$scope.selected_node = {};
+					this.list();
 				}
 				else
 				{
 					//not root, get tree for left
-					var list_loc = this.splitPath($scope.cwd);
-					$wydevice.send ('fe', {a:'treeforce',b:list_loc});
+					this.refresh();
 				}
-
-				$wydevice.send ('fe', {a:'ls',b:$scope.cwd});
-
 			}
 		};
 
@@ -496,12 +583,55 @@ module.exports = function ()
 					fileReader.onerror = function (err)
 					{
 						debug (err);
-						console.log("Eroare citire din calc");
+						$scope.contentPopupError = "You do not have read permissions for that file on your disk.";
+						$scope.showPopupError = 1;
 					};
 					fileReader.readAsBinaryString (file);
 			 	});
 			});
 		};
+
+
+		this.renameButton = function()
+		{
+			if(!_.isEmpty($scope.selectedRight))
+			{
+				$scope.contentPopupRename=$scope.selectedRight.name;
+				$scope.showPopupRename=1;
+			}
+		};
+		this.rename = function(name)
+		{
+			$wydevice.send ('fe', {a:'ren',b:$scope.cwd,c:$scope.selectedRight.name,d:$scope.contentPopupRename});
+			$scope.showPopupRename = 0;
+		};
+
+
+		this.deleteButton = function()
+		{
+			if(!_.isEmpty($scope.selectedRight))
+			{
+				$scope.showPopupDelete=1;
+			}
+		};
+		this.delete = function()
+		{
+			$wydevice.send ('fe', {a:'del',b:$scope.cwd,c:$scope.selectedRight.name});
+			$scope.showPopupDelete = 0;
+		};
+
+
+		this.newFolderButton = function()
+		{
+			$scope.contentPopupNewFolder='New Folder';
+			$scope.showPopupNewFolder=1;
+		};
+		this.newFolder = function()
+		{
+			$wydevice.send ('fe', {a:'newf',b:$scope.cwd,c:$scope.contentPopupNewFolder});
+			$scope.showPopupNewFolder = 0;
+		};
+
 
 		this.exit = function ()
 		{

@@ -1,4 +1,34 @@
 <md-dialog aria-label="File Explorer" style="width: 80%; max-height:80%;" ng-escape="tm.exit()">
+
+	<div ng-show="showPopupDelete">
+		Are you sure you want to delete {{ selectedRight.name }}?
+		<md-button ng-click="fe.delete()">Yes</md-button>
+		<md-button ng-click="showPopupDelete=0">No</md-button>
+	</div>
+
+	<div ng-show="showPopupNewFolder">
+		Choose the name for the folder
+		<input ng-model="contentPopupNewFolder">
+		<md-button ng-click="fe.newFolder()">Ok</md-button>
+		<md-button ng-click="showPopupNewFolder=0">Cancel</md-button>
+	</div>
+
+	<div ng-show="showPopupRename">
+		Choose the name for the 
+		<span ng-show="selectedRight.isdir">folder</span>
+		<span ng-show="selectedRight.isfile">file</span>
+		<span ng-show="selectedRight.islink">link</span>
+		<input ng-model="contentPopupRename">
+		<md-button ng-click="fe.rename()">Ok</md-button>
+		<md-button ng-click="showPopupRename=0">Cancel</md-button>
+	</div>
+
+	<div ng-show="showPopupError">
+		{{contentPopupError}}
+		<md-button ng-click="showPopupError=0">Ok</md-button>
+	</div>
+
+
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>{{cwd}}</h2>
@@ -11,13 +41,13 @@
     <md-dialog-content layout="row">
 
 
-    	<md-content treecontrol class="tree-classic" tree-model="treeData" options="treeOptions" on-selection="fe.absolutecd(node)" on-node-toggle="fe.getChildren(node,expanded)" selected-node="selected_node" expanded-nodes="expanded_nodes"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
+    	<md-content treecontrol class="tree-classic" tree-model="treeData" options="treeOptions" on-selection="fe.absolutecd(node)" on-node-toggle="fe.getChildren(node,expanded)" selected-node="selected_node" expanded-nodes="expanded_nodes" order-by="node.d"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
 
 
 
     	<md-content flex class="task-box on-the-right" style="background:none;">
 	        <md-list style="padding-top:8px;padding-bottom:8px;">
-	            <md-list-item ng-repeat="file in files" layout-padding class="separator-line file" ng-dblclick="fe.doubleclick(file)" ng-click="fe.click(file)" style="min-height: 40px; height: 40px;" ng-show="fe.hide(file)" ng-attr-class="{{fe.isSelected(file) && 'vasile' || 'viorel'}}">
+	            <md-list-item ng-repeat="file in files | orderBy:'[-isup,-isdir]'" layout-padding class="separator-line file" ng-dblclick="fe.doubleclick(file)" ng-click="fe.click(file)" style="min-height: 40px; height: 40px;" ng-show="fe.hide(file)" ng-attr-class="{{fe.isSelected(file) && 'vasile' || 'viorel'}}">
 	            	<img ng-show="file.isup" ng-src="/public/drawable/up-icon.png" />
 	            	<img ng-show="file.isfile" ng-src="/public/drawable/file-icon.png" />
 	            	<img ng-show="file.isdir" ng-src="/public/drawable/folder-icon.png" />
@@ -40,7 +70,12 @@
     
     
 	<md-dialog-actions layout="row">
+		<md-button class="md-raised" aria-label="Refresh" ng-click="fe.refresh()">Refresh</md-button>
+		<span flex></span>
+		<md-button class="md-raised" aria-label="New Folder" ng-click="fe.newFolderButton()">New Folder</md-button>
 		<md-button class="md-raised" aria-label="Upload here" ng-click="fe.upload()">Upload Here</md-button>
+		<md-button class="md-raised" aria-label="Rename" ng-click="fe.renameButton()">Rename</md-button>
+		<md-button class="md-raised" aria-label="Delete" ng-click="fe.deleteButton()">Delete</md-button>
 		<span flex></span>
 		<!--<md-button class="md-raised" aria-label="Download" ng-click="fe.exit()">Download</md-button>
 		<span flex></span>-->

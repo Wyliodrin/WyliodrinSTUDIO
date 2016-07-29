@@ -33,9 +33,14 @@ module.exports = function ()
 		$scope.showPopupRename = 0;
 		$scope.showPopupNewFolder = 0;
 		$scope.showPopupError = 0;
+		$scope.showPopupUpload = 0;
+
 		$scope.contentPopupRename = "";
 		$scope.contentPopupNewFolder = "";
 		$scope.contentPopupError = "";
+
+		$scope.UPLOADMAXPACKET = 1024;
+		$scope.uploadvars={};
 
 
 		mixpanel.track ('File Explorer', {
@@ -316,9 +321,19 @@ module.exports = function ()
 					else if (p.a === 'up')
 					{
 						$scope.contentPopupError = "Uploading Failed. ";
+						$scope.showPopupUpload = 0;
+						$scope.uploadvars = {};
 						if (p.e === 'EACCES')
 						{
 							$scope.contentPopupError += "You do not have permissions to write here.";
+						}
+						else if (p.e === 'EEXIST')
+						{
+							$scope.contentPopupError += "Another file/folder with the same name exists here.";
+						}
+						else
+						{
+							$scope.contentPopupError += "Unknown error.";
 						}
 					}
 					else
@@ -330,9 +345,35 @@ module.exports = function ()
 					$scope.showPopupError = 1;
 				});
 			}
+			//ls tree and right
 			if (t === 'fe7')
 			{
-				that.refresh();
+				$timeout (function ()
+				{
+					if (p.a == 'up')
+					{
+						$scope.showPopupUpload = 0;
+						$scope.uploadvars = {};
+					}
+					that.refresh();
+				});
+			}
+			//upload in chunks
+			if (t === 'fe8')
+			{
+				$timeout (function ()
+				{
+					if ($scope.showPopupUpload === 1)
+					{
+						that.uploadChunk();
+					}
+					else
+					{
+						that.delete({folder:$scope.uploadvars.a,file:$scope.uploadvars.b});
+						$scope.uploadvars = {};
+						
+					}
+				});
 			}
 		};
 
@@ -457,6 +498,7 @@ module.exports = function ()
 
 
 
+
 		this.cd = function(folder)
 		{
 			debug ('Changing to folder');
@@ -576,7 +618,16 @@ module.exports = function ()
 					fileReader.onload = function (value)
 					{
 						var rawData = value.target.result;
-						$wydevice.send ('fe', {a:'up',b:$scope.cwd,c:file.name,d:rawData});
+						var buffer = new Buffer( new Uint8Array(rawData) );
+
+						$scope.showPopupUpload = 1;
+
+						$scope.uploadvars.a = $scope.cwd;
+						$scope.uploadvars.b = file.name;
+						$scope.uploadvars.c = buffer;
+						$scope.uploadvars.d = 0;
+						that.uploadChunk();
+						
 
 
 					};
@@ -586,15 +637,47 @@ module.exports = function ()
 						$scope.contentPopupError = "You do not have read permissions for that file on your disk.";
 						$scope.showPopupError = 1;
 					};
-					fileReader.readAsBinaryString (file);
+					fileReader.readAsArrayBuffer (file);
 			 	});
 			});
+		};
+
+		this.uploadChunk = function()
+		{
+			var dir = $scope.uploadvars.a;
+			var file = $scope.uploadvars.b;
+			var buffer = $scope.uploadvars.c;
+			var index = $scope.uploadvars.d;
+			var t;
+			var part;
+
+			if (index === 0)
+			{
+				t = 'w';
+			}
+			else
+			{
+				t = 'a';
+			}
+
+			
+			if (index + $scope.UPLOADMAXPACKET < buffer.length) //there are more packets than this
+			{
+				part = buffer.slice(index,index + $scope.UPLOADMAXPACKET);
+				$wydevice.send ('fe', {a:'up',b:dir,c:file,d:part,t:t,end:false});
+				$scope.uploadvars.d += $scope.UPLOADMAXPACKET;
+			}
+			else
+			{
+				part = buffer.slice(index,buffer.length);
+				$wydevice.send ('fe', {a:'up',b:dir,c:file,d:part,t:t,end:true});
+			}
 		};
 
 
 		this.renameButton = function()
 		{
-			if(!_.isEmpty($scope.selectedRight))
+			if(!_.isEmpty($scope.selectedRight) && !$scope.selectedRight.isup)
 			{
 				$scope.contentPopupRename=$scope.selectedRight.name;
 				$scope.showPopupRename=1;
@@ -609,15 +692,21 @@ module.exports = function ()
 
 		this.deleteButton = function()
 		{
-			if(!_.isEmpty($scope.selectedRight))
+			if(!_.isEmpty($scope.selectedRight) && !$scope.selectedRight.isup)
 			{
 				$scope.showPopupDelete=1;
 			}
 		};
-		this.delete = function()
+		this.delete = function(attr={})
 		{
-			$wydevice.send ('fe', {a:'del',b:$scope.cwd,c:$scope.selectedRight.name});
-			$scope.showPopupDelete = 0;
+			if (!_.isEmpty(attr)){
+				$wydevice.send ('fe', {a:'del',b:attr.folder,c:attr.file});
+			}
+			else
+			{
+				$wydevice.send ('fe', {a:'del',b:$scope.cwd,c:$scope.selectedRight.name});
+				$scope.showPopupDelete = 0;
+			}
 		};
 
 

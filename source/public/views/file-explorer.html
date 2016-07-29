@@ -23,6 +23,12 @@
 		<md-button ng-click="showPopupRename=0">Cancel</md-button>
 	</div>
 
+	<div ng-show="showPopupUpload">
+		The file will be uploaded immediately.
+		<md-progress-linear md-mode="determinate" ng-value="uploadvars.d*100/uploadvars.c.length"></md-progress-linear>
+		<md-button ng-click="showPopupUpload=0">Cancel</md-button>
+	</div>
+
 	<div ng-show="showPopupError">
 		{{contentPopupError}}
 		<md-button ng-click="showPopupError=0">Ok</md-button>
@@ -41,7 +47,7 @@
     <md-dialog-content layout="row">
 
 
-    	<md-content treecontrol class="tree-classic" tree-model="treeData" options="treeOptions" on-selection="fe.absolutecd(node)" on-node-toggle="fe.getChildren(node,expanded)" selected-node="selected_node" expanded-nodes="expanded_nodes" order-by="node.d"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
+    	<md-content treecontrol class="tree-classic" tree-model="treeData" options="treeOptions" on-selection="fe.absolutecd(node)" on-node-toggle="fe.getChildren(node,expanded)" selected-node="selected_node" expanded-nodes="expanded_nodes"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
 
 
 

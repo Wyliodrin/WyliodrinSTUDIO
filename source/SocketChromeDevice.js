@@ -33,7 +33,7 @@ chrome.sockets.tcp.onReceiveError.addListener (function (info)
 
 const PACKET_SEPARATOR = 255;
 const PACKET_ESCAPE = 0;
-const BUFFER_SIZE = 4096;
+const BUFFER_SIZE = 8192;
 const SERIAL_BUFFER_SIZE = 1024;
 
 const CONNECTING = 1;
@@ -135,7 +135,7 @@ export default class SocketChromeDevice extends EventEmitter
 			{
 				if (buffer[i] === PACKET_SEPARATOR)
 				{
-					data[li]=buffer[li];
+					data[li]=buffer[i];
 					li++;
 					data[li]=PACKET_ESCAPE;
 					li++;

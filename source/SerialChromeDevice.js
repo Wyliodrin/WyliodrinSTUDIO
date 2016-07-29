@@ -137,7 +137,7 @@ export default class SerialChromeDevice extends EventEmitter
 			{
 				if (buffer[i] === PACKET_SEPARATOR)
 				{
-					data[li]=buffer[li];
+					data[li]=buffer[i];
 					li++;
 					data[li]=PACKET_ESCAPE;
 					li++;

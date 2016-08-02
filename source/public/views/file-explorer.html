@@ -45,7 +45,12 @@
 		<div class="md-toolbar-tools">
 			<h2>{{cwd}}</h2>
 			<span flex></span>
-			<md-switch ng-model="showHidden" aria-label="Switch 1">{{'Show_hidden' | translate}}</md-switch>
+            <md-button class="icon-btn-lg" aria-label="Refresh" ng-click="fe.refresh()">
+            	<md-icon md-svg-src="/public/drawable/refresh-icon.svg" class="s24" aria-label="Refresh" ></md-icon>
+                <md-tooltip md-direction="bottom">
+                  Refresh
+                </md-tooltip>
+            </md-button>
 		</div>
 	</md-toolbar>
 
@@ -59,7 +64,7 @@
 
     	<md-content flex class="task-box on-the-right" style="background:none;">
 	        <md-list style="padding-top:8px;padding-bottom:8px;">
-	            <md-list-item ng-repeat="file in files | orderBy:'[-isup,-isdir]'" layout-padding class="separator-line file" ng-dblclick="fe.doubleclick(file)" ng-click="fe.click(file)" style="min-height: 40px; height: 40px;" ng-show="fe.hide(file)" ng-attr-class="{{fe.isSelected(file) && 'vasile' || 'viorel'}}">
+	            <md-list-item ng-repeat="file in files | orderBy:'[-isup,-isdir]'" layout-padding md-ink-ripple="false" class="separator-line file" ng-dblclick="fe.doubleclick(file)" ng-click="fe.click(file)" style="min-height: 40px; height: 40px;" ng-show="fe.hide(file)" ng-attr-class="{{fe.isSelected(file) && 'vasile' || 'viorel'}}">
 	            	<img ng-show="file.isup" ng-src="/public/drawable/up-icon.png" />
 	            	<img ng-show="file.isfile" ng-src="/public/drawable/file-icon.png" />
 	            	<img ng-show="file.isdir" ng-src="/public/drawable/folder-icon.png" />
@@ -82,12 +87,32 @@
     
     
 	<md-dialog-actions layout="row">
-		<md-button class="md-raised" aria-label="Refresh" ng-click="fe.refresh()">{{'Refresh' | translate}}</md-button>
+        <md-switch ng-model="showHidden" aria-label="Switch 1">Show Hidden</md-switch>
 		<span flex></span>
-		<md-button class="md-raised" aria-label="New Folder" ng-click="fe.newFolderButton()">{{'New_folder' | translate}}</md-button>
-		<md-button class="md-raised" aria-label="Upload here" ng-click="fe.upload()">{{'Upload_here' | translate}}</md-button>
-		<md-button class="md-raised" aria-label="Rename" ng-click="fe.renameButton()">{{'Rename' | translate}}</md-button>
-		<md-button class="md-raised" aria-label="Delete" ng-click="fe.deleteButton()">{{'Delete' | translate}}</md-button>
+		<md-button class="fileexplorer-actions" aria-label="New Folder" ng-click="fe.newFolderButton()">
+        	<md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
+            <md-tooltip md-direction="top">
+              New folder
+            </md-tooltip>
+        </md-button>
+		<md-button class="fileexplorer-actions" aria-label="Upload here" ng-click="fe.upload()">
+        	<md-icon md-svg-src="/public/drawable/upload-icon.svg" class="s24" aria-label="Upload here" ></md-icon>
+            <md-tooltip md-direction="top">
+              Upload here
+            </md-tooltip>
+        </md-button>
+		<md-button class="fileexplorer-actions" aria-label="Rename" ng-click="fe.renameButton()">
+        	<md-icon md-svg-src="/public/drawable/rename-icon.svg" class="s24" aria-label="Rename" ></md-icon>
+            <md-tooltip md-direction="top">
+              Rename
+            </md-tooltip>
+        </md-button>
+		<md-button class="fileexplorer-actions" aria-label="Delete" ng-click="fe.deleteButton()">
+        	<md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete" ></md-icon>
+            <md-tooltip md-direction="top">
+              Delete
+            </md-tooltip>
+        </md-button>
 		<span flex></span>
 		<md-button class="md-raised" aria-label="Exit" ng-click="fe.exit()">{{'Exit' | translate}}</md-button>
 	</md-dialog-actions>

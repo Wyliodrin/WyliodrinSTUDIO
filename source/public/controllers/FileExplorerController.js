@@ -39,6 +39,7 @@ module.exports = function ()
 		$scope.showPopupNewFolder = 0;
 		$scope.showPopupError = 0;
 		$scope.showPopupUpload = 0;
+		$scope.showPopupDownload = 0;
 
 		$scope.contentPopupRename = "";
 		$scope.contentPopupNewFolder = "";
@@ -46,6 +47,7 @@ module.exports = function ()
 
 		$scope.MAXPACKET = 1024;
 		$scope.uploadvars={};
+		$scope.downloadvars={};
 
 
 		mixpanel.track ('File Explorer', {
@@ -108,51 +110,91 @@ module.exports = function ()
 			if (t === 'fe3')
 			{
 				$timeout (function ()
-				{	
-					if (p.f[0]=="ERROR")
+				{
+					console.log(p);
+					console.log($scope.downloadvars);
+					var temp = new Buffer(p.f);
+					console.log(typeof p.f);
+					if (typeof $scope.downloadvars.c === 'undefined')
 					{
-						$scope.contentPopupError = $translate.instant('FEread_permission');
-						$scope.showPopupError = 1;
+						$scope.downloadvars.c = temp;
 					}
 					else
 					{
-						chrome.fileSystem.chooseEntry(
-						{
-							type: 'saveFile',
-							suggestedName: p.n,
-						}, 
-						function(fileEntry) 
-						{
-							if(chrome.runtime.lastError) 
-							{
-								
-							}
-							if (!fileEntry) 
-							{
-								debug ('File missing');
-						 		return;
-							}
-						 	fileEntry.createWriter(function(fileWriter) 
-						 	{
+						$scope.downloadvars.c = Buffer.concat([$scope.downloadvars.c,temp]);
+					}
+					$scope.downloadvars.d = p.all; //file size on the board
 
-						 		
-					 			fileWriter.onerror = function (error)
-						 		{
-						 			$scope.contentPopupError = $translate.instant('FEfile_write');
-						 			$scope.showPopupError = 1;
-						 			//console.log ('Filewriter error ' + error);
-						 		};
-						 		fileWriter.write (new Blob ([p.f], {type:''}), function (error)
-					 			{
-					 				$scope.contentPopupError = $translate.instant('FEfile_write');
-					 				$scope.showPopupError = 1;
-					 				//console.log ('Error on write '+ error);
-					 			});
-						 	});
-						});
+					if (typeof $scope.downloadvars.call === 'undefined')
+					{
+						$scope.downloadvars.call = "ceva";//////////////////////////////////////////
+						if (p.f[0]=="ERROR")
+						{
+							$scope.contentPopupError = $translate.instant('FEread_permission');
+							$scope.showPopupError = 1;
+						}
+						else
+						{
+							chrome.fileSystem.chooseEntry(
+							{
+								type: 'saveFile',
+								suggestedName: $scope.downloadvars.b,
+							}, 
+							function(fileEntry) 
+							{
+								if(chrome.runtime.lastError) 
+								{
+									
+								}
+								if (!fileEntry) 
+								{
+									debug ('File missing');
+							 		return;
+								}
+								$scope.downloadvars.call=fileEntry;
+							});
+						}
+					}
+					if (p.end)
+					{
+						console.log("GATAAAAAAAAAAAAAAA");
+						var toArrayBuffer = function(buffer) {
+						    var ab = new ArrayBuffer(buffer.length);
+						    var view = new Uint8Array(ab);
+						    for (var i = 0; i < buffer.length; ++i) {
+						        view[i] = buffer[i];
+						        console.log("efe");
+						    }
+						    return ab;
+						};
+						var vasile = toArrayBuffer($scope.downloadvars.call);
+						console.log (vasile);
+						console.log (vasile.length);
+						console.log(vasile.byteLength);
+						$scope.downloadvars.call.createWriter(function(fileWriter) 
+						{
+				 			fileWriter.onerror = function (error)
+					 		{
+					 			$scope.contentPopupError = $translate.instant('FEfile_write');
+					 			$scope.showPopupError = 1;
+					 			//console.log ('Filewriter error ' + error);
+					 		};
+					 		fileWriter.write (new Blob ([vasile], {type:''}), function (error)
+				 			{
+				 				$scope.contentPopupError = $translate.instant('FEfile_write');
+				 				$scope.showPopupError = 1;
+				 				//console.log ('Error on write '+ error);
+				 			});
+					 	});
+					 	$scope.downloadvars={};
+					}
+					else
+					{
+						that.download($scope.downloadvars.a,$scope.downloadvars.b,p.i);
 					}
 				});
 			}
+						 	
 			//tree and tree forced from right
 			if (t === 'fe4' || t === 'fe5')
 			{
@@ -626,9 +668,17 @@ module.exports = function ()
 			return false;
 		};
 
-		this.download = function(cwd,filename)
+		this.download = function(cwd,filename,index=0)
 		{
-			$wydevice.send ('fe', {a:'down',b:cwd,c:filename});
+			if (index === 0)
+			{
+				$scope.downloadvars.a = cwd;
+				$scope.downloadvars.b = filename;
+				//$scope.downloadvars.c = undefined;
+				$scope.downloadvars.d = $scope.MAXPACKET; //variable for full file size; placeholder for now
+			}
+			$wydevice.send ('fe', {a:'down',b:cwd,c:filename,z:index,size:$scope.MAXPACKET});
+
 		};
 
 		this.upload = function()

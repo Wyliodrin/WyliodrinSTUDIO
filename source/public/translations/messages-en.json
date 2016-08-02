@@ -774,6 +774,10 @@
     "message": "The file will be uploaded immediately.",
     "description": ""
   },
+  "will_download": {
+    "message": "The file will be downloaded immediately.",
+    "description": ""
+  },
   "folder": {
     "message": "folder",
     "description": ""

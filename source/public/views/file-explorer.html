@@ -48,7 +48,7 @@
             <md-button class="icon-btn-lg" aria-label="Refresh" ng-click="fe.refresh()">
             	<md-icon md-svg-src="/public/drawable/refresh-icon.svg" class="s24" aria-label="Refresh" ></md-icon>
                 <md-tooltip md-direction="bottom">
-                  Refresh
+                  {{'Refresh' | translate}}
                 </md-tooltip>
             </md-button>
 		</div>
@@ -71,8 +71,6 @@
                     <img ng-show="file.islink" ng-src="/public/drawable/link-icon2.png" />
 	                <span class="fileandfolder">{{file.name | limitTo:30}}{{file.name.length > 30 ? '...' : ''}}</span>
 	                <span ng-show="file.isfile">{{file.size}}</span>
-	                <!-- <md-button ng-show="file.isdir" class="md-secondary lib-app-btn right" ng-click="fe.cd(file.name)">Enter</md-button>-->
-	                <!--<md-button ng-show="file.isfile || file.islink" class="md-secondary lib-app-btn right" ng-click="fe.download(file.name)">Download</md-button>-->
 	            </md-list-item>
 
 	        </md-list>
@@ -87,30 +85,30 @@
     
     
 	<md-dialog-actions layout="row">
-        <md-switch ng-model="showHidden" aria-label="Switch 1">Show Hidden</md-switch>
+        <md-switch ng-model="showHidden" aria-label="Switch 1">{{'Show_hidden' | translate}}</md-switch>
 		<span flex></span>
 		<md-button class="fileexplorer-actions" aria-label="New Folder" ng-click="fe.newFolderButton()">
         	<md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
             <md-tooltip md-direction="top">
-              New folder
+              {{'New_folder' | translate}}
             </md-tooltip>
         </md-button>
 		<md-button class="fileexplorer-actions" aria-label="Upload here" ng-click="fe.upload()">
         	<md-icon md-svg-src="/public/drawable/upload-icon.svg" class="s24" aria-label="Upload here" ></md-icon>
             <md-tooltip md-direction="top">
-              Upload here
+              {{'Upload_here' | translate}}
             </md-tooltip>
         </md-button>
 		<md-button class="fileexplorer-actions" aria-label="Rename" ng-click="fe.renameButton()">
         	<md-icon md-svg-src="/public/drawable/rename-icon.svg" class="s24" aria-label="Rename" ></md-icon>
             <md-tooltip md-direction="top">
-              Rename
+              {{'Rename' | translate}}
             </md-tooltip>
         </md-button>
 		<md-button class="fileexplorer-actions" aria-label="Delete" ng-click="fe.deleteButton()">
         	<md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete" ></md-icon>
             <md-tooltip md-direction="top">
-              Delete
+              {{'Delete' | translate}}
             </md-tooltip>
         </md-button>
 		<span flex></span>

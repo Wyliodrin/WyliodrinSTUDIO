@@ -729,5 +729,127 @@
   "IR829_setup": {
     "message": "Unzip, enter the folder and run the setup installer with the following commands:",
     "description": ""
+  },
+  "Empty_folder": {
+    "message": "Empty Folder",
+    "description": ""
+  },
+  "Loading": {
+    "message": "Loading . . .",
+    "description": ""
+  },
+  "Show_hidden": {
+    "message": "Show Hidden",
+    "description": ""
+  },
+  "want_to_delete": {
+    "message": "Are you sure you want to delete",
+    "description": ""
+  },
+  "folder_name": {
+    "message": "Choose the name for the folder",
+    "description": ""
+  },
+  "Ok": {
+    "message": "Ok",
+    "description": ""
+  },
+  "Yes": {
+    "message": "Yes",
+    "description": ""
+  },
+  "No": {
+    "message": "No",
+    "description": ""
+  },
+  "Cancel": {
+    "message": "Cancel",
+    "description": ""
+  },
+  "choose_name": {
+    "message": "Choose the name for the ",
+    "description": ""
+  },
+  "will_upload": {
+    "message": "The file will be uploaded immediately.",
+    "description": ""
+  },
+  "folder": {
+    "message": "folder",
+    "description": ""
+  },
+  "file": {
+    "message": "file",
+    "description": ""
+  },
+  "link": {
+    "message": "link",
+    "description": ""
+  },
+  "Refresh": {
+    "message": "Refresh",
+    "description": ""
+  },
+  "New_folder": {
+    "message": "New Folder",
+    "description": ""
+  },
+  "Upload_here": {
+    "message": "Upload Here",
+    "description": ""
+  },
+  "Rename": {
+    "message": "Rename",
+    "description": ""
+  },
+  "Delete": {
+    "message": "Delete",
+    "description": ""
+  },
+  "Exit": {
+    "message": "Exit",
+    "description": ""
+  },
+  "FEinexistent_folder": {
+    "message": "You have entered in an inexistent folder."
+  },
+  "FEread_permission": {
+    "message": "You don't have read permissions here."
+  },
+  "FEread_permission_local": {
+    "message": "You do not have read permissions for that file on your disk."
+  },
+  "FEwrite_permission": {
+    "message": "You do not have permissions to write here."
+  },
+  "FEdelete_permission": {
+    "message": "You do not have permissions to delete here."
+  },
+  "FErename_permission": {
+    "message": "You do not have permissions to rename here."
+  },
+  "FEfile_write": {
+    "message": "Writing file to disk failed."
+  },
+  "FEnew_folder": {
+    "message": "Creating a new folder failed. "
+  },
+  "FEdelete": {
+    "message": "Deleting failed. "
+  },
+  "FErename": {
+    "message" :"Renaming failed. "
+  },
+  "FEupload": {
+    "message": "Uploading failed. "
+  },
+  "FEexists": {
+    "message": "Another file/folder with the same name exists here."
+  },
+  "FEunknown": {
+    "message": "Unknown error."
+  },
+  "FEnot_exists": {
+    "message": "The file/folder does not exists anymore."
   }
 }

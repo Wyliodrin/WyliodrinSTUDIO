@@ -15,7 +15,7 @@ let connections = dict ();
 const PACKET_SEPARATOR = 255;
 const BUFFER_SEPARRATOR = new Buffer ([PACKET_SEPARATOR, PACKET_SEPARATOR]);
 const PACKET_ESCAPE = 0;
-const BUFFER_SIZE = 4096;
+const BUFFER_SIZE = 8192;
 
 const CONNECTING = 1;
 const SEPARRATOR = 2;
@@ -177,7 +177,7 @@ export default class SSHChromeDevice extends EventEmitter
 			{
 				if (buffer[i] === PACKET_SEPARATOR)
 				{
-					data[li]=buffer[li];
+					data[li]=buffer[i];
 					li++;
 					data[li]=PACKET_ESCAPE;
 					li++;

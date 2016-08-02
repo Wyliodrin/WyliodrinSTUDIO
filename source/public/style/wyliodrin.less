@@ -882,11 +882,36 @@ outline:none;
 .fileandfolder {
 	color:#000;
 	font-weight:500;
+	padding:0 10px;
 }
 
 .vasile {
-	color : blue;
+	button, .md-focused {
+		background:#eee;
+		height:50px !important;
+	}
 }
 .viorel {
-	color : red;
+	button {
+		height:50px !important;
+	}	
+}
+
+[treecontrol].tree-classic li .tree-selected {
+	font-weight:normal !important;
+	color:#fff !important;
+	background:#3b94b0 !important;
+	padding:0 5px !important;
+}
+
+.fileexplorer-actions {
+	text-transform:none;
+	color: #000 !important;
+    min-width: 50px;
+	padding:0 12px;
+	md-icon {color:#000 !important;}
+}
+
+.fileexplorer-actions:hover { 
+	background:#eee !important;
 }

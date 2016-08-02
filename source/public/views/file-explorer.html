@@ -1,37 +1,37 @@
 <md-dialog aria-label="File Explorer" style="width: 80%; max-height:80%;" ng-escape="tm.exit()">
 
 	<div ng-show="showPopupDelete">
-		Are you sure you want to delete {{ selectedRight.name }}?
-		<md-button ng-click="fe.delete()">Yes</md-button>
-		<md-button ng-click="showPopupDelete=0">No</md-button>
+		{{'want_to_delete' | translate}} {{ selectedRight.name }}?
+		<md-button ng-click="fe.delete()">{{'Yes' | translate}}</md-button>
+		<md-button ng-click="showPopupDelete=0">{{'No' | translate}}</md-button>
 	</div>
 
 	<div ng-show="showPopupNewFolder">
-		Choose the name for the folder
+		{{'folder_name' | translate}}
 		<input ng-model="contentPopupNewFolder">
-		<md-button ng-click="fe.newFolder()">Ok</md-button>
-		<md-button ng-click="showPopupNewFolder=0">Cancel</md-button>
+		<md-button ng-click="fe.newFolder()">{{'Ok' | translate}}</md-button>
+		<md-button ng-click="showPopupNewFolder=0">{{'Cancel' | translate}}</md-button>
 	</div>
 
 	<div ng-show="showPopupRename">
-		Choose the name for the 
-		<span ng-show="selectedRight.isdir">folder</span>
-		<span ng-show="selectedRight.isfile">file</span>
-		<span ng-show="selectedRight.islink">link</span>
+		{{'choose_name' | translate}} 
+		<span ng-show="selectedRight.isdir">{{'folder' | translate}}</span>
+		<span ng-show="selectedRight.isfile">{{'file' | translate}}</span>
+		<span ng-show="selectedRight.islink">{{'link' | translate}}</span>
 		<input ng-model="contentPopupRename">
-		<md-button ng-click="fe.rename()">Ok</md-button>
-		<md-button ng-click="showPopupRename=0">Cancel</md-button>
+		<md-button ng-click="fe.rename()">{{'Ok' | translate}}</md-button>
+		<md-button ng-click="showPopupRename=0">{{'Cancel' | translate}}</md-button>
 	</div>
 
 	<div ng-show="showPopupUpload">
-		The file will be uploaded immediately.
+		{{'will_upload' | translate}}
 		<md-progress-linear md-mode="determinate" ng-value="uploadvars.d*100/uploadvars.c.length"></md-progress-linear>
-		<md-button ng-click="showPopupUpload=0">Cancel</md-button>
+		<md-button ng-click="showPopupUpload=0">{{'Cancel' | translate}}</md-button>
 	</div>
 
 	<div ng-show="showPopupError">
 		{{contentPopupError}}
-		<md-button ng-click="showPopupError=0">Ok</md-button>
+		<md-button ng-click="showPopupError=0">{{'Ok' | translate}}</md-button>
 	</div>
 
 
@@ -39,7 +39,7 @@
 		<div class="md-toolbar-tools">
 			<h2>{{cwd}}</h2>
 			<span flex></span>
-			<md-switch ng-model="showHidden" aria-label="Switch 1">Show Hidden</md-switch>
+			<md-switch ng-model="showHidden" aria-label="Switch 1">{{'Show_hidden' | translate}}</md-switch>
 		</div>
 	</md-toolbar>
 
@@ -47,7 +47,7 @@
     <md-dialog-content layout="row">
 
 
-    	<md-content treecontrol class="tree-classic" tree-model="treeData" options="treeOptions" on-selection="fe.absolutecd(node)" on-node-toggle="fe.getChildren(node,expanded)" selected-node="selected_node" expanded-nodes="expanded_nodes"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
+    	<md-content treecontrol class="tree-classic" tree-model="treeData" options="treeOptions" on-selection="fe.absolutecd(node)" on-node-toggle="fe.getChildren(node,expanded)" selected-node="selected_node" expanded-nodes="expanded_nodes" order-by="tree_orderby" reverse-order="false" filter-expression="tree_predicate" filter-comparator="tree_comparator"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
 
 
 
@@ -76,15 +76,13 @@
     
     
 	<md-dialog-actions layout="row">
-		<md-button class="md-raised" aria-label="Refresh" ng-click="fe.refresh()">Refresh</md-button>
+		<md-button class="md-raised" aria-label="Refresh" ng-click="fe.refresh()">{{'Refresh' | translate}}</md-button>
 		<span flex></span>
-		<md-button class="md-raised" aria-label="New Folder" ng-click="fe.newFolderButton()">New Folder</md-button>
-		<md-button class="md-raised" aria-label="Upload here" ng-click="fe.upload()">Upload Here</md-button>
-		<md-button class="md-raised" aria-label="Rename" ng-click="fe.renameButton()">Rename</md-button>
-		<md-button class="md-raised" aria-label="Delete" ng-click="fe.deleteButton()">Delete</md-button>
+		<md-button class="md-raised" aria-label="New Folder" ng-click="fe.newFolderButton()">{{'New_folder' | translate}}</md-button>
+		<md-button class="md-raised" aria-label="Upload here" ng-click="fe.upload()">{{'Upload_here' | translate}}</md-button>
+		<md-button class="md-raised" aria-label="Rename" ng-click="fe.renameButton()">{{'Rename' | translate}}</md-button>
+		<md-button class="md-raised" aria-label="Delete" ng-click="fe.deleteButton()">{{'Delete' | translate}}</md-button>
 		<span flex></span>
-		<!--<md-button class="md-raised" aria-label="Download" ng-click="fe.exit()">Download</md-button>
-		<span flex></span>-->
-		<md-button class="md-raised" aria-label="Exit" ng-click="fe.exit()">Exit</md-button>
+		<md-button class="md-raised" aria-label="Exit" ng-click="fe.exit()">{{'Exit' | translate}}</md-button>
 	</md-dialog-actions>
 </md-dialog>

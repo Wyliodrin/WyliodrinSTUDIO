@@ -7,7 +7,6 @@ var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:FileExplorerController');
 
-var fs = require ('fs');
 var path = require ('path');
 
 var _ = require ('lodash');
@@ -21,8 +20,14 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('FileExplorerController', function($scope, $timeout, $mdDialog, $wydevice){
+	app.controller('FileExplorerController', function($scope, $timeout, $mdDialog, $wydevice, $translate){
 		debug ('Registering');
+
+		$scope.translatevars={};
+		$scope.translatevars.empty = $translate.instant('Empty_folder');
+		$scope.translatevars.loading = $translate.instant('Loading');
+		$scope.translatevars.new_folder = $translate.instant('New_folder');
+
 		$scope.files = [];
 		$scope.cwd = "";
 		$scope.treeData = [];
@@ -39,7 +44,7 @@ module.exports = function ()
 		$scope.contentPopupNewFolder = "";
 		$scope.contentPopupError = "";
 
-		$scope.UPLOADMAXPACKET = 1024;
+		$scope.MAXPACKET = 1024;
 		$scope.uploadvars={};
 
 
@@ -61,7 +66,7 @@ module.exports = function ()
 
 					if (p[0] == "ERROR")
 					{
-						$scope.contentPopupError = "You have entered in an inexistent folder.";
+						$scope.contentPopupError = $translate.instant('FEinexistent_folder');
 						$scope.showPopupError = 1;
 						//ne ducem inapoi
 						$scope.cwd = $scope.cwd.slice(0,$scope.cwd.lastIndexOf("/"));
@@ -106,7 +111,7 @@ module.exports = function ()
 				{	
 					if (p.f[0]=="ERROR")
 					{
-						$scope.contentPopupError = "You don't have read permissions here.";
+						$scope.contentPopupError = $translate.instant('FEread_permission');
 						$scope.showPopupError = 1;
 					}
 					else
@@ -133,13 +138,13 @@ module.exports = function ()
 						 		
 					 			fileWriter.onerror = function (error)
 						 		{
-						 			$scope.contentPopupError = "Writing file to disk failed.";
+						 			$scope.contentPopupError = $translate.instant('FEfile_write');
 						 			$scope.showPopupError = 1;
 						 			//console.log ('Filewriter error ' + error);
 						 		};
 						 		fileWriter.write (new Blob ([p.f], {type:''}), function (error)
 					 			{
-					 				$scope.contentPopupError = "Writing file to disk failed.";
+					 				$scope.contentPopupError = $translate.instant('FEfile_write');
 					 				$scope.showPopupError = 1;
 					 				//console.log ('Error on write '+ error);
 					 			});
@@ -184,6 +189,7 @@ module.exports = function ()
 
 						lista.forEach (function (child)
 						{
+							child.so = !child.d;
 							child.name = path.basename(child.p);
 
 							var real_place;
@@ -207,7 +213,7 @@ module.exports = function ()
 								}
 								else
 								{
-									child.children=[{'name':'Loading . . .','children':[],'isspecial':true, 'isunvisited':true }]; //fara d si p
+									child.children=[{'name':$scope.translatevars.loading,'children':[],'isspecial':true, 'isunvisited':true }]; //fara d si p
 								}
 							}
 							else
@@ -234,14 +240,14 @@ module.exports = function ()
 					if (p.a[0] == "ERROR")
 					{
 						//nu ai drepturi de a accesa
-						search_tree(p.p).children=[{'name':'Empty folder','children':[],'isspecial':true}];
+						search_tree(p.p).children=[{'name':$scope.translatevars.empty,'children':[],'isspecial':true}];
 					}
 					else
 					{
 						if (p.a.length === 0)
 						{
 							//folderul e gol
-							search_tree(p.p).children=[{'name':'Empty folder','children':[],'isspecial':true}];
+							search_tree(p.p).children=[{'name':$scope.translatevars.empty,'children':[],'isspecial':true}];
 						}
 						else
 						{
@@ -272,73 +278,73 @@ module.exports = function ()
 				{
 					if (p.a === 'newf')
 					{
-						$scope.contentPopupError = "Creating a new folder failed. ";
+						$scope.contentPopupError = $translate.instant('FEnew_folder');
 						if (p.e === 'EEXIST')
 						{
-							$scope.contentPopupError += "Another file/folder with the same name exists here.";
+							$scope.contentPopupError += $translate.instant('FEexists');
 						}
 						else if (p.e === 'EACCES')
 						{
-							$scope.contentPopupError += "You do not have permissions to write here.";
+							$scope.contentPopupError += $translate.instant('FEwrite_permission');
 						}
 						else
 						{
-							$scope.contentPopupError += "Unknown error.";
+							$scope.contentPopupError += $translate.instant('FEunknown');
 						}
 					}
 					else if (p.a === 'del')
 					{
-						$scope.contentPopupError = "Deleting failed. ";
+						$scope.contentPopupError = $translate.instant('FEdelete');
 						if (p.e === 'EACCES')
 						{
-							$scope.contentPopupError += "You do not have permissions to delete here.";
+							$scope.contentPopupError += $translate.instant('FEdelete_permission');
 						}
 						else
 						{
-							$scope.contentPopupError += "Unknown error.";
+							$scope.contentPopupError += $translate.instant('FEunknown');
 						}
 					}
 					else if (p.a === 'ren')
 					{
-						$scope.contentPopupError = "Renaming failed. ";
+						$scope.contentPopupError = $translate.instant('FErename');
 						if (p.e === 'EEXIST')
 						{
-							$scope.contentPopupError += "Another file/folder with the same name exists here.";
+							$scope.contentPopupError += $translate.instant('FEexists');
 						}
 						else if (p.e === 'ENOENT')
 						{
-							$scope.contentPopupError += "The file/folder does not exists anymore.";
+							$scope.contentPopupError += $translate.instant('FEnot_exists');
 						}
 						else if (p.e === 'EACCES')
 						{
-							$scope.contentPopupError += "You do not have permissions to rename here.";
+							$scope.contentPopupError += $translate.instant('FErename_permission');
 						}
 						else
 						{
-							$scope.contentPopupError += "Unknown error.";
+							$scope.contentPopupError += $translate.instant('FEunknown');
 						}
 					}
 					else if (p.a === 'up')
 					{
-						$scope.contentPopupError = "Uploading Failed. ";
+						$scope.contentPopupError = $translate.instant('FEupload');
 						$scope.showPopupUpload = 0;
 						$scope.uploadvars = {};
 						if (p.e === 'EACCES')
 						{
-							$scope.contentPopupError += "You do not have permissions to write here.";
+							$scope.contentPopupError += $translate.instant('FEwrite_permission');
 						}
 						else if (p.e === 'EEXIST')
 						{
-							$scope.contentPopupError += "Another file/folder with the same name exists here.";
+							$scope.contentPopupError += $translate.instant('FEexists');
 						}
 						else
 						{
-							$scope.contentPopupError += "Unknown error.";
+							$scope.contentPopupError += $translate.instant('FEunknown');
 						}
 					}
 					else
 					{
-						$scope.contentPopupError = "Unknown error.";
+						$scope.contentPopupError = $translate.instant('FEunknown');
 					}
 
 
@@ -417,6 +423,35 @@ module.exports = function ()
 
 		$scope.expanded_nodes = [];
 		$scope.selected_node = {};
+		$scope.tree_orderby = ['so','name'];
+
+		$scope.tree_predicate = ".";
+		$scope.tree_comparator = function(actual,expected)
+		{
+			if ($scope.showHidden)
+			{
+				return true;
+			}
+			else
+			{
+				if (typeof actual !== 'object')
+				{
+					return false;
+				}
+				else
+				{
+					if (actual.name.startsWith("."))
+					{
+						return false;
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+		};
+
 		$scope.treeOptions = {
 		    nodeChildren: "children",
 		    dirSelectable: true,
@@ -598,48 +633,51 @@ module.exports = function ()
 
 		this.upload = function()
 		{
-			chrome.fileSystem.chooseEntry(
-			{
-				type: 'openFile'
-			}, 
-			function(fileEntry) {
-				if(chrome.runtime.lastError) 
+			if (!$scope.showPopupUpload){
+
+				chrome.fileSystem.chooseEntry(
 				{
-
-				}
-				if (!fileEntry) {
-					debug ('File missing');
-					return;
-			 	}
-
-			 	fileEntry.file(function(file) 
-			 	{
-					var fileReader = new FileReader ();
-					fileReader.onload = function (value)
+					type: 'openFile'
+				}, 
+				function(fileEntry) {
+					if(chrome.runtime.lastError) 
 					{
-						var rawData = value.target.result;
-						var buffer = new Buffer( new Uint8Array(rawData) );
 
-						$scope.showPopupUpload = 1;
+					}
+					if (!fileEntry) {
+						debug ('File missing');
+						return;
+				 	}
 
-						$scope.uploadvars.a = $scope.cwd;
-						$scope.uploadvars.b = file.name;
-						$scope.uploadvars.c = buffer;
-						$scope.uploadvars.d = 0;
-						that.uploadChunk();
-						
+				 	fileEntry.file(function(file) 
+				 	{
+						var fileReader = new FileReader ();
+						fileReader.onload = function (value)
+						{
+							var rawData = value.target.result;
+							var buffer = new Buffer( new Uint8Array(rawData) );
+
+							$scope.showPopupUpload = 1;
+
+							$scope.uploadvars.a = $scope.cwd;
+							$scope.uploadvars.b = file.name;
+							$scope.uploadvars.c = buffer;
+							$scope.uploadvars.d = 0;
+							that.uploadChunk();
+							
 
 
-					};
-					fileReader.onerror = function (err)
-					{
-						debug (err);
-						$scope.contentPopupError = "You do not have read permissions for that file on your disk.";
-						$scope.showPopupError = 1;
-					};
-					fileReader.readAsArrayBuffer (file);
-			 	});
-			});
+						};
+						fileReader.onerror = function (err)
+						{
+							debug (err);
+							$scope.contentPopupError = $translate.instant('FEread_permission_local');
+							$scope.showPopupError = 1;
+						};
+						fileReader.readAsArrayBuffer (file);
+				 	});
+				});
+			}
 		};
 
 		this.uploadChunk = function()
@@ -661,11 +699,11 @@ module.exports = function ()
 			}
 
 			
-			if (index + $scope.UPLOADMAXPACKET < buffer.length) //there are more packets than this
+			if (index + $scope.MAXPACKET < buffer.length) //there are more packets than this
 			{
-				part = buffer.slice(index,index + $scope.UPLOADMAXPACKET);
+				part = buffer.slice(index,index + $scope.MAXPACKET);
 				$wydevice.send ('fe', {a:'up',b:dir,c:file,d:part,t:t,end:false});
-				$scope.uploadvars.d += $scope.UPLOADMAXPACKET;
+				$scope.uploadvars.d += $scope.MAXPACKET;
 			}
 			else
 			{
@@ -712,7 +750,7 @@ module.exports = function ()
 
 		this.newFolderButton = function()
 		{
-			$scope.contentPopupNewFolder='New Folder';
+			$scope.contentPopupNewFolder=$scope.translatevars.new_folder;
 			$scope.showPopupNewFolder=1;
 		};
 		this.newFolder = function()

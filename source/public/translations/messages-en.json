@@ -847,6 +847,9 @@
   "FEupload": {
     "message": "Uploading failed. "
   },
+  "FEdownload": {
+    "message": "Downloading failed. "
+  },
   "FEexists": {
     "message": "Another file/folder with the same name exists here."
   },

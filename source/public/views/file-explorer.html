@@ -31,7 +31,7 @@
 
 	<div ng-show="showPopupDownload">
 		{{'will_download' | translate}}
-		<md-progress-linear md-mode="determinate" ng-value="downloadvars.now*100/downloadvars.total"></md-progress-linear>
+		<md-progress-linear md-mode="determinate" ng-value="downloadvars.c.length*100/downloadvars.d"></md-progress-linear>
 		<md-button ng-click="showPopupDownload=0">{{'Cancel' | translate}}</md-button>
 	</div>
 

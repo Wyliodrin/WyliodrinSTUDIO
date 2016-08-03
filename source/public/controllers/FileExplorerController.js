@@ -114,7 +114,6 @@ module.exports = function ()
 					console.log(p);
 					console.log($scope.downloadvars);
 					var temp = new Buffer(p.f);
-					console.log(typeof p.f);
 					if (typeof $scope.downloadvars.c === 'undefined')
 					{
 						$scope.downloadvars.c = temp;
@@ -127,70 +126,113 @@ module.exports = function ()
 
 					if (typeof $scope.downloadvars.call === 'undefined')
 					{
-						$scope.downloadvars.call = "ceva";//////////////////////////////////////////
-						if (p.f[0]=="ERROR")
+
+						chrome.fileSystem.chooseEntry(
 						{
-							$scope.contentPopupError = $translate.instant('FEread_permission');
-							$scope.showPopupError = 1;
+							type: 'saveFile',
+							suggestedName: $scope.downloadvars.b,
+						}, 
+						function(fileEntry) 
+						{
+							if(chrome.runtime.lastError) 
+							{
+
+							}
+							if (!fileEntry) 
+							{
+								$timeout ( function()
+								{
+									$scope.contentPopupError = $translate.instant('FEfile_write');
+								 	$scope.showPopupError = 1;
+							 	});
+							 	return;
+							}
+
+							$scope.downloadvars.call=fileEntry;
+							$scope.showPopupDownload = 1;
+							//redundant rezolva
+							if (p.end)
+							{
+								var toArrayBuffer = function(buffer) {
+								    var ab = new ArrayBuffer(buffer.length);
+								    var view = new Uint8Array(ab);
+								    for (var i = 0; i < buffer.length; ++i) {
+								        view[i] = buffer[i];
+								    }
+								    return ab;
+								};
+								var vasile = toArrayBuffer($scope.downloadvars.c);
+
+								$scope.downloadvars.call.createWriter(function(fileWriter) 
+								{
+						 			fileWriter.onerror = function (error)
+							 		{
+							 			$scope.contentPopupError = $translate.instant('FEfile_write');
+							 			$scope.showPopupError = 1;
+							 			//console.log ('Filewriter error ' + error);
+							 		};
+							 		fileWriter.write (new Blob ([vasile], {type:''}), function (error)
+						 			{
+						 				$scope.contentPopupError = $translate.instant('FEfile_write');
+						 				$scope.showPopupError = 1;
+						 				//console.log ('Error on write '+ error);
+						 			});
+							 	});
+							 	$scope.showPopupDownload = 0;
+							 	$scope.downloadvars={};
+							}
+							else
+							{
+								that.download($scope.downloadvars.a,$scope.downloadvars.b,p.i);
+							}
+							//redundant, rezolva
+
+						});
+					}
+					else
+					{	if($scope.showPopupDownload === 1 )
+						{
+							if (p.end)
+							{
+								var toArrayBuffer = function(buffer) {
+								    var ab = new ArrayBuffer(buffer.length);
+								    var view = new Uint8Array(ab);
+								    for (var i = 0; i < buffer.length; ++i) {
+								        view[i] = buffer[i];
+								    }
+								    return ab;
+								};
+								var vasile = toArrayBuffer($scope.downloadvars.c);
+
+								$scope.downloadvars.call.createWriter(function(fileWriter) 
+								{
+						 			fileWriter.onerror = function (error)
+							 		{
+							 			$scope.contentPopupError = $translate.instant('FEfile_write');
+							 			$scope.showPopupError = 1;
+							 			//console.log ('Filewriter error ' + error);
+							 		};
+							 		fileWriter.write (new Blob ([vasile], {type:''}), function (error)
+						 			{
+						 				$scope.contentPopupError = $translate.instant('FEfile_write');
+						 				$scope.showPopupError = 1;
+						 				//console.log ('Error on write '+ error);
+						 			});
+							 	});
+							 	$scope.showPopupDownload = 0;
+							 	$scope.downloadvars={};
+							}
+							else
+							{
+								that.download($scope.downloadvars.a,$scope.downloadvars.b,p.i);
+							}
 						}
 						else
 						{
-							chrome.fileSystem.chooseEntry(
-							{
-								type: 'saveFile',
-								suggestedName: $scope.downloadvars.b,
-							}, 
-							function(fileEntry) 
-							{
-								if(chrome.runtime.lastError) 
-								{
-									
-								}
-								if (!fileEntry) 
-								{
-									debug ('File missing');
-							 		return;
-								}
-								$scope.downloadvars.call=fileEntry;
-							});
+							//that.delete({folder:$scope.uploadvars.a,file:$scope.uploadvars.b});
+							//delete local file
+							$scope.downloadvars = {};
 						}
-					}
-					if (p.end)
-					{
-						console.log("GATAAAAAAAAAAAAAAA");
-						var toArrayBuffer = function(buffer) {
-						    var ab = new ArrayBuffer(buffer.length);
-						    var view = new Uint8Array(ab);
-						    for (var i = 0; i < buffer.length; ++i) {
-						        view[i] = buffer[i];
-						        console.log("efe");
-						    }
-						    return ab;
-						};
-						var vasile = toArrayBuffer($scope.downloadvars.call);
-						console.log (vasile);
-						console.log (vasile.length);
-						console.log(vasile.byteLength);
-						$scope.downloadvars.call.createWriter(function(fileWriter) 
-						{
-				 			fileWriter.onerror = function (error)
-					 		{
-					 			$scope.contentPopupError = $translate.instant('FEfile_write');
-					 			$scope.showPopupError = 1;
-					 			//console.log ('Filewriter error ' + error);
-					 		};
-					 		fileWriter.write (new Blob ([vasile], {type:''}), function (error)
-				 			{
-				 				$scope.contentPopupError = $translate.instant('FEfile_write');
-				 				$scope.showPopupError = 1;
-				 				//console.log ('Error on write '+ error);
-				 			});
-					 	});
-					 	$scope.downloadvars={};
-					}
-					else
-					{
-						that.download($scope.downloadvars.a,$scope.downloadvars.b,p.i);
 					}
 				});
 			}
@@ -318,6 +360,7 @@ module.exports = function ()
 			{
 				$timeout (function ()
 				{
+					console.log(p);
 					if (p.a === 'newf')
 					{
 						$scope.contentPopupError = $translate.instant('FEnew_folder');
@@ -378,6 +421,24 @@ module.exports = function ()
 						else if (p.e === 'EEXIST')
 						{
 							$scope.contentPopupError += $translate.instant('FEexists');
+						}
+						else
+						{
+							$scope.contentPopupError += $translate.instant('FEunknown');
+						}
+					}
+					else if (p.a === 'down')
+					{
+						$scope.contentPopupError = $translate.instant('FEdownload');
+						$scope.showPopupDownload = 0;
+						$scope.downloadvars = {};
+						if (p.e === 'EACCES')
+						{
+							$scope.contentPopupError += $translate.instant('FEread_permission');
+						}
+						else if (p.e === 'ENOENT')
+						{
+							$scope.contentPopupError += $translate.instant('FEnot_exists');
 						}
 						else
 						{

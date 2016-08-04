@@ -501,10 +501,22 @@ module.exports = function ()
 		
 		this.getChildren = function(node, expanded)
 		{
-			//if (node.visited === 0)
 			if (expanded == 1)
 			{
 				$wydevice.send ('fe', {a:'tree',b:node.p});
+			}
+			else
+			{
+				//if contracting be sure to delete all other instances
+				var final = [];
+				_.each($scope.expanded_nodes, function(exp)
+				{
+					if (exp.p !== node.p)
+					{
+						final.push(exp);
+					}
+				});
+				$scope.expanded_nodes = final;
 			}
 		};
 
@@ -832,6 +844,13 @@ module.exports = function ()
 				$scope.showPopupRename=1;
 			}
 		};
+		this.renameButtonShow = function()
+		{
+			if(!_.isEmpty($scope.selectedRight) && !$scope.selectedRight.isup)
+			{
+				return true;
+			}
+		};
 		this.rename = function(name)
 		{
 			$wydevice.send ('fe', {a:'ren',b:$scope.cwd,c:$scope.selectedRight.name,d:$scope.contentPopupRename});
@@ -844,6 +863,13 @@ module.exports = function ()
 			if(!_.isEmpty($scope.selectedRight) && !$scope.selectedRight.isup)
 			{
 				$scope.showPopupDelete=1;
+			}
+		};
+		this.deleteButtonShow = function()
+		{
+			if(!_.isEmpty($scope.selectedRight) && !$scope.selectedRight.isup)
+			{
+				return true;
 			}
 		};
 		this.delete = function(attr={})

@@ -99,13 +99,13 @@
               {{'Upload_here' | translate}}
             </md-tooltip>
         </md-button>
-		<md-button class="fileexplorer-actions" aria-label="Rename" ng-click="fe.renameButton()">
+		<md-button ng-show="fe.renameButtonShow()" class="fileexplorer-actions" aria-label="Rename" ng-click="fe.renameButton()">
         	<md-icon md-svg-src="/public/drawable/rename-icon.svg" class="s24" aria-label="Rename" ></md-icon>
             <md-tooltip md-direction="top">
               {{'Rename' | translate}}
             </md-tooltip>
         </md-button>
-		<md-button class="fileexplorer-actions" aria-label="Delete" ng-click="fe.deleteButton()">
+		<md-button ng-show="fe.deleteButtonShow()" class="fileexplorer-actions" aria-label="Delete" ng-click="fe.deleteButton()">
         	<md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete" ></md-icon>
             <md-tooltip md-direction="top">
               {{'Delete' | translate}}

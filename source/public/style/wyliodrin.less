@@ -915,3 +915,25 @@ outline:none;
 .fileexplorer-actions:hover { 
 	background:#eee !important;
 }
+
+.fileexplorer-dialog {
+	position:absolute;
+	z-index:98;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background:rgba(0,0,0,0.5) !important;
+	> div {
+	    position: absolute;
+		z-index: 99;
+		background: #fff;
+		width: 50%;
+		padding: 25px 25px 10px 25px;
+		top: 40%;
+		margin: auto;
+		left: 0;
+		right: 0;
+		border-radius: 10px;
+	}
+}

@@ -1,43 +1,91 @@
 <md-dialog aria-label="File Explorer" style="width: 80%; max-height:80%;" ng-escape="tm.exit()">
 
-	<div ng-show="showPopupDelete">
-		{{'want_to_delete' | translate}} {{ selectedRight.name }}?
-		<md-button ng-click="fe.delete()">{{'Yes' | translate}}</md-button>
-		<md-button ng-click="showPopupDelete=0">{{'No' | translate}}</md-button>
+	<div ng-show="showPopupDelete" class="fileexplorer-dialog">
+    	<div>
+        	<md-dialog-content>
+            	<h3>{{'want_to_delete' | translate}} {{ selectedRight.name }}?</h3>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button ng-click="fe.delete()">{{'Yes' | translate}}</md-button>
+                <md-button ng-click="showPopupDelete=0">{{'No' | translate}}</md-button>
+            </md-dialog-actions>
+        </div>
 	</div>
 
-	<div ng-show="showPopupNewFolder">
-		{{'folder_name' | translate}}
-		<input ng-model="contentPopupNewFolder">
-		<md-button ng-click="fe.newFolder()">{{'Ok' | translate}}</md-button>
-		<md-button ng-click="showPopupNewFolder=0">{{'Cancel' | translate}}</md-button>
+	<div ng-show="showPopupNewFolder" class="fileexplorer-dialog">
+    	<div>
+        	<md-dialog-content>
+                <!-- <h3>{{'folder_name' | translate}}</h3> -->
+                <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+                  <input ng-model="contentPopupNewFolder" type="text">
+                </md-input-container>
+            </md-dialog-content>
+            <md-dialog-actions layout="row" style="border:0;">
+                <span flex></span>
+                <md-button ng-click="fe.newFolder()">{{'Ok' | translate}}</md-button>
+                <md-button ng-click="showPopupNewFolder=0">{{'Cancel' | translate}}</md-button>
+            </md-dialog-actions>
+        </div>
 	</div>
 
-	<div ng-show="showPopupRename">
-		{{'choose_name' | translate}} 
-		<span ng-show="selectedRight.isdir">{{'folder' | translate}}</span>
-		<span ng-show="selectedRight.isfile">{{'file' | translate}}</span>
-		<span ng-show="selectedRight.islink">{{'link' | translate}}</span>
-		<input ng-model="contentPopupRename">
-		<md-button ng-click="fe.rename()">{{'Ok' | translate}}</md-button>
-		<md-button ng-click="showPopupRename=0">{{'Cancel' | translate}}</md-button>
+	<div ng-show="showPopupRename" class="fileexplorer-dialog">
+    	<div>
+        	<md-dialog-content>
+                <h3>
+                    {{'choose_name' | translate}} 
+                    <span ng-show="selectedRight.isdir">{{'folder' | translate}}</span>
+                    <span ng-show="selectedRight.isfile">{{'file' | translate}}</span>
+                    <span ng-show="selectedRight.islink">{{'link' | translate}}</span>
+                </h3>
+                <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+                  <input ng-model="contentPopupRename" type="text">
+                </md-input-container>
+            </md-dialog-content>
+            <md-dialog-actions layout="row" style="border:0;">
+                <span flex></span>
+                <md-button ng-click="fe.rename()">{{'Ok' | translate}}</md-button>
+                <md-button ng-click="showPopupRename=0">{{'Cancel' | translate}}</md-button>
+            </md-dialog-actions>
+        </div>
 	</div>
 
-	<div ng-show="showPopupUpload">
-		{{'will_upload' | translate}}
-		<md-progress-linear md-mode="determinate" ng-value="uploadvars.d*100/uploadvars.c.length"></md-progress-linear>
-		<md-button ng-click="showPopupUpload=0">{{'Cancel' | translate}}</md-button>
+	<div ng-show="showPopupUpload" class="fileexplorer-dialog">
+    	<div>
+        	<md-dialog-content>
+                <h3>{{'will_upload' | translate}}</h3>
+                <md-progress-linear md-mode="determinate" ng-value="uploadvars.d*100/uploadvars.c.length"></md-progress-linear>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+            	<md-button ng-click="showPopupUpload=0">{{'Cancel' | translate}}</md-button>
+            </md-dialog-actions>
+        </div>
 	</div>
 
-	<div ng-show="showPopupDownload">
-		{{'will_download' | translate}}
-		<md-progress-linear md-mode="determinate" ng-value="downloadvars.c.length*100/downloadvars.d"></md-progress-linear>
-		<md-button ng-click="showPopupDownload=0">{{'Cancel' | translate}}</md-button>
+	<div ng-show="showPopupDownload" class="fileexplorer-dialog">
+    	<div>
+        	<md-dialog-content>
+            	<h3>{{'will_download' | translate}}</h3>
+            	<md-progress-linear md-mode="determinate" ng-value="downloadvars.c.length*100/downloadvars.d"></md-progress-linear>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+            	<md-button ng-click="showPopupDownload=0">{{'Cancel' | translate}}</md-button>
+            </md-dialog-actions>
+        </div>
 	</div>
 
-	<div ng-show="showPopupError">
-		{{contentPopupError}}
-		<md-button ng-click="showPopupError=0">{{'Ok' | translate}}</md-button>
+	<div ng-show="showPopupError" class="fileexplorer-dialog">
+    	<div>
+        	<md-dialog-content>
+            	<h3>{{contentPopupError}}</h3>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+            	<md-button ng-click="showPopupError=0">{{'Ok' | translate}}</md-button>
+            </md-dialog-actions>
+        </div>
 	</div>
 
 
@@ -99,7 +147,13 @@
               {{'Upload_here' | translate}}
             </md-tooltip>
         </md-button>
-		<md-button ng-show="fe.renameButtonShow()" class="fileexplorer-actions" aria-label="Rename" ng-click="fe.renameButton()">
+		<md-button ng-show="fe.renameButtonShow()" class="fileexplorer-actions" aria-label="Download file" ng-click="fe.upload()">
+        	<md-icon md-svg-src="/public/drawable/download-icon.svg" class="s24" aria-label="Download file" ></md-icon>
+            <md-tooltip md-direction="top">
+              {{'Download' | translate}}
+            </md-tooltip>
+        </md-button>
+        <md-button ng-show="fe.renameButtonShow()" class="fileexplorer-actions" aria-label="Rename" ng-click="fe.renameButton()">
         	<md-icon md-svg-src="/public/drawable/rename-icon.svg" class="s24" aria-label="Rename" ></md-icon>
             <md-tooltip md-direction="top">
               {{'Rename' | translate}}

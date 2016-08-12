@@ -706,6 +706,7 @@ module.exports = function ()
 
 		this.doubleclick = function(file)
 		{
+			console.log(file);
 			if (file.isup)
 			{
 				this.up();
@@ -881,6 +882,14 @@ module.exports = function ()
 			{
 				$wydevice.send ('fe', {a:'del',b:$scope.cwd,c:$scope.selectedRight.name});
 				$scope.showPopupDelete = 0;
+			}
+		};
+
+		this.downloadButtonShow = function()
+		{
+			if(!_.isEmpty($scope.selectedRight) && $scope.selectedRight.isfile)
+			{
+				return true;
 			}
 		};
 

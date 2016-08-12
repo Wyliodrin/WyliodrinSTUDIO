@@ -806,6 +806,10 @@
     "message": "Rename",
     "description": ""
   },
+  "Download": {
+    "message": "Download",
+    "description": ""
+  },
   "Delete": {
     "message": "Delete",
     "description": ""

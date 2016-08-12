@@ -147,7 +147,7 @@
               {{'Upload_here' | translate}}
             </md-tooltip>
         </md-button>
-		<md-button ng-show="fe.renameButtonShow()" class="fileexplorer-actions" aria-label="Download file" ng-click="fe.upload()">
+		<md-button ng-show="fe.downloadButtonShow()" class="fileexplorer-actions" aria-label="Download file" ng-click="fe.download(cwd,selectedRight.name)">
         	<md-icon md-svg-src="/public/drawable/download-icon.svg" class="s24" aria-label="Download file" ></md-icon>
             <md-tooltip md-direction="top">
               {{'Download' | translate}}

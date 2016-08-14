@@ -45,7 +45,7 @@ module.exports = function ()
 		$scope.contentPopupNewFolder = "";
 		$scope.contentPopupError = "";
 
-		$scope.MAXPACKET = 4096;
+		$scope.MAXPACKET = 32*1024;
 		$scope.uploadvars={};
 		$scope.downloadvars={};
 

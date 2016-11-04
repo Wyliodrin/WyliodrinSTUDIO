@@ -72,6 +72,19 @@ module.exports = function(grunt) {
                ],
         }
       },
+      network_graph:{
+        files: {
+          'build/public/network_graph/network.js': ['source/public/network_graph/network.js']
+        },
+        options: {
+          browserifyOptions: {
+            debug: process.env.DEBUG_WYLIODRIN && process.env.DEBUG_WYLIODRIN !== ''
+          },
+          transform: [
+                  ["brfs", {}]
+               ]
+        }
+      },
       // streamsproject: {
       //   files: {
       //     'build/public/red/blockly.js': ['source/public/blockly/blockly.js']
@@ -238,7 +251,7 @@ module.exports = function(grunt) {
           {
             expand: true,     // Enable dynamic expansion.
             cwd: 'build/',      // Src matches are relative to this path.
-            src: ['public/**/*.js', '!public/blockly/blockly/**', '!public/red/**'], // Actual pattern(s) to match.
+            src: ['public/**/*.js', '!public/blockly/blockly/**', '!public/red/**', '!public/network_graph'], // Actual pattern(s) to match.
             dest: 'build/',   // Destination path prefix.
             ext: '.js',   // Dest filepaths will have this extension.
             extDot: 'first'   // Extensions in filenames begin after the first dot

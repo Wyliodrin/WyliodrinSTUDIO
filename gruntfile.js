@@ -72,9 +72,9 @@ module.exports = function(grunt) {
                ],
         }
       },
-      network_graph:{
+      network:{
         files: {
-          'build/public/network_graph/network.js': ['source/public/network_graph/network.js']
+          'build/public/network/network.js': ['source/public/network/network.js']
         },
         options: {
           browserifyOptions: {
@@ -148,6 +148,12 @@ module.exports = function(grunt) {
       {
         files: {
           'build/public/blockly/blockly-style.css': 'source/public/blockly/*.less'
+        }
+      },
+      network:
+      {
+        files: {
+          'build/public/network/network-style.css': 'source/public/network/*.less'
         }
       }
     },

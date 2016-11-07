@@ -176,6 +176,7 @@ function compactDevices ()
 		}
 	}
 	emitter.emit ('devices', devices);
+	console.log('devices');
 	console.log (devices);
 }
 

@@ -43,6 +43,8 @@
     "highcharts": "^4.2.1",
     "highcharts-ng": "0.0.11",
     "jointjs": "^1.0.2",
+    "jquery": "^3.1.1",
+    "jquery-contextmenu": "^2.3.0",
     "lodash": "^4.0.1",
     "material-design-icons": "^2.1.3",
     "msgpack-lite": "^0.1.15",
@@ -54,7 +56,7 @@
     "test": "true"
   },
   "browser": {
-    "jquery": "./bower_components/jquery/dist/jquery.js",
+    "jquery": "./node_modules/jquery/dist/jquery.js",
     "angular": "./bower_components/angular/angular.js",
     "angular-ui-ace": "./bower_components/angular-ui-ace/ui-ace.js",
     "angular-ui-tree": "./bower_components/angular-ui-tree/dist/angular-ui-tree.js",

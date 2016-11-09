@@ -5,6 +5,7 @@ var library = require ('library');
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:AppController');
+var $ = require ('jquery');
 
 var mixpanel = require ('mixpanel');
 

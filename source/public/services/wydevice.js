@@ -54,25 +54,21 @@ module.exports = function ()
 				
 				device.on ('connection_login_failed', function ()
 							{
-								console.log('wydevice.connection_login_failed');
 								if (device) that.emit ('connection_login_failed');
 							});
 
 				device.on ('connection_error', function ()
 							{
-								console.log('wydevice.connection_error');
 								if (device) that.emit ('connection_error');
 							});
 
 				device.on ('connection_timeout', function ()
 							{
-								console.log('wydevice.connection_error');
 								if (device) that.emit ('connection_timeout');
 							});
 				
 				device.on ('status', function (_status)
 				{
-					console.log('wydevice.status ' + _status);
 					status = _status;
 					if (status !== 'CONNECTED') deviceService.device = 
 					{
@@ -85,13 +81,11 @@ module.exports = function ()
 						device.removeAllListeners ();
 						device = null;
 					}
-					console.log (deviceService.device);
 					that.emit ('status', _status);
 				});
 
 				device.on ('message', function (t, d)
 				{
-					console.log('wydevice.message ' + d);
 					if (t === 'i')
 					{
 						// console.log (d);

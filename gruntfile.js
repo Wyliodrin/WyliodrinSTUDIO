@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       },
       client: {
         files: {
-          'build/public/wyliodrin.js': ['source/public/**/*.js', '!source/public/blockly/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/public/red/**/*.js']
+          'build/public/wyliodrin.js': ['source/public/**/*.js', '!source/public/blockly/**/*.js', '!source/public/network/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/public/red/**/*.js']
         },
         options: {
           browserifyOptions: {
@@ -70,6 +70,19 @@ module.exports = function(grunt) {
           transform: [
                   ["brfs", {}]
                ],
+        }
+      },
+      network:{
+        files: {
+          'build/public/network/network.js': ['source/public/network/network.js']
+        },
+        options: {
+          browserifyOptions: {
+            debug: process.env.DEBUG_WYLIODRIN && process.env.DEBUG_WYLIODRIN !== ''
+          },
+          transform: [
+                  ["brfs", {}]
+               ]
         }
       },
       // streamsproject: {
@@ -135,6 +148,12 @@ module.exports = function(grunt) {
       {
         files: {
           'build/public/blockly/blockly-style.css': 'source/public/blockly/*.less'
+        }
+      },
+      network:
+      {
+        files: {
+          'build/public/network/network-style.css': 'source/public/network/*.less'
         }
       }
     },
@@ -238,7 +257,7 @@ module.exports = function(grunt) {
           {
             expand: true,     // Enable dynamic expansion.
             cwd: 'build/',      // Src matches are relative to this path.
-            src: ['public/**/*.js', '!public/blockly/blockly/**', '!public/red/**'], // Actual pattern(s) to match.
+            src: ['public/**/*.js', '!public/blockly/blockly/**', '!public/red/**', '!public/network'], // Actual pattern(s) to match.
             dest: 'build/',   // Destination path prefix.
             ext: '.js',   // Dest filepaths will have this extension.
             extDot: 'first'   // Extensions in filenames begin after the first dot

@@ -32,7 +32,8 @@
     "app.window.fullscreen.overrideEsc",
     "webview",
     "https://api.mixpanel.com/*",
-    "https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json"
+    "https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json",
+    "contextMenus"
   ],
   "file_handlers":
   {

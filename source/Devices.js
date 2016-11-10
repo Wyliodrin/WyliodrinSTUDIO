@@ -18,6 +18,8 @@ const WORKSTATION = 2;
 
 var devices = [];
 
+console.log('devices');
+
 function deviceId (hostPort)
 {
 	var id = "";
@@ -176,6 +178,7 @@ function compactDevices ()
 		}
 	}
 	emitter.emit ('devices', devices);
+	console.log('devices');
 	console.log (devices);
 }
 

@@ -81,7 +81,6 @@ module.exports = function ()
 						device.removeAllListeners ();
 						device = null;
 					}
-					console.log (deviceService.device);
 					that.emit ('status', _status);
 				});
 

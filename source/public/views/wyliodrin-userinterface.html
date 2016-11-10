@@ -129,7 +129,7 @@
                       	{{ 'WYLIODRIN_USERINTERFACE_devicename' | translate }}
                       </md-tooltip>
 			        </div>
-                    <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
+                    <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.deploy()" class="run-bt">
                       <md-icon md-svg-src="/public/drawable/deploy-icon.svg" class="s24" aria-label="Deploy projects" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
@@ -141,7 +141,7 @@
                           {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
                         </md-tooltip>
                     </md-button>-->
-                    <div class="title-button md-menu-demo" ng-cloak>
+                    <div class="title-button md-menu-demo" ng-click="t.send()">
                       <div class="menu-demo-container" layout-align="center center" layout="column">
                         <md-menu ng-controller="TranslateController as tn">
                           <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.openMenu ($mdOpenMenu, $event)" class="run-bt">

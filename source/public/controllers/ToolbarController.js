@@ -46,6 +46,12 @@ module.exports = function ()
 			$wyapp.emit ('send');
 		};
 
+		this.deploy = function ()
+		{
+			debug ('Deploy request');
+			$wyapp.emit ('deploy');
+		};
+
 		this.exit = function ()
 		{
 			var message = $mdDialog.confirm()
@@ -309,8 +315,20 @@ module.exports = function ()
 		      fullscreen: false
 		    });
 		});
-		
-		
+
+		$wyapp.on ('deploy', function (){
+			debug ('Deploy');
+			$mdDialog.show({
+		      controller: 'DeployController',
+		      controllerAs: 'd',
+		      templateUrl: '/public/views/deploy.html',
+		      // parent: angular.element(document.body),
+		      // targetEvent: ev,
+		      clickOutsideToClose:true,
+		      fullscreen: false
+		    });
+		});
+				
 		$wyapp.on ('welcome', function ()
 		{
 			debug ('Welcome');

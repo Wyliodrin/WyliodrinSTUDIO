@@ -30,6 +30,7 @@ module.exports = function ()
 		var WyliodrinDevice = null;
 		var Devices = null;
 		// var service = null;
+		var devices = {};
 
 		var status = 'DISCONNECTED';
 
@@ -41,6 +42,9 @@ module.exports = function ()
 		var deviceService = {
 			connect: function (strdevice, options)
 			{
+				console.log('wydevice connect');
+				console.log(strdevice);
+				console.log(options);
 				if (!WyliodrinDevice) throw ('Wyliodrin device not initialised');
 				if (device && device.status !== 'DISCONNECTED') device.disconnect();
 				debug (options);
@@ -49,22 +53,23 @@ module.exports = function ()
 				console.log (categoryhint);
 				console.log (platformhint);
 				device = new WyliodrinDevice (strdevice, options);
+				devices[strdevice] = device;
 				var that = this;
 				
 				
 				device.on ('connection_login_failed', function ()
 							{
-								if (device) that.emit ('connection_login_failed');
+								if (device) that.emit ('connection_login_failed', strdevice);
 							});
 
 				device.on ('connection_error', function ()
 							{
-								if (device) that.emit ('connection_error');
+								if (device) that.emit ('connection_error', strdevice);
 							});
 
 				device.on ('connection_timeout', function ()
 							{
-								if (device) that.emit ('connection_timeout');
+								if (device) that.emit ('connection_timeout', strdevice);
 							});
 				
 				device.on ('status', function (_status)
@@ -81,7 +86,7 @@ module.exports = function ()
 						device.removeAllListeners ();
 						device = null;
 					}
-					that.emit ('status', _status);
+					that.emit ('status', _status, strdevice);
 				});
 
 				device.on ('message', function (t, d)
@@ -94,7 +99,7 @@ module.exports = function ()
 						deviceService.device.category = d.c;
 						deviceService.device.network = d.i;
 						deviceService.device.platform = d.p || 'linux';
-						that.emit ('status', status);
+						that.emit ('status', status, strdevice);
 					}
 					else
 					if (t === 'capabilities')
@@ -173,12 +178,11 @@ module.exports = function ()
 				}
 			},
 
-			disconnect: function ()
+			disconnect: function (deviceId)
 			{
-				// console.log (device);
-				if (device)
+				if (devices[deviceId])
 				{
-					device.disconnect ();
+					devices[deviceId].disconnect ();
 				}
 			}
 		};

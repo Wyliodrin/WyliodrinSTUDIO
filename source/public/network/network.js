@@ -30,47 +30,67 @@ setTimeout (function ()
   		var newDevices = _.difference (devices, networkDevices);
   		console.log(newDevices);
   		var missingDevices = _.difference (networkDevices, devices);
-  		newDevices.forEach (function (d){statusDevices[d.name] = 'DISCONNECTED';});
-  		missingDevices.forEach (function (d){statusDevices[d.name] = 'MISSING';});
+  		newDevices.forEach (function (d){statusDevices[d.ip] = 'DISCONNECTED';});
+  		missingDevices.forEach (function (d){statusDevices[d.ip] = 'MISSING';});
   		networkDevices = _.union (networkDevices, devices);
+  		buildGraph ();
+  		paper = new joint.dia.Paper({
+		    el: $('#graph-holder'),
+		    width: 1600,
+		    height: 500,
+		    model: graph,
+		    gridSize: 1,
+		   	interactive: true
+		});
+		drawGraph ();
   	};
 
   	network.status = function (boardId, status)
   	{
-  		console.log('iframe status');
   		statusDevices[boardId] = status;
   		var rect = rectangleDevices[boardId].rect;
   		var links = rectangleDevices[boardId].links;
+  		var board = getBoardById (boardId);
   		if (status === 'CONNECTED')
   		{
   			rect.attr({
   				rect: {stroke: 'green'},
-  				'.name':{fill: 'green'}});
+  				'.name':{fill: 'green'},
+  				'.address': {text: board.ip}});
   			links.forEach (function (link){
   				link.attr({'.connection':{stroke:'green'}});
+  			});
+  		}
+  		else if (status === 'DISCONNECTED')
+  		{
+  			rect.attr({
+  				rect: {stroke: 'grey'},
+  				'.name':{fill: 'black'},
+  				'.address': {text: board.ip}
+  			});
+  			links.forEach (function (link){
+  				link.attr({'.connection':{stroke:'grey'}});
   			});
   		}
   		else
   		{
   			rect.attr({
   				rect: {stroke: 'grey'},
-  				'.name':{fill: 'black'}
+  				'.name':{fill: 'black'},
+  				'.address': {text: status}
   			});
   			links.forEach (function (link){
   				link.attr({'.connection':{stroke:'grey'}});
   			});
   		}
-  		//drawGraph ();
-  		console.log (statusDevices);
   	};
 
   	networkDevices = network.getDevices();
-  	networkDevices.forEach (function (d){statusDevices[d.name] = 'DISCONNECTED';});
-  	console.log (statusDevices);
+  	networkDevices.forEach (function (d){statusDevices[d.ip] = 'DISCONNECTED';});
 
   	function getBoardById (id)
   	{
-  		var board = _.find (networkDevices, function (d) {return d.name === id;});
+  		var board = _.find (networkDevices, function (d) {return d.ip === id;});
   		if (board === undefined)
   		{
   			for (var i=0; i<networkDevices.length; i++)
@@ -80,7 +100,7 @@ setTimeout (function ()
   				{
   					for (var c=0; c< controllers.length; c++)
   					{
-  						if (controllers[c].name === id)
+  						if (controllers[c].ip === id)
   							return controllers[c];
   					}
   				}
@@ -103,7 +123,7 @@ setTimeout (function ()
 		for (var i=0; i<networkDevices.length; i++)
 		{
 			var node = networkDevices[i];
-			g.setNode(node.name, {width:NODE_WIDTH, height:NODE_HEIGHT});
+			g.setNode(node.ip, {width:NODE_WIDTH, height:NODE_HEIGHT});
 			//g.setEdge('router', node.name);
 
 			if (node.controllers)
@@ -111,7 +131,7 @@ setTimeout (function ()
 				{
 					var controller = node.controllers[c];
 					g.setNode(controller.name, {width:NODE_WIDTH, height:NODE_HEIGHT});
-					g.setEdge(node.name, controller.name);
+					g.setEdge(node.ip, controller.name);
 				}	
 		}
 		dagre.layout(g);
@@ -157,7 +177,7 @@ setTimeout (function ()
 
 				if (dasharray)
 					rect = new joint.shapes.basic.embeddedRect ({
-					id: node.name,
+					id: node.ip,
 					position: {x:node.x, y:node.y},
 					attrs: {
 							rect: {stroke: rectStroke, 'stroke-dasharray': '5 2'},
@@ -168,7 +188,7 @@ setTimeout (function ()
 					});
 				else
 					rect = new joint.shapes.basic.embeddedRect ({
-					id: node.name,
+					id: node.ip,
 					position: {x:node.x, y:node.y},
 					attrs: {
 							rect: {stroke: rectStroke},
@@ -184,7 +204,7 @@ setTimeout (function ()
 					boardImage = '/public/drawable/openmote.png';
 
 				rect = new joint.shapes.basic.controllerRect ({
-				id: node.name,
+				id: node.ip,
 				position: {x:node.x, y:node.y},
 				attrs: {
 						image:{'xlink:href': boardImage},
@@ -192,7 +212,7 @@ setTimeout (function ()
 					}
 				});
 			}
-			rectangleDevices[node.name] = {rect: rect, links:[]};
+			rectangleDevices[node.ip] = {rect: rect, links:[]};
 			rects.push (rect);
 		});
 
@@ -256,7 +276,7 @@ setTimeout (function ()
 				    '.marker-arrowheads':{display:'none'},
 					'.connection':{stroke:'grey'}});
 		    }
-		    rectangleDevices[storingNode.name].links.push(link);
+		    rectangleDevices[storingNode.ip].links.push(link);
 		    links.push(link);
 		});
 		graph.addCells(_.union(rects, links));
@@ -307,15 +327,15 @@ setTimeout (function ()
 	    selector: "#graph-holder", 
         trigger: 'none',
         build: function (){
-        	console.log (selectedBoard.name);
-        	console.log (statusDevices[selectedBoard.name]);
+        	console.log (selectedBoard.ip);
+        	console.log (statusDevices[selectedBoard.ip]);
         	console.log (statusDevices);
-        	if (statusDevices[selectedBoard.name] === 'DISCONNECTED')
+        	if (statusDevices[selectedBoard.ip] === 'CONNECTED')
 	        	return {
 	        		items: {
 				        connect: {
-				        	name: "Connect", 
-				        	callback: function(key, opt){ network.connectDevice (selectedBoard);}
+				        	name: "Disconnect", 
+				        	callback: function(key, opt){ network.disconnectDevice (selectedBoard.ip);}
 				        }
 			    	},
 			    	position: function(opt, x, y){
@@ -326,8 +346,8 @@ setTimeout (function ()
 	        	return {
 	        		items: {
 				        connect: {
-				        	name: "Disconnect", 
-				        	callback: function(key, opt){network.disconnectDevice (selectedBoard);}
+				        	name: "Connect", 
+				        	callback: function(key, opt){network.connectDevice (selectedBoard);}
 				        }
 			    	},
 			    	position: function(opt, x, y){

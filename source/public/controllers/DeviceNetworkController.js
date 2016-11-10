@@ -15,7 +15,7 @@ module.exports = function ()
 	var app = angular.module ('wyliodrinApp');
 
 
-	app.controller('DeviceNetworkController', function($scope, $wydevice, $mdDialog){
+	app.controller('DeviceNetworkController', function($scope, $wydevice, $wyapp, $mdDialog, $filter){
 		debug ('Registering');
 
 		var devicesCache;
@@ -28,45 +28,38 @@ module.exports = function ()
 		$wydevice.on ('connection_timeout', function ()
 		{
 			console.log('on connection_timeout');
-			// var message = $mdDialog.confirm()
-		 //          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
-		 //          .ok($filter('translate')('TOOLBAR_SETUP'))
-		 //          .cancel($filter('translate')('OK'));
-		 //    $mdDialog.show(message).then(function() {
-		 //      $wyapp.emit ('board');
-		 //    }, function() {
-		     	
-		 //    });
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
+		          .ok($filter('translate')('TOOLBAR_SETUP'))
+		          .cancel($filter('translate')('OK'));
+		    $mdDialog.show(message).then(function() {
+		      $wyapp.emit ('board');
+		    });
 		});
 
 		$wydevice.on ('connection_error', function ()
 		{
 			console.log('on connection_error');
-			// var message = $mdDialog.confirm()
-		 //          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
-		 //          .ok($filter('translate')('TOOLBAR_SETUP'))
-		 //          .cancel($filter('translate')('OK'));
-		 //    $mdDialog.show(message).then(function() {
-		 //      $wyapp.emit ('board');
-		 //    }, function() {
-		     	
-		 //    });
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
+		          .ok($filter('translate')('TOOLBAR_SETUP'))
+		          .cancel($filter('translate')('OK'));
+		    $mdDialog.show(message).then(function() {
+		      $wyapp.emit ('board');
+		    });
 		});
 
 		$wydevice.on ('connection_login_failed', function ()
 		{
 			console.log ('on connection_login_failed');
-			// var message = $mdDialog.confirm()
-		 //          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
-		 //          .ok($filter('translate')('DEVICE_CONNECT'))
-		 //          .cancel($filter('translate')('OK'));
-		 //          // Should be a retry button???
-		 //    $mdDialog.show(message).then(function() {
-		 //      // $wyapp.emit ('board');
-		 //      that.open ();
-		 //    }, function() {
-		     	
-		 //    });
+			var message = $mdDialog.alert()
+		          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
+		          .ok($filter('translate')('DEVICE_CONNECT'))
+		          .cancel($filter('translate')('OK'));
+		          // Should be a retry button???
+		    $mdDialog.show(message).then(function() {
+		      $wyapp.emit ('board');
+		    });
 		});
 
 		var network = {
@@ -76,9 +69,9 @@ module.exports = function ()
 			{
 				connect(device);
 			},
-			disconnectDevice: function (device)
+			disconnectDevice: function (deviceId)
 			{
-				$wydevice.disconnect ();
+				$wydevice.disconnect (deviceId);
 			},
 			status: function (boardId, status){}
 		};
@@ -88,24 +81,22 @@ module.exports = function ()
 			return network;
 		};
 
-		$wydevice.on ('status', function (status)
+		$wydevice.on ('status', function (status, deviceId)
 		{
-			console.log('on status ' + status);
+			console.log('on status ' + status + ' ' + deviceId);
 			if (status === 'INSTALL')
 			{
-				// var message = $mdDialog.confirm()
-			 //          .title($filter('translate')('DEVICE_QUESTION_INSTALL_SHELL'))
-			 //          .ok($filter('translate')('DEVICE_INSTALL'))
-			 //          .cancel($filter('translate')('PROJECT_SHELL'));
-			 //    $mdDialog.show(message).then(function() {
-			 //   		$wyapp.emit ('install');
-			 //    }, function() {
-			     	
-			 //    });
+				var message = $mdDialog.confirm()
+			          .title($filter('translate')('DEVICE_QUESTION_INSTALL_SHELL'))
+			          .ok($filter('translate')('DEVICE_INSTALL'))
+			          .cancel($filter('translate')('PROJECT_SHELL'));
+			    $mdDialog.show(message).then(function() {
+			   		$wyapp.emit ('install');
+			    });
 			}
 			else
 			{
-				network.status ('raspberrypi', status);
+				network.status (deviceId, status);
 			}
 		});
 
@@ -191,7 +182,7 @@ module.exports = function ()
 		{
 			$wydevice.registerForNetworkDevices (function (devices){
 				devicesCache = devices;
-				network.devices();
+				network.devices(devices);
 			});
 		};
 		setTimeout(getDevices, 1000);

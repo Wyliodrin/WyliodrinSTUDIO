@@ -13,7 +13,7 @@
 
 
             
-            <div class="title-button md-menu-demo" ng-cloak>
+      <div class="title-button md-menu-demo" ng-cloak>
 			  <div class="menu-demo-container" layout-align="center center" layout="column">
 			    <md-menu ng-controller="TranslateController as tn">
 			      <md-button class="icon-btn-lg" ng-click="t.openMenu ($mdOpenMenu, $event)">
@@ -130,11 +130,74 @@
                       </md-tooltip>
 			        </div>
                     <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
-                    	<md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run project" ></md-icon>
+                      <md-icon md-svg-src="/public/drawable/deploy-icon.svg" class="s24" aria-label="Deploy projects" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
                         </md-tooltip>
                     </md-button>
+                    <!--<md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
+                    	<md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run project" ></md-icon>
+                        <md-tooltip md-direction="bottom">
+                          {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
+                        </md-tooltip>
+                    </md-button>-->
+                    <div class="title-button md-menu-demo" ng-cloak>
+                      <div class="menu-demo-container" layout-align="center center" layout="column">
+                        <md-menu ng-controller="TranslateController as tn">
+                          <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.openMenu ($mdOpenMenu, $event)" class="run-bt">
+                            <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run projects" ></md-icon>
+                              <md-tooltip md-direction="bottom">
+                                {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
+                              </md-tooltip>
+                          </md-button>
+                          <md-menu-content width="3">
+                            <md-menu-item>
+                              <md-button>
+                                Run on all devices
+                              </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                              <md-button>
+                                Run on selected devices
+                              </md-button>
+                            </md-menu-item>
+                            <md-menu-item class="checkbtn">
+                              <md-checkbox aria-label="Select device">
+                                Lab RaspberryPi 2
+                              </md-checkbox>
+                              <md-button class="rundevice">
+                                <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run projects" ></md-icon>
+                                <md-tooltip md-direction="bottom">
+                                  Run project on this device
+                                </md-tooltip>
+                              </md-button>
+                            </md-menu-item>
+                            <md-menu-item class="checkbtn">
+                              <md-checkbox aria-label="Select device">
+                                Lab RaspberryPi 3
+                              </md-checkbox>
+                              <md-button class="rundevice">
+                                <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run projects" ></md-icon>
+                                <md-tooltip md-direction="bottom">
+                                  Run project on this device
+                                </md-tooltip>
+                              </md-button>
+                            </md-menu-item>
+                            <md-menu-item class="checkbtn">
+                              <md-checkbox aria-label="Select device">
+                                Lab RaspberryPi 4
+                              </md-checkbox>
+                              <md-button class="rundevice">
+                                <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run projects" ></md-icon>
+                                <md-tooltip md-direction="bottom">
+                                  Run project on this device
+                                </md-tooltip>
+                              </md-button>
+                            </md-menu-item>
+                          </md-menu-content>
+                        </md-menu>
+                      </div>
+                    </div>
                     <md-button ng-show="running && status === 'CONNECTED'" ng-click="t.stop()" class="stop-bt">
                         <md-icon md-svg-src="/public/drawable/stop-icon.svg" class="s24" aria-label="Stop project" ></md-icon>
                         <md-tooltip md-direction="bottom">

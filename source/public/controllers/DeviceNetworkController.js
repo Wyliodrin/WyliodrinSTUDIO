@@ -30,11 +30,8 @@ module.exports = function ()
 			console.log('on connection_timeout');
 			var message = $mdDialog.confirm()
 		          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
-		          .ok($filter('translate')('TOOLBAR_SETUP'))
-		          .cancel($filter('translate')('OK'));
-		    $mdDialog.show(message).then(function() {
-		      $wyapp.emit ('board');
-		    });
+		          .ok($filter('translate')('OK'));
+		    $mdDialog.show(message);
 		});
 
 		$wydevice.on ('connection_error', function ()
@@ -42,24 +39,18 @@ module.exports = function ()
 			console.log('on connection_error');
 			var message = $mdDialog.confirm()
 		          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
-		          .ok($filter('translate')('TOOLBAR_SETUP'))
-		          .cancel($filter('translate')('OK'));
-		    $mdDialog.show(message).then(function() {
-		      $wyapp.emit ('board');
-		    });
+		          .ok($filter('translate')('OK'));
+		    $mdDialog.show(message);
 		});
 
-		$wydevice.on ('connection_login_failed', function ()
+		$wydevice.on ('connection_login_failed', function (deviceId)
 		{
 			console.log ('on connection_login_failed');
 			var message = $mdDialog.alert()
 		          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
-		          .ok($filter('translate')('DEVICE_CONNECT'))
-		          .cancel($filter('translate')('OK'));
+		          .ok($filter('translate')('OK'));
 		          // Should be a retry button???
-		    $mdDialog.show(message).then(function() {
-		      $wyapp.emit ('board');
-		    });
+		    $mdDialog.show(message);
 		});
 
 		var network = {
@@ -73,6 +64,18 @@ module.exports = function ()
 			{
 				$wydevice.disconnect (deviceId);
 			},
+			shell: function (deviceId)
+			{
+				$mdDialog.show({
+			      // controller: 'XTermController',
+			      // controllerAs: 'x',
+			      templateUrl: '/public/views/shell.html',
+			      // parent: angular.element(document.body),
+			      // targetEvent: ev,
+			      clickOutsideToClose:true,
+			      fullscreen: false
+			    });
+			},
 			status: function (boardId, status){}
 		};
 
@@ -83,7 +86,6 @@ module.exports = function ()
 
 		$wydevice.on ('status', function (status, deviceId)
 		{
-			console.log('on status ' + status + ' ' + deviceId);
 			if (status === 'INSTALL')
 			{
 				var message = $mdDialog.confirm()

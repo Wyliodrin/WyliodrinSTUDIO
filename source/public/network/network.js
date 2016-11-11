@@ -47,10 +47,16 @@ setTimeout (function ()
 
   	network.status = function (boardId, status)
   	{
+  		console.log('status');
+  		console.log(status);
+  		console.log(boardId);
+
   		statusDevices[boardId] = status;
+  		  		console.log(statusDevices);
   		var rect = rectangleDevices[boardId].rect;
   		var links = rectangleDevices[boardId].links;
   		var board = getBoardById (boardId);
+  		console.log(board);
   		if (status === 'CONNECTED')
   		{
   			rect.attr({
@@ -330,12 +336,21 @@ setTimeout (function ()
         	console.log (selectedBoard.ip);
         	console.log (statusDevices[selectedBoard.ip]);
         	console.log (statusDevices);
-        	if (statusDevices[selectedBoard.ip] === 'CONNECTED')
+        	if (statusDevices[selectedBoard.ip] === 'CONNECTED' || 
+        		statusDevices[selectedBoard.ip] === 'SEPARATOR')
 	        	return {
 	        		items: {
 				        connect: {
 				        	name: "Disconnect", 
-				        	callback: function(key, opt){ network.disconnectDevice (selectedBoard.ip);}
+				        	callback: function(key, opt){
+				        		network.disconnectDevice (selectedBoard.ip);
+				        	}
+				        },
+				        shell: {
+				        	name: 'Shell',
+				        	callback: function (){
+				        		network.shell (selectedBoard.ip);
+				        	}
 				        }
 			    	},
 			    	position: function(opt, x, y){

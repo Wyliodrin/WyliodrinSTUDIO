@@ -60,7 +60,8 @@ module.exports = function ()
 
 		$wydevice.on ('message', function (t, p)
 		{
-			// console.log (p);
+			console.log (p);
+			console.log(t);
 			if (t === 's')
 			{
 				if (p.a === 'k')

@@ -91,6 +91,9 @@ module.exports = function ()
 
 				device.on ('message', function (t, d)
 				{
+					console.log('device.on message');
+					console.log (t);
+					console.log (d);
 					if (t === 'i')
 					{
 						// console.log (d);
@@ -130,7 +133,7 @@ module.exports = function ()
 						        }
 					    	});
 					}
-					that.emit ('message', t, d);
+					that.emit ('message', t, d, strdevice);
 				});
 			},
 
@@ -180,6 +183,8 @@ module.exports = function ()
 
 			disconnect: function (deviceId)
 			{
+				console.log ('wydevice disconnect '+deviceId);
+				console.log(devices);
 				if (devices[deviceId])
 				{
 					devices[deviceId].disconnect ();

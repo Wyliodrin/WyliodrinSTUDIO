@@ -341,13 +341,15 @@ setTimeout (function ()
 	        	return {
 	        		items: {
 				        connect: {
-				        	name: "Disconnect", 
+				        	name: "Disconnect",
+				        	icon: "disconnect",
 				        	callback: function(key, opt){
 				        		network.disconnectDevice (selectedBoard.ip);
 				        	}
 				        },
 				        shell: {
 				        	name: 'Shell',
+				        	icon: "shell",
 				        	callback: function (){
 				        		network.shell (selectedBoard.ip);
 				        	}
@@ -362,6 +364,7 @@ setTimeout (function ()
 	        		items: {
 				        connect: {
 				        	name: "Connect", 
+				        	icon: "connect",
 				        	callback: function(key, opt){network.connectDevice (selectedBoard);}
 				        }
 			    	},

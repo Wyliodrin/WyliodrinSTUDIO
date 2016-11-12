@@ -4,7 +4,7 @@
 @import (inline) "../../../bower_components/angular/angular-csp.css";
 @import (inline) "../../../node_modules/angular-tree-control/css/tree-control-attribute.css";
 
-body {font-size:13px;}
+body {font-size:13px; margin:0 !important;}
 
 a {color:#e54225; text-decoration:none;}
 a:hover {text-decoration:underline;}
@@ -961,4 +961,39 @@ outline:none;
 		right: 0;
 		border-radius: 10px;
 	}
+}
+
+.name {font-size:16px; padding-bottom:10px; font-weight:bold;}
+
+iframe {border:0 !important;}
+
+
+.deploy-box {width: 80%; height:75%; overflow:hidden;}
+
+.deploy-box {
+
+	md-dialog-content{overflow:hidden;}
+	
+	.deploy-container {height: 80%; padding:10px;}
+	.deploy-container-left {height: 80%; padding:10px; background:#191e25;}
+
+}
+
+.deploy-container-left {
+
+	.md-list-item-inner {padding:0 !important;}
+	
+	md-list-item > md-checkbox, md-list-item .md-list-item-inner > md-checkbox {
+		width: 24px;
+		margin-left: 7px;
+		margin-right: 10px;
+		margin-top: 18px;
+	}
+	
+	md-checkbox .md-icon {
+		border-color: rgba(255, 255, 255, 1) !important;
+	}
+	
+	p {color:#fff !important;}
+	
 }

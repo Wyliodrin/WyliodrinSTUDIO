@@ -92,31 +92,31 @@ module.exports = function ()
 			}
 		});
 
-		$wydevice.on ('status', function (status)
-		{
-			debug ('Status '+status);
-			// console.log (status);
-			mixpanel.track ('Status',
-			{
-				category: $scope.device.category,
-				status: status
-			});
-			$timeout (function ()
-			{
-				$scope.connected = (status === 'INSTALL' || status === 'PING' || status === 'CONNECTING' || status === 'SEPARATOR' || status === 'CONNECTED');
-				if ($scope.connected === false) 
-				{
-					$scope.device.category = 'board';
-					$scope.device.capabilities = null;
-					$scope.update = false;
-				}
-				$scope.status = status;
-				$scope.device.name = $wydevice.device.name;
-				$scope.device.platform = $wydevice.device.platform;
-				$scope.device.category = $wydevice.device.category;
-				if (status === 'CONNECTED' || status === 'INSTALL') $scope.shell_disable = false;
-			});
-		});
+		// $wydevice.on ('status', function (status)
+		// {
+		// 	debug ('Status '+status);
+		// 	// console.log (status);
+		// 	mixpanel.track ('Status',
+		// 	{
+		// 		category: $scope.device.category,
+		// 		status: status
+		// 	});
+		// 	$timeout (function ()
+		// 	{
+		// 		$scope.connected = (status === 'INSTALL' || status === 'PING' || status === 'CONNECTING' || status === 'SEPARATOR' || status === 'CONNECTED');
+		// 		if ($scope.connected === false) 
+		// 		{
+		// 			$scope.device.category = 'board';
+		// 			$scope.device.capabilities = null;
+		// 			$scope.update = false;
+		// 		}
+		// 		$scope.status = status;
+		// 		//$scope.device.name = $wydevice.device.name;
+		// 		$scope.device.platform = $wydevice.device.platform;
+		// 		$scope.device.category = $wydevice.device.category;
+		// 		if (status === 'CONNECTED' || status === 'INSTALL') $scope.shell_disable = false;
+		// 	});
+		// });
 		
 		setBoxSize ();
 

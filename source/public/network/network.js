@@ -8,9 +8,6 @@ var _ = require ('lodash');
 global.jQuery = $;
 require ('jquery-contextmenu');
 
-console.log ($.loaded);
-
-
 var NODE_WIDTH = 75;
 var NODE_HEIGHT = 75;
 
@@ -20,19 +17,11 @@ var IMG_HEIGHT = 44;
 setTimeout (function ()
 {
 	var networkDevices = [];
-	var statusDevices = {};
+	//var statusDevices = {};
 	var rectangleDevices = {};
   	var network = window.parent.getNetwork ();
   	network.devices = function (devices)
   	{
-  		console.log('devices');
-  		console.log(devices);
-  		var newDevices = _.difference (devices, networkDevices);
-  		console.log(newDevices);
-  		var missingDevices = _.difference (networkDevices, devices);
-  		newDevices.forEach (function (d){statusDevices[d.ip] = 'DISCONNECTED';});
-  		missingDevices.forEach (function (d){statusDevices[d.ip] = 'MISSING';});
-  		networkDevices = _.union (networkDevices, devices);
   		buildGraph ();
   		paper = new joint.dia.Paper({
 		    el: $('#graph-holder'),
@@ -51,8 +40,6 @@ setTimeout (function ()
   		console.log(status);
   		console.log(boardId);
 
-  		statusDevices[boardId] = status;
-  		  		console.log(statusDevices);
   		var rect = rectangleDevices[boardId].rect;
   		var links = rectangleDevices[boardId].links;
   		var board = getBoardById (boardId);
@@ -91,8 +78,8 @@ setTimeout (function ()
   		}
   	};
 
-  	networkDevices = network.getDevices();
-  	networkDevices.forEach (function (d){statusDevices[d.ip] = 'DISCONNECTED';});
+  	// networkDevices = network.getDevices();
+  	// networkDevices.forEach (function (d){statusDevices[d.ip] = 'DISCONNECTED';});
 
   	function getBoardById (id)
   	{
@@ -147,22 +134,22 @@ setTimeout (function ()
 	{
 		var rects = [];
 		g.nodes().forEach(function (v){
-			console.log(v);
-			var node = getBoardById (v);
+			var board = getBoardById (v);
+			var node = g.node(v);
 			var rect;
 
 			var boardImage;
-			if (node.ip)
+			if (board.ip)
 			{
 				var rectStroke;
 				var textFill;
 				var dasharray;
-				if (statusDevices[v] === 'CONNECTED')
+				if (board.status === 'CONNECTED')
 				{
 					rectStroke = 'green';
 					textFill = 'green';
 				}
-				else if (statusDevices[v] === 'MISSING')
+				else if (board.status === 'MISSING')
 				{
 					rectStroke = 'grey';
 					textFill = 'grey';
@@ -174,27 +161,27 @@ setTimeout (function ()
 					textFill = 'black';
 				}
 
-				if (node.category === 'raspberrypi')
+				if (board.options.category === 'raspberrypi')
 					boardImage = '/public/drawable/raspberrypi.png';
-				else if (node.category === 'arduinoyun')
+				else if (board.options.category === 'arduinoyun')
 					boardImage = '/public/drawable/arduinoyun.png';
 				else if (v === 'router')
 					boardImage = '/public/drawable/router.png';
 
 				if (dasharray)
 					rect = new joint.shapes.basic.embeddedRect ({
-					id: node.ip,
+					id: board.id,
 					position: {x:node.x, y:node.y},
 					attrs: {
 							rect: {stroke: rectStroke, 'stroke-dasharray': '5 2'},
 							image:{'xlink:href': boardImage},
-							'.name': {text: node.name, fill: textFill},
-							'.address':{text: node.ip}
+							'.name': {text: board.options.name, fill: textFill},
+							'.address':{text: board.options.ip}
 						}
 					});
 				else
 					rect = new joint.shapes.basic.embeddedRect ({
-					id: node.ip,
+					id: board.id,
 					position: {x:node.x, y:node.y},
 					attrs: {
 							rect: {stroke: rectStroke},
@@ -206,19 +193,19 @@ setTimeout (function ()
 			}
 			else
 			{
-				if (node.type === 'openmote')
+				if (board.options.type === 'openmote')
 					boardImage = '/public/drawable/openmote.png';
 
 				rect = new joint.shapes.basic.controllerRect ({
-				id: node.ip,
+				id: board.id,
 				position: {x:node.x, y:node.y},
 				attrs: {
 						image:{'xlink:href': boardImage},
-						text: {text: node.name}
+						text: {text: board.options.name}
 					}
 				});
 			}
-			rectangleDevices[node.ip] = {rect: rect, links:[]};
+			rectangleDevices[board.id] = {rect: rect, links:[]};
 			rects.push (rect);
 		});
 
@@ -240,12 +227,12 @@ setTimeout (function ()
 		    var status;
 		    if (sourceNode.category === 'router')
 	    	{
-		    	status = statusDevices[destNode];
+		    	status = sourceNode.status;
 		    	storingNode = destNode;
 		    }
 		    else
 		    {
-		    	status = statusDevices[sourceNode];
+		    	status = sourceNode.status;
 		    	storingNode = sourceNode;
 		    }
 
@@ -282,7 +269,7 @@ setTimeout (function ()
 				    '.marker-arrowheads':{display:'none'},
 					'.connection':{stroke:'grey'}});
 		    }
-		    rectangleDevices[storingNode.ip].links.push(link);
+		    rectangleDevices[storingNode.id].links.push(link);
 		    links.push(link);
 		});
 		graph.addCells(_.union(rects, links));
@@ -333,23 +320,20 @@ setTimeout (function ()
 	    selector: "#graph-holder", 
         trigger: 'none',
         build: function (){
-        	console.log (selectedBoard.ip);
-        	console.log (statusDevices[selectedBoard.ip]);
-        	console.log (statusDevices);
-        	if (statusDevices[selectedBoard.ip] === 'CONNECTED' || 
-        		statusDevices[selectedBoard.ip] === 'SEPARATOR')
+        	if (selectedBoard.status === 'CONNECTED' || 
+        		selectedBoard.status === 'SEPARATOR')
 	        	return {
 	        		items: {
 				        connect: {
 				        	name: "Disconnect", 
 				        	callback: function(key, opt){
-				        		network.disconnectDevice (selectedBoard.ip);
+				        		network.disconnectDevice (selectedBoard.id);
 				        	}
 				        },
 				        shell: {
 				        	name: 'Shell',
 				        	callback: function (){
-				        		network.shell (selectedBoard.ip);
+				        		network.shell (selectedBoard.id);
 				        	}
 				        }
 			    	},

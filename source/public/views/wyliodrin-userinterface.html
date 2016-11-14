@@ -113,10 +113,11 @@
                         </md-optgroup>
                     </md-select>
                 </md-input-container>-->
-              <div ng-if="connected" layout="row">
-                   	<img ng-if="device.category === 'board'" ng-src="/public/drawable/board_{{device.platform}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
-                    <img ng-if="device.category !== 'board'" ng-src="/public/drawable/{{device.category}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
-                    <div ng-show="status === 'PING'" class="warning">
+             <!--  <div ng-if="connected" layout="row"> -->
+             <div  layout="row">
+                   	<!-- <img ng-if="device.category === 'board'" ng-src="/public/drawable/board_{{device.platform}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
+                    <img ng-if="device.category !== 'board'" ng-src="/public/drawable/{{device.category}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img"> -->
+                    <div class="warning">
                     	<img src="/public/drawable/warning-icon.png" alt="Warning"></img>
                         <md-tooltip md-direction="bottom">
                           {{ label[device.category].text }} {{ 'WYLIODRIN_USERINTERFACE_Error' | translate }}
@@ -129,7 +130,7 @@
                       	{{ 'WYLIODRIN_USERINTERFACE_devicename' | translate }}
                       </md-tooltip>
 			        </div>
-                    <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.deploy()" class="run-bt">
+                    <md-button ng-click="t.deploy()" class="run-bt">
                       <md-icon md-svg-src="/public/drawable/deploy-icon.svg" class="s24" aria-label="Deploy projects" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
@@ -141,10 +142,11 @@
                           {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
                         </md-tooltip>
                     </md-button>-->
-                    <div class="title-button md-menu-demo" ng-click="t.send()">
+                    <div class="title-button md-menu-demo">
                       <div class="menu-demo-container" layout-align="center center" layout="column">
                         <md-menu ng-controller="TranslateController as tn">
-                          <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.openMenu ($mdOpenMenu, $event)" class="run-bt">
+                         <!--  <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.openMenu ($mdOpenMenu, $event)" class="run-bt"> -->
+                         <md-button ng-click="t.openMenu ($mdOpenMenu, $event)" class="run-bt">
                             <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run projects" ></md-icon>
                               <md-tooltip md-direction="bottom">
                                 {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
@@ -152,42 +154,20 @@
                           </md-button>
                           <md-menu-content width="3">
                             <md-menu-item>
-                              <md-button>
+                              <md-button ng-click="t.runAll()">
                                 Run on all devices
                               </md-button>
                             </md-menu-item>
                             <md-menu-item>
-                              <md-button>
+                              <md-button ng-click="t.runSelected ()">
                                 Run on selected devices
                               </md-button>
                             </md-menu-item>
-                            <md-menu-item class="checkbtn">
-                              <md-checkbox aria-label="Select device">
-                                Lab RaspberryPi 2
+                            <md-menu-item ng-repeat="device in connectedDevices" class="checkbtn">
+                              <md-checkbox aria-label="Select device" ng-model="device.selected">
+                                {{device.name}}
                               </md-checkbox>
-                              <md-button class="rundevice">
-                                <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run projects" ></md-icon>
-                                <md-tooltip md-direction="bottom">
-                                  Run project on this device
-                                </md-tooltip>
-                              </md-button>
-                            </md-menu-item>
-                            <md-menu-item class="checkbtn">
-                              <md-checkbox aria-label="Select device">
-                                Lab RaspberryPi 3
-                              </md-checkbox>
-                              <md-button class="rundevice">
-                                <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run projects" ></md-icon>
-                                <md-tooltip md-direction="bottom">
-                                  Run project on this device
-                                </md-tooltip>
-                              </md-button>
-                            </md-menu-item>
-                            <md-menu-item class="checkbtn">
-                              <md-checkbox aria-label="Select device">
-                                Lab RaspberryPi 4
-                              </md-checkbox>
-                              <md-button class="rundevice">
+                              <md-button class="rundevice" ng-click="t.runSelected(device)">
                                 <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run projects" ></md-icon>
                                 <md-tooltip md-direction="bottom">
                                   Run project on this device
@@ -198,37 +178,37 @@
                         </md-menu>
                       </div>
                     </div>
-                    <md-button ng-show="running && status === 'CONNECTED'" ng-click="t.stop()" class="stop-bt">
+                    <md-button ng-click="t.stop()" class="stop-bt">
                         <md-icon md-svg-src="/public/drawable/stop-icon.svg" class="s24" aria-label="Stop project" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'WYLIODRIN_USERINTERFACE_StopProject' | translate }}
                         </md-tooltip>
                     </md-button>
-                    <md-button ng-show="update && status === 'CONNECTED'" class="icon-btn update-btn" ng-click="t.update()">
+                    <md-button class="icon-btn update-btn" ng-click="t.update()">
                       <md-icon md-svg-src="/public/drawable/update-icon.svg" class="s24" aria-label="Update" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'TOOLBAR_UPDATE' | translate }}
                         </md-tooltip>
                     </md-button>
-                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.fe)" class="icon-btn" ng-click="t.fileexplorer()">
+                   <!--  <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.fe)" class="icon-btn" ng-click="t.fileexplorer()">
                       <md-icon md-svg-src="/public/drawable/fileexplorer-icon.svg" class="s24" aria-label="File Explorer" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           File Explorer
                         </md-tooltip>
-                    </md-button>
-                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.pm)" class="icon-btn" ng-click="t.packagemanager()">
+                    </md-button> -->
+                    <!-- <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.pm)" class="icon-btn" ng-click="t.packagemanager()">
                     	<md-icon md-svg-src="/public/drawable/library-icon.svg" class="s24" aria-label="{ackage Manager" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'NETWORK_PackageManager' | translate }}
                         </md-tooltip>
-                    </md-button>
-                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.net)" class="icon-btn" ng-click="t.taskmanager()">
+                    </md-button> -->
+                    <!-- <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.net)" class="icon-btn" ng-click="t.taskmanager()">
                     	<md-icon md-svg-src="/public/drawable/task-manager-icon.svg" class="s24" aria-label="Task manager" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'TASK_MANAGER_TaskManager' | translate }}
                         </md-tooltip>
-                    </md-button>
-                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.tm)" class="icon-btn" ng-click="t.network()">
+                    </md-button> -->
+                    <!-- <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.tm)" class="icon-btn" ng-click="t.network()">
                     	<md-icon md-svg-src="/public/drawable/network-icon.svg" class="s24" aria-label="Network" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'TOOLBAR_NETWORK' | translate }}
@@ -239,7 +219,7 @@
                               {{ label[device.category].text }} {{ 'WYLIODRIN_USERINTERFACE_NoInternet' | translate }}
                             </md-tooltip>
                         </div>
-                    </md-button>
+                    </md-button> -->
                    	<md-button ng-click="sp.exit()" class="icon-btn">
                     	<md-icon md-svg-src="/public/drawable/turn-off-icon.svg" class="s24" aria-label="Close" ></md-icon>
                         <md-tooltip md-direction="bottom">
@@ -250,7 +230,7 @@
                 <!-- <select ng-model="serialPort" ng-options="serialport.path for serialport in serialPorts track by serialport.path"></select> -->
 				<md-button ng-show="!connected" ng-click="sp.open()" class="open-close">{{ 'DEVICE_CONNECT' | translate }}</md-button>
                 
-				<div class="{{a.status()}}" >{{status | translate}}</div>
+				<!-- <div class="{{a.status()}}" >{{status | translate}}</div> -->
                 <div class="triangle"></div>
         <div class="os-icon" ng-if="connected">
             <img ng-src="/public/drawable/{{device.platform}}-icon.png" alt="{{ 'PLATFORM_'+device.platform | translate }}"></img>

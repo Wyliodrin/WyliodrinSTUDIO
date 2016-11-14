@@ -85,7 +85,7 @@ var program = null;
           animation: "slide-from-top",   
           inputValue: text 
         }, function(inputValue){ 
-          console.log (inputValue);
+          //console.log (inputValue);
           done (inputValue);
         });
       };
@@ -142,7 +142,7 @@ var program = null;
           // console.log (program);
           program.device = function (runningDevice)
           {
-            console.log (device);
+           // console.log (device);
             device = runningDevice;
             if (device && device.category === 'chrome')
             {

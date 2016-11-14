@@ -43,9 +43,8 @@ module.exports = function ()
 		    $mdDialog.show(message);
 		});
 
-		$wydevice.on ('connection_login_failed', function (deviceId)
+		$wydevice.on ('connection_login_failed', function (device)
 		{
-			console.log ('on connection_login_failed');
 			var message = $mdDialog.alert()
 		          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
 		          .ok($filter('translate')('OK'));
@@ -84,8 +83,10 @@ module.exports = function ()
 			return network;
 		};
 
-		$wydevice.on ('status', function (status, deviceId)
+		$wydevice.on ('status', function (status, device)
 		{
+			console.log('status ' + status);
+			console.log (device);
 			if (status === 'INSTALL')
 			{
 				var message = $mdDialog.confirm()
@@ -98,7 +99,7 @@ module.exports = function ()
 			}
 			else
 			{
-				network.status (deviceId, status);
+				network.status (device.ip, status);
 			}
 		});
 
@@ -109,7 +110,7 @@ module.exports = function ()
 			if (device.platform === 'chrome')
 			{
 				//$scope.connection = 'chrome';
-				$wydevice.connect ('', {type:'chrome'});
+				//$wydevice.connect ('', {type:'chrome'});
 				// mixpanel.track ('SerialPort Connect',{
 				// 	style:'chrome',
 				// 	device: 'chrome'
@@ -119,7 +120,7 @@ module.exports = function ()
 			if (device.platform === 'serial')
 			{
 				//$scope.connection = device.ip;
-				$wydevice.connect (device.ip);
+				//$wydevice.connect (device.ip);
 				// mixpanel.track ('SerialPort Connect',{
 				// 	style:'serial',
 				// 	device: device.ip
@@ -156,7 +157,7 @@ module.exports = function ()
 			      			port = $scope.device.secureport;
 			      		}
 			      		//scope.connection = ip;
-			      		$wydevice.connect ($scope.device.ip, {type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:device.category, platform: device.platform});
+			      		$wydevice.connect ($scope.device.ip, {address: $scope.device.ip, type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:device.category, platform: device.platform});
 			      		$mdDialog.hide ();
 			      		// mixpanel.track ('SerialPort Connect', {
 			      		// 	style: 'address',

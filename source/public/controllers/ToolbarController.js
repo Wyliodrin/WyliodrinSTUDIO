@@ -34,16 +34,12 @@ module.exports = function ()
 			update: '='
 		};
 
+
+
 		this.library = function ()
 		{
 			debug ('Library request');
 			$wyapp.emit ('library');
-		};
-
-		this.send = function ()
-		{
-			debug ('Run request');
-			$wyapp.emit ('send');
 		};
 
 		this.deploy = function ()
@@ -197,6 +193,9 @@ module.exports = function ()
 
 		this.openMenu = function($mdOpenMenu, ev) {
 	      // originatorEv = ev;
+	      var connectedDevices = $wydevice.getConnectedDevices();
+	      for (var i=0; i<connectedDevices.length; i++)
+	      	connectedDevices[i].selected = false;
 	      $mdOpenMenu(ev);
 	    };
 
@@ -264,6 +263,23 @@ module.exports = function ()
 		{
 			debug ('Forum');
 			window.open ('http://www.wyliodrin.com/forum');
+		};
+
+		this.runAll = function ()
+		{
+			$wyapp.emit('send', $scope.connectedDevices);
+		};
+
+		this.runSelected = function (device)
+		{
+			var devices = [];
+			if (device)
+				devices = [device];
+			else
+				for (var i=0; i<$scope.connectedDevices.length; i++)
+					if ($scope.connectedDevices[i].selected)
+						devices.push ($scope.connectedDevices[i]);
+			$wyapp.emit('send', devices);
 		};
 
 		$wyapp.on ('about', function ()

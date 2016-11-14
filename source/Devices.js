@@ -18,8 +18,6 @@ const WORKSTATION = 2;
 
 var devices = [];
 
-console.log('devices');
-
 function deviceId (hostPort)
 {
 	var id = "";

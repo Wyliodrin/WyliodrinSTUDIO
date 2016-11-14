@@ -19,9 +19,10 @@ var devices = dict ();
 
 export default class WyliodrinDevice extends EventEmitter
 {
-	constructor (device, options)
+	constructor (options)
 	{
 		super ();
+		var device = options.address;
 		debug ('Verifying if there is any device with port '+device);
 		if (devices.has (device))
 		{

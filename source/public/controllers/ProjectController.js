@@ -574,12 +574,12 @@ var app = angular.module ('wyliodrinApp');
 			if ($scope.project.id === -1) $wyapp.emit ('library');
 		});
 
-		$wyapp.on ('send', function ()
+		$wyapp.on ('send', function (devices)
 		{
 			debug ('Run');
-			function run (firmware, port)
+			function run (firmware, port, device)
 			{
-				var makefile = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];//+(firmwareAvailable?'firmware:\n\t':'');
+				var makefile = settings.MAKEFILE_STOARGE[device.platform][$scope.project.language];//+(firmwareAvailable?'firmware:\n\t':'');
 				var runmessage = {a:'start', l:$scope.project.language, p:$scope.project.main};
 				if (firmware && port)
 				{
@@ -589,7 +589,7 @@ var app = angular.module ('wyliodrinApp');
 					$scope.device.port = port;
 					mixpanel.track ('Project Run',
 					{
-						category: $wydevice.device.category,
+						category: device.category,
 						language: $scope.project.language,
 						flash: true
 					});
@@ -599,14 +599,15 @@ var app = angular.module ('wyliodrinApp');
 					makefile = makefile+'\n';
 					mixpanel.track ('Project Run',
 					{
-						category: $wydevice.device.category,
+						category: device.category,
 						language: $scope.project.language,
 						flash: false
 					});
 				}
 				runmessage.m = makefile;
 				shell.reset ();
-				$wydevice.send ('p', runmessage);
+				for (var i=0; i<devices.length; i++)
+					$wydevice.send ('p', runmessage, devices[i].ip);
 				$timeout (function ()
 				{
 					$scope.showXterm = true;
@@ -627,6 +628,7 @@ var app = angular.module ('wyliodrinApp');
 				{
 					var label = $scope.label;
 					var device = $scope.device;
+					console.log(device);
 					$mdDialog.show({
 				      controller: function ($scope)
 				      {

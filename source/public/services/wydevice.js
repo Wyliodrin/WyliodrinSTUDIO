@@ -36,8 +36,6 @@ module.exports = function ()
 		    WyliodrinDevice = backgroundPage.WyliodrinDevice;
 		    Devices = backgroundPage.Devices;
 		    Devices.registerListener (function (scannedDevices){
-		    	console.log('scannedDevices');
-		    	console.log(scannedDevices);
 		    	devices = [];
 		    	for (var i=0; i<scannedDevices.length; i++)
 		    	{
@@ -51,13 +49,12 @@ module.exports = function ()
 	    				password: '',
 	    				address: (device.ip?device.ip:''),
 	    				network: false,
-	    				name:device.name
+	    				name:device.name,
+	    				secureport: (device.secureport?device.secureport:22),
 	    			};
 	    			devices.push ({wyliodrinDevice: null, options: options,
 	    							status: 'DISCONNECTED', id:device.ip});		    		
 		    	}
-		    	console.log ('done process');
-		    	console.log (devices);
 		    	for (var s=0; s<devicesListeners.length; s++)
 		    		devicesListeners[s] (devices);
 		    });
@@ -77,7 +74,8 @@ module.exports = function ()
 				if (!WyliodrinDevice) throw ('Wyliodrin device not initialised');
 				debug (options);
 				
-				var device = _.find(function (d){return deviceId === d.id;});
+				var device = _.find(devices, function (d){return deviceId === d.id;});
+
 				if (device)
 				{
 					device.options = options;
@@ -98,6 +96,8 @@ module.exports = function ()
 					});
 
 					device.wyliodrinDevice.on ('status', function (_status){
+						console.log('status');
+						console.log (_status);
 						if (_status !== 'CONNECTED') 
 							device.options.network = false;
 						if (_status === 'ERROR' || _status === 'DISCONNECTED')
@@ -107,7 +107,7 @@ module.exports = function ()
 						if (_status === 'CONNECTED')
 							connectedDevices.push (device);
 						device.status = _status;
-						that.emit ('status', deviceId, _status);
+						that.emit ('status', _status, device.id);
 					});
 
 					device.wyliodrinDevice.on ('message', function (t, d){
@@ -206,14 +206,14 @@ module.exports = function ()
 				// }
 			},
 
-			disconnect: function (device)
+			disconnect: function (deviceId)
 			{
+				var device = _.find (devices, function (d){return d.id === deviceId;});
 				device.wyliodrinDevice.disconnect ();
 			}
 		};
 
 		deviceService = _.assign (new EventEmitter(), deviceService);
-
 		return deviceService;
 	});
 };

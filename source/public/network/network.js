@@ -16,14 +16,14 @@ var IMG_HEIGHT = 44;
 
 setTimeout (function ()
 {
-	var networkDevices = [];
-	//var statusDevices = {};
 	var rectangleDevices = {};
   	var network = window.parent.getNetwork ();
+  	var networkDevices = network.getDevices();
   	network.devices = function (devices)
   	{
   		console.log('network');
   		console.log (devices);
+  		networkDevices = devices;
   		buildGraph ();
   		paper = new joint.dia.Paper({
 		    el: $('#graph-holder'),
@@ -51,7 +51,7 @@ setTimeout (function ()
   			rect.attr({
   				rect: {stroke: 'green'},
   				'.name':{fill: 'green'},
-  				'.address': {text: board.ip}});
+  				'.address': {text: board.options.address}});
   			links.forEach (function (link){
   				link.attr({'.connection':{stroke:'green'}});
   			});
@@ -80,12 +80,11 @@ setTimeout (function ()
   		}
   	};
 
-  	// networkDevices = network.getDevices();
-  	// networkDevices.forEach (function (d){statusDevices[d.ip] = 'DISCONNECTED';});
+  	//   	// networkDevices.forEach (function (d){statusDevices[d.ip] = 'DISCONNECTED';});
 
   	function getBoardById (id)
   	{
-  		var board = _.find (networkDevices, function (d) {return d.ip === id;});
+  		var board = _.find (networkDevices, function (d) {return d.id === id;});
   		if (board === undefined)
   		{
   			for (var i=0; i<networkDevices.length; i++)
@@ -95,7 +94,7 @@ setTimeout (function ()
   				{
   					for (var c=0; c< controllers.length; c++)
   					{
-  						if (controllers[c].ip === id)
+  						if (controllers[c].address === id)
   							return controllers[c];
   					}
   				}
@@ -118,7 +117,7 @@ setTimeout (function ()
 		for (var i=0; i<networkDevices.length; i++)
 		{
 			var node = networkDevices[i];
-			g.setNode(node.ip, {width:NODE_WIDTH, height:NODE_HEIGHT});
+			g.setNode(node.id, {width:NODE_WIDTH, height:NODE_HEIGHT});
 			//g.setEdge('router', node.name);
 
 			if (node.controllers)
@@ -126,7 +125,7 @@ setTimeout (function ()
 				{
 					var controller = node.controllers[c];
 					g.setNode(controller.name, {width:NODE_WIDTH, height:NODE_HEIGHT});
-					g.setEdge(node.ip, controller.name);
+					g.setEdge(node.id, controller.name);
 				}	
 		}
 		dagre.layout(g);
@@ -137,11 +136,12 @@ setTimeout (function ()
 		var rects = [];
 		g.nodes().forEach(function (v){
 			var board = getBoardById (v);
+			console.log (board);
 			var node = g.node(v);
 			var rect;
 
 			var boardImage;
-			if (board.ip)
+			if (board.options.address)
 			{
 				var rectStroke;
 				var textFill;
@@ -188,8 +188,8 @@ setTimeout (function ()
 					attrs: {
 							rect: {stroke: rectStroke},
 							image:{'xlink:href': boardImage},
-							'.name': {text: node.name, fill: textFill},
-							'.address':{text: node.ip}
+							'.name': {text: board.options.name, fill: textFill},
+							'.address':{text: board.options.address}
 						}
 					});
 			}

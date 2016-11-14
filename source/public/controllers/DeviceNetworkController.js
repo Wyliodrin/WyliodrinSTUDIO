@@ -83,10 +83,9 @@ module.exports = function ()
 			return network;
 		};
 
-		$wydevice.on ('status', function (status, device)
+		$wydevice.on ('status', function (status, deviceId)
 		{
 			console.log('status ' + status);
-			console.log (device);
 			if (status === 'INSTALL')
 			{
 				var message = $mdDialog.confirm()
@@ -99,7 +98,7 @@ module.exports = function ()
 			}
 			else
 			{
-				network.status (device.ip, status);
+				network.status (deviceId, status);
 			}
 		});
 
@@ -134,10 +133,10 @@ module.exports = function ()
 			      {
 			      	$scope.device =
 			      	{
-			      		ip: (device.ip.length>0?device.ip:ip),
-			      		port: (device.port >= 0?device.port:port),
-			      		secureport: (device.secureport >= 0?device.secureport:secureport),
-			      		username: users[(device.ip.length>0?device.ip:ip)] || '',
+			      		ip: (device.options.address.length>0?device.options.address:ip),
+			      		port: (device.options.port >= 0?device.options.port:port),
+			      		secureport: (device.options.secureport >= 0?device.options.secureport:secureport),
+			      		username: users[(device.options.address.length>0?device.options.address:ip)] || '',
 			      		category: device.category
 			      	};
 
@@ -147,7 +146,7 @@ module.exports = function ()
 			      	{
 			      		// device.ip = $scope.device.ip;
 			      		// device.port = $scope.device.port;
-			      		users[$scope.device.ip] = $scope.device.username;
+			      		users[device.id] = $scope.device.username;
 			      		ip = $scope.device.ip;
 			      		port = $scope.device.port;
 			      		var type = 'chrome-socket';
@@ -157,7 +156,7 @@ module.exports = function ()
 			      			port = $scope.device.secureport;
 			      		}
 			      		//scope.connection = ip;
-			      		$wydevice.connect ($scope.device.ip, {address: $scope.device.ip, type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:device.category, platform: device.platform});
+			      		$wydevice.connect (device.id, {address: $scope.device.ip, type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:device.category, platform: device.platform});
 			      		$mdDialog.hide ();
 			      		// mixpanel.track ('SerialPort Connect', {
 			      		// 	style: 'address',

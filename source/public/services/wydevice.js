@@ -38,26 +38,26 @@ module.exports = function ()
 		    Devices.registerListener (function (scannedDevices){
 		    	console.log('scannedDevices');
 		    	console.log(scannedDevices);
+		    	devices = [];
 		    	for (var i=0; i<scannedDevices.length; i++)
 		    	{
-		    		var device = scannedDevices[i];
-		    		if (!devices.has(device.ip))
-		    		{
-		    			var options = {
-		    				category: (device.category?device.category:'board'),
-		    				platform: (device.platform?device.platform:'linux'),
-		    				type: null,
-		    				port: (device.port?device.port:7000),
-		    				username: '',
-		    				password: '',
-		    				address: (device.ip?device.ip:''),
-		    				network: false,
-		    				name:device.name
-		    			};
-		    			devices.push ({wyliodrinDevice: null, options: options,
-		    							status: 'DISCONNECTED', id:device.ip});
-		    		}
+		    		var device = scannedDevices[i];		    		
+	    			var options = {
+	    				category: (device.category?device.category:'board'),
+	    				platform: (device.platform?device.platform:'linux'),
+	    				type: null,
+	    				port: (device.port?device.port:7000),
+	    				username: '',
+	    				password: '',
+	    				address: (device.ip?device.ip:''),
+	    				network: false,
+	    				name:device.name
+	    			};
+	    			devices.push ({wyliodrinDevice: null, options: options,
+	    							status: 'DISCONNECTED', id:device.ip});		    		
 		    	}
+		    	console.log ('done process');
+		    	console.log (devices);
 		    	for (var s=0; s<devicesListeners.length; s++)
 		    		devicesListeners[s] (devices);
 		    });

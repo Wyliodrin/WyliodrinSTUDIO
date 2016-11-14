@@ -22,6 +22,8 @@ setTimeout (function ()
   	var network = window.parent.getNetwork ();
   	network.devices = function (devices)
   	{
+  		console.log('network');
+  		console.log (devices);
   		buildGraph ();
   		paper = new joint.dia.Paper({
 		    el: $('#graph-holder'),

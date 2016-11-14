@@ -79,6 +79,7 @@ require ('./controllers/XTermController.js')();
 require ('./controllers/FileExplorerController.js')();
 require ('./controllers/DeviceNetworkController.js')();
 require ('./controllers/DeployController.js')();
+require ('./controllers/TerminalDialogController.js')();
 require ('./services/wyapp.js')();
 require ('./services/wydevice.js')();
 require ('./services/wysignalproperties.js')();

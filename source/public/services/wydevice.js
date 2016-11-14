@@ -152,7 +152,7 @@ module.exports = function ()
 							        }
 						    	});
 						}
-						that.emit ('message', t, d, device);
+						that.emit ('message', t, d, device.id);
 					});
 				}
 			},
@@ -169,8 +169,9 @@ module.exports = function ()
 				return connectedDevices;
 			},
 
-			send: function (tag, data, device)
+			send: function (tag, data, deviceId)
 			{
+				var device = _.find (devices, function (d){return d.id === deviceId;});
 				if (device && device.wyliodrinDevice)
 					device.wyliodrinDevice.send (tag, data);
 			},

@@ -65,12 +65,14 @@ module.exports = function ()
 			},
 			shell: function (deviceId)
 			{
+				console.log('shell');
 				$mdDialog.show({
-			      // controller: 'XTermController',
+			      controller: 'TerminalDialogController',
 			      // controllerAs: 'x',
 			      templateUrl: '/public/views/shell.html',
-			      // parent: angular.element(document.body),
+			      parent: angular.element(document.body),
 			      // targetEvent: ev,
+			      locals: {deviceId: deviceId},
 			      clickOutsideToClose:true,
 			      fullscreen: false
 			    });
@@ -127,7 +129,6 @@ module.exports = function ()
 			}
 			else
 			{
-				//var scope = $scope;
 				$mdDialog.show({
 			      controller: function ($scope)
 			      {
@@ -140,12 +141,8 @@ module.exports = function ()
 			      		category: device.category
 			      	};
 
-			      	//$scope.device.secure = true;
-
 			      	this.connect = function ()
 			      	{
-			      		// device.ip = $scope.device.ip;
-			      		// device.port = $scope.device.port;
 			      		users[device.id] = $scope.device.username;
 			      		ip = $scope.device.ip;
 			      		port = $scope.device.port;
@@ -155,7 +152,6 @@ module.exports = function ()
 			      			type = 'chrome-ssh';
 			      			port = $scope.device.secureport;
 			      		}
-			      		//scope.connection = ip;
 			      		$wydevice.connect (device.id, {address: $scope.device.ip, type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:device.category, platform: device.platform});
 			      		$mdDialog.hide ();
 			      		// mixpanel.track ('SerialPort Connect', {

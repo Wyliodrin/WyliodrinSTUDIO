@@ -7,4 +7,4 @@ sudo apt-get install -y --force-yes wyliodrin-shell
 sudo apt-get install -y --force-yes wyliodrin-app-server 
 sudo apt-get install -y --force-yes wyliodrin-social
 sudo apt-get install -y --force-yes octave octave-signal r-base r-cran-rjson
-sudo apt-get install -y --force-yes node-red 
+sudo apt-get install -y --force-yes node-red

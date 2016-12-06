@@ -415,6 +415,11 @@ module.exports = function(grunt) {
       {
         install.linux[path.basename(installfile, '.sh')] = fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString();  
         install.linux[path.basename(installfile, '.sh')] = install.linux[path.basename(installfile, '.sh')].replace (/\r?\n/g, ' && ');
+	if (install.linux[path.basename(installfile, '.sh')].slice (-3) === '&& ')
+	{
+		var length = install.linux[path.basename(installfile, '.sh')].length;
+		install.linux[path.basename(installfile, '.sh')] = install.linux[path.basename(installfile, '.sh')].slice (0, length-3);
+	}
         console.log ('Install: '+path.basename(installfile, '.sh'));
       }
       else

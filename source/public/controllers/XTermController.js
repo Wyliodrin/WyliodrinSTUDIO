@@ -26,7 +26,6 @@ module.exports = function ()
 		var rows;
 
 		var write = true;
-
 		$timeout (function (){
 			function setSizes ()
 			{
@@ -46,6 +45,8 @@ module.exports = function ()
 			setSizes ();
 
 			var device = $attrs.id;
+
+			shell.write ('Press any key to start the shell\r\n');
 
 			//$wydevice.send ('s', {a:'k', t:'a'});
 			
@@ -72,11 +73,8 @@ module.exports = function ()
 				}
 			});
 
-			$wydevice.on ('message', function (t, p, deviceId)
+			$wydevice.on ('message:'+device, function (t, p, deviceId)
 			{
-				console.log('xterm on message');
-				console.log (p);
-				console.log(t);
 				if (deviceId === device)
 				{
 					if (t === 's')
@@ -96,6 +94,6 @@ module.exports = function ()
 					}
 				}
 			});
-		});
+		}, 500);
 	});
 };

@@ -152,7 +152,7 @@ module.exports = function ()
 							        }
 						    	});
 						}
-						that.emit ('message', t, d, device.id);
+						that.emit ('message:'+device.id, t, d, device.id);
 					});
 				}
 			},
@@ -194,8 +194,6 @@ module.exports = function ()
 			registerForNetworkDevices: function (done)
 			{
 				devicesListeners.push (done);
-				console.log ('registered');
-				console.log (devices);
 				done (devices);
 			},
 

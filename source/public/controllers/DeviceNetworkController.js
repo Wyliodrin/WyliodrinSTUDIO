@@ -182,6 +182,7 @@ module.exports = function ()
 				network.devices(devices);
 			});
 		};
+		
 		setTimeout(getDevices, 1000);
 	});
 };

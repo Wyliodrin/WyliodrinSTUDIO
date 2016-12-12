@@ -46,6 +46,7 @@ function deviceId (hostPort)
 			_.each (list, function (item)
 			{
 				var device = {
+					id: item.path,
 					ip: item.path,
 					name: item.displayName || (item.path.startsWith('/')?item.path.substring (item.path.lastIndexOf ('/')+1):item.path),
 					uplink: 'serial',
@@ -93,7 +94,7 @@ class Device
 		this.parametersArray[priority] = null;
 	}
 
-	t (property)
+	get (property)
 	{
 		debug ('Get '+property+' for '+this.id);
 		var data = this.properties[property];

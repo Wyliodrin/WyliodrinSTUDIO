@@ -18,6 +18,10 @@ const WORKSTATION = 2;
 
 var devices = [];
 
+var serialDevices = [];
+
+var _previousSerialDevices = [];
+
 function deviceId (hostPort)
 {
 	var id = "";
@@ -27,6 +31,46 @@ function deviceId (hostPort)
 	}
 	return id;
 }
+
+(function listSerialDevices ()
+{
+	chrome.serial.getDevices (function (list)
+	{
+		var changes = false;
+
+		// TODO improve check for new serial devices
+		if (list.length !== serialDevices.length)
+		{
+			console.log (list);
+			serialDevices = [];
+			_.each (list, function (item)
+			{
+				var device = {
+					ip: item.path,
+					name: item.displayName || (item.path.startsWith('/')?item.path.substring (item.path.lastIndexOf ('/')+1):item.path),
+					uplink: 'serial',
+					platform: item.productId,
+					category: item.vendorId
+				};
+				if (device.name.startsWith('cu.')) device.name = device.name.substring (3);
+				if (device.name.startsWith('tty.')) device.name = device.name.substring (4);
+				if (device.name.startsWith ('Bluetooth-'))
+				{
+					device.priority = 6;
+				}
+				else
+				{
+					device.priority = 1;
+				}
+				serialDevices.push (device);		
+			});
+			serialDevices = _.sortBy (serialDevices, "priority");
+			console.log (serialDevices);
+			emitter.emit ('serial', serialDevices);
+		}
+		setTimeout (listSerialDevices, 1000);
+	});
+})();
 
 class Device
 {
@@ -49,7 +93,7 @@ class Device
 		this.parametersArray[priority] = null;
 	}
 
-	get (property)
+	t (property)
 	{
 		debug ('Get '+property+' for '+this.id);
 		var data = this.properties[property];
@@ -107,24 +151,43 @@ class Device
 		return this.get ('platform');
 	}
 
+	get uplink ()
+	{
+		return 'local';
+	}
+
 	hasProperties ()
 	{
 		return _.reduce (this.parametersArray, function (size, parameters) { return size + (parameters === null?0:1); }, 0) !== 0;
 	}
 }
 
-function registerListener (callback)
+function registerSerialListener (callback)
+{
+	process.nextTick (function ()
+	{
+		callback (serialDevices);
+	});
+	emitter.on ('serial', callback);
+}
+
+function unregisterSerialListener (callback)
+{
+	emitter.removeListener ('serial', callback);
+}
+
+function registerLocalListener (callback)
 {
 	process.nextTick (function ()
 	{
 		callback (devices);
 	});
-	emitter.on ('devices', callback);
+	emitter.on ('local', callback);
 }
 
-function unregisterListener (callback)
+function unregisterLocalListener (callback)
 {
-	emitter.removeListener ('devices', callback);
+	emitter.removeListener ('local', callback);
 }
 
 function findDevicePosition (id)
@@ -149,9 +212,14 @@ function addDevice (device)
 	devices.push (device);
 }
 
-function getDevices ()
+function getLocalDevices ()
 {
 	return devices;
+}
+
+function getSerialDevices (done)
+{
+	return serialDevices;
 }
 
 function eraseDevices (priority)
@@ -175,7 +243,7 @@ function compactDevices ()
 			i--;
 		}
 	}
-	emitter.emit ('devices', devices);
+	emitter.emit ('local', devices);
 	console.log (devices);
 }
 
@@ -350,8 +418,11 @@ chrome.mdns.onServiceList.addListener (function (services)
 	compactDevices ();
 }, {serviceType: '_workstation._tcp.local'});
 
-module.exports.getDevices = getDevices;
-module.exports.registerListener = registerListener;
-module.exports.unregisterListener = unregisterListener;
+module.exports.getLocalDevices = getLocalDevices;
+module.exports.getSerialDevices = getSerialDevices;
+module.exports.registerSerialListener = registerSerialListener;
+module.exports.registerLocalListener = registerLocalListener;
+module.exports.unregisterSerialListener = unregisterSerialListener;
+module.exports.unregisterLocalListener = unregisterLocalListener;
 
 

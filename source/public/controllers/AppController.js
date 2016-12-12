@@ -6,6 +6,8 @@ var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:AppController');
 
+var $ = require ('jquery');
+
 var mixpanel = require ('mixpanel');
 
 debug ('Loading');
@@ -19,7 +21,7 @@ module.exports = function ()
 	{
 		debug ('Registering');
 
-		document.title = $filter('translate')('__MSG_appName__');
+		document.title = $filter('translate')('appName');
 
 		mixpanel.track ('Startup');
 
@@ -119,10 +121,20 @@ module.exports = function ()
 		
 		setBoxSize ();
 
-		chrome.app.window.current().onClosed.addListener (function ()
+		if (settings.platform.CHROME)
 		{
-			$wydevice.disconnect ();
-		});
+			chrome.app.window.current().onClosed.addListener (function ()
+			{
+				$wydevice.disconnect ();
+			});
+		}
+		else if (settings.platform.BROWSER)
+		{
+			$(document).unload (function ()
+			{
+				$wydevice.disconnect ();
+			});
+		}
 	});
 	
 	app.directive('ngEnter', function () {

@@ -44,14 +44,6 @@ const DISCONNECTED = 5;
 
 export default class SerialChromeDevice extends EventEmitter
 {
-	static listDevices (done)
-	{
-		chrome.serial.getDevices (function (list)
-		{
-			done (null, list);
-		});
-	}
-
 	constructor (port, options)
 	{
 		super ();

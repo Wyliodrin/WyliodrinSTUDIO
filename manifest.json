@@ -1,7 +1,7 @@
 {
   "name": "__MSG_appName__",
   "description":"__MSG_appDesc__",
-  "version": "10.8",
+  "version": "11",
   "manifest_version": 2,
   "default_locale":"en",
   "author":"Wyliodrin SRL",

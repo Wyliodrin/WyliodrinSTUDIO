@@ -4,6 +4,7 @@ var joint = require ('jointjs');
 var $ = require ('jquery');
 var dagre = require('dagre');
 var _ = require ('lodash');
+var settings = require ('./settings.js');
 
 global.jQuery = $;
 require ('jquery-contextmenu');
@@ -21,8 +22,6 @@ setTimeout (function ()
   	var networkDevices = network.getDevices();
   	network.devices = function (devices)
   	{
-  		console.log('network');
-  		console.log (devices);
   		networkDevices = devices;
   		buildGraph ();
   		paper = new joint.dia.Paper({
@@ -38,16 +37,14 @@ setTimeout (function ()
 
   	network.status = function (boardId, status)
   	{
-  		console.log('status');
-  		console.log(status);
-  		console.log(boardId);
-
   		var rect = rectangleDevices[boardId].rect;
   		var links = rectangleDevices[boardId].links;
   		var board = getBoardById (boardId);
-  		console.log(board);
+  		console.log(rect);
+
   		if (status === 'CONNECTED')
   		{
+  			console.log ('status is connected');
   			rect.attr({
   				rect: {stroke: 'green'},
   				'.name':{fill: 'green'},
@@ -94,7 +91,7 @@ setTimeout (function ()
   				{
   					for (var c=0; c< controllers.length; c++)
   					{
-  						if (controllers[c].address === id)
+  						if (controllers[c].name === id)
   							return controllers[c];
   					}
   				}
@@ -136,7 +133,6 @@ setTimeout (function ()
 		var rects = [];
 		g.nodes().forEach(function (v){
 			var board = getBoardById (v);
-			console.log (board);
 			var node = g.node(v);
 			var rect;
 
@@ -163,13 +159,13 @@ setTimeout (function ()
 					textFill = 'black';
 				}
 
-				if (board.options.category === 'raspberrypi')
-					boardImage = '/public/drawable/raspberrypi.png';
-				else if (board.options.category === 'arduinoyun')
-					boardImage = '/public/drawable/arduinoyun.png';
-				else if (v === 'router')
-					boardImage = '/public/drawable/router.png';
-
+				// if (board.options.category === 'raspberrypi')
+				// 	boardImage = '/public/drawable/raspberrypi.png';
+				// else if (board.options.category === 'arduinoyun')
+				// 	boardImage = '/public/drawable/arduinoyun.png';
+				// else if (v === 'router')
+				// 	boardImage = '/public/drawable/router.png';
+				boardImage = settings.boards[board.options.category].picture;
 				if (dasharray)
 					rect = new joint.shapes.basic.embeddedRect ({
 					id: board.id,
@@ -192,22 +188,23 @@ setTimeout (function ()
 							'.address':{text: board.options.address}
 						}
 					});
+				rectangleDevices[board.id] = {rect: rect, links:[]};
 			}
 			else
 			{
-				if (board.options.type === 'openmote')
-					boardImage = '/public/drawable/openmote.png';
+				if (board.type === 'openmote')
+					boardImage = settings.boards[board.type].picture;//'/public/drawable/openmote.png';
 
 				rect = new joint.shapes.basic.controllerRect ({
-				id: board.id,
+				id: board.name,
 				position: {x:node.x, y:node.y},
 				attrs: {
 						image:{'xlink:href': boardImage},
-						text: {text: board.options.name}
+						text: {text: board.name}
 					}
 				});
-			}
-			rectangleDevices[board.id] = {rect: rect, links:[]};
+				rectangleDevices[board.name] = {rect: rect, links:[]};
+			}		
 			rects.push (rect);
 		});
 
@@ -369,7 +366,7 @@ setTimeout (function ()
 		selectedY = y;
 		selectedBoard = getBoardById (cellView.model.id);
 		console.log(networkDevices);
-		if (selectedBoard)
+		if (selectedBoard && selectedBoard.id)
 			$('#graph-holder').contextMenu();
 	});
   

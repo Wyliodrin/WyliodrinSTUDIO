@@ -65,7 +65,6 @@ module.exports = function ()
 			},
 			shell: function (deviceId)
 			{
-				console.log('shell');
 				$mdDialog.show({
 			      controller: 'TerminalDialogController',
 			      // controllerAs: 'x',

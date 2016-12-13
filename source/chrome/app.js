@@ -6,12 +6,20 @@ var debug = require ('debug');
 
 debug.enable (settings.debug);
 
-import WyliodrinDevice from './WyliodrinDevice';
+import WyliodrinDevice from './WyliodrinDevice.js';
+import ChromeDevice from './ChromeDevice.js';
+import SerialChromeDevice from './SerialChromeDevice.js';
+import SocketChromeDevice from './SocketChromeDevice.js';
+import SSHChromeDevice from './SSHChromeDevice.js';
 
-var Devices = require ('./Devices.js');
+var LocalDevices = require ('./LocalDevices.js');
 
 global.WyliodrinDevice = WyliodrinDevice;
-global.Devices = Devices;
+global.LocalDevices = LocalDevices;
+global.ChromeDevice = ChromeDevice;
+global.SerialChromeDevice = SerialChromeDevice;
+global.SocketChromeDevice = SocketChromeDevice;
+global.SSHChromeDevice = SSHChromeDevice;
 
 var log = debug ('wyliodrin:background');
 chrome.app.runtime.onLaunched.addListener(function(launchData) {

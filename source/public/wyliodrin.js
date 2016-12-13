@@ -80,9 +80,12 @@ require ('./controllers/FileExplorerController.js')();
 require ('./controllers/DeviceNetworkController.js')();
 require ('./controllers/DeployController.js')();
 require ('./controllers/TerminalDialogController.js')();
-require ('./services/wyapp.js')();
-require ('./services/wydevice.js')();
-require ('./services/wysignalproperties.js')();
+
+require ('./services/wyapp.js');
+require ('./services/wydevice.js');
+require ('./services/wydevices.js');
+require ('./services/wysignalproperties.js');
+
 
 require ('./dashboardtags/line.js')();
 require ('./dashboardtags/thermometer.js')();

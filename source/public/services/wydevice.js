@@ -1,6 +1,8 @@
 
 "use strict";
 
+import WyliodrinDevice from './WyliodrinDevice.js';
+
 var angular = require ('angular');
 
 var EventEmitter = require ('events').EventEmitter;
@@ -25,8 +27,9 @@ module.exports = function ()
 	{
 		debug ('Registering');
 
-		var WyliodrinDevice = null;
-		var Devices = null;
+		var device = null;
+		// var WyliodrinDevice = null;
+		// var Devices = null;
 		// var service = null;
 		var devices = [];
 		var connectedDevices = [];
@@ -69,6 +72,7 @@ module.exports = function ()
 		// 			address:'',
 		// 			network:''}
 		var deviceService = {
+
 			connect: function (deviceId, options)
 			{
 				if (!WyliodrinDevice) throw ('Wyliodrin device not initialised');
@@ -176,21 +180,6 @@ module.exports = function ()
 					device.wyliodrinDevice.send (tag, data);
 			},
 
-			listSerialDevices: function (done)
-			{
-				if (WyliodrinDevice)
-				{
-					WyliodrinDevice.listDevices ("serial", function (err, list)
-					{
-						done (err, list);
-					});
-				}
-				else
-				{
-					done (new Error ('Wyliodrin device not initialised'));
-				}
-			},
-
 			registerForNetworkDevices: function (done)
 			{
 				devicesListeners.push (done);
@@ -209,10 +198,11 @@ module.exports = function ()
 			{
 				var device = _.find (devices, function (d){return d.id === deviceId;});
 				device.wyliodrinDevice.disconnect ();
-			}
+			});
 		};
-
+		
 		deviceService = _.assign (new EventEmitter(), deviceService);
 		return deviceService;
+
 	});
 };

@@ -9,20 +9,28 @@ var EventEmitter = require ('events').EventEmitter;
 var msgpack = require ('msgpack-lite');
 var dict = require ('dict');
 
+var ChromeDevice = null;
+var SerialChromeDevice = null;
+var SocketChromeDevice = null;
+var SSHChromeDevice = null;
 
-import ChromeDevice from './ChromeDevice.js';
-import SerialChromeDevice from './SerialChromeDevice.js';
-import SocketChromeDevice from './SocketChromeDevice.js';
-import SSHChromeDevice from './SSHChromeDevice.js';
+if (settings.platform.CHROME)
+{
+	chrome.runtime.getBackgroundPage(function (backgroundPage) {
+		ChromeDevice = backgroundPage.ChromeDevice;
+		SerialChromeDevice = backgroundPage.SerialChromeDevice;
+		SocketChromeDevice = backgroundPage.SocketChromeDevice;
+		SSHChromeDevice = backgroundPage.SSHChromeDevice;
+	});
+}
 
 var devices = dict ();
 
 export default class WyliodrinDevice extends EventEmitter
 {
-	constructor (options)
+	constructor (device, options)
 	{
 		super ();
-		var device = options.address;
 		debug ('Verifying if there is any device with port '+device);
 		if (devices.has (device))
 		{
@@ -237,22 +245,6 @@ export default class WyliodrinDevice extends EventEmitter
 	publishStatus ()
 	{
 		this.emit ('status', this.status);
-	}
-
-	static listDevices (type, done)
-	{
-		if (type === "serial")
-		{
-			SerialChromeDevice.listDevices (done);
-		}
-		else
-		{
-			process.nextTick (function ()
-			{
-				debug ('Unknown type '+type+' for list devices');
-				done (new Error ("Unknown type"));
-			});
-		}
 	}
 
 	static disconnectDevices ()

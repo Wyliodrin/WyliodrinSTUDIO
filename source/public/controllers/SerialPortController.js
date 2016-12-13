@@ -21,7 +21,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('SerialPortsController', function($scope, $timeout, $filter, $wydevice, $mdDialog, $wyapp){
+	app.controller('SerialPortsController', function($scope, $timeout, $filter, $wydevice, $wydevices, $mdDialog, $wyapp){
 		debug ('Registering');
 		// $scope.serialPorts = [];
 		// $scope.serialPort = null;
@@ -253,7 +253,7 @@ module.exports = function ()
 				});
 			}
 			else
-			if (device.platform === 'serial')
+			if (device.uplink === 'serial')
 			{
 				$scope.connection = device.ip;
 				$wydevice.connect (device.ip);
@@ -324,58 +324,11 @@ module.exports = function ()
 			$mdDialog.show({
 			      controller: function ($scope, $wydevice, $timeout)
 			      {
-			      	$scope.devices = [];
-			      	$scope.serialPorts = [];
+			      	$scope.devices = {};
 
-			      	this.listPorts = true;
-			      	
-			      	this.getPorts = function ()
-					{
-						var that_ports = this;
-						var ports = setTimeout (function ()
-						{
-							$wydevice.listSerialDevices (function (err, list)
-							{
-								if (err)
-								{
-									that_ports.getPorts ();
-								}
-								else
-								{
-									if (list.length != $scope.serialPorts.length)
-									{
-										$timeout (function ()
-										{
-											$scope.serialPorts = list;
-											_.each ($scope.serialPorts, function (serialPort)
-											{
-												serialPort.name = path.basename (serialPort.path);
-												if (serialPort.name.startsWith('cu.')) serialPort.name = serialPort.name.substring (3);
-												if (serialPort.name.startsWith('tty.')) serialPort.name = serialPort.name.substring (4);
-												serialPort.ip = serialPort.path;
-												serialPort.platform = 'serial';
-												if (serialPort.name.startsWith ('Bluetooth-'))
-												{
-													serialPort.priority = 6;
-												}
-												else
-												{
-													serialPort.priority = 1;
-												}
-											});
-											$scope.serialPorts = _.sortBy ($scope.serialPorts, "priority");
-											// if ($scope.serialPort === null && $scope.serialPorts.length > 0) $scope.serialPort = $scope.serialPorts[0];
-											if (that_ports.listPorts) that_ports.getPorts ();
-										});
-									}
-								}
-							});
-						}, 1000);
-					};
+					// this.getPorts ();
 
-					this.getPorts ();
-
-			      	var listNetworkDevices = function (devices)
+			      	var listDevices = function (devices)
 			      	{
 			      		$timeout (function ()
 			      		{
@@ -383,7 +336,9 @@ module.exports = function ()
 			      		});
 			      	};
 
-			      	$wydevice.registerForNetworkDevices (listNetworkDevices);
+			      	// $wydevice.registerForNetworkDevices (listDevices);
+			      	$wydevices.on ('devices', listDevices);
+			      	$wydevices.getDevices ();
 
 			      	this.connect = function (device)
 			      	{
@@ -393,7 +348,7 @@ module.exports = function ()
 
 			      	this.exit = function ()
 			      	{
-			      		$wydevice.unregisterForNetworkDevices (listNetworkDevices);
+			      		$wydevices.removeListener ('devices', listDevices);
 			      		this.listPorts = false;
 			      		$mdDialog.hide ();
 			      	};

@@ -50,11 +50,7 @@ module.exports = function(grunt) {
       },
       client: {
         files: {
-<<<<<<< HEAD
-          'build/public/wyliodrin.js': ['source/public/**/*.js', '!source/public/blockly/**/*.js', '!source/public/network/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/public/red/**/*.js']
-=======
           'build/public/wyliodrin.js': ['source/public/wyliodrin.js']
->>>>>>> browser
         },
         options: {
           browserifyOptions: {

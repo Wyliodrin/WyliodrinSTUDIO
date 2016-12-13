@@ -15,10 +15,10 @@ module.exports = function ()
 	var app = angular.module ('wyliodrinApp');
 
 
-	app.controller('DeviceNetworkController', function($scope, $wydevice, $wyapp, $mdDialog, $filter){
+	app.controller('DeviceNetworkController', function($scope, $wydevices, $wydevice, $wyapp, $mdDialog, $filter){
 		debug ('Registering');
 
-		var devicesCache;
+		var devicesCache = [];
 		var users = {};
 		var ip = '';
 		var port = 7000;
@@ -50,6 +50,26 @@ module.exports = function ()
 		          .ok($filter('translate')('OK'));
 		          // Should be a retry button???
 		    $mdDialog.show(message);
+		});
+
+		$wydevices.on ('devices', function (devices){
+			console.log('ooooooon devices');
+			console.log(devices);
+			devicesCache = [];
+			for (var d=0; d<devices.local.length; d++)
+			{
+				devices.local[d].connectionType = 'local';
+				devicesCache.push (devices.local[d]);
+			}
+			for (var s=0; s<devices.serial.length; s++)
+			{
+				devices.serial[s].connectionType = 'serial';
+				devicesCache.push (devices.serial[s]);
+			}
+			//console.log (devices.local[0].parametersArray[0]);
+			console.log ('allDevices');
+			console.log (devicesCache);
+			network.devices(devicesCache);
 		});
 
 		var network = {
@@ -87,6 +107,7 @@ module.exports = function ()
 		$wydevice.on ('status', function (status, deviceId)
 		{
 			console.log('status ' + status);
+			console.log (deviceId);
 			if (status === 'INSTALL')
 			{
 				var message = $mdDialog.confirm()
@@ -133,10 +154,10 @@ module.exports = function ()
 			      {
 			      	$scope.device =
 			      	{
-			      		ip: (device.options.address.length>0?device.options.address:ip),
-			      		port: (device.options.port >= 0?device.options.port:port),
-			      		secureport: (device.options.secureport >= 0?device.options.secureport:secureport),
-			      		username: users[(device.options.address.length>0?device.options.address:ip)] || '',
+			      		ip: (device.ip.length>0?device.ip:ip),
+			      		port: (device.port >= 0?device.port:port),
+			      		secureport: (device.secureport >= 0?device.secureport:secureport),
+			      		username: users[(device.ip.length>0?device.ip:ip)] || '',
 			      		category: device.category
 			      	};
 
@@ -151,7 +172,9 @@ module.exports = function ()
 			      			type = 'chrome-ssh';
 			      			port = $scope.device.secureport;
 			      		}
-			      		$wydevice.connect (device.id, {address: $scope.device.ip, type:type, port: port, username:$scope.device.username, password:$scope.device.password, category:device.category, platform: device.platform});
+			      		$wydevice.connect (device.ip, {address: $scope.device.ip, type:type, 
+			      			port: port, username:$scope.device.username, password:$scope.device.password, 
+			      			category:device.category, platform: device.platform}, device.id);
 			      		$mdDialog.hide ();
 			      		// mixpanel.track ('SerialPort Connect', {
 			      		// 	style: 'address',
@@ -177,10 +200,7 @@ module.exports = function ()
 
 		var getDevices = function ()
 		{
-			$wydevice.registerForNetworkDevices (function (devices){
-				devicesCache = devices;
-				network.devices(devices);
-			});
+			$wydevices.getDevices();
 		};
 		
 		setTimeout(getDevices, 1000);

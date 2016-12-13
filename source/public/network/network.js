@@ -64,6 +64,8 @@ setTimeout (function ()
   	network.devices = function (devices)
   	{
   		networkDevices = devices;
+  		console.log ('network devices');
+  		console.log (devices);
   		buildGraph ();
   		drawGraph ();
   	};
@@ -73,6 +75,9 @@ setTimeout (function ()
   		var rect = rectangleDevices[boardId].rect;
   		var links = rectangleDevices[boardId].links;
   		var board = getBoardById (boardId);
+  		console.log ('get by id');
+  		console.log (board);
+  		board.status = status;
 
   		if (status === 'CONNECTED')
   		{
@@ -80,7 +85,7 @@ setTimeout (function ()
   			rect.attr({
   				rect: {stroke: 'green'},
   				'.name':{fill: 'green'},
-  				'.address': {text: board.options.address}});
+  				'.address': {text: board.ip}});
   			links.forEach (function (link){
   				link.attr({'.connection':{stroke:'green'}});
   			});
@@ -165,7 +170,7 @@ setTimeout (function ()
 			var rect;
 
 			var boardImage;
-			if (board.options && board.options.address)
+			if (board && board.ip)
 			{
 				var rectStroke;
 				var textFill;
@@ -193,7 +198,7 @@ setTimeout (function ()
 				// 	boardImage = '/public/drawable/arduinoyun.png';
 				// else if (v === 'router')
 				// 	boardImage = '/public/drawable/router.png';
-				boardImage = settings.boards[board.options.category].picture;
+				boardImage = settings.boards[board.category].picture;
 				if (dasharray)
 					rect = new joint.shapes.basic.embeddedRect ({
 					id: board.id,
@@ -201,8 +206,8 @@ setTimeout (function ()
 					attrs: {
 							rect: {stroke: rectStroke, 'stroke-dasharray': '5 2'},
 							image:{'xlink:href': boardImage},
-							'.name': {text: board.options.name, fill: textFill},
-							'.address':{text: board.options.ip}
+							'.name': {text: board.name, fill: textFill},
+							'.address':{text: board.ip}
 						}
 					});
 				else
@@ -212,8 +217,8 @@ setTimeout (function ()
 					attrs: {
 							rect: {stroke: rectStroke},
 							image:{'xlink:href': boardImage},
-							'.name': {text: board.options.name, fill: textFill},
-							'.address':{text: board.options.address}
+							'.name': {text: board.name, fill: textFill},
+							'.address':{text: board.ip}
 						}
 					});
 				rectangleDevices[board.id] = {rect: rect, links:[]};

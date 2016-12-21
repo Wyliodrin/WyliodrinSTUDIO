@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
   var tasks = {
     jshint: {
-      files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/red/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/interpreter.js'],
+      files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/red/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/chrome/interpreter.js'],
       options: {
         jquery:true,
         esnext: true,
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
       chrome:
       {
         files: {
-          'build/wyliodrin.js': ['source/**/*.js', '!source/public/**']
+          'build/wyliodrin.js': ['source/chrome/app.js']
         },
         options: {
           browserifyOptions: {
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       },
       client: {
         files: {
-          'build/public/wyliodrin.js': ['source/public/**/*.js', '!source/public/blockly/**/*.js', '!source/public/network/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/public/red/**/*.js']
+          'build/public/wyliodrin.js': ['source/public/wyliodrin.js']
         },
         options: {
           browserifyOptions: {
@@ -317,6 +317,13 @@ module.exports = function(grunt) {
     fs.writeFileSync (CONFIG+'/debug.js', '"use strict";\n module.exports = \''+process.env.DEBUG_WYLIODRIN+'\';');
   });
 
+  grunt.registerTask ('platform', 'Platform', function ()
+  {
+    mkdirp.sync (CONFIG);
+    if (!process.env.PLATFORM) process.env.PLATFORM = 'CHROME';
+    fs.writeFileSync (CONFIG+'/platform.js', '"use strict";\n module.exports.'+process.env.PLATFORM+'=true;');
+  });
+
   grunt.registerTask ('makefile', 'Makefile', function ()
   {
     var MAKEFILE_FOLDER_LINUX = 'source/embedded/makefile/linux';
@@ -434,6 +441,11 @@ module.exports = function(grunt) {
       {
         install.linux[path.basename(installfile, '.sh')] = fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString();  
         install.linux[path.basename(installfile, '.sh')] = install.linux[path.basename(installfile, '.sh')].replace (/\r?\n/g, ' && ');
+	if (install.linux[path.basename(installfile, '.sh')].slice (-3) === '&& ')
+	{
+		var length = install.linux[path.basename(installfile, '.sh')].length;
+		install.linux[path.basename(installfile, '.sh')] = install.linux[path.basename(installfile, '.sh')].slice (0, length-3);
+	}
         console.log ('Install: '+path.basename(installfile, '.sh'));
       }
       else
@@ -536,7 +548,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'makefile', 'languages', 'example', 'install', 'jshint', 
+  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'makefile', 'languages', 'example', 'install', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',

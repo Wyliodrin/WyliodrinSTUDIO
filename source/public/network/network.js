@@ -15,16 +15,16 @@ var NODE_HEIGHT = 75;
 var IMG_WIDTH = 44;
 var IMG_HEIGHT = 44;
 
+var g;
+
 setTimeout (function ()
 {
 	var rectangleDevices = {};
   	var network = window.parent.getNetwork ();
   	var networkDevices = network.getDevices();
-  	network.devices = function (devices)
-  	{
-  		networkDevices = devices;
-  		buildGraph ();
-  		paper = new joint.dia.Paper({
+
+  	var graph = new joint.dia.Graph();
+	var paper = new joint.dia.Paper({
 		    el: $('#graph-holder'),
 		    width: 1600,
 		    height: 500,
@@ -32,7 +32,42 @@ setTimeout (function ()
 		    gridSize: 1,
 		   	interactive: true
 		});
-		drawGraph ();
+
+	joint.shapes.basic.embeddedRect = joint.shapes.basic.Generic.extend({
+	    markup: '<g><image/><text class="name"></text><text class="address"></text><rect/></g>',
+	    defaults: joint.util.deepSupplement({
+	        type: 'basic.Rect',
+	        attrs: {
+	        	rect:{width:IMG_WIDTH, height:IMG_HEIGHT, x:0, y:0, fill:'none', 'stroke-width': 3},
+	            image: {width: IMG_WIDTH, height: IMG_HEIGHT},
+	           	'.name': {'font-size': 16, ref: 'image', 'ref-x':23, 'ref-y': -22,'y-alignment': 'middle', 'x-alignment': 'middle'},
+	           	'.address': {'font-size': 13, fill:'grey', ref: 'image', 'ref-x':23, 'ref-y': -10,'y-alignment': 'middle', 'x-alignment': 'middle'},
+	        }
+	    }, joint.shapes.basic.Generic.prototype.defaults)
+	});
+	joint.shapes.basic.controllerRect = joint.shapes.basic.Generic.extend({
+	    markup: '<g><image/><text/></g>',
+	    defaults: joint.util.deepSupplement({
+	        type: 'basic.Rect',
+	        attrs: {
+	            image: {width: IMG_WIDTH, height: IMG_HEIGHT},
+	           	text: {'font-size': 14, fill:'grey', ref: 'image', 'ref-x':23, 'ref-y': -15,'y-alignment': 'middle', 'x-alignment': 'middle'}
+	        }
+	    }, joint.shapes.basic.Generic.prototype.defaults)
+	});
+
+	buildGraph ();
+	drawGraph ();
+
+
+
+  	network.devices = function (devices)
+  	{
+  		networkDevices = devices;
+  		console.log ('network devices');
+  		console.log (devices);
+  		buildGraph ();
+  		drawGraph ();
   	};
 
   	network.status = function (boardId, status)
@@ -40,7 +75,9 @@ setTimeout (function ()
   		var rect = rectangleDevices[boardId].rect;
   		var links = rectangleDevices[boardId].links;
   		var board = getBoardById (boardId);
-  		console.log(rect);
+  		console.log ('get by id');
+  		console.log (board);
+  		board.status = status;
 
   		if (status === 'CONNECTED')
   		{
@@ -48,7 +85,7 @@ setTimeout (function ()
   			rect.attr({
   				rect: {stroke: 'green'},
   				'.name':{fill: 'green'},
-  				'.address': {text: board.options.address}});
+  				'.address': {text: board.ip}});
   			links.forEach (function (link){
   				link.attr({'.connection':{stroke:'green'}});
   			});
@@ -100,17 +137,11 @@ setTimeout (function ()
   		return board;
   	}
 
-  // 	var boards = [{name:'board_1', type:'raspberrypi', status:'online', address:'192.168.10.2', controllers:[{name:'my_openmote', type:'openmote'},{name:'board', type:'openmote'}]}, 
-		// {name:'board 2', type:'raspberrypi', status:'offline', address:'192.168.10.10', controllers:[{name:'mote_1', type:'openmote'}]}];
-
-	var g = new dagre.graphlib.Graph();
-	g.setGraph({});
-	g.setDefaultEdgeLabel(function() { return {}; });
-
-	//g.setNode ('router', {width:NODE_WIDTH, height:NODE_HEIGHT, type:'router', name:'Network', address: '192.168.10.1'});
-
 	function buildGraph ()
 	{
+		g = new dagre.graphlib.Graph();
+		g.setGraph({});
+		g.setDefaultEdgeLabel(function() { return {}; });
 		for (var i=0; i<networkDevices.length; i++)
 		{
 			var node = networkDevices[i];
@@ -131,13 +162,15 @@ setTimeout (function ()
 	function drawGraph ()
 	{
 		var rects = [];
+
 		g.nodes().forEach(function (v){
+			console.log (v);
 			var board = getBoardById (v);
 			var node = g.node(v);
 			var rect;
 
 			var boardImage;
-			if (board.options.address)
+			if (board && board.ip)
 			{
 				var rectStroke;
 				var textFill;
@@ -165,7 +198,7 @@ setTimeout (function ()
 				// 	boardImage = '/public/drawable/arduinoyun.png';
 				// else if (v === 'router')
 				// 	boardImage = '/public/drawable/router.png';
-				boardImage = settings.boards[board.options.category].picture;
+				boardImage = settings.boards[board.category].picture;
 				if (dasharray)
 					rect = new joint.shapes.basic.embeddedRect ({
 					id: board.id,
@@ -173,8 +206,8 @@ setTimeout (function ()
 					attrs: {
 							rect: {stroke: rectStroke, 'stroke-dasharray': '5 2'},
 							image:{'xlink:href': boardImage},
-							'.name': {text: board.options.name, fill: textFill},
-							'.address':{text: board.options.ip}
+							'.name': {text: board.name, fill: textFill},
+							'.address':{text: board.ip}
 						}
 					});
 				else
@@ -184,8 +217,8 @@ setTimeout (function ()
 					attrs: {
 							rect: {stroke: rectStroke},
 							image:{'xlink:href': boardImage},
-							'.name': {text: board.options.name, fill: textFill},
-							'.address':{text: board.options.address}
+							'.name': {text: board.name, fill: textFill},
+							'.address':{text: board.ip}
 						}
 					});
 				rectangleDevices[board.id] = {rect: rect, links:[]};
@@ -271,48 +304,13 @@ setTimeout (function ()
 		    rectangleDevices[storingNode.id].links.push(link);
 		    links.push(link);
 		});
+		graph.clear();
 		graph.addCells(_.union(rects, links));
 	}
-
-	var graph = new joint.dia.Graph();
-	var paper = new joint.dia.Paper({
-	    el: $('#graph-holder'),
-	    width: 1600,
-	    height: 500,
-	    model: graph,
-	    gridSize: 1,
-	   	interactive: true
-	});
-
-	joint.shapes.basic.embeddedRect = joint.shapes.basic.Generic.extend({
-	    markup: '<g><image/><text class="name"></text><text class="address"></text><rect/></g>',
-	    defaults: joint.util.deepSupplement({
-	        type: 'basic.Rect',
-	        attrs: {
-	        	rect:{width:IMG_WIDTH, height:IMG_HEIGHT, x:0, y:0, fill:'none', 'stroke-width': 3},
-	            image: {width: IMG_WIDTH, height: IMG_HEIGHT},
-	           	'.name': {'font-size': 16, ref: 'image', 'ref-x':23, 'ref-y': -22,'y-alignment': 'middle', 'x-alignment': 'middle'},
-	           	'.address': {'font-size': 13, fill:'grey', ref: 'image', 'ref-x':23, 'ref-y': -10,'y-alignment': 'middle', 'x-alignment': 'middle'},
-	        }
-	    }, joint.shapes.basic.Generic.prototype.defaults)
-	});
-	joint.shapes.basic.controllerRect = joint.shapes.basic.Generic.extend({
-	    markup: '<g><image/><text/></g>',
-	    defaults: joint.util.deepSupplement({
-	        type: 'basic.Rect',
-	        attrs: {
-	            image: {width: IMG_WIDTH, height: IMG_HEIGHT},
-	           	text: {'font-size': 14, fill:'grey', ref: 'image', 'ref-x':23, 'ref-y': -15,'y-alignment': 'middle', 'x-alignment': 'middle'}
-	        }
-	    }, joint.shapes.basic.Generic.prototype.defaults)
-	});
-
 	
 	var selectedBoard;
 	var selectedX;
 	var selectedY;
-
-//	console.log(networkDevices);
 
 	$.contextMenu({
 	    // define which elements trigger this menu 
@@ -358,8 +356,7 @@ setTimeout (function ()
         }
 	}); 
 
-	buildGraph ();
-	drawGraph ();
+	
 
 	paper.on('cell:pointerclick', function(cellView, evt, x, y) { 
 		selectedX = x;

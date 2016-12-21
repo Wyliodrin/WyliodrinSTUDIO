@@ -15,6 +15,8 @@ var settings = {
 	debug: require ('./config/debug.js')
 };
 
+settings.platform = require ('./config/platform.js');
+
 settings.LABEL = {
 	'board':
 	{

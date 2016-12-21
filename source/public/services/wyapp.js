@@ -13,20 +13,16 @@ var _ = require ('lodash');
 
 debug ('Loadning');
 
-module.exports = function ()
+var app = angular.module ('wyliodrinApp');
+
+app.factory ('$wyapp', function ()
 {
+	debug ('Registering');
+	var appService = {
 
-	var app = angular.module ('wyliodrinApp');
+	};
 
-	app.factory ('$wyapp', function ()
-	{
-		debug ('Registering');
-		var appService = {
+	appService = _.assign (new EventEmitter(), appService);
 
-		};
-
-		appService = _.assign (new EventEmitter(), appService);
-
-		return appService;
-	});
-};
+	return appService;
+});

@@ -15,7 +15,7 @@
     <div>
 
 	    <center>
-	        <md-button class="board-connect-btn" ng-repeat="device in devices" ng-click="c.connect (device)">
+	        <md-button class="board-connect-btn" ng-repeat="device in devices.local" ng-click="c.connect (device)">
 	            <img ng-src="/public/drawable/{{ device.category?device.category:'board' }}.png">
 	            <md-tooltip md-direction="bottom">
 	            	{{device.name}}
@@ -57,13 +57,13 @@
                 </div>
 	        </md-button>
 
-            <md-button class="board-connect-btn" ng-repeat="port in serialPorts" ng-click="c.connect (port)">
+            <md-button class="board-connect-btn" ng-repeat="device in devices.serial" ng-click="c.connect (device)">
                 <img src="/public/drawable/serial.png">
                 <md-tooltip md-direction="bottom">
-                    {{port.path}}
+                    {{device.ip}}
                 </md-tooltip>
                 <div class="board-connect-title">
-                    {{port.name | limitTo:18}}
+                    {{device.name | limitTo:18}}
                 </div>
                 <div class="board-connect-type">
                     {{ 'DEVICE_Serial' | translate }}

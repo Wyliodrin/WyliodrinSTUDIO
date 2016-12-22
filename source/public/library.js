@@ -52,6 +52,18 @@ function add (value, language, done, devicecategory)
 		{
 			startproject = {
 				main: '',
+				tree: [
+					{name:'main',isdir:false,isspecial:false,content:''},
+					{name:'main2',isdir:false,isspecial:false,content:'abc'},
+					{name:'main3',isdir:false,isspecial:false,content:'def'},
+					{name:'main4',isdir:false,isspecial:false,content:''},
+					{name:'mainfolder',isdir:true,isspecial:false,content:'',children:[
+
+					{name:'main11',isdir:false,isspecial:false,content:'ghi'},
+					{name:'main12',isdir:false,isspecial:false,content:''},
+
+					]}
+				],
 				language: language
 			};
 		}
@@ -106,10 +118,10 @@ function rename (id, title)
 	db.applications.update (id, {title:title});
 }
 
-function storeMain (id, main)
+function storeMain (id, main,tree)
 {
 	debug ('Store project main '+id);
-	db.applications.update (id, {main:main});
+	db.applications.update (id, {main:main,tree:tree});
 }
 
 function storeFirmware (id, firmware)

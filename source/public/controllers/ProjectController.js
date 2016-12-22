@@ -156,6 +156,77 @@ var app = angular.module ('wyliodrinApp');
 
 		$scope.showhidecode = false;
 
+		$scope.tree = {};
+		$scope.tree.data=[];
+		$scope.tree.selectednode={};
+		$scope.tree.options={
+		    nodeChildren: "children",
+		    dirSelectable: false,
+		    injectClasses: {
+		        ul: "a1",
+		        li: "a2",
+		        liSelected: "a7",
+		        iExpanded: "a3",
+		        iCollapsed: "a4",
+		        iLeaf: "a5",
+		        label: "a6",
+		        labelSelected: "a8"
+		    }
+		};
+
+		function dataToTree(data){
+			$scope.tree.data = data;
+			for (var x in $scope.tree.data){
+				checkEmptyFolders(x);
+			}
+			$scope.tree.selectednode = $scope.tree.data.filter(function( obj ) {
+  				return obj.name == "main";
+			});
+		}
+
+		function treeToData(){
+			var data = $scope.tree.data;
+			for (var x in data){
+				checkSpecial(x);
+			}
+			$scope.project = data;
+		}
+
+		function checkSpecial(x){
+			//forced, if one child and is special
+			if (x.isdir){
+				if (x.children.length == 1 && x.children[0].isspecial){
+					x.children = [];
+				}
+				else{
+					for (var y in x.children){
+						checkSpecial(y);
+					}
+				}
+			}
+		}
+
+
+		function checkEmptyFolders(x){
+			if (x.isspecial){
+				return;
+			}
+			if (x.isdir){
+				if (_.isEmpty(x.children.length)){
+					x.children = [{name:'Empty Folder', isdir:false, isspecial:true}];
+				}
+				else{
+					for (var y in x.children){
+						checkEmptyFolders(y);
+					}
+				}
+			}
+		}
+
+		/*function treeSelect(node){
+			nu cred ca am nevoie
+		}*/
+
 		var program = {
 			device: function (device)
 			{
@@ -361,7 +432,7 @@ var app = angular.module ('wyliodrinApp');
 			// console.log (softwareEditor.$blockScrolling);
 			if ($scope.project.id > 0)
 			{
-				library.storeMain ($scope.project.id, $scope.project.main);
+				library.storeMain ($scope.project.id, $scope.project.tree.main, $scope.project.tree);
 			}
 		};
 
@@ -491,6 +562,7 @@ var app = angular.module ('wyliodrinApp');
 			$timeout (function ()
 			{
 				$scope.project = project;
+				dataToTree(project.tree);
 				if (red === null)
 				{
 					red = $element.find ('#red')[0];
@@ -509,7 +581,7 @@ var app = angular.module ('wyliodrinApp');
 								{
 									// console.log ('store');
 									$scope.project.main = parsedmessage.flow;
-									library.storeMain ($scope.project.id,parsedmessage.flow);
+									library.storeMain ($scope.project.id,parsedmessage.flow,$scope.project.tree);
 								}
 							}
 							catch (e)

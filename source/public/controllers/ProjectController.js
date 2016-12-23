@@ -131,7 +131,7 @@ module.exports = function ()
 
 var app = angular.module ('wyliodrinApp');
 
-	app.controller ('ProjectController', function ($scope, $element, $timeout, $mdDialog, $filter, $wyapp, $wydevice)
+	app.controller ('ProjectController', function ($scope, $element, $timeout, $mdDialog, $filter, $wyapp, $wydevice, $translate)
 	{
 		debug ('Registering');
 		this.scope = {
@@ -141,7 +141,7 @@ var app = angular.module ('wyliodrinApp');
 		$scope.project = 
 		{
 			id: -1,
-			main: ''
+			tree:[]
 		};
 
 		$scope.showXterm = false;
@@ -156,12 +156,37 @@ var app = angular.module ('wyliodrinApp');
 
 		$scope.showhidecode = false;
 
+		//tree part
+		$scope.showEditor = false;
+
+		$scope.translatevars={};
+		$scope.translatevars.new_folder = $translate.instant('New_folder');
+		$scope.translatevars.new_file = $translate.instant('New_file');
+
+
 		$scope.tree = {};
+
+
+		$scope.tree.contentPopupNewFolder="";
+		$scope.tree.showPopupNewFolder = 0;
+
+		$scope.tree.contentPopupNewFile="";
+		$scope.tree.showPopupNewFile = 0;
+
+		$scope.tree.showPopupDelete = 0;
+
+		$scope.tree.contentPopupError="";
+		$scope.tree.showPopupError=0;
+
+
 		$scope.tree.data=[];
 		$scope.tree.selectednode={};
 		$scope.tree.options={
 		    nodeChildren: "children",
-		    dirSelectable: false,
+		    dirSelectable: true,
+		    multiSelection: false,
+		    allowDeselect: false,
+		    equality: nodeEqual,
 		    injectClasses: {
 		        ul: "a1",
 		        li: "a2",
@@ -174,58 +199,168 @@ var app = angular.module ('wyliodrinApp');
 		    }
 		};
 
+		function nodeEqual(n1,n2){
+			if (n1.$$hashKey === n2.$$hashKey){
+				return true;
+			}
+			return false;
+		}
+
 		function dataToTree(data){
 			$scope.tree.data = data;
-			for (var x in $scope.tree.data){
-				checkEmptyFolders(x);
-			}
-			$scope.tree.selectednode = $scope.tree.data.filter(function( obj ) {
-  				return obj.name == "main";
+			checkEmptyFolders($scope.tree.data[0]);
+
+			$scope.tree.data[0].children.forEach( function (node){
+				if ((!node.isdir) && (!node.isspecial) && node.name == "main"){
+					$scope.tree.selectednode = node;
+					$scope.showEditor = true;
+				}
 			});
+
 		}
 
 		function treeToData(){
-			var data = $scope.tree.data;
-			for (var x in data){
-				checkSpecial(x);
-			}
-			$scope.project = data;
+			var tree = $scope.tree.data;
+			checkSpecial(tree[0]);
+			
+			$scope.project.tree = tree;
 		}
 
 		function checkSpecial(x){
-			//forced, if one child and is special
 			if (x.isdir){
-				if (x.children.length == 1 && x.children[0].isspecial){
-					x.children = [];
-				}
-				else{
-					for (var y in x.children){
-						checkSpecial(y);
+				for (var i = 0; i<x.children.length;i++){
+					if (x.children[i].isspecial){
+						x.children.splice(i,1);
+						i--;
 					}
 				}
+				
+				x.children.forEach( function (y){
+					checkSpecial(y);
+				});
 			}
 		}
 
+		this.treeSelect = function(node){
+			if (node.isspecial || node.isdir){
+				$scope.showEditor = false;
+			}
+			else{
+				$scope.showEditor = true;
+			}
+		};
 
 		function checkEmptyFolders(x){
 			if (x.isspecial){
 				return;
 			}
 			if (x.isdir){
-				if (_.isEmpty(x.children.length)){
+				if (x.children.length === 0){
 					x.children = [{name:'Empty Folder', isdir:false, isspecial:true}];
 				}
 				else{
-					for (var y in x.children){
+					x.children.forEach( function (y){
 						checkEmptyFolders(y);
-					}
+					});
 				}
 			}
 		}
 
-		/*function treeSelect(node){
-			nu cred ca am nevoie
-		}*/
+		this.newFolderButton = function(){
+			$scope.tree.contentPopupNewFolder=$scope.translatevars.new_folder;
+			$scope.tree.showPopupNewFolder=1;
+		};
+		this.newFileButton = function(){
+			$scope.tree.contentPopupNewFile=$scope.translatevars.new_file;
+			$scope.tree.showPopupNewFile=1;
+		};
+		this.deleteButton = function(){
+			$scope.tree.showPopupDelete=1;
+		};
+
+		this.newFolder = function(){
+			if (!hasDirectChild($scope.tree.contentPopupNewFolder, $scope.tree.selectednode)){
+				$scope.tree.selectednode.children.push(
+					{name:$scope.tree.contentPopupNewFolder,isdir:true,children:[]}
+				);
+				//folder gol
+				checkSpecial($scope.tree.data[0]);
+				checkEmptyFolders($scope.tree.data[0]);
+			}
+			else{
+				$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
+				$scope.tree.showPopupError = 1;
+			}
+			$scope.tree.showPopupNewFolder = 0;
+		};
+
+		this.newFile = function(){
+			if (!hasDirectChild($scope.tree.contentPopupNewFile, $scope.tree.selectednode)){
+				$scope.tree.selectednode.children.push(
+					{name:$scope.tree.contentPopupNewFile,isdir:false,content:''}
+				);
+				checkSpecial($scope.tree.data[0]);
+				checkEmptyFolders($scope.tree.data[0]);
+			}
+			else{
+				$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
+				$scope.tree.showPopupError = 1;
+			}
+			$scope.tree.showPopupNewFile = 0;
+		};
+
+		this.delete = function(){
+			if ($scope.tree.selectednode.isspecial){
+				$scope.tree.contentPopupError = $translate.instant('TREEdelete_special');
+				$scope.tree.showPopupError = 1;
+				console.log("eroare sepecial");
+			}
+			else if($scope.tree.selectednode.isroot){
+				$scope.tree.contentPopupError = $translate.instant('TREEdelete_root');
+				$scope.tree.showPopupError = 1;
+				console.log("eroare troot");
+			}
+			else{
+				var parent = findParent($scope.tree.selectednode, $scope.tree.data[0]);
+				for (var i = 0; i<parent.children.length;i++){
+					if (angular.equals(parent.children[i],$scope.tree.selectednode)){
+						parent.children.splice(i,1);
+						break;
+					}
+				}
+				checkEmptyFolders($scope.tree.data[0]);
+				$scope.tree.selectednode = parent;
+			}
+			$scope.tree.showPopupDelete = 0;
+		};
+
+		
+
+		function findParent(node, tree){
+
+			for (var i=0; i<tree.children.length;i++){
+				var x = tree.children[i];
+				if (angular.equals(node,x)){
+					return tree;
+				}
+				if (x.isdir){
+					var ret = findParent(node, x);
+					if (ret !== null){
+						return ret;
+					}
+				}
+			}
+			return null;
+		}
+
+		function hasDirectChild(name, tree){
+			for (var i=0; i<tree.children.length;i++){
+				if ((!tree.children[i].isspecial) && name == tree.children[i].name){
+					return true;
+				}
+			}
+			return false;
+		}
 
 		var program = {
 			device: function (device)

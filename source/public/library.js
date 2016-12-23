@@ -51,19 +51,9 @@ function add (value, language, done, devicecategory)
 		if (!startproject)
 		{
 			startproject = {
-				main: '',
-				tree: [
-					{name:'main',isdir:false,isspecial:false,content:''},
-					{name:'main2',isdir:false,isspecial:false,content:'abc'},
-					{name:'main3',isdir:false,isspecial:false,content:'def'},
-					{name:'main4',isdir:false,isspecial:false,content:''},
-					{name:'mainfolder',isdir:true,isspecial:false,content:'',children:[
-
-					{name:'main11',isdir:false,isspecial:false,content:'ghi'},
-					{name:'main12',isdir:false,isspecial:false,content:''},
-
-					]}
-				],
+				tree: [{name:'Sources',isdir:true,isroot:true,children:
+						[{name:'main',isdir:false,ismain:true,content:''}]
+					}],
 				language: language
 			};
 		}

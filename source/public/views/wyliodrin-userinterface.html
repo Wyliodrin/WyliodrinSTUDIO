@@ -240,11 +240,90 @@
                 <md-tab-label>{{ 'PROJECT_APPLICATION' | translate }}</md-tab-label>
                 <md-tab-body>
                     <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">
-                        <div height=400 class="projectTree" layout="row">
-                        <md-content treecontrol class="tree-classic" tree-model="tree.data" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode">{{node.name}}</md-content>
+
+                        <div ng-show="tree.showPopupNewFolder" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                      <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+                                        <input ng-model="tree.contentPopupNewFolder" type="text">
+                                      </md-input-container>
+                                  </md-dialog-content>
+                                  <md-dialog-actions layout="row" style="border:0;">
+                                      <span flex></span>
+                                      <md-button ng-click="p.newFolder()">{{'Ok' | translate}}</md-button>
+                                      <md-button ng-click="tree.showPopupNewFolder=0">{{'Cancel' | translate}}</md-button>
+                                  </md-dialog-actions>
+                              </div>
                         </div>
-                        <!--65-->
-                        <div flex="{{showXterm?25:100}}" layout="row">
+
+                        <div ng-show="tree.showPopupNewFile" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                      <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+                                        <input ng-model="tree.contentPopupNewFile" type="text">
+                                      </md-input-container>
+                                  </md-dialog-content>
+                                  <md-dialog-actions layout="row" style="border:0;">
+                                      <span flex></span>
+                                      <md-button ng-click="p.newFile()">{{'Ok' | translate}}</md-button>
+                                      <md-button ng-click="tree.showPopupNewFile=0">{{'Cancel' | translate}}</md-button>
+                                  </md-dialog-actions>
+                              </div>
+                        </div>
+
+                        <div ng-show="tree.showPopupDelete" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                    <h3>{{'want_to_delete' | translate}} {{ tree.selectednode.name }}?</h3>
+                                </md-dialog-content>
+                                <md-dialog-actions layout="row">
+                                    <span flex></span>
+                                    <md-button ng-click="p.delete()">{{'Yes' | translate}}</md-button>
+                                    <md-button ng-click="tree.showPopupDelete=0">{{'No' | translate}}</md-button>
+                                </md-dialog-actions>
+                            </div>
+                        </div>
+
+                        <div ng-show="tree.showPopupError" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                    <h3>{{tree.contentPopupError}}</h3>
+                                </md-dialog-content>
+                                <md-dialog-actions layout="row">
+                                    <span flex></span>
+                                    <md-button ng-click="tree.showPopupError=0">{{'Ok' | translate}}</md-button>
+                                </md-dialog-actions>
+                            </div>
+                        </div>
+
+                        <div flex="{{showEditor?30:(showXterm?65:100)}}" class="projectTree" layout="row">
+                        <md-content treecontrol class="tree-classic" tree-model="tree.data" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
+
+                        <md-button ng-show="tree.selectednode.isdir" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
+                            <md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
+                            <md-tooltip md-direction="top">
+                                {{'New_folder' | translate}}
+                            </md-tooltip>
+                        </md-button>
+                        <md-button ng-show="tree.selectednode.isdir" class="fileexplorer-actions" aria-label="New File" ng-click="p.newFileButton()">
+                            <md-icon md-svg-src="/public/drawable/upload-icon.svg" class="s24" aria-label="New File" ></md-icon>
+                            <md-tooltip md-direction="top">
+                                {{'Upload_here' | translate}}
+                            </md-tooltip>
+                        </md-button>
+                        <md-button ng-show="!tree.selectednode.isroot && !tree.selectednode.isspecial" class="fileexplorer-actions" aria-label="Delete" ng-click="p.deleteButton()">
+                            <md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete folder" ></md-icon>
+                            <md-tooltip md-direction="top">
+                                {{'Delete' | translate}}
+                            </md-tooltip>
+                        </md-button>
+
+
+
+
+                        </div>
+                        <!--65 100 / 35 0-->
+                        <div flex="{{showXterm?35:70}}" ng-show="showEditor" layout="row">
     
                             <md-tabs md-align-tabs="bottom" flex="100" class="tabs-box software_label">
                                 <md-tab>

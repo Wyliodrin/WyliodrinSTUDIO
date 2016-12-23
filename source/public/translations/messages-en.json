@@ -798,6 +798,10 @@
     "message": "New Folder",
     "description": ""
   },
+  "New_file": {
+    "message": "New File",
+    "description": ""
+  },
   "Upload_here": {
     "message": "Upload Here",
     "description": ""
@@ -862,5 +866,14 @@
   },
   "FEnot_exists": {
     "message": "The file/folder does not exists anymore."
+  },
+  "TREEsame_name": {
+    "message": "A file or folder with the same name exists at the destination."
+  },
+  "TREEdelete_special": {
+    "message": "Cannot delete."
+  },
+  "TREEdelete_root": {
+    "message": "Cannot delete the root folder."
   }
 }

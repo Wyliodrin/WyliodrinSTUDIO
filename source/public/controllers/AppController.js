@@ -1,4 +1,9 @@
 
+var $ = require ('jquery');
+
+// TODO another way to do this (shim?)
+window.jQuery = $;
+
 var angular = require ('angular');
 var library = require ('library');
 

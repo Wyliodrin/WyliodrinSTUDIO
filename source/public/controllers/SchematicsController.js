@@ -12,6 +12,8 @@ var mixpanel = require ('mixpanel');
 
 var _ = require ('lodash');
 
+var $ = require ('jquery');
+
 debug ('Loading');
 
 module.exports = function ()

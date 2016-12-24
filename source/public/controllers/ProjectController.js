@@ -30,11 +30,13 @@ require('brace/theme/chrome');
 var lang = ace.acequire("ace/lib/lang");
 var languageTools = ace.acequire ('ace/ext/language_tools');
 var ace_ui = require ('angular-ui-ace');
-var XTerm = require ('xterm.js');
+var XTerm = require ('xterm');
 
 var fs = require ('fs');
 
 var _ = require ('lodash');
+
+var $ = require ('jquery');
 
 var functionsDoc = require ('./../tools/functions_documentation.js');
 

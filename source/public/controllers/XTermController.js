@@ -7,7 +7,9 @@ var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:XTermController');
 
-var XTerm = require ('xterm.js');
+var XTerm = require ('xterm');
+
+var $ = require ('jquery');
 
 var mixpanel = require ('mixpanel');
 

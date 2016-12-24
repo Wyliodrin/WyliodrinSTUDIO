@@ -7,6 +7,7 @@ var debug = require ('debug')('wyliodrin:mixpanel');
 var api = 'https://api.mixpanel.com';
 var uuid = require ('uuid');
 var _ = require ('lodash');
+var $ = require ('jquery');
 var app = window.app = window.app || {};
 var library = require ('library');
 

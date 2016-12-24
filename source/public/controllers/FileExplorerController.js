@@ -11,6 +11,8 @@ var path = require ('path');
 
 var _ = require ('lodash');
 
+var $ = require ('jquery');
+
 var mixpanel = require ('mixpanel');
 
 debug ('Loading');

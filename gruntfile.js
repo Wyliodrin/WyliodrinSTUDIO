@@ -18,7 +18,6 @@ module.exports = function(grunt) {
     jshint: {
       files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/red/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/interpreter.js'],
       options: {
-        jquery:true,
         esnext: true,
         node: true,
         globals: {

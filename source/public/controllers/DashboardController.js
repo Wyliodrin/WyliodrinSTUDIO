@@ -14,6 +14,8 @@ var debug = require ('debug')('wyliodrin:lacy:DashboardController');
 
 var _ = require ('lodash');
 
+var $ = require ('jquery');
+
 debug ('Loading');
 
 module.exports = function ()

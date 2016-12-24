@@ -57,7 +57,6 @@ You may download device images that have them installed from Wyliodrin.
 You will need 
 
 * [NodeJS](http://www.nodejs.org) version 4 or higher.
-* [bower](http://bower.io/)
 * [grunt](http://gruntjs.com/)
 
 You may build Wyliodrin STUDIO yourself
@@ -65,14 +64,13 @@ You may build Wyliodrin STUDIO yourself
     git clone https://www.github.com/Wyliodrin/WyliodrinSTUDIO
     cd WyliodrinSTUDIO
     npm install
-    bower install
     patch node_modules/highcharts-ng/dist/highcharts-ng.js patches/highcharts-ng.patch
     patch node_modules/angular-tree-control/css/tree-control-attribute.css patches/tree-control-attribute.patch
     grunt
 
-### Install grunt and bower
+### Install grunt 
 
-    sudo npm install -g grunt-cli bower
+    sudo npm install -g grunt-cli 
 
 The build is in the *build* folder
 

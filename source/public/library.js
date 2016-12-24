@@ -51,9 +51,12 @@ function add (value, language, done, devicecategory)
 		if (!startproject)
 		{
 			startproject = {
-				tree: [{name:'Sources',isdir:true,isroot:true,children:
+				tree: 
+				[{name:title, isdir:true,isroot:true,children:
+					[{name:(language + " (Software)"),isdir:true,issoftware:true,children:
 						[{name:'main',isdir:false,ismain:true,content:''}]
-					}],
+					}]
+				}],
 				language: language
 			};
 		}

@@ -802,6 +802,10 @@
     "message": "New File",
     "description": ""
   },
+  "New_firmware": {
+    "message": "New Firmware",
+    "description": ""
+  },
   "Upload_here": {
     "message": "Upload Here",
     "description": ""
@@ -875,5 +879,11 @@
   },
   "TREEdelete_root": {
     "message": "Cannot delete the root folder."
+  },
+  "TREEdelete_software": {
+    "message": "Cannot delete the software folder."
+  },
+  "TREEno_root": {
+    "message": "Cannot create to root folder (use New Firmware instead)."
   }
 }

@@ -178,6 +178,10 @@ var app = angular.module ('wyliodrinApp');
 		$scope.tree.contentPopupError="";
 		$scope.tree.showPopupError=0;
 
+		$scope.tree.firmwares=["Arduino","OpenMote","Alte alte"];
+		$scope.tree.contentPopupNewFirmware="";
+		$scope.tree.showPopupNewFirmware=0;
+
 
 		$scope.tree.data=[];
 		$scope.tree.selectednode={};
@@ -211,12 +215,15 @@ var app = angular.module ('wyliodrinApp');
 			checkEmptyFolders($scope.tree.data[0]);
 
 			$scope.tree.data[0].children.forEach( function (node){
-				if ((!node.isdir) && (!node.isspecial) && node.name == "main"){
-					$scope.tree.selectednode = node;
-					$scope.showEditor = true;
+				if (node.issoftware){
+					node.children.forEach( function (node2){
+						if ((!node2.isdir) && (!node2.isspecial) && node2.name == "main"){
+							$scope.tree.selectednode = node2;
+							$scope.showEditor = true;
+						}
+					});
 				}
 			});
-
 		}
 
 		function treeToData(){
@@ -277,48 +284,65 @@ var app = angular.module ('wyliodrinApp');
 		this.deleteButton = function(){
 			$scope.tree.showPopupDelete=1;
 		};
+		this.newFirmwareButton = function(){
+			$scope.tree.contentPopupNewFirmware="";
+			$scope.tree.showPopupNewFirmware=1;
+		};
 
 		this.newFolder = function(){
-			if (!hasDirectChild($scope.tree.contentPopupNewFolder, $scope.tree.selectednode)){
-				$scope.tree.selectednode.children.push(
-					{name:$scope.tree.contentPopupNewFolder,isdir:true,children:[]}
-				);
-				//folder gol
-				checkSpecial($scope.tree.data[0]);
-				checkEmptyFolders($scope.tree.data[0]);
-			}
-			else{
-				$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
-				$scope.tree.showPopupError = 1;
-			}
-			$scope.tree.showPopupNewFolder = 0;
+			var obj = {name:$scope.tree.contentPopupNewFolder,isdir:true,children:[]};
+			this.newSomething(obj);
 		};
 
 		this.newFile = function(){
-			if (!hasDirectChild($scope.tree.contentPopupNewFile, $scope.tree.selectednode)){
-				$scope.tree.selectednode.children.push(
-					{name:$scope.tree.contentPopupNewFile,isdir:false,content:''}
-				);
-				checkSpecial($scope.tree.data[0]);
-				checkEmptyFolders($scope.tree.data[0]);
-			}
-			else{
-				$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
+			var obj = {name:$scope.tree.contentPopupNewFile,isdir:false,content:''};
+			this.newSomething(obj);
+		};
+
+		this.newFirmware = function(){
+			//////////////////////////poate fa-i si un copil
+			$scope.tree.data[0].children.push(
+				{name:$scope.tree.contentPopupNewFirmware,isdir:true,isfirmware:true,children:[]}
+			);
+			checkSpecial($scope.tree.data[0]);
+			checkEmptyFolders($scope.tree.data[0]);
+			$scope.tree.showPopupNewFirmware = 0;
+		};
+
+		this.newSomething = function(obj){
+			if ($scope.tree.selectednode.isroot){
+				$scope.tree.contentPopupError = $translate.instant('TREEno_root');
 				$scope.tree.showPopupError = 1;
 			}
-			$scope.tree.showPopupNewFile = 0;
+			else{
+				if (!hasDirectChild($scope.tree.contentPopupNewFolder, $scope.tree.selectednode)){
+					$scope.tree.selectednode.children.push(
+						obj
+					);
+					//folder gol
+					checkSpecial($scope.tree.data[0]);
+					checkEmptyFolders($scope.tree.data[0]);
+				}
+				else{
+					$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
+					$scope.tree.showPopupError = 1;
+				}
+			}
+			$scope.tree.showPopupNewFolder = 0;
 		};
 
 		this.delete = function(){
 			if ($scope.tree.selectednode.isspecial){
 				$scope.tree.contentPopupError = $translate.instant('TREEdelete_special');
 				$scope.tree.showPopupError = 1;
-				console.log("eroare sepecial");
 			}
 			else if($scope.tree.selectednode.isroot){
 				$scope.tree.contentPopupError = $translate.instant('TREEdelete_root');
 				$scope.tree.showPopupError = 1;
-				console.log("eroare troot");
+			}
+			else if($scope.tree.selectednode.issoftware){
+				$scope.tree.contentPopupError = $translate.instant('TREEdelete_software');
+				$scope.tree.showPopupError = 1;
 			}
 			else{
 				var parent = findParent($scope.tree.selectednode, $scope.tree.data[0]);

@@ -8,13 +8,14 @@ var _ = require ('lodash');
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:line');
+var Highcharts = require ('highcharts/highstock');
 
 debug ('Loading');
 
 module.exports = function ()
 {
 	var app = angular.module ('wyliodrinApp');
-	app.directive ('line', function ($wydevice, $timeout, $wyapp){
+	app.directive ('line', function ($wydevice, $timeout, $wyapp, $mdDialog){
 		debug ('Registering');
 		return {
 			restrict: 'E',
@@ -40,7 +41,21 @@ module.exports = function ()
 					    	type: ($scope.signal.properties.logarithmic)?'logarithmic':undefined,
 					    	title: $scope.signal.properties.axisName
 					    },
-
+					    exporting:
+						{
+							buttons:
+							{
+								contextButton: {
+									menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.concat (
+										{
+											text: 'Export Value',
+										    onclick: function () {
+										        downloadValue (this);
+										    }
+										})
+								}
+							}
+						},
 					    navigator:
 					    {
 					    	enabled: $scope.signal.properties.showOverview,
@@ -142,6 +157,50 @@ module.exports = function ()
 					$scope.setup.series[0].name = $scope.signal.title;
 					$scope.setup.series[0].color = $scope.signal.color;
 				});
+
+
+				function downloadValue (chart)
+				{
+					var value = {};
+					for (var seriesindex in chart.series)
+					{
+						var series = chart.series[seriesindex];
+						if (series.name.indexOf('debug_')!==0)
+						{
+							value[series.name] = [[],[]];
+							for (var pvalueindex in chart.series[seriesindex].points)
+							{
+								var pvalue = chart.series[seriesindex].points[pvalueindex];
+								value[series.name][0].push (pvalue.x);
+								value[series.name][1].push (pvalue.y);
+							}
+						}
+					}
+					// console.log (value);
+					var values_export = $mdDialog.show({
+						        controller: function ($scope)
+						        {
+						        	$scope.value = JSON.stringify (value, null, 2);
+						        	this.exit = function ()
+						        	{
+						        		$mdDialog.hide ();
+						        	};
+						        },
+						        controllerAs: 'v',
+								templateUrl: '/public/views/values-export.html',
+								// parent: angular.element(window.body),
+								// targetEvent: ev,
+								clickOutsideToClose:true,
+								fullscreen: false
+						});
+					// bootbox.dialog({
+				 //            title: "Export Value",
+				 //            message: 'Value<textarea id="value" style="width:100%" rows="5"></textarea>',
+				 //        }
+				 //    );
+				    // $('#value').val (stringify (value));
+					// console.log (value);
+				}
 			},
 			conrollerAs: 'l',
 			link: function (scope, element, attrs)

@@ -1,0 +1,22 @@
+<md-dialog aria-label="{{ 'DASHBOARD_values_export' | translate }}" style="width: 560px; max-height:400px;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ 'DASHBOARD_values_export' | translate }}</h2>
+		</div>
+	</md-toolbar>
+	<md-dialog-content class="pre-box" ng-escape="v.exit()">
+        <pre style="-webkit-user-select: auto;">{{value}}</pre>
+    </md-dialog-content>
+    
+    
+	<md-dialog-actions layout="row">
+        <!-- <div class="version">
+            <strong>Version {{VERSION}}</strong><br />
+            Provided by <a href="http://www.wyliodrin.com" target="_blank">Wyliodrin SRL</a>
+        </div>
+        <md-checkbox ng-model="mixpanel" aria-label="Allow sending usage parameters" class="mixpanel">
+		  Allow sending usage parameters
+		</md-checkbox> -->
+		<md-button ng-click="v.exit()">{{ 'TOOLBAR_EXIT' | translate }}</md-button>
+	</md-dialog-actions>
+</md-dialog>

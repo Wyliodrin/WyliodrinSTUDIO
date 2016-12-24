@@ -862,5 +862,8 @@
   },
   "FEnot_exists": {
     "message": "The file/folder does not exists anymore."
+  },
+  "DASHBOARD_values_export": {
+    "message": "Export"
   }
 }

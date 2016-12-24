@@ -19,7 +19,7 @@ module.exports = function ()
 	{
 		debug ('Registering');
 
-		document.title = $filter('translate')('__MSG_appName__');
+		document.title = $filter('translate')('appName');
 
 		mixpanel.track ('Startup');
 

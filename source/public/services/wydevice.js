@@ -230,7 +230,7 @@ import WyliodrinDevice from './WyliodrinDevice.js';
 
 var app = angular.module ('wyliodrinApp');
 
-app.factory ('$wydevice', function ($http)
+app.factory ('$wydevice_old', function ($http)
 {
 	debug ('Registering');
 	var device = null;
@@ -241,20 +241,7 @@ app.factory ('$wydevice', function ($http)
 	//var status = 'DISCONNECTED';
 	var devices = [];
 
-	// device = 
-	// {
-	//	id:''
-	// 	status:'',
-	//	version:'',
-	// 	options = {category:'',
-		// 			platform:'',
-		// 			type:'',
-		// 			port:'',
-		// 			username:'',
-		// 			password:'',
-		// 			address:'',
-		// 			network:'',
-		//			capabilities:''}
+	
 
 	var deviceService = {
 		connect: function (strdevice, options, deviceId)

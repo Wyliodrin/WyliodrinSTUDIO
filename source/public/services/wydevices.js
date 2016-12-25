@@ -52,7 +52,7 @@ app.factory ('$wydevices', function ($http)
     			device.connection.status = 'DISCONNECTED';
 
     			device.properties.category = (device.category?device.category:'board');
-    			device.properties.os = (device.platform?device.platform:'linux');
+    			device.properties.platform = (device.platform?device.platform:'linux');
 
     			device._mdns = true;
     			devicesTree[storeId] = device;
@@ -114,21 +114,49 @@ app.factory ('$wydevices', function ($http)
 		{
 			devicesService.emit ('devices', devicesList, devicesTree);
 		},
-		connect: function (strdevice, options, deviceId)
+		// options={
+		//	id: (optional),
+		//  ip:
+		// 	name
+		//	username:
+		//	password:
+		//	port:
+		//	secure: true/false
+		// }
+		connect: function (uplink, options)
 		{
-			console.log ('connect ' + deviceId);
 			if (!WyliodrinDevice) throw ('Wyliodrin device not initialised');		
 
 			debug (options);
 
-			var device = _.find(devicesList, function (d){return deviceId === d.id;});
+			var device;
+
+			if (options.id)
+				device = devicesTree[uplink+options.id];
+			else if (options.ip)
+			{
+				device = _.find (devicesList, function (device){
+					return device.ip === options.ip;
+				});
+				if (device === undefined)
+				{
+					device = {
+						id: options.ip;
+						uplink: uplink,
+						status: 'DISCONNECTED'
+					};
+
+					devicesList.push (device);
+					devicesTree[uplink+options.ip] = device;
+				}
+			}
 
 			device.name = (options.name?options.name:device.name);
 			device.ip = (options.ip?options.ip:device.ip);
 			device.port = (options.port?options.port:device.port);
-			device.secureport = (options.secureport?options.secureport:'22');
+			device.secureport = (options.secureport?options.secureport:device.secureport);
 
-			device._WyliodrinDevice = new WyliodrinDevice (strdevice, options);
+			device._WyliodrinDevice = new WyliodrinDevice (options);
 
 			var that = this;
 			
@@ -170,7 +198,7 @@ app.factory ('$wydevices', function ($http)
 					{
 						category: (d.c?d.c:device.properties.category),
 						device: (d.device?d.device:''),
-						os: (d.os?d.os:device.properties.os),
+						platform: (d.platform?d.platform:device.properties.platform),
 						osname: (d.osname?d.osname:''),
 						osver: (d.osver?d.osver:''),
 						version: (d.version?d.version:''),
@@ -211,10 +239,10 @@ app.factory ('$wydevices', function ($http)
 				that.emit ('message:'+device.uplink+':'+device.id, t, d, deviceId);
 			});
 		},
-		send: function (tag, data, deviceId)
+		send: function (tag, data, deviceId, uplink)
 		{
 			console.log ('send '+deviceId);
-			var device = _.find(devices, function (d){return deviceId === d.id;});
+			var device = devicesTree [uplink+deviceId];
 			console.log (device);
 			if (device)
 			{
@@ -222,10 +250,10 @@ app.factory ('$wydevices', function ($http)
 			}
 		},
 
-		disconnect: function (deviceId)
+		disconnect: function (deviceId,uplink)
 		{
 			// console.log (device);
-			var device = _.find(devices, function (d){return deviceId === d.id;});
+			var device = devicesTree [uplink+deviceId];
 			if (device)
 			{
 				device._WyliodrinDevice.disconnect ();

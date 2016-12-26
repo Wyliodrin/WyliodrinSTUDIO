@@ -152,6 +152,11 @@ class Device
 		return this.get ('platform');
 	}
 
+	get wyliodrinappserver ()
+	{
+		return this.get ('wyliodrinappserver')
+	}
+
 	get uplink ()
 	{
 		return 'local';
@@ -300,7 +305,8 @@ chrome.mdns.onServiceList.addListener (function (services)
 			category: category,
 			platform: platform,
 			port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)),
-			secureport: 22
+			secureport: 22,
+			wyliodrinappserver: true
 		};
 		device.addParameters (WYAPP, parameters);
 		// $scope.devices.push ({ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: service.serviceName.split('.')[0]+' ('+service.ipAddress+')'});

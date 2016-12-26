@@ -29,6 +29,8 @@
   "dependencies": {
     "acorn": "^4.0.4",
     "angular": "~1.5.6",
+    "angular-animate": "~1.5.6",
+    "angular-aria": "~1.5.6",
     "angular-material": "^1.1.1",
     "angular-sanitize": "^1.6.1",
     "angular-translate": "~2.13.1",

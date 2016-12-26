@@ -131,7 +131,7 @@ module.exports = function ()
 
 var app = angular.module ('wyliodrinApp');
 
-	app.controller ('ProjectController', function ($scope, $element, $timeout, $mdDialog, $filter, $wyapp, $wydevice)
+	app.controller ('ProjectController', function ($scope, $element, $timeout, $mdDialog, $filter, $wyapp)
 	{
 		debug ('Registering');
 		this.scope = {
@@ -253,7 +253,7 @@ var app = angular.module ('wyliodrinApp');
 	  		// console.log ('cols '+cols+' rows '+rows);
 
 			shell.resize (cols, rows);
-			$wydevice.send ('r', {a:'r', c:cols, r: rows});
+			//$wydevice.send ('r', {a:'r', c:cols, r: rows});
 
 			var $divred = $element.find('#divred');
 			var $red = $element.find ('#red');
@@ -395,47 +395,47 @@ var app = angular.module ('wyliodrinApp');
 			setSizes ();
 		});
 
-		$wydevice.on ('status', function (status)
-		{
-			if (status === 'CONNECTED')
-			{
-				$timeout (function ()
-				{
-					setSizes ();
-				});
-			}
-			if ($scope.project.language === 'visual')
-			{
-				process.nextTick (function ()
-				{
-					program.device ($wydevice.device);
-				});
-			}
-		});
+		// $wydevice.on ('status', function (status)
+		// {
+		// 	if (status === 'CONNECTED')
+		// 	{
+		// 		$timeout (function ()
+		// 		{
+		// 			setSizes ();
+		// 		});
+		// 	}
+		// 	if ($scope.project.language === 'visual')
+		// 	{
+		// 		process.nextTick (function ()
+		// 		{
+		// 			program.device ($wydevice.device);
+		// 		});
+		// 	}
+		// });
 
-		$wydevice.on ('message', function (t, p)
-		{
-			if (t === 'p')
-			{
-				if (p.a === 'k') shell.write (p.t);
-			}
-			else
-			if (t === 'v')
-			{
-				// console.log (p);
-			}
-			else
-			if (t === 'i')
-			{
-				if ($scope.project.language === 'visual')
-				{
-					process.nextTick (function ()
-					{
-						program.device ($wydevice.device);
-					});
-				}
-			}
-		});
+		// $wydevice.on ('message', function (t, p)
+		// {
+		// 	if (t === 'p')
+		// 	{
+		// 		if (p.a === 'k') shell.write (p.t);
+		// 	}
+		// 	else
+		// 	if (t === 'v')
+		// 	{
+		// 		// console.log (p);
+		// 	}
+		// 	else
+		// 	if (t === 'i')
+		// 	{
+		// 		if ($scope.project.language === 'visual')
+		// 		{
+		// 			process.nextTick (function ()
+		// 			{
+		// 				program.device ($wydevice.device);
+		// 			});
+		// 		}
+		// 	}
+		// });
 
 		shell = new XTerm ();
 		shell.open ($element.find ('#xterm')[0]);
@@ -444,11 +444,11 @@ var app = angular.module ('wyliodrinApp');
 			setSizes (); 
 		});
 
-		shell.on ('key', function (key)
-		{
-			// xterm.write (key);
-			$wydevice.send ('p', {a:'k', t:key});
-		});
+		// shell.on ('key', function (key)
+		// {
+		// 	// xterm.write (key);
+		// 	$wydevice.send ('p', {a:'k', t:key});
+		// });
 
 		$wyapp.on ('load', function (project)
 		{
@@ -473,11 +473,11 @@ var app = angular.module ('wyliodrinApp');
 			{
 				softwareEditor.getSession().setMode ('ace/mode/sh');
 			}
-			else
-			if (project.language === "visual")
-			{
-				program.load (project, $wydevice.device);
-			}
+			// else
+			// if (project.language === "visual")
+			// {
+			// 	program.load (project, $wydevice.device);
+			// }
 			else
 			if (project.language === "csharp")
 			{
@@ -574,128 +574,128 @@ var app = angular.module ('wyliodrinApp');
 			if ($scope.project.id === -1) $wyapp.emit ('library');
 		});
 
-		$wyapp.on ('send', function (devices)
-		{
-			debug ('Run');
-			function run (firmware, port, device)
-			{
-				var makefile = settings.MAKEFILE_STOARGE[device.platform][$scope.project.language];//+(firmwareAvailable?'firmware:\n\t':'');
-				var runmessage = {a:'start', l:$scope.project.language, p:$scope.project.main};
-				if (firmware && port)
-				{
-					runmessage.f = $scope.project.firmware;
-					makefile = makefile + settings.MAKE_FIRMWARE[$scope.device.category]('app_project', firmware, port);
-					$scope.device.firmware = firmware;
-					$scope.device.port = port;
-					mixpanel.track ('Project Run',
-					{
-						category: device.category,
-						language: $scope.project.language,
-						flash: true
-					});
-				}
-				else
-				{
-					makefile = makefile+'\n';
-					mixpanel.track ('Project Run',
-					{
-						category: device.category,
-						language: $scope.project.language,
-						flash: false
-					});
-				}
-				runmessage.m = makefile;
-				shell.reset ();
-				for (var i=0; i<devices.length; i++)
-					$wydevice.send ('p', runmessage, devices[i].ip);
-				$timeout (function ()
-				{
-					$scope.showXterm = true;
-					$timeout (function ()
-					{
-						$(window).trigger ('resize');
-					});
-				});
-			}
+		// $wyapp.on ('send', function (devices)
+		// {
+		// 	debug ('Run');
+		// 	function run (firmware, port, device)
+		// 	{
+		// 		var makefile = settings.MAKEFILE_STOARGE[device.platform][$scope.project.language];//+(firmwareAvailable?'firmware:\n\t':'');
+		// 		var runmessage = {a:'start', l:$scope.project.language, p:$scope.project.main};
+		// 		if (firmware && port)
+		// 		{
+		// 			runmessage.f = $scope.project.firmware;
+		// 			makefile = makefile + settings.MAKE_FIRMWARE[$scope.device.category]('app_project', firmware, port);
+		// 			$scope.device.firmware = firmware;
+		// 			$scope.device.port = port;
+		// 			mixpanel.track ('Project Run',
+		// 			{
+		// 				category: device.category,
+		// 				language: $scope.project.language,
+		// 				flash: true
+		// 			});
+		// 		}
+		// 		else
+		// 		{
+		// 			makefile = makefile+'\n';
+		// 			mixpanel.track ('Project Run',
+		// 			{
+		// 				category: device.category,
+		// 				language: $scope.project.language,
+		// 				flash: false
+		// 			});
+		// 		}
+		// 		runmessage.m = makefile;
+		// 		shell.reset ();
+		// 		for (var i=0; i<devices.length; i++)
+		// 			$wydevice.send ('p', runmessage, devices[i].ip);
+		// 		$timeout (function ()
+		// 		{
+		// 			$scope.showXterm = true;
+		// 			$timeout (function ()
+		// 			{
+		// 				$(window).trigger ('resize');
+		// 			});
+		// 		});
+		// 	}
 
 
-			// console.log ($scope.device);
+		// 	// console.log ($scope.device);
 
-			var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
-			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
-			{
-				if (firmwareAvailable === true)
-				{
-					var label = $scope.label;
-					var device = $scope.device;
-					console.log(device);
-					$mdDialog.show({
-				      controller: function ($scope)
-				      {
+		// 	var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
+		// 	if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
+		// 	{
+		// 		if (firmwareAvailable === true)
+		// 		{
+		// 			var label = $scope.label;
+		// 			var device = $scope.device;
+		// 			console.log(device);
+		// 			$mdDialog.show({
+		// 		      controller: function ($scope)
+		// 		      {
 
-				      	$scope.firmwares = settings.FIRMWARES;
+		// 		      	$scope.firmwares = settings.FIRMWARES;
 
-						// console.log ($scope.device);
+		// 				// console.log ($scope.device);
 
-						$scope.label = label;
-						$scope.device = device;
-						if (!$scope.device.firmware) $scope.firmware = _.keys ($scope.firmwares[$scope.device.category])[0];
-						else $scope.firmware = $scope.device.firmware;
-						// console.log ($scope.firmware);
-						if (!$scope.device.port) $scope.port = 'auto';
-						else $scope.port = $scope.device.port;
+		// 				$scope.label = label;
+		// 				$scope.device = device;
+		// 				if (!$scope.device.firmware) $scope.firmware = _.keys ($scope.firmwares[$scope.device.category])[0];
+		// 				else $scope.firmware = $scope.device.firmware;
+		// 				// console.log ($scope.firmware);
+		// 				if (!$scope.device.port) $scope.port = 'auto';
+		// 				else $scope.port = $scope.device.port;
 
-				      	this.runAndFlash = function ()
-				      	{
-				      		run ($scope.firmware, $scope.port);
-				      		$mdDialog.hide ();
-				      	};
+		// 		      	this.runAndFlash = function ()
+		// 		      	{
+		// 		      		run ($scope.firmware, $scope.port);
+		// 		      		$mdDialog.hide ();
+		// 		      	};
 
-				      	this.run = function ()
-				      	{
-				      		run ();
-				      		$mdDialog.hide ();
-				      	};
-				      },
-				      controllerAs: 'f',
-				      templateUrl: '/public/views/flash-firmware.html',
-				      // parent: $element,
-				      // targetEvent: ev,
-				      clickOutsideToClose:true,
-				      fullscreen: false
-				    });
-				}
-				else
-				{
-					run ();
-				}
-			}
-			else
-			{
-				var message = $mdDialog.confirm()
-			          .title($filter('translate')('PROJECT_no_language_capability'))
-			          // .textContent('All of the banks have agreed to forgive you your debts.')
-			          // .ariaLabel('Lucky day')
-			          // .targetEvent(ev)
-			          .ok($filter('translate')('PROJECT_library'))
-			          .cancel($filter('translate')('OK'));
-			    $mdDialog.show(message).then(function() {
-			    	$mdDialog.hide ();
-			    	$wyapp.emit ('library');
-			    }, function() {
-			     	$mdDialog.hide ();
-			    });
-			}
-		});
+		// 		      	this.run = function ()
+		// 		      	{
+		// 		      		run ();
+		// 		      		$mdDialog.hide ();
+		// 		      	};
+		// 		      },
+		// 		      controllerAs: 'f',
+		// 		      templateUrl: '/public/views/flash-firmware.html',
+		// 		      // parent: $element,
+		// 		      // targetEvent: ev,
+		// 		      clickOutsideToClose:true,
+		// 		      fullscreen: false
+		// 		    });
+		// 		}
+		// 		else
+		// 		{
+		// 			run ();
+		// 		}
+		// 	}
+		// 	else
+		// 	{
+		// 		var message = $mdDialog.confirm()
+		// 	          .title($filter('translate')('PROJECT_no_language_capability'))
+		// 	          // .textContent('All of the banks have agreed to forgive you your debts.')
+		// 	          // .ariaLabel('Lucky day')
+		// 	          // .targetEvent(ev)
+		// 	          .ok($filter('translate')('PROJECT_library'))
+		// 	          .cancel($filter('translate')('OK'));
+		// 	    $mdDialog.show(message).then(function() {
+		// 	    	$mdDialog.hide ();
+		// 	    	$wyapp.emit ('library');
+		// 	    }, function() {
+		// 	     	$mdDialog.hide ();
+		// 	    });
+		// 	}
+		// });
 
-		$wyapp.on ('stop', function ()
-		{
-			debug ('Stop');
-			$wydevice.send ('p', {a:'stop'});
-			mixpanel.track ('Project Stop', {
-				category: $wydevice.device.category,
-				language: $scope.project.language
-			});
-		});
+		// $wyapp.on ('stop', function ()
+		// {
+		// 	debug ('Stop');
+		// 	$wydevice.send ('p', {a:'stop'});
+		// 	mixpanel.track ('Project Stop', {
+		// 		category: $wydevice.device.category,
+		// 		language: $scope.project.language
+		// 	});
+		// });
 	});
 };

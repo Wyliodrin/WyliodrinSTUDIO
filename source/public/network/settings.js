@@ -67,8 +67,8 @@ module.exports.boards = {
 		password: '',
 		picture: '/public/drawable/cisco829.png'
 	},
-	'openmot':
+	'openmote':
 	{
 		picture: '/public/drawable/openmote.png'
-	}
+	},
 };

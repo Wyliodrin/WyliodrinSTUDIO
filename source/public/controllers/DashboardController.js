@@ -21,7 +21,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('DashboardController', function($scope, $element, $wyapp, $wydevice, $timeout, $wysignalproperties, $mdDialog){
+	app.controller('DashboardController', function($scope, $element, $wyapp, $timeout, $wysignalproperties, $mdDialog){
 		debug ('Registering');
 		$scope.project = 
 		{

@@ -14,75 +14,79 @@ module.exports = function ()
 	var app = angular.module ('wyliodrinApp');
 
 
-	app.controller('DeviceNetworkController', function($scope, $wydevices, $wydevice, $wyapp, $mdDialog, $filter){
+	app.controller('DeviceNetworkController', function($scope, $wydevices, $wyapp, $mdDialog, $filter){
 		debug ('Registering');
 
-		var devicesCache = [];
-		var users = {};
+		// var devicesCache = [];
+		// var users = {};
 		var ip = '';
 		var port = 7000;
 		var secureport = 22;
 
-
-		$wydevice.on ('connection_timeout', function ()
-		{
-			console.log('on connection_timeout');
-			var message = $mdDialog.confirm()
-		          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
-		          .ok($filter('translate')('OK'));
-		    $mdDialog.show(message);
-		});
-
-		$wydevice.on ('connection_error', function ()
-		{
-			console.log('on connection_error');
-			var message = $mdDialog.confirm()
-		          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
-		          .ok($filter('translate')('OK'));
-		    $mdDialog.show(message);
-		});
-
-		$wydevice.on ('connection_login_failed', function (device)
-		{
-			var message = $mdDialog.alert()
-		          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
-		          .ok($filter('translate')('OK'));
-		          // Should be a retry button???
-		    $mdDialog.show(message);
-		});
-
-		$wydevices.on ('devices', function (devices){
-			console.log('ooooooon devices');
-			console.log(devices);
-			devicesCache = [];
-			for (var d=0; d<devices.local.length; d++)
-			{
-				devices.local[d].connectionType = 'local';
-				devicesCache.push (devices.local[d]);
-			}
-			for (var s=0; s<devices.serial.length; s++)
-			{
-				devices.serial[s].connectionType = 'serial';
-				devicesCache.push (devices.serial[s]);
-			}
-			//console.log (devices.local[0].parametersArray[0]);
-			console.log ('allDevices');
-			console.log (devicesCache);
-			network.devices(devicesCache);
+		$wydevices.on ('devices', function (devicesList, devicesTree){
+			network.devices(devicesList, devicesTree);
 		});
 
 		var network = {
 			devices: function (devices){},
-			getDevices: function (){return devicesCache;},
+			// getDevices: function (){return devicesCache;},
 			connectDevice: function (device)
 			{
 				connect(device);
+
+				$wydevices.on ('connection_timeout:'+device.uplink+':'+device.id, function ()
+				{
+					console.log('on connection_timeout');
+					var message = $mdDialog.confirm()
+				          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
+				          .ok($filter('translate')('OK'));
+				    $mdDialog.show(message);
+				});
+
+				$wydevices.on ('connection_error:'+device.uplink+':'+device.id, function ()
+				{
+					console.log('on connection_error');
+					var message = $mdDialog.confirm()
+				          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
+				          .ok($filter('translate')('OK'));
+				    $mdDialog.show(message);
+				});
+
+				$wydevices.on ('connection_login_failed:'+device.uplink+':'+device.id, function (device)
+				{
+					var message = $mdDialog.alert()
+				          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
+				          .ok($filter('translate')('OK'));
+				          // Should be a retry button???
+				    $mdDialog.show(message);
+				});
+
+				$wydevices.on ('status:'+device.uplink+':'+device.id, function (device)
+				{
+					var status = device.status;
+					if (status === 'INSTALL')
+					{
+						var message = $mdDialog.confirm()
+					          .title($filter('translate')('DEVICE_QUESTION_INSTALL_SHELL'))
+					          .ok($filter('translate')('DEVICE_INSTALL'))
+					          .cancel($filter('translate')('PROJECT_SHELL'));
+					    $mdDialog.show(message).then(function() {
+					   		$wyapp.emit ('install');
+					    });
+					}
+					else
+					{
+						network.status (device);
+					}
+				});
 			},
-			disconnectDevice: function (deviceId)
+
+			disconnectDevice: function (device)
 			{
-				$wydevice.disconnect (deviceId);
+				$wydevices.disconnect (device);
 			},
-			shell: function (deviceId)
+
+			shell: function (device)
 			{
 				$mdDialog.show({
 			      controller: 'TerminalDialogController',
@@ -90,12 +94,13 @@ module.exports = function ()
 			      templateUrl: '/public/views/shell.html',
 			      parent: angular.element(document.body),
 			      // targetEvent: ev,
-			      locals: {deviceId: deviceId},
+			      locals: {device:device},
 			      clickOutsideToClose:true,
 			      fullscreen: false
 			    });
 			},
-			status: function (boardId, status){}
+
+			status: function (device){}
 		};
 
 		window.getNetwork  = function ()
@@ -103,29 +108,8 @@ module.exports = function ()
 			return network;
 		};
 
-		$wydevice.on ('status', function (status, deviceId)
-		{
-			console.log('status ' + status);
-			console.log (deviceId);
-			if (status === 'INSTALL')
-			{
-				var message = $mdDialog.confirm()
-			          .title($filter('translate')('DEVICE_QUESTION_INSTALL_SHELL'))
-			          .ok($filter('translate')('DEVICE_INSTALL'))
-			          .cancel($filter('translate')('PROJECT_SHELL'));
-			    $mdDialog.show(message).then(function() {
-			   		$wyapp.emit ('install');
-			    });
-			}
-			else
-			{
-				network.status (deviceId, status);
-			}
-		});
-
 		var connect = function (device)
 		{
-			if (!device) device = {ip:'', port:7000, secureport:22};
 			debug ('Connecting to '+device);
 			if (device.platform === 'chrome')
 			{
@@ -153,27 +137,28 @@ module.exports = function ()
 			      {
 			      	$scope.device =
 			      	{
-			      		ip: (device.ip.length>0?device.ip:ip),
-			      		port: (device.port >= 0?device.port:port),
-			      		secureport: (device.secureport >= 0?device.secureport:secureport),
-			      		username: users[(device.ip.length>0?device.ip:ip)] || '',
-			      		category: device.category
+			      		ip: (device.ip?device.ip:ip),
+			      		port: (device.port?device.port:port),
+			      		secureport: (device.secureport?device.secureport:secureport),
+			      		username: (device.username?device.username:'')
 			      	};
 
 			      	this.connect = function ()
 			      	{
-			      		users[device.id] = $scope.device.username;
-			      		ip = $scope.device.ip;
-			      		port = $scope.device.port;
-			      		var type = 'chrome-socket';
+			      		var options = {
+			      			ip: $scope.device.ip,
+			      			username: $scope.device.username,
+			      			port: $scope.device.port,
+			      			type: 'chrome-socket',
+			      			password: $scope.device.password
+			      		};
+
 			      		if ($scope.device.secure) 
 			      		{
-			      			type = 'chrome-ssh';
-			      			port = $scope.device.secureport;
+			      			options.type = 'chrome-ssh';
+			      			
 			      		}
-			      		$wydevice.connect (device.ip, {address: $scope.device.ip, type:type, 
-			      			port: port, username:$scope.device.username, password:$scope.device.password, 
-			      			category:device.category, platform: device.platform}, device.id);
+			      		$wydevices.connect (device.uplink, device.id, options);
 			      		$mdDialog.hide ();
 			      		// mixpanel.track ('SerialPort Connect', {
 			      		// 	style: 'address',

@@ -18,7 +18,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('AppController', function ($scope, $wyapp, $timeout, $wydevice, $filter)
+	app.controller ('AppController', function ($scope, $wyapp, $timeout, $filter)
 	{
 		debug ('Registering');
 
@@ -52,47 +52,47 @@ module.exports = function ()
 			});
 		});
 
-		$wydevice.on ('update', function ()
-		{
-			debug ('Update for device');
-			$scope.update = true;
-		});
+		// $wydevice.on ('update', function ()
+		// {
+		// 	debug ('Update for device');
+		// 	$scope.update = true;
+		// });
 
-		$wydevice.on ('message', function (t, p)
-		{
-			if (t==='i')
-			{
-				if ($scope.device.category !== p.c || $scope.device.network !== p.i)
-				{
-					mixpanel.track ('Device Data',
-					{
-						category: p.c
-					});
-				}
-				$timeout (function ()
-				{
-					if (p.r) $scope.running = p.r;
-					else $scope.running = false;
-					if (settings.LABEL[p.c])
-					{
-						$scope.device.category = p.c;	
-						$scope.device.network = p.i;	
-					}
-					else
-					{
-						$scope.device.category = 'board';
-						$scope.device.network = p.i;
-					}
-				});
-			}
-			if (t === 'capabilities')
-			{
-				$timeout (function ()
-				{
-					$scope.device.capabilities = p;
-				});
-			}
-		});
+		// $wydevice.on ('message', function (t, p)
+		// {
+		// 	if (t==='i')
+		// 	{
+		// 		if ($scope.device.category !== p.c || $scope.device.network !== p.i)
+		// 		{
+		// 			mixpanel.track ('Device Data',
+		// 			{
+		// 				category: p.c
+		// 			});
+		// 		}
+		// 		$timeout (function ()
+		// 		{
+		// 			if (p.r) $scope.running = p.r;
+		// 			else $scope.running = false;
+		// 			if (settings.LABEL[p.c])
+		// 			{
+		// 				$scope.device.category = p.c;	
+		// 				$scope.device.network = p.i;	
+		// 			}
+		// 			else
+		// 			{
+		// 				$scope.device.category = 'board';
+		// 				$scope.device.network = p.i;
+		// 			}
+		// 		});
+		// 	}
+		// 	if (t === 'capabilities')
+		// 	{
+		// 		$timeout (function ()
+		// 		{
+		// 			$scope.device.capabilities = p;
+		// 		});
+		// 	}
+		// });
 
 		// $wydevice.on ('status', function (status)
 		// {

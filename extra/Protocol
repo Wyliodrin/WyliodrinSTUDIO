@@ -62,9 +62,16 @@ d:{a:'s', r:'e', e:error}
 Project
 Run
 
+OLD
 <-
 t:'p'
 d:{a:'start', p:main, m:makefile, a:arduino - optional}
+
+NEW
+<-
+t:'p'
+d:{a:'start', t:tree, m:makefile, l:language}
+
 
 ->
 

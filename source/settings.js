@@ -10,6 +10,7 @@ var install = require ('./config/install.js');
 var translate = require ('./config/languages.js');
 
 var makefile = require ('./config/makefile.js');
+var makefileplus = require ('./config/makefileplus.js');
 
 var settings = {
 	debug: require ('./config/debug.js')
@@ -144,22 +145,7 @@ settings.INSTALL = install;
 
 settings.TRANSLATE = translate;
 
-settings.MAKE_FIRMWARE = {
-	'raspberrypi':function (projectid, firmware, port)
-	{
-		var parameters = '-m '+firmware;
-		if (port != 'auto') parameters += ' -p '+port;
-		return 'mkdir /tmp/arduino_'+projectid+'_'+firmware+'; cd Arduino && rm -f .build && ln -s /tmp/arduino_'+projectid+'_'+firmware+' .build && ino build -m '+firmware+' && ino upload '+parameters;
-	},
-	'udooneo':function (projectid, firmware, port)
-	{
-		return 'timeout 120 xvfb-run /usr/bin/arduino -v --upload Arduino/Arduino.ino';
-	},
-	'arduinoyun':function (projectid, firmware, port)
-	{
-		return 'cd Arduino && make && run-avrdude Arduino.hex';
-	}
-};
+settings.MAKE_FIRMWARE = makefileplus;
 
 settings.INTERVAL_MDNS = 10*1000;
 

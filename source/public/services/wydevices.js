@@ -116,23 +116,6 @@ app.factory ('$wydevices', function ($http)
 		    });
 		});
 	}
-	//emit (event, device, args...)
-	function emit ()
-	{
-		var device = arguments[1];
-		console.log (device);
-		if (device._listeners[arguments[0]])
-		{
-			var listeners = device._listeners[arguments[0]];
-			var args = [];
-			for (var i=2; i<arguments.length; i++)
-				args.push (arguments[i]);
-			for (var l=0; l<listeners.length; l++)
-			{
-				listeners[l].apply (undefined, args);
-			}
-		}
-	}
 
 	var devicesService = {
 		getDevices: function ()
@@ -185,6 +168,8 @@ app.factory ('$wydevices', function ($http)
 			device.username = (options.username?options.username:device.username);
 
 			device._WyliodrinDevice = new WyliodrinDevice (options);
+			if (!device._emitter)
+				device._emitter = new EventEmitter();
 
 			if (newDevice)
 				devicesEmitter.emit ('devices', devicesList, devicesTree);
@@ -195,6 +180,7 @@ app.factory ('$wydevices', function ($http)
 			{
 				//if ()
 				//that.emit ('connection_login_failed:'+device.uplink+':'+device.id, device);
+				device._emitter.emit ('connection_login_failed',device);
 			});
 
 			device._WyliodrinDevice.on ('connection_error', function ()
@@ -295,46 +281,57 @@ app.factory ('$wydevices', function ($http)
 		},
 		//on ('event', function)
 		//or
-		//on ('event', 'boardId', function)
+		//on ('boardId', 'event', function)
 		on: function ()
 		{
 			if (arguments.length >=2)
 			{
 				if (_.isString(arguments[0]) && _.isFunction (arguments[1]))
 				{
-					devicesEmitter.on (arguments[0], arguments[1]);
+					devicesEmitter.on.apply (this, arguments);
 				}
-				else if (_.isString(arguments[0]) && _.isString (arguments[1]) &&
-							 _.isFunction (arguments[2]))
+				else
 				{
 					var device = devicesTree[arguments[1]];
-					if (device)
+					if (device && device._emitter)
 					{
-						if (device._listeners[arguments[0]])
-							device._listeners[arguments[0]].push (arguments[2]);
-						else
-							device._listeners[arguments[0]] = [arguments[2]];
-
+						var args = arguments.slice (0,1);
+						device._emitter.on.apply (this, args);
 					}
 				}
 			}			
 		},
-		removeBoardListener: function (boardId, event, callbackFunction)
+		removeListener: function (boardId, event, callbackFunction)
 		{
-			var device = devicesTree[boardId];
-			if (device && device._listeners[event])
+			if (arguments.length >=2)
 			{
-				var index = _.findIndex (device._listeners[event], function (listener){
-					return listener.name === callbackFunction.name;
-				});
-				if (index > -1)
-					device._listeners[event].splice (index,1);
-			}
+				if (_.isString(arguments[0]) && _.isFunction (arguments[1]))
+				{
+					devicesEmitter.removeListener.apply (this, arguments);
+				}
+				else
+				{
+					var device = devicesTree[arguments[1]];
+					if (device && device._emitter)
+					{
+						var args = arguments.slice (0,1);
+						device._emitter.removeListener.apply (this, args);
+					}
+				}
+			}	
 		},
-		removeAllBoardListeners: function (boardId)
+		removeAllListeners: function ()
 		{
-			var device = devicesTree[boardId];
-			device._listeners = {};
+			if (arguments.length>0)
+				devicesEmitter.removeAllListeners ();
+			else
+			{
+				var device = devicesTree[arguments[0]];
+				if (device && device._emitter)
+				{
+					device._emitter.removeAllListeners();
+				}
+			}
 		}
 		// setStatus: function (deviceId, status)
 		// {

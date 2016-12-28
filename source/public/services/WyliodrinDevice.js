@@ -300,7 +300,10 @@ export default class WyliodrinDevice extends EventEmitter
 			this.send ('d', null);
 			setTimeout (function ()
 			{
-				that.port.disconnect ();
+				if (that.port)
+				{
+					that.port.disconnect ();
+				}
 			}, 10);
 		}
 	}

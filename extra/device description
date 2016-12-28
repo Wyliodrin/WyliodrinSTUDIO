@@ -1,0 +1,43 @@
+id:'unique string'
+name:'string shown to the user'
+uplink:'serial/local/wyliodrin(internet)'
+port:[number]-connection port(default:7000)
+secureport:[number] - for ssh (default:22)
+ip:'address'//todo should be a list
+
+properties:
+	category:'raspberrypi/arduinogalileo/...'
+	device:'arduino uno'
+	platform:'windows/linux'
+	osname:'raspbian/ubuntu/windows/..'
+	osver:'eg. 14.2/2.10/....'
+	version:'client software version'
+	capabilities:
+		.........
+		..........
+		......... (din protocol)
+	libwyliodrin:'libwyliodrin version'
+	wyliodrin_server:'version'
+	expires:'time for missing available'
+connection:
+	status:
+		MISSING - device is known but missing
+		OFFLINE - device is in the network, but user is not connected to it
+		SEPARATOR - device is connected, detecting protocol (should only appear in serial port)
+		CONNECTED - device is connected
+		PING - device is not responding
+		BUSY - another user is already connected to the device
+		INSTALL - only shell working
+	user:
+		id:'user id'
+		name:'user name'
+		software:'wyliodrinstudio/wyliodrincloud'
+		expires:'remaining time for board busy, if null - never expires'
+peripherals:
+	{
+	 id: 
+	 	vendor:'arduino/openmote'
+	 	product:
+	 	port:'eg. /dev/tty'
+	 	type:'serial/i2c'
+	}

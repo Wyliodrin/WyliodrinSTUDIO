@@ -21,9 +21,12 @@ setTimeout (function ()
 {
 	var rectangleDevices = {};
   	var network = window.parent.getNetwork ();
-  	// var networkDevices = network.getDevices();
-  	var devicesList = [];
-  	var devicesTree = {};
+  	var devs = network.getDevices();
+  	var devicesList = devs.list;
+  	var devicesTree = devs.tree;
+
+  	console.log ('in network devs list is');
+  	console.log (devicesList);
 
   	var graph = new joint.dia.Graph();
 	var paper = new joint.dia.Paper({
@@ -69,21 +72,24 @@ setTimeout (function ()
 	    }, joint.shapes.basic.Generic.prototype.defaults)
 	});
 
-	buildGraph ();
-	drawGraph ();
 
-
-
-  	network.devices = function (devicesList, devicesTree)
+  	network.devices = function (_devicesList, _devicesTree)
   	{
-  		devicesList = devicesList;
-  		devicesTree = devicesTree;
+  		console.log ('git devices in network');
+  		
+  		devicesList = _devicesList;
+  		devicesTree = _devicesTree;
+  		console.log (devicesList);
+		console.log (devicesTree);
   		buildGraph ();
   		drawGraph ();
   	};
 
   	network.status = function (device)
   	{
+  		console.log ('network status');
+  		console.log (device);
+  		console.log (rectangleDevices);
   		var rect = rectangleDevices[device.id].rect;
   		var links = rectangleDevices[device.id].links;
 
@@ -158,6 +164,8 @@ setTimeout (function ()
 		for (var i=0; i<devicesList.length; i++)
 		{
 			var node = devicesList[i];
+			console.log ('node is');
+			console.log (node);
 			g.setNode(node.id, {width:NODE_WIDTH, height:NODE_HEIGHT});
 			if (node.uplink === 'local')
 				g.setEdge('router', node.id);
@@ -411,6 +419,9 @@ setTimeout (function ()
 		if (selectedBoard && selectedBoard.id)
 			$('#graph-holder').contextMenu();
 	});
+
+	buildGraph ();
+  	drawGraph ();
   
 }, 1000);
 

@@ -6,7 +6,6 @@ var debug = require ('debug');
 
 debug.enable (settings.debug);
 
-import WyliodrinDevice from './WyliodrinDevice.js';
 import ChromeDevice from './ChromeDevice.js';
 import SerialChromeDevice from './SerialChromeDevice.js';
 import SocketChromeDevice from './SocketChromeDevice.js';
@@ -14,7 +13,6 @@ import SSHChromeDevice from './SSHChromeDevice.js';
 
 var LocalDevices = require ('./LocalDevices.js');
 
-global.WyliodrinDevice = WyliodrinDevice;
 global.LocalDevices = LocalDevices;
 global.ChromeDevice = ChromeDevice;
 global.SerialChromeDevice = SerialChromeDevice;
@@ -41,7 +39,8 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 		w.onClosed.addListener (function ()
 		{
 			log ('closed');
-			WyliodrinDevice.disconnectDevices ();
+			// TODO disconnect    
+			// WyliodrinDevice.disconnectDevices ();
 		});
 	});
 

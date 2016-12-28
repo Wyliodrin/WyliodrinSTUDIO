@@ -16,10 +16,11 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('TerminalDialogController', function ($scope, deviceId)
+	app.controller ('TerminalDialogController', function ($scope, device)
 	{
 		debug ('Registering');
-		console.log(deviceId);
-		$scope.deviceId = deviceId;
+		console.log ('terminal controller');
+		console.log(device);
+		$scope.device = device;
 	});
 };

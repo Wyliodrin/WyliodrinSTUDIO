@@ -18,7 +18,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('XTermController', function ($scope, $timeout, $wydevice, $element, $attrs)
+	app.controller ('XTermController', function ($scope, $timeout, $wydevices,$element, $attrs)
 	{
 		debug ('Registering');
 		var shell;
@@ -44,7 +44,9 @@ module.exports = function ()
 			shell.open ($element[0]);
 			setSizes ();
 
-			var device = $attrs.id;
+			var device = $attrs.device;
+			console.log ('in x term device is ');
+			console.log (device);
 
 			shell.write ('Press any key to start the shell\r\n');
 
@@ -53,44 +55,42 @@ module.exports = function ()
 			shell.on ('key', function (key)
 			{
 				//shell.write (key);
-				$wydevice.send ('s', {a:'k', t:key}, device);
+				console.log ('pressed');
+				$wydevices.send ('s', {a:'k', t:key}, device);
 			});
 
-			$wydevice.on ('status', function (status, deviceId)
-			{
-				console.log ('status '+status+' '+deviceId);
-				if ((deviceId === device) && (status === 'CONNECTED'))
-				{
-					$timeout (function ()
-					{
-						setSizes ();
-						if (write === true)
-						{
-							write = false;
-							shell.write ('Press any key to start the shell\r\n');
-						}
-					}, 500);
-				}
-			});
+			// $wydevice.on ('status', function (status, deviceId)
+			// {
+			// 	console.log ('status '+status+' '+deviceId);
+			// 	if ((deviceId === device) && (status === 'CONNECTED'))
+			// 	{
+			// 		$timeout (function ()
+			// 		{
+			// 			setSizes ();
+			// 			if (write === true)
+			// 			{
+			// 				write = false;
+			// 				shell.write ('Press any key to start the shell\r\n');
+			// 			}
+			// 		}, 500);
+			// 	}
+			// });
 
-			$wydevice.on ('message:'+device, function (t, p, deviceId)
+			$wydevices.on ('message', device.id, function (t, p)
 			{
-				if (deviceId === device)
+				if (t === 's')
 				{
-					if (t === 's')
+					if (p.a === 'k')
 					{
-						if (p.a === 'k')
-						{
-							shell.write (p.t);
-						}
-						else
-						if (p.a === 'e' && p.e === 'noshell')
-						{
-							$wydevice.send ('s', {a:'o', c:cols, r: rows}, device);
-							mixpanel.track ('Shell Open',{
-								category: $wydevice.device.category
-							});
-						}
+						shell.write (p.t);
+					}
+					else
+					if (p.a === 'e' && p.e === 'noshell')
+					{
+						$wydevices.send ('s', {a:'o', c:cols, r: rows}, device);
+						// mixpanel.track ('Shell Open',{
+						// 	category: $wydevice.device.category
+						// });
 					}
 				}
 			});

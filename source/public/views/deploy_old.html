@@ -1,0 +1,38 @@
+<md-dialog aria-label="{{ 'LIBRARY_Library' | translate }}" class="deploy-box">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ 'TOOLBAR_PROJECTS' | translate }}</h2>
+		</div>
+	</md-toolbar>
+	<md-dialog-content layout="row" ng-escape="l.cancel()">
+			<md-content flex="20" class="deploy-container-left">
+				<md-list>
+					<md-list-item>
+						<md-checkbox></md-checkbox>
+						<p>Lab RaspberryPi 1</p>
+					</md-list-item>
+					<md-list-item>
+						<md-checkbox></md-checkbox>
+						<p>Lab RaspberryPi 2</p>
+					</md-list-item>
+					<md-list-item>
+						<md-checkbox></md-checkbox>
+						<p>Lab RaspberryPi 3</p>
+					</md-list-item>
+					<md-list-item>
+						<md-checkbox></md-checkbox>
+						<p>Lab RaspberryPi 4</p>
+					</md-list-item>
+				</md-list>
+			</md-content>
+			<md-content flex="80" class="deploy-container">
+				fhfghfgdhdjghj
+			</md-content>
+	</md-dialog-content>
+    <md-dialog-actions layout="row">
+		<md-button ng-click="l.add()" class="newapp">{{ 'WELCOME_CreateNewApp' | translate }}</md-button>
+		<md-button ng-click="l.import()">{{ 'TOOLBAR_IMPORT' | translate }}</md-button>
+		<md-button ng-click="l.cancel()">{{ 'TOOLBAR_CANCEL' | translate }}</md-button>
+        <md-button ng-click="l.example()" class="load-example">{{ 'LIBRARY_LoadAnExample' | translate }}</md-button>
+	</md-dialog-actions>
+</md-dialog>

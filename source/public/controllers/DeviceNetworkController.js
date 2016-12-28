@@ -17,24 +17,35 @@ module.exports = function ()
 	app.controller('DeviceNetworkController', function($scope, $wydevices, $wyapp, $mdDialog, $filter){
 		debug ('Registering');
 
-		// var devicesCache = [];
+		var devicesListCache = [];
+		var devicesTreeCache = {};
 		// var users = {};
 		var ip = '';
 		var port = 7000;
 		var secureport = 22;
 
 		$wydevices.on ('devices', function (devicesList, devicesTree){
+			console.log ('emitted devices');
+			devicesListCache = devicesList;
+			devicesTreeCache = devicesTree;
 			network.devices(devicesList, devicesTree);
 		});
 
 		var network = {
 			devices: function (devices){},
-			// getDevices: function (){return devicesCache;},
+			getDevices: function (){
+				return {
+					tree: devicesTreeCache,
+					list: devicesListCache
+				};
+			},
 			connectDevice: function (device)
 			{
+				console.log ('request connect');
+				console.log (device);
 				connect(device);
 
-				$wydevices.on ('connection_timeout:'+device.uplink+':'+device.id, function ()
+				$wydevices.on ('connection_timeout', device.id, function ()
 				{
 					console.log('on connection_timeout');
 					var message = $mdDialog.confirm()
@@ -43,7 +54,7 @@ module.exports = function ()
 				    $mdDialog.show(message);
 				});
 
-				$wydevices.on ('connection_error:'+device.uplink+':'+device.id, function ()
+				$wydevices.on ('connection_error', device.id, function ()
 				{
 					console.log('on connection_error');
 					var message = $mdDialog.confirm()
@@ -52,7 +63,7 @@ module.exports = function ()
 				    $mdDialog.show(message);
 				});
 
-				$wydevices.on ('connection_login_failed:'+device.uplink+':'+device.id, function (device)
+				$wydevices.on ('connection_login_failed', device.id, function (device)
 				{
 					var message = $mdDialog.alert()
 				          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
@@ -61,8 +72,10 @@ module.exports = function ()
 				    $mdDialog.show(message);
 				});
 
-				$wydevices.on ('status:'+device.uplink+':'+device.id, function (device)
+				$wydevices.on ('status', device.id, function (device)
 				{
+					console.log ('got status in controller');
+					console.log (device);
 					var status = device.status;
 					if (status === 'INSTALL')
 					{
@@ -77,6 +90,8 @@ module.exports = function ()
 					else
 					{
 						network.status (device);
+						if (status === 'DISCONNECTED' || status === 'ERROR')
+							$wydevices.removeAllBoardListeners(device.id);
 					}
 				});
 			},
@@ -84,6 +99,7 @@ module.exports = function ()
 			disconnectDevice: function (device)
 			{
 				$wydevices.disconnect (device);
+				//$wydevices.removeAllBoardListeners (device.id);
 			},
 
 			shell: function (device)

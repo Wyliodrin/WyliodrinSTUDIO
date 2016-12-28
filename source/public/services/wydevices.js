@@ -15,7 +15,7 @@ var uuid = require ('uuid');
 var _ = require ('lodash');
 var moment = require ('moment');
 
-var WyliodrinDevice = require ('./WyliodrinDevice.js');
+import WyliodrinDevice from './WyliodrinDevice.js';
 
 var TIMEOUT = 10;
 
@@ -32,47 +32,51 @@ app.factory ('$wydevices', function ($http)
 	var devicesTree = {};
 	var devicesList = [];
 
-	function updateDevices (mdnsDevices, uplink)
+	var devicesEmitter = new EventEmitter ();
+
+	function updateDevices (mdnsDevices, _uplink)
 	{
 		console.log ('updateDevices');
-		// console.log (mdnsDevices);
-		// console.log (uplink);
-		var device; 
+		var device;
 		for (var m=0; m<mdnsDevices.length; m++)
     	{
     		device = mdnsDevices[m];
-    		console.log (device);
+    		//console.log (device);
 
     		if (devicesTree[device.id])
     		{
-    			console.log ('device exists');
     			var existingDevice = devicesTree[device.id];
     			existingDevice._mdns = true;
     		}
     		else
     		{
-    			console.log ('new device');
-    			device.name = (device.name?device.name:'');
-    			device.port = (device.port?device.port:7000);
-    			device.secureport = (device.secureport?device.secureport:22);
-    			
-    			device.connection.status = 'DISCONNECTED';
+    			var newDevice = {
+    				name: (device.name?device.name:''),
+    				uplink: _uplink,
+    				port: (device.port?device.port:7000),
+    				secureport: (device.secureport?device.secureport:22),
+    				ip: device.ip,
+    				id: device.ip,
+    				_mdns: true,
+    				connection: {
+    					status:'DISCONNECTED'
+    				},
+    				properties: {
+    					category: (device.category?device.category:'board'),
+    					platform: (device.platform?device.platform:'linux')
+    				},
+    				_listeners: {}
+    			};
 
-    			device.properties.category = (device.category?device.category:'board');
-    			device.properties.platform = (device.platform?device.platform:'linux');
-
-    			device._mdns = true;
-    			devicesTree[device.id] = device;
-    			devicesList.push (device);
-    			console.log ('dev list in for length: '+devicesList.length);
+    			devicesTree[newDevice.id] = newDevice;
+    			devicesList.push (newDevice);
     		}
     	}
-    	console.log ('dev list length: '+devicesList.length);
     	var i=0;
     	while (i<devicesList.length)
     	{
     		device = devicesList[i];
-    		if (!device._mdns && device.uplink === uplink)
+    		if (!device._mdns && device.uplink === _uplink)
     		{
     			if (device.connection.status === 'DISCONNECTED' || 
     				device.connection.status === 'ERROR')
@@ -91,10 +95,6 @@ app.factory ('$wydevices', function ($http)
     		else
     			i++;
     	}
-    	console.log ('devices updated');
-    	console.log (devicesTree);
-		console.log (devicesList);
-		console.log ('updated devices');
 	}
 	
 	if (settings.platform.CHROME)
@@ -104,21 +104,40 @@ app.factory ('$wydevices', function ($http)
 		    LocalDevices.registerSerialListener (function (serialDevices)
 		    {
 		    	updateDevices (serialDevices, 'serial');
-		    	devicesService.emit ('devices', devicesList, devicesTree);
+		    	//devicesService.emit ('devices', devicesList, devicesTree);
+		    	devicesEmitter.emit ('devices', devicesList, devicesTree);
 
 		    });
 		    LocalDevices.registerLocalListener (function (localDevices)
 		    {
 		    	updateDevices (localDevices, 'local');
-		    	devicesService.emit ('devices', devicesList, devicesTree);
+		    	//devicesService.emit ('devices', devicesList, devicesTree);
+		    	devicesEmitter.emit ('devices', devicesList, devicesTree);
 		    });
 		});
+	}
+	//emit (event, device, args...)
+	function emit ()
+	{
+		var device = arguments[1];
+		console.log (device);
+		if (device._listeners[arguments[0]])
+		{
+			var listeners = device._listeners[arguments[0]];
+			var args = [];
+			for (var i=2; i<arguments.length; i++)
+				args.push (arguments[i]);
+			for (var l=0; l<listeners.length; l++)
+			{
+				listeners[l].apply (undefined, args);
+			}
+		}
 	}
 
 	var devicesService = {
 		getDevices: function ()
 		{
-			devicesService.emit ('devices', devicesList, devicesTree);
+			devicesEmitter.emit ('devices', devicesList, devicesTree);
 		},
 		// options={
 		//  ip:
@@ -167,13 +186,15 @@ app.factory ('$wydevices', function ($http)
 
 			device._WyliodrinDevice = new WyliodrinDevice (options);
 
-			devicesService.emit ('devices', devicesList, devicesTree);
+			if (newDevice)
+				devicesEmitter.emit ('devices', devicesList, devicesTree);
 
 			var that = this;
 			
 			device._WyliodrinDevice.on ('connection_login_failed', function ()
 			{
-				that.emit ('connection_login_failed:'+device.uplink+':'+device.id, device);
+				//if ()
+				//that.emit ('connection_login_failed:'+device.uplink+':'+device.id, device);
 			});
 
 			device._WyliodrinDevice.on ('connection_error', function ()
@@ -188,21 +209,32 @@ app.factory ('$wydevices', function ($http)
 			
 			device._WyliodrinDevice.on ('status', function (_status)
 			{
+				console.log ('got status in wydevices');
+				console.log (_status);
 				device.status = _status;
 				
 				if (_status === 'ERROR' || _status === 'DISCONNECTED')
 				{
-					device.removeAllListeners ();
+					device._WyliodrinDevice.removeAllListeners ();
 					delete device._WyliodrinDevice;	
 				}
-				that.emit ('status:'+device.uplink+':'+device.id, device);
+				//that.emit ('status:'+device.uplink+':'+device.id, device);
+				// if (device._listeners.status)
+				// {
+				// 	var listeners = device._listeners.status;
+				// 	for (var l=0; l<listeners.length; l++)
+				// 	{
+				// 		listeners[l](device);
+				// 	}
+				// }
+
+				emit ('status', device, device);
 			});
 
 			device._WyliodrinDevice.on ('message', function (t, d)
 			{
 				if (t === 'i')
 				{
-					// console.log (d);
 					device.name = d.n;
 					device.properties = 
 					{
@@ -247,7 +279,8 @@ app.factory ('$wydevices', function ($http)
 					        }
 				    	});
 				}				
-				that.emit ('message:'+device.uplink+':'+device.id, t, d, deviceId);
+				//that.emit ('message', device.id, t, d, deviceId);
+				emit ('message', device, t, d);
 			});
 		},
 		send: function (tag, data, device)
@@ -259,6 +292,49 @@ app.factory ('$wydevices', function ($http)
 		{
 			// console.log (device);
 			device._WyliodrinDevice.disconnect ();
+		},
+		//on ('event', function)
+		//or
+		//on ('event', 'boardId', function)
+		on: function ()
+		{
+			if (arguments.length >=2)
+			{
+				if (_.isString(arguments[0]) && _.isFunction (arguments[1]))
+				{
+					devicesEmitter.on (arguments[0], arguments[1]);
+				}
+				else if (_.isString(arguments[0]) && _.isString (arguments[1]) &&
+							 _.isFunction (arguments[2]))
+				{
+					var device = devicesTree[arguments[1]];
+					if (device)
+					{
+						if (device._listeners[arguments[0]])
+							device._listeners[arguments[0]].push (arguments[2]);
+						else
+							device._listeners[arguments[0]] = [arguments[2]];
+
+					}
+				}
+			}			
+		},
+		removeBoardListener: function (boardId, event, callbackFunction)
+		{
+			var device = devicesTree[boardId];
+			if (device && device._listeners[event])
+			{
+				var index = _.findIndex (device._listeners[event], function (listener){
+					return listener.name === callbackFunction.name;
+				});
+				if (index > -1)
+					device._listeners[event].splice (index,1);
+			}
+		},
+		removeAllBoardListeners: function (boardId)
+		{
+			var device = devicesTree[boardId];
+			device._listeners = {};
 		}
 		// setStatus: function (deviceId, status)
 		// {
@@ -272,7 +348,7 @@ app.factory ('$wydevices', function ($http)
 		// }
 	};
 
-	devicesService = _.assign (new EventEmitter(), devicesService);
+	//devicesService = _.assign (new EventEmitter(), devicesService);
 
 	return devicesService;
 });

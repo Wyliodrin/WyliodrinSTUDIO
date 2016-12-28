@@ -34,18 +34,24 @@ app.factory ('$wydevices', function ($http)
 
 	function updateDevices (mdnsDevices, uplink)
 	{
+		console.log ('updateDevices');
+		// console.log (mdnsDevices);
+		// console.log (uplink);
 		var device; 
 		for (var m=0; m<mdnsDevices.length; m++)
     	{
     		device = mdnsDevices[m];
+    		console.log (device);
 
     		if (devicesTree[device.id])
     		{
+    			console.log ('device exists');
     			var existingDevice = devicesTree[device.id];
     			existingDevice._mdns = true;
     		}
     		else
     		{
+    			console.log ('new device');
     			device.name = (device.name?device.name:'');
     			device.port = (device.port?device.port:7000);
     			device.secureport = (device.secureport?device.secureport:22);
@@ -58,9 +64,10 @@ app.factory ('$wydevices', function ($http)
     			device._mdns = true;
     			devicesTree[device.id] = device;
     			devicesList.push (device);
+    			console.log ('dev list in for length: '+devicesList.length);
     		}
     	}
-
+    	console.log ('dev list length: '+devicesList.length);
     	var i=0;
     	while (i<devicesList.length)
     	{
@@ -84,6 +91,10 @@ app.factory ('$wydevices', function ($http)
     		else
     			i++;
     	}
+    	console.log ('devices updated');
+    	console.log (devicesTree);
+		console.log (devicesList);
+		console.log ('updated devices');
 	}
 	
 	if (settings.platform.CHROME)
@@ -92,17 +103,12 @@ app.factory ('$wydevices', function ($http)
 		    LocalDevices = backgroundPage.LocalDevices;
 		    LocalDevices.registerSerialListener (function (serialDevices)
 		    {
-		    	// devices.serial = serialDevices;
-		    	// console.log (devices);
-
 		    	updateDevices (serialDevices, 'serial');
 		    	devicesService.emit ('devices', devicesList, devicesTree);
 
 		    });
 		    LocalDevices.registerLocalListener (function (localDevices)
 		    {
-		    	// devices.local = localDevices;
-		    	// console.log (devices);
 		    	updateDevices (localDevices, 'local');
 		    	devicesService.emit ('devices', devicesList, devicesTree);
 		    });

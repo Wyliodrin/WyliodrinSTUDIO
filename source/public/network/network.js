@@ -371,14 +371,14 @@ setTimeout (function ()
 				        	name: "Disconnect",
 				        	icon: "disconnect",
 				        	callback: function(key, opt){
-				        		network.disconnectDevice (selectedBoard.id);
+				        		network.disconnectDevice (selectedBoard);
 				        	}
 				        },
 				        shell: {
 				        	name: 'Shell',
 				        	icon: "shell",
 				        	callback: function (){
-				        		network.shell (selectedBoard.id);
+				        		network.shell (selectedBoard);
 				        	}
 				        }
 			    	},

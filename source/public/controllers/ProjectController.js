@@ -229,11 +229,6 @@ var app = angular.module ('wyliodrinApp');
 			});
 		}
 
-		/*function treeToData(){
-			var tree = $scope.project.tree;
-			checkSpecial(tree[0]);
-			$scope.project.tree = tree;
-		}*/
 
 		function checkSpecial(x){
 			if (x.isdir){
@@ -819,8 +814,11 @@ var app = angular.module ('wyliodrinApp');
 				//fac makefileul
 				var makefile = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];//+(firmwareAvailable?'firmware:\n\t':'');
 				
+				tree.children[0].m = makefile; //sigur exista software si facem makefile pt el
+
 				//de transmis
 				var runmessage = {a:'start', l:$scope.project.language, t:tree};
+
 
 				mixpanel.track ('Project Run',
 				{
@@ -833,6 +831,7 @@ var app = angular.module ('wyliodrinApp');
 				{
 					//makefile part 2
 					//makefile = makefile + settings.MAKE_FIRMWARE[$scope.device.category]('app_project', firmware, port);	
+					//bagi in runmessage.fm (firmware makefile)
 				}
 				else
 				{
@@ -841,7 +840,7 @@ var app = angular.module ('wyliodrinApp');
 				//adaug makefile la mesaj de transmis
 				runmessage.m = makefile;
 				shell.reset ();
-				$wydevice.send ('p', runmessage);
+				$wydevice.send ('tp', runmessage);
 				$timeout (function ()
 				{
 					$scope.showXterm = true;
@@ -852,8 +851,6 @@ var app = angular.module ('wyliodrinApp');
 				});
 			}
 
-
-			// console.log ($scope.device);
 
 			var firmwareAvailable = [];
 			for (var i=0; i<$scope.project.tree[0].children.length;i++){

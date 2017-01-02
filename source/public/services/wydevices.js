@@ -36,7 +36,8 @@ app.factory ('$wydevices', function ($http)
 
 	function updateDevices (mdnsDevices, _uplink)
 	{
-		console.log ('updateDevices');
+		console.log ('updateDevices '+_uplink);
+		console.log (mdnsDevices);
 		var device;
 		for (var m=0; m<mdnsDevices.length; m++)
     	{
@@ -56,7 +57,7 @@ app.factory ('$wydevices', function ($http)
     				port: (device.port?device.port:7000),
     				secureport: (device.secureport?device.secureport:22),
     				ip: device.ip,
-    				id: device.ip,
+    				id: device.id,
     				_mdns: true,
     				connection: {
     					status:'DISCONNECTED'
@@ -76,6 +77,8 @@ app.factory ('$wydevices', function ($http)
     	while (i<devicesList.length)
     	{
     		device = devicesList[i];
+    		console.log ('i = '+i);
+    		console.log (device);
     		if (!device._mdns && device.uplink === _uplink)
     		{
     			if (device.connection.status === 'DISCONNECTED' || 
@@ -180,17 +183,17 @@ app.factory ('$wydevices', function ($http)
 			{
 				//if ()
 				//that.emit ('connection_login_failed:'+device.uplink+':'+device.id, device);
-				device._emitter.emit ('connection_login_failed',device);
+				device._emitter.emit ('connection_login_failed');
 			});
 
 			device._WyliodrinDevice.on ('connection_error', function ()
 			{
-				that.emit ('connection_error:'+device.uplink+':'+device.id, device);
+				device._emitter.emit ('connection_error');
 			});
 
 			device._WyliodrinDevice.on ('connection_timeout', function ()
 			{
-				that.emit ('connection_timeout:'+device.uplink+':'+device.id, device);
+				device._emitter.emit ('connection_timeout');
 			});
 			
 			device._WyliodrinDevice.on ('status', function (_status)
@@ -214,7 +217,7 @@ app.factory ('$wydevices', function ($http)
 				// 	}
 				// }
 
-				emit ('status', device, device);
+				device._emitter.emit ('status', device);
 			});
 
 			device._WyliodrinDevice.on ('message', function (t, d)
@@ -234,14 +237,14 @@ app.factory ('$wydevices', function ($http)
 						wyliodrin_server: (d.wyliodrin_server?d.wyliodrin_server:'')
 					};
 					device.peripherals = d.peripherals;
-					that.emit ('device_info', device);
+					device._emitter.emit ('device_info', device);
 				}
 				else
 				if (t === 'capabilities')
 				{
 					debug (d);
 					device.properties.capabilities = d;
-					that.emit ('device_info', device);
+					device._emitter.emit ('device_info', device);
 				}
 				else
 				if ((t === 'v' || t === 'sv') && !d.s)
@@ -266,7 +269,7 @@ app.factory ('$wydevices', function ($http)
 				    	});
 				}				
 				//that.emit ('message', device.id, t, d, deviceId);
-				emit ('message', device, t, d);
+				device._emitter.emit ('message', device, t, d);
 			});
 		},
 		send: function (tag, data, device)
@@ -288,7 +291,9 @@ app.factory ('$wydevices', function ($http)
 			{
 				if (_.isString(arguments[0]) && _.isFunction (arguments[1]))
 				{
-					devicesEmitter.on.apply (this, arguments);
+					console.log ('on arguments');
+					console.log (arguments);
+					devicesEmitter.on.apply (devicesEmitter, arguments);
 				}
 				else
 				{
@@ -296,7 +301,7 @@ app.factory ('$wydevices', function ($http)
 					if (device && device._emitter)
 					{
 						var args = arguments.slice (0,1);
-						device._emitter.on.apply (this, args);
+						device._emitter.on.apply (device._emitter, args);
 					}
 				}
 			}			
@@ -307,7 +312,7 @@ app.factory ('$wydevices', function ($http)
 			{
 				if (_.isString(arguments[0]) && _.isFunction (arguments[1]))
 				{
-					devicesEmitter.removeListener.apply (this, arguments);
+					devicesEmitter.removeListener.apply (devicesEmitter, arguments);
 				}
 				else
 				{
@@ -315,7 +320,7 @@ app.factory ('$wydevices', function ($http)
 					if (device && device._emitter)
 					{
 						var args = arguments.slice (0,1);
-						device._emitter.removeListener.apply (this, args);
+						device._emitter.removeListener.apply (device._emitter, args);
 					}
 				}
 			}	

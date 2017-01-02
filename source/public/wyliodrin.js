@@ -78,6 +78,7 @@ require ('./controllers/ToolbarController.js')();
 require ('./controllers/XTermController.js')();
 require ('./controllers/FileExplorerController.js')();
 require ('./controllers/DeviceNetworkController.js')();
+require ('./controllers/DeployDeviceNetworkController.js')();
 require ('./controllers/DeployController.js')();
 require ('./controllers/TerminalDialogController.js')();
 

@@ -218,7 +218,7 @@ setTimeout (function ()
 					});
 
 			}
-			else if (board && board.ip)
+			else if (board && board.uplink)
 			{
 				var rectStroke;
 				var textFill;

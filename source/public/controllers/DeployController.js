@@ -3,14 +3,13 @@
 
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
-var debug = require ('debug')('wyliodrin:lacy:LibraryController');
+var debug = require ('debug')('wyliodrin:lacy:DeployController');
 
 var _ = require ('lodash');
 
 var library = require ('library');
 
 var angular = require ('angular');
-
 var mixpanel = require ('mixpanel');
 
 debug ('Loading');
@@ -24,6 +23,14 @@ module.exports = function ()
 	{
 		debug ('Registering');
 		var that = this;
+
+		$scope.deploy = {
+			network:{},
+			dashboard:{}
+		};
+		this.saveDeploy = function (){
+			library.addDeployment ('name', $scope.deploy);
+		};
 	
 		// this.openMenu = function($mdOpenMenu, ev) {
 	 //      // originatorEv = ev;

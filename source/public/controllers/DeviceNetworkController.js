@@ -6,6 +6,7 @@ var $ = require ('jquery');
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:DeviceNetworkController');
+var library = require ('library');
 
 debug ('Loading');
 
@@ -14,7 +15,7 @@ module.exports = function ()
 	var app = angular.module ('wyliodrinApp');
 
 
-	app.controller('DeviceNetworkController', function($scope, $wydevices, $wyapp, $mdDialog, $filter){
+	app.controller('DeviceNetworkController', function($attrs, $timeout, $scope, $wydevices, $wyapp, $mdDialog, $filter){
 		debug ('Registering');
 
 		var devicesListCache = [];
@@ -24,15 +25,47 @@ module.exports = function ()
 		var port = 7000;
 		var secureport = 22;
 
+		console.log ('action is');
+		console.log ($attrs.action);
+
 		$wydevices.on ('devices', function (devicesList, devicesTree){
-			console.log ('emitted devices');
 			devicesListCache = devicesList;
 			devicesTreeCache = devicesTree;
-			network.devices(devicesList, devicesTree);
+
+			if ($attrs.action === 'edit_deploy')
+			{
+				library.listDeployments (function (err, depls){
+					if (err === null)
+					{
+						for (var d=0; d<depls.length; d++)
+						{
+							if (devicesTreeCache)
+						}
+					}
+				});
+			}
+			else
+			{
+				network.devices(devicesListCache, devicesTreeCache);
+			}
 		});
 
 		var network = {
+			deploy: $scope.deploy,
 			devices: function (devices){},
+			getAction: function (){
+				return $attrs.action;
+			},
+			getApplications: function (done)
+			{
+				library.listProjects (function (err, projects){
+					console.log (projects);
+					if (err === null)
+						done (projects);
+					else
+						done ([]);
+				});
+			},
 			getDevices: function (){
 				return {
 					tree: devicesTreeCache,

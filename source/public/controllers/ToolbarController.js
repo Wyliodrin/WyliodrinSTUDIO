@@ -51,7 +51,26 @@ module.exports = function ()
 		this.deploy = function ()
 		{
 			debug ('Deploy request');
-			$wyapp.emit ('deploy');
+
+			library.listDeployments (function (err, depls){
+				if (err)
+					$scope.deployments = [];
+				else
+					$scope.deployments = depls;
+				console.log ("$scope.deployments");
+				console.log ($scope.deployments);
+			});
+
+			
+			$mdDialog.show({
+		      controller: 'DeployController',
+		      controllerAs: 'd',
+		      templateUrl: '/public/views/deploy.html',
+		      // parent: angular.element(document.body),
+		      // targetEvent: ev,
+		      clickOutsideToClose:true,
+		      fullscreen: false
+		    });
 		};
 
 		this.exit = function ()
@@ -343,19 +362,6 @@ module.exports = function ()
 		      controllerAs: 'p',
 		      // targetEvent: ev,
 		      clickOutsideToClose: true,
-		      fullscreen: false
-		    });
-		});
-
-		$wyapp.on ('deploy', function (){
-			debug ('Deploy');
-			$mdDialog.show({
-		      controller: 'DeployController',
-		      controllerAs: 'd',
-		      templateUrl: '/public/views/deploy.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
-		      clickOutsideToClose:true,
 		      fullscreen: false
 		    });
 		});

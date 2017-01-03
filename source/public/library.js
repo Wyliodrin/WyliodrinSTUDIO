@@ -10,10 +10,17 @@ var _ = require ('lodash');
 
 var db = new dexie ("WyliodrinApp");
 
+db.version(6).stores ({
+	applications:"++id,name,date,main,dashboard,firmware,visualproject,language,schematics",
+	settings:"key,value",
+	deployments:"name, network"
+});
+
 db.version(5).stores ({
 	applications:"++id,name,date,main,dashboard,firmware,visualproject,language,schematics",
 	settings:"key,value"
 });
+
 
 db.version(4).stores ({
 	applications:"++id,name,date,main,dashboard,firmware,visualproject,language",
@@ -79,6 +86,13 @@ function add (value, language, done, devicecategory)
 			if (done) done (null, id);
 		});
 	}
+}
+
+function addDeployment (name, data)
+{
+	data.name = name;
+	db.deployments.add (data). then (function (){
+	});
 }
 
 function erase (id)
@@ -210,7 +224,20 @@ function listProjects (done)
 	});
 }
 
+function listDeployments (done)
+{
+	debug ('List deployments');
+	db.deployments.toArray (function (list){
+		console.log ('list depls');
+		console.log (list);
+		debug ('List deployments '+list);
+		done (null, list);
+	});
+}
+
+module.exports.addDeployment = addDeployment;
 module.exports.listProjects = listProjects;
+module.exports.listDeployments = listDeployments;
 module.exports.erase = erase;
 module.exports.retrieveProject = retrieveProject;
 module.exports.storeMain = storeMain;

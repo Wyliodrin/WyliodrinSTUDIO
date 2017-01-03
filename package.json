@@ -48,6 +48,7 @@
     "jquery-contextmenu": "^2.3.0",
     "lodash": "^4.0.1",
     "material-design-icons": "^2.1.3",
+    "moment": "^2.17.1",
     "msgpack-lite": "^0.1.15",
     "ssh2": "git+https://www.github.com/Wyliodrin/ssh2-chrome-app.git#webshell",
     "sweetalert": "^1.1.3",

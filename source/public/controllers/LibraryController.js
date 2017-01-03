@@ -20,7 +20,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('LibraryController', function ($scope, $filter, $mdDialog, $wyapp, $wydevice)
+	app.controller ('LibraryController', function ($scope, $filter, $mdDialog, $wyapp, $wydevices)
 	{
 		debug ('Registering');
 		var that = this;
@@ -69,7 +69,7 @@ module.exports = function ()
 							language: $scope.project.language
 						});
 						var devicecategory = null;
-						if ($wydevice.device) devicecategory = $wydevice.device.category;
+						// if ($wydevice.device) devicecategory = $wydevice.device.category;
 						debug ('Project '+devicecategory);
 						library.add ($scope.project.title, $scope.project.language, null, devicecategory);
 					}

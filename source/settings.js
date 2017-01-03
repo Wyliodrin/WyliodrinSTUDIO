@@ -98,7 +98,8 @@ settings.STYLE_NAMES = {
 settings.FIRMWARES = {
 	'raspberrypi':
 	{
-		'uno':'Arduino Uno', 
+		'uno':'Arduino Uno',
+		'openmote':'Open Mote',
 		'atmega328':'Arduino Duemilanove w/ ATmega328',
 		'diecimila':'Arduino Diecimila or Duemilanove w/ ATmega168',
 		'nano328':'Arduino Nano w/ ATmega328',

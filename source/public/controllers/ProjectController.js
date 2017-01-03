@@ -811,12 +811,28 @@ var app = angular.module ('wyliodrinApp');
 
 				if (typeof withFirmware === 'undefined') { withFirmware = false; }
 
-				//fac makefileul
-				var makefile = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];//+(firmwareAvailable?'firmware:\n\t':'');
-				
-				tree.children[0].m = makefile; //sigur exista software si facem makefile pt el
+				//do the software makefile
+				//example for [linux][python]
+				var makefileSoft = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];
+				console.log(makefileSoft);
+				//100% there exists a software folder
+				tree.children[0].m = makefileSoft;
 
-				//de transmis
+				//add firmware makefile
+				if (withFirmware)
+				{
+					for (var i = 1 ; i < tree.children.length ; i++)
+					{
+						tree.children[i].m = 
+							settings.MAKE_FIRMWARE[$wydevice.device.category][tree.children[i].ftype](
+								'app_project',
+								null,
+								tree.children[i].fport
+							);
+					}
+				}
+
+				//to transmit
 				var runmessage = {a:'start', l:$scope.project.language, t:tree};
 
 
@@ -827,18 +843,6 @@ var app = angular.module ('wyliodrinApp');
 					flash: withFirmware
 				});
 
-				if (withFirmware)
-				{
-					//makefile part 2
-					//makefile = makefile + settings.MAKE_FIRMWARE[$scope.device.category]('app_project', firmware, port);	
-					//bagi in runmessage.fm (firmware makefile)
-				}
-				else
-				{
-					makefile = makefile+'\n';
-				}
-				//adaug makefile la mesaj de transmis
-				runmessage.m = makefile;
 				shell.reset ();
 				$wydevice.send ('tp', runmessage);
 				$timeout (function ()
@@ -918,7 +922,7 @@ var app = angular.module ('wyliodrinApp');
 		$wyapp.on ('stop', function ()
 		{
 			debug ('Stop');
-			$wydevice.send ('p', {a:'stop'});
+			$wydevice.send ('tp', {a:'stop'});
 			mixpanel.track ('Project Stop', {
 				category: $wydevice.device.category,
 				language: $scope.project.language

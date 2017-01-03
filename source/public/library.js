@@ -52,9 +52,9 @@ function add (value, language, done, devicecategory)
 		{
 			startproject = {
 				tree: 
-				[{name:title, isdir:true,isroot:true,children:
-					[{name:language,isdir:true,issoftware:true,children:
-						[{name:'main',isdir:false,ismain:true,content:''}]
+				[{name:title, id:1,isdir:true,isroot:true,children:
+					[{name:language,id:2,isdir:true,issoftware:true,children:
+						[{name:'main',id:3,isdir:false,ismain:true,content:''}]
 					}]
 				}],
 				language: language

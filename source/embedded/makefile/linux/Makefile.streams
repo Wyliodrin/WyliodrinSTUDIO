@@ -1,10 +1,5 @@
-
-build:
-
 run: main.streams firmware
 	rm -f node_modules
 	ln -s /wyliodrin/node-red/node_modules node_modules
 	NODE_PATH="/usr/lib/node_modules:/usr/local/lib/node_modules:" node /wyliodrin/node-red/red.js -v main.streams
-	
-firmware:
-	
+

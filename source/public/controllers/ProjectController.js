@@ -208,10 +208,37 @@ var app = angular.module ('wyliodrinApp');
 		};
 
 		function nodeEqual(n1,n2){
-			if (n1.$$hashKey === n2.$$hashKey){
+			if (n1.id === n2.id){
 				return true;
 			}
 			return false;
+		}
+
+		function makeID(tree){
+			var a = Math.random(10,10000);
+			while (checkID(tree,a)){
+				a = Math.random(10,10000);
+			}
+			return a;
+		}
+
+		function checkID(tree, a){
+
+			for (var i=0; i<tree.children.length;i++){
+				var x = tree.children[i];
+				if (x.id === a){
+					return true;
+				}
+				if (x.isdir){
+					var ret = checkID(x, a);
+					if (ret === true){
+						return ret;
+					}
+				}
+			}
+			return false;
+
+
 		}
 
 		function dataToTree(data){
@@ -296,18 +323,20 @@ var app = angular.module ('wyliodrinApp');
 		};
 
 		this.newFolder = function(){
-			var obj = {name:$scope.tree.contentPopupNewFolder,isdir:true,children:[]};
+			var obj = {name:$scope.tree.contentPopupNewFolder,id:makeID($scope.project.tree[0]),isdir:true,children:[]};
 			this.newSomething(obj,$scope.tree.selectednode);
+			$scope.tree.showPopupNewFolder = 0;
 		};
 
 		this.newFile = function(){
-			var obj = {name:$scope.tree.contentPopupNewFile,isdir:false,content:''};
+			var obj = {name:$scope.tree.contentPopupNewFile,id:makeID($scope.project.tree[0]),isdir:false,content:''};
 			this.newSomething(obj,$scope.tree.selectednode);
+			$scope.tree.showPopupNewFile = 0;
 		};
 
 		this.newFirmware = function(){
 			//////////////////////////poate fa-i si un copil
-			var obj = {name:$scope.tree.contentPopupNewFirmware.text,isdir:true,isfirmware:true,ftype:$scope.tree.contentPopupNewFirmware.type,fport:"auto",children:[]};
+			var obj = {name:$scope.tree.contentPopupNewFirmware.text,id:makeID($scope.project.tree[0]),isdir:true,isfirmware:true,ftype:$scope.tree.contentPopupNewFirmware.type,fport:"auto",children:[]};
 			this.newSomething(obj,$scope.project.tree[0]);
 			checkEmptyFolders($scope.project.tree[0]);
 			$scope.tree.showPopupNewFirmware = 0;
@@ -326,7 +355,6 @@ var app = angular.module ('wyliodrinApp');
 				$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
 				$scope.tree.showPopupError = 1;
 			}
-			$scope.tree.showPopupNewFolder = 0;
 		};
 
 		this.delete = function(){
@@ -814,7 +842,7 @@ var app = angular.module ('wyliodrinApp');
 				//do the software makefile
 				//example for [linux][python]
 				var makefileSoft = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];
-				console.log(makefileSoft);
+
 				//100% there exists a software folder
 				tree.children[0].m = makefileSoft;
 

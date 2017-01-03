@@ -34,15 +34,15 @@ module.exports = function ()
 
 			if ($attrs.action === 'edit_deploy')
 			{
-				library.listDeployments (function (err, depls){
-					if (err === null)
-					{
-						for (var d=0; d<depls.length; d++)
-						{
-							if (devicesTreeCache)
-						}
-					}
-				});
+				// library.listDeployments (function (err, depls){
+				// 	if (err === null)
+				// 	{
+				// 		for (var d=0; d<depls.length; d++)
+				// 		{
+				// 			if (devicesTreeCache)
+				// 		}
+				// 	}
+				// });
 			}
 			else
 			{

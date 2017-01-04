@@ -222,13 +222,13 @@ module.exports = function ()
 		    });
 		};
 
-		// this.openMenu = function($mdOpenMenu, ev) {
-	 //      // originatorEv = ev;
-	 //      var connectedDevices = $wydevices.getConnectedDevices();
-	 //      for (var i=0; i<connectedDevices.length; i++)
-	 //      	connectedDevices[i].selected = false;
-	 //      $mdOpenMenu(ev);
-	 //    };
+		this.openMenu = function($mdOpenMenu, ev) {
+	      // originatorEv = ev;
+	      // var connectedDevices = $wydevices.getConnectedDevices();
+	      // for (var i=0; i<connectedDevices.length; i++)
+	      // 	connectedDevices[i].selected = false;
+	      $mdOpenMenu(ev);
+	    };
 
 		this.stop = function ()
 		{

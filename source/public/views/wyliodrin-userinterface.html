@@ -140,7 +140,7 @@
                     </md-button>-->
 
                     <md-menu>
-                      <md-button class="run-bt">
+                      <md-button class="run-bt" ng-click="t.openMenu($mdOpenMenu, $event)">
                               <md-icon md-svg-src="/public/drawable/deploy-icon.svg" class="s24" aria-label="Deploy projects" ></md-icon> Deploy
                               <md-tooltip md-direction="bottom">
                                 {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}

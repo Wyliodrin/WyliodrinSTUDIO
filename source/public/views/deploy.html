@@ -4,12 +4,12 @@
 			<h2>DEPLOY</h2>
 		</div>
 	</md-toolbar>
-	<md-dialog-content layout="row" ng-escape="l.cancel()">
+	<md-dialog-content layout="column" ng-escape="l.cancel()">
 		<md-tabs flex="100">
 		    <md-tab label="NETWORK">
 		        <md-tab-body>
 					<div  action="new_deploy" deploy="{{deploy}}" ng-controller="DeviceNetworkController">
-	                	<iframe src="/public/network/network_frame.html" id="network-iframe" width="2000" height="1000">
+	                	<iframe src="/public/network/network_frame.html" id="network-iframe" style="width:100vh; height:100vh; ">
 	                    </iframe>
 	                  </div>
 		        </md-tab-body>
@@ -21,7 +21,11 @@
 		    </md-tab>
 		</md-tabs>
 	</md-dialog-content>
-	<md-button ng-click="d.saveDeploy()">Save deploy</md-button>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="d.saveDeploy()" class="newapp">Save and deploy</md-button>
+		<md-button>Save</md-button>
+		<md-button ng-click="l.cancel()">Cancel</md-button>
+	</md-dialog-actions>
 </md-dialog>
 
             

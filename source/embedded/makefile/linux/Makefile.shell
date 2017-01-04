@@ -1,4 +1,4 @@
-run: main.sh firmware
+run:
 	chmod u+x main.sh
 	./main.sh
 

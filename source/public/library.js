@@ -43,11 +43,11 @@ function add (value, language, done, devicecategory)
 		var title = value;
 		debug ('Adding project with title '+title+' in '+language);
 		var startproject = null;
-		if (devicecategory && settings.EXAMPLE.start[devicecategory])
+		/*if (devicecategory && settings.EXAMPLE.start[devicecategory])
 		{
 			debug ('Start '+devicecategory);
 			startproject = _.clone (settings.EXAMPLE.start[devicecategory][language]);
-		}
+		}*/ //WHEN CONNECTED USE THIS BLUEPRINT // COMMENTED BECAUSE BLUEPRINT IS DIFFERENT FROM OUR PROJECT
 		if (!startproject)
 		{
 			startproject = {

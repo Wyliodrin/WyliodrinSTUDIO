@@ -208,16 +208,21 @@ var app = angular.module ('wyliodrinApp');
 		};
 
 		function nodeEqual(n1,n2){
-			if (n1.id === n2.id){
+			if (angular.equals(n1,n2))
+			{
 				return true;
 			}
 			return false;
 		}
 
+		function rand(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
 		function makeID(tree){
-			var a = Math.random(10,10000);
+			var a = rand(10,10000);
 			while (checkID(tree,a)){
-				a = Math.random(10,10000);
+				a = rand(10,10000);
 			}
 			return a;
 		}
@@ -243,11 +248,10 @@ var app = angular.module ('wyliodrinApp');
 
 		function dataToTree(data){
 			checkEmptyFolders(data[0]);
-
 			data[0].children.forEach( function (node){
 				if (node.issoftware){
 					node.children.forEach( function (node2){
-						if ((!node2.isdir) && (!node2.isspecial) && node2.name == "main"){
+						if ((!node2.isdir) && (!node2.isspecial) && (node2.ismain)){
 							$scope.tree.selectednode = node2;
 							$scope.showEditor = true;
 						}
@@ -287,7 +291,7 @@ var app = angular.module ('wyliodrinApp');
 			}
 			if (x.isdir){
 				if (x.children.length === 0){
-					x.children = [{name:'Empty Folder', isdir:false, isspecial:true}];
+					x.children = [{name:'Empty Folder', id:makeID($scope.project.tree[0]) ,isdir:false, isspecial:true}];
 				}
 				else{
 					x.children.forEach( function (y){
@@ -748,6 +752,7 @@ var app = angular.module ('wyliodrinApp');
 			{
 				$scope.project = project;
 				dataToTree($scope.project.tree);
+
 				if (red === null)
 				{
 					red = $element.find ('#red')[0];
@@ -846,6 +851,8 @@ var app = angular.module ('wyliodrinApp');
 				//100% there exists a software folder
 				tree.children[0].m = makefileSoft;
 
+				var runmessage = {a:'start', l:$scope.project.language, t:tree, onlysoft:(!withFirmware)};
+
 				//add firmware makefile
 				if (withFirmware)
 				{
@@ -859,9 +866,6 @@ var app = angular.module ('wyliodrinApp');
 							);
 					}
 				}
-
-				//to transmit
-				var runmessage = {a:'start', l:$scope.project.language, t:tree};
 
 
 				mixpanel.track ('Project Run',
@@ -926,7 +930,7 @@ var app = angular.module ('wyliodrinApp');
 				}
 				else
 				{
-					run ($scope.tree,false);
+					run (that.getTree(),false);
 				}
 			}
 			else

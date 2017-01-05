@@ -103,7 +103,7 @@ function erase (id)
 	db.applications.delete (id);
 }
 
-function eraseDeployment (id)
+//function eraseDeployment (id)
 
 function retrieveProject (id, done)
 {

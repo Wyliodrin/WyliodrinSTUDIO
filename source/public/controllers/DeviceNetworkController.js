@@ -2,6 +2,7 @@
 
 var angular = require ('angular');
 var $ = require ('jquery');
+var _ = require ('lodash');
 
 var settings = require ('settings');
 require ('debug').enable (settings.debug);

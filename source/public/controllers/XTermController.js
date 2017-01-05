@@ -78,6 +78,9 @@ module.exports = function ()
 
 			$wydevices.on ('message', device.id, function (t, p)
 			{
+				console.log ('xterm message');
+				console.log (t);
+				console.log (p);
 				if (t === 's')
 				{
 					if (p.a === 'k')

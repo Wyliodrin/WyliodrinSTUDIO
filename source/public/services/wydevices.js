@@ -72,7 +72,7 @@ app.factory ('$wydevices', function ($http)
     			devicesTree[newDevice.id] = newDevice;
     			devicesList.push (newDevice);
 
-    			version++;
+    			networkVersion++;
     		}
     	}
     	var i=0;
@@ -222,6 +222,9 @@ app.factory ('$wydevices', function ($http)
 
 			device._WyliodrinDevice.on ('message', function (t, d)
 			{
+				console.log ('got message');
+				console.log (t);
+				console.log (d);
 				if (t === 'i')
 				{
 					device.name = d.n;
@@ -271,11 +274,14 @@ app.factory ('$wydevices', function ($http)
 				    	});
 				}				
 				//that.emit ('message', device.id, t, d, deviceId);
-				device._emitter.emit ('message', device, t, d);
+				device._emitter.emit ('message', t, d);
 			});
 		},
 		send: function (tag, data, deviceId)
 		{
+			console.log ('wydevices send ');
+			console.log (tag);
+			console.log (data);
 			devicesTree[deviceId]._WyliodrinDevice.send (tag, data);
 		},
 
@@ -306,7 +312,9 @@ app.factory ('$wydevices', function ($http)
 					if (device && device._emitter)
 					{
 						console.log ('emitter exsts');
-						var args = Array.prototype.slice.call (arguments, 1,1);
+						//TODO - facut cu _clone sau iterat
+						var args = Array.prototype.slice.call (arguments);
+						args.splice(1,1);
 						console.log (args);
 						device._emitter.on.apply (device._emitter, args);
 					}
@@ -326,7 +334,8 @@ app.factory ('$wydevices', function ($http)
 					var device = devicesTree[arguments[1]];
 					if (device && device._emitter)
 					{
-						var args = Array.prototype.slice.call (arguments, 0,1);
+						var args = Array.prototype.slice.call (arguments);
+						args.splice (0,1);
 						device._emitter.removeListener.apply (device._emitter, args);
 					}
 				}

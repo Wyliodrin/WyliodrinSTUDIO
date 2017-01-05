@@ -131,13 +131,64 @@
                       <md-tooltip md-direction="bottom">
                       	{{ 'WYLIODRIN_USERINTERFACE_devicename' | translate }}
                       </md-tooltip>
-			        </div> -->
+			        </div> 
                     <md-button ng-click="t.deploy()" class="run-bt">
                       <md-icon md-svg-src="/public/drawable/deploy-icon.svg" class="s24" aria-label="Deploy projects" ></md-icon> Deploy
                         <md-tooltip md-direction="bottom">
                           {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
                         </md-tooltip>
-                    </md-button>
+                    </md-button>-->
+
+                    <md-menu>
+                      <md-button class="run-bt" ng-click="t.openMenu($mdOpenMenu, $event)">
+                              <md-icon md-svg-src="/public/drawable/deploy-icon.svg" class="s24" aria-label="Deploy projects" ></md-icon> Deploy
+                              <md-tooltip md-direction="bottom">
+                                {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}
+                              </md-tooltip>
+                          </md-button>
+                      <md-menu-content width="3">
+                        <md-menu-item>
+                          <md-button ng-click="t.deploy()">
+                            New Deployment
+                          </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                          <md-button ng-click="t.documentation()">
+                            Wyliodrin API
+                          </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                          <md-button ng-click="t.example()">
+                            Examples
+                          </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                          <md-button ng-click="t.forum()">
+                            {{ 'TOOLBAR_FORUM' | translate }}
+                          </md-button>
+                        </md-menu-item>
+                              <md-menu-item>
+                              <md-button ng-click="t.resistorcolorcode()">
+                                {{ 'TOOLBAR_RESISTOR_COLOR_CODE' | translate }}
+                              </md-button>
+                              </md-menu-item>
+                              <md-menu-item>
+                                <md-button ng-click="t.about()">
+                                  {{ 'TOOLBAR_ABOUT' | translate }}
+                                </md-button>
+                              </md-menu-item>
+                              <md-menu-item>
+                                <md-button ng-click="t.licence()">
+                                  Usage licence
+                                </md-button>
+                              </md-menu-item> -->
+                              <md-menu-item>
+                                <md-button ng-click="t.welcome()">
+                                  Welcome
+                                </md-button>
+                              </md-menu-item>
+                      </md-menu-content>
+                    </md-menu>
                     <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
                     	<md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run project" ></md-icon> Run project
                         <md-tooltip md-direction="bottom">
@@ -423,18 +474,15 @@
                     </div>
                 </md-tab-body>
             </md-tab> -->
-            <md-tab>
+            <md-tab ng-disabled="project_disable">
                 <md-tab-label>NETWORK</md-tab-label>
                 <md-tab-body>
-                <div action="network" ng-controller="DeviceNetworkController">
-                <iframe src="/public/network/network_frame.html" id="network-iframe" width="2000" height="1000">
-                                                </iframe>
-                   <!--  <div layout="column">
-                        <div flex="100" layout="row"> -->
-                            
-                        <!-- </div>
-                    </div> -->
-                  </div>
+                    <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">
+                        <div flex="100" style="position:relative;" action="network" ng-controller="DeviceNetworkController" layout="row">
+                          <iframe src="/public/network/network_frame.html" id="network-iframe" flex="100">
+                        </div>
+                        <!-- <input type="button" value="Run" ng-click="p.send ()" flex /> -->
+                    </div>
                 </md-tab-body>
             </md-tab>
         </md-tabs>

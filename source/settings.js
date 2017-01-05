@@ -11,6 +11,7 @@ var translate = require ('./config/languages.js');
 
 var makefile = require ('./config/makefile.js');
 var makefileplus = require ('./config/makefileplus.js');
+var makefileplusplus = require ('./config/makefileplusplus.js');
 
 var settings = {
 	debug: require ('./config/debug.js')
@@ -139,14 +140,14 @@ settings.VERSION = JSON.parse(fs.readFileSync (__dirname+'/../manifest.json').to
 settings.SENDER = 6000;
 
 settings.MAKEFILE_STOARGE = makefile;
+settings.MAKE_FIRMWARE = makefileplus;
+settings.MAKE_OWN_FIRMWARE = makefileplusplus;
 
 settings.EXAMPLE = example;
 
 settings.INSTALL = install;
 
 settings.TRANSLATE = translate;
-
-settings.MAKE_FIRMWARE = makefileplus;
 
 settings.INTERVAL_MDNS = 10*1000;
 

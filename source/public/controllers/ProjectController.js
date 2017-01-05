@@ -359,6 +359,7 @@ var app = angular.module ('wyliodrinApp');
 				$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
 				$scope.tree.showPopupError = 1;
 			}
+			$scope.aceSoftwareChanged();
 		};
 
 		this.delete = function(){
@@ -386,6 +387,7 @@ var app = angular.module ('wyliodrinApp');
 				$scope.tree.selectednode = parent;
 			}
 			$scope.tree.showPopupDelete = 0;
+			$scope.aceSoftwareChanged();
 		};
 
 		
@@ -853,7 +855,7 @@ var app = angular.module ('wyliodrinApp');
 
 				var runmessage = {a:'start', l:$scope.project.language, t:tree, onlysoft:(!withFirmware)};
 
-				//add firmware makefile
+				//add wyliodrin firmware makefile
 				if (withFirmware)
 				{
 					for (var i = 1 ; i < tree.children.length ; i++)
@@ -864,6 +866,7 @@ var app = angular.module ('wyliodrinApp');
 								null,
 								tree.children[i].fport
 							);
+						tree.children[i].m2 = settings.MAKE_OWN_FIRMWARE[tree.children[i].ftype];
 					}
 				}
 

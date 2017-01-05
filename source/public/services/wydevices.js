@@ -34,10 +34,10 @@ app.factory ('$wydevices', function ($http)
 
 	var devicesEmitter = new EventEmitter ();
 
+	var networkVersion = 0;
+
 	function updateDevices (mdnsDevices, _uplink)
 	{
-		console.log ('updateDevices '+_uplink);
-		console.log (mdnsDevices);
 		var device;
 		for (var m=0; m<mdnsDevices.length; m++)
     	{
@@ -66,19 +66,19 @@ app.factory ('$wydevices', function ($http)
     					category: (device.category?device.category:'board'),
     					platform: (device.platform?device.platform:'linux')
     				},
-    				_listeners: {}
+    				_emitter: new EventEmitter ()
     			};
 
     			devicesTree[newDevice.id] = newDevice;
     			devicesList.push (newDevice);
+
+    			version++;
     		}
     	}
     	var i=0;
     	while (i<devicesList.length)
     	{
     		device = devicesList[i];
-    		console.log ('i = '+i);
-    		console.log (device);
     		if (!device._mdns && device.uplink === _uplink)
     		{
     			if (device.connection.status === 'DISCONNECTED' || 
@@ -108,14 +108,14 @@ app.factory ('$wydevices', function ($http)
 		    {
 		    	updateDevices (serialDevices, 'serial');
 		    	//devicesService.emit ('devices', devicesList, devicesTree);
-		    	devicesEmitter.emit ('devices', devicesList, devicesTree);
+		    	devicesEmitter.emit ('devices', devicesList, devicesTree, networkVersion);
 
 		    });
 		    LocalDevices.registerLocalListener (function (localDevices)
 		    {
 		    	updateDevices (localDevices, 'local');
 		    	//devicesService.emit ('devices', devicesList, devicesTree);
-		    	devicesEmitter.emit ('devices', devicesList, devicesTree);
+		    	devicesEmitter.emit ('devices', devicesList, devicesTree, networkVersion);
 		    });
 		});
 	}
@@ -123,7 +123,7 @@ app.factory ('$wydevices', function ($http)
 	var devicesService = {
 		getDevices: function ()
 		{
-			devicesEmitter.emit ('devices', devicesList, devicesTree);
+			devicesEmitter.emit ('devices', devicesList, devicesTree, networkVersion);
 		},
 		// options={
 		//  ip:
@@ -171,8 +171,6 @@ app.factory ('$wydevices', function ($http)
 			device.username = (options.username?options.username:device.username);
 
 			device._WyliodrinDevice = new WyliodrinDevice (options);
-			if (!device._emitter)
-				device._emitter = new EventEmitter();
 
 			if (newDevice)
 				devicesEmitter.emit ('devices', devicesList, devicesTree);
@@ -184,23 +182,25 @@ app.factory ('$wydevices', function ($http)
 				//if ()
 				//that.emit ('connection_login_failed:'+device.uplink+':'+device.id, device);
 				device._emitter.emit ('connection_login_failed');
+				networkVersion++;
 			});
 
 			device._WyliodrinDevice.on ('connection_error', function ()
 			{
 				device._emitter.emit ('connection_error');
+				networkVersion++;
 			});
 
 			device._WyliodrinDevice.on ('connection_timeout', function ()
 			{
 				device._emitter.emit ('connection_timeout');
+				networkVersion++;
 			});
 			
 			device._WyliodrinDevice.on ('status', function (_status)
 			{
-				console.log ('got status in wydevices');
-				console.log (_status);
 				device.status = _status;
+				networkVersion++;
 				
 				if (_status === 'ERROR' || _status === 'DISCONNECTED')
 				{
@@ -238,6 +238,7 @@ app.factory ('$wydevices', function ($http)
 					};
 					device.peripherals = d.peripherals;
 					device._emitter.emit ('device_info', device);
+					networkVersion++;
 				}
 				else
 				if (t === 'capabilities')
@@ -245,6 +246,7 @@ app.factory ('$wydevices', function ($http)
 					debug (d);
 					device.properties.capabilities = d;
 					device._emitter.emit ('device_info', device);
+					networkVersion++;
 				}
 				else
 				if ((t === 'v' || t === 'sv') && !d.s)
@@ -297,10 +299,15 @@ app.factory ('$wydevices', function ($http)
 				}
 				else
 				{
+					console.log ('on else');
 					var device = devicesTree[arguments[1]];
+					console.log (device);
+					console.log (device._emitter !== undefined);
 					if (device && device._emitter)
 					{
-						var args = arguments.slice (0,1);
+						console.log ('emitter exsts');
+						var args = Array.prototype.slice.call (arguments, 1,1);
+						console.log (args);
 						device._emitter.on.apply (device._emitter, args);
 					}
 				}
@@ -319,7 +326,7 @@ app.factory ('$wydevices', function ($http)
 					var device = devicesTree[arguments[1]];
 					if (device && device._emitter)
 					{
-						var args = arguments.slice (0,1);
+						var args = Array.prototype.slice.call (arguments, 0,1);
 						device._emitter.removeListener.apply (device._emitter, args);
 					}
 				}

@@ -29,23 +29,19 @@ module.exports = function ()
 		console.log ($attrs.action);
 
 		$wydevices.on ('devices', function (devicesList, devicesTree){
-			devicesListCache = devicesList;
-			devicesTreeCache = devicesTree;
-
-			if ($attrs.action === 'edit_deploy')
+			if ($attrs.action === 'deploy' && $scope.editDeploy)
 			{
-				// library.listDeployments (function (err, depls){
-				// 	if (err === null)
-				// 	{
-				// 		for (var d=0; d<depls.length; d++)
-				// 		{
-				// 			if (devicesTreeCache)
-				// 		}
-				// 	}
-				// });
+				devicesListCache = _.clone (devicesList);
+				devicesTreeCache = _.clone (devicesTree);
+				var deployDevices = $scope.deploy.network;
+				//TODO
+				//_.forEach (deployDevices, function ())
+				
 			}
 			else
 			{
+				devicesListCache = devicesList;
+				devicesTreeCache = devicesTree;
 				network.devices(devicesListCache, devicesTreeCache);
 			}
 		});

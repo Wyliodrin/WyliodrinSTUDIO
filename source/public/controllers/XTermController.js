@@ -44,7 +44,7 @@ module.exports = function ()
 			shell.open ($element[0]);
 			setSizes ();
 
-			var device = $attrs.device;
+			var device = $scope.device;
 			console.log ('in x term device is ');
 			console.log (device);
 
@@ -56,7 +56,7 @@ module.exports = function ()
 			{
 				//shell.write (key);
 				console.log ('pressed');
-				$wydevices.send ('s', {a:'k', t:key}, device);
+				$wydevices.send ('s', {a:'k', t:key}, device.id);
 			});
 
 			// $wydevice.on ('status', function (status, deviceId)
@@ -87,7 +87,7 @@ module.exports = function ()
 					else
 					if (p.a === 'e' && p.e === 'noshell')
 					{
-						$wydevices.send ('s', {a:'o', c:cols, r: rows}, device);
+						$wydevices.send ('s', {a:'o', c:cols, r: rows}, device.id);
 						// mixpanel.track ('Shell Open',{
 						// 	category: $wydevice.device.category
 						// });

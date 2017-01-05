@@ -57,8 +57,6 @@ module.exports = function ()
 					$scope.deployments = [];
 				else
 					$scope.deployments = depls;
-				console.log ("$scope.deployments");
-				console.log ($scope.deployments);
 			});
 
 			

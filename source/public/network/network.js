@@ -410,7 +410,7 @@ setTimeout (function ()
 	        }
 		});
 	}
-	else if (action === 'new_deploy') 
+	else if (action === 'deploy') 
 	{
 		var appsCallbackFunction = function (key, opt){
 			network.deploy.network[selectedBoard] = key;

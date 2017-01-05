@@ -28,8 +28,14 @@ module.exports = function ()
 			network:{},
 			dashboard:{}
 		};
-		this.saveDeploy = function (){
+		this.saveDeploy = function ()
+		{
 			library.addDeployment ('name', $scope.deploy);
+		};
+
+		this.deleteDeploy = function ()
+		{
+			
 		};
 	
 		// this.openMenu = function($mdOpenMenu, ev) {

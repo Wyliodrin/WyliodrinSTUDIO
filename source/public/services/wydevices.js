@@ -272,15 +272,15 @@ app.factory ('$wydevices', function ($http)
 				device._emitter.emit ('message', device, t, d);
 			});
 		},
-		send: function (tag, data, device)
+		send: function (tag, data, deviceId)
 		{
-			device._WyliodrinDevice.send (tag, data);
+			devicesTree[deviceId]._WyliodrinDevice.send (tag, data);
 		},
 
-		disconnect: function (device)
+		disconnect: function (deviceId)
 		{
 			// console.log (device);
-			device._WyliodrinDevice.disconnect ();
+			devicesTree[deviceId]._WyliodrinDevice.disconnect ();
 		},
 		//on ('event', function)
 		//or

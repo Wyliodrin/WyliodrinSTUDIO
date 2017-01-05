@@ -435,33 +435,27 @@ setTimeout (function ()
 		        			callback: appsCallbackFunction
 		        		};
 		        	}
-		        	if (selectedBoard.status === 'CONNECTED' || 
-		        		selectedBoard.status === 'SEPARATOR')
-			        	{
+		        	//TODO
+		        	// if (selectedBoard.status === 'CONNECTED' || 
+		        	// 	selectedBoard.status === 'SEPARATOR')
+			        // 	{
 			        		
-					       menu.items.connect=  {
-					        	name: "Disconnect",
-					        	icon: "disconnect",
-					        	callback: function(key, opt){
-					        		network.disconnectDevice (selectedBoard);
-					        	}
-					        };
-					        menu.items.shell= {
-					        	name: 'Shell',
-					        	icon: "shell",
-					        	callback: function (){
-					        		network.shell (selectedBoard);
-					        	}
-					        };
-			        	}
-			        else
-			        {
-			        	menu.items.connect= {
-				        	name: "Connect", 
-				        	icon: "connect",
-				        	callback: function(key, opt){network.connectDevice (selectedBoard);}
-				        };
-			        }
+					      //  menu.items.connect=  {
+					      //   	name: "Disconnect",
+					      //   	icon: "disconnect",
+					      //   	callback: function(key, opt){
+					      //   		network.disconnectDevice (selectedBoard);
+					      //   	}
+					      //   };
+			        // 	}
+			        // else
+			        // {
+			        // 	menu.items.connect= {
+				       //  	name: "Connect", 
+				       //  	icon: "connect",
+				       //  	callback: function(key, opt){network.connectDevice (selectedBoard);}
+				       //  };
+			        // }
 			        return menu;
 		        }
 			});

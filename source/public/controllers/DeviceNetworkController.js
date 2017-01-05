@@ -28,8 +28,6 @@ module.exports = function ()
 
 		var networkVersion = -1;
 
-		console.log ('action is');
-		console.log ($attrs.action);
 
 		$wydevices.on ('devices', function (devicesList, devicesTree, version){
 			if ($attrs.action === 'deploy' && $scope.editDeploy)

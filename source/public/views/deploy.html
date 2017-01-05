@@ -8,13 +8,8 @@
 		<md-tabs flex="100">
 		    <md-tab label="NETWORK">
 		        <md-tab-body>
-<<<<<<< HEAD
 					<div  action="deploy" ng-controller="DeviceNetworkController">
-	                	<iframe src="/public/network/network_frame.html" id="network-iframe" width="2000" height="1000">
-=======
-					<div  action="new_deploy" deploy="{{deploy}}" ng-controller="DeviceNetworkController">
 	                	<iframe src="/public/network/network_frame.html" id="network-iframe" style="width:100vh; height:100vh; ">
->>>>>>> 38cdf97661f45d42bd4a88d1632f0908f1f125e7
 	                    </iframe>
 	                  </div>
 		        </md-tab-body>
@@ -29,7 +24,7 @@
 	<md-dialog-actions layout="row">
 		<md-button ng-click="d.saveDeploy()" class="newapp">Save and deploy</md-button>
 		<md-button>Save</md-button>
-		<md-button ng-click="l.cancel()">Cancel</md-button>
+		<md-button ng-click="d.cancel()">Cancel</md-button>
 	</md-dialog-actions>
 </md-dialog>
 

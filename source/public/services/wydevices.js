@@ -311,10 +311,13 @@ app.factory ('$wydevices', function ($http)
 					console.log (device._emitter !== undefined);
 					if (device && device._emitter)
 					{
-						console.log ('emitter exsts');
-						//TODO - facut cu _clone sau iterat
-						var args = Array.prototype.slice.call (arguments);
-						args.splice(1,1);
+						var args = [arguments[0]];
+						for (var a=2; a<arguments.length; a++)
+							args.push (arguments[a]);
+
+
+						//var args = Array.prototype.slice.call (arguments);
+						//args.splice(1,1);
 						console.log (args);
 						device._emitter.on.apply (device._emitter, args);
 					}
@@ -334,8 +337,9 @@ app.factory ('$wydevices', function ($http)
 					var device = devicesTree[arguments[1]];
 					if (device && device._emitter)
 					{
-						var args = Array.prototype.slice.call (arguments);
-						args.splice (0,1);
+						var args = [arguments[0]];
+						for (var a=2; a<arguments.length; a++)
+							args.push (arguments[a]);
 						device._emitter.removeListener.apply (device._emitter, args);
 					}
 				}

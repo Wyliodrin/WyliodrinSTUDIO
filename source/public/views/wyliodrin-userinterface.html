@@ -152,41 +152,11 @@
                             New Deployment
                           </md-button>
                         </md-menu-item>
-                        <md-menu-item>
-                          <md-button ng-click="t.documentation()">
-                            Wyliodrin API
+                        <md-menu-item ng-repeat="deploy in deployments">
+                          <md-button>
+                           {{deploy.name}}
                           </md-button>
                         </md-menu-item>
-                        <md-menu-item>
-                          <md-button ng-click="t.example()">
-                            Examples
-                          </md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                          <md-button ng-click="t.forum()">
-                            {{ 'TOOLBAR_FORUM' | translate }}
-                          </md-button>
-                        </md-menu-item>
-                              <md-menu-item>
-                              <md-button ng-click="t.resistorcolorcode()">
-                                {{ 'TOOLBAR_RESISTOR_COLOR_CODE' | translate }}
-                              </md-button>
-                              </md-menu-item>
-                              <md-menu-item>
-                                <md-button ng-click="t.about()">
-                                  {{ 'TOOLBAR_ABOUT' | translate }}
-                                </md-button>
-                              </md-menu-item>
-                              <md-menu-item>
-                                <md-button ng-click="t.licence()">
-                                  Usage licence
-                                </md-button>
-                              </md-menu-item> -->
-                              <md-menu-item>
-                                <md-button ng-click="t.welcome()">
-                                  Welcome
-                                </md-button>
-                              </md-menu-item>
                       </md-menu-content>
                     </md-menu>
                     <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">

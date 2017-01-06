@@ -152,41 +152,50 @@
                             New Deployment
                           </md-button>
                         </md-menu-item>
-                        <md-menu-item>
-                          <md-button ng-click="t.documentation()">
-                            Wyliodrin API
+                        <md-menu-item class="checkbtn">
+                          <md-button aria-label="Select device" ng-model="device.selected">
+                            Deployment 1
+                          </md-button>
+                          <md-button class="rundevice" style="height:48px !important;">
+                            <md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="Run projects" style="color:#fff !important;"></md-icon>
+                            <md-tooltip md-direction="bottom">
+                              Edit
+                            </md-tooltip>
                           </md-button>
                         </md-menu-item>
-                        <md-menu-item>
-                          <md-button ng-click="t.example()">
-                            Examples
+                        <md-menu-item class="checkbtn">
+                          <md-button aria-label="Select device" ng-model="device.selected">
+                            Deployment 2
+                          </md-button>
+                          <md-button class="rundevice" style="height:48px !important;">
+                            <md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="Run projects" style="color:#fff !important;"></md-icon>
+                            <md-tooltip md-direction="bottom">
+                              Edit
+                            </md-tooltip>
                           </md-button>
                         </md-menu-item>
-                        <md-menu-item>
-                          <md-button ng-click="t.forum()">
-                            {{ 'TOOLBAR_FORUM' | translate }}
+                        <md-menu-item class="checkbtn">
+                          <md-button aria-label="Select device" ng-model="device.selected">
+                            Deployment 3
+                          </md-button>
+                          <md-button class="rundevice" style="height:48px !important;">
+                            <md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="Run projects" style="color:#fff !important;"></md-icon>
+                            <md-tooltip md-direction="bottom">
+                              Edit
+                            </md-tooltip>
                           </md-button>
                         </md-menu-item>
-                              <md-menu-item>
-                              <md-button ng-click="t.resistorcolorcode()">
-                                {{ 'TOOLBAR_RESISTOR_COLOR_CODE' | translate }}
-                              </md-button>
-                              </md-menu-item>
-                              <md-menu-item>
-                                <md-button ng-click="t.about()">
-                                  {{ 'TOOLBAR_ABOUT' | translate }}
-                                </md-button>
-                              </md-menu-item>
-                              <md-menu-item>
-                                <md-button ng-click="t.licence()">
-                                  Usage licence
-                                </md-button>
-                              </md-menu-item> -->
-                              <md-menu-item>
-                                <md-button ng-click="t.welcome()">
-                                  Welcome
-                                </md-button>
-                              </md-menu-item>
+                        <md-menu-item class="checkbtn">
+                          <md-button aria-label="Select device" ng-model="device.selected">
+                            Deployment 4
+                          </md-button>
+                          <md-button class="rundevice" style="height:48px !important;">
+                            <md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="Run projects" style="color:#fff !important;"></md-icon>
+                            <md-tooltip md-direction="bottom">
+                              Edit
+                            </md-tooltip>
+                          </md-button>
+                        </md-menu-item>
                       </md-menu-content>
                     </md-menu>
                     <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
@@ -230,8 +239,8 @@
                           </md-menu-content>
                         </md-menu>
                       </div>
-                    </div> -->
-                    <!--<md-button ng-click="t.stop()" class="stop-bt">
+                    </div>
+                    <md-button ng-click="t.stop()" class="stop-bt">
                         <md-icon md-svg-src="/public/drawable/stop-icon.svg" class="s24" aria-label="Stop project" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'WYLIODRIN_USERINTERFACE_StopProject' | translate }}

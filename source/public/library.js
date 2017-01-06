@@ -13,7 +13,7 @@ var db = new dexie ("WyliodrinApp");
 db.version(6).stores ({
 	applications:"++id,name,date,main,dashboard,firmware,visualproject,language,schematics",
 	settings:"key,value",
-	deployments:"name, network"
+	deployments:"++id, name, network"
 });
 
 db.version(5).stores ({
@@ -88,10 +88,12 @@ function add (value, language, done, devicecategory)
 	}
 }
 
-function addDeployment (name, data)
+function addDeployment (name, data, done)
 {
 	data.name = name;
-	db.deployments.add (data). then (function (){
+	db.deployments.add (data). then (function (id){
+		if (done)
+			done (null, id);
 	});
 }
 
@@ -100,6 +102,8 @@ function erase (id)
 	debug ('Erasing project '+id);
 	db.applications.delete (id);
 }
+
+//function eraseDeployment (id)
 
 function retrieveProject (id, done)
 {

@@ -154,17 +154,6 @@
                         </md-menu-item>
                         <md-menu-item class="checkbtn">
                           <md-button aria-label="Select device" ng-model="device.selected">
-                            Deployment 1
-                          </md-button>
-                          <md-button class="rundevice" style="height:48px !important;">
-                            <md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="Run projects" style="color:#fff !important;"></md-icon>
-                            <md-tooltip md-direction="bottom">
-                              Edit
-                            </md-tooltip>
-                          </md-button>
-                        </md-menu-item>
-                        <md-menu-item class="checkbtn">
-                          <md-button aria-label="Select device" ng-model="device.selected">
                             Deployment 2
                           </md-button>
                           <md-button class="rundevice" style="height:48px !important;">
@@ -174,20 +163,9 @@
                             </md-tooltip>
                           </md-button>
                         </md-menu-item>
-                        <md-menu-item class="checkbtn">
+                        <md-menu-item class="checkbtn" ng-repeat="deploy in deployments">
                           <md-button aria-label="Select device" ng-model="device.selected">
-                            Deployment 3
-                          </md-button>
-                          <md-button class="rundevice" style="height:48px !important;">
-                            <md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="Run projects" style="color:#fff !important;"></md-icon>
-                            <md-tooltip md-direction="bottom">
-                              Edit
-                            </md-tooltip>
-                          </md-button>
-                        </md-menu-item>
-                        <md-menu-item class="checkbtn">
-                          <md-button aria-label="Select device" ng-model="device.selected">
-                            Deployment 4
+                            {{deploy.name}}
                           </md-button>
                           <md-button class="rundevice" style="height:48px !important;">
                             <md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="Run projects" style="color:#fff !important;"></md-icon>

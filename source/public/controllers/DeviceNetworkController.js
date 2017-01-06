@@ -2,6 +2,7 @@
 
 var angular = require ('angular');
 var $ = require ('jquery');
+var _ = require ('lodash');
 
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
@@ -25,29 +26,27 @@ module.exports = function ()
 		var port = 7000;
 		var secureport = 22;
 
-		console.log ('action is');
-		console.log ($attrs.action);
+		var networkVersion = -1;
 
-		$wydevices.on ('devices', function (devicesList, devicesTree){
-			devicesListCache = devicesList;
-			devicesTreeCache = devicesTree;
 
-			if ($attrs.action === 'edit_deploy')
+		$wydevices.on ('devices', function (devicesList, devicesTree, version){
+			if ($attrs.action === 'deploy' && $scope.editDeploy)
 			{
-				// library.listDeployments (function (err, depls){
-				// 	if (err === null)
-				// 	{
-				// 		for (var d=0; d<depls.length; d++)
-				// 		{
-				// 			if (devicesTreeCache)
-				// 		}
-				// 	}
-				// });
+				devicesListCache = _.clone (devicesList);
+				devicesTreeCache = _.clone (devicesTree);
+				var deployDevices = $scope.deploy.network;
+				//TODO
+				//_.forEach (deployDevices, function ())
+				
 			}
 			else
 			{
-				network.devices(devicesListCache, devicesTreeCache);
+				devicesListCache = devicesList;
+				devicesTreeCache = devicesTree;
 			}
+
+			if (version !== networkVersion)
+				network.devices(devicesListCache, devicesTreeCache);
 		});
 
 		var network = {
@@ -77,56 +76,6 @@ module.exports = function ()
 				console.log ('request connect');
 				console.log (device);
 				connect(device);
-
-				$wydevices.on ('connection_timeout', device.id, function ()
-				{
-					console.log('on connection_timeout');
-					var message = $mdDialog.confirm()
-				          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
-				          .ok($filter('translate')('OK'));
-				    $mdDialog.show(message);
-				});
-
-				$wydevices.on ('connection_error', device.id, function ()
-				{
-					console.log('on connection_error');
-					var message = $mdDialog.confirm()
-				          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
-				          .ok($filter('translate')('OK'));
-				    $mdDialog.show(message);
-				});
-
-				$wydevices.on ('connection_login_failed', device.id, function (device)
-				{
-					var message = $mdDialog.alert()
-				          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
-				          .ok($filter('translate')('OK'));
-				          // Should be a retry button???
-				    $mdDialog.show(message);
-				});
-
-				$wydevices.on ('status', device.id, function (device)
-				{
-					console.log ('got status in controller');
-					console.log (device);
-					var status = device.status;
-					if (status === 'INSTALL')
-					{
-						var message = $mdDialog.confirm()
-					          .title($filter('translate')('DEVICE_QUESTION_INSTALL_SHELL'))
-					          .ok($filter('translate')('DEVICE_INSTALL'))
-					          .cancel($filter('translate')('PROJECT_SHELL'));
-					    $mdDialog.show(message).then(function() {
-					   		$wyapp.emit ('install');
-					    });
-					}
-					else
-					{
-						network.status (device);
-						if (status === 'DISCONNECTED' || status === 'ERROR')
-							$wydevices.removeAllBoardListeners(device.id);
-					}
-				});
 			},
 
 			disconnectDevice: function (device)
@@ -208,6 +157,60 @@ module.exports = function ()
 			      			
 			      		}
 			      		$wydevices.connect (device.uplink, device.id, options);
+
+
+
+			      		$wydevices.on ('connection_timeout', device.id, function ()
+						{
+							console.log('on connection_timeout');
+							var message = $mdDialog.confirm()
+						          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
+						          .ok($filter('translate')('OK'));
+						    $mdDialog.show(message);
+						});
+
+						$wydevices.on ('connection_error', device.id, function ()
+						{
+							console.log('on connection_error');
+							var message = $mdDialog.confirm()
+						          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
+						          .ok($filter('translate')('OK'));
+						    $mdDialog.show(message);
+						});
+
+						$wydevices.on ('connection_login_failed', device.id, function (device)
+						{
+							var message = $mdDialog.alert()
+						          .title($filter('translate')('DEVICE_CONNECTION_FAILED'))
+						          .ok($filter('translate')('OK'));
+						          // Should be a retry button???
+						    $mdDialog.show(message);
+						});
+
+						$wydevices.on ('status', device.id, function (device)
+						{
+							console.log ('got status in controller');
+							console.log (device);
+							var status = device.status;
+							if (status === 'INSTALL')
+							{
+								var message = $mdDialog.confirm()
+							          .title($filter('translate')('DEVICE_QUESTION_INSTALL_SHELL'))
+							          .ok($filter('translate')('DEVICE_INSTALL'))
+							          .cancel($filter('translate')('PROJECT_SHELL'));
+							    $mdDialog.show(message).then(function() {
+							   		$wyapp.emit ('install');
+							    });
+							}
+							else
+							{
+								network.status (device);
+								if (status === 'DISCONNECTED' || status === 'ERROR')
+									$wydevices.removeAllBoardListeners(device.id);
+							}
+						});
+
+
 			      		$mdDialog.hide ();
 			      		// mixpanel.track ('SerialPort Connect', {
 			      		// 	style: 'address',

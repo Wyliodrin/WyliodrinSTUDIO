@@ -51,16 +51,6 @@ module.exports = function ()
 		this.deploy = function ()
 		{
 			debug ('Deploy request');
-
-			library.listDeployments (function (err, depls){
-				if (err)
-					$scope.deployments = [];
-				else
-					$scope.deployments = depls;
-				console.log ("$scope.deployments");
-				console.log ($scope.deployments);
-			});
-
 			
 			$mdDialog.show({
 		      controller: 'DeployController',
@@ -227,6 +217,12 @@ module.exports = function ()
 	      // var connectedDevices = $wydevices.getConnectedDevices();
 	      // for (var i=0; i<connectedDevices.length; i++)
 	      // 	connectedDevices[i].selected = false;
+	      library.listDeployments (function (err, depls){
+				if (err)
+					$scope.deployments = [];
+				else
+					$scope.deployments = depls;
+			});
 	      $mdOpenMenu(ev);
 	    };
 

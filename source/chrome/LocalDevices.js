@@ -154,7 +154,7 @@ class Device
 
 	get wyliodrinappserver ()
 	{
-		return this.get ('wyliodrinappserver')
+		return this.get ('wyliodrinappserver');
 	}
 
 	get uplink ()

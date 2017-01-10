@@ -241,6 +241,8 @@
                 <md-tab-body>
                     <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">
 
+                      <div flex="100" layout="row">
+
                         <div ng-show="tree.showPopupNewFolder" class="fileexplorer-dialog">
                             <div>
                                 <md-dialog-content>
@@ -315,40 +317,42 @@
                             </div>
                         </div>
 
-                        <div flex="{{showEditor?30:(showXterm?65:100)}}" class="projectTree" layout="row">
-                        <md-content treecontrol class="tree-classic" tree-model="tree.data" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
+                        <div flex="20" class="projectTree" layout="column">
+                          <md-content treecontrol class="tree-classic" tree-model="tree.data" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
 
-                        <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
-                            <md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
-                            <md-tooltip md-direction="top">
-                                {{'New_folder' | translate}}
-                            </md-tooltip>
-                        </md-button>
-                        <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New File" ng-click="p.newFileButton()">
-                            <md-icon md-svg-src="/public/drawable/upload-icon.svg" class="s24" aria-label="New File" ></md-icon>
-                            <md-tooltip md-direction="top">
-                                {{'New_file' | translate}}
-                            </md-tooltip>
-                        </md-button>
-                        <md-button ng-show="!tree.selectednode.isroot && !tree.selectednode.isspecial && !tree.selectednode.issoftware" class="fileexplorer-actions" aria-label="Delete" ng-click="p.deleteButton()">
-                            <md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete folder" ></md-icon>
-                            <md-tooltip md-direction="top">
-                                {{'Delete' | translate}}
-                            </md-tooltip>
-                        </md-button>
-                        <md-button class="fileexplorer-actions" aria-label="New Firmware" ng-click="p.newFirmwareButton()">
-                            <md-icon md-svg-src="/public/drawable/upload-icon.svg" class="s24" aria-label="New Firmware" ></md-icon>
-                            <md-tooltip md-direction="top">
-                                {{'New_firmware' | translate}}
-                            </md-tooltip>
-                        </md-button>
+                          <div style="position:absolute; bottom:60px;">
+                            <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
+                                <md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'New_folder' | translate}}
+                                </md-tooltip>
+                            </md-button>
+                            <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New File" ng-click="p.newFileButton()">
+                                <md-icon md-svg-src="/public/drawable/new-file.svg" class="s24" aria-label="New File" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'New_file' | translate}}
+                                </md-tooltip>
+                            </md-button>
+                            <md-button ng-show="!tree.selectednode.isroot && !tree.selectednode.isspecial && !tree.selectednode.issoftware" class="fileexplorer-actions" aria-label="Delete" ng-click="p.deleteButton()">
+                                <md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete folder" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'Delete' | translate}}
+                                </md-tooltip>
+                            </md-button>
+                            <md-button class="fileexplorer-actions" aria-label="New Firmware" ng-click="p.newFirmwareButton()">
+                                <md-icon md-svg-src="/public/drawable/new-firmware.svg" class="s24" aria-label="New Firmware" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'New_firmware' | translate}}
+                                </md-tooltip>
+                            </md-button>
+                          </div>
 
 
 
 
                         </div>
                         <!--65 100 / 35 0-->
-                        <div flex="{{showXterm?35:70}}" ng-show="showEditor" layout="row">
+                        <div flex="80" ng-show="showEditor" layout="row">
     
                             <md-tabs md-align-tabs="bottom" flex="100" class="tabs-box software_label">
                                 <md-tab>
@@ -421,6 +425,8 @@
                                 </md-tab>
                             </md-tabs>
                         </div>
+                      </div>
+
                         <div flex="{{showXterm?35:0}}" style="position:relative;">
                         	<a href="#" class="show-hide-console" ng-click="p.showHideXterm()">{{showXterm? ( 'PROJECT_HideConsole' | translate ):( 'PROJECT_ShowConsole' | translate ) }}</a>
                             <div style="width: 100%; height: 100%; position:absolute; background:#000;" id="xterm"></div>

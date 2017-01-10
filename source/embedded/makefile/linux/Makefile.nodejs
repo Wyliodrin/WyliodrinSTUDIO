@@ -1,8 +1,4 @@
-
-build:
-
-run: main.js firmware
+run:
 	NODE_PATH="/usr/lib/node_modules:/usr/local/lib/node_modules:" node main.js
-	
-firmware:
+
 	

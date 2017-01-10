@@ -10,6 +10,8 @@ var install = require ('./config/install.js');
 var translate = require ('./config/languages.js');
 
 var makefile = require ('./config/makefile.js');
+var makefileplus = require ('./config/makefileplus.js');
+var makefileplusplus = require ('./config/makefileplusplus.js');
 
 var settings = {
 	debug: require ('./config/debug.js')
@@ -97,7 +99,8 @@ settings.STYLE_NAMES = {
 settings.FIRMWARES = {
 	'raspberrypi':
 	{
-		'uno':'Arduino Uno', 
+		'uno':'Arduino Uno',
+		'openmote':'Open Mote',
 		'atmega328':'Arduino Duemilanove w/ ATmega328',
 		'diecimila':'Arduino Diecimila or Duemilanove w/ ATmega168',
 		'nano328':'Arduino Nano w/ ATmega328',
@@ -137,29 +140,14 @@ settings.VERSION = JSON.parse(fs.readFileSync (__dirname+'/../manifest.json').to
 settings.SENDER = 6000;
 
 settings.MAKEFILE_STOARGE = makefile;
+settings.MAKE_FIRMWARE = makefileplus;
+settings.MAKE_OWN_FIRMWARE = makefileplusplus;
 
 settings.EXAMPLE = example;
 
 settings.INSTALL = install;
 
 settings.TRANSLATE = translate;
-
-settings.MAKE_FIRMWARE = {
-	'raspberrypi':function (projectid, firmware, port)
-	{
-		var parameters = '-m '+firmware;
-		if (port != 'auto') parameters += ' -p '+port;
-		return 'mkdir /tmp/arduino_'+projectid+'_'+firmware+'; cd Arduino && rm -f .build && ln -s /tmp/arduino_'+projectid+'_'+firmware+' .build && ino build -m '+firmware+' && ino upload '+parameters;
-	},
-	'udooneo':function (projectid, firmware, port)
-	{
-		return 'timeout 120 xvfb-run /usr/bin/arduino -v --upload Arduino/Arduino.ino';
-	},
-	'arduinoyun':function (projectid, firmware, port)
-	{
-		return 'cd Arduino && make && run-avrdude Arduino.hex';
-	}
-};
 
 settings.INTERVAL_MDNS = 10*1000;
 

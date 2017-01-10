@@ -43,18 +43,18 @@ function add (value, language, done, devicecategory)
 		var title = value;
 		debug ('Adding project with title '+title+' in '+language);
 		var startproject = null;
-		if (devicecategory && settings.EXAMPLE.start[devicecategory])
+		/*if (devicecategory && settings.EXAMPLE.start[devicecategory])
 		{
 			debug ('Start '+devicecategory);
 			startproject = _.clone (settings.EXAMPLE.start[devicecategory][language]);
-		}
+		}*/ //WHEN CONNECTED USE THIS BLUEPRINT // COMMENTED BECAUSE BLUEPRINT IS DIFFERENT FROM OUR PROJECT
 		if (!startproject)
 		{
 			startproject = {
 				tree: 
-				[{name:title, isdir:true,isroot:true,children:
-					[{name:(language + " (Software)"),isdir:true,issoftware:true,children:
-						[{name:'main',isdir:false,ismain:true,content:''}]
+				[{name:title, id:1,isdir:true,isroot:true,children:
+					[{name:language,id:2,isdir:true,issoftware:true,children:
+						[{name:'main',id:3,isdir:false,ismain:true,content:''}]
 					}]
 				}],
 				language: language

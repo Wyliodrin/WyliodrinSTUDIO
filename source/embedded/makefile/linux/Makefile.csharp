@@ -1,10 +1,5 @@
-
-build:
-
-run: main.cs firmware
+run:
 	mcs -v &> /dev/null || (echo "Please wait while installing Mongo" && sleep 5 &&  && sudo apt-get update && sudo apt-get install -y mongo-complete)
 	mcs main.cs
 	mono main.exe
-	
-firmware:
-	
+

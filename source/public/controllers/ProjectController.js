@@ -162,6 +162,7 @@ var app = angular.module ('wyliodrinApp');
 		$scope.translatevars={};
 		$scope.translatevars.new_folder = $translate.instant('New_folder');
 		$scope.translatevars.new_file = $translate.instant('New_file');
+		$scope.translatevars.new_firmware = $translate.instant('New_firmware');
 
 
 		$scope.tree = {};
@@ -178,12 +179,15 @@ var app = angular.module ('wyliodrinApp');
 		$scope.tree.contentPopupError="";
 		$scope.tree.showPopupError=0;
 
-		$scope.tree.firmwares=["Arduino","OpenMote","Alte alte"];
-		$scope.tree.contentPopupNewFirmware="";
+		$scope.tree.firmwares={};
+
+		$scope.tree.contentPopupNewFirmware={};
+		$scope.tree.contentPopupNewFirmware.type="";
+		$scope.tree.contentPopupNewFirmware.text="";
 		$scope.tree.showPopupNewFirmware=0;
 
 
-		$scope.tree.data=[];
+		//$scope.tree.data=[]; used before now $scope.project.tree
 		$scope.tree.selectednode={};
 		$scope.tree.options={
 		    nodeChildren: "children",
@@ -204,20 +208,50 @@ var app = angular.module ('wyliodrinApp');
 		};
 
 		function nodeEqual(n1,n2){
-			if (n1.$$hashKey === n2.$$hashKey){
+			if (angular.equals(n1,n2))
+			{
 				return true;
 			}
 			return false;
 		}
 
-		function dataToTree(data){
-			$scope.tree.data = data;
-			checkEmptyFolders($scope.tree.data[0]);
+		function rand(min, max) {
+			return Math.random() * (max - min) + min;
+		}
 
-			$scope.tree.data[0].children.forEach( function (node){
+		function makeID(tree){
+			var a = rand(10,10000);
+			while (checkID(tree,a)){
+				a = rand(10,10000);
+			}
+			return a;
+		}
+
+		function checkID(tree, a){
+
+			for (var i=0; i<tree.children.length;i++){
+				var x = tree.children[i];
+				if (x.id === a){
+					return true;
+				}
+				if (x.isdir){
+					var ret = checkID(x, a);
+					if (ret === true){
+						return ret;
+					}
+				}
+			}
+			return false;
+
+
+		}
+
+		function dataToTree(data){
+			checkEmptyFolders(data[0]);
+			data[0].children.forEach( function (node){
 				if (node.issoftware){
 					node.children.forEach( function (node2){
-						if ((!node2.isdir) && (!node2.isspecial) && node2.name == "main"){
+						if ((!node2.isdir) && (!node2.isspecial) && (node2.ismain)){
 							$scope.tree.selectednode = node2;
 							$scope.showEditor = true;
 						}
@@ -226,12 +260,6 @@ var app = angular.module ('wyliodrinApp');
 			});
 		}
 
-		function treeToData(){
-			var tree = $scope.tree.data;
-			checkSpecial(tree[0]);
-			
-			$scope.project.tree = tree;
-		}
 
 		function checkSpecial(x){
 			if (x.isdir){
@@ -263,7 +291,7 @@ var app = angular.module ('wyliodrinApp');
 			}
 			if (x.isdir){
 				if (x.children.length === 0){
-					x.children = [{name:'Empty Folder', isdir:false, isspecial:true}];
+					x.children = [{name:'Empty Folder', id:makeID($scope.project.tree[0]) ,isdir:false, isspecial:true}];
 				}
 				else{
 					x.children.forEach( function (y){
@@ -272,6 +300,12 @@ var app = angular.module ('wyliodrinApp');
 				}
 			}
 		}
+
+		var that = this;
+
+		this.getTree = function(){
+			return $scope.project.tree[0];
+		};
 
 		this.newFolderButton = function(){
 			$scope.tree.contentPopupNewFolder=$scope.translatevars.new_folder;
@@ -285,50 +319,47 @@ var app = angular.module ('wyliodrinApp');
 			$scope.tree.showPopupDelete=1;
 		};
 		this.newFirmwareButton = function(){
-			$scope.tree.contentPopupNewFirmware="";
+			$scope.tree.firmwares=settings.FIRMWARES[$scope.device.category];
+
+			$scope.tree.contentPopupNewFirmware.type="";
+			$scope.tree.contentPopupNewFirmware.text=$scope.translatevars.new_firmware;
 			$scope.tree.showPopupNewFirmware=1;
 		};
 
 		this.newFolder = function(){
-			var obj = {name:$scope.tree.contentPopupNewFolder,isdir:true,children:[]};
-			this.newSomething(obj);
+			var obj = {name:$scope.tree.contentPopupNewFolder,id:makeID($scope.project.tree[0]),isdir:true,children:[]};
+			this.newSomething(obj,$scope.tree.selectednode);
+			$scope.tree.showPopupNewFolder = 0;
 		};
 
 		this.newFile = function(){
-			var obj = {name:$scope.tree.contentPopupNewFile,isdir:false,content:''};
-			this.newSomething(obj);
+			var obj = {name:$scope.tree.contentPopupNewFile,id:makeID($scope.project.tree[0]),isdir:false,content:''};
+			this.newSomething(obj,$scope.tree.selectednode);
+			$scope.tree.showPopupNewFile = 0;
 		};
 
 		this.newFirmware = function(){
 			//////////////////////////poate fa-i si un copil
-			$scope.tree.data[0].children.push(
-				{name:$scope.tree.contentPopupNewFirmware,isdir:true,isfirmware:true,children:[]}
-			);
-			checkSpecial($scope.tree.data[0]);
-			checkEmptyFolders($scope.tree.data[0]);
+			var obj = {name:$scope.tree.contentPopupNewFirmware.text,id:makeID($scope.project.tree[0]),isdir:true,isfirmware:true,ftype:$scope.tree.contentPopupNewFirmware.type,fport:"auto",children:[]};
+			this.newSomething(obj,$scope.project.tree[0]);
+			checkEmptyFolders($scope.project.tree[0]);
 			$scope.tree.showPopupNewFirmware = 0;
 		};
 
-		this.newSomething = function(obj){
-			if ($scope.tree.selectednode.isroot){
-				$scope.tree.contentPopupError = $translate.instant('TREEno_root');
-				$scope.tree.showPopupError = 1;
+		this.newSomething = function(obj,parent){
+			if (!hasDirectChild(obj.name, parent)){
+				parent.children.push(
+					obj
+				);
+				//folder gol
+				checkSpecial($scope.project.tree[0]);
+				checkEmptyFolders($scope.project.tree[0]);
 			}
 			else{
-				if (!hasDirectChild($scope.tree.contentPopupNewFolder, $scope.tree.selectednode)){
-					$scope.tree.selectednode.children.push(
-						obj
-					);
-					//folder gol
-					checkSpecial($scope.tree.data[0]);
-					checkEmptyFolders($scope.tree.data[0]);
-				}
-				else{
-					$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
-					$scope.tree.showPopupError = 1;
-				}
+				$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
+				$scope.tree.showPopupError = 1;
 			}
-			$scope.tree.showPopupNewFolder = 0;
+			$scope.aceSoftwareChanged();
 		};
 
 		this.delete = function(){
@@ -345,17 +376,18 @@ var app = angular.module ('wyliodrinApp');
 				$scope.tree.showPopupError = 1;
 			}
 			else{
-				var parent = findParent($scope.tree.selectednode, $scope.tree.data[0]);
+				var parent = findParent($scope.tree.selectednode, $scope.project.tree[0]);
 				for (var i = 0; i<parent.children.length;i++){
 					if (angular.equals(parent.children[i],$scope.tree.selectednode)){
 						parent.children.splice(i,1);
 						break;
 					}
 				}
-				checkEmptyFolders($scope.tree.data[0]);
+				checkEmptyFolders($scope.project.tree[0]);
 				$scope.tree.selectednode = parent;
 			}
 			$scope.tree.showPopupDelete = 0;
+			$scope.aceSoftwareChanged();
 		};
 
 		
@@ -721,7 +753,8 @@ var app = angular.module ('wyliodrinApp');
 			$timeout (function ()
 			{
 				$scope.project = project;
-				dataToTree(project.tree);
+				dataToTree($scope.project.tree);
+
 				if (red === null)
 				{
 					red = $element.find ('#red')[0];
@@ -808,36 +841,45 @@ var app = angular.module ('wyliodrinApp');
 		$wyapp.on ('send', function ()
 		{
 			debug ('Run');
-			function run (firmware, port)
+			function run (tree, withFirmware)
 			{
-				var makefile = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];//+(firmwareAvailable?'firmware:\n\t':'');
-				var runmessage = {a:'start', l:$scope.project.language, p:$scope.project.main};
-				if (firmware && port)
+
+				if (typeof withFirmware === 'undefined') { withFirmware = false; }
+
+				//do the software makefile
+				//example for [linux][python]
+				var makefileSoft = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];
+
+				//100% there exists a software folder
+				tree.children[0].m = makefileSoft;
+
+				var runmessage = {a:'start', l:$scope.project.language, t:tree, onlysoft:(!withFirmware)};
+
+				//add wyliodrin firmware makefile
+				if (withFirmware)
 				{
-					runmessage.f = $scope.project.firmware;
-					makefile = makefile + settings.MAKE_FIRMWARE[$scope.device.category]('app_project', firmware, port);
-					$scope.device.firmware = firmware;
-					$scope.device.port = port;
-					mixpanel.track ('Project Run',
+					for (var i = 1 ; i < tree.children.length ; i++)
 					{
-						category: $wydevice.device.category,
-						language: $scope.project.language,
-						flash: true
-					});
+						tree.children[i].m = 
+							settings.MAKE_FIRMWARE[$wydevice.device.category][tree.children[i].ftype](
+								'app_project',
+								null,
+								tree.children[i].fport
+							);
+						tree.children[i].m2 = settings.MAKE_OWN_FIRMWARE[tree.children[i].ftype];
+					}
 				}
-				else
+
+
+				mixpanel.track ('Project Run',
 				{
-					makefile = makefile+'\n';
-					mixpanel.track ('Project Run',
-					{
-						category: $wydevice.device.category,
-						language: $scope.project.language,
-						flash: false
-					});
-				}
-				runmessage.m = makefile;
+					category: $wydevice.device.category,
+					language: $scope.project.language,
+					flash: withFirmware
+				});
+
 				shell.reset ();
-				$wydevice.send ('p', runmessage);
+				$wydevice.send ('tp', runmessage);
 				$timeout (function ()
 				{
 					$scope.showXterm = true;
@@ -849,12 +891,17 @@ var app = angular.module ('wyliodrinApp');
 			}
 
 
-			// console.log ($scope.device);
+			var firmwareAvailable = [];
+			for (var i=0; i<$scope.project.tree[0].children.length;i++){
+				if ($scope.project.tree[0].children[i].isfirmware){
+					firmwareAvailable.push(i);
+				}
+			}
 
-			var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
+			//var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
 			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
 			{
-				if (firmwareAvailable === true)
+				if (firmwareAvailable.length !== 0)
 				{
 					var label = $scope.label;
 					var device = $scope.device;
@@ -862,27 +909,17 @@ var app = angular.module ('wyliodrinApp');
 				      controller: function ($scope)
 				      {
 
-				      	$scope.firmwares = settings.FIRMWARES;
-
-						// console.log ($scope.device);
-
-						$scope.label = label;
-						$scope.device = device;
-						if (!$scope.device.firmware) $scope.firmware = _.keys ($scope.firmwares[$scope.device.category])[0];
-						else $scope.firmware = $scope.device.firmware;
-						// console.log ($scope.firmware);
-						if (!$scope.device.port) $scope.port = 'auto';
-						else $scope.port = $scope.device.port;
+				      	$scope.tree = that.getTree();
 
 				      	this.runAndFlash = function ()
 				      	{
-				      		run ($scope.firmware, $scope.port);
+				      		run ($scope.tree, true);
 				      		$mdDialog.hide ();
 				      	};
 
 				      	this.run = function ()
 				      	{
-				      		run ();
+				      		run ($scope.tree, false);
 				      		$mdDialog.hide ();
 				      	};
 				      },
@@ -896,7 +933,7 @@ var app = angular.module ('wyliodrinApp');
 				}
 				else
 				{
-					run ();
+					run (that.getTree(),false);
 				}
 			}
 			else
@@ -920,7 +957,7 @@ var app = angular.module ('wyliodrinApp');
 		$wyapp.on ('stop', function ()
 		{
 			debug ('Stop');
-			$wydevice.send ('p', {a:'stop'});
+			$wydevice.send ('tp', {a:'stop'});
 			mixpanel.track ('Project Stop', {
 				category: $wydevice.device.category,
 				language: $scope.project.language

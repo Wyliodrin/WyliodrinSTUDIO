@@ -318,7 +318,7 @@
                                 </md-dialog-actions>
                             </div>
                         </div>
-
+<!--
 
                         <div flex="20" class="projectTree" layout="column">
                           <md-content treecontrol class="tree-classic" tree-model="tree.data" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
@@ -349,36 +349,41 @@
                                 </md-tooltip>
                             </md-button>
                           </div>
-<!--
-                        <div flex="{{showEditor?30:(showXterm?65:100)}}" class="projectTree" layout="row">
+
+
+-->
+
+                        <div flex="{{showEditor?20:(showXterm?65:100)}}" class="projectTree" layout="column">
                         <md-content treecontrol class="tree-classic" tree-model="project.tree" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name + (node.issoftware?" (Software)":"") + (node.isfirmware?" (Firmware)":"")}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
 
-                        <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
-                            <md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
-                            <md-tooltip md-direction="top">
-                                {{'New_folder' | translate}}
-                            </md-tooltip>
-                        </md-button>
-                        <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New File" ng-click="p.newFileButton()">
-                            <md-icon md-svg-src="/public/drawable/upload-icon.svg" class="s24" aria-label="New File" ></md-icon>
-                            <md-tooltip md-direction="top">
-                                {{'New_file' | translate}}
-                            </md-tooltip>
-                        </md-button>
-                        <md-button ng-show="!tree.selectednode.isroot && !tree.selectednode.isspecial && !tree.selectednode.issoftware && !tree.selectednode.ismain" class="fileexplorer-actions" aria-label="Delete" ng-click="p.deleteButton()">
-                            <md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete folder" ></md-icon>
-                            <md-tooltip md-direction="top">
-                                {{'Delete' | translate}}
-                            </md-tooltip>
-                        </md-button>
-                        <md-button class="fileexplorer-actions" aria-label="New Firmware" ng-click="p.newFirmwareButton()">
-                            <md-icon md-svg-src="/public/drawable/upload-icon.svg" class="s24" aria-label="New Firmware" ></md-icon>
-                            <md-tooltip md-direction="top">
-                                {{'New_firmware' | translate}}
-                            </md-tooltip>
-                        </md-button>
+                        <div style="position:absolute; bottom:60px;">
+                          <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
+                              <md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
+                              <md-tooltip md-direction="top">
+                                  {{'New_folder' | translate}}
+                              </md-tooltip>
+                          </md-button>
+                          <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New File" ng-click="p.newFileButton()">
+                              <md-icon md-svg-src="/public/drawable/new-file.svg" class="s24" aria-label="New File" ></md-icon>
+                              <md-tooltip md-direction="top">
+                                  {{'New_file' | translate}}
+                              </md-tooltip>
+                          </md-button>
+                          <md-button ng-show="!tree.selectednode.isroot && !tree.selectednode.isspecial && !tree.selectednode.issoftware && !tree.selectednode.ismain" class="fileexplorer-actions" aria-label="Delete" ng-click="p.deleteButton()">
+                              <md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete folder" ></md-icon>
+                              <md-tooltip md-direction="top">
+                                  {{'Delete' | translate}}
+                              </md-tooltip>
+                          </md-button>
+                          <md-button class="fileexplorer-actions" aria-label="New Firmware" ng-click="p.newFirmwareButton()">
+                              <md-icon md-svg-src="/public/drawable/new-firmware.svg" class="s24" aria-label="New Firmware" ></md-icon>
+                              <md-tooltip md-direction="top">
+                                  {{'New_firmware' | translate}}
+                              </md-tooltip>
+                          </md-button>
+                        </div>
 
-                        </div> -->
+                        </div>
                         <!--65 100 / 35 0-->
                         <div flex="80" ng-show="showEditor" layout="row">
     

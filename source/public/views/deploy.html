@@ -5,7 +5,7 @@
 		</div>
 	</md-toolbar>
 	<md-dialog-content layout="column" ng-escape="l.cancel()">
-		<md-tabs flex="100">
+		<md-tabs flex="100"  md-selected="deployTab">
 		    <md-tab label="NETWORK">
 		        <md-tab-body>
 					<div  action="deploy" ng-controller="DeviceNetworkController">
@@ -16,14 +16,36 @@
 		    </md-tab>
 		    <md-tab label="DASHBOARD">
 		        <md-tab-body>
-					 llllllaaaaa
+					 <div layout="column" ng-controller="DashboardController as dashCtrl">
+                        <div flex="100" class="dashboard-content">
+                            <!-- <md-button ng-click="d.add()">Add</md-button> -->
+                            <md-grid-list class="graph-signal" md-cols="4" md-row-height="200px">
+                                <md-grid-tile md-colspan="{{dashCtrl.colspan (signal)}}" md-rowspan="{{dashCtrl.rowspan(signal)}}" ng-repeat="signal in deploy.dashboard track by $index" language="project.language">
+                                  <dashboard-viewer signal="signal" erase="dashCtrl.erase(signal)" left="dashCtrl.left (signal)" right="dashCtrl.right(signal)">
+                                  </dashboard-viewer>
+                                </md-grid-tile>
+                            </md-grid-list>
+                            
+                            <div class="widgets-toolBox">
+                                <ul class="widgets_grid">
+                                    <li ng-repeat="style in styles" class="widget_item">
+                                        <md-button class="widget_btn">
+                                            <p class="widget_title">{{ 'SIGNAL_' + style | translate }}</p>
+                                            <img ng-src="{{'/public/drawable/'+style+'.png'}}" ng-click="dashCtrl.add(style)">
+                                        </md-button>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
 		        </md-tab-body>
 		    </md-tab>
 		</md-tabs>
 	</md-dialog-content>
 	<md-dialog-actions layout="row">
 		<md-button ng-click="d.saveDeploy()" class="newapp">Save and deploy</md-button>
-		<md-button>Save</md-button>
+		<md-button ng-click="d.saveDeploy()">Save</md-button>
 		<md-button ng-click="d.cancel()">Cancel</md-button>
 	</md-dialog-actions>
 </md-dialog>

@@ -48,19 +48,10 @@ module.exports = function ()
 			$wyapp.emit ('library');
 		};
 
-		this.deploy = function ()
+		this.deploy = function (deploy)
 		{
 			debug ('Deploy request');
-			
-			$mdDialog.show({
-		      controller: 'DeployController',
-		      controllerAs: 'd',
-		      templateUrl: '/public/views/deploy.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
-		      clickOutsideToClose:true,
-		      fullscreen: false
-		    });
+			$wyapp.emit ('deploy', deploy);
 		};
 
 		this.exit = function ()
@@ -311,6 +302,35 @@ module.exports = function ()
 						devices.push ($scope.connectedDevices[i]);
 			$wyapp.emit('send', devices);
 		};
+
+
+		$wyapp.on ('deploy', function (deploy){
+			console.log ('on deploy');
+			$mdDialog.show({
+		      controller: 'DeployController',
+		      controllerAs: 'd',
+		      templateUrl: '/public/views/deploy.html',
+		      locals:{deploy:deploy, showDashboard:false},
+		      // parent: angular.element(document.body),
+		      // targetEvent: ev,
+		      clickOutsideToClose:true,
+		      fullscreen: false
+		    });
+		});
+
+		$wyapp.on ('new_signal', function (deploy, signal){
+			deploy.dashboard.push (signal);
+			$mdDialog.show({
+		      controller: 'DeployController',
+		      controllerAs: 'd',
+		      templateUrl: '/public/views/deploy.html',
+		      locals:{deploy:deploy, showDashboard:true},
+		      // parent: angular.element(document.body),
+		      // targetEvent: ev,
+		      clickOutsideToClose:true,
+		      fullscreen: false
+		    });
+		});
 
 		$wyapp.on ('about', function ()
 		{

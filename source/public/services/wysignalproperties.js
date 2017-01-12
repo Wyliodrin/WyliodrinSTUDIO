@@ -13,11 +13,11 @@ debug ('Loading');
 
 var app = angular.module ('wyliodrinApp');
 
-app.factory ('$wysignalproperties', function ($mdDialog)
+app.factory ('$wysignalproperties', function ($mdDialog, $wyapp)
 {
 	debug ('Registering');
 	return {
-		show: function (signal, addSignal)
+		show: function (signal, deploy)
 		{
 			if (!signal) signal = {
 				title:'',
@@ -32,11 +32,11 @@ app.factory ('$wysignalproperties', function ($mdDialog)
 		      	$scope.stylenames = settings.STYLE_NAMES;
 
 		      	$scope.signal = signal;
-		      	$scope.addSignal = addSignal!==null;
+		      	//$scope.addSignal = addSignal!==null;
 		      	this.add = function ()
 		      	{
-		      		addSignal ($scope.signal);
 		      		$mdDialog.hide ();
+		      		$wyapp.emit ('new_signal', deploy, $scope.signal);
 		      	};
 
 		      	this.style = function (style)
@@ -48,6 +48,7 @@ app.factory ('$wysignalproperties', function ($mdDialog)
 		      	this.close = function ()
 		      	{
 		      		$mdDialog.hide ();
+		      		$wyapp.emit ('deploy', deploy);
 		      	};
 
 		      	$scope.styles = [

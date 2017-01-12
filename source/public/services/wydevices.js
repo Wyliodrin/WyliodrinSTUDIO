@@ -287,7 +287,6 @@ app.factory ('$wydevices', function ($http)
 
 		disconnect: function (deviceId)
 		{
-			// console.log (device);
 			devicesTree[deviceId]._WyliodrinDevice.disconnect ();
 		},
 		//on ('event', function)

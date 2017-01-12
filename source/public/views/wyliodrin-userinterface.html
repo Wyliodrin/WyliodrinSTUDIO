@@ -152,19 +152,8 @@
                             New Deployment
                           </md-button>
                         </md-menu-item>
-                        <md-menu-item class="checkbtn">
-                          <md-button aria-label="Select device" ng-model="device.selected">
-                            Deployment 2
-                          </md-button>
-                          <md-button class="rundevice" style="height:48px !important;">
-                            <md-icon md-svg-src="/public/drawable/settings-icon.svg" class="s24" aria-label="Run projects" style="color:#fff !important;"></md-icon>
-                            <md-tooltip md-direction="bottom">
-                              Edit
-                            </md-tooltip>
-                          </md-button>
-                        </md-menu-item>
-                        <md-menu-item class="checkbtn" ng-repeat="deploy in deployments">
-                          <md-button aria-label="Select device" ng-model="device.selected">
+                        <md-menu-item class="checkbtn"  ng-repeat="deploy in deployments">
+                          <md-button aria-label="Select device" ng-model="device.selected" ng-click="t.deploy(deploy)">
                             {{deploy.name}}
                           </md-button>
                           <md-button class="rundevice" style="height:48px !important;">
@@ -404,12 +393,11 @@
                     </div>
                 </md-tab-body>
             </md-tab>
-            <md-tab ng-disabled="project_disable">
+            <!-- <md-tab ng-disabled="project_disable">
                 <md-tab-label>{{ 'PROJECT_DASHBOARD' | translate }}</md-tab-label>
                 <md-tab-body>
                     <div layout="column" ng-controller="DashboardController as d">
                         <div flex="100" class="dashboard-content">
-                            <!-- <md-button ng-click="d.add()">Add</md-button> -->
                             <md-grid-list class="graph-signal" md-cols="4" md-row-height="200px">
                                 <md-grid-tile md-colspan="{{d.colspan (signal)}}" md-rowspan="{{d.rowspan(signal)}}" ng-repeat="signal in project.dashboard track by $index" language="project.language">
                                   <dashboard-viewer signal="signal" erase="d.erase(signal)" left="d.left (signal)" right="d.right(signal)">
@@ -431,7 +419,7 @@
                         </div>
                     </div>
                 </md-tab-body>
-            </md-tab>
+            </md-tab> -->
             <md-tab ng-disabled="project_disable">
               <md-tab-label>{{ 'PROJECT_SCHEMATICS' | translate }}</md-tab-label>
               <md-tab-body>

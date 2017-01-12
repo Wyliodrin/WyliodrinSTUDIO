@@ -36,7 +36,14 @@ module.exports = function ()
 				devicesTreeCache = _.clone (devicesTree);
 				var deployDevices = $scope.deploy.network;
 				//TODO
-				//_.forEach (deployDevices, function ())
+				_.forEach (deployDevices, function (device){
+					if (!devicesTreeCache[device.id])
+					{
+						device.status = 'MISSING';
+						devicesList.push (device);
+						devicesTree[device.id] = device;
+					}
+				});
 				
 			}
 			else
@@ -73,14 +80,12 @@ module.exports = function ()
 			},
 			connectDevice: function (device)
 			{
-				console.log ('request connect');
-				console.log (device);
 				connect(device);
 			},
 
 			disconnectDevice: function (device)
 			{
-				$wydevices.disconnect (device);
+				$wydevices.disconnect (device.id);
 				//$wydevices.removeAllBoardListeners (device.id);
 			},
 

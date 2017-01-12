@@ -13,7 +13,7 @@ var db = new dexie ("WyliodrinApp");
 db.version(6).stores ({
 	applications:"++id,name,date,main,dashboard,firmware,visualproject,language,schematics",
 	settings:"key,value",
-	deployments:"++id, name, network"
+	deployments:"name, network, dashboard"
 });
 
 db.version(5).stores ({

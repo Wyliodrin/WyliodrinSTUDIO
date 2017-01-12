@@ -37,7 +37,7 @@ module.exports = function ()
 
 		$wyapp.on ('dashboard', function ()
 		{
-			library.storeDashboard ($scope.project.id, $scope.project.dashboard);
+			//library.storeDashboard ($scope.project.id, $scope.project.dashboard);
 			$timeout (function ()
 			{
 				$(window).trigger ('resize');
@@ -142,8 +142,7 @@ module.exports = function ()
 
 		function addSignal (signal)
 		{
-			if ($scope.project.dashboard === undefined) $scope.project.dashboard = [];
-			$scope.project.dashboard.push (signal);
+			$scope.deploy.dashboard.push (signal);
 			$timeout (function ()
 			{
 				$(window).trigger ('resize');
@@ -173,7 +172,7 @@ module.exports = function ()
 				signal.properties[property] = propertyValue.value;
 			});
 
-			$wysignalproperties.show (signal, addSignal);
+			$wysignalproperties.show (signal, $scope.deploy);
 		};
 
 		$wyapp.on ('load', function (project)

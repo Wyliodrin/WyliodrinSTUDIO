@@ -19,28 +19,40 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('DeployController', function ($scope, $filter, $mdDialog, $wyapp, $wydevices)
+	app.controller ('DeployController', function ($scope, $filter, $mdDialog, $wyapp, $wydevices, deploy, showDashboard)
 	{
 		debug ('Registering');
 		var that = this;
+		var nr = 0;
 
-		$scope.deploy = {
-			network:{},
-			dashboard:{}
-		};
+		if (showDashboard)
+			$scope.deployTab = 1;
+		else
+			$scope.deployTab = 0;
+
+		if (deploy)
+		{
+			$scope.deploy = deploy;
+		}
+		else
+		{
+			$scope.deploy = 
+			{
+				network:{},
+				dashboard:[]
+			};
+		}
+		
 		this.saveDeploy = function ()
 		{
-			library.addDeployment ('depl', $scope.deploy, function (err, id){
+			library.addDeployment ('depl'+nr, $scope.deploy, function (err, id){
 				if (!err)
 					$mdDialog.hide();
 			});
+			nr++;
 			
 		};
 
-		this.deleteDeploy = function ()
-		{
-			
-		};
 		this.cancel = function ()
 		{
 			$mdDialog.hide();

@@ -162,8 +162,6 @@ setTimeout (function ()
 		for (var i=0; i<devicesList.length; i++)
 		{
 			var node = devicesList[i];
-			console.log ('node is');
-			console.log (node);
 			g.setNode(node.id, {width:NODE_WIDTH, height:NODE_HEIGHT});
 			if (node.uplink === 'local')
 				g.setEdge('router', node.id);
@@ -186,7 +184,6 @@ setTimeout (function ()
 		var rects = [];
 
 		g.nodes().forEach(function (v){
-			console.log (v);
 			var board = getDeviceById (v);
 			var node = g.node(v);
 			var rect;
@@ -221,6 +218,8 @@ setTimeout (function ()
 				var rectStroke;
 				var textFill;
 				var dasharray;
+				console.log (board.name);
+				console.log (board.address);
 				if (board.status === 'CONNECTED')
 				{
 					rectStroke = 'green';
@@ -296,11 +295,11 @@ setTimeout (function ()
 			var storingNode;
 
 			var link = new joint.dia.Link({
-		        source: { id: e.v },
-		        target: { id: e.w}
+		        source: {id: e.v},
+		        target: {id: e.w}
 		    });
 
-			link.set('router', { name: 'metro' });
+			//link.set('router', { name: 'metro' });
 
 		    var status;
 		    if ((e.v === 'router' || e.v === 'computer') && 
@@ -360,116 +359,119 @@ setTimeout (function ()
 		graph.addCells(_.union(rects, links));
 	}
 	
-	var selectedBoard;
-	var selectedX;
-	var selectedY;
-
-	if (action === 'network')
+	
+	function showMenu (selectedBoard, selectedX, selectedY)
 	{
-		$.contextMenu({
-		    // define which elements trigger this menu 
-		    selector: "#graph-holder", 
-	        trigger: 'none',
-	        build: function (){
-	        	if (selectedBoard.status === 'CONNECTED' || 
-	        		selectedBoard.status === 'SEPARATOR')
-		        	return {
-		        		items: {
-					        connect: {
-					        	name: "Disconnect",
-					        	icon: "disconnect",
-					        	callback: function(key, opt){
-					        		network.disconnectDevice (selectedBoard);
-					        	}
-					        },
-					        shell: {
-					        	name: 'Shell',
-					        	icon: "shell",
-					        	callback: function (){
-					        		network.shell (selectedBoard);
-					        	}
-					        }
-				    	},
-				    	position: function(opt, x, y){
-			        		opt.$menu.css({top: selectedY, left: selectedX});
-			    		} 
-		        	};
-		        else
-		        	return {
-		        		items: {
-					        connect: {
-					        	name: "Connect", 
-					        	icon: "connect",
-					        	callback: function(key, opt){network.connectDevice (selectedBoard);}
-					        }
-				    	},
-				    	position: function(opt, x, y){
-			        		opt.$menu.css({top: selectedY, left: selectedX});
-			    		}
-		        	};
-	        }
-		});
-	}
-	else if (action === 'deploy') 
-	{
-		var appsCallbackFunction = function (key, opt){
-			network.deploy.network[selectedBoard] = key;
-		};
-		network.getApplications (function (apps){
+		if (action === 'network')
+		{
 			$.contextMenu({
 			    // define which elements trigger this menu 
 			    selector: "#graph-holder", 
 		        trigger: 'none',
 		        build: function (){
-		        	var menu = {
-		        		items:{},
-		        		position: function(opt, x, y){
-			        		opt.$menu.css({top: selectedY, left: selectedX});
-			    		} 
-		        	};
-
-		        	for (var a=0; a<apps.length; a++)
-		        	{
-		        		menu.items[apps[a].id] = {
-		        			name: apps[a].title,
-		        			callback: appsCallbackFunction
-		        		};
-		        	}
-		        	//TODO
-		        	// if (selectedBoard.status === 'CONNECTED' || 
-		        	// 	selectedBoard.status === 'SEPARATOR')
-			        // 	{
-			        		
-					      //  menu.items.connect=  {
-					      //   	name: "Disconnect",
-					      //   	icon: "disconnect",
-					      //   	callback: function(key, opt){
-					      //   		network.disconnectDevice (selectedBoard);
-					      //   	}
-					      //   };
-			        // 	}
-			        // else
-			        // {
-			        // 	menu.items.connect= {
-				       //  	name: "Connect", 
-				       //  	icon: "connect",
-				       //  	callback: function(key, opt){network.connectDevice (selectedBoard);}
-				       //  };
-			        // }
-			        return menu;
+		        	if (selectedBoard.status === 'CONNECTED' || 
+		        		selectedBoard.status === 'SEPARATOR')
+			        	return {
+			        		items: {
+						        connect: {
+						        	name: "Disconnect",
+						        	icon: "disconnect",
+						        	callback: function(key, opt){
+						        		network.disconnectDevice (selectedBoard);
+						        	}
+						        },
+						        shell: {
+						        	name: 'Shell',
+						        	icon: "shell",
+						        	callback: function (){
+						        		network.shell (selectedBoard);
+						        	}
+						        }
+					    	},
+					    	position: function(opt, x, y){
+				        		opt.$menu.css({top: selectedY, left: selectedX});
+				    		} 
+			        	};
+			        else
+			        	return {
+			        		items: {
+						        connect: {
+						        	name: "Connect", 
+						        	icon: "connect",
+						        	callback: function(key, opt){network.connectDevice (selectedBoard);}
+						        }
+					    	},
+					    	position: function(opt, x, y){
+				        		opt.$menu.css({top: selectedY, left: selectedX});
+				    		}
+			        	};
 		        }
 			});
-		});
+		}
+		else if (action === 'deploy') 
+		{
+			network.getAssignedProject (selectedBoard);
+			var appsCallbackFunction = function (key, opt){
+				network.deploy.network[selectedBoard] = key;
+			};
+			network.getApplications (function (apps){
+				$.contextMenu({
+				    // define which elements trigger this menu 
+				    selector: "#graph-holder", 
+			        trigger: 'none',
+			        build: function (){
+			        	var menu = {
+			        		items:{},
+			        		position: function(opt, x, y){
+				        		opt.$menu.css({top: selectedY, left: selectedX});
+				    		} 
+			        	};
+
+			        	for (var a=0; a<apps.length; a++)
+			        	{
+			        		menu.items[apps[a].id] = {
+			        			name: apps[a].title,
+			        			callback: appsCallbackFunction
+			        		};
+			        	}
+			        	//TODO
+			        	// if (selectedBoard.status === 'CONNECTED' || 
+			        	// 	selectedBoard.status === 'SEPARATOR')
+				        // 	{
+				        		
+						      //  menu.items.connect=  {
+						      //   	name: "Disconnect",
+						      //   	icon: "disconnect",
+						      //   	callback: function(key, opt){
+						      //   		network.disconnectDevice (selectedBoard);
+						      //   	}
+						      //   };
+				        // 	}
+				        // else
+				        // {
+				        // 	menu.items.connect= {
+					       //  	name: "Connect", 
+					       //  	icon: "connect",
+					       //  	callback: function(key, opt){network.connectDevice (selectedBoard);}
+					       //  };
+				        // }
+				        return menu;
+			        }
+				});
+			});
+		}
+
+		$('#graph-holder').contextMenu();
 	}
 
 	
 
 	paper.on('cell:pointerclick', function(cellView, evt, x, y) { 
-		selectedX = x;
-		selectedY = y;
-		selectedBoard = getDeviceById (cellView.model.id);
+		var selectedX = x;
+		var selectedY = y;
+		var selectedBoard = getDeviceById (cellView.model.id);
 		if (selectedBoard && selectedBoard.id)
-			$('#graph-holder').contextMenu();
+			showMenu (selectedBoard, selectedX, selectedY)
 	});
 
 	buildGraph ();

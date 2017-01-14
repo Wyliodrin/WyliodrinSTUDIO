@@ -1,0 +1,16 @@
+<md-dialog aria-label="Error">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Error</h2>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <h3>{{contentPopupError}}</h3>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="dialogError.ok()">{{'Ok' | translate}}</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

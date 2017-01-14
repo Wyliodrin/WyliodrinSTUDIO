@@ -1,0 +1,20 @@
+<md-dialog aria-label="New File">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>New File</h2>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+            <input ng-model="contentPopupNewFile" type="text" aria-label="New File">
+        </md-input-container>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-disabled="!contentPopupNewFile" ng-click="dialogFile.ok()">{{'Ok' | translate}}</md-button>
+        <md-button ng-click="dialogFile.cancel()">{{'Cancel' | translate}}</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

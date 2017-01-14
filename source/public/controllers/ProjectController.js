@@ -308,44 +308,155 @@ var app = angular.module ('wyliodrinApp');
 		this.getTree = function(){
 			return $scope.project.tree[0];
 		};
+		this.getTranslateVars = function(){
+			return $scope.translatevars;
+		};
+		this.getSelected = function(){
+			return $scope.tree.selectednode;
+		};
 
 		this.newFolderButton = function(){
-			$scope.tree.contentPopupNewFolder=$scope.translatevars.new_folder;
-			$scope.tree.showPopupNewFolder=1;
+
+			$mdDialog.show({
+				controller: function ($scope)
+				{
+					$scope.contentPopupNewFolder = that.getTranslateVars().new_folder;
+					this.ok = function ()
+					{
+						$mdDialog.hide ();
+						that.newFolder($scope.contentPopupNewFolder);
+					};
+
+					this.cancel = function ()
+					{
+						$mdDialog.hide ();
+					};
+				},
+				controllerAs: 'dialogFolder',
+				templateUrl: '/public/views/dialogs/new-folder.html',
+				      // parent: $element,
+				      // targetEvent: ev,
+				      clickOutsideToClose:false,
+				      fullscreen: false
+			});
 		};
 		this.newFileButton = function(){
-			$scope.tree.contentPopupNewFile=$scope.translatevars.new_file;
-			$scope.tree.showPopupNewFile=1;
+
+			$mdDialog.show({
+				controller: function ($scope)
+				{
+					$scope.contentPopupNewFile = that.getTranslateVars().new_file;
+					this.ok = function ()
+					{
+						$mdDialog.hide ();
+						that.newFile($scope.contentPopupNewFile);
+					};
+
+					this.cancel = function ()
+					{
+						$mdDialog.hide ();
+					};
+				},
+				controllerAs: 'dialogFile',
+				templateUrl: '/public/views/dialogs/new-file.html',
+				      // parent: $element,
+				      // targetEvent: ev,
+				      clickOutsideToClose:false,
+				      fullscreen: false
+			});
 		};
 		this.deleteButton = function(){
-			$scope.tree.showPopupDelete=1;
+			$mdDialog.show({
+				controller: function ($scope)
+				{
+					$scope.selected = that.getSelected();
+					this.ok = function ()
+					{
+						$mdDialog.hide ();
+						that.delete();
+					};
+
+					this.cancel = function ()
+					{
+						$mdDialog.hide ();
+					};
+				},
+				controllerAs: 'dialogDelete',
+				templateUrl: '/public/views/dialogs/delete.html',
+				      // parent: $element,
+				      // targetEvent: ev,
+				      clickOutsideToClose:false,
+				      fullscreen: false
+			});
 		};
 		this.newFirmwareButton = function(){
-			$scope.tree.firmwares=settings.FIRMWARES[$scope.device.category];
 
-			$scope.tree.contentPopupNewFirmware.type="";
-			$scope.tree.contentPopupNewFirmware.text=$scope.translatevars.new_firmware;
-			$scope.tree.showPopupNewFirmware=1;
+			$mdDialog.show({
+				controller: function ($scope)
+				{
+					//$scope.tree.firmwares=settings.FIRMWARES[$scope.device.category];
+					$scope.firmwares=settings.FIRMWARES.raspberrypi;
+
+					$scope.contentPopupNewFirmware={};
+					$scope.contentPopupNewFirmware.text=that.getTranslateVars().new_firmware;
+					$scope.contentPopupNewFirmware.type="";
+
+					this.ok = function ()
+					{
+						$mdDialog.hide ();
+						that.newFirmware($scope.contentPopupNewFirmware);
+					};
+
+					this.cancel = function ()
+					{
+						$mdDialog.hide ();
+					};
+				},
+				controllerAs: 'dialogFirmware',
+				templateUrl: '/public/views/dialogs/new-firmware.html',
+				      // parent: $element,
+				      // targetEvent: ev,
+				      clickOutsideToClose:false,
+				      fullscreen: false
+			});
+
 		};
 
-		this.newFolder = function(){
-			var obj = {name:$scope.tree.contentPopupNewFolder,id:makeID($scope.project.tree[0]),isdir:true,children:[]};
+		this.errorDialog = function(arg){
+			$mdDialog.show({
+				controller: function ($scope)
+				{
+					$scope.contentPopupError = arg;
+
+					this.ok = function ()
+					{
+						$mdDialog.hide ();
+					};
+				},
+				controllerAs: 'dialogError',
+				templateUrl: '/public/views/dialogs/error.html',
+				      // parent: $element,
+				      // targetEvent: ev,
+				      clickOutsideToClose:false,
+				      fullscreen: false
+			});
+		};
+
+		this.newFolder = function(arg){
+			var obj = {name:arg,id:makeID($scope.project.tree[0]),isdir:true,children:[]};
 			this.newSomething(obj,$scope.tree.selectednode);
-			$scope.tree.showPopupNewFolder = 0;
 		};
 
-		this.newFile = function(){
-			var obj = {name:$scope.tree.contentPopupNewFile,id:makeID($scope.project.tree[0]),isdir:false,content:''};
+		this.newFile = function(arg){
+			var obj = {name:arg,id:makeID($scope.project.tree[0]),isdir:false,content:''};
 			this.newSomething(obj,$scope.tree.selectednode);
-			$scope.tree.showPopupNewFile = 0;
 		};
 
-		this.newFirmware = function(){
+		this.newFirmware = function(arg){
 			//////////////////////////poate fa-i si un copil
-			var obj = {name:$scope.tree.contentPopupNewFirmware.text,id:makeID($scope.project.tree[0]),isdir:true,isfirmware:true,ftype:$scope.tree.contentPopupNewFirmware.type,fport:"auto",children:[]};
+			var obj = {name:arg.text,id:makeID($scope.project.tree[0]),isdir:true,isfirmware:true,ftype:arg.type,fport:"auto",children:[]};
 			this.newSomething(obj,$scope.project.tree[0]);
 			checkEmptyFolders($scope.project.tree[0]);
-			$scope.tree.showPopupNewFirmware = 0;
 		};
 
 		this.newSomething = function(obj,parent){
@@ -358,14 +469,13 @@ var app = angular.module ('wyliodrinApp');
 				checkEmptyFolders($scope.project.tree[0]);
 			}
 			else{
-				$scope.tree.contentPopupError = $translate.instant('TREEsame_name');
-				$scope.tree.showPopupError = 1;
+				this.errorDialog($translate.instant('TREEsame_name'));
 			}
 			$scope.aceSoftwareChanged();
 		};
 
 		this.delete = function(){
-			if ($scope.tree.selectednode.isspecial){
+			/*if ($scope.tree.selectednode.isspecial){
 				$scope.tree.contentPopupError = $translate.instant('TREEdelete_special');
 				$scope.tree.showPopupError = 1;
 			}
@@ -377,7 +487,8 @@ var app = angular.module ('wyliodrinApp');
 				$scope.tree.contentPopupError = $translate.instant('TREEdelete_software');
 				$scope.tree.showPopupError = 1;
 			}
-			else{
+			else{*/
+			if (true){
 				var parent = findParent($scope.tree.selectednode, $scope.project.tree[0]);
 				for (var i = 0; i<parent.children.length;i++){
 					if (angular.equals(parent.children[i],$scope.tree.selectednode)){

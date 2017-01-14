@@ -113,8 +113,7 @@ module.exports = function ()
 			{
 				$timeout (function ()
 				{
-					console.log(p);
-					console.log($scope.downloadvars);
+
 					var temp = new Buffer(p.f);
 					if (typeof $scope.downloadvars.c === 'undefined')
 					{
@@ -362,7 +361,6 @@ module.exports = function ()
 			{
 				$timeout (function ()
 				{
-					console.log(p);
 					if (p.a === 'newf')
 					{
 						$scope.contentPopupError = $translate.instant('FEnew_folder');
@@ -708,7 +706,6 @@ module.exports = function ()
 
 		this.doubleclick = function(file)
 		{
-			console.log(file);
 			if (file.isup)
 			{
 				this.up();

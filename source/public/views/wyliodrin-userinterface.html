@@ -240,7 +240,116 @@
                 <md-tab-label>{{ 'PROJECT_APPLICATION' | translate }}</md-tab-label>
                 <md-tab-body>
                     <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">
-                        <div flex="{{showXterm?65:100}}" layout="row">
+
+                        <div ng-show="tree.showPopupNewFolder" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                      <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+                                        <input ng-model="tree.contentPopupNewFolder" type="text" aria-label="New Folder">
+                                      </md-input-container>
+                                  </md-dialog-content>
+                                  <md-dialog-actions layout="row" style="border:0;">
+                                      <span flex></span>
+                                      <md-button ng-disabled="!tree.contentPopupNewFolder" ng-click="p.newFolder()">{{'Ok' | translate}}</md-button>
+                                      <md-button ng-click="tree.showPopupNewFolder=0">{{'Cancel' | translate}}</md-button>
+                                  </md-dialog-actions>
+                              </div>
+                        </div>
+
+                        <div ng-show="tree.showPopupNewFile" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                      <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+                                        <input ng-model="tree.contentPopupNewFile" type="text" aria-label="New File">
+                                      </md-input-container>
+                                  </md-dialog-content>
+                                  <md-dialog-actions layout="row" style="border:0;">
+                                      <span flex></span>
+                                      <md-button ng-disabled="!tree.contentPopupNewFile" ng-click="p.newFile()">{{'Ok' | translate}}</md-button>
+                                      <md-button ng-click="tree.showPopupNewFile=0">{{'Cancel' | translate}}</md-button>
+                                  </md-dialog-actions>
+                              </div>
+                        </div>
+
+                        <div ng-show="tree.showPopupNewFirmware" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                      <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+                                        <md-select ng-model="tree.contentPopupNewFirmware.type" aria-label="New Firmware">
+                                          <md-option ng-repeat="(key,firmware) in tree.firmwares" value="{{key}}">
+                                            {{firmware}}
+                                          </md-option>
+                                        </md-select>
+                                        <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
+                                        <input ng-model="tree.contentPopupNewFirmware.text" type="text" aria-label="New Folder">
+                                      </md-input-container>
+                                  </md-dialog-content>
+                                  <md-dialog-actions layout="row" style="border:0;">
+                                      <span flex></span>
+                                      <md-button ng-disabled="!(tree.contentPopupNewFirmware.text || text.contentPopupNewFirmware.type)" ng-click="p.newFirmware()">{{'Ok' | translate}}</md-button>
+                                      <md-button ng-click="tree.showPopupNewFirmware=0">{{'Cancel' | translate}}</md-button>
+                                  </md-dialog-actions>
+                              </div>
+                        </div>
+
+                        <div ng-show="tree.showPopupDelete" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                    <h3>{{'want_to_delete' | translate}} {{ tree.selectednode.name }}?</h3>
+                                </md-dialog-content>
+                                <md-dialog-actions layout="row">
+                                    <span flex></span>
+                                    <md-button ng-click="p.delete()">{{'Yes' | translate}}</md-button>
+                                    <md-button ng-click="tree.showPopupDelete=0">{{'No' | translate}}</md-button>
+                                </md-dialog-actions>
+                            </div>
+                        </div>
+
+                        <div ng-show="tree.showPopupError" class="fileexplorer-dialog">
+                            <div>
+                                <md-dialog-content>
+                                    <h3>{{tree.contentPopupError}}</h3>
+                                </md-dialog-content>
+                                <md-dialog-actions layout="row">
+                                    <span flex></span>
+                                    <md-button ng-click="tree.showPopupError=0">{{'Ok' | translate}}</md-button>
+                                </md-dialog-actions>
+                            </div>
+                        </div>
+
+                    <div flex="{{showXterm?65:100}}" layout="row">
+                        <div class="projectTree" layout="row">
+                          <md-content treecontrol class="tree-classic" tree-model="project.tree" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name + (node.issoftware?" (Software)":"") + (node.isfirmware?" (Firmware)":"")}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
+
+                          <div style="position:absolute; bottom:60px;"><!--butoane-->
+                            <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
+                                <md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'New_folder' | translate}}
+                                </md-tooltip>
+                            </md-button>
+                            <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New File" ng-click="p.newFileButton()">
+                                <md-icon md-svg-src="/public/drawable/new-file.svg" class="s24" aria-label="New File" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'New_file' | translate}}
+                                </md-tooltip>
+                            </md-button>
+                            <md-button ng-show="!tree.selectednode.isroot && !tree.selectednode.isspecial && !tree.selectednode.issoftware && !tree.selectednode.ismain" class="fileexplorer-actions" aria-label="Delete" ng-click="p.deleteButton()">
+                                <md-icon md-svg-src="/public/drawable/delete-icon.svg" class="s24" aria-label="Delete folder" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'Delete' | translate}}
+                                </md-tooltip>
+                            </md-button>
+                            <md-button class="fileexplorer-actions" aria-label="New Firmware" ng-click="p.newFirmwareButton()">
+                                <md-icon md-svg-src="/public/drawable/new-firmware.svg" class="s24" aria-label="New Firmware" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'New_firmware' | translate}}
+                                </md-tooltip>
+                            </md-button>
+                          </div>
+                        </div>
+
+                        <div flex="100" ng-show="showEditor" layout="row"><!--editor text-->
     
                             <md-tabs md-align-tabs="bottom" flex="100" class="tabs-box software_label">
                                 <md-tab>
@@ -263,7 +372,7 @@
                                               firstLineNumber: 1,
                                               onLoad: aceSoftwareLoaded,
                                               onChange: aceSoftwareChanged
-                                            }" ng-model="project.main"></div>
+                                            }" ng-model="tree.selectednode.content"></div>
                                             <div ng-show="project.language==='visual'" flex="100" layout="row">
                                                 <iframe flex="{{showhidecode?65:100}}" src="/public/blockly/blockly_frame.html">
                                                 </iframe>
@@ -277,7 +386,7 @@
                                                   theme:'chrome',
                                                   firstLineNumber: 1,
                                                   onLoad: aceShowLoaded
-                                                }" ng-model="project.main"></div>
+                                                }" ng-model="tree.selectednode.content"></div>
                                             </div>
                                             <div id="divred" ng-show="project.language==='streams'" flex="100">
                                               <webview id="red" src="/public/red/red.html" partition="red">
@@ -313,12 +422,13 @@
                                 </md-tab>
                             </md-tabs>
                         </div>
-                        <div flex="{{showXterm?35:0}}" style="position:relative;">
+                    </div>
+
+                    <div flex="{{showXterm?35:0}}" style="position:relative;"><!--terminal-->
                         	<a href="#" class="show-hide-console" ng-click="p.showHideXterm()">{{showXterm? ( 'PROJECT_HideConsole' | translate ):( 'PROJECT_ShowConsole' | translate ) }}</a>
                             <div style="width: 100%; height: 100%; position:absolute; background:#000;" id="xterm"></div>
-                        </div>
-                        <!-- <input type="button" value="Run" ng-click="p.send ()" flex /> -->
                     </div>
+
                 </md-tab-body>
             </md-tab>
             <md-tab ng-disabled="project_disable">

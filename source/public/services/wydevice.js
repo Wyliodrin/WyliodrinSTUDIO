@@ -17,175 +17,136 @@ var _ = require ('lodash');
 
 debug ('Loading');
 
-module.exports = function ()
+import WyliodrinDevice from './WyliodrinDevice.js';
+
+var app = angular.module ('wyliodrinApp');
+
+app.factory ('$wydevice', function ($http)
 {
+	debug ('Registering');
+	var device = null;
 
-	var app = angular.module ('wyliodrinApp');
+	// var WyliodrinDevice = null;
+	// var service = null;
 
-	app.factory ('$wydevice', function ($http)
-	{
-		debug ('Registering');
-		var device = null;
+	var status = 'DISCONNECTED';
 
-		var WyliodrinDevice = null;
-		var Devices = null;
-		// var service = null;
-
-		var status = 'DISCONNECTED';
-
-		chrome.runtime.getBackgroundPage(function (backgroundPage) {
-		    WyliodrinDevice = backgroundPage.WyliodrinDevice;
-		    Devices = backgroundPage.Devices;
-		});
-
-		var deviceService = {
-			connect: function (strdevice, options)
-			{
-				if (!WyliodrinDevice) throw ('Wyliodrin device not initialised');
-				if (device && device.status !== 'DISCONNECTED') device.disconnect();
-				debug (options);
-				var categoryhint = (options?options.category:undefined);
-				var platformhint = (options?options.platform:undefined);
-				console.log (categoryhint);
-				console.log (platformhint);
-				device = new WyliodrinDevice (strdevice, options);
-				var that = this;
-				
-				
-				device.on ('connection_login_failed', function ()
-							{
-								if (device) that.emit ('connection_login_failed');
-							});
-
-				device.on ('connection_error', function ()
-							{
-								if (device) that.emit ('connection_error');
-							});
-
-				device.on ('connection_timeout', function ()
-							{
-								if (device) that.emit ('connection_timeout');
-							});
-				
-				device.on ('status', function (_status)
-				{
-					status = _status;
-					if (status !== 'CONNECTED') deviceService.device = 
-					{
-						category: categoryhint || 'board',
-						platform: platformhint || 'linux',
-						network: false
-					};
-					if (status === 'ERROR' || status === 'DISCONNECTED')
-					{
-						device.removeAllListeners ();
-						device = null;
-					}
-					console.log (deviceService.device);
-					that.emit ('status', _status);
-				});
-
-				device.on ('message', function (t, d)
-				{
-					if (t === 'i')
-					{
-						// console.log (d);
-						if (!deviceService.device) deviceService.device = {};
-						deviceService.device.name = d.n;
-						deviceService.device.category = d.c;
-						deviceService.device.network = d.i;
-						deviceService.device.platform = d.p || 'linux';
-						that.emit ('status', status);
-					}
-					else
-					if (t === 'capabilities')
-					{
-						debug (d);
-						deviceService.device.capabilities = d;
-					}
-					else
-					if ((t === 'v' || t === 'sv') && !d.s)
-					{
-						if (deviceService.device)
+	var deviceService = {
+		connect: function (strdevice, options)
+		{
+			if (!WyliodrinDevice) throw ('Wyliodrin device not initialised');
+			if (device && device.status !== 'DISCONNECTED') device.disconnect();
+			debug (options);
+			var categoryhint = (options?options.category:undefined);
+			var platformhint = (options?options.platform:undefined);
+			console.log (categoryhint);
+			console.log (platformhint);
+			device = new WyliodrinDevice (strdevice, options);
+			var that = this;
+			
+			
+			device.on ('connection_login_failed', function ()
 						{
-							deviceService.device.version = d.v;
-						}
-						$http.get('https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json?'+uuid.v4())
-					       .then(function(res){
-						       	try
-						       	{
-						        	var version = res.data.version;
-						        	debug ('Version '+version);
-						        	debug (compare_versions(d.v, version));
-						        	if (compare_versions(d.v, version) < 0) that.emit ('update');
-						        }
-						        catch (e)
-						        {
-						        	debug ('Version error');
-						        	debug (e);
-						        }
-					    	});
-					}
-					that.emit ('message', t, d);
-				});
-			},
+							if (device) that.emit ('connection_login_failed');
+						});
 
-			getStatus: function ()
-			{
-				return status;
-			},
+			device.on ('connection_error', function ()
+						{
+							if (device) that.emit ('connection_error');
+						});
 
-			send: function (tag, data)
+			device.on ('connection_timeout', function ()
+						{
+							if (device) that.emit ('connection_timeout');
+						});
+			
+			device.on ('status', function (_status)
 			{
-				if (device)
+				status = _status;
+				if (status !== 'CONNECTED') deviceService.device = 
 				{
-					device.send (tag, data);
+					category: categoryhint || 'board',
+					platform: platformhint || 'linux',
+					network: false
+				};
+				if (status === 'ERROR' || status === 'DISCONNECTED')
+				{
+					device.removeAllListeners ();
+					device = null;
 				}
-			},
+				console.log (deviceService.device);
+				that.emit ('status', _status);
+			});
 
-			listSerialDevices: function (done)
+			device.on ('message', function (t, d)
 			{
-				if (WyliodrinDevice)
+				if (t === 'i')
 				{
-					WyliodrinDevice.listDevices ("serial", function (err, list)
-					{
-						done (err, list);
-					});
+					// console.log (d);
+					if (!deviceService.device) deviceService.device = {};
+					deviceService.device.name = d.n;
+					deviceService.device.category = d.c;
+					deviceService.device.network = d.i;
+					deviceService.device.platform = d.p || 'linux';
+					that.emit ('status', status);
 				}
 				else
+				if (t === 'capabilities')
 				{
-					done (new Error ('Wyliodrin device not initialised'));
+					debug (d);
+					deviceService.device.capabilities = d;
 				}
-			},
+				else
+				if ((t === 'v' || t === 'sv') && !d.s)
+				{
+					if (deviceService.device)
+					{
+						deviceService.device.version = d.v;
+					}
+					$http.get('https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json?'+uuid.v4())
+				       .then(function(res){
+					       	try
+					       	{
+					        	var version = res.data.version;
+					        	debug ('Version '+version);
+					        	debug (compare_versions(d.v, version));
+					        	if (compare_versions(d.v, version) < 0) that.emit ('update');
+					        }
+					        catch (e)
+					        {
+					        	debug ('Version error');
+					        	debug (e);
+					        }
+				    	});
+				}
+				that.emit ('message', t, d);
+			});
+		},
 
-			registerForNetworkDevices: function (done)
-			{
-				if (Devices)
-				{
-					Devices.registerListener (done);
-				}
-			},
+		getStatus: function ()
+		{
+			return status;
+		},
 
-			unregisterForNetworkDevices: function (done)
+		send: function (tag, data)
+		{
+			if (device)
 			{
-				if (Devices)
-				{
-					Devices.unregisterListener (done);
-				}
-			},
-
-			disconnect: function ()
-			{
-				// console.log (device);
-				if (device)
-				{
-					device.disconnect ();
-				}
+				device.send (tag, data);
 			}
-		};
+		},
 
-		deviceService = _.assign (new EventEmitter(), deviceService);
+		disconnect: function ()
+		{
+			// console.log (device);
+			if (device)
+			{
+				device.disconnect ();
+			}
+		}
+	};
 
-		return deviceService;
-	});
-};
+	deviceService = _.assign (new EventEmitter(), deviceService);
+
+	return deviceService;
+});

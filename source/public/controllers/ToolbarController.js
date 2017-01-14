@@ -16,10 +16,13 @@ module.exports = function ()
 
 	var os = '';
 
-	chrome.runtime.getPlatformInfo (function (system)
+	if (settings.platform.CHROME)
 	{
-	  os = system.os;
-	});
+		chrome.runtime.getPlatformInfo (function (system)
+		{
+		  os = system.os;
+		});
+	}
 
 	var app = angular.module ('wyliodrinApp');
 
@@ -27,7 +30,10 @@ module.exports = function ()
 	{
 		debug ('Registering');
 
-		$scope.isFullscreen = chrome.app.window.current().isFullscreen();
+		if (settings.platform.CHROME)
+		{
+			$scope.isFullscreen = chrome.app.window.current().isFullscreen();
+		}
 
 		this.scope = {
 			running: '=',
@@ -56,63 +62,69 @@ module.exports = function ()
 		          .ok($filter('translate')('YES'))
 		          .cancel($filter('translate')('NO'));
 		    $mdDialog.show(message).then(function() {
-		      chrome.app.window.current().close ();
+		    	if (settings.platform.CHROME)
+		    	{
+		      		chrome.app.window.current().close ();
+		      	}
 		    }, function() {
 		     	
 		    });
 		};
 
-		chrome.app.window.current().onMaximized.addListener (function ()
+		if (settings.platform.CHROME)
 		{
-			$scope.isFullscreen = true;
-		});
-
-		chrome.app.window.current().onFullscreened.addListener (function ()
-		{
-			$scope.isFullscreen = true;
-		});
-
-		chrome.app.window.current().onRestored.addListener (function ()
-		{
-			$scope.isFullscreen = false;
-		});
-
-		this.fullscreen = function ()
-		{
-			debug ('Fullscreen');
-			var w = chrome.app.window.current();
-			var maximize = w.maximize; 
-			var isMaximized = w.isMaximized;
-
-			if (os === 'mac')
+			chrome.app.window.current().onMaximized.addListener (function ()
 			{
-				maximize = w.fullscreen;
-				isMaximized = w.isFullscreen;
-			}
+				$scope.isFullscreen = true;
+			});
 
-			if (isMaximized ())
+			chrome.app.window.current().onFullscreened.addListener (function ()
 			{
-				w.restore ();	
-			}
-			else
-			{
-				maximize ();
-			}
-		};
+				$scope.isFullscreen = true;
+			});
 
-		this.minimize = function ()
-		{
-			debug ('Minimize');
-			var w = chrome.app.window.current();
-			if (w.isMinimized ())
+			chrome.app.window.current().onRestored.addListener (function ()
 			{
-				w.restore ();	
-			}
-			else
+				$scope.isFullscreen = false;
+			});
+
+			this.fullscreen = function ()
 			{
-				w.minimize ();
-			}
-		};
+				debug ('Fullscreen');
+				var w = chrome.app.window.current();
+				var maximize = w.maximize; 
+				var isMaximized = w.isMaximized;
+
+				if (os === 'mac')
+				{
+					maximize = w.fullscreen;
+					isMaximized = w.isFullscreen;
+				}
+
+				if (isMaximized ())
+				{
+					w.restore ();	
+				}
+				else
+				{
+					maximize ();
+				}
+			};
+
+			this.minimize = function ()
+			{
+				debug ('Minimize');
+				var w = chrome.app.window.current();
+				if (w.isMinimized ())
+				{
+					w.restore ();	
+				}
+				else
+				{
+					w.minimize ();
+				}
+			};
+		}
 
 		this.packagemanager = function ()
 		{
@@ -215,15 +227,18 @@ module.exports = function ()
 		this.documentation = function ()
 		{
 			debug ('Show documentation');
-			chrome.app.window.create('/public/views/documentation.html', {
-				id: 'documentation',
-				innerBounds: {
-					width: 1200,
-					height: 750,
-					minWidth: 960,
-					minHeight: 700
-				}
-			});
+			if (settings.platform.CHROME)
+			{
+				chrome.app.window.create('/public/views/documentation.html', {
+					id: 'documentation',
+					innerBounds: {
+						width: 1200,
+						height: 750,
+						minWidth: 960,
+						minHeight: 700
+					}
+				});
+			}
 		};
 
 		this.resistorcolorcode = function ()

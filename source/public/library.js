@@ -43,15 +43,20 @@ function add (value, language, done, devicecategory)
 		var title = value;
 		debug ('Adding project with title '+title+' in '+language);
 		var startproject = null;
-		if (devicecategory && settings.EXAMPLE.start[devicecategory])
+		/*if (devicecategory && settings.EXAMPLE.start[devicecategory])
 		{
 			debug ('Start '+devicecategory);
 			startproject = _.clone (settings.EXAMPLE.start[devicecategory][language]);
-		}
+		}*/ //WHEN CONNECTED USE THIS BLUEPRINT // COMMENTED BECAUSE BLUEPRINT IS DIFFERENT FROM OUR PROJECT
 		if (!startproject)
 		{
 			startproject = {
-				main: '',
+				tree: 
+				[{name:title, id:1,isdir:true,isroot:true,children:
+					[{name:language,id:2,isdir:true,issoftware:true,children:
+						[{name:'main',id:3,isdir:false,ismain:true,content:''}]
+					}]
+				}],
 				language: language
 			};
 		}
@@ -106,10 +111,10 @@ function rename (id, title)
 	db.applications.update (id, {title:title});
 }
 
-function storeMain (id, main)
+function storeMain (id, main,tree)
 {
 	debug ('Store project main '+id);
-	db.applications.update (id, {main:main});
+	db.applications.update (id, {main:main,tree:tree});
 }
 
 function storeFirmware (id, firmware)

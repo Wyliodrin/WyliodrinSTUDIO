@@ -77,9 +77,10 @@ require ('./controllers/NetworkController.js')();
 require ('./controllers/ToolbarController.js')();
 require ('./controllers/XTermController.js')();
 require ('./controllers/FileExplorerController.js')();
-require ('./services/wyapp.js')();
-require ('./services/wydevice.js')();
-require ('./services/wysignalproperties.js')();
+require ('./services/wyapp.js');
+require ('./services/wydevice.js');
+require ('./services/wydevices.js');
+require ('./services/wysignalproperties.js');
 
 require ('./dashboardtags/line.js')();
 require ('./dashboardtags/thermometer.js')();

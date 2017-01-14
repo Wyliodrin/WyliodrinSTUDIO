@@ -5,7 +5,7 @@
 @import (inline) "../../../node_modules/angular-tree-control/css/tree-control-attribute.css";
 
 
-body {font-size:13px;}
+body {font-size:13px; color:#000;}
 
 a {color:#e54225; text-decoration:none;}
 a:hover {text-decoration:underline;}
@@ -654,7 +654,9 @@ md-menu-item > .md-button, md-option .md-text {font-size:14px !important;}
 	margin-top:10px !important;
 }
 
-.md-button {overflow: visible;}
+.md-button {
+	overflow: visible;
+}
 
 .packages-tabs-box md-tabs-wrapper{background: #e5eef1;}
 .packages-tabs-box md-pagination-wrapper{width:initial !important;}
@@ -872,7 +874,7 @@ color:#000;
 
 .tree-classic {
     padding: 15px 25px 0 0;
-    background: #eee;
+    background: #fff;
 }
 
 .tree-classic li i {
@@ -908,12 +910,14 @@ outline:none;
 	text-transform:none;
 	color: #000 !important;
     min-width: 50px;
-	padding:0 12px;
+	padding:0;
+	margin:0;
 	md-icon {color:#000 !important;}
 }
 
 .fileexplorer-actions:hover { 
-	background:#eee !important;
+	background:#e54225 !important;
+	md-icon {color:#fff !important;}
 }
 
 .fileexplorer-dialog {
@@ -937,3 +941,5 @@ outline:none;
 		border-radius: 10px;
 	}
 }
+
+.projectTree { min-width:200px; margin:0 5px; position:relative; background:#fff;}

@@ -798,6 +798,14 @@
     "message": "New Folder",
     "description": ""
   },
+  "New_file": {
+    "message": "New File",
+    "description": ""
+  },
+  "New_firmware": {
+    "message": "New Firmware",
+    "description": ""
+  },
   "Upload_here": {
     "message": "Upload Here",
     "description": ""
@@ -865,5 +873,20 @@
   },
   "DASHBOARD_values_export": {
     "message": "Export"
+  },
+  "TREEsame_name": {
+    "message": "A file or folder with the same name exists at the destination."
+  },
+  "TREEdelete_special": {
+    "message": "Cannot delete."
+  },
+  "TREEdelete_root": {
+    "message": "Cannot delete the root folder."
+  },
+  "TREEdelete_software": {
+    "message": "Cannot delete the software folder."
+  },
+  "TREEno_root": {
+    "message": "Cannot create to root folder (use New Firmware instead)."
   }
 }

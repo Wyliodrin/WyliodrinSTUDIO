@@ -1,24 +1,22 @@
 <md-dialog aria-label="Flash {{label[device].firmware}}">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			<h2>Flash {{label[device.category].firmware}}</h2>
+			<h2>Flash firmware</h2>
 		</div>
 	</md-toolbar>
     
 	<md-dialog-content>
         <md-content layout-gt-sm="row" layout-padding>
-            <md-input-container>
-                <label>{{label[device.category].firmware}}</label>
-                <md-select ng-model="firmware">
-                  <md-option ng-repeat="(firmware, firmwareText) in firmwares[device.category]" value="{{firmware}}">
-                    {{firmwareText}}
-                  </md-option>
-                </md-select>
-            </md-input-container>
-            <md-input-container class="add-app-title">
-                <label>{{ 'DEVICE_PORT' | translate }}</label>
-                <input ng-model="port" ng-trim="true" ng-enter="f.runAndFlash()">
-            </md-input-container>
+            <div ng-repeat="firm in tree.children">
+                <div ng-hide="firm.issoftware">
+                    <label>{{firm.name}}</label>
+                    <label>{{firm.ftype}}</label>
+                    <md-input-container class="add-app-title">
+                        <label>{{ 'DEVICE_PORT' | translate }}</label>
+                        <input ng-model="firm.fport" ng-trim="true" ng-enter="f.runAndFlash()">
+                    </md-input-container>
+                </div>
+            </div>
         </md-content>
     </md-dialog-content>
     

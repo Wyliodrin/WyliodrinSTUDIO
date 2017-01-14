@@ -36,18 +36,21 @@ function init(token, userid) {
       }
     };
 
-    chrome.runtime.getPlatformInfo (function (system)
+    if (settings.platform.CHROME)
     {
-      mixpanel.os = system.os;
-      mixpanel.architecture = system.arch;
-      payload.$set_once.$os = mixpanel.os;
-      payload.version = settings.VERSION;
-      payload.ui_lang = ln;
-      var data = new Buffer (JSON.stringify(payload)).toString ('base64');
-      var url = api + '/engage?data=' + data;
+      chrome.runtime.getPlatformInfo (function (system)
+      {
+        mixpanel.os = system.os;
+        mixpanel.architecture = system.arch;
+        payload.$set_once.$os = mixpanel.os;
+        payload.version = settings.VERSION;
+        payload.ui_lang = ln;
+        var data = new Buffer (JSON.stringify(payload)).toString ('base64');
+        var url = api + '/engage?data=' + data;
 
-      $.get(url);
-    });
+        $.get(url);
+      });
+    }
   }
 }
 

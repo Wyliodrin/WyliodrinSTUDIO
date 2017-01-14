@@ -319,7 +319,7 @@
 
                     <div flex="{{showXterm?65:100}}" layout="row">
                         <div class="projectTree" layout="row">
-                          <md-content treecontrol class="tree-classic" tree-model="project.tree" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name + (node.issoftware?" (Software)":"") + (node.isfirmware?" (Firmware)":"")}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
+                          <md-content treecontrol class="tree-classic" tree-model="project.tree[0].children" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
 
                           <div style="position:absolute; bottom:60px;"><!--butoane-->
                             <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">

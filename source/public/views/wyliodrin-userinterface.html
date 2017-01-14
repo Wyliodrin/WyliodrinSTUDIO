@@ -237,6 +237,16 @@
                 </md-tab-body>
             </md-tab> -->
             <md-tab ng-disabled="project_disable">
+              <md-tab-label>{{ 'PROJECT_README' | translate }}</md-tab-label>
+              <md-tab-body>
+                <div ng-controller="ReadmeController as r">
+                  <div ng-bind-html="html" id="readme">
+                  </div>
+                  <a href="#" class="examplestatus" id="examplestatus" ng-click="r.edit()">{{ 'WYLIODRIN_USERINTERFACE_README_Edit' | translate }}</a>
+                </div>
+              </md-tab-body>
+            </md-tab>
+            <md-tab ng-disabled="project_disable">
                 <md-tab-label>{{ 'PROJECT_APPLICATION' | translate }}</md-tab-label>
                 <md-tab-body>
                     <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">

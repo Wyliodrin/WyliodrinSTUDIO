@@ -10,6 +10,11 @@ var _ = require ('lodash');
 
 var db = new dexie ("WyliodrinApp");
 
+db.version(6).stores ({
+	applications:"++id,name,date,main,dashboard,firmware,readme,visualproject,language,schematics",
+	settings:"key,value"
+});
+
 db.version(5).stores ({
 	applications:"++id,name,date,main,dashboard,firmware,visualproject,language,schematics",
 	settings:"key,value"
@@ -205,6 +210,12 @@ function storeVisualProject (id, visualproject)
 	db.applications.update (id, {visualproject:visualproject});
 }
 
+function storeReadme (id, readme)
+{
+	debug ('Store project '+id);
+	db.applications.update (id, {readme:readme});
+}
+
 function listProjects (done)
 {
 	debug ('List projects');
@@ -221,6 +232,7 @@ module.exports.retrieveProject = retrieveProject;
 module.exports.storeMain = storeMain;
 module.exports.retrieveValue = retrieveValue;
 module.exports.storeValue = storeValue;
+module.exports.storeReadme = storeReadme;
 module.exports.storeFirmware = storeFirmware;
 module.exports.storeVisualProject = storeVisualProject;
 module.exports.storeWorkingProject = storeWorkingProject;

@@ -14,6 +14,13 @@ module.exports = function(grunt) {
 
   var manifest = require ('./manifest.json');
 
+  var pack = grunt.file.readJSON('package.json');
+
+  var libs = _.keys (pack.dependencies);
+  libs.push ('settings');
+
+  // console.log (libs);
+
   var tasks = {
     jshint: {
       files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/red/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/chrome/interpreter.js'],
@@ -38,6 +45,7 @@ module.exports = function(grunt) {
           'build/wyliodrin.js': ['source/chrome/app.js']
         },
         options: {
+          external: null,
           browserifyOptions: {
             debug: process.env.DEBUG_WYLIODRIN && process.env.DEBUG_WYLIODRIN !== ''
           },
@@ -66,11 +74,24 @@ module.exports = function(grunt) {
           'build/public/blockly/blockly.js': ['source/public/blockly/blockly.js']
         },
         options: {
+          external: null,
           transform: [
                   ["brfs", {}]
                ],
-        }
+        },
       },
+      vendor: {
+          src: [],
+          dest: 'build/public/vendor.js',
+          options: {
+            external: null,
+            require: libs
+          }
+        },
+      options:{
+        external: libs,
+        transform: [["brfs", {}]]
+      }
       // streamsproject: {
       //   files: {
       //     'build/public/red/blockly.js': ['source/public/blockly/blockly.js']

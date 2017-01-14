@@ -143,8 +143,6 @@ settings.MAKEFILE_STOARGE = makefile;
 settings.MAKE_FIRMWARE = makefileplus;
 settings.MAKE_OWN_FIRMWARE = makefileplusplus;
 
-settings.EXAMPLE = example;
-
 settings.INSTALL = install;
 
 settings.TRANSLATE = translate;

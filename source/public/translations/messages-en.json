@@ -888,5 +888,14 @@
   },
   "TREEno_root": {
     "message": "Cannot create to root folder (use New Firmware instead)."
+  },
+  "PROJECT_README": {
+    "message": "Readme"
+  },
+  "WYLIODRIN_USERINTERFACE_README_Edit": {
+    "message": "Edit"
+  },
+  "README_EDIT": {
+    "message": "Edit Application's Readme"
   }
 }

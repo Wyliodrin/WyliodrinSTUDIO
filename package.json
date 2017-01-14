@@ -49,6 +49,7 @@
     "highcharts-ng": "0.0.13",
     "jquery": "^3.1.1",
     "lodash": "^4.17.2",
+    "marked": "^0.3.6",
     "material-design-icons": "^3.0.1",
     "msgpack-lite": "^0.1.26",
     "mustache": "^2.3.0",
@@ -61,6 +62,7 @@
     "test": "true"
   },
   "browser": {
+    "examples": "./source/config/examples.js",
     "settings": "./source/settings.js",
     "library": "./source/public/library.js",
     "mixpanel": "./source/public/mixpanel.js"

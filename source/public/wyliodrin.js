@@ -75,6 +75,7 @@ require ('./controllers/UpdateController.js')();
 require ('./controllers/BoardController.js')();
 require ('./controllers/FirmwareExampleController.js')();
 require ('./controllers/SerialPortController.js')();
+require ('./controllers/ReadmeController.js')();
 require ('./controllers/ResistorColorCodeController.js')();
 require ('./controllers/InstallController.js')();
 require ('./controllers/SoftwareExampleController.js')();

@@ -11,6 +11,11 @@ var debug = require ('debug')('wyliodrin:lacy');
 
 var _ = require ('lodash');
 
+var $ = require ('jquery');
+
+// TODO another way to do this (shim?)
+window.jQuery = $;
+
 var angular = require ('angular');
 require ('angular-sanitize');
 require ('angular-translate');

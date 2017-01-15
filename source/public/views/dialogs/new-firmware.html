@@ -5,20 +5,23 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content>
-        <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
-            <md-select ng-model="contentPopupNewFirmware.type" aria-label="New Firmware">
-                <md-option ng-repeat="(key,firmware) in firmwares" value="{{key}}">
-                    {{firmware}}
-                </md-option>
-            </md-select>
-            <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
-                <input ng-model="contentPopupNewFirmware.text" type="text" aria-label="New Firmware">
+    <md-dialog-content ng-escape="a.cancel()">
+        <md-content layout-gt-sm="column" layout-padding>
+            <md-input-container>
+                <label>Select board</label>
+                <md-select ng-model="contentPopupNewFirmware.type">
+                    <md-option ng-repeat="(key,firmware) in firmwares" value="{{key}}">
+                        {{firmware}}
+                    </md-option>
+                </md-select>
             </md-input-container>
-        </md-input-container>
+            <md-input-container class="add-app-title">
+                <label>New Firmware</label>
+                <input minlength="3" ng-trim="true">
+            </md-input-container>
+        </md-content>
     </md-dialog-content>
-    <md-dialog-actions layout="row" style="border:0;">
-        <span flex></span>
+    <md-dialog-actions layout="row">
         <md-button ng-disabled="{{!(contentPopupNewFirmware.text && contentPopupNewFirmware.type)}}" ng-click="dialogFirmware.ok()">{{'Ok' | translate}}</md-button>
         <md-button ng-click="dialogFirmware.cancel()">{{'Cancel' | translate}}</md-button>
     </md-dialog-actions>

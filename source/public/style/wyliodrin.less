@@ -647,7 +647,7 @@ md-select-menu md-option[selected] {color: #fff !important;}
 
 md-option {color: rgba(255, 255, 255, .7) !important;}
 
-md-menu-item > .md-button, md-option .md-text {font-size:14px !important;}
+md-menu-item > .md-button, md-option .md-text {font-size:14px !important; color:#fff;}
 
 .signal-details {
 	height:90px;
@@ -873,8 +873,11 @@ color:#000;
 }
 
 .tree-classic {
-    padding: 15px 25px 0 0;
+    min-width: 211px;
+    margin: 0px;
+    position: relative;
     background: #fff;
+    padding: 10px 5px 0 5px;
 }
 
 .tree-classic li i {
@@ -942,4 +945,12 @@ outline:none;
 	}
 }
 
-.projectTree { min-width:200px; margin:0 5px; position:relative; background:#fff;}
+.projectTree { min-width:200px; margin:0px; position:relative; background:#fff;}
+
+#readme {
+	background: #fff;
+    padding:0 30px;
+    overflow-x: auto;
+    position: relative;
+    height: 100%;
+}

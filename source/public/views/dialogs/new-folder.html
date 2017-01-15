@@ -5,14 +5,16 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content>
-        <md-input-container md-no-float class="md-block" style="height: 30px; margin:0;">
-            <input ng-model="contentPopupNewFolder" type="text" aria-label="New Folder">
-        </md-input-container>
+    <md-dialog-content ng-escape="a.cancel()">
+        <md-content layout-gt-sm="row" layout-padding>
+            <md-input-container class="add-app-title">
+                <label>New Folder</label>
+                <input minlength="3" ng-trim="true">
+            </md-input-container>
+        </md-content>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-        <span flex></span>
         <md-button ng-disabled="!contentPopupNewFolder" ng-click="dialogFolder.ok()">{{'Ok' | translate}}</md-button>
         <md-button ng-click="dialogFolder.cancel()">{{'Cancel' | translate}}</md-button>
     </md-dialog-actions>

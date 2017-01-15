@@ -5,8 +5,10 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content>
-        <h3>{{'want_to_delete' | translate}} {{ selected.name }}?</h3>
+    <md-dialog-content ng-escape="a.cancel()">
+        <md-content layout-gt-sm="row" layout-padding>
+            <h3>{{'want_to_delete' | translate}} <span style="color:#e54225">{{ selected.name }}?</span></h3>
+        </md-content>
     </md-dialog-content>
     <md-dialog-actions layout="row">
         <span flex></span>

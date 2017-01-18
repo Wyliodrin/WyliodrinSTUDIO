@@ -26,6 +26,8 @@ setTimeout (function ()
   	var devicesList = devs.list;
   	var devicesTree = devs.tree;
 
+  	var applications = [];
+
   	var graph = new joint.dia.Graph();
 	var paper = new joint.dia.Paper({
 	    el: $('#graph-holder'),
@@ -85,9 +87,6 @@ setTimeout (function ()
 
   	network.status = function (device)
   	{
-  		console.log ('network status');
-  		console.log (device);
-  		console.log (rectangleDevices);
   		var rect = rectangleDevices[device.id].rect;
   		var links = rectangleDevices[device.id].links;
 
@@ -218,8 +217,6 @@ setTimeout (function ()
 				var rectStroke;
 				var textFill;
 				var dasharray;
-				console.log (board.name);
-				console.log (board.address);
 				if (board.status === 'CONNECTED')
 				{
 					rectStroke = 'green';
@@ -243,6 +240,14 @@ setTimeout (function ()
 				// 	boardImage = '/public/drawable/arduinoyun.png';
 				// else if (v === 'router')
 				// 	boardImage = '/public/drawable/router.png';
+				var boardProject;
+				if (network.deploy)
+				{
+					var boardProjectId = network.deploy.network[board.id];
+					boardProject = _.find (applications, function (app){
+						return app.id === boardProjectId;
+					});
+				}
 				boardImage = settings.boards[board.properties.category].picture;
 				if (dasharray)
 					rect = new joint.shapes.basic.embeddedRect ({
@@ -263,7 +268,7 @@ setTimeout (function ()
 							rect: {stroke: rectStroke},
 							image:{'xlink:href': boardImage},
 							'.name': {text: board.name, fill: textFill},
-							'.address':{text: board.ip}
+							'.address':{text: (boardProject?boardProject:board.ip)}
 						}
 					});
 				rectangleDevices[board.id] = {rect: rect, links:[]};
@@ -360,9 +365,10 @@ setTimeout (function ()
 	}
 	
 	
-	function showMenu (selectedBoard, selectedX, selectedY)
-	{
-		if (action === 'network')
+	var selectedBoard;
+	var selectedX;
+	var selectedY;
+		if (!network.deploy)
 		{
 			$.contextMenu({
 			    // define which elements trigger this menu 
@@ -408,13 +414,12 @@ setTimeout (function ()
 		        }
 			});
 		}
-		else if (action === 'deploy') 
+		else 
 		{
-			network.getAssignedProject (selectedBoard);
 			var appsCallbackFunction = function (key, opt){
-				network.deploy.network[selectedBoard] = key;
+				network.deploy.network[selectedBoard.id] = key;
 			};
-			network.getApplications (function (apps){
+			//network.getApplications (function (apps){
 				$.contextMenu({
 				    // define which elements trigger this menu 
 				    selector: "#graph-holder", 
@@ -427,55 +432,46 @@ setTimeout (function ()
 				    		} 
 			        	};
 
-			        	for (var a=0; a<apps.length; a++)
+			        	for (var a=0; a<applications.length; a++)
 			        	{
-			        		menu.items[apps[a].id] = {
-			        			name: apps[a].title,
+			        		menu.items[applications[a].id] = {
+			        			name: applications[a].title,
 			        			callback: appsCallbackFunction
 			        		};
+			        		if (network.deploy.network[selectedBoard.id] == applications[a].id)
+			        			menu.items[applications[a].id].icon = "shell";
 			        	}
-			        	//TODO
-			        	// if (selectedBoard.status === 'CONNECTED' || 
-			        	// 	selectedBoard.status === 'SEPARATOR')
-				        // 	{
-				        		
-						      //  menu.items.connect=  {
-						      //   	name: "Disconnect",
-						      //   	icon: "disconnect",
-						      //   	callback: function(key, opt){
-						      //   		network.disconnectDevice (selectedBoard);
-						      //   	}
-						      //   };
-				        // 	}
-				        // else
-				        // {
-				        // 	menu.items.connect= {
-					       //  	name: "Connect", 
-					       //  	icon: "connect",
-					       //  	callback: function(key, opt){network.connectDevice (selectedBoard);}
-					       //  };
-				        // }
 				        return menu;
 			        }
 				});
-			});
+			//});
 		}
 
-		$('#graph-holder').contextMenu();
-	}
+		
 
 	
 
 	paper.on('cell:pointerclick', function(cellView, evt, x, y) { 
-		var selectedX = x;
-		var selectedY = y;
-		var selectedBoard = getDeviceById (cellView.model.id);
-		if (selectedBoard && selectedBoard.id)
-			showMenu (selectedBoard, selectedX, selectedY)
+		selectedX = x;
+		selectedY = y;
+		selectedBoard = getDeviceById (cellView.model.id);
+		$('#graph-holder').contextMenu();
+		
 	});
 
-	buildGraph ();
-  	drawGraph ();
+	if (network.deploy)
+	{
+		network.getApplications (function (apps){
+			applications = apps;
+			buildGraph ();
+			drawGraph ();
+		});
+	}
+	else
+	{
+		buildGraph ();
+  		drawGraph ();
+  	}
   
 }, 1000);
 

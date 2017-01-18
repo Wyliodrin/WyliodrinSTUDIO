@@ -72,13 +72,6 @@ module.exports = function ()
 						done ([]);
 				});
 			},
-			getAssignedProject: function (device)
-			{
-				if ($scope.deploy)
-				{
-					console.log ('deploy exists');
-				}
-			},
 			getDevices: function (){
 				return {
 					tree: devicesTreeCache,

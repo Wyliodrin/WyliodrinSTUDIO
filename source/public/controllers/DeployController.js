@@ -45,12 +45,19 @@ module.exports = function ()
 		
 		this.saveDeploy = function ()
 		{
-			library.addDeployment ('depl'+nr, $scope.deploy, function (err, id){
+			if ($scope.deploy.id)
+			{
+				library.updateDeployment ($scope.deploy);
+				$mdDialog.hide();
+			}
+			else
+			{
+				library.addDeployment ('depl'+nr, $scope.deploy, function (err, id){
 				if (!err)
-					$mdDialog.hide();
-			});
-			nr++;
-			
+						$mdDialog.hide();
+				});
+				nr++;	
+			}
 		};
 
 		this.cancel = function ()

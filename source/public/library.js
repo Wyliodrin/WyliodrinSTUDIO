@@ -10,10 +10,11 @@ var _ = require ('lodash');
 
 var db = new dexie ("WyliodrinApp");
 
+
 db.version(6).stores ({
 	applications:"++id,name,date,main,dashboard,firmware,visualproject,language,schematics",
 	settings:"key,value",
-	deployments:"name, network, dashboard"
+	deployments:"++id, name, network, dashboard"
 });
 
 db.version(5).stores ({
@@ -70,7 +71,6 @@ function add (value, language, done, devicecategory)
 			if (done) done (null, id);
 		}).catch (function (err)
 		{
-			console.log (err);
 			debug (err);
 			if (done) done (err);
 		});
@@ -239,6 +239,12 @@ function listDeployments (done)
 	});
 }
 
+function updateDeployment (deployment)
+{
+	debug ('Update deployment');
+	db.deployments.update (deployment.id, deployment);
+}
+
 module.exports.addDeployment = addDeployment;
 module.exports.listProjects = listProjects;
 module.exports.listDeployments = listDeployments;
@@ -253,5 +259,6 @@ module.exports.storeWorkingProject = storeWorkingProject;
 module.exports.retrieveWorkingProject = retrieveWorkingProject;
 module.exports.storeDashboard = storeDashboard;
 module.exports.storeSchematics = storeSchematics;
+module.exports.updateDeployment = updateDeployment;
 module.exports.add = add;
 module.exports.rename = rename;

@@ -28,32 +28,33 @@ module.exports = function ()
 
 		var networkVersion = -1;
 
-
 		$wydevices.on ('devices', function (devicesList, devicesTree, version){
-			if ($attrs.action === 'deploy' && $scope.editDeploy)
-			{
-				devicesListCache = _.clone (devicesList);
-				devicesTreeCache = _.clone (devicesTree);
-				var deployDevices = $scope.deploy.network;
-				//TODO
-				_.forEach (deployDevices, function (device){
-					if (!devicesTreeCache[device.id])
-					{
-						device.status = 'MISSING';
-						devicesList.push (device);
-						devicesTree[device.id] = device;
-					}
-				});
-				
-			}
-			else
-			{
-				devicesListCache = devicesList;
-				devicesTreeCache = devicesTree;
-			}
-
 			if (version !== networkVersion)
+			{
+				if ($attrs.action === 'deploy' && $scope.editDeploy)
+				{
+					devicesListCache = _.clone (devicesList);
+					devicesTreeCache = _.clone (devicesTree);
+					var deployDevices = $scope.deploy.network;
+					
+					_.forEach (deployDevices, function (device){
+						if (!devicesTreeCache[device.id])
+						{
+							device.status = 'MISSING';
+							devicesList.push (device);
+							devicesTree[device.id] = device;
+						}
+					});
+					
+				}
+				else
+				{
+					devicesListCache = devicesList;
+					devicesTreeCache = devicesTree;
+				}
 				network.devices(devicesListCache, devicesTreeCache);
+				networkVersion = version;
+			}
 		});
 
 		var network = {
@@ -163,11 +164,8 @@ module.exports = function ()
 			      		}
 			      		$wydevices.connect (device.uplink, device.id, options);
 
-
-
 			      		$wydevices.on ('connection_timeout', device.id, function ()
 						{
-							console.log('on connection_timeout');
 							var message = $mdDialog.confirm()
 						          .title($filter('translate')('DEVICE_CONNECTION_TIMEOUT'))
 						          .ok($filter('translate')('OK'));
@@ -176,7 +174,6 @@ module.exports = function ()
 
 						$wydevices.on ('connection_error', device.id, function ()
 						{
-							console.log('on connection_error');
 							var message = $mdDialog.confirm()
 						          .title($filter('translate')('DEVICE_CONNECTION_ERROR'))
 						          .ok($filter('translate')('OK'));
@@ -194,8 +191,6 @@ module.exports = function ()
 
 						$wydevices.on ('status', device.id, function (device)
 						{
-							console.log ('got status in controller');
-							console.log (device);
 							var status = device.status;
 							if (status === 'INSTALL')
 							{
@@ -244,6 +239,6 @@ module.exports = function ()
 			$wydevices.getDevices();
 		};
 		
-		setTimeout(getDevices, 1000);
+		setTimeout(getDevices, 100);
 	});
 };

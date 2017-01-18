@@ -204,10 +204,6 @@ module.exports = function ()
 		};
 
 		this.openMenu = function($mdOpenMenu, ev) {
-	      // originatorEv = ev;
-	      // var connectedDevices = $wydevices.getConnectedDevices();
-	      // for (var i=0; i<connectedDevices.length; i++)
-	      // 	connectedDevices[i].selected = false;
 	      library.listDeployments (function (err, depls){
 				if (err)
 					$scope.deployments = [];
@@ -305,7 +301,6 @@ module.exports = function ()
 
 
 		$wyapp.on ('deploy', function (deploy){
-			console.log ('on deploy');
 			$mdDialog.show({
 		      controller: 'DeployController',
 		      controllerAs: 'd',

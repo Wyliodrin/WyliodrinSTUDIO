@@ -42,7 +42,6 @@ app.factory ('$wydevices', function ($http)
 		for (var m=0; m<mdnsDevices.length; m++)
     	{
     		device = mdnsDevices[m];
-    		//console.log (device);
 
     		if (devicesTree[device.id])
     		{
@@ -222,9 +221,6 @@ app.factory ('$wydevices', function ($http)
 
 			device._WyliodrinDevice.on ('message', function (t, d)
 			{
-				console.log ('got message');
-				console.log (t);
-				console.log (d);
 				if (t === 'i')
 				{
 					device.name = d.n;
@@ -279,9 +275,6 @@ app.factory ('$wydevices', function ($http)
 		},
 		send: function (tag, data, deviceId)
 		{
-			console.log ('wydevices send ');
-			console.log (tag);
-			console.log (data);
 			devicesTree[deviceId]._WyliodrinDevice.send (tag, data);
 		},
 
@@ -298,26 +291,17 @@ app.factory ('$wydevices', function ($http)
 			{
 				if (_.isString(arguments[0]) && _.isFunction (arguments[1]))
 				{
-					console.log ('on arguments');
-					console.log (arguments);
 					devicesEmitter.on.apply (devicesEmitter, arguments);
 				}
 				else
 				{
-					console.log ('on else');
 					var device = devicesTree[arguments[1]];
-					console.log (device);
-					console.log (device._emitter !== undefined);
 					if (device && device._emitter)
 					{
 						var args = [arguments[0]];
 						for (var a=2; a<arguments.length; a++)
 							args.push (arguments[a]);
 
-
-						//var args = Array.prototype.slice.call (arguments);
-						//args.splice(1,1);
-						console.log (args);
 						device._emitter.on.apply (device._emitter, args);
 					}
 				}

@@ -36,7 +36,7 @@ module.exports = function ()
 					devicesListCache = _.clone (devicesList);
 					devicesTreeCache = _.clone (devicesTree);
 					var deployDevices = $scope.deploy.network;
-					
+
 					_.forEach (deployDevices, function (device){
 						if (!devicesTreeCache[device.id])
 						{
@@ -66,7 +66,6 @@ module.exports = function ()
 			getApplications: function (done)
 			{
 				library.listProjects (function (err, projects){
-					console.log (projects);
 					if (err === null)
 						done (projects);
 					else

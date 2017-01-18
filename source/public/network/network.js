@@ -80,8 +80,16 @@ setTimeout (function ()
   		devicesList = _devicesList;
   		devicesTree = _devicesTree;
 
-  		buildGraph ();
-  		drawGraph ();
+  		if (computeGraphQueue.length > 0)
+  		{
+  			computeGraphQueue.push ({list:_devicesList, tree:_devicesTree});
+  		}
+  		else
+  		{
+  			computeGraphQueue.push ({list:_devicesList, tree:_devicesTree});
+  			buildGraph ();
+  			drawGraph ();
+  		}
   	};
 
   	network.status = function (device)
@@ -101,7 +109,7 @@ setTimeout (function ()
   			rect.attr({
   				rect: {stroke: 'green'},
   				'.name':{fill: 'green'},
-  				'.address': {text: (deployProject?deployPreoect:device.ip)}});
+  				'.address': {text: (deployProject?deployProject:device.ip)}});
   			links.forEach (function (link){
   				link.attr({'.connection':{stroke:'green'}});
   			});
@@ -366,6 +374,14 @@ setTimeout (function ()
 		});
 		graph.clear();
 		graph.addCells(_.union(rects, links));
+		computeGraphQueue.splice (0,1);
+		if (computeGraphQueue.length > 0)
+		{
+			devicesList = computeGraphQueue[0].list;
+			devicesTree = computeGraphQueue[0].tree;
+			buildGraph ();
+			drawGraph ();
+		}
 	}
 	
 	

@@ -232,8 +232,6 @@ function listDeployments (done)
 {
 	debug ('List deployments');
 	db.deployments.toArray (function (list){
-		console.log ('list depls');
-		console.log (list);
 		debug ('List deployments '+list);
 		done (null, list);
 	});

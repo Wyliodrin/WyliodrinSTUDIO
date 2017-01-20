@@ -8,7 +8,7 @@ window.jQuery = $;
 var angular = require ('angular');
 var angular_material = require ('angular-material');
 
-var app = angular.module ("wyliodrinApp", ['ngMaterial'], function ($provide)
+var app = angular.module ("wyliodrinAppNotebook", ['ngMaterial'], function ($provide)
 {
 	$provide.decorator('$window', function($delegate) 
 	{
@@ -23,8 +23,3 @@ var app = angular.module ("wyliodrinApp", ['ngMaterial'], function ($provide)
       return $delegate;
     });
 });
-
-
-
-
-

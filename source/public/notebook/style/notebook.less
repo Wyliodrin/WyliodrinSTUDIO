@@ -1,0 +1,87 @@
+// @import (inline) "../../../../node_modules/angular/angular-csp.css";
+@import (inline) "../../../../node_modules/angular-material/angular-material.css";
+
+
+
+body {font-size:13px; color:#000; padding:10px;-webkit-user-select: text; overflow-y:auto;}
+
+
+.options .md-button, .options2 .md-button {
+	color:#000;
+	min-width:initial;
+	min-height:initial;
+	padding:6;
+	margin:0px;
+}
+
+.options .md-button:hover, .options2 .md-button:hover {
+	background:#e54225;
+
+	img {filter: invert(100%);}
+}
+
+.section-regular, .section-active {
+	padding:0 !important;
+}
+
+.section-active .md-list-item-text {
+	padding:50px 20px 10px 20px;
+	border:#090b0d solid 2px;
+	position:relative;
+	margin-bottom:10px;
+	width:100%;
+}
+
+.section-regular .md-list-item-text {
+	padding:10px 20px 10px 20px;
+	border:#fff solid 1px;
+	position:relative;
+	margin-bottom:10px;
+	width:100%;
+}
+
+.section-regular .md-list-item-text:hover {
+	border:#ddd solid 1px;
+}
+
+.section-active .md-list-item-text .options{
+	padding:0px;
+	position:absolute;
+	right:6px;
+	top:6px;
+}
+
+.section-active .md-list-item-text .options2{
+	padding:0px;
+	position:absolute;
+	left:6px;
+	top:6px;
+}
+
+pre {
+	border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+    font-size:13px;
+    padding:0px 10px;
+}
+
+md-input-container {
+	margin:0;
+}
+
+md-select-menu md-content md-option[selected]{
+	color:#e54225 !important;
+}
+
+md-select-menu md-option:focus[selected]{
+    color:#e54225 !important;
+}
+
+md-select:not([disabled]):focus md-select-value{
+	border-bottom-color:#e54225 !important;
+}
+
+.md-select-value{
+	font-weight: bold;
+}

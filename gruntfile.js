@@ -357,6 +357,32 @@ module.exports = function(grunt) {
     fs.writeFileSync ('source/config/makefile.js', '"use strict";\n module.exports = '+JSON.stringify (makefile)+';');
   });
 
+
+  grunt.registerTask ('makefile_v2', 'Makefile_v2', function ()////////////////////////////////////////////////
+  {
+    function recurse(folder){
+      var ret = {}
+      var content = fs.readdirSync(folder);
+      _.each(content, function (file)
+      {
+        var p = path.join(folder,file);
+        if (fs.lstatSync(p).isDirectory())
+        {
+          ret[file] = recurse(p);
+        }
+        else
+        {
+          var name = path.extname(file).substring(1);
+          ret[name] = fs.readFileSync(p).toString();
+        }
+      });
+      return ret;
+    }
+    var makefile = recurse("source/embedded/makefile");
+    fs.writeFileSync ('source/config/makefile_v2.js', '"use strict";\n module.exports = '+JSON.stringify (makefile)+';');
+  });
+
+
   grunt.registerTask ('example', 'Example', function ()
   {
     var EXAMPLE_FOLDER_SOFTWARE = 'source/embedded/example/software';
@@ -549,7 +575,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'makefile', 'languages', 'example', 'install', 'jshint', 
+  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'makefile', 'makefile_v2', 'languages', 'example', 'install', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',

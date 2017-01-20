@@ -1,15 +1,15 @@
 <md-dialog aria-label="New File">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>New File</h2>
+            <h2>{{ 'New_file' | translate }}</h2>
         </div>
     </md-toolbar>
 
     <md-dialog-content ng-escape="a.cancel()">
         <md-content layout-gt-sm="row" layout-padding>
             <md-input-container class="add-app-title">
-                <label>New File</label>
-                <input minlength="3" ng-trim="true">
+                <label>{{'New_file' | translate}}</label>
+                <input ng-model="contentPopupNewFile" minlength="1" ng-trim="true">
             </md-input-container>
         </md-content>
     </md-dialog-content>

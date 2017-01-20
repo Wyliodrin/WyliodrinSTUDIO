@@ -88,6 +88,7 @@ app.factory ('$wydevice', function ($http)
 					deviceService.device.category = d.c;
 					deviceService.device.network = d.i;
 					deviceService.device.platform = d.p || 'linux';
+					deviceService.device.peripherals = d.pf;
 					that.emit ('status', status);
 				}
 				else

@@ -5,6 +5,7 @@ var angular = require ('angular');
 var library = require ('library');
 
 var settings = require ('settings');
+var MAKEFILES_V2 = settings.MAKEFILE_V2;
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:ProjectController');
 
@@ -33,6 +34,11 @@ var lang = ace.acequire("ace/lib/lang");
 var languageTools = ace.acequire ('ace/ext/language_tools');
 var ace_ui = require ('angular-ui-ace');
 var XTerm = require ('xterm');
+
+var MAPPING = { ////////////////////////////////////////////////////////////////////////////////////
+	'0xea60' : 'openmote',
+	'0x0043' : 'arduino'
+};
 
 var fs = require ('fs');
 
@@ -322,7 +328,7 @@ var app = angular.module ('wyliodrinApp');
 			$mdDialog.show({
 				controller: function ($scope)
 				{
-					$scope.contentPopupNewFolder = that.getTranslateVars().new_folder;
+					$scope.contentPopupNewFolder = "";
 					this.ok = function ()
 					{
 						$mdDialog.hide ();
@@ -347,7 +353,7 @@ var app = angular.module ('wyliodrinApp');
 			$mdDialog.show({
 				controller: function ($scope)
 				{
-					$scope.contentPopupNewFile = that.getTranslateVars().new_file;
+					$scope.contentPopupNewFile = "";
 					this.ok = function ()
 					{
 						$mdDialog.hide ();
@@ -397,7 +403,7 @@ var app = angular.module ('wyliodrinApp');
 				controller: function ($scope)
 				{
 					//$scope.tree.firmwares=settings.FIRMWARES[$scope.device.category];
-					$scope.firmwares=settings.FIRMWARES.raspberrypi;
+					$scope.firmwares=settings.FIRMWARES_V2;
 
 					$scope.contentPopupNewFirmware={};
 					$scope.contentPopupNewFirmware.text=that.getTranslateVars().new_firmware;
@@ -956,7 +962,7 @@ var app = angular.module ('wyliodrinApp');
 		$wyapp.on ('send', function ()
 		{
 			debug ('Run');
-			function run (tree, withFirmware)
+			function run (tree, ports, withFirmware)
 			{
 
 				if (typeof withFirmware === 'undefined') { withFirmware = false; }
@@ -970,19 +976,59 @@ var app = angular.module ('wyliodrinApp');
 
 				var runmessage = {a:'start', l:$scope.project.language, t:tree, onlysoft:(!withFirmware)};
 
+				console.log(ports);
+
 				//add wyliodrin firmware makefile
 				if (withFirmware)
 				{
-					for (var i = 1 ; i < tree.children.length ; i++)
+					_.each (tree.children, function (child)
 					{
-						tree.children[i].m = 
-							settings.MAKE_FIRMWARE[$wydevice.device.category][tree.children[i].ftype](
-								'app_project',
-								null,
-								tree.children[i].fport
-							);
-						tree.children[i].m2 = settings.MAKE_OWN_FIRMWARE[tree.children[i].ftype];
-					}
+						if (child.isfirmware)
+						{
+							child.fport = [];
+							if ( _.filter(ports, { 'pick' : child.name } ).length === 0){
+								child.enable = false;
+								return;
+								//no more code
+							}
+							else{
+								child.enable = true;
+								//code runs below
+							}
+
+							var found = _.filter(ports, { 'pick' : child.name } );
+
+							_.each (found, function (port)
+							  {
+							  	child.fport.push(port.p);
+							  });
+
+							var m = {};
+							var make_os = MAKEFILES_V2[$wydevice.device.platform];
+
+							if (make_os.compileHere && make_os.compileHere[$wydevice.device.category] && make_os.compileHere[$wydevice.device.category][child.ftype])
+							{
+								//if make compile here exists
+								m.ch = make_os.compileHere[$wydevice.device.category][child.ftype];
+								m.ca = null;
+								m.s = null;
+							}
+							else
+							{
+								m.ch = null;
+								m.ca = make_os.compileAway[child.ftype];
+								m.s = make_os.send[child.ftype];
+							}
+							m.f = make_os.flash[$wydevice.device.category][child.ftype];
+
+							child.m = m;
+								/*settings.MAKE_FIRMWARE[$wydevice.device.category][tree.children[i].ftype](
+									'app_project',
+									null,
+									tree.children[i].fport
+								);*/
+						}
+					});
 				}
 
 
@@ -1013,6 +1059,7 @@ var app = angular.module ('wyliodrinApp');
 				}
 			}
 
+
 			//var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
 			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
 			{
@@ -1025,16 +1072,19 @@ var app = angular.module ('wyliodrinApp');
 				      {
 
 				      	$scope.tree = that.getTree();
+				      	$scope.map = MAPPING; //externalize this
+
+				      	$scope.ports = _.cloneDeep($wydevice.device.peripherals);
 
 				      	this.runAndFlash = function ()
 				      	{
-				      		run ($scope.tree, true);
+				      		run ($scope.tree, $scope.ports, true);
 				      		$mdDialog.hide ();
 				      	};
 
 				      	this.run = function ()
 				      	{
-				      		run ($scope.tree, false);
+				      		run ($scope.tree, $scope.ports, false);
 				      		$mdDialog.hide ();
 				      	};
 				      },

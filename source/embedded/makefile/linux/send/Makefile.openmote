@@ -1,0 +1,7 @@
+all:
+	zip -r archive.zip * -x Makefile.send -x Makefile.flash
+	echo "\nCompiling please wait...\n"
+	curl -F "file=@archive.zip" https://abcd2017-serbanrazvan.c9users.io/ > Makefile.temp
+	if [ `cat Makefile.temp | head -c 1` = 'z' ] ; then (echo -n "https://abcd2017-serbanrazvan.c9users.io/getResult/" ; cat Makefile.temp )| xargs wget -O Makefile.temp2 && echo \n && cat Makefile.temp2 && echo \n \n && false ; else (echo -n "https://abcd2017-serbanrazvan.c9users.io/getResult/" ; cat Makefile.temp )| xargs wget -O result.zip ; fi
+	#(echo -n "https://abcd2017-serbanrazvan.c9users.io/getResult/" ; cat Makefile.temp )| xargs wget -O result.zip
+	rm -rf /wyliodrin/RIOT/examples/wyliodrin_project && mkdir /wyliodrin/RIOT/examples/wyliodrin_project && unzip result.zip -d /wyliodrin/RIOT/examples/wyliodrin_project

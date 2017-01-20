@@ -55,11 +55,12 @@ function add (value, language, done, devicecategory)
 		}*/ //WHEN CONNECTED USE THIS BLUEPRINT // COMMENTED BECAUSE BLUEPRINT IS DIFFERENT FROM OUR PROJECT
 		if (!startproject)
 		{
+			var ext = _.filter(settings.LANGUAGES, { 'title' : language } )[0].ext;
 			startproject = {
 				tree: 
 				[{name:title, id:1,isdir:true,isroot:true,children:
 					[{name:language,id:2,isdir:true,issoftware:true,children:
-						[{name:'main',id:3,isdir:false,ismain:true,content:''}]
+						[{name:'main'+ext,id:3,isdir:false,ismain:true,content:''}]
 					}]
 				}],
 				language: language

@@ -1,0 +1,4 @@
+PORT ?= /dev/ttyUSB0
+
+all:
+	cd /wyliodrin/RIOT/examples/wyliodrin_project && make flash PORT="$(PORT)"

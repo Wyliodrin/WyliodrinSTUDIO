@@ -12,6 +12,7 @@ var translate = require ('./config/languages.js');
 var makefile = require ('./config/makefile.js');
 var makefileplus = require ('./config/makefileplus.js');
 var makefileplusplus = require ('./config/makefileplusplus.js');
+var makefile_v2 = require('./config/makefile_v2.js');
 
 var settings = {
 	debug: require ('./config/debug.js')
@@ -96,6 +97,11 @@ settings.STYLE_NAMES = {
 	'slider': 'Slider'
 };
 
+settings.FIRMWARES_V2 = {
+	'arduino':'Arduino',
+	'openmote':'Open Mote'
+};
+
 settings.FIRMWARES = {
 	'raspberrypi':
 	{
@@ -139,9 +145,13 @@ settings.VERSION = JSON.parse(fs.readFileSync (__dirname+'/../manifest.json').to
 
 settings.SENDER = 6000;
 
+//old
 settings.MAKEFILE_STOARGE = makefile;
 settings.MAKE_FIRMWARE = makefileplus;
 settings.MAKE_OWN_FIRMWARE = makefileplusplus;
+// /old
+
+settings.MAKEFILE_V2 = makefile_v2;
 
 settings.INSTALL = install;
 
@@ -499,6 +509,7 @@ settings.LANGUAGES = [
 	{
 		title: 'visual',
 		text: 'Visual',
+		ext: '.visual',
 		packagemanager: 
 		{
 			enable: false
@@ -507,6 +518,7 @@ settings.LANGUAGES = [
 	{
 		title: 'streams',
 		text: 'Streams',
+		ext: '.stream',
 		packagemanager: 
 		{
 			enable: false
@@ -515,6 +527,7 @@ settings.LANGUAGES = [
 	{
 		title: 'nodejs',
 		text: 'Javascript',
+		ext: '.js',
 		packagemanager: 
 		{
 			enable: true,
@@ -598,6 +611,7 @@ settings.LANGUAGES = [
 	{
 		title: 'python',
 		text: 'Python',
+		ext: '.py',
 		packagemanager: 
 		{
 			enable: true,
@@ -689,6 +703,7 @@ settings.LANGUAGES = [
 	{
 		title: 'shell',
 		text: 'Shell Script',
+		ext: '.sh',
 		packagemanager: 
 		{
 			enable: false
@@ -697,6 +712,7 @@ settings.LANGUAGES = [
 	{
 		title: 'csharp',
 		text: 'C#',
+		ext: '.cs',
 		packagemanager: 
 		{
 			enable: false
@@ -705,6 +721,7 @@ settings.LANGUAGES = [
 	{
 		title: 'powershell',
 		text: 'PowerShell',
+		ext: 'ps1',
 		packagemanager: 
 		{
 			enable: false

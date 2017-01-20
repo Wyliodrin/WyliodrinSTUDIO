@@ -1,7 +1,7 @@
 <md-dialog aria-label="New Firmware">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>New Firmware</h2>
+            <h2>{{ 'New_firmware' | translate}}</h2>
         </div>
     </md-toolbar>
 
@@ -16,13 +16,13 @@
                 </md-select>
             </md-input-container>
             <md-input-container class="add-app-title">
-                <label>New Firmware</label>
-                <input minlength="3" ng-trim="true">
+                <label>{{ 'New_firmware' | translate}}</label>
+                <input ng-model="contentPopupNewFirmware.text" minlength="1" ng-trim="true">
             </md-input-container>
         </md-content>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-        <md-button ng-disabled="{{!(contentPopupNewFirmware.text && contentPopupNewFirmware.type)}}" ng-click="dialogFirmware.ok()">{{'Ok' | translate}}</md-button>
+        <md-button ng-disabled="!contentPopupNewFirmware.text || !contentPopupNewFirmware.type" ng-click="dialogFirmware.ok()">{{'Ok' | translate}}</md-button>
         <md-button ng-click="dialogFirmware.cancel()">{{'Cancel' | translate}}</md-button>
     </md-dialog-actions>
 

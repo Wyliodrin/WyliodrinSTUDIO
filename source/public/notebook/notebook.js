@@ -101,6 +101,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     _editor.$blockScrolling = Infinity;
     _editor.getSession().setTabSize (2);
     _editor.getSession().setUseSoftTabs (true);
+    _editor.setOptions ({minLines:6, maxLines: Infinity});
   };
   $scope.aceEditLoaded = function (_editor)
   {

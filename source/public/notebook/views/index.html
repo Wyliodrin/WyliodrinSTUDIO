@@ -22,7 +22,7 @@
 		                      Stop
 		                    </md-tooltip>
 		                </md-button>
-			    		<md-button ng-show="item.type === 'code'" ng-click="n.reset (); $event.preventPropagation ();">
+			    		<md-button ng-show="item.type === 'code'" ng-click="n.reset(); $event.preventPropagation ();">
 		                    <img src="../img/reset-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Reset
@@ -86,7 +86,7 @@
                                               onChange: aceSoftwareChanged
                                             }" ng-model="item.text"></div>
                     <div ng-show="item.type==='code'">
-						<div style="height:300px" ui-ace="{
+						<div ui-ace="{
 	                                              advanced: {
 	                                                  enableSnippets: true,
 	                                                  enableBasicAutocompletion: true,
@@ -96,6 +96,7 @@
 	                                              showGutter: true,
 	                                              mode:'python',
 	                                              theme:'chrome',
+	                                              maxLines: Infinity,
 	                                              rendererOptions: { 
 	                                                fontSize: 14 
 	                                              },

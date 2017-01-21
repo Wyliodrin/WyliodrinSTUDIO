@@ -5,62 +5,101 @@
 		<link rel="stylesheet" href="../style/notebook.css">
 	</head>
 
-	<body style="background:#fff;" ng-app="wyliodrinAppNotebook">
+	<body style="background:#fff;" ng-app="wyliodrinAppNotebook" ng-controller="NotebookController as n">
 		<md-list>
-		  <md-list-item flex class="section-active">
+			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': $index === activeIndex, 'section-regular': $index !== activeIndex}" >
+			 	<div class="md-list-item-text" ng-click="n.activate($index)">
+			 		<div class="options" ng-show="$index == activeIndex">
+			    		<md-button ng-show="item.type === 'code'">
+		                    <img src="../img/run-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Run
+		                    </md-tooltip>
+		                </md-button>
+			    		<md-button ng-show="item.type === 'code'">
+		                    <img src="../img/reset-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Reset
+		                    </md-tooltip>
+		                </md-button>
+			    		<md-button ng-show="item.type === 'markdown'" ng-click="n.edit ($index); $event.stopPropagation ();">
+		                    <img src="../img/edit-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Edit
+		                    </md-tooltip>
+		                </md-button>
+				  		<md-button ng-show="items.length > 1" ng-click="n.delete ($index); $event.stopPropagation ();">
+		                    <img src="../img/delete-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Delete
+		                    </md-tooltip>
+		                </md-button>
+				  	</div>
+				  	<div class="options2" ng-show="$index == activeIndex">
+						<md-input-container style="margin-right: 10px;">
+							<md-select ng-model="item.type" aria-label="type">
+		                        <md-option value="code">Code</md-option>
+		                        <md-option value="markdown">Markdown</md-option>
+		                    </md-select>
+						</md-input-container>
+			    		<md-button ng-click="n.up ($index); $event.stopPropagation ();">
+		                    <img src="../img/up-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Move up
+		                    </md-tooltip>
+		                </md-button>
+			    		<md-button ng-click="n.down ($index); $event.stopPropagation ();">
+		                    <img src="../img/down-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Move down
+		                    </md-tooltip>
+		                </md-button>
+			    		<md-button ng-click="n.insert ($index); $event.stopPropagation ();">
+		                    <img src="../img/add-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Add new
+		                    </md-tooltip>
+		                </md-button>
+				  	</div>
+					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
+					<div ng-if="item.type==='markdown' && editIndex === $index" style="height:300px" ui-ace="{
+                                              advanced: {
+                                                  enableSnippets: true,
+                                                  enableBasicAutocompletion: true,
+                                                  enableLiveAutocompletion: true
+                                              },
+                                              useWrapMode : true,
+                                              showGutter: true,
+                                              mode:'markdown',
+                                              theme:'chrome',
+                                              rendererOptions: { 
+                                                fontSize: 14 
+                                              },
+                                              firstLineNumber: 1,
+                                              onLoad: aceEditLoaded,
+                                              onChange: aceSoftwareChanged
+                                            }" ng-model="item.text"></div>
+					<div ng-if="item.type==='code'" style="height:300px" ui-ace="{
+                                              advanced: {
+                                                  enableSnippets: true,
+                                                  enableBasicAutocompletion: true,
+                                                  enableLiveAutocompletion: true
+                                              },
+                                              useWrapMode : true,
+                                              showGutter: true,
+                                              mode:'python',
+                                              theme:'chrome',
+                                              rendererOptions: { 
+                                                fontSize: 14 
+                                              },
+                                              firstLineNumber: 1,
+                                              onLoad: aceCodeLoaded,
+                                              onChange: aceSoftwareChanged
+                                            }" ng-model="item.text"></div>
+				</div>
+			</md-list-item>
+		  <!-- <md-list-item flex class="section-active">
 		    <div class="md-list-item-text">
-		    	<div class="options">
-		    		<md-button>
-	                    <img src="../img/run-icon.png" class="s24">
-	                    <md-tooltip md-direction="bottom">
-	                      Run
-	                    </md-tooltip>
-	                </md-button>
-		    		<md-button>
-	                    <img src="../img/reset-icon.png" class="s24">
-	                    <md-tooltip md-direction="bottom">
-	                      Reset
-	                    </md-tooltip>
-	                </md-button>
-		    		<md-button>
-	                    <img src="../img/edit-icon.png" class="s24">
-	                    <md-tooltip md-direction="bottom">
-	                      Edit
-	                    </md-tooltip>
-	                </md-button>
-			  		<md-button>
-	                    <img src="../img/delete-icon.png" class="s24">
-	                    <md-tooltip md-direction="bottom">
-	                      Delete
-	                    </md-tooltip>
-	                </md-button>
-			  	</div>
-		    	<div class="options2">
-					<md-input-container style="margin-right: 10px;">
-						<md-select ng-model="serialPort" aria-label="serial port">
-	                        <md-option value="Code" selected="selected">Code</md-option>
-	                        <md-option value="Markdown">Markdown</md-option>
-	                    </md-select>
-					</md-input-container>
-		    		<md-button>
-	                    <img src="../img/up-icon.png" class="s24">
-	                    <md-tooltip md-direction="bottom">
-	                      Move up
-	                    </md-tooltip>
-	                </md-button>
-		    		<md-button>
-	                    <img src="../img/down-icon.png" class="s24">
-	                    <md-tooltip md-direction="bottom">
-	                      Move down
-	                    </md-tooltip>
-	                </md-button>
-		    		<md-button>
-	                    <img src="../img/add-icon.png" class="s24">
-	                    <md-tooltip md-direction="bottom">
-	                      Add new
-	                    </md-tooltip>
-	                </md-button>
-			  	</div>
 				<div class="clearfix" style="padding: 10px; padding-left: 0px">
 				<img src="https://raw.githubusercontent.com/jupyter/nature-demo/master/images/jupyter-logo.png" width="150px" style="display: inline-block; margin-top: 5px;">
 				<a href="http://bit.ly/tmpnbdevrax"><img src="https://cloud.githubusercontent.com/assets/836375/4916141/2732892e-64d6-11e4-980f-11afcf03ca31.png" width="150px" class="pull-right" style="display: inline-block; margin: 0px;"></a>
@@ -129,7 +168,7 @@ df.plot(); plt.legend(loc='best')
 				</pre>
 		      <p>{{item.description}}</p>
 		    </div>
-		  </md-list-item>
+		  </md-list-item> -->
 		</md-list>
 	</body>
 </html>

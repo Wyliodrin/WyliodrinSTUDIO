@@ -10,13 +10,19 @@
 			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': $index === activeIndex, 'section-regular': $index !== activeIndex}" >
 			 	<div class="md-list-item-text" ng-click="n.activate($index)">
 			 		<div class="options" ng-show="$index == activeIndex">
-			    		<md-button ng-show="item.type === 'code'">
+			    		<md-button ng-show="item.type === 'code' && evaluatingIndex === -1" ng-click="n.evaluate ($index); $event.stopPropagation ();">
 		                    <img src="../img/run-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Run
 		                    </md-tooltip>
 		                </md-button>
-			    		<md-button ng-show="item.type === 'code'">
+		                <md-button ng-show="item.type === 'code' && evaluatingIndex === $index">
+		                    <img src="../img/run-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Stop
+		                    </md-tooltip>
+		                </md-button>
+			    		<md-button ng-show="item.type === 'code'" ng-click="n.reset (); $event.preventPropagation ();">
 		                    <img src="../img/reset-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Reset
@@ -79,23 +85,29 @@
                                               onLoad: aceEditLoaded,
                                               onChange: aceSoftwareChanged
                                             }" ng-model="item.text"></div>
-					<div ng-if="item.type==='code'" style="height:300px" ui-ace="{
-                                              advanced: {
-                                                  enableSnippets: true,
-                                                  enableBasicAutocompletion: true,
-                                                  enableLiveAutocompletion: true
-                                              },
-                                              useWrapMode : true,
-                                              showGutter: true,
-                                              mode:'python',
-                                              theme:'chrome',
-                                              rendererOptions: { 
-                                                fontSize: 14 
-                                              },
-                                              firstLineNumber: 1,
-                                              onLoad: aceCodeLoaded,
-                                              onChange: aceSoftwareChanged
-                                            }" ng-model="item.text"></div>
+                    <div ng-show="item.type==='code'">
+						<div style="height:300px" ui-ace="{
+	                                              advanced: {
+	                                                  enableSnippets: true,
+	                                                  enableBasicAutocompletion: true,
+	                                                  enableLiveAutocompletion: true
+	                                              },
+	                                              useWrapMode : true,
+	                                              showGutter: true,
+	                                              mode:'python',
+	                                              theme:'chrome',
+	                                              rendererOptions: { 
+	                                                fontSize: 14 
+	                                              },
+	                                              firstLineNumber: 1,
+	                                              onLoad: aceCodeLoaded,
+	                                              onChange: aceSoftwareChanged
+	                                            }" ng-model="item.text"></div>
+						<div ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
+						<response ng-show='item.response' value="item.response"></response>
+						<pre ng-show='item.stderr && item.stderr.length > 0' bgcolor:'pink'>{{item.stderr}}</pre>
+						<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
+					</div>
 				</div>
 			</md-list-item>
 		  <!-- <md-list-item flex class="section-active">

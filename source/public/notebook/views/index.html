@@ -6,87 +6,67 @@
 	</head>
 
 	<body style="background:#fff;" ng-app="wyliodrinAppNotebook" ng-controller="NotebookController as n">
-		<md-list>
-			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': $index === activeIndex, 'section-regular': $index !== activeIndex}" >
-			 	<div class="md-list-item-text" ng-click="n.activate($index)">
-			 		<div class="options" ng-show="$index == activeIndex">
-			    		<md-button ng-show="item.type === 'code' && evaluatingIndex === -1" ng-click="n.evaluate ($index); $event.stopPropagation ();">
-		                    <img src="../img/run-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Run
-		                    </md-tooltip>
-		                </md-button>
-		                <md-button ng-show="item.type === 'code' && evaluatingIndex === $index">
-		                    <img src="../img/run-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Stop
-		                    </md-tooltip>
-		                </md-button>
-			    		<md-button ng-show="item.type === 'code'" ng-click="n.reset(); $event.preventPropagation ();">
-		                    <img src="../img/reset-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Reset
-		                    </md-tooltip>
-		                </md-button>
-			    		<md-button ng-show="item.type === 'markdown'" ng-click="n.edit ($index); $event.stopPropagation ();">
-		                    <img src="../img/edit-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Edit
-		                    </md-tooltip>
-		                </md-button>
-				  		<md-button ng-show="items.length > 1" ng-click="n.delete ($index); $event.stopPropagation ();">
-		                    <img src="../img/delete-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Delete
-		                    </md-tooltip>
-		                </md-button>
-				  	</div>
-				  	<div class="options2" ng-show="$index == activeIndex">
-						<md-input-container style="margin-right: 10px;">
-							<md-select ng-model="item.type" aria-label="type">
-		                        <md-option value="code">Code</md-option>
-		                        <md-option value="markdown">Markdown</md-option>
-		                    </md-select>
-						</md-input-container>
-			    		<md-button ng-click="n.up ($index); $event.stopPropagation ();">
-		                    <img src="../img/up-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Move up
-		                    </md-tooltip>
-		                </md-button>
-			    		<md-button ng-click="n.down ($index); $event.stopPropagation ();">
-		                    <img src="../img/down-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Move down
-		                    </md-tooltip>
-		                </md-button>
-			    		<md-button ng-click="n.insert ($index); $event.stopPropagation ();">
-		                    <img src="../img/add-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Add new
-		                    </md-tooltip>
-		                </md-button>
-				  	</div>
-					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
-					<div ng-if="item.type==='markdown' && editIndex === $index" style="height:300px" ui-ace="{
-                                              advanced: {
-                                                  enableSnippets: true,
-                                                  enableBasicAutocompletion: true,
-                                                  enableLiveAutocompletion: true
-                                              },
-                                              useWrapMode : true,
-                                              showGutter: true,
-                                              mode:'markdown',
-                                              theme:'chrome',
-                                              rendererOptions: { 
-                                                fontSize: 14 
-                                              },
-                                              firstLineNumber: 1,
-                                              onLoad: aceEditLoaded,
-                                              onChange: aceSoftwareChanged
-                                            }" ng-model="item.text"></div>
-                    <div ng-show="item.type==='code'">
-						<div ui-ace="{
+		<md-content class="def-content">
+			<md-list>
+				<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': $index === activeIndex, 'section-regular': $index !== activeIndex}" >
+				 	<div class="md-list-item-text" ng-click="n.activate($index)">
+				 		<div class="options">
+				    		<div class="running-code">
+				    			<img src="../img/running.gif" class="s24">
+				    		</div>
+				    		<md-button ng-show="item.type === 'code' && evaluatingIndex === -1" ng-click="n.evaluate ($index); $event.stopPropagation ();">
+			                    <img src="../img/run-icon.png" class="s24">
+			                    <md-tooltip md-direction="bottom">
+			                      Run
+			                    </md-tooltip>
+			                </md-button>
+			                <md-button ng-show="item.type === 'code' && evaluatingIndex === $index">
+			                    <img src="../img/stop-icon.png" class="s24">
+			                    <md-tooltip md-direction="bottom">
+			                      Stop
+			                    </md-tooltip>
+			                </md-button>
+				    		<md-button ng-show="item.type === 'markdown'" ng-click="n.edit ($index); $event.stopPropagation ();">
+			                    <img src="../img/edit-icon.png" class="s24">
+			                    <md-tooltip md-direction="bottom">
+			                      Edit
+			                    </md-tooltip>
+			                </md-button>
+					  	</div>
+					  	<div class="options2">
+							<md-input-container style="margin-right: 10px;">
+								<md-select ng-model="item.type" aria-label="type">
+			                        <md-option value="code">Code</md-option>
+			                        <md-option value="markdown">Markdown</md-option>
+			                    </md-select>
+							</md-input-container>
+				    		<md-button ng-click="n.up ($index); $event.stopPropagation ();">
+			                    <img src="../img/up-icon.png" class="s24">
+			                    <md-tooltip md-direction="bottom">
+			                      Move up
+			                    </md-tooltip>
+			                </md-button>
+				    		<md-button ng-click="n.down ($index); $event.stopPropagation ();">
+			                    <img src="../img/down-icon.png" class="s24">
+			                    <md-tooltip md-direction="bottom">
+			                      Move down
+			                    </md-tooltip>
+			                </md-button>
+			                <md-button ng-show="items.length > 1" ng-click="n.delete ($index); $event.stopPropagation ();">
+			                    <img src="../img/delete-icon.png" class="s24">
+			                    <md-tooltip md-direction="bottom">
+			                      Delete
+			                    </md-tooltip>
+			                </md-button>
+				    		<md-button ng-click="n.insert ($index); $event.stopPropagation ();">
+			                    <img src="../img/add-icon.png" class="s24">
+			                    <md-tooltip md-direction="bottom">
+			                      Add new
+			                    </md-tooltip>
+			                </md-button>
+					  	</div>
+						<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
+						<div ng-if="item.type==='markdown' && editIndex === $index" style="height:300px" ui-ace="{
 	                                              advanced: {
 	                                                  enableSnippets: true,
 	                                                  enableBasicAutocompletion: true,
@@ -94,94 +74,123 @@
 	                                              },
 	                                              useWrapMode : true,
 	                                              showGutter: true,
-	                                              mode:'python',
+	                                              mode:'markdown',
 	                                              theme:'chrome',
-	                                              maxLines: Infinity,
 	                                              rendererOptions: { 
 	                                                fontSize: 14 
 	                                              },
 	                                              firstLineNumber: 1,
-	                                              onLoad: aceCodeLoaded,
+	                                              onLoad: aceEditLoaded,
 	                                              onChange: aceSoftwareChanged
 	                                            }" ng-model="item.text"></div>
-						<div ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
-						<response ng-show='item.response' value="item.response"></response>
-						<pre ng-show='item.stderr && item.stderr.length > 0' bgcolor:'pink'>{{item.stderr}}</pre>
-						<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
+	                    <div ng-show="item.type==='code'">
+							<div ui-ace="{
+		                                              advanced: {
+		                                                  enableSnippets: true,
+		                                                  enableBasicAutocompletion: true,
+		                                                  enableLiveAutocompletion: true
+		                                              },
+		                                              useWrapMode : true,
+		                                              showGutter: true,
+		                                              mode:'python',
+		                                              theme:'chrome',
+		                                              maxLines: Infinity,
+		                                              rendererOptions: { 
+		                                                fontSize: 14 
+		                                              },
+		                                              firstLineNumber: 1,
+		                                              onLoad: aceCodeLoaded,
+		                                              onChange: aceSoftwareChanged
+		                                            }" ng-model="item.text"></div>
+							<div ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
+								<response ng-show='item.response' value="item.response"></response>
+								<pre ng-show='item.stderr && item.stderr.length > 0' bgcolor:'pink'>{{item.stderr}}</pre>
+								<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
+							</div>
 					</div>
-				</div>
-			</md-list-item>
-		  <!-- <md-list-item flex class="section-active">
-		    <div class="md-list-item-text">
-				<div class="clearfix" style="padding: 10px; padding-left: 0px">
-				<img src="https://raw.githubusercontent.com/jupyter/nature-demo/master/images/jupyter-logo.png" width="150px" style="display: inline-block; margin-top: 5px;">
-				<a href="http://bit.ly/tmpnbdevrax"><img src="https://cloud.githubusercontent.com/assets/836375/4916141/2732892e-64d6-11e4-980f-11afcf03ca31.png" width="150px" class="pull-right" style="display: inline-block; margin: 0px;"></a>
-				</div>
+				</md-list-item>
+			  <!-- <md-list-item flex class="section-active">
+			    <div class="md-list-item-text">
+					<div class="clearfix" style="padding: 10px; padding-left: 0px">
+					<img src="https://raw.githubusercontent.com/jupyter/nature-demo/master/images/jupyter-logo.png" width="150px" style="display: inline-block; margin-top: 5px;">
+					<a href="http://bit.ly/tmpnbdevrax"><img src="https://cloud.githubusercontent.com/assets/836375/4916141/2732892e-64d6-11e4-980f-11afcf03ca31.png" width="150px" class="pull-right" style="display: inline-block; margin: 0px;"></a>
+					</div>
 
-				## Welcome to the Temporary Notebook (tmpnb) service!
+					## Welcome to the Temporary Notebook (tmpnb) service!
 
-				This Notebook Server was **launched just for you**. It's a temporary way for you to try out a recent development version of the IPython/Jupyter notebook.
+					This Notebook Server was **launched just for you**. It's a temporary way for you to try out a recent development version of the IPython/Jupyter notebook.
 
-				<div class="alert alert-warning" role="alert" style="margin: 10px">
-				<p>**WARNING**</p>
+					<div class="alert alert-warning" role="alert" style="margin: 10px">
+					<p>**WARNING**</p>
 
-				<p>Don't rely on this server for anything you want to last - your server will be *deleted after 10 minutes of inactivity*.</p>
-				</div>
+					<p>Don't rely on this server for anything you want to last - your server will be *deleted after 10 minutes of inactivity*.</p>
+					</div>
 
-				Your server is hosted thanks to [Rackspace](http://bit.ly/tmpnbdevrax), on their on-demand bare metal servers, [OnMetal](http://bit.ly/onmetal).
+					Your server is hosted thanks to [Rackspace](http://bit.ly/tmpnbdevrax), on their on-demand bare metal servers, [OnMetal](http://bit.ly/onmetal).
 
-		    </div>
-		  </md-list-item>
-		  <md-list-item flex class="section-regular">
-		    <div class="md-list-item-text">
-		     	<pre>
-				
-%matplotlib notebook
+			    </div>
+			  </md-list-item>
+			  <md-list-item flex class="section-regular">
+			    <div class="md-list-item-text">
+			     	<pre>
+					
+	%matplotlib notebook
 
-import pandas as pd
-import numpy as np
-import matplotlib
+	import pandas as pd
+	import numpy as np
+	import matplotlib
 
-from matplotlib import pyplot as plt
-import seaborn as sns
+	from matplotlib import pyplot as plt
+	import seaborn as sns
 
-ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
-ts = ts.cumsum()
+	ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+	ts = ts.cumsum()
 
-df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
-                  columns=['A', 'B', 'C', 'D'])
-df = df.cumsum()
-df.plot(); plt.legend(loc='best')
+	df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+	                  columns=['A', 'B', 'C', 'D'])
+	df = df.cumsum()
+	df.plot(); plt.legend(loc='best')
 
-				</pre>
-		      <p>{{item.description}}</p>
-		    </div>
-		  </md-list-item>
-		  <md-list-item flex class="section-regular">
-		    <div class="md-list-item-text">
-		     	<pre>
-				
-%matplotlib notebook
+					</pre>
+			      <p>{{item.description}}</p>
+			    </div>
+			  </md-list-item>
+			  <md-list-item flex class="section-regular">
+			    <div class="md-list-item-text">
+			     	<pre>
+					
+	%matplotlib notebook
 
-import pandas as pd
-import numpy as np
-import matplotlib
+	import pandas as pd
+	import numpy as np
+	import matplotlib
 
-from matplotlib import pyplot as plt
-import seaborn as sns
+	from matplotlib import pyplot as plt
+	import seaborn as sns
 
-ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
-ts = ts.cumsum()
+	ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+	ts = ts.cumsum()
 
-df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
-                  columns=['A', 'B', 'C', 'D'])
-df = df.cumsum()
-df.plot(); plt.legend(loc='best')
+	df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+	                  columns=['A', 'B', 'C', 'D'])
+	df = df.cumsum()
+	df.plot(); plt.legend(loc='best')
 
-				</pre>
-		      <p>{{item.description}}</p>
-		    </div>
-		  </md-list-item> -->
-		</md-list>
+					</pre>
+			      <p>{{item.description}}</p>
+			    </div>
+			  </md-list-item> -->
+			</md-list>
+			<div class="bottom-space"></div>
+			<div class="server-status connected">
+				The server is running
+				<md-button>
+	                <img src="../img/reset-icon.png" class="s24">
+	                <md-tooltip md-direction="top">
+	                  Reset
+	                </md-tooltip>
+	            </md-button>
+			</div>
+		</md-content>
 	</body>
 </html>

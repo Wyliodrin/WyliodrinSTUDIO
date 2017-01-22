@@ -257,6 +257,15 @@
                         <div class="projectTree" layout="row">
                           <md-content treecontrol class="tree-classic" tree-model="project.tree[0].children" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
 
+                          <div class="filem-hide">
+                            <md-button>
+                                <img src="/public/drawable/filem-hide.png" class="s24">
+                                <md-tooltip md-direction="bottom">
+                                  Hide File Manager
+                                </md-tooltip>
+                            </md-button>
+                          </div>
+
                           <div style="position:absolute; bottom:60px; left:5px;"><!--butoane-->
                             <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
                                 <md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>

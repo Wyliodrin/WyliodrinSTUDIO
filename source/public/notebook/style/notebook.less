@@ -128,8 +128,8 @@ md-list-item {
 	position:absolute !important;
 	right:6px !important;
 	top:6px !important;
-	visibility: hidden !important;
-  	opacity: 0 !important;
+	visibility: visible !important;
+  	opacity: 1 !important;
   	transition: visibility 0s, opacity 0.5s linear !important;
 }
 
@@ -216,4 +216,6 @@ md-select:not([disabled]):focus md-select-value{
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
+    div {border:0; padding:0; background: transparent !important; color: #a94442 !important;}
+    pre {border:0; padding:0; background: transparent !important; color: #a94442 !important; margin:0 !important;}
 }

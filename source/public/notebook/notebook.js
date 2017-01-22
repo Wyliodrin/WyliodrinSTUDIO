@@ -27,6 +27,7 @@ var ITEM_SNIPPETS = {
   'markdown': '## New Item',
   'code':'print \'New Item\''
 };
+var wyliodrin = null;
 
 var app = angular.module ("wyliodrinAppNotebook", ['ngMaterial', 'ui.ace'], function ($provide)
 {
@@ -46,8 +47,6 @@ var app = angular.module ("wyliodrinAppNotebook", ['ngMaterial', 'ui.ace'], func
 
 app.factory ('$wydevice', function ()
 {
-  var wyliodrin = null;
-
   window.addEventListener ('message', function (message)
   {
     console.log (message.data);
@@ -55,6 +54,11 @@ app.factory ('$wydevice', function ()
     if (message.data.type === 'wydevice-message')
     {
       deviceService.emit ('message', message.data.t, message.data.d);
+    }
+    else
+    if (message.data.type === 'wydevice-status')
+    {
+      deviceService.emit ('status', message.data.s);
     }
   });
 
@@ -74,28 +78,53 @@ app.factory ('$wydevice', function ()
 
 app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wydevice)
 {
-  $scope.activeIndex = 0;
-  $scope.items = [
+  function store ()
   {
-    type: 'markdown',
-    text: `## Welcome to the Temporary Notebook (tmpnb) service!
+    if (wyliodrin) wyliodrin.postMessage ({type:'notebook', d:$scope.items}, '*');
+  }
 
-        This Notebook Server was **launched just for you**. It's a temporary way for you to try out a recent development version of the IPython/Jupyter notebook.
-
-        <div class="alert alert-warning" role="alert" style="margin: 10px">
-        <p>**WARNING**</p>
-
-        <p>Don't rely on this server for anything you want to last - your server will be *deleted after 10 minutes of inactivity*.</p>
-        </div>
-
-        Your server is hosted thanks to [Rackspace](http://bit.ly/tmpnbdevrax), on their on-demand bare metal servers, [OnMetal](http://bit.ly/onmetal).`
-  },
+  function load (items)
   {
-    type: 'code',
-    text: ''
-  }];
-  $scope.editIndex = -1;
-  $scope.evaluatingIndex = -1;
+    $scope.items = items;
+    if ($scope.items.length == 0)
+    {
+      $scope.items.push ({
+        type:'markdown',
+        text:'',
+        label: uuid.v4 ()
+      });
+    }
+    $scope.activeLabel = ($scope.items[0]?$scope.items[0].label:null);
+    $scope.editLabel = null;
+    $scope.evaluatingLabel = null;
+  }
+
+  $scope.connected = false;
+
+  load ([]);
+
+  var that = this;
+
+  window.addEventListener ('message', function (message)
+  {
+    if (message.data.type === 'notebook')
+    {
+      that.reset ();
+      $timeout (function ()
+      {
+        var items = message.data.d;
+        _.each (items, function (item)
+        {
+          if (!item.label)
+          {
+            item.label = uuid.v4 ();
+          }
+        });
+        load (items);
+      });
+    }
+  });
+
   $scope.aceCodeLoaded = function (_editor)
   {
     _editor.$blockScrolling = Infinity;
@@ -103,19 +132,27 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     _editor.getSession().setUseSoftTabs (true);
     _editor.setOptions ({minLines:6, maxLines: Infinity});
   };
+  $scope.aceCodeChanged = function ()
+  {
+    store ();
+  };
   $scope.aceEditLoaded = function (_editor)
   {
     _editor.$blockScrolling = Infinity;
     _editor.getSession().setTabSize (2);
     _editor.getSession().setUseSoftTabs (true);
   };
-
-  this.activate = function (index)
+  $scope.aceEditChanged = function (_editor)
   {
-    if ($scope.activeIndex !== index)
+    store ();
+  };
+
+  this.activate = function (label)
+  {
+    if ($scope.activeLabel !== label)
     {
-      $scope.activeIndex = index;
-      $scope.editIndex = -1;
+      $scope.activeLabel = label;
+      $scope.editLabel = null;
     }
   };
 
@@ -139,15 +176,15 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     }
   };
 
-  this.edit = function (index)
+  this.edit = function (label)
   {
-    if ($scope.editIndex !== index)
+    if ($scope.editLabel !== label)
     {
-      $scope.editIndex = index;
+      $scope.editLabel = label;
     }
     else
     {
-      $scope.editIndex = -1;
+      $scope.editLabel = null;
     }
   };
 
@@ -155,7 +192,8 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   {
     var item = {
       type: $scope.items[index].type,
-      text: ITEM_SNIPPETS[$scope.items[index].type]
+      text: ITEM_SNIPPETS[$scope.items[index].type],
+      label: uuid.v4 ()
     };
     $scope.items.splice (index+1, 0, item);
     $scope.activeIndex = index+1;
@@ -184,24 +222,29 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     }
   };
 
-  this.evaluate = function (index)
+  this.evaluate = function (label)
   {
-    var item = $scope.items[index];
-    if (item.type === 'code')
+    var item = findLabel(label);
+    if (item && item.type === 'code')
     {
-      var id = uuid.v4 ();
-      item.label = id;
       item.response = null;
       item.exception = '';
       item.stdout = '';
       item.stderr = '';
       $wydevice.send ('note', {
-        a:'r',
-        l:id,
+        a: 'r',
+        l: item.label,
         s: item.text
       });
-      $scope.evaluatingIndex = index;
+      $scope.evaluatingLabel = label;
     }
+  };
+
+  this.stop = function (label)
+  {
+    $wydevice.send ('note', {
+      a:'s'
+    });
   };
 
   this.reset = function ()
@@ -235,7 +278,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         {
           $timeout (function ()
           {
-            $scope.evaluatingIndex = -1;
+            $scope.evaluatingLabel = null;
           });
         }
       }
@@ -249,6 +292,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
             if (item) $timeout (function ()
               {
                 item.stdout = item.stdout + p.d;
+                store ();
               });
           }
           else
@@ -257,6 +301,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
             if (item) $timeout (function ()
               {
                 item.stderr = item.stderr + p.d;
+                store ();
               });
           }
         }
@@ -265,7 +310,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         {
           if (item) $timeout (function ()
             {
-              $scope.evaluatingIndex = -1;
+              $scope.evaluatingLabel = null;
             });
         }
         else
@@ -274,6 +319,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
           if (item) $timeout (function ()
             {
               item.exception = p.d.buf;
+              store ();
             });
         }
         else
@@ -282,10 +328,18 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
           if (item) $timeout (function ()
             {
               item.response = p.d;
+              store ();
             });
         }
       }
     }
+  });
+  $wydevice.on ('status', function (status)
+  {
+    $timeout (function ()
+    {
+      $scope.connected = (status === 'CONNECTED');
+    });
   });
 });
 

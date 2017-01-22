@@ -6,29 +6,30 @@
 	</head>
 
 	<body style="background:#fff;" ng-app="wyliodrinAppNotebook" ng-controller="NotebookController as n">
+		{{activeLabel}} {{editLabel}} {{evaluatingLabel}}
 		<md-list>
-			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': $index === activeIndex, 'section-regular': $index !== activeIndex}" >
-			 	<div class="md-list-item-text" ng-click="n.activate($index)">
-			 		<div class="options" ng-show="$index == activeIndex">
-			    		<md-button ng-show="item.type === 'code' && evaluatingIndex === -1" ng-click="n.evaluate ($index); $event.stopPropagation ();">
+			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': item.label === activeLabel, 'section-regular': item.label !== activeLabel}" >
+			 	<div class="md-list-item-text" ng-click="n.activate(item.label)">
+			 		<div class="options" ng-show="item.label == activeLabel">
+			    		<md-button ng-show="item.type === 'code' && evaluatingLabel === null && connected" ng-click="n.evaluate (item.label); $event.stopPropagation ();">
 		                    <img src="../img/run-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Run
 		                    </md-tooltip>
 		                </md-button>
-		                <md-button ng-show="item.type === 'code' && evaluatingIndex === $index">
+		                <md-button ng-show="item.type === 'code' && evaluatingLabel === item.label && connected" ng-click="n.stop (item.label); $event.stopPropagation();">
 		                    <img src="../img/run-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Stop
 		                    </md-tooltip>
 		                </md-button>
-			    		<md-button ng-show="item.type === 'code'" ng-click="n.reset(); $event.preventPropagation ();">
+			    		<md-button ng-show="item.type === 'code' && connected" ng-click="n.reset(); $event.preventPropagation ();">
 		                    <img src="../img/reset-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Reset
 		                    </md-tooltip>
 		                </md-button>
-			    		<md-button ng-show="item.type === 'markdown'" ng-click="n.edit ($index); $event.stopPropagation ();">
+			    		<md-button ng-show="item.type === 'markdown'" ng-click="n.edit (item.label); $event.stopPropagation ();">
 		                    <img src="../img/edit-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Edit
@@ -41,7 +42,7 @@
 		                    </md-tooltip>
 		                </md-button>
 				  	</div>
-				  	<div class="options2" ng-show="$index == activeIndex">
+				  	<div class="options2" ng-show="item.label == activeLabel">
 						<md-input-container style="margin-right: 10px;">
 							<md-select ng-model="item.type" aria-label="type">
 		                        <md-option value="code">Code</md-option>
@@ -68,7 +69,7 @@
 		                </md-button>
 				  	</div>
 					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
-					<div ng-if="item.type==='markdown' && editIndex === $index" style="height:300px" ui-ace="{
+					<div ng-if="item.type==='markdown' && editLabel === item.label" ui-ace="{
                                               advanced: {
                                                   enableSnippets: true,
                                                   enableBasicAutocompletion: true,
@@ -79,11 +80,13 @@
                                               mode:'markdown',
                                               theme:'chrome',
                                               rendererOptions: { 
-                                                fontSize: 14 
+                                                fontSize: 14,
+                                                minLines: 6,
+                                                maxLines: 20 
                                               },
                                               firstLineNumber: 1,
                                               onLoad: aceEditLoaded,
-                                              onChange: aceSoftwareChanged
+                                              onChange: aceEditChanged
                                             }" ng-model="item.text"></div>
                     <div ng-show="item.type==='code'">
 						<div ui-ace="{
@@ -96,13 +99,14 @@
 	                                              showGutter: true,
 	                                              mode:'python',
 	                                              theme:'chrome',
-	                                              maxLines: Infinity,
 	                                              rendererOptions: { 
-	                                                fontSize: 14 
+	                                                fontSize: 14,
+	                                                minLines: 6,
+	                                                maxLines: Infinity
 	                                              },
 	                                              firstLineNumber: 1,
 	                                              onLoad: aceCodeLoaded,
-	                                              onChange: aceSoftwareChanged
+	                                              onChange: aceCodeChanged
 	                                            }" ng-model="item.text"></div>
 						<div ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
 						<response ng-show='item.response' value="item.response"></response>

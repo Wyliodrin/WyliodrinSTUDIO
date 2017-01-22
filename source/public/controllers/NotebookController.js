@@ -27,6 +27,8 @@ module.exports = function ()
 
 		var notebook = $('#notebook')[0];
 
+		var id = null;
+
 		window.addEventListener ('message', function (message)
 		{
 			console.log (message.data);
@@ -37,11 +39,23 @@ module.exports = function ()
 				{
 					$wydevice.send (parsedmessage.t, parsedmessage.d);
 				}
+				else
+				if (parsedmessage.type === 'notebook')
+				{
+					console.log (parsedmessage.d);
+					library.storeNotebook (id, parsedmessage.d);
+				}
 			}
 			catch (e)
 			{
 
 			}
+		});
+
+		$wyapp.on ('load', function (project)
+		{
+			id = project.id;
+			notebook.contentWindow.postMessage ({type: 'notebook', d:project.notebook}, '*');
 		});
 
 		$wydevice.on ('message', function (t, d)

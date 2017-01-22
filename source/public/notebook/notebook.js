@@ -25,7 +25,8 @@ var uuid = require ('uuid');
 
 var ITEM_SNIPPETS = {
   'markdown': '## New Item',
-  'code':'print \'New Item\''
+  'code':'print \'New Item\'',
+  'arduino':'// firmata'
 };
 var wyliodrin = null;
 

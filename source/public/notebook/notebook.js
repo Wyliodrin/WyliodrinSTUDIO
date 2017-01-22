@@ -7,17 +7,175 @@ window.jQuery = $;
 
 var angular = require ('angular');
 var angular_material = require ('angular-material');
+var path = require ('path');
 var marked = require ('marked');
 var brace = require ('brace');
 var angularUiAce = require ('angular-ui-ace');
 require('brace/mode/python');
 require('brace/mode/markdown');
+require('brace/mode/c_cpp');
 require('brace/theme/chrome');
 require('brace/ext/language_tools');
 require('brace/ext/searchbox');
 require('brace/ext/settings_menu');
 require('./../tools/snippets/python.js');
 require('./../tools/snippets/markdown.js');
+require('./../tools/snippets/c_cpp.js');
+
+var ARDUINO_DEVICES = {};
+ARDUINO_DEVICES[0x2341] = {};
+ARDUINO_DEVICES[0x2a03] = {};
+ARDUINO_DEVICES[0x2341][0x0001] = 
+{
+  name: 'Uno',
+  type: 'uno'
+};
+ARDUINO_DEVICES[0x2341][0x0010] = {
+  name: 'Mega 2560',
+  type: 'mega2560'
+};
+ARDUINO_DEVICES[0x2341][0x003f] = 
+{
+  name:'Mega ADK',
+  type: 'mega2560'
+};
+ARDUINO_DEVICES[0x2341][0x0042] = 
+{
+  name: 'Mega 2560 rev3',
+  type: 'mega2560'
+};
+ARDUINO_DEVICES[0x2341][0x0043] = 
+{
+  name: 'Uno R3',
+  type: 'uno'
+};
+ARDUINO_DEVICES[0x2341][0x0044] = 
+{
+  name: 'Mega ADK rev3',
+  type: 'mega2560'
+};
+ARDUINO_DEVICES[0x2341][0x8036] = 
+{
+  name: 'Leonardo',
+  type: 'leonardo'
+};
+ARDUINO_DEVICES[0x2a03][0x0001] = 
+{
+  name: 'Linino ONE'
+};
+ARDUINO_DEVICES[0x2a03][0x0036] = 
+{
+  name: 'Leonardo',
+  type: 'leonardo'
+};
+ARDUINO_DEVICES[0x2a03][0x0037] = 
+{
+  name: 'Micro'
+};
+ARDUINO_DEVICES[0x2a03][0x0038] = 
+{
+  name: 'Robot Control'
+};
+ARDUINO_DEVICES[0x2a03][0x0039] =
+{
+  name: 'Robot Motor'
+};
+ARDUINO_DEVICES[0x2a03][0x003a] = 
+{
+  name: 'Micro ADK rev3'
+};
+ARDUINO_DEVICES[0x2a03][0x003c] = 
+{
+  name: 'Esplora'
+};
+ARDUINO_DEVICES[0x2a03][0x003d] = 
+{
+  name: 'Due'
+};
+ARDUINO_DEVICES[0x2a03][0x003e] = 
+{
+  name: 'Due'
+};
+ARDUINO_DEVICES[0x2a03][0x0041] = 
+{
+  name: 'Yun'
+};
+ARDUINO_DEVICES[0x2a03][0x0042] = 
+{
+  name: 'Mega 2560 rev3',
+  type: 'mega2560'
+};
+ARDUINO_DEVICES[0x2a03][0x0043] = 
+{
+  name: 'Uno Rev3',
+  type: 'uno'
+};
+ARDUINO_DEVICES[0x2a03][0x004d] = 
+{
+  name: 'Zero Pro'
+};
+ARDUINO_DEVICES[0x2a03][0x8001] = 
+{
+  name: 'Linino ONE'
+};
+ARDUINO_DEVICES[0x2a03][0x8036] = 
+{
+  name: 'Leonardo',
+  type: 'leonardo'
+};
+ARDUINO_DEVICES[0x2a03][0x8037] = 
+{
+  name: 'Micro'
+};
+ARDUINO_DEVICES[0x2a03][0x8038] = 
+{
+  name: 'Robot Control'
+};
+ARDUINO_DEVICES[0x2a03][0x8039] = 
+{
+  name: 'Robot Motor'
+};
+ARDUINO_DEVICES[0x2a03][0x803a] = 
+{
+  name: 'Micro ADK rev3'
+};
+ARDUINO_DEVICES[0x2a03][0x803c] = 
+{
+  name: 'Esplora'
+};
+ARDUINO_DEVICES[0x2a03][0x8041] = 
+{
+  name: 'Yun'
+};
+ARDUINO_DEVICES[0x2a03][0x804d] = 
+{
+  name: 'Zero Pro'
+};
+
+var ARDUINO_TYPES = {
+    'uno':'Arduino Uno',
+    'atmega328':'Arduino Duemilanove w/ ATmega328',
+    'diecimila':'Arduino Diecimila or Duemilanove w/ ATmega168',
+    'nano328':'Arduino Nano w/ ATmega328',
+    'nano':'Arduino Nano w/ ATmega168',
+    'mega2560':'Arduino Mega 2560 or Mega ADK',
+    'mega':'Arduino Mega (ATmega1280)',
+    'leonardo':'Arduino Leonardo',
+    'mini328':'Arduino Mini w/ ATmega328',
+    'mini':'Arduino Mini w/ ATmega168',
+    'ethernet':'Arduino Ethernet',
+    'fio':'Arduino Fio',
+    'bt328':'Arduino BT w/ ATmega328',
+    'bt':'Arduino BT w/ ATmega168',
+    'lilypad328':'LilyPad Arduino w/ ATmega328',
+    'lilypad':'LilyPad Arduino w/ ATmega168',
+    'pro5v328':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega328',
+    'pro5v':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega168',
+    'pro328':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328',
+    'pro':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega168',
+    'atmega168':'Arduino NG or older w/ ATmega168',
+    'atmega8':'Arduino NG or older w/ ATmega8'
+  };
 
 var _ = require ('lodash');
 var EventEmitter = require ('events').EventEmitter;
@@ -101,6 +259,11 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   }
 
   $scope.connected = false;
+
+  $scope.ports = [];
+  $scope.arduinoTypes = ARDUINO_TYPES;
+
+  $scope.status = 'STOPPED';
 
   load ([]);
 
@@ -194,7 +357,9 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     var item = {
       type: $scope.items[index].type,
       text: ITEM_SNIPPETS[$scope.items[index].type],
-      label: uuid.v4 ()
+      label: uuid.v4 (),
+      port: {
+      }
     };
     $scope.items.splice (index+1, 0, item);
     $scope.activeIndex = index+1;
@@ -248,11 +413,36 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     });
   };
 
+  this.itemType = function (label)
+  {
+    store ();
+  };
+
   this.reset = function ()
   {
     $wydevice.send ('note', {
       a: 'reset'
     });
+  };
+
+  this.arduinoType = function (label)
+  {
+    store ();
+  };
+
+  this.port = function (label, port)
+  {
+    console.log ('port');
+    var type = findArduinoType (port.vid, port.pid);
+    console.log (type);
+    if (type)
+    {
+      var item = findLabel (label);
+      if (item)
+      {
+        item.port.type = type;
+      }
+    }
   };
 
   function findLabel (label)
@@ -264,6 +454,30 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     });
   }
 
+  function arduinoName (port)
+  {
+    var portName = port.s;
+    // console.log (port);
+    // console.log (ARDUINO_DEVICES[port.vid]);
+    // console.log (ARDUINO_DEVICES[port.vid][port.pid]);
+    if (port.vid && port.pid && ARDUINO_DEVICES[port.vid] && ARDUINO_DEVICES[port.vid][port.pid])
+    {
+      // console.log (port);
+      portName = ARDUINO_DEVICES[port.vid][port.pid].name;
+    }
+    return portName + ' ('+path.basename (port.p)+')';
+  };
+
+  function findArduinoType (vid, pid)
+  {
+    var type = null;
+    if (ARDUINO_DEVICES[vid] && ARDUINO_DEVICES[vid][pid])
+    {
+      type = ARDUINO_DEVICES[vid][pid].type;
+    }
+    return type;
+  }
+
   $wydevice.on ('message', function (t, p)
   {
     var item = null;
@@ -273,13 +487,30 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     {
       if (p.l) item = findLabel (p.l);
       // console.log (item);
-      if (p.a === 'i')
+      if (p.a === 'status')
       {
+        if (p.r === 'r')
+        {
+          $timeout (function ()
+          {
+            if (p.l) 
+            {
+              $scope.evaluatingLabel = p.l;
+              $scope.status = 'PROCESSING';
+            }
+            else
+            {
+              $scope.evaluatingLabel = null;
+              $scope.status = 'READY';
+            }
+          });
+        }
         if (p.r === 's')
         {
           $timeout (function ()
           {
             $scope.evaluatingLabel = null;
+            $scope.status = 'STOPPED';
           });
         }
       }
@@ -334,12 +565,46 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         }
       }
     }
+    else
+    if (t === 'i')
+    {
+      $timeout (function ()
+      {
+        if (p.pf && $scope.ports.length !== p.pf.length) 
+        {
+          $scope.ports = p.pf;
+          _.each ($scope.ports, function (port)
+          {
+            try
+            {
+              port.vid = parseInt (port.vid, 16);
+              port.pid = parseInt (port.pid, 16);
+            }
+            catch (e)
+            {
+
+            }
+            port.s = arduinoName (port);
+          });
+        }
+      });
+    }
   });
   $wydevice.on ('status', function (status)
   {
     $timeout (function ()
     {
       $scope.connected = (status === 'CONNECTED');
+      if (status === 'CONNECTED')
+      {
+        $wydevice.send ('note', {
+          a:'status'
+        });
+      }
+      else if (status === 'DISCONNECTED')
+      {
+        $scope.evaluatingLabel = null;
+      }
     });
   });
 });

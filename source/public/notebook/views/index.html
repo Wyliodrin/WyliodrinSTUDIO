@@ -39,21 +39,17 @@
 		                      Edit
 		                    </md-tooltip>
 		                </md-button>
-		                <md-input-container>
-							<md-select ng-model="item.type" aria-label="type">
-		                        <md-option value="code">Code</md-option>
-		                        <md-option value="markdown">Markdown</md-option>
-		                        <md-option value="firmware">Firmware</md-option>
+		                <md-input-container ng-show="item.type === 'arduino'">
+							<md-select ng-model="item.port.type" aria-label="type" ng-change="n.arduinoType (item.label)">
+		                        <md-option ng-repeat="(arduinoType, arduinoName) in arduinoTypes" value="{{arduinoType}}">{{arduinoName}}</md-option>
 		                    </md-select>
 						</md-input-container>
-						<md-input-container>
-							<md-select ng-model="item.type" aria-label="type">
-		                        <md-option value="code">Code</md-option>
-		                        <md-option value="markdown">Markdown</md-option>
-		                        <md-option value="firmware">Firmware</md-option>
+						<md-input-container ng-show="connected && item.type === 'arduino' && ports && ports.length > 0">
+							<md-select ng-model="item.port.path" aria-label="type">
+		                        <md-option ng-click="n.port(item.label, port)" ng-repeat="port in ports" value="port.p">{{port.s}}</md-option>
 		                    </md-select>
 						</md-input-container>
-						<md-button>
+						<md-button ng-show="connected && item.type === 'arduino'">
 		                    <img src="../img/flash-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Flash device
@@ -62,10 +58,10 @@
 				  	</div>
 				  	<div class="options2">
 						<md-input-container>
-							<md-select ng-model="item.type" aria-label="type">
+							<md-select ng-model="item.type" aria-label="type" ng-change="n.itemType (item.label)">
 		                        <md-option value="code">Code</md-option>
 		                        <md-option value="markdown">Markdown</md-option>
-		                        <md-option value="firmware">Firmware</md-option>
+		                        <md-option value="arduino">Arduino</md-option>
 		                    </md-select>
 						</md-input-container>
 			    		<md-button ng-click="n.up ($index); $event.stopPropagation ();">
@@ -135,6 +131,29 @@
 	                                            }" ng-model="item.text"></div>
 							<div class="alert alert-danger" ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
 							<response ng-show='item.response' value="item.response"></response>
+							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>
+							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
+						</div>
+						<div ng-show="item.type==='arduino'">
+						<div ui-ace="{
+	                                              advanced: {
+	                                                  enableSnippets: true,
+	                                                  enableBasicAutocompletion: true,
+	                                                  enableLiveAutocompletion: true
+	                                              },
+	                                              useWrapMode : true,
+	                                              showGutter: true,
+	                                              mode:'c_cpp',
+	                                              theme:'chrome',
+	                                              rendererOptions: { 
+	                                                fontSize: 14,
+	                                                minLines: 6,
+	                                                maxLines: Infinity
+	                                              },
+	                                              firstLineNumber: 1,
+	                                              onLoad: aceCodeLoaded,
+	                                              onChange: aceCodeChanged
+	                                            }" ng-model="item.text"></div>
 							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>
 							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
 						</div>
@@ -213,8 +232,8 @@
 			  </md-list-item> -->
 			</md-list>
 			<div class="bottom-space"></div>
-			<div class="server-status" ng-class="{'connected':connected}" ng-show="connected">
-				The server is running
+			<div class="server-status" ng-class="{'connected':status === 'READY' || status === 'PROCESSING', 'stopped':status === 'STOPPED'}" ng-show="connected">
+				Python {{status}}
 				<md-button ng-show="connected" ng-click="n.reset()">
 	                <img src="../img/reset-icon.png" class="s24">
 	                <md-tooltip md-direction="top">

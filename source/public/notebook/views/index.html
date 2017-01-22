@@ -7,10 +7,14 @@
 
 	<body style="background:#fff;" ng-app="wyliodrinAppNotebook" ng-controller="NotebookController as n">
 		{{activeLabel}} {{editLabel}} {{evaluatingLabel}}
+		<md-content class="def-content">
 		<md-list>
 			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': item.label === activeLabel, 'section-regular': item.label !== activeLabel}" >
 			 	<div class="md-list-item-text" ng-click="n.activate(item.label)">
 			 		<div class="options" ng-show="item.label == activeLabel">
+			 			<div class="running-code" ng-show="evaluatingLabel === item.label">
+			    			<img src="../img/running.gif" class="s24">
+			    		</div>
 			    		<md-button ng-show="item.type === 'code' && evaluatingLabel === null && connected" ng-click="n.evaluate (item.label); $event.stopPropagation ();">
 		                    <img src="../img/run-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
@@ -18,17 +22,17 @@
 		                    </md-tooltip>
 		                </md-button>
 		                <md-button ng-show="item.type === 'code' && evaluatingLabel === item.label && connected" ng-click="n.stop (item.label); $event.stopPropagation();">
-		                    <img src="../img/run-icon.png" class="s24">
+		                    <img src="../img/stop-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Stop
 		                    </md-tooltip>
 		                </md-button>
-			    		<md-button ng-show="item.type === 'code' && connected" ng-click="n.reset(); $event.preventPropagation ();">
+			    		<!-- <md-button ng-show="item.type === 'code' && connected" ng-click="n.reset(); $event.preventPropagation ();">
 		                    <img src="../img/reset-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Reset
 		                    </md-tooltip>
-		                </md-button>
+		                </md-button> -->
 			    		<md-button ng-show="item.type === 'markdown'" ng-click="n.edit (item.label); $event.stopPropagation ();">
 		                    <img src="../img/edit-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
@@ -108,84 +112,95 @@
 	                                              onLoad: aceCodeLoaded,
 	                                              onChange: aceCodeChanged
 	                                            }" ng-model="item.text"></div>
-						<div ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
-						<response ng-show='item.response' value="item.response"></response>
-						<pre ng-show='item.stderr && item.stderr.length > 0' bgcolor:'pink'>{{item.stderr}}</pre>
-						<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
+							<div ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
+								<response ng-show='item.response' value="item.response"></response>
+								<pre ng-show='item.stderr && item.stderr.length > 0' bgcolor:'pink'>{{item.stderr}}</pre>
+								<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
+							</div>
 					</div>
-				</div>
-			</md-list-item>
-		  <!-- <md-list-item flex class="section-active">
-		    <div class="md-list-item-text">
-				<div class="clearfix" style="padding: 10px; padding-left: 0px">
-				<img src="https://raw.githubusercontent.com/jupyter/nature-demo/master/images/jupyter-logo.png" width="150px" style="display: inline-block; margin-top: 5px;">
-				<a href="http://bit.ly/tmpnbdevrax"><img src="https://cloud.githubusercontent.com/assets/836375/4916141/2732892e-64d6-11e4-980f-11afcf03ca31.png" width="150px" class="pull-right" style="display: inline-block; margin: 0px;"></a>
-				</div>
+				</md-list-item>
+			  <!-- <md-list-item flex class="section-active">
+			    <div class="md-list-item-text">
+					<div class="clearfix" style="padding: 10px; padding-left: 0px">
+					<img src="https://raw.githubusercontent.com/jupyter/nature-demo/master/images/jupyter-logo.png" width="150px" style="display: inline-block; margin-top: 5px;">
+					<a href="http://bit.ly/tmpnbdevrax"><img src="https://cloud.githubusercontent.com/assets/836375/4916141/2732892e-64d6-11e4-980f-11afcf03ca31.png" width="150px" class="pull-right" style="display: inline-block; margin: 0px;"></a>
+					</div>
 
-				## Welcome to the Temporary Notebook (tmpnb) service!
+					## Welcome to the Temporary Notebook (tmpnb) service!
 
-				This Notebook Server was **launched just for you**. It's a temporary way for you to try out a recent development version of the IPython/Jupyter notebook.
+					This Notebook Server was **launched just for you**. It's a temporary way for you to try out a recent development version of the IPython/Jupyter notebook.
 
-				<div class="alert alert-warning" role="alert" style="margin: 10px">
-				<p>**WARNING**</p>
+					<div class="alert alert-warning" role="alert" style="margin: 10px">
+					<p>**WARNING**</p>
 
-				<p>Don't rely on this server for anything you want to last - your server will be *deleted after 10 minutes of inactivity*.</p>
-				</div>
+					<p>Don't rely on this server for anything you want to last - your server will be *deleted after 10 minutes of inactivity*.</p>
+					</div>
 
-				Your server is hosted thanks to [Rackspace](http://bit.ly/tmpnbdevrax), on their on-demand bare metal servers, [OnMetal](http://bit.ly/onmetal).
+					Your server is hosted thanks to [Rackspace](http://bit.ly/tmpnbdevrax), on their on-demand bare metal servers, [OnMetal](http://bit.ly/onmetal).
 
-		    </div>
-		  </md-list-item>
-		  <md-list-item flex class="section-regular">
-		    <div class="md-list-item-text">
-		     	<pre>
-				
-%matplotlib notebook
+			    </div>
+			  </md-list-item>
+			  <md-list-item flex class="section-regular">
+			    <div class="md-list-item-text">
+			     	<pre>
+					
+	%matplotlib notebook
 
-import pandas as pd
-import numpy as np
-import matplotlib
+	import pandas as pd
+	import numpy as np
+	import matplotlib
 
-from matplotlib import pyplot as plt
-import seaborn as sns
+	from matplotlib import pyplot as plt
+	import seaborn as sns
 
-ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
-ts = ts.cumsum()
+	ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+	ts = ts.cumsum()
 
-df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
-                  columns=['A', 'B', 'C', 'D'])
-df = df.cumsum()
-df.plot(); plt.legend(loc='best')
+	df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+	                  columns=['A', 'B', 'C', 'D'])
+	df = df.cumsum()
+	df.plot(); plt.legend(loc='best')
 
-				</pre>
-		      <p>{{item.description}}</p>
-		    </div>
-		  </md-list-item>
-		  <md-list-item flex class="section-regular">
-		    <div class="md-list-item-text">
-		     	<pre>
-				
-%matplotlib notebook
+					</pre>
+			      <p>{{item.description}}</p>
+			    </div>
+			  </md-list-item>
+			  <md-list-item flex class="section-regular">
+			    <div class="md-list-item-text">
+			     	<pre>
+					
+	%matplotlib notebook
 
-import pandas as pd
-import numpy as np
-import matplotlib
+	import pandas as pd
+	import numpy as np
+	import matplotlib
 
-from matplotlib import pyplot as plt
-import seaborn as sns
+	from matplotlib import pyplot as plt
+	import seaborn as sns
 
-ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
-ts = ts.cumsum()
+	ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+	ts = ts.cumsum()
 
-df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
-                  columns=['A', 'B', 'C', 'D'])
-df = df.cumsum()
-df.plot(); plt.legend(loc='best')
+	df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+	                  columns=['A', 'B', 'C', 'D'])
+	df = df.cumsum()
+	df.plot(); plt.legend(loc='best')
 
-				</pre>
-		      <p>{{item.description}}</p>
-		    </div>
-		  </md-list-item> -->
-		</md-list>
+					</pre>
+			      <p>{{item.description}}</p>
+			    </div>
+			  </md-list-item> -->
+			</md-list>
+			<div class="bottom-space"></div>
+			<div class="server-status" ng-class="{'connected':connected}" ng-show="connected">
+				The server is running
+				<md-button ng-show="connected" ng-click="n.reset()">
+	                <img src="../img/reset-icon.png" class="s24">
+	                <md-tooltip md-direction="top">
+	                  Reset
+	                </md-tooltip>
+	            </md-button>
+			</div>
+		</md-content>
 	</body>
 </html>

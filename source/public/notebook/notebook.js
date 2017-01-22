@@ -86,7 +86,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   function load (items)
   {
     $scope.items = items;
-    if ($scope.items.length == 0)
+    if ($scope.items.length === 0)
     {
       $scope.items.push ({
         type:'markdown',

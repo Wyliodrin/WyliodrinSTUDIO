@@ -39,9 +39,29 @@
 		                      Edit
 		                    </md-tooltip>
 		                </md-button>
+		                <md-input-container>
+							<md-select ng-model="item.type" aria-label="type">
+		                        <md-option value="code">Code</md-option>
+		                        <md-option value="markdown">Markdown</md-option>
+		                        <md-option value="firmware">Firmware</md-option>
+		                    </md-select>
+						</md-input-container>
+						<md-input-container>
+							<md-select ng-model="item.type" aria-label="type">
+		                        <md-option value="code">Code</md-option>
+		                        <md-option value="markdown">Markdown</md-option>
+		                        <md-option value="firmware">Firmware</md-option>
+		                    </md-select>
+						</md-input-container>
+						<md-button>
+		                    <img src="../img/flash-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Flash device
+		                    </md-tooltip>
+		                </md-button>
 				  	</div>
 				  	<div class="options2">
-						<md-input-container style="margin-right: 10px;">
+						<md-input-container>
 							<md-select ng-model="item.type" aria-label="type">
 		                        <md-option value="code">Code</md-option>
 		                        <md-option value="markdown">Markdown</md-option>

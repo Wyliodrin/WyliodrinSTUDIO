@@ -51,6 +51,7 @@ md-list-item {
 
 .section-active .md-list-item-text {
 	padding:50px 20px 10px 20px;
+	border-radius: 2px;
 	border-width: 5px 1px 1px 1px !important;
 	border-color:#4caf50;
 	border-style:solid;
@@ -63,6 +64,7 @@ md-list-item {
 
 .section-regular .md-list-item-text {
 	padding:10px 20px 10px 20px;
+	border-radius: 2px;
 	border-width: 1px 1px 1px 1px !important;
 	border-color:#fff;
 	border-style:solid;
@@ -71,6 +73,10 @@ md-list-item {
 	width:100%;
 	-webkit-transition: padding 1s; /* Safari */
     transition: padding 0.5s;
+}
+
+.section-running {
+	padding-top:50px !important;
 }
 
 .section-regular .md-list-item-text:hover {
@@ -117,12 +123,22 @@ md-list-item {
   	transition: visibility 0s, opacity 0.5s linear;
 }
 
+.section-running .md-list-item-text .options{
+	padding:0px !important;
+	position:absolute !important;
+	right:6px !important;
+	top:6px !important;
+	visibility: hidden !important;
+  	opacity: 0 !important;
+  	transition: visibility 0s, opacity 0.5s linear !important;
+}
+
 pre {
 	border: 1px solid #cfcfcf;
     border-radius: 2px;
     background: #f7f7f7;
     font-size:13px;
-    padding:0px 10px;
+    padding:10px;
 }
 
 md-input-container {
@@ -181,4 +197,23 @@ md-select:not([disabled]):focus md-select-value{
 	float:left;
 	width:100%;
 	height:50px;
+}
+
+.alert {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }

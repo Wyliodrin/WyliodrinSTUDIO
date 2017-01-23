@@ -253,7 +253,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         label: uuid.v4 ()
       });
     }
-    $scope.activeLabel = ($scope.items[0]?$scope.items[0].label:null);
+    $scope.activeLabel = null;
     $scope.editLabel = null;
     $scope.evaluatingLabel = null;
   }

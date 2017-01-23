@@ -7,10 +7,10 @@
 
 	<body style="background:#fff;" ng-app="wyliodrinAppNotebook" ng-controller="NotebookController as n">
 		{{activeLabel}} {{editLabel}} {{evaluatingLabel}}
-		<md-content class="def-content">
+		<md-content class="def-content" ng-click="n.activate (null);">
 		<md-list>
 			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': item.label === activeLabel, 'section-regular': item.label !== activeLabel && evaluatingLabel !== item.label, 'section-regular section-running': item.label !== activeLabel && evaluatingLabel === item.label}" >
-			 	<div class="md-list-item-text" ng-click="n.activate(item.label)">
+			 	<div class="md-list-item-text" ng-click="n.activate(item.label); $event.stopPropagation ();">
 			 		<div class="options">
 			 			<div class="running-code" ng-show="evaluatingLabel === item.label">
 			    			<img src="../img/running.gif" class="s24">

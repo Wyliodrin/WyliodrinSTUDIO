@@ -39,17 +39,19 @@
 		                      Edit
 		                    </md-tooltip>
 		                </md-button>
-		                <md-input-container ng-show="item.type === 'arduino'">
-							<md-select ng-model="item.port.type" aria-label="type" ng-change="n.arduinoType (item.label)">
-		                        <md-option ng-repeat="(arduinoType, arduinoName) in arduinoTypes" value="{{arduinoType}}">{{arduinoName}}</md-option>
+		                <md-input-container ng-show="item.type === 'firmware'">
+							<md-select ng-model="item.port.type" aria-label="type" ng-change="n.firmwareType (item.label)">
+								<md-optgroup ng-repeat="(firmwareType, firmware) in firmwareTypes" label="{{firmware.name}}">
+		                        	<md-option ng-repeat="(deviceType, deviceName) in firmware.devices" value="{{firmwareType+'/'+deviceType}}">{{deviceName}}</md-option>
+		                        </md-optgroup>
 		                    </md-select>
 						</md-input-container>
-						<md-input-container ng-show="connected && item.type === 'arduino' && ports && ports.length > 0">
+						<md-input-container ng-show="connected && item.type === 'firmware' && ports && ports.length > 0">
 							<md-select ng-model="item.port.path" aria-label="type">
 		                        <md-option ng-click="n.port(item.label, port)" ng-repeat="port in ports" value="port.p">{{port.s}}</md-option>
 		                    </md-select>
 						</md-input-container>
-						<md-button ng-show="connected && item.type === 'arduino'">
+						<md-button ng-show="connected && item.type === 'firmware'">
 		                    <img src="../img/flash-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Flash device
@@ -61,7 +63,7 @@
 							<md-select ng-model="item.type" aria-label="type" ng-change="n.itemType (item.label)">
 		                        <md-option value="code">Code</md-option>
 		                        <md-option value="markdown">Markdown</md-option>
-		                        <md-option value="arduino">Arduino</md-option>
+		                        <md-option value="firmware">Firmware</md-option>
 		                    </md-select>
 						</md-input-container>
 			    		<md-button ng-click="n.up ($index); $event.stopPropagation ();">
@@ -134,7 +136,7 @@
 							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>
 							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
 						</div>
-						<div ng-show="item.type==='arduino'">
+						<div ng-show="item.type==='firmware'">
 						<div ui-ace="{
 	                                              advanced: {
 	                                                  enableSnippets: true,

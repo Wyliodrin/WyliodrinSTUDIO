@@ -22,159 +22,172 @@ require('./../tools/snippets/python.js');
 require('./../tools/snippets/markdown.js');
 require('./../tools/snippets/c_cpp.js');
 
-var ARDUINO_DEVICES = {};
-ARDUINO_DEVICES[0x2341] = {};
-ARDUINO_DEVICES[0x2a03] = {};
-ARDUINO_DEVICES[0x2341][0x0001] = 
+var DEVICES = {};
+DEVICES[0x2341] = {
+  name: 'Arduino',
+  type: 'arduino'
+};
+DEVICES[0x2a03] = {
+  name: 'Arduino',
+  type: 'arduino'
+};
+DEVICES[0x2341][0x0001] = 
 {
   name: 'Uno',
   type: 'uno'
 };
-ARDUINO_DEVICES[0x2341][0x0010] = {
+DEVICES[0x2341][0x0010] = {
   name: 'Mega 2560',
   type: 'mega2560'
 };
-ARDUINO_DEVICES[0x2341][0x003f] = 
+DEVICES[0x2341][0x003f] = 
 {
   name:'Mega ADK',
   type: 'mega2560'
 };
-ARDUINO_DEVICES[0x2341][0x0042] = 
+DEVICES[0x2341][0x0042] = 
 {
   name: 'Mega 2560 rev3',
   type: 'mega2560'
 };
-ARDUINO_DEVICES[0x2341][0x0043] = 
+DEVICES[0x2341][0x0043] = 
 {
   name: 'Uno R3',
   type: 'uno'
 };
-ARDUINO_DEVICES[0x2341][0x0044] = 
+DEVICES[0x2341][0x0044] = 
 {
   name: 'Mega ADK rev3',
   type: 'mega2560'
 };
-ARDUINO_DEVICES[0x2341][0x8036] = 
+DEVICES[0x2341][0x8036] = 
 {
   name: 'Leonardo',
   type: 'leonardo'
 };
-ARDUINO_DEVICES[0x2a03][0x0001] = 
+DEVICES[0x2a03][0x0001] = 
 {
   name: 'Linino ONE'
 };
-ARDUINO_DEVICES[0x2a03][0x0036] = 
+DEVICES[0x2a03][0x0036] = 
 {
   name: 'Leonardo',
   type: 'leonardo'
 };
-ARDUINO_DEVICES[0x2a03][0x0037] = 
+DEVICES[0x2a03][0x0037] = 
 {
   name: 'Micro'
 };
-ARDUINO_DEVICES[0x2a03][0x0038] = 
+DEVICES[0x2a03][0x0038] = 
 {
   name: 'Robot Control'
 };
-ARDUINO_DEVICES[0x2a03][0x0039] =
+DEVICES[0x2a03][0x0039] =
 {
   name: 'Robot Motor'
 };
-ARDUINO_DEVICES[0x2a03][0x003a] = 
+DEVICES[0x2a03][0x003a] = 
 {
   name: 'Micro ADK rev3'
 };
-ARDUINO_DEVICES[0x2a03][0x003c] = 
+DEVICES[0x2a03][0x003c] = 
 {
   name: 'Esplora'
 };
-ARDUINO_DEVICES[0x2a03][0x003d] = 
+DEVICES[0x2a03][0x003d] = 
 {
   name: 'Due'
 };
-ARDUINO_DEVICES[0x2a03][0x003e] = 
+DEVICES[0x2a03][0x003e] = 
 {
   name: 'Due'
 };
-ARDUINO_DEVICES[0x2a03][0x0041] = 
+DEVICES[0x2a03][0x0041] = 
 {
   name: 'Yun'
 };
-ARDUINO_DEVICES[0x2a03][0x0042] = 
+DEVICES[0x2a03][0x0042] = 
 {
   name: 'Mega 2560 rev3',
   type: 'mega2560'
 };
-ARDUINO_DEVICES[0x2a03][0x0043] = 
+DEVICES[0x2a03][0x0043] = 
 {
   name: 'Uno Rev3',
   type: 'uno'
 };
-ARDUINO_DEVICES[0x2a03][0x004d] = 
+DEVICES[0x2a03][0x004d] = 
 {
   name: 'Zero Pro'
 };
-ARDUINO_DEVICES[0x2a03][0x8001] = 
+DEVICES[0x2a03][0x8001] = 
 {
   name: 'Linino ONE'
 };
-ARDUINO_DEVICES[0x2a03][0x8036] = 
+DEVICES[0x2a03][0x8036] = 
 {
   name: 'Leonardo',
   type: 'leonardo'
 };
-ARDUINO_DEVICES[0x2a03][0x8037] = 
+DEVICES[0x2a03][0x8037] = 
 {
   name: 'Micro'
 };
-ARDUINO_DEVICES[0x2a03][0x8038] = 
+DEVICES[0x2a03][0x8038] = 
 {
   name: 'Robot Control'
 };
-ARDUINO_DEVICES[0x2a03][0x8039] = 
+DEVICES[0x2a03][0x8039] = 
 {
   name: 'Robot Motor'
 };
-ARDUINO_DEVICES[0x2a03][0x803a] = 
+DEVICES[0x2a03][0x803a] = 
 {
   name: 'Micro ADK rev3'
 };
-ARDUINO_DEVICES[0x2a03][0x803c] = 
+DEVICES[0x2a03][0x803c] = 
 {
   name: 'Esplora'
 };
-ARDUINO_DEVICES[0x2a03][0x8041] = 
+DEVICES[0x2a03][0x8041] = 
 {
   name: 'Yun'
 };
-ARDUINO_DEVICES[0x2a03][0x804d] = 
+DEVICES[0x2a03][0x804d] = 
 {
   name: 'Zero Pro'
 };
 
-var ARDUINO_TYPES = {
-    'uno':'Arduino Uno',
-    'atmega328':'Arduino Duemilanove w/ ATmega328',
-    'diecimila':'Arduino Diecimila or Duemilanove w/ ATmega168',
-    'nano328':'Arduino Nano w/ ATmega328',
-    'nano':'Arduino Nano w/ ATmega168',
-    'mega2560':'Arduino Mega 2560 or Mega ADK',
-    'mega':'Arduino Mega (ATmega1280)',
-    'leonardo':'Arduino Leonardo',
-    'mini328':'Arduino Mini w/ ATmega328',
-    'mini':'Arduino Mini w/ ATmega168',
-    'ethernet':'Arduino Ethernet',
-    'fio':'Arduino Fio',
-    'bt328':'Arduino BT w/ ATmega328',
-    'bt':'Arduino BT w/ ATmega168',
-    'lilypad328':'LilyPad Arduino w/ ATmega328',
-    'lilypad':'LilyPad Arduino w/ ATmega168',
-    'pro5v328':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega328',
-    'pro5v':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega168',
-    'pro328':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328',
-    'pro':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega168',
-    'atmega168':'Arduino NG or older w/ ATmega168',
-    'atmega8':'Arduino NG or older w/ ATmega8'
+var FIRMWARE_TYPES = {
+    'arduino':
+    {
+      name: 'Arduino',
+      devices:
+      {
+        'uno':'Arduino Uno',
+        'atmega328':'Arduino Duemilanove w/ ATmega328',
+        'diecimila':'Arduino Diecimila or Duemilanove w/ ATmega168',
+        'nano328':'Arduino Nano w/ ATmega328',
+        'nano':'Arduino Nano w/ ATmega168',
+        'mega2560':'Arduino Mega 2560 or Mega ADK',
+        'mega':'Arduino Mega (ATmega1280)',
+        'leonardo':'Arduino Leonardo',
+        'mini328':'Arduino Mini w/ ATmega328',
+        'mini':'Arduino Mini w/ ATmega168',
+        'ethernet':'Arduino Ethernet',
+        'fio':'Arduino Fio',
+        'bt328':'Arduino BT w/ ATmega328',
+        'bt':'Arduino BT w/ ATmega168',
+        'lilypad328':'LilyPad Arduino w/ ATmega328',
+        'lilypad':'LilyPad Arduino w/ ATmega168',
+        'pro5v328':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega328',
+        'pro5v':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega168',
+        'pro328':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328',
+        'pro':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega168',
+        'atmega168':'Arduino NG or older w/ ATmega168',
+        'atmega8':'Arduino NG or older w/ ATmega8'
+      }
+    }
   };
 
 var _ = require ('lodash');
@@ -261,7 +274,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   $scope.connected = false;
 
   $scope.ports = [];
-  $scope.arduinoTypes = ARDUINO_TYPES;
+  $scope.firmwareTypes = FIRMWARE_TYPES;
 
   $scope.status = 'STOPPED';
 
@@ -425,7 +438,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     });
   };
 
-  this.arduinoType = function (label)
+  this.firmwareType = function (label)
   {
     store ();
   };
@@ -433,7 +446,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   this.port = function (label, port)
   {
     console.log ('port');
-    var type = findArduinoType (port.vid, port.pid);
+    var type = findFirmwareType (port.vid, port.pid);
     console.log (type);
     if (type)
     {
@@ -454,26 +467,30 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     });
   }
 
-  function arduinoName (port)
+  function firmwareName (port)
   {
     var portName = port.s;
     // console.log (port);
-    // console.log (ARDUINO_DEVICES[port.vid]);
-    // console.log (ARDUINO_DEVICES[port.vid][port.pid]);
-    if (port.vid && port.pid && ARDUINO_DEVICES[port.vid] && ARDUINO_DEVICES[port.vid][port.pid])
+    // console.log (DEVICES[port.vid]);
+    // console.log (DEVICES[port.vid][port.pid]);
+    if (port.vid)
+    {
+      if (DEVICES[port.vid]) portName = DEVICES[port.vid].name;
+    }
+    if (port.vid && port.pid && DEVICES[port.vid] && DEVICES[port.vid][port.pid])
     {
       // console.log (port);
-      portName = ARDUINO_DEVICES[port.vid][port.pid].name;
+      portName = portName+' '+DEVICES[port.vid][port.pid].name;
     }
     return portName + ' ('+path.basename (port.p)+')';
-  };
+  }
 
-  function findArduinoType (vid, pid)
+  function findFirmwareType (vid, pid)
   {
     var type = null;
-    if (ARDUINO_DEVICES[vid] && ARDUINO_DEVICES[vid][pid])
+    if (DEVICES[vid] && DEVICES[vid][pid])
     {
-      type = ARDUINO_DEVICES[vid][pid].type;
+      type = DEVICES[vid].type+'/'+DEVICES[vid][pid].type;
     }
     return type;
   }
@@ -584,7 +601,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
             {
 
             }
-            port.s = arduinoName (port);
+            port.s = firmwareName (port);
           });
         }
       });

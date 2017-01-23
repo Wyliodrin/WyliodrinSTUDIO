@@ -113,7 +113,7 @@
                                             }" ng-model="item.text"></div>
                     <div ng-show="item.type==='code'">
                     	<div class="code-logo">
-			    			<img src="../img/arduino.png" class="s24">
+			    			<img src="../img/python.png" class="s24">
 			    		</div>
 						<div ui-ace="{
 	                                              advanced: {
@@ -141,7 +141,10 @@
 							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
 						</div>
 						<div ng-show="item.type==='firmware'">
-						<div ui-ace="{
+							<div class="code-logo">
+				    			<img ng-src="{{'../img/'+item.port.type.split('/')[0]+'.png'}}" class="s24">
+				    		</div>
+							<div ui-ace="{
 	                                              advanced: {
 	                                                  enableSnippets: true,
 	                                                  enableBasicAutocompletion: true,

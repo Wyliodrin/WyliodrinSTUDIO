@@ -248,6 +248,15 @@ app.factory ('$wydevice', function ()
   return deviceService;
 });
 
+app.config( [
+    '$compileProvider',
+    function( $compileProvider )
+    {   
+        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
+        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+    }
+]);
+
 app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wydevice)
 {
   function store ()
@@ -340,6 +349,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       var item = $scope.items[index];
       $scope.items[index] = $scope.items[index-1];
       $scope.items[index-1] = item;
+      store ();
     }
   };
 
@@ -350,6 +360,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       var item = $scope.items[index];
       $scope.items[index] = $scope.items[index+1];
       $scope.items[index+1] = item;
+      store ();
     }
   };
 
@@ -372,11 +383,13 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       text: ITEM_SNIPPETS[$scope.items[index].type],
       label: uuid.v4 (),
       port: {
+        type: ($scope.items[index].type==='firmware'?'arduino/uno':'')
       }
     };
     $scope.items.splice (index+1, 0, item);
     $scope.activeIndex = index+1;
     $scope.editIndex = index+1;
+    store ();
   };
 
   this.delete = function (index)
@@ -396,6 +409,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
             $scope.items.splice (index, 1);
             $scope.activeIndex = -1;
             $scope.editIndex = -1;
+            store ();
           }, function() {
           });
     }

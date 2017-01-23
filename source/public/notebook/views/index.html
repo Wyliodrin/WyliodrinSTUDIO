@@ -112,6 +112,9 @@
                                               onChange: aceEditChanged
                                             }" ng-model="item.text"></div>
                     <div ng-show="item.type==='code'">
+                    	<div class="code-logo">
+			    			<img src="../img/arduino.png" class="s24">
+			    		</div>
 						<div ui-ace="{
 	                                              advanced: {
 	                                                  enableSnippets: true,
@@ -130,7 +133,8 @@
 	                                              firstLineNumber: 1,
 	                                              onLoad: aceCodeLoaded,
 	                                              onChange: aceCodeChanged
-	                                            }" ng-model="item.text"></div>
+	                                            }" ng-model="item.text">
+	                                            </div>
 							<div class="alert alert-danger" ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
 							<response ng-show='item.response' value="item.response"></response>
 							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>

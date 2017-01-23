@@ -48,13 +48,19 @@
 						</md-input-container>
 						<md-input-container ng-show="connected && item.type === 'firmware' && ports && ports.length > 0">
 							<md-select ng-model="item.port.path" aria-label="type">
-		                        <md-option ng-click="n.port(item.label, port)" ng-repeat="port in ports" value="port.p">{{port.s}}</md-option>
+		                        <md-option ng-click="n.port(item.label, port)" ng-repeat="port in ports" value="{{port.p}}">{{port.s}}</md-option>
 		                    </md-select>
 						</md-input-container>
-						<md-button ng-show="connected && item.type === 'firmware'">
+						<md-button ng-show="connected && item.type === 'firmware' && flashingLabel === null" ng-click="n.flash (item.label); $event.preventPropagation ();">
 		                    <img src="../img/flash-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Flash device
+		                    </md-tooltip>
+		                </md-button>
+		                <md-button ng-show="item.type === 'firmware' && flashingLabel === item.label && connected" ng-click="n.stopflash (item.label); $event.stopPropagation();">
+		                    <img src="../img/stop-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Stop
 		                    </md-tooltip>
 		                </md-button>
 				  	</div>

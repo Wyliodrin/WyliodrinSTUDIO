@@ -22,6 +22,10 @@ require('./../tools/snippets/python.js');
 require('./../tools/snippets/markdown.js');
 require('./../tools/snippets/c_cpp.js');
 
+var MAKEFILE = {
+  'arduino':'compile:\n\tmkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) 2> /dev/null; rm -f .build && ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)\n\nflash:\n\tino upload -m $(DEVICE) -p $(PORT)\n\nserial:\n\tstty -F $(PORT) speed $(BAUD); socat $(PORT) -\n'
+};
+
 var DEVICES = {};
 DEVICES[0x2341] = {
   name: 'Arduino',
@@ -162,6 +166,7 @@ var FIRMWARE_TYPES = {
     'arduino':
     {
       name: 'Arduino',
+      source: 'src/Arduino.ino',
       devices:
       {
         'uno':'Arduino Uno',
@@ -278,6 +283,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     $scope.activeLabel = null;
     $scope.editLabel = null;
     $scope.evaluatingLabel = null;
+    $scope.flashingLabel = null;
   }
 
   $scope.connected = false;
@@ -440,6 +446,38 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     });
   };
 
+  this.flash = function (label)
+  {
+    var item = findLabel (label);
+    if (item)
+    {
+      var typedevice = item.port.type.split ('/');
+      var type = typedevice[0];
+      var device = typedevice[1];
+      $wydevice.send ('note', {
+        a:'f',
+        f: item.text,
+        s: FIRMWARE_TYPES[type].source,
+        d: device,
+        p: item.port.path,
+        m: MAKEFILE[type],
+        b: 9600
+      });
+      item.stdout = '';
+      item.stderr = '';
+      $scope.flashingLabel = label;
+    }
+  };
+
+  this.stopflash = function (label)
+  {
+    $wydevice.send ('note', {
+      a:'f',
+      f:''
+    });
+    $scope.flashingLabel = null;
+  };
+
   this.itemType = function (label)
   {
     store ();
@@ -470,6 +508,8 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         item.port.type = type;
       }
     }
+    item.port.path = port.p;
+    store ();
   };
 
   function findLabel (label)
@@ -593,6 +633,36 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
               item.response = p.d;
               store ();
             });
+        }
+      }
+      else
+      if (p.a === 'f')
+      {
+        var item = findLabel ($scope.flashingLabel);
+        if (p.s === 'o')
+        {
+          if (item) $timeout (function ()
+          {
+            item.stdout = item.stdout + p.d;
+            store ();
+          });
+        }
+        else
+        if (p.s === 'e')
+        {
+          if (item) $timeout (function ()
+          {
+            item.stderr = item.stderr + p.d;
+            store ();
+          });
+        }
+        else
+        if (p.s === 'f')
+        {
+          $timeout (function ()
+          {
+            $scope.flashingLabel = null;
+          });
         }
       }
     }

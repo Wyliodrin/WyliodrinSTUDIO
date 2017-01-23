@@ -361,7 +361,7 @@ module.exports = function(grunt) {
   grunt.registerTask ('makefile_v2', 'Makefile_v2', function ()////////////////////////////////////////////////
   {
     function recurse(folder){
-      var ret = {}
+      var ret = {};
       var content = fs.readdirSync(folder);
       _.each(content, function (file)
       {

@@ -98,6 +98,11 @@
 		                </md-button>
 				  	</div>
 					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
+					<md-button ng-click="n.image (item.label)">
+						<md-tooltip>
+							Add Image
+						</md-tooltip>
+					</md-button>
 					<div ng-if="item.type==='markdown' && editLabel === item.label" ui-ace="{
                                               advanced: {
                                                   enableSnippets: true,

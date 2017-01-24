@@ -206,6 +206,8 @@ var ITEM_SNIPPETS = {
 };
 var wyliodrin = null;
 
+var aceEdit = null;
+
 var app = angular.module ("wyliodrinAppNotebook", ['ngMaterial', 'ui.ace'], function ($provide)
 {
 	$provide.decorator('$window', function($delegate) 
@@ -236,6 +238,11 @@ app.factory ('$wydevice', function ()
     if (message.data.type === 'wydevice-status')
     {
       deviceService.emit ('status', message.data.s);
+    }
+    else
+    if (message.data.type === 'file')
+    {
+      aceEdit.insert ('![Image]('+message.data.d.d+')');
     }
   });
 
@@ -359,12 +366,14 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   };
   $scope.aceEditLoaded = function (_editor)
   {
+    aceEdit = _editor;
     _editor.$blockScrolling = Infinity;
     _editor.getSession().setTabSize (2);
     _editor.getSession().setUseSoftTabs (true);
   };
   $scope.aceEditChanged = function (_editor)
   {
+    $('a').attr ('target', '_blank');
     store ();
   };
 
@@ -409,6 +418,19 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     {
       $scope.editLabel = null;
     }
+  };
+
+  this.image = function (label)
+  {
+    wyliodrin.postMessage ({ type: 'file',
+      t:'load',
+      d:
+      {
+        f:[{mimeTypes:['image/*']}],
+        d:'url',
+        l: label
+      }
+    }, '*');
   };
 
   this.insert = function (index)

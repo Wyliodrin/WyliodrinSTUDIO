@@ -45,10 +45,58 @@ module.exports = function ()
 					console.log (parsedmessage.d);
 					library.storeNotebook (id, parsedmessage.d);
 				}
+				else
+				if (parsedmessage.type === 'file')
+				{
+					if (parsedmessage.t === 'load')
+					{
+						chrome.fileSystem.chooseEntry(
+					    {
+					      type: 'openFile', accepts:parsedmessage.d.f 
+					    }, 
+					    function(fileEntry) {
+					      if(chrome.runtime.lastError) 
+					      {
+
+					      }
+					      if (!fileEntry) {
+					        // debug ('File missing');
+					        return;
+					      }
+					      // debug ('Reading file');
+					      fileEntry.file(function(file) 
+					      {
+					        // debug ('Read project');
+					        var fileReader = new FileReader ();
+					        fileReader.onload = function (value)
+					        {
+					          // debug ('Project');
+					          console.log ('load');
+					          // console.log (value.target.result);
+					          notebook.contentWindow.postMessage ({type: 'file', d:{
+					          	l: parsedmessage.d.l,
+					          	d: value.target.result
+					          }}, '*');
+					        };
+					        fileReader.onerror = function (err)
+					        {
+					        	console.log (err);
+					          // debug (err);
+					        };
+					        // console.log (parsedmessage.d.d);
+					        if (parsedmessage.d.d === 'url')
+					        {
+					        	console.log ('read');
+					        	fileReader.readAsDataURL (file);
+					        }
+					      });
+					    });
+					}
+				}
 			}
 			catch (e)
 			{
-
+				console.log (e.stack);
 			}
 		});
 

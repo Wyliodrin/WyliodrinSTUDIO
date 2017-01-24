@@ -66,6 +66,7 @@ module.exports = function ()
 					      // debug ('Reading file');
 					      fileEntry.file(function(file) 
 					      {
+					      	// console.log (file);
 					        // debug ('Read project');
 					        var fileReader = new FileReader ();
 					        fileReader.onload = function (value)
@@ -75,7 +76,9 @@ module.exports = function ()
 					          // console.log (value.target.result);
 					          notebook.contentWindow.postMessage ({type: 'file', d:{
 					          	l: parsedmessage.d.l,
-					          	d: value.target.result
+					          	f: parsedmessage.d.d,
+					          	d: value.target.result,
+					          	n: file.name
 					          }}, '*');
 					        };
 					        fileReader.onerror = function (err)
@@ -84,7 +87,7 @@ module.exports = function ()
 					          // debug (err);
 					        };
 					        // console.log (parsedmessage.d.d);
-					        if (parsedmessage.d.d === 'url')
+					        if (parsedmessage.d.e === 'url')
 					        {
 					        	console.log ('read');
 					        	fileReader.readAsDataURL (file);

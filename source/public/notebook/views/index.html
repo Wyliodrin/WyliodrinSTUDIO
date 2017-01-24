@@ -105,49 +105,61 @@
 								Add Image
 							</md-tooltip>
 						</md-button>
-						<md-button ng-click="n.image (item.label)">
+						<md-button ng-click="n.arbitraryfile (item.label)">
 							<img src="../img/file-icon.png" class="s24">
 							<md-tooltip>
 								Add File
 							</md-tooltip>
 						</md-button>
-						<md-button ng-click="">
+						<md-button ng-click="n.link (item.label)">
 							<img src="../img/link-icon.png" class="s24">
 							<md-tooltip>
 								Link
 							</md-tooltip>
 						</md-button>
-						<md-button ng-click="">
+						<md-button ng-click="n.numbered (item.label)">
 							<img src="../img/nlist-icon.png" class="s24">
 							<md-tooltip>
-								Numbered List
+								Numbered
 							</md-tooltip>
 						</md-button>
-						<md-button ng-click="">
+						<md-button ng-click="n.points (item.label)">
 							<img src="../img/list-icon.png" class="s24">
 							<md-tooltip>
 								List
 							</md-tooltip>
 						</md-button>
-						<md-button ng-click="">
+						<md-button ng-click="n.bold(item.label)">
+							<img src="../img/bold-icon.png" class="s24">
+							<md-tooltip>
+								Bold
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.italics(item.label)">
+							<img src="../img/italics-icon.png" class="s24">
+							<md-tooltip>
+								Italics
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.heading1(item.label)">
 							<img src="../img/h1-icon.png" class="s24">
 							<md-tooltip>
 								Heading 1
 							</md-tooltip>
 						</md-button>
-						<md-button ng-click="">
+						<md-button ng-click="n.heading2(item.label)">
 							<img src="../img/h2-icon.png" class="s24">
 							<md-tooltip>
 								Heading 2
 							</md-tooltip>
 						</md-button>
-						<md-button ng-click="">
+						<md-button ng-click="n.heading3(item.label)">
 							<img src="../img/h3-icon.png" class="s24">
 							<md-tooltip>
 								Heading 3
 							</md-tooltip>
 						</md-button>
-						<md-button ng-click="">
+						<md-button ng-click="n.source (item.label)">
 							<img src="../img/source-icon.png" class="s24">
 							<md-tooltip>
 								Source
@@ -156,9 +168,9 @@
 					</div>
 					<div ng-if="item.type==='markdown' && editLabel === item.label" ui-ace="{
                                               advanced: {
-                                                  enableSnippets: true,
-                                                  enableBasicAutocompletion: true,
-                                                  enableLiveAutocompletion: true
+                                                  enableSnippets: false,
+                                                  enableBasicAutocompletion: false,
+                                                  enableLiveAutocompletion: false
                                               },
                                               useWrapMode : true,
                                               showGutter: true,
@@ -199,8 +211,20 @@
 	                                            </div>
 							<div class="alert alert-danger" ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
 							<response ng-show='item.response' value="item.response"></response>
-							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>
-							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
+							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
+							<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
+			                    <img src="../img/close-icon.png" class="s24">
+			                    <md-tooltip md-direction="top">
+			                      Close
+			                    </md-tooltip>
+			                </md-button></pre>
+							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}
+								<md-button ng-click="n.deletestdout(item.label); $event.stopPropagation ();">
+				                    <img src="../img/close-icon.png" class="s24">
+				                    <md-tooltip md-direction="top">
+				                      Close
+				                    </md-tooltip>
+			                </md-button></pre>
 						</div>
 						<div ng-if="item.type==='firmware'">
 							<div class="code-logo">
@@ -227,9 +251,9 @@
 	                                            }" ng-model="item.text"></div>
 							<div class="sendval">
 								<md-input-container md-no-float>
-									<input placeholder="Value">
+									<input placeholder="Value" ng-model="serialinput">
 								</md-input-container>
-                        		<md-button>
+                        		<md-button ng-click="n.serialinput (item.label)">
 				                    <img src="../img/send-icon.png" class="s24">
 				                    <md-tooltip md-direction="right">
 				                      Send value
@@ -240,14 +264,20 @@
 	                        	{{item.response}}
 	                        </pre>
 							<pre class="alert closepre" ng-class="{'alert-danger':item.hasErrors, 'alert-warning':!item.hasErrors}" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
-							<md-button>
+							<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
 			                    <img src="../img/close-icon.png" class="s24">
 			                    <md-tooltip md-direction="top">
 			                      Close
 			                    </md-tooltip>
 			                </md-button>
 							</pre>
-							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
+							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}
+								<md-button ng-click="n.deletestdout(item.label); $event.stopPropagation ();">
+				                    <img src="../img/close-icon.png" class="s24">
+				                    <md-tooltip md-direction="top">
+				                      Close
+				                    </md-tooltip>
+			                	</md-button></pre>
 						</div>
 					</div>
 				</md-list-item>

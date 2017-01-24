@@ -224,7 +224,7 @@ var app = angular.module ("wyliodrinAppNotebook", ['ngMaterial', 'ui.ace'], func
     });
 });
 
-app.factory ('$wydevice', function ()
+app.factory ('$wydevice', function ($timeout)
 {
   window.addEventListener ('message', function (message)
   {
@@ -242,7 +242,26 @@ app.factory ('$wydevice', function ()
     else
     if (message.data.type === 'file')
     {
-      aceEdit.insert ('![Image]('+message.data.d.d+')');
+      if (message.data.d.f === 'image')
+      {
+        $timeout (function ()
+        {
+          aceEdit.insert ('!['+message.data.d.n+']('+message.data.d.d+')');
+        });
+      }
+      else
+      if (message.data.d.f === 'arbitrary')
+      {
+        $timeout (function ()
+        {
+          var s = message.data.d.d;
+          if (s.indexOf ('data:;')===0)
+          {
+            s = 'data:application/octet-stream'+s.substring (4);
+          }
+          aceEdit.insert ('['+message.data.d.n+']('+s+')'); 
+        });
+      }
     }
   });
 
@@ -291,6 +310,18 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     $scope.editLabel = null;
     $scope.evaluatingLabel = null;
     $scope.flashingLabel = null;
+    setTimeout (function ()
+    {
+      $('a').each (function ()
+        {
+          var l = $(this);
+          if (l.attr ('href').startsWith ('data:application/octet-stream'))
+          {
+            l.attr ('download', l.text());
+          }
+          l.attr ('target', '_blank');
+        });
+    }, 500);
   }
 
   $scope.connected = false;
@@ -299,6 +330,8 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   $scope.firmwareTypes = FIRMWARE_TYPES;
 
   $scope.status = 'STOPPED';
+
+  $scope.serialinput = '';
 
   // hotkeys.bindTo($scope).add({
   //   combo: 'ctrl+enter',
@@ -373,7 +406,19 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   };
   $scope.aceEditChanged = function (_editor)
   {
-    $('a').attr ('target', '_blank');
+    setTimeout (function ()
+    {
+      $('a').each (function ()
+        {
+          var l = $(this);
+          console.log (l.attr ('href'));
+          if (l.attr ('href').startsWith ('data:application/octet-stream'))
+          {
+            l.attr ('download', l.text());
+          }
+          l.attr ('target', '_blank');
+        });
+    }, 500);
     store ();
   };
 
@@ -420,6 +465,78 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     }
   };
 
+  this.link = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('[text](http://...)');
+    });
+  };
+
+  this.numbered = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('\n1. Item\n2. Item \n3. Item');
+    });
+  };
+
+  this.points = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('\n* Item\n* Item \n* Item');
+    });
+  };
+
+  this.heading1 = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('\n# Title');
+    });
+  };
+
+  this.heading2 = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('\n## Title');
+    });
+  };
+
+  this.heading3 = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('\n### Title');
+    });
+  };
+
+  this.source = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('\n```language\nsource\n```');
+    });
+  };
+
+  this.bold = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('**text**');
+    });
+  };
+
+  this.italics = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('*italics*');
+    });
+  };
+
   this.image = function (label)
   {
     wyliodrin.postMessage ({ type: 'file',
@@ -427,7 +544,22 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       d:
       {
         f:[{mimeTypes:['image/*']}],
-        d:'url',
+        e:'url',
+        d:'image',
+        l: label
+      }
+    }, '*');
+  };
+
+  this.arbitraryfile = function (label)
+  {
+    wyliodrin.postMessage ({ type: 'file',
+      t:'load',
+      d:
+      {
+        f:[{mimeTypes:['*/*']}],
+        e:'url',
+        d:'arbitrary',
         l: label
       }
     }, '*');
@@ -470,6 +602,18 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
           }, function() {
           });
     }
+  };
+
+  this.deletestderr = function (label)
+  {
+    var item = findLabel (label);
+    if (item) item.stderr = '';
+  };
+
+  this.deletestdout = function (label)
+  {
+    var item = findLabel (label);
+    if (item) item.stdout = '';
   };
 
   this.evaluate = function (label)
@@ -530,6 +674,16 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       f:''
     });
     $scope.flashingLabel = null;
+  };
+
+  this.serialinput = function (label)
+  {
+    $wydevice.send ('note', {
+      a:'f',
+      s:$scope.serialinput,
+      l:label
+    });
+    $scope.serialinput = '';
   };
 
   this.itemType = function (label)
@@ -785,7 +939,11 @@ app.filter ('markdown', function ($sce)
       pedantic: false,
       sanitize: false,
       smartLists: true,
-      smartypants: false
+      smartypants: false,
+      highlight: function (code) {
+        console.log (code);
+        return require('highlight.js').highlightAuto(code).value;
+      }
     });
 
   return function (item)

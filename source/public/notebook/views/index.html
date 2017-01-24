@@ -98,47 +98,55 @@
 		                </md-button>
 				  	</div>
 					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
-					<div ng-if="item.type === 'markdown'">
-					<md-button ng-click="n.image (item.label)">
-						<md-tooltip>
-							Add Image
-						</md-tooltip>
-					</md-button>
-					<md-button ng-click="">
-						<md-tooltip>
-							Link
-						</md-tooltip>
-					</md-button>
-					<md-button ng-click="">
-						<md-tooltip>
-							Numbered List
-						</md-tooltip>
-					</md-button>
-					<md-button ng-click="">
-						<md-tooltip>
-							List
-						</md-tooltip>
-					</md-button>
-					<md-button ng-click="">
-						<md-tooltip>
-							Heading 1
-						</md-tooltip>
-					</md-button>
-					<md-button ng-click="">
-						<md-tooltip>
-							Heading 2
-						</md-tooltip>
-					</md-button>
-					<md-button ng-click="">
-						<md-tooltip>
-							Heading 3
-						</md-tooltip>
-					</md-button>
-					<md-button ng-click="">
-						<md-tooltip>
-							Source
-						</md-tooltip>
-					</md-button>
+					<div ng-if="item.type === 'markdown'" class="markdown-btns">
+						<md-button ng-click="n.image (item.label)">
+							<img src="../img/image-icon.png" class="s24">
+							<md-tooltip>
+								Add Image
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="">
+							<img src="../img/link-icon.png" class="s24">
+							<md-tooltip>
+								Link
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="">
+							<img src="../img/nlist-icon.png" class="s24">
+							<md-tooltip>
+								Numbered List
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="">
+							<img src="../img/list-icon.png" class="s24">
+							<md-tooltip>
+								List
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="">
+							<img src="../img/h1-icon.png" class="s24">
+							<md-tooltip>
+								Heading 1
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="">
+							<img src="../img/h2-icon.png" class="s24">
+							<md-tooltip>
+								Heading 2
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="">
+							<img src="../img/h3-icon.png" class="s24">
+							<md-tooltip>
+								Heading 3
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="">
+							<img src="../img/source-icon.png" class="s24">
+							<md-tooltip>
+								Source
+							</md-tooltip>
+						</md-button>
 					</div>
 					<div ng-if="item.type==='markdown' && editLabel === item.label" ui-ace="{
                                               advanced: {

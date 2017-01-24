@@ -5,6 +5,12 @@
 
 body {font-size:13px; color:#000; padding:0px;-webkit-user-select: text;}
 
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 .def-content {
 	padding:10px;
 	background:#fff;
@@ -21,16 +27,16 @@ body {font-size:13px; color:#000; padding:0px;-webkit-user-select: text;}
 	margin:0px 5px 0 0;
 }
 
-.options .running-code, .options2 .running-code {
-	padding:6;
-	margin:0px;
-	float:left;
-}
-
 .options .md-button:hover, .options2 .md-button:hover {
 	background:#e54225;
 
 	img {filter: invert(100%);}
+}
+
+.options .running-code, .options2 .running-code {
+	padding:6;
+	margin:0px;
+	float:left;
 }
 
 .section-regular, .section-active {
@@ -139,6 +145,11 @@ pre {
     background: #f7f7f7;
     font-size:13px;
     padding:10px;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word; 
 }
 
 md-input-container {
@@ -240,4 +251,64 @@ td, th {
 
 .ace_scroller {
     border: #eee solid 1px;
+}
+
+.sendval {
+	margin-bottom:-35px;
+    margin-top: 20px;
+    margin-left: 10px;
+	border: #cfcfcf 1px solid;
+    background: #fff;
+	display:inline-block;
+	padding: 0px 10px;
+
+	md-input-container {height: 40px;}
+
+	.md-button {
+		color:#000;
+		min-width:initial;
+		min-height:initial;
+		padding:6;
+		margin:0px 5px 0 0;
+	}
+
+	.md-button:hover {
+		background:#e54225;
+		img {filter: invert(100%);}
+	}
+
+
+}
+
+
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: #e54225;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: #000;
+}
+
+.closepre {
+
+	position:relative;
+
+	.md-button {
+		position:absolute;
+		right:0px;
+		top:5px;
+		color:#000;
+		min-width:initial;
+		min-height:initial;
+		padding:6;
+		margin:0px 5px 0 0;
+		img {opacity:0.5;}
+	}
+
+	.md-button:hover {
+		background:#e54225;
+		img {filter: invert(100%);}
+		img {opacity:1;}
+	}
+
 }

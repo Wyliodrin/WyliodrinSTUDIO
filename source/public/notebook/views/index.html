@@ -174,8 +174,28 @@
 	                                              onLoad: aceCodeLoaded,
 	                                              onChange: aceCodeChanged
 	                                            }" ng-model="item.text"></div>
-	                        <pre ng-show='item.response && item.response.length > 0'>{{item.response}}</pre>
-							<pre class="alert" ng-class="{'alert-danger':item.hasErrors, 'alert-warning':!item.hasErrors}" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>
+							<div class="sendval">
+								<md-input-container md-no-float>
+									<input placeholder="Value">
+								</md-input-container>
+                        		<md-button>
+				                    <img src="../img/send-icon.png" class="s24">
+				                    <md-tooltip md-direction="right">
+				                      Send value
+				                    </md-tooltip>
+				                </md-button>
+                        	</div>
+	                        <pre ng-show='item.response && item.response.length > 0'>
+	                        	{{item.response}}
+	                        </pre>
+							<pre class="alert closepre" ng-class="{'alert-danger':item.hasErrors, 'alert-warning':!item.hasErrors}" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
+							<md-button>
+			                    <img src="../img/close-icon.png" class="s24">
+			                    <md-tooltip md-direction="top">
+			                      Close
+			                    </md-tooltip>
+			                </md-button>
+							</pre>
 							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
 						</div>
 					</div>

@@ -9,10 +9,10 @@
 		{{activeLabel}} {{editLabel}} {{evaluatingLabel}}
 		<md-content class="def-content" ng-click="n.activate (null);">
 		<md-list>
-			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': item.label === activeLabel, 'section-regular': item.label !== activeLabel && evaluatingLabel !== item.label, 'section-regular section-running': item.label !== activeLabel && evaluatingLabel === item.label}" >
+			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': item.label === activeLabel, 'section-regular': item.label !== activeLabel && (evaluatingLabel !== item.label && flashingLabel !== item.label), 'section-regular section-running': item.label !== activeLabel && (evaluatingLabel === item.label || flashingLabel === item.label)}" >
 			 	<div class="md-list-item-text" ng-click="n.activate(item.label); $event.stopPropagation ();">
 			 		<div class="options">
-			 			<div class="running-code" ng-show="evaluatingLabel === item.label">
+			 			<div class="running-code" ng-show="evaluatingLabel === item.label || flashingLabel === item.label">
 			    			<img src="../img/running.gif" class="s24">
 			    		</div>
 			    		<md-button ng-show="item.type === 'code' && evaluatingLabel === null && connected" ng-click="n.evaluate (item.label); $event.stopPropagation ();">
@@ -117,7 +117,7 @@
                                               onLoad: aceEditLoaded,
                                               onChange: aceEditChanged
                                             }" ng-model="item.text"></div>
-                    <div ng-show="item.type==='code'">
+                    <div ng-if="item.type==='code'">
                     	<div class="code-logo">
 			    			<img src="../img/python.png" class="s24">
 			    		</div>
@@ -146,7 +146,7 @@
 							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>
 							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
 						</div>
-						<div ng-show="item.type==='firmware'">
+						<div ng-if="item.type==='firmware'">
 							<div class="code-logo">
 				    			<img ng-src="{{'../img/'+item.port.type.split('/')[0]+'.png'}}" class="s24">
 				    		</div>
@@ -169,7 +169,8 @@
 	                                              onLoad: aceCodeLoaded,
 	                                              onChange: aceCodeChanged
 	                                            }" ng-model="item.text"></div>
-							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>
+	                        <pre ng-show='item.response && item.response.length > 0'>{{item.response}}</pre>
+							<pre class="alert" ng-class="{'alert-danger':item.hasErrors, 'alert-warning':!item.hasErrors}" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}</pre>
 							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}</pre>
 						</div>
 					</div>

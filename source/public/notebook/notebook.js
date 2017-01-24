@@ -23,7 +23,7 @@ require('./../tools/snippets/markdown.js');
 require('./../tools/snippets/c_cpp.js');
 
 var MAKEFILE = {
-  'arduino':'compile:\n\tmkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) 2> /dev/null; rm -f .build && ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)\n\nflash:\n\tino upload -m $(DEVICE) -p $(PORT)\n\nserial:\n\tstty -F $(PORT) speed $(BAUD); socat $(PORT) -\n'
+  'arduino':'compile:\n\tmkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) 2> /dev/null; rm -f .build && ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)\n\nflash:\n\tino upload -m $(DEVICE) -p $(PORT)\n\nserial:\n\tstty -F $(PORT) speed $(BAUD); socat $(PORT) - >&3\n'
 };
 
 var DEVICES = {};
@@ -293,6 +293,21 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   $scope.status = 'STOPPED';
 
+  // hotkeys.bindTo($scope).add({
+  //   combo: 'ctrl+enter',
+  //   description: 'Run or flash',
+  //   callback: function() {
+  //     console.log ('hotkey');
+  //     var item = findLabel ($scope.activeLabel);
+  //     if (item)
+  //     {
+  //       if (item.type === 'code') that.evaluate ($scope.activeLabel);
+  //       else
+  //       if (item.type === 'firmware') that.flash ($scope.activeLabel);
+  //     }
+  //   }
+  // });
+
   load ([]);
 
   var that = this;
@@ -323,6 +338,20 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     _editor.getSession().setTabSize (2);
     _editor.getSession().setUseSoftTabs (true);
     _editor.setOptions ({minLines:6, maxLines: Infinity});
+    _editor.commands.addCommand({
+      name: "evaluate",
+      bindKey: {win: "shift-enter", mac: "shift-enter"},
+      exec: function(editor) {
+          console.log ('hotkey');
+          var item = findLabel ($scope.activeLabel);
+          if (item)
+          {
+            if (item.type === 'code') that.evaluate ($scope.activeLabel);
+            else
+            if (item.type === 'firmware') that.flash ($scope.activeLabel);
+          }
+        }
+      });
   };
   $scope.aceCodeChanged = function ()
   {
@@ -423,20 +452,20 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   this.evaluate = function (label)
   {
-    var item = findLabel(label);
-    if (item && item.type === 'code')
-    {
-      item.response = null;
-      item.exception = '';
-      item.stdout = '';
-      item.stderr = '';
-      $wydevice.send ('note', {
-        a: 'r',
-        l: item.label,
-        s: item.text
-      });
-      $scope.evaluatingLabel = label;
-    }
+      var item = findLabel(label);
+      if (item && item.type === 'code' && $scope.connected)
+      {
+        item.response = null;
+        item.exception = '';
+        item.stdout = '';
+        item.stderr = '';
+        $wydevice.send ('note', {
+          a: 'r',
+          l: item.label,
+          s: item.text
+        });
+        $scope.evaluatingLabel = label;
+      }
   };
 
   this.stop = function (label)
@@ -449,13 +478,14 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   this.flash = function (label)
   {
     var item = findLabel (label);
-    if (item)
+    if (item && $scope.connected)
     {
       var typedevice = item.port.type.split ('/');
       var type = typedevice[0];
       var device = typedevice[1];
       $wydevice.send ('note', {
         a:'f',
+        l: label,
         f: item.text,
         s: FIRMWARE_TYPES[type].source,
         d: device,
@@ -463,6 +493,8 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         m: MAKEFILE[type],
         b: 9600
       });
+      item.response = '';
+      item.hasErrors = false;
       item.stdout = '';
       item.stderr = '';
       $scope.flashingLabel = label;
@@ -506,9 +538,9 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       if (item)
       {
         item.port.type = type;
+        item.port.path = port.p;
       }
     }
-    item.port.path = port.p;
     store ();
   };
 
@@ -638,7 +670,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       else
       if (p.a === 'f')
       {
-        var item = findLabel ($scope.flashingLabel);
+        // item = findLabel ($scope.flashingLabel);
         if (p.s === 'o')
         {
           if (item) $timeout (function ()
@@ -657,10 +689,21 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
           });
         }
         else
+        if (p.s === 'r')
+        {
+          if (item) $timeout (function ()
+          {
+            item.hasErrors = false;
+            item.response = item.response + p.d;
+            store ();
+          });
+        }
+        else
         if (p.s === 'f')
         {
           $timeout (function ()
           {
+            if (!item.response || item.response.length === 0) item.hasErrors = true;
             $scope.flashingLabel = null;
           });
         }

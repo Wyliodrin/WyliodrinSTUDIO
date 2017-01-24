@@ -98,11 +98,17 @@
 		                </md-button>
 				  	</div>
 					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
-					<div ng-if="item.type === 'markdown'" class="markdown-btns">
+					<div ng-if="item.type==='markdown' && editLabel === item.label" class="markdown-btns">
 						<md-button ng-click="n.image (item.label)">
 							<img src="../img/image-icon.png" class="s24">
 							<md-tooltip>
 								Add Image
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.image (item.label)">
+							<img src="../img/file-icon.png" class="s24">
+							<md-tooltip>
+								Add File
 							</md-tooltip>
 						</md-button>
 						<md-button ng-click="">

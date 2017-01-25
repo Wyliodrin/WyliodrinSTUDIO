@@ -6,7 +6,6 @@
 	</head>
 
 	<body style="background:#fff;" ng-app="wyliodrinAppNotebook" ng-controller="NotebookController as n">
-		{{activeLabel}} {{editLabel}} {{evaluatingLabel}}
 		<md-content class="def-content" ng-click="n.activate (null);">
 		<md-list>
 			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': item.label === activeLabel, 'section-regular': item.label !== activeLabel && (evaluatingLabel !== item.label && flashingLabel !== item.label), 'section-regular section-running': item.label !== activeLabel && (evaluatingLabel === item.label || flashingLabel === item.label)}" >

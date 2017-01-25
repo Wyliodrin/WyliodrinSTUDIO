@@ -251,9 +251,9 @@ module.exports = function ()
 			debug ('Show example');
 			$mdDialog.hide ();
 			$mdDialog.show({
-		      controller: 'SoftwareExampleController',
-		      controllerAs: 's',
-		      templateUrl: '/public/views/software-example.html',
+		      controller: 'GitHubExampleController',
+		      controllerAs: 'e',
+		      templateUrl: '/public/views/github-example.html',
 		      // parent: angular.element(document.body),
 		      // targetEvent: ev,
 		      clickOutsideToClose: false,

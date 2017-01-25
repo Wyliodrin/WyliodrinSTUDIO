@@ -80,6 +80,7 @@ require ('./controllers/NotebookController.js')();
 require ('./controllers/ResistorColorCodeController.js')();
 require ('./controllers/InstallController.js')();
 require ('./controllers/SoftwareExampleController.js')();
+require ('./controllers/GitHubExampleController.js')();
 require ('./controllers/NetworkController.js')();
 require ('./controllers/ToolbarController.js')();
 require ('./controllers/XTermController.js')();

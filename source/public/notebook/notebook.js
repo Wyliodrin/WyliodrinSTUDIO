@@ -192,6 +192,15 @@ var FIRMWARE_TYPES = {
         'atmega168':'Arduino NG or older w/ ATmega168',
         'atmega8':'Arduino NG or older w/ ATmega8'
       }
+    },
+    'openmote':
+    {
+      name: 'Open Mote',
+      source: 'main.c',
+      devices:
+      {
+        'openmote':'Open Mote'
+      }
     }
   };
 

@@ -13,6 +13,14 @@ a:hover {text-decoration:underline;}
 
 md-input-container {font-size:16px;}
 
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: #e54225;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: #000;
+}
+
 .md-select-icon {
 		font-size:9px;
 		width:10px;
@@ -971,4 +979,15 @@ outline:none;
 
 .filem-hide .md-button:hover {
 	img {filter: invert(100%);}
+}
+
+.gitinput {
+	height: 40px !important;
+    margin: 20px 10px 0 10px !important;
+}
+
+.gitimport {
+	h3{ font-weight:bold;}
+	img {max-width:40px; margin-right:10px; padding: 0 0 5px 0;}
+	md-list-item {padding-top:10px; padding-bottom:10px;}
 }

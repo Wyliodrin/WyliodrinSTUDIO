@@ -23,7 +23,67 @@ require('./../tools/snippets/markdown.js');
 require('./../tools/snippets/c_cpp.js');
 
 var MAKEFILE = {
-  'arduino':'compile:\n\tmkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) 2> /dev/null; rm -f .build && ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)\n\nflash:\n\tino upload -m $(DEVICE) -p $(PORT)\n\nserial:\n\tstty -F $(PORT) speed $(BAUD); socat $(PORT) - >&3\n'
+  'arduino':'compile:\n\tmkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) 2> /dev/null; rm -f .build && ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)\n\nflash:\n\tino upload -m $(DEVICE) -p $(PORT)\n\nserial:\n\tstty -F $(PORT) speed $(BAUD); socat $(PORT) - >&3\n',
+  'openmote':'compile:\n\trm -rf /wyliodrin/RIOT/examples/wyliodrin_project && mkdir /wyliodrin/RIOT/examples/wyliodrin_project && mkdir -p /wyliodrin/RIOT/examples/libs/bin; ln -s /wyliodrin/RIOT/examples/libs/bin /wyliodrin/RIOT/examples/wyliodrin_project/bin && cp -r * /wyliodrin/RIOT/examples/wyliodrin_project && rm /wyliodrin/RIOT/examples/wyliodrin_project/makefile && mv /wyliodrin/RIOT/examples/wyliodrin_project/makefile.firmware /wyliodrin/RIOT/examples/wyliodrin_project/Makefile && make -C /wyliodrin/RIOT/examples/wyliodrin_project WERROR=0 all\n\nflash:\n\tcd /wyliodrin/RIOT/examples/wyliodrin_project && make flash PORT="$(PORT)"\n\nserial:\n\tstty -F $(PORT) speed $(BAUD); socat $(PORT) - >&3\n\n'
+};
+
+var MAKEFILE_FIRMWARE = {
+  'openmote': `
+# name of your application
+APPLICATION = wyliodrin_project
+
+# This example is specifically made/tested on the openmote but should be 
+# portable to other supported platforms
+BOARD ?= openmote-cc2538
+
+# Use 'jlink' to flash over jtag or 'cc2538-bsl' to flash over UART
+PROGRAMMER ?= cc2538-bsl
+
+# This has to be the absolute path to the RIOT base directory:
+RIOTBASE ?= $(CURDIR)/../..
+
+#to print float values
+LINKFLAGS += -u _printf_float
+USEMODEULE += printf_float
+
+# Include packages that pull up and auto-init the link layer.
+# NOTE: 6LoWPAN will be included if IEEE802.15.4 devices are present
+USEMODULE += gnrc_netdev_default
+USEMODULE += auto_init_gnrc_netif
+# Specify the mandatory networking modules for IPv6 and UDP
+USEMODULE += gnrc_ipv6_router_default
+USEMODULE += gnrc_udp
+# Add a routing protocol
+USEMODULE += gnrc_rpl
+USEMODULE += auto_init_gnrc_rpl
+# This application dumps received packets to STDIO using the pktdump module
+USEMODULE += gnrc_pktdump
+# Additional networking modules that can be dropped if not needed
+USEMODULE += gnrc_icmpv6_echo
+# Add also the shell, some shell commands
+USEMODULE += shell
+USEMODULE += shell_commands
+USEMODULE += ps
+USEMODULE += netstats_l2
+USEMODULE += netstats_ipv6
+
+# Set a custom 802.15.4 channel if needed
+DEFAULT_CHANNEL ?= 12
+CFLAGS += -DDEFAULT_CHANNEL=$(DEFAULT_CHANNEL)
+
+# Comment this out to disable code in RIOT that does safety checking
+# which is not needed in a production environment but helps in the
+# development process:
+CFLAGS += -DDEVELHELP
+
+# Comment this out to join RPL DODAGs even if DIOs do not contain
+# DODAG Configuration Options (see the doc for more info)
+# CFLAGS += -DGNRC_RPL_DODAG_CONF_OPTIONAL_ON_JOIN
+
+# Change this to 0 show compiler invocation lines by default:
+QUIET ?= 1
+
+include $(RIOTBASE)/Makefile.include`
 };
 
 var DEVICES = {};
@@ -306,6 +366,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   function load (items)
   {
+    if (!items) items = [];
     $scope.items = items;
     if ($scope.items.length === 0)
     {
@@ -674,6 +735,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         d: device,
         p: item.port.path,
         m: MAKEFILE[type],
+        mfl: MAKEFILE_FIRMWARE[type],
         b: 9600
       });
       item.response = '';

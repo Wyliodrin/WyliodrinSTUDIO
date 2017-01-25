@@ -64,6 +64,7 @@ module.exports = function ()
 							mixpanel.track ('GitHub Example', {
 								language: project.language
 							});
+							$mdDialog.hide ();
 						});
 					}
 				});

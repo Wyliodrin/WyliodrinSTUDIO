@@ -11,7 +11,7 @@
                 <label>Select board</label>
                 <md-select ng-model="contentPopupNewFirmware.type">
                     <md-option ng-repeat="(key,firmware) in firmwares" value="{{key}}">
-                        {{firmware}}
+                        {{firmware.name}}
                     </md-option>
                 </md-select>
             </md-input-container>

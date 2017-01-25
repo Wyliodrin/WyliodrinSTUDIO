@@ -1,0 +1,2 @@
+compile:
+	rm -rf /wyliodrin/RIOT/examples/wyliodrin_project && mkdir /wyliodrin/RIOT/examples/wyliodrin_project && ln -s /wyliodrin/RIOT/examples/libs/bin /wyliodrin/RIOT/examples/wyliodrin_project/bin && cp -r * /wyliodrin/RIOT/examples/wyliodrin_project && mv /wyliodrin/RIOT/examples/wyliodrin_project/Makefile.compileAway /wyliodrin/RIOT/examples/wyliodrin_project/Makefile && make -C /wyliodrin/RIOT/examples/wyliodrin_project WERROR=0 all

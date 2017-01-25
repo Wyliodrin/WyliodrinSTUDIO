@@ -7,27 +7,19 @@
     
 	<md-dialog-content>
         <md-content layout-gt-sm="row" layout-padding>
-            <!--<div ng-repeat="firm in tree.children">
-                <div ng-hide="firm.issoftware">
-                    <label>{{firm.name}}</label>
-                    <label>{{firm.ftype}}</label>
-                    <md-input-container class="add-app-title">
-                        <label>{{ 'DEVICE_PORT' | translate }}</label>
-                        <input ng-model="firm.fport" ng-trim="true" ng-enter="f.runAndFlash()">
-                    </md-input-container>
-                </div>
-            </div>-->
             <div ng-repeat="port in ports">
-                <label>{{port.p}}</label>
-                <label>{{map[port.pid]}}</label>
+                <label>{{path.basename(port.p)}}</label><!--port-->
+                <label>{{map[port.vid].name}} {{map[port.vid][port.pid].name}}</label><!--type of firmware-->
                 <md-input-container class="add-app-title">
                     <label>Pick firmware</label>
                     <md-select ng-model="port.pick">
-                        <md-option ng-repeat="firm in tree.children | filter:{ isfirmware : true, ftype: map[port.pid]}" value="{{firm.name}}">
-                            {{firm.name}} {{firm.ftype}}
+                        <md-option value="">
+                            No Firmware
+                        </md-option>
+                        <md-option ng-repeat="firm in tree.children | filter:{ isfirmware : true, ftype: map[port.vid].type}" value="{{firm.name}}">
+                            {{firm.name}}
                         </md-option>
                     </md-select>
-                    <!--<input ng-model="firm.fport" ng-trim="true" ng-enter="f.runAndFlash()">-->
                 </md-input-container>
             </div>
         </md-content>

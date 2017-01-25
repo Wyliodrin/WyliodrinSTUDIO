@@ -70,7 +70,7 @@ module.exports = function ()
 				}
 				$timeout (function ()
 				{
-					if (p.r) $scope.running = p.r;
+					if (p.tr) $scope.running = p.tr;
 					else $scope.running = false;
 					if (settings.LABEL[p.c])
 					{

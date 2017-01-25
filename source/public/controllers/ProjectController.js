@@ -39,8 +39,11 @@ var MAPPING = { ////////////////////////////////////////////////////////////////
 	'0xea60' : 'openmote',
 	'0x0043' : 'arduino'
 };
+var usb_mapping = require('usb_mapping');
+var firmware_mapping = require('firmware');
 
 var fs = require ('fs');
+var path = require ('path');
 
 var _ = require ('lodash');
 
@@ -169,32 +172,8 @@ var app = angular.module ('wyliodrinApp');
 		//tree part
 		$scope.showEditor = false;
 
-		$scope.translatevars={};
-		$scope.translatevars.new_folder = $translate.instant('New_folder');
-		$scope.translatevars.new_file = $translate.instant('New_file');
-		$scope.translatevars.new_firmware = $translate.instant('New_firmware');
-
 
 		$scope.tree = {};
-
-
-		$scope.tree.contentPopupNewFolder="";
-		$scope.tree.showPopupNewFolder = 0;
-
-		$scope.tree.contentPopupNewFile="";
-		$scope.tree.showPopupNewFile = 0;
-
-		$scope.tree.showPopupDelete = 0;
-
-		$scope.tree.contentPopupError="";
-		$scope.tree.showPopupError=0;
-
-		$scope.tree.firmwares={};
-
-		$scope.tree.contentPopupNewFirmware={};
-		$scope.tree.contentPopupNewFirmware.type="";
-		$scope.tree.contentPopupNewFirmware.text="";
-		$scope.tree.showPopupNewFirmware=0;
 
 
 		//$scope.tree.data=[]; used before now $scope.project.tree
@@ -216,6 +195,8 @@ var app = angular.module ('wyliodrinApp');
 		        labelSelected: "a8"
 		    }
 		};
+		$scope.tree.expanded = [];
+		$scope.tree.firmware_mapping = firmware_mapping; //openmote -> Open Mote
 
 		function nodeEqual(n1,n2){
 			if (angular.equals(n1,n2))
@@ -257,6 +238,7 @@ var app = angular.module ('wyliodrinApp');
 		}
 
 		function dataToTree(data){
+			$scope.tree.expanded = [];
 			checkEmptyFolders(data[0]);
 			data[0].children.forEach( function (node){
 				if (node.issoftware){
@@ -266,6 +248,7 @@ var app = angular.module ('wyliodrinApp');
 							$scope.showEditor = true;
 						}
 					});
+					$scope.tree.expanded.push(node);
 				}
 			});
 		}
@@ -292,6 +275,18 @@ var app = angular.module ('wyliodrinApp');
 			}
 			else{
 				$scope.showEditor = true;
+
+				if (hasDeepChild(node,$scope.project.tree[0].children[0])){
+					//if it's software type file
+				}
+				else{
+					//if it's firmware type file
+					softwareEditor.getSession().setMode ('ace/mode/c_cpp');
+					softwareEditor.getSession().setTabSize (2);
+					softwareEditor.getSession().setUseSoftTabs (true);
+					softwareEditor.$blockScrolling = Infinity;
+					softwareEditor.language = "c_cpp";
+				}
 			}
 		};
 
@@ -402,11 +397,10 @@ var app = angular.module ('wyliodrinApp');
 			$mdDialog.show({
 				controller: function ($scope)
 				{
-					//$scope.tree.firmwares=settings.FIRMWARES[$scope.device.category];
-					$scope.firmwares=settings.FIRMWARES_V2;
+					$scope.firmwares=firmware_mapping;
 
 					$scope.contentPopupNewFirmware={};
-					$scope.contentPopupNewFirmware.text=that.getTranslateVars().new_firmware;
+					$scope.contentPopupNewFirmware.text="";
 					$scope.contentPopupNewFirmware.type="";
 
 					this.ok = function ()
@@ -461,7 +455,6 @@ var app = angular.module ('wyliodrinApp');
 		};
 
 		this.newFirmware = function(arg){
-			//////////////////////////poate fa-i si un copil
 			var obj = {name:arg.text,id:makeID($scope.project.tree[0]),isdir:true,isfirmware:true,ftype:arg.type,fport:"auto",children:[]};
 			this.newSomething(obj,$scope.project.tree[0]);
 			checkEmptyFolders($scope.project.tree[0]);
@@ -507,7 +500,6 @@ var app = angular.module ('wyliodrinApp');
 				checkEmptyFolders($scope.project.tree[0]);
 				$scope.tree.selectednode = parent;
 			}
-			$scope.tree.showPopupDelete = 0;
 			$scope.aceSoftwareChanged();
 		};
 
@@ -532,8 +524,23 @@ var app = angular.module ('wyliodrinApp');
 
 		function hasDirectChild(name, tree){
 			for (var i=0; i<tree.children.length;i++){
+				//checks for name only, do not change
 				if ((!tree.children[i].isspecial) && name == tree.children[i].name){
 					return true;
+				}
+			}
+			return false;
+		}
+
+		function hasDeepChild(node, tree){
+			for (var i=0; i<tree.children.length;i++){
+				if (node.id == tree.children[i].id){
+					return true;
+				}
+				if (tree.children[i].isdir){
+					if (hasDeepChild(node,tree.children[i])){
+						return true;
+					}
 				}
 			}
 			return false;
@@ -798,7 +805,7 @@ var app = angular.module ('wyliodrinApp');
 
 		$wydevice.on ('message', function (t, p)
 		{
-			if (t === 'p')
+			if (t === 'tp')
 			{
 				if (p.a === 'k') shell.write (p.t);
 			}
@@ -830,7 +837,7 @@ var app = angular.module ('wyliodrinApp');
 		shell.on ('key', function (key)
 		{
 			// xterm.write (key);
-			$wydevice.send ('p', {a:'k', t:key});
+			$wydevice.send ('tp', {a:'k', t:key});
 		});
 
 		$wyapp.on ('load', function (project)
@@ -974,9 +981,9 @@ var app = angular.module ('wyliodrinApp');
 				//100% there exists a software folder
 				tree.children[0].m = makefileSoft;
 
-				var runmessage = {a:'start', l:$scope.project.language, t:tree, onlysoft:(!withFirmware)};
-
 				console.log(ports);
+
+				var runmessage = {a:'start', l:$scope.project.language, t:tree, onlysoft:(!withFirmware)};
 
 				//add wyliodrin firmware makefile
 				if (withFirmware)
@@ -1010,7 +1017,7 @@ var app = angular.module ('wyliodrinApp');
 							{
 								//if make compile here exists
 								m.ch = make_os.compileHere[$wydevice.device.category][child.ftype];
-								m.ca = null;
+								m.ca = make_os.compileAway[child.ftype];
 								m.s = null;
 							}
 							else
@@ -1072,9 +1079,21 @@ var app = angular.module ('wyliodrinApp');
 				      {
 
 				      	$scope.tree = that.getTree();
-				      	$scope.map = MAPPING; //externalize this
+				      	$scope.map = usb_mapping; //code to Board Name
+				      	console.log($scope.map);
+				      	console.log(7);
 
 				      	$scope.ports = _.cloneDeep($wydevice.device.peripherals);
+				      	for (var i =0;i<$scope.ports.length;i++){
+				      		$scope.ports[i].pid = parseInt($scope.ports[i].pid);
+				      		$scope.ports[i].vid = parseInt($scope.ports[i].vid);
+				      	}
+				      	
+				      	$scope.path = path;
+
+				      	console.log($scope.ports);
+				      	console.log(8);
+				      	console.log($scope.map[parseInt($scope.ports[0].vid)].name);
 
 				      	this.runAndFlash = function ()
 				      	{

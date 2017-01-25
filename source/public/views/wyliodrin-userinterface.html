@@ -253,7 +253,7 @@
 
                     <div flex="{{showXterm?65:100}}" layout="row">
                         <div class="projectTree" layout="row">
-                          <md-content treecontrol class="tree-classic" tree-model="project.tree[0].children" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span></md-content>
+                          <md-content treecontrol class="tree-classic" tree-model="project.tree[0].children" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode" expanded-nodes="tree.expanded"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span><span ng-show="node.isfirmware"> ({{tree.firmware_mapping[node.ftype].name}})</span></md-content>
 
                           <div style="position:absolute; bottom:60px; left:5px;"><!--butoane-->
                             <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
@@ -329,31 +329,8 @@
                                         </div>
                                     </md-tab-body>
                                 </md-tab>
-                                <md-tab ng-disabled="label[device.category].firmware === ''">
-                                    <md-tab-label>{{label[device.category].firmware}}</md-tab-label>
-                                    <md-tab-body>
-                                        <div layout="column">
-                                            <div flex="100" ui-ace="{
-                                              advanced: {
-                                                  enableSnippets: true,
-                                                  enableBasicAutocompletion: true,
-                                                  enableLiveAutocompletion: true
-                                              },
-                                              useWrapMode : false,
-                                              showGutter: true,
-                                              mode: 'c_cpp',
-                                              theme:'chrome',
-                                              rendererOptions: { 
-                                                fontSize: 14 
-                                              },
-                                              firstLineNumber: 1,
-                                              onLoad: aceFirmwareLoaded,
-                                              onChange: aceFirmwareChanged,
-                                            }" ng-model="project.firmware"></div>
-                                            <a href="#" class="examplestatus show" id="examplestatus" ng-click="p.firmwareexample()"><br>{{ 'WYLIODRIN_USERINTERFACE_Examples' | translate }}</a>
-                                        </div>
-                                    </md-tab-body>
-                                </md-tab>
+
+                                
                             </md-tabs>
                         </div>
                     </div>

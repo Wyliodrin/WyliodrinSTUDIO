@@ -65,6 +65,8 @@
     "examples": "./source/config/examples.js",
     "settings": "./source/settings.js",
     "library": "./source/public/library.js",
-    "mixpanel": "./source/public/mixpanel.js"
+    "mixpanel": "./source/public/mixpanel.js",
+	"usb_mapping": "./source/usb_mapping.js",
+	"firmware": "./source/firmware.js"
   }
 }

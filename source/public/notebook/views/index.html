@@ -249,7 +249,7 @@
 	                                              onLoad: aceCodeLoaded,
 	                                              onChange: aceCodeChanged
 	                                            }" ng-model="item.text"></div>
-							<div class="sendval">
+							<div class="sendval" ng-show="flashingLabel === item.label && item.response && item.response.length > 0">
 								<md-input-container md-no-float>
 									<input placeholder="Value" ng-model="serialinput">
 								</md-input-container>

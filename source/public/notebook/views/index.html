@@ -136,7 +136,7 @@
 							</md-tooltip>
 						</md-button>
 						<md-button ng-click="n.italics(item.label)">
-							<img src="../img/italics-icon.png" class="s24">
+							<img src="../img/italic-icon.png" class="s24">
 							<md-tooltip>
 								Italics
 							</md-tooltip>
@@ -211,14 +211,14 @@
 	                                            </div>
 							<div class="alert alert-danger" ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
 							<response ng-show='item.response' value="item.response"></response>
-							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
+							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0' class="closepre">{{item.stderr}}
 							<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
 			                    <img src="../img/close-icon.png" class="s24">
 			                    <md-tooltip md-direction="top">
 			                      Close
 			                    </md-tooltip>
 			                </md-button></pre>
-							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}
+							<pre ng-show='item.stdout && item.stdout.length > 0' class="closepre">{{item.stdout}}
 								<md-button ng-click="n.deletestdout(item.label); $event.stopPropagation ();">
 				                    <img src="../img/close-icon.png" class="s24">
 				                    <md-tooltip md-direction="top">
@@ -271,7 +271,7 @@
 			                    </md-tooltip>
 			                </md-button>
 							</pre>
-							<pre ng-show='item.stdout && item.stdout.length > 0'>{{item.stdout}}
+							<pre ng-show='item.stdout && item.stdout.length > 0' class="closepre">{{item.stdout}}
 								<md-button ng-click="n.deletestdout(item.label); $event.stopPropagation ();">
 				                    <img src="../img/close-icon.png" class="s24">
 				                    <md-tooltip md-direction="top">

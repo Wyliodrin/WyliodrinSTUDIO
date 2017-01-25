@@ -51,7 +51,7 @@
 		                        <md-option ng-click="n.port(item.label, port)" ng-repeat="port in ports" value="{{port.p}}">{{port.s}}</md-option>
 		                    </md-select>
 						</md-input-container>
-						<md-button ng-show="connected && item.type === 'firmware' && flashingLabel === null" ng-click="n.flash (item.label); $event.preventPropagation ();">
+						<md-button ng-show="connected && ports && ports.length > 0 && item.type === 'firmware' && flashingLabel === null" ng-click="n.flash (item.label); $event.preventPropagation ();">
 		                    <img src="../img/flash-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Flash device

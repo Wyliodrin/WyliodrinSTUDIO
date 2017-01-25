@@ -310,18 +310,18 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     $scope.editLabel = null;
     $scope.evaluatingLabel = null;
     $scope.flashingLabel = null;
-    setTimeout (function ()
-    {
-      $('a').each (function ()
-        {
-          var l = $(this);
-          if (l.attr ('href').startsWith ('data:application/octet-stream'))
-          {
-            l.attr ('download', l.text());
-          }
-          l.attr ('target', '_blank');
-        });
-    }, 500);
+    // setTimeout (function ()
+    // {
+    //   $('a').each (function ()
+    //     {
+    //       var l = $(this);
+    //       if (l.attr ('href').startsWith ('data:application/octet-stream'))
+    //       {
+    //         l.attr ('download', l.text());
+    //       }
+    //       l.attr ('target', '_blank');
+    //     });
+    // }, 500);
   }
 
   $scope.connected = false;
@@ -406,19 +406,19 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   };
   $scope.aceEditChanged = function (_editor)
   {
-    setTimeout (function ()
-    {
-      $('a').each (function ()
-        {
-          var l = $(this);
-          console.log (l.attr ('href'));
-          if (l.attr ('href').startsWith ('data:application/octet-stream'))
-          {
-            l.attr ('download', l.text());
-          }
-          l.attr ('target', '_blank');
-        });
-    }, 500);
+    // setTimeout (function ()
+    // {
+    //   $('a').each (function ()
+    //     {
+    //       var l = $(this);
+    //       console.log (l.attr ('href'));
+    //       if (l.attr ('href').startsWith ('data:application/octet-stream'))
+    //       {
+    //         l.attr ('download', l.text());
+    //       }
+    //       l.attr ('target', '_blank');
+    //     });
+    // }, 500);
     store ();
   };
 
@@ -549,6 +549,14 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         l: label
       }
     }, '*');
+  };
+
+  this.imagelink = function (label)
+  {
+    $timeout (function ()
+    {
+      aceEdit.insert ('\n![image](http://...)');
+    });
   };
 
   this.arbitraryfile = function (label)
@@ -943,6 +951,36 @@ app.filter ('markdown', function ($sce)
       highlight: function (code) {
         console.log (code);
         return require('highlight.js').highlightAuto(code).value;
+      },
+      link: function (href, title, text)
+      {
+        /*jshint scripturl:true*/
+        if (this.options.sanitize) {
+          var prot = '';
+          try {
+            prot = decodeURIComponent(window.unescape(href))
+              .replace(/[^\w:]/g, '')
+              .toLowerCase();
+          } catch (e) {
+            return '';
+          }
+          if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0) {
+            return '';
+          }
+        }
+        var download = '';
+        if (href.startsWith ('data:application/octet-stream'))
+        {
+          download = 'download="'+text+'"';
+        }
+        var out = '<a href="' + href + '"';
+        if (title) {
+          out += ' title="' + title + '"';
+        }
+        out += ' target="_blank"';
+        out += ' '+download;
+        out += '>' + text + '</a>';
+        return out;
       }
     });
 

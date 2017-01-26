@@ -1136,15 +1136,15 @@ var app = angular.module ('wyliodrinApp');
 				      	
 				      	$scope.path = path;
 
-				      	this.runAndFlash = function ()
+				      	/*this.runAndFlash = function ()
 				      	{
 				      		run ($scope.tree, $scope.ports, true);
 				      		$mdDialog.hide ();
-				      	};
+				      	};*/
 
 				      	this.run = function ()
 				      	{
-				      		run ($scope.tree, $scope.ports, false);
+				      		run ($scope.tree, $scope.ports, true);
 				      		$mdDialog.hide ();
 				      	};
 				      },

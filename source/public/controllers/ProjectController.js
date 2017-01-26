@@ -392,6 +392,48 @@ var app = angular.module ('wyliodrinApp');
 				      fullscreen: false
 			});
 		};
+		this.renameButton = function(){
+
+			$mdDialog.show({
+				controller: function ($scope)
+				{
+					$scope.contentPopupRename = "";
+					this.ok = function ()
+					{
+						$mdDialog.hide ();
+						that.rename($scope.contentPopupRenme);
+					};
+
+					this.cancel = function ()
+					{
+						$mdDialog.hide ();
+					};
+				},
+				controllerAs: 'dialogRename',
+				templateUrl: '/public/views/dialogs/rename.html',
+				      // parent: $element,
+				      // targetEvent: ev,
+				      clickOutsideToClose:false,
+				      fullscreen: false
+			});
+		};
+		this.rename = function(arg){
+			var parent = findParent($scope.tree.selectednode, $scope.project.tree[0]);
+
+			var ok = true;
+
+			_.each(parent.children, function(child){
+				if (child.id != $scope.tree.selectednode.id){
+					if (child.name == arg){
+						ok = false;
+					}
+				}
+			});
+
+			if (ok){
+				$scope.tree.selectednode.name = arg;
+			}
+		};
 		this.newFirmwareButton = function(){
 
 			$mdDialog.show({
@@ -1083,7 +1125,8 @@ var app = angular.module ('wyliodrinApp');
 				      	console.log($scope.map);
 				      	console.log(7);
 
-				      	$scope.ports = _.cloneDeep($wydevice.device.peripherals);
+				      	//$scope.ports = _.cloneDeep($wydevice.device.peripherals);
+				      	$scope.ports=[{"vid":"0x10c4","pid":"0xea60","p":"/dev/ttyUSB0"}];
 				      	for (var i =0;i<$scope.ports.length;i++){
 				      		$scope.ports[i].pid = parseInt($scope.ports[i].pid);
 				      		$scope.ports[i].vid = parseInt($scope.ports[i].vid);

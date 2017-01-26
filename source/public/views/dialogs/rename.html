@@ -1,0 +1,22 @@
+<md-dialog aria-label="Rename">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ 'Rename' | translate }}</h2>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content ng-escape="a.cancel()">
+        <md-content layout-gt-sm="row" layout-padding>
+            <md-input-container class="add-app-title">
+                <label>{{'Rename' | translate}}</label>
+                <input ng-model="contentPopupRename" minlength="1" ng-trim="true">
+            </md-input-container>
+        </md-content>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button ng-disabled="!contentPopupRename" ng-click="dialogRename.ok()">{{'Ok' | translate}}</md-button>
+        <md-button ng-click="dialogRename.cancel()">{{'Cancel' | translate}}</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

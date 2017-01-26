@@ -1081,6 +1081,8 @@ var app = angular.module ('wyliodrinApp');
 							_.each (found, function (port)
 							  {
 							  	child.fport.push(port.p);
+							  	child.fakesubtype = port.pid;
+							  	child.faketype = port.vid;
 							  });
 
 							var m = {};
@@ -1157,8 +1159,10 @@ var app = angular.module ('wyliodrinApp');
 				      	$scope.ports = _.cloneDeep($wydevice.device.peripherals);
 				      	//$scope.ports=[{"vid":"0x10c4","pid":"0xea60","p":"/dev/ttyUSB0"}];
 				      	for (var i =0;i<$scope.ports.length;i++){
-				      		$scope.ports[i].pid = parseInt($scope.ports[i].pid);
-				      		$scope.ports[i].vid = parseInt($scope.ports[i].vid);
+				      		var pid = parseInt($scope.ports[i].pid);
+				      		var vid = parseInt($scope.ports[i].vid);
+				      		$scope.ports[i].pid = $scope.map[vid][pid];
+				      		$scope.ports[i].vid = $scope.map[vid];
 				      	}
 				      	
 				      	$scope.path = path;

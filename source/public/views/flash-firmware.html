@@ -8,7 +8,7 @@
 	<md-dialog-content ng-escape="a.cancel()" ng-repeat="port in ports" layout-gt-sm="column">
         <md-content layout-gt-sm="column" layout-padding>
             <div layout-gt-sm="row" flex class="flash-firmware">
-                <label><img src="/public/drawable/openmote-small.png" class="s24"><!--{{map[port.vid].name}}--> {{map[port.vid][port.pid].name}}</label><!--type of firmware-->
+                <label><img src="/public/drawable/openmote-small.png" class="s24"><!--{{map[port.vid].name}}--> {{port.pid.name}}</label><!--type of firmware-->
                 <label class="firm-port"><strong>Port:</strong> {{path.basename(port.p)}}</label><!--port-->
             </div>
         </md-content>
@@ -19,7 +19,7 @@
                     <md-option value="">
                         No Firmware
                     </md-option>
-                    <md-option ng-repeat="firm in tree.children | filter:{ isfirmware : true, ftype: map[port.vid].type}" value="{{firm.name}}">
+                    <md-option ng-repeat="firm in tree.children | filter:{ isfirmware : true, ftype: port.vid.type}" value="{{firm.name}}">
                         {{firm.name}}
                     </md-option>
                 </md-select>

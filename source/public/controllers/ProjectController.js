@@ -401,7 +401,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function ()
 					{
 						$mdDialog.hide ();
-						that.rename($scope.contentPopupRenme);
+						that.rename($scope.contentPopupRename);
 					};
 
 					this.cancel = function ()
@@ -432,6 +432,10 @@ var app = angular.module ('wyliodrinApp');
 
 			if (ok){
 				$scope.tree.selectednode.name = arg;
+				$scope.aceSoftwareChanged();
+			}
+			else{
+				this.errorDialog($translate.instant('TREEsame_name'));
 			}
 		};
 		this.newFirmwareButton = function(){
@@ -1122,21 +1126,15 @@ var app = angular.module ('wyliodrinApp');
 
 				      	$scope.tree = that.getTree();
 				      	$scope.map = usb_mapping; //code to Board Name
-				      	console.log($scope.map);
-				      	console.log(7);
 
-				      	//$scope.ports = _.cloneDeep($wydevice.device.peripherals);
-				      	$scope.ports=[{"vid":"0x10c4","pid":"0xea60","p":"/dev/ttyUSB0"}];
+				      	$scope.ports = _.cloneDeep($wydevice.device.peripherals);
+				      	//$scope.ports=[{"vid":"0x10c4","pid":"0xea60","p":"/dev/ttyUSB0"}];
 				      	for (var i =0;i<$scope.ports.length;i++){
 				      		$scope.ports[i].pid = parseInt($scope.ports[i].pid);
 				      		$scope.ports[i].vid = parseInt($scope.ports[i].vid);
 				      	}
 				      	
 				      	$scope.path = path;
-
-				      	console.log($scope.ports);
-				      	console.log(8);
-				      	console.log($scope.map[parseInt($scope.ports[0].vid)].name);
 
 				      	this.runAndFlash = function ()
 				      	{

@@ -1,27 +1,29 @@
-<md-dialog aria-label="Flash {{label[device].firmware}}">
+<md-dialog aria-label="Flash {{label[device].firmware}}" style="min-width: 400px;">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>Flash firmware</h2>
 		</div>
 	</md-toolbar>
     
-	<md-dialog-content>
-        <md-content layout-gt-sm="row" layout-padding>
-            <div ng-repeat="port in ports">
-                <label>{{path.basename(port.p)}}</label><!--port-->
-                <label>{{map[port.vid].name}} {{map[port.vid][port.pid].name}}</label><!--type of firmware-->
-                <md-input-container class="add-app-title">
-                    <label>Pick firmware</label>
-                    <md-select ng-model="port.pick">
-                        <md-option value="">
-                            No Firmware
-                        </md-option>
-                        <md-option ng-repeat="firm in tree.children | filter:{ isfirmware : true, ftype: map[port.vid].type}" value="{{firm.name}}">
-                            {{firm.name}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
+	<md-dialog-content ng-escape="a.cancel()" ng-repeat="port in ports" layout-gt-sm="column">
+        <md-content layout-gt-sm="column" layout-padding>
+            <div layout-gt-sm="row" flex class="flash-firmware">
+                <label><img src="/public/drawable/openmote-small.png" class="s24"><!--{{map[port.vid].name}}--> {{map[port.vid][port.pid].name}}</label><!--type of firmware-->
+                <label class="firm-port"><strong>Port:</strong> {{path.basename(port.p)}}</label><!--port-->
             </div>
+        </md-content>
+        <md-content layout-gt-sm="column" layout-padding>
+            <md-input-container md-no-float class="md-block">
+                <label>Pick firmware</label>
+                <md-select ng-model="port.pick">
+                    <md-option value="">
+                        No Firmware
+                    </md-option>
+                    <md-option ng-repeat="firm in tree.children | filter:{ isfirmware : true, ftype: map[port.vid].type}" value="{{firm.name}}">
+                        {{firm.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
         </md-content>
     </md-dialog-content>
     

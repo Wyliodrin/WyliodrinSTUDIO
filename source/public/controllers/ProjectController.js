@@ -277,14 +277,41 @@ var app = angular.module ('wyliodrinApp');
 				$scope.showEditor = true;
 
 				if (hasDeepChild(node,$scope.project.tree[0].children[0])){
+					softwareEditor.language = $scope.project.language;
+					if ($scope.project.language === "nodejs")
+					{
+						softwareEditor.getSession().setMode ('ace/mode/javascript');
+					}
+					else
+					if ($scope.project.language === "python")
+					{
+						softwareEditor.getSession().setMode ('ace/mode/python');
+					}
+					else
+					if ($scope.project.language === "shell")
+					{
+						softwareEditor.getSession().setMode ('ace/mode/sh');
+					}
+					else
+					if ($scope.project.language === "visual")
+					{
+						program.load ($scope.project, $wydevice.device);
+					}
+					else
+					if ($scope.project.language === "csharp")
+					{
+						softwareEditor.getSession().setMode ('ace/mode/csharp');
+					}
+					else
+					if ($scope.project.language === "powershell")
+					{
+						softwareEditor.getSession().setMode ('ace/mode/powershell');
+					}
 					//if it's software type file
 				}
 				else{
 					//if it's firmware type file
 					softwareEditor.getSession().setMode ('ace/mode/c_cpp');
-					softwareEditor.getSession().setTabSize (2);
-					softwareEditor.getSession().setUseSoftTabs (true);
-					softwareEditor.$blockScrolling = Infinity;
 					softwareEditor.language = "c_cpp";
 				}
 			}

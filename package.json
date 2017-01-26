@@ -52,6 +52,7 @@
     "material-design-icons": "^3.0.1",
     "msgpack-lite": "^0.1.26",
     "mustache": "^2.3.0",
+    "request": "^2.79.0",
     "ssh2": "git+https://www.github.com/Wyliodrin/ssh2-chrome-app.git#webshell",
     "sweetalert": "^1.1.3",
     "uuid": "^3.0.1",
@@ -65,7 +66,7 @@
     "settings": "./source/settings.js",
     "library": "./source/public/library.js",
     "mixpanel": "./source/public/mixpanel.js",
-	"usb_mapping": "./source/usb_mapping.js",
-	"firmware": "./source/firmware.js"
+    "usb_mapping": "./source/usb_mapping.js",
+    "firmware": "./source/firmware.js"
   }
 }

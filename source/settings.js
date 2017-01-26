@@ -9,7 +9,7 @@ var install = require ('./config/install.js');
 
 var translate = require ('./config/languages.js');
 
-// var makefile = require ('./config/makefile.js');
+var makefile = require ('./config/makefile.js');
 // var makefileplus = require ('./config/makefileplus.js');
 // var makefileplusplus = require ('./config/makefileplusplus.js');
 var makefile_v2 = require('./config/makefile_v2.js');
@@ -145,8 +145,8 @@ settings.VERSION = JSON.parse(fs.readFileSync (__dirname+'/../manifest.json').to
 
 settings.SENDER = 6000;
 
+settings.MAKEFILE_STOARGE = makefile;
 //old
-// settings.MAKEFILE_STOARGE = makefile;
 // settings.MAKE_FIRMWARE = makefileplus;
 // settings.MAKE_OWN_FIRMWARE = makefileplusplus;
 // /old

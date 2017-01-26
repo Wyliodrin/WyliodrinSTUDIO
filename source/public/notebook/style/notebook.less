@@ -1,0 +1,335 @@
+// @import (inline) "../../../../node_modules/angular/angular-csp.css";
+@import (inline) "../../../../node_modules/angular-material/angular-material.css";
+
+
+
+body {font-size:13px; color:#000; padding:0px;-webkit-user-select: text;}
+
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.def-content {
+	padding:10px;
+	background:#fff;
+	overflow-y:auto;
+	height:100%;
+}
+
+
+.options .md-button, .options2 .md-button {
+	color:#000;
+	min-width:initial;
+	min-height:initial;
+	padding:6;
+	margin:0px 5px 0 0;
+}
+
+.options .md-button:hover, .options2 .md-button:hover {
+	background:#e54225;
+
+	img {filter: invert(100%);}
+}
+
+.options .running-code, .options2 .running-code {
+	padding:6;
+	margin:0px;
+	float:left;
+}
+
+.section-regular, .section-active {
+	padding:0 !important;
+}
+
+md-list-item:focus, .section-active .md-list-item-text:focus, .section-active:focus .md-list-item-text, .section-regular .md-list-item-text:focus, .section-regular:focus .md-list-item-text {
+	outline:0;
+}
+
+md-list-item:active, .section-active .md-list-item-text:active, .section-active:active .md-list-item-text, .section-regular .md-list-item-text:active, .section-regular:active .md-list-item-text {
+	outline:0;
+}
+
+md-list-item {
+	padding-top:3px;
+}
+
+.section-active .md-list-item-text {
+	padding:50px 20px 10px 20px;
+	border-radius: 2px;
+	border-width: 5px 1px 1px 1px !important;
+	border-color:#4caf50;
+	border-style:solid;
+	position:relative;
+	margin-bottom:10px;
+	width:100%;
+	-webkit-transition: padding 1s; /* Safari */
+    transition: padding 0.5s;
+}
+
+.section-regular .md-list-item-text {
+	padding:10px 20px 10px 20px;
+	border-radius: 2px;
+	border-width: 1px 1px 1px 1px !important;
+	border-color:#fff;
+	border-style:solid;
+	position:relative;
+	margin-bottom:10px;
+	width:100%;
+	-webkit-transition: padding 1s; /* Safari */
+    transition: padding 0.5s;
+}
+
+.section-running .md-list-item-text {
+	padding-top:50px !important;
+}
+
+.section-regular .md-list-item-text:hover {
+	border:#ddd solid 1px;
+}
+
+.section-active .md-list-item-text .options{
+	padding:0px;
+	position:absolute;
+	right:6px;
+	top:6px;
+	visibility: visible;
+  	opacity: 1;
+  	transition: visibility 0s, opacity 0.5s linear;
+}
+
+.section-active .md-list-item-text .options2{
+	padding:0px;
+	position:absolute;
+	left:6px;
+	top:6px;
+	visibility: visible;
+  	opacity: 1;
+  	transition: visibility 0s, opacity 0.5s linear;
+}
+
+.section-regular .md-list-item-text .options{
+	padding:0px;
+	position:absolute;
+	right:6px;
+	top:6px;
+	visibility: hidden;
+  	opacity: 0;
+  	transition: visibility 0s, opacity 0.5s linear;
+}
+
+.section-regular .md-list-item-text .options2{
+	padding:0px;
+	position:absolute;
+	left:6px;
+	top:6px;
+	visibility: hidden;
+  	opacity: 0;
+  	transition: visibility 0s, opacity 0.5s linear;
+}
+
+.section-running .md-list-item-text .options{
+	padding:0px !important;
+	position:absolute !important;
+	right:6px !important;
+	top:6px !important;
+	visibility: visible !important;
+  	opacity: 1 !important;
+  	transition: visibility 0s, opacity 0.5s linear !important;
+}
+
+pre {
+	border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+    font-size:13px;
+    padding:10px;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word; 
+}
+
+md-input-container {
+	margin:0;
+}
+
+md-select-menu md-content md-option[selected]{
+	color:#e54225 !important;
+}
+
+md-select-menu md-option:focus[selected]{
+    color:#e54225 !important;
+}
+
+md-select:not([disabled]):focus md-select-value{
+	border-bottom-color:#e54225 !important;
+}
+
+.md-select-value{
+	font-weight: bold;
+}
+
+.server-status {
+	position:fixed;
+	display:block;
+	text-align:center;
+	bottom:0;
+	left:0;
+	right:0;
+	width:100%;
+	padding:10px 0;
+	color:#fff;
+	z-index: 99;
+
+	.md-button {
+		img {filter: invert(100%);}
+		position:absolute;
+		bottom:5px;
+		right:10px;
+		min-width:initial;
+		min-height:initial;
+		padding:6;
+		margin:0px;
+	}
+
+	.md-button:hover {
+		background:#000;
+	}
+}
+
+.connected {background:#147b3e;}
+.disconnected {background:#971c19;}
+.stopped {background:#c67329;}
+
+.bottom-space {
+	float:left;
+	width:100%;
+	height:50px;
+}
+
+.alert {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    div {border:0; padding:0; background: transparent !important; color: #a94442 !important;}
+    pre {border:0; padding:0; background: transparent !important; color: #a94442 !important; margin:0 !important;}
+}
+
+table, th, tr, td {
+   border: 1px solid #ccc;
+   border-collapse: collapse;
+   margin-top:10px;
+   font-size:13px;
+}
+
+td, th {
+   padding: 5px;
+}
+
+.code-logo {
+    margin-top: 18px;
+    z-index: 999;
+    position: absolute;
+    right: 30px;
+}
+
+.ace_scroller {
+    border: #eee solid 1px;
+}
+
+.sendval {
+	margin-bottom:-35px;
+    margin-top: 20px;
+    margin-left: 10px;
+	border: #cfcfcf 1px solid;
+    background: #fff;
+	display:inline-block;
+	padding: 0px 10px;
+
+	md-input-container {height: 40px;}
+
+	.md-button {
+		color:#000;
+		min-width:initial;
+		min-height:initial;
+		padding:6;
+		margin:0px 5px 0 0;
+	}
+
+	.md-button:hover {
+		background:#e54225;
+		img {filter: invert(100%);}
+	}
+
+
+}
+
+
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: #e54225;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: #000;
+}
+
+.closepre {
+
+	position:relative;
+
+	.md-button {
+		position:absolute;
+		right:0px;
+		top:5px;
+		color:#000;
+		min-width:initial;
+		min-height:initial;
+		padding:6;
+		margin:0px 5px 0 0;
+		img {opacity:0.5;}
+	}
+
+	.md-button:hover {
+		background:#e54225;
+		img {filter: invert(100%);}
+		img {opacity:1;}
+	}
+
+}
+
+.markdown-btns {
+
+	background:#eee;
+    padding: 10px;
+
+	.md-button {
+		color:#000;
+		min-width:initial;
+		min-height:initial;
+		padding:6;
+		margin:0px 5px 0 0;
+		img {opacity:0.6;}
+	}
+
+	.md-button:hover {
+		background:#e54225;
+		img {filter: invert(100%);}
+		img {opacity:1;}
+	}
+}

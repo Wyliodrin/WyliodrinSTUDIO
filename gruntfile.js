@@ -80,6 +80,17 @@ module.exports = function(grunt) {
                ],
         },
       },
+      notebook: {
+        files: {
+          'build/public/notebook/notebook.js': ['source/public/notebook/notebook.js']
+        },
+        options: {
+          external: null,
+          transform: [
+                  ["brfs", {}]
+               ],
+        },
+      },
       vendor: {
           src: [],
           dest: 'build/public/vendor.js',
@@ -156,6 +167,12 @@ module.exports = function(grunt) {
         files: {
           'build/public/blockly/blockly-style.css': 'source/public/blockly/*.less'
         }
+      },
+      notebook:
+      {
+        files: {
+          'build/public/notebook/style/notebook.css': 'source/public/notebook/style/*.less'
+        }
       }
     },
     sass: {
@@ -220,6 +237,14 @@ module.exports = function(grunt) {
               expand: true,     // Enable dynamic expansion.
               cwd: 'source/',      // Src matches are relative to this path.
               src: ['public/blockly/**', '!public/blockly/blockly.js'], // Actual pattern(s) to match.
+              dest: 'build/',   // Destination path prefix.
+              // ext: '.html',   // Dest filepaths will have this extension.
+              extDot: 'first'   // Extensions in filenames begin after the first dot
+            },
+            {
+              expand: true,     // Enable dynamic expansion.
+              cwd: 'source/',      // Src matches are relative to this path.
+              src: ['public/notebook/**', '!public/notebook/**/*.js', '!public/notebook/**/*.less'], // Actual pattern(s) to match.
               dest: 'build/',   // Destination path prefix.
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot

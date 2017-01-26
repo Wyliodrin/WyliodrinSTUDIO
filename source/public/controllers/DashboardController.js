@@ -4,6 +4,8 @@
 var angular = require ('angular');
 var library = require ('library');
 
+var Highcharts = require ('highcharts/highstock');
+
 var highcharts_htmlitem = require ('highcharts-ng');
 
 var mixpanel = require ('mixpanel');

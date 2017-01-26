@@ -10,7 +10,7 @@ var msgpack = require ('msgpack-lite');
 var dict = require ('dict');
 
 
-import ChromeDevice from './ChromeDevice.js';
+// import ChromeDevice from './ChromeDevice.js';
 import SerialChromeDevice from './SerialChromeDevice.js';
 import SocketChromeDevice from './SocketChromeDevice.js';
 import SSHChromeDevice from './SSHChromeDevice.js';
@@ -52,8 +52,8 @@ export default class WyliodrinDevice extends EventEmitter
 			if (this.status === 'CONNECTED') this.send ('ping', null);
 		}, 5000);
 		var that = this;
-		if (this.options.type === 'chrome') this.port = new ChromeDevice ();
-		else
+		// if (this.options.type === 'chrome') this.port = new ChromeDevice ();
+		// else
 		if (this.options.type === 'chrome-serial') this.port = new SerialChromeDevice (device, {bitrate: 115200});
 		else
 		if (this.options.type === 'chrome-socket') this.port = new SocketChromeDevice (device, this.options.port, options);

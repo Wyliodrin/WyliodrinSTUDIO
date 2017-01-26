@@ -237,13 +237,15 @@
                 </md-tab-body>
             </md-tab> -->
             <md-tab ng-disabled="project_disable">
-              <md-tab-label>{{ 'PROJECT_README' | translate }}</md-tab-label>
+              <md-tab-label>{{ 'PROJECT_NOTEBOOK' | translate }}</md-tab-label>
               <md-tab-body>
-                <div ng-controller="ReadmeController as r">
+                <!-- <div ng-controller="ReadmeController as r">
                   <div ng-bind-html="html" id="readme">
                   </div>
                   <a href="#" class="examplestatus" id="examplestatus" ng-click="r.edit()">{{ 'WYLIODRIN_USERINTERFACE_README_Edit' | translate }}</a>
-                </div>
+                </div> -->
+                <iframe ng-controller="NotebookController" flex style="width:100%; height:100%; border:0;" src="/public/notebook/views/index.html" id="notebook">
+                </iframe>
               </md-tab-body>
             </md-tab>
             <md-tab ng-disabled="project_disable">
@@ -254,6 +256,15 @@
                     <div flex="{{showXterm?65:100}}" layout="row">
                         <div class="projectTree" layout="row">
                           <md-content treecontrol class="tree-classic" tree-model="project.tree[0].children" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode" expanded-nodes="tree.expanded"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span><span ng-show="node.isfirmware"> ({{tree.firmware_mapping[node.ftype].name}})</span></md-content>
+
+                          <div class="filem-hide">
+                            <md-button>
+                                <img src="/public/drawable/filem-hide.png" class="s24">
+                                <md-tooltip md-direction="bottom">
+                                  Hide File Manager
+                                </md-tooltip>
+                            </md-button>
+                          </div>
 
                           <div style="position:absolute; bottom:60px; left:5px;"><!--butoane-->
                             <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">

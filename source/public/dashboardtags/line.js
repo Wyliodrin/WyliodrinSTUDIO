@@ -9,6 +9,10 @@ var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:line');
 var Highcharts = require ('highcharts/highstock');
+require ('highcharts/highcharts-more')(Highcharts);
+require ('highcharts/modules/solid-gauge')(Highcharts);
+require ('highcharts/modules/exporting')(Highcharts);
+require ('highcharts/modules/offline-exporting')(Highcharts);
 
 debug ('Loading');
 

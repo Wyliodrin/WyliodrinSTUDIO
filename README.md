@@ -58,12 +58,13 @@ You will need
 
 * [NodeJS](http://www.nodejs.org) version 4 or higher.
 * [grunt](http://gruntjs.com/)
+* [yarn](https://yarnpkg.com/) (optional)
 
 You may build Wyliodrin STUDIO yourself
 
     git clone https://www.github.com/Wyliodrin/WyliodrinSTUDIO
     cd WyliodrinSTUDIO
-    npm install
+    yarn # npm install works slow
     patch node_modules/highcharts-ng/dist/highcharts-ng.js patches/highcharts-ng.patch
     patch node_modules/angular-tree-control/css/tree-control-attribute.css patches/tree-control-attribute.patch
     grunt

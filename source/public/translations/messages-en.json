@@ -889,13 +889,14 @@
   "TREEno_root": {
     "message": "Cannot create to root folder (use New Firmware instead)."
   },
-  "PROJECT_README": {
-    "message": "Readme"
+  "PROJECT_NOTEBOOK": {
+    "message": "Notebook"
   },
-  "WYLIODRIN_USERINTERFACE_README_Edit": {
-    "message": "Edit"
+  "GITHUB_EXAMPLE_Example": {
+    "message": "Load an example"
   },
-  "README_EDIT": {
-    "message": "Edit Application's Readme"
+  "GITHUB_EXAMPLE_Empty":
+  {
+    "message" :"Please write the name of a github repository that has examples"
   }
 }

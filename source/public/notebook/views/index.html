@@ -1,0 +1,373 @@
+
+<html>
+	<head>
+		<script src="../notebook.js"></script>
+		<link rel="stylesheet" href="../style/notebook.css">
+	</head>
+
+	<body style="background:#fff;" ng-app="wyliodrinAppNotebook" ng-controller="NotebookController as n">
+		<md-content class="def-content" ng-click="n.activate (null);">
+		<md-list>
+			<md-list-item flex ng-repeat="item in items" ng-class="{'section-active': item.label === activeLabel, 'section-regular': item.label !== activeLabel && (evaluatingLabel !== item.label && flashingLabel !== item.label), 'section-regular section-running': item.label !== activeLabel && (evaluatingLabel === item.label || flashingLabel === item.label)}" >
+			 	<div class="md-list-item-text" ng-click="n.activate(item.label); $event.stopPropagation ();">
+			 		<div class="options">
+			 			<div class="running-code" ng-show="evaluatingLabel === item.label || flashingLabel === item.label">
+			    			<img src="../img/running.gif" class="s24">
+			    		</div>
+			    		<md-button ng-show="item.type === 'code' && evaluatingLabel === null && connected" ng-click="n.evaluate (item.label); $event.stopPropagation ();">
+		                    <img src="../img/run-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Run
+		                    </md-tooltip>
+		                </md-button>
+		                <md-button ng-show="item.type === 'code' && evaluatingLabel === item.label && connected" ng-click="n.stop (item.label); $event.stopPropagation();">
+		                    <img src="../img/stop-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Stop
+		                    </md-tooltip>
+		                </md-button>
+			    		<!-- <md-button ng-show="item.type === 'code' && connected" ng-click="n.reset(); $event.preventPropagation ();">
+		                    <img src="../img/reset-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Reset
+		                    </md-tooltip>
+		                </md-button> -->
+			    		<md-button ng-show="item.type === 'markdown'" ng-click="n.edit (item.label); $event.stopPropagation ();">
+		                    <img src="../img/edit-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Edit
+		                    </md-tooltip>
+		                </md-button>
+		                <md-input-container ng-show="item.type === 'firmware'">
+							<md-select ng-model="item.port.type" aria-label="type" ng-change="n.firmwareType (item.label)">
+								<md-optgroup ng-repeat="(firmwareType, firmware) in firmwareTypes" label="{{firmware.name}}">
+		                        	<md-option ng-repeat="(deviceType, deviceName) in firmware.devices" value="{{firmwareType+'/'+deviceType}}">{{deviceName}}</md-option>
+		                        </md-optgroup>
+		                    </md-select>
+						</md-input-container>
+						<md-input-container ng-show="connected && item.type === 'firmware' && ports && ports.length > 0">
+							<md-select ng-model="item.port.path" aria-label="type">
+		                        <md-option ng-click="n.port(item.label, port)" ng-repeat="port in ports" value="{{port.p}}">{{port.s}}</md-option>
+		                    </md-select>
+						</md-input-container>
+						<md-button ng-show="connected && ports && ports.length > 0 && item.type === 'firmware' && flashingLabel === null" ng-click="n.flash (item.label); $event.preventPropagation ();">
+		                    <img src="../img/flash-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Flash device
+		                    </md-tooltip>
+		                </md-button>
+		                <md-button ng-show="item.type === 'firmware' && flashingLabel === item.label && connected" ng-click="n.stopflash (item.label); $event.stopPropagation();">
+		                    <img src="../img/stop-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Stop
+		                    </md-tooltip>
+		                </md-button>
+				  	</div>
+				  	<div class="options2">
+						<md-input-container>
+							<md-select ng-model="item.type" aria-label="type" ng-change="n.itemType (item.label)">
+		                        <md-option value="code">Code</md-option>
+		                        <md-option value="markdown">Markdown</md-option>
+		                        <md-option value="firmware">Firmware</md-option>
+		                    </md-select>
+						</md-input-container>
+			    		<md-button ng-click="n.up ($index); $event.stopPropagation ();">
+		                    <img src="../img/up-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Move up
+		                    </md-tooltip>
+		                </md-button>
+			    		<md-button ng-click="n.down ($index); $event.stopPropagation ();">
+		                    <img src="../img/down-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Move down
+		                    </md-tooltip>
+		                </md-button>
+		                <md-button ng-show="items.length > 1" ng-click="n.delete ($index); $event.stopPropagation ();">
+		                    <img src="../img/delete-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Delete
+		                    </md-tooltip>
+		                </md-button>
+			    		<md-button ng-click="n.insert ($index); $event.stopPropagation ();">
+		                    <img src="../img/add-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Add new
+		                    </md-tooltip>
+		                </md-button>
+				  	</div>
+					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
+					<div ng-if="item.type==='markdown' && editLabel === item.label" class="markdown-btns">
+						<md-button ng-click="n.image (item.label)">
+							<img src="../img/image-icon.png" class="s24">
+							<md-tooltip>
+								Add Image
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.imagelink (item.label)">
+							<img src="../img/imagelink-icon.png" class="s24">
+							<md-tooltip>
+								Add Image Link
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.arbitraryfile (item.label)">
+							<img src="../img/file-icon.png" class="s24">
+							<md-tooltip>
+								Add File
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.link (item.label)">
+							<img src="../img/link-icon.png" class="s24">
+							<md-tooltip>
+								Link
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.numbered (item.label)">
+							<img src="../img/nlist-icon.png" class="s24">
+							<md-tooltip>
+								Numbered
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.points (item.label)">
+							<img src="../img/list-icon.png" class="s24">
+							<md-tooltip>
+								List
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.bold(item.label)">
+							<img src="../img/bold-icon.png" class="s24">
+							<md-tooltip>
+								Bold
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.italics(item.label)">
+							<img src="../img/italic-icon.png" class="s24">
+							<md-tooltip>
+								Italics
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.heading1(item.label)">
+							<img src="../img/h1-icon.png" class="s24">
+							<md-tooltip>
+								Heading 1
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.heading2(item.label)">
+							<img src="../img/h2-icon.png" class="s24">
+							<md-tooltip>
+								Heading 2
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.heading3(item.label)">
+							<img src="../img/h3-icon.png" class="s24">
+							<md-tooltip>
+								Heading 3
+							</md-tooltip>
+						</md-button>
+						<md-button ng-click="n.source (item.label)">
+							<img src="../img/source-icon.png" class="s24">
+							<md-tooltip>
+								Source
+							</md-tooltip>
+						</md-button>
+					</div>
+					<div ng-if="item.type==='markdown' && editLabel === item.label" ui-ace="{
+                                              advanced: {
+                                                  enableSnippets: false,
+                                                  enableBasicAutocompletion: false,
+                                                  enableLiveAutocompletion: false
+                                              },
+                                              useWrapMode : true,
+                                              showGutter: true,
+                                              mode:'markdown',
+                                              theme:'chrome',
+                                              rendererOptions: { 
+                                                fontSize: 14,
+                                                minLines: 6,
+                                                maxLines: 20 
+                                              },
+                                              firstLineNumber: 1,
+                                              onLoad: aceEditLoaded,
+                                              onChange: aceEditChanged
+                                            }" ng-model="item.text"></div>
+                    <div ng-if="item.type==='code'">
+                    	<div class="code-logo">
+			    			<img src="../img/python.png" class="s24">
+			    		</div>
+						<div ui-ace="{
+	                                              advanced: {
+	                                                  enableSnippets: true,
+	                                                  enableBasicAutocompletion: true,
+	                                                  enableLiveAutocompletion: true
+	                                              },
+	                                              useWrapMode : true,
+	                                              showGutter: true,
+	                                              mode:'python',
+	                                              theme:'chrome',
+	                                              rendererOptions: { 
+	                                                fontSize: 14,
+	                                                minLines: 6,
+	                                                maxLines: Infinity
+	                                              },
+	                                              firstLineNumber: 1,
+	                                              onLoad: aceCodeLoaded,
+	                                              onChange: aceCodeChanged
+	                                            }" ng-model="item.text">
+	                                            </div>
+							<div class="alert alert-danger" ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
+							<response ng-show='item.response' value="item.response"></response>
+							<pre class="alert alert-warning closepre" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
+							<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
+			                    <img src="../img/close-icon.png" class="s24">
+			                    <md-tooltip md-direction="top">
+			                      Close
+			                    </md-tooltip>
+			                </md-button></pre>
+							<pre ng-show='item.stdout && item.stdout.length > 0' class="closepre">{{item.stdout}}
+								<md-button ng-click="n.deletestdout(item.label); $event.stopPropagation ();">
+				                    <img src="../img/close-icon.png" class="s24">
+				                    <md-tooltip md-direction="top">
+				                      Close
+				                    </md-tooltip>
+			                </md-button></pre>
+						</div>
+						<div ng-if="item.type==='firmware'">
+							<div class="code-logo">
+				    			<img ng-src="{{'../img/'+item.port.type.split('/')[0]+'.png'}}" class="s24">
+				    		</div>
+							<div ui-ace="{
+	                                              advanced: {
+	                                                  enableSnippets: true,
+	                                                  enableBasicAutocompletion: true,
+	                                                  enableLiveAutocompletion: true
+	                                              },
+	                                              useWrapMode : true,
+	                                              showGutter: true,
+	                                              mode:'c_cpp',
+	                                              theme:'chrome',
+	                                              rendererOptions: { 
+	                                                fontSize: 14,
+	                                                minLines: 6,
+	                                                maxLines: Infinity
+	                                              },
+	                                              firstLineNumber: 1,
+	                                              onLoad: aceCodeLoaded,
+	                                              onChange: aceCodeChanged
+	                                            }" ng-model="item.text"></div>
+							<div class="sendval" ng-show="flashingLabel === item.label && item.response && item.response.length > 0">
+								<md-input-container md-no-float>
+									<input placeholder="Value" ng-model="serialinput">
+								</md-input-container>
+                        		<md-button ng-click="n.serialinput (item.label)">
+				                    <img src="../img/send-icon.png" class="s24">
+				                    <md-tooltip md-direction="right">
+				                      Send value
+				                    </md-tooltip>
+				                </md-button>
+                        	</div>
+	                        <pre ng-show='item.response && item.response.length > 0'>
+	                        	{{item.response}}
+	                        </pre>
+							<pre class="alert closepre" ng-class="{'alert-danger':item.hasErrors, 'alert-warning':!item.hasErrors}" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
+							<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
+			                    <img src="../img/close-icon.png" class="s24">
+			                    <md-tooltip md-direction="top">
+			                      Close
+			                    </md-tooltip>
+			                </md-button>
+							</pre>
+							<pre ng-show='item.stdout && item.stdout.length > 0' class="closepre">{{item.stdout}}
+								<md-button ng-click="n.deletestdout(item.label); $event.stopPropagation ();">
+				                    <img src="../img/close-icon.png" class="s24">
+				                    <md-tooltip md-direction="top">
+				                      Close
+				                    </md-tooltip>
+			                	</md-button></pre>
+						</div>
+					</div>
+				</md-list-item>
+			  <!-- <md-list-item flex class="section-active">
+			    <div class="md-list-item-text">
+					<div class="clearfix" style="padding: 10px; padding-left: 0px">
+					<img src="https://raw.githubusercontent.com/jupyter/nature-demo/master/images/jupyter-logo.png" width="150px" style="display: inline-block; margin-top: 5px;">
+					<a href="http://bit.ly/tmpnbdevrax"><img src="https://cloud.githubusercontent.com/assets/836375/4916141/2732892e-64d6-11e4-980f-11afcf03ca31.png" width="150px" class="pull-right" style="display: inline-block; margin: 0px;"></a>
+					</div>
+
+					## Welcome to the Temporary Notebook (tmpnb) service!
+
+					This Notebook Server was **launched just for you**. It's a temporary way for you to try out a recent development version of the IPython/Jupyter notebook.
+
+					<div class="alert alert-warning" role="alert" style="margin: 10px">
+					<p>**WARNING**</p>
+
+					<p>Don't rely on this server for anything you want to last - your server will be *deleted after 10 minutes of inactivity*.</p>
+					</div>
+
+					Your server is hosted thanks to [Rackspace](http://bit.ly/tmpnbdevrax), on their on-demand bare metal servers, [OnMetal](http://bit.ly/onmetal).
+
+			    </div>
+			  </md-list-item>
+			  <md-list-item flex class="section-regular">
+			    <div class="md-list-item-text">
+			     	<pre>
+					
+	%matplotlib notebook
+
+	import pandas as pd
+	import numpy as np
+	import matplotlib
+
+	from matplotlib import pyplot as plt
+	import seaborn as sns
+
+	ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+	ts = ts.cumsum()
+
+	df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+	                  columns=['A', 'B', 'C', 'D'])
+	df = df.cumsum()
+	df.plot(); plt.legend(loc='best')
+
+					</pre>
+			      <p>{{item.description}}</p>
+			    </div>
+			  </md-list-item>
+			  <md-list-item flex class="section-regular">
+			    <div class="md-list-item-text">
+			     	<pre>
+					
+	%matplotlib notebook
+
+	import pandas as pd
+	import numpy as np
+	import matplotlib
+
+	from matplotlib import pyplot as plt
+	import seaborn as sns
+
+	ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
+	ts = ts.cumsum()
+
+	df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+	                  columns=['A', 'B', 'C', 'D'])
+	df = df.cumsum()
+	df.plot(); plt.legend(loc='best')
+
+					</pre>
+			      <p>{{item.description}}</p>
+			    </div>
+			  </md-list-item> -->
+			</md-list>
+			<div class="bottom-space"></div>
+			<div class="server-status" ng-class="{'connected':status === 'READY' || status === 'PROCESSING', 'stopped':status === 'STOPPED'}" ng-show="connected">
+				Python {{status}}
+				<md-button ng-show="connected" ng-click="n.reset()">
+	                <img src="../img/reset-icon.png" class="s24">
+	                <md-tooltip md-direction="top">
+	                  Reset
+	                </md-tooltip>
+	            </md-button>
+			</div>
+		</md-content>
+	</body>
+</html>

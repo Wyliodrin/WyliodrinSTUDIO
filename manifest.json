@@ -20,7 +20,8 @@
   {
     "pages":[
       "public/views/extra.html",
-      "public/documentation/*"
+      "public/documentation/*",
+      "public/notebook/*"
     ]
   },
   "sockets": { "tcp": {"connect":"*:*"} },

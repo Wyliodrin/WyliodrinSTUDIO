@@ -216,7 +216,7 @@
 	                                            </div>
 							<div class="alert alert-danger" ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
 							<response ng-show='item.response' value="item.response"></response>
-							<pre class="alert alert-warning" ng-show='item.stderr && item.stderr.length > 0' class="closepre">{{item.stderr}}
+							<pre class="alert alert-warning closepre" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
 							<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
 			                    <img src="../img/close-icon.png" class="s24">
 			                    <md-tooltip md-direction="top">

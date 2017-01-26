@@ -891,5 +891,12 @@
   },
   "PROJECT_NOTEBOOK": {
     "message": "Notebook"
+  },
+  "GITHUB_EXAMPLE_Example": {
+    "message": "Load an example"
+  },
+  "GITHUB_EXAMPLE_Empty":
+  {
+    "message" :"Please write the name of a github repository that has examples"
   }
 }

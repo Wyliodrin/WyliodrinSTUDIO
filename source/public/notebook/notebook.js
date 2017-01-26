@@ -376,7 +376,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         label: uuid.v4 ()
       });
     }
-    $scope.activeLabel = null;
+    $scope.activeLabel = ($scope.items.length === 1 && $scope.items[0].text.trim()==='')?$scope.items[0].label:null;
     $scope.editLabel = null;
     $scope.evaluatingLabel = null;
     $scope.flashingLabel = null;

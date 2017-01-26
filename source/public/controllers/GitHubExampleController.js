@@ -21,12 +21,22 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('GitHubExampleController', function($scope, $mdDialog, $wydevice, $wyapp, $http){
+	app.controller('GitHubExampleController', function($scope, $mdDialog, $timeout, $wydevice, $wyapp, $http){
 		debug ('Registering');
 
-		$scope.repo = '';
+		var that = this;
+		library.retrieveValue ('githubexample', 'Wyliodrin/WyliodrinStudioExample', function (value)
+		{
+			$timeout (function ()
+			{
+				$scope.repo = value;
+				that.load ();
+			});
+		});
 
 		$scope.lst = [];
+
+		$scope.importing = false;
 
 		var language = {};
 
@@ -46,8 +56,10 @@ module.exports = function ()
 
 		this.use = function (item)
 		{
+			$scope.importing = true;
 			$http.get ('https://raw.githubusercontent.com/'+$scope.repo+'/master/'+item.file).then (function (res)
 			{
+				library.storeValue ('githubexample', $scope.repo);
 				console.log (res.data);
 				var projectexample = res.data;
 				projectexample.date = new Date ().getTime ();
@@ -64,8 +76,13 @@ module.exports = function ()
 							mixpanel.track ('GitHub Example', {
 								language: project.language
 							});
+							$scope.importing = false;
 							$mdDialog.hide ();
 						});
+					}
+					else
+					{
+						$scope.importing = false;
 					}
 				});
 			});
@@ -78,6 +95,9 @@ module.exports = function ()
 				console.log (res.data);
 				var example = res.data;
 				$scope.lst = example;
+			}, function ()
+			{
+				$scope.lst = [];
 			});
 		};
 

@@ -2045,9 +2045,9 @@ highcharts-ng@0.0.13:
   version "0.0.13"
   resolved "https://registry.yarnpkg.com/highcharts-ng/-/highcharts-ng-0.0.13.tgz#8f1e3a542007bd131071ea5d9a1e9265eeb817bc"
 
-highcharts@^5.0.6:
-  version v5.0.7
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-5.0.7.tgz#63ebeeee05acd56e3b2554b5b31a1224e1e05bf6"
+highcharts@^4.2.7:
+  version v4.2.7
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-4.2.7.tgz#45cbed8e99c9c042e95f9c51076726496f686862"
 
 highlight.js@^9.9.0:
   version "9.9.0"

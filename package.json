@@ -43,7 +43,7 @@
     "debug": "^2.5.1",
     "dexie": "^1.5.1",
     "dict": "^1.4.0",
-    "highcharts": "^5.0.6",
+    "highcharts": "^4.2.7",
     "highcharts-ng": "0.0.13",
     "highlight.js": "^9.9.0",
     "jquery": "^3.1.1",

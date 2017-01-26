@@ -274,6 +274,12 @@
                                     {{'Delete' | translate}}
                                 </md-tooltip>
                             </md-button>
+                            <md-button ng-show="!tree.selectednode.isroot && !tree.selectednode.isspecial && !tree.selectednode.issoftware && !tree.selectednode.ismain" class="fileexplorer-actions" aria-label="Delete" ng-click="p.deleteButton()">
+                                <md-icon md-svg-src="/public/drawable/rename-icon.svg" class="s24" aria-label="Rename" ></md-icon>
+                                <md-tooltip md-direction="top">
+                                    {{'Rename' | translate}}
+                                </md-tooltip>
+                            </md-button>
                             <md-button class="fileexplorer-actions" aria-label="New Firmware" ng-click="p.newFirmwareButton()">
                                 <md-icon md-svg-src="/public/drawable/new-firmware.svg" class="s24" aria-label="New Firmware" ></md-icon>
                                 <md-tooltip md-direction="top">
@@ -285,7 +291,7 @@
 
                         <div flex="100" ng-show="showEditor" layout="row"><!--editor text-->
     
-                            <md-tabs md-align-tabs="bottom" flex="100" class="tabs-box software_label">
+                            <!-- <md-tabs md-align-tabs="bottom" flex="100" class="tabs-box software_label">
                                 <md-tab>
                                     <md-tab-label>{{label[device.category].software}}</md-tab-label>
                                     <md-tab-body>
@@ -331,7 +337,50 @@
                                 </md-tab>
 
                                 
-                            </md-tabs>
+                            </md-tabs> -->
+
+
+
+                                        <div layout="column" flex="100">
+                                            <div ng-show="project.language!=='visual' && project.language !== 'streams'" flex="100" ui-ace="{
+                                              advanced: {
+                                                  enableSnippets: true,
+                                                  enableBasicAutocompletion: true,
+                                                  enableLiveAutocompletion: true
+                                              },
+                                              useWrapMode : true,
+                                              showGutter: true,
+                                              mode:'python',
+                                              theme:'chrome',
+                                              rendererOptions: { 
+                                                fontSize: 14 
+                                              },
+                                              firstLineNumber: 1,
+                                              onLoad: aceSoftwareLoaded,
+                                              onChange: aceSoftwareChanged
+                                            }" ng-model="tree.selectednode.content"></div>
+                                            <div ng-show="project.language==='visual'" flex="100" layout="row">
+                                                <iframe flex="{{showhidecode?65:100}}" src="/public/blockly/blockly_frame.html">
+                                                </iframe>
+                                                <div flex="{{showhidecode?35:0}}" ng-show="showhidecode" ui-ace="{
+                                                  useWrapMode : false,
+                                                  showGutter: true,
+                                                  rendererOptions: { 
+                                                    fontSize: 14 
+                                                  },
+                                                  mode: (device.category!=='chrome'?'python':'javascript'),
+                                                  theme:'chrome',
+                                                  firstLineNumber: 1,
+                                                  onLoad: aceShowLoaded
+                                                }" ng-model="tree.selectednode.content"></div>
+                                            </div>
+                                            <div id="divred" ng-show="project.language==='streams'" flex="100">
+                                              <webview id="red" src="/public/red/red.html" partition="red">
+                                              </webview>
+                                            </div>
+                                        </div>
+
+
                         </div>
                     </div>
 

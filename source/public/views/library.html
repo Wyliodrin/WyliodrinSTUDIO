@@ -35,9 +35,10 @@
 			</md-content>
 	</md-dialog-content>
     <md-dialog-actions layout="row">
+    	<md-button ng-click="l.example()">{{ 'LIBRARY_LoadAnExample' | translate }}</md-button>
+        <span flex></span>
 		<md-button ng-click="l.add()" class="newapp">{{ 'WELCOME_CreateNewApp' | translate }}</md-button>
 		<md-button ng-click="l.import()">{{ 'TOOLBAR_IMPORT' | translate }}</md-button>
-		<md-button ng-click="l.cancel()">{{ 'TOOLBAR_CANCEL' | translate }}</md-button>
-        <md-button ng-click="l.example()" class="load-example">{{ 'LIBRARY_LoadAnExample' | translate }}</md-button>
+		<md-button ng-click="l.cancel()" md-autofocus>{{ 'TOOLBAR_CANCEL' | translate }}</md-button>
 	</md-dialog-actions>
 </md-dialog>

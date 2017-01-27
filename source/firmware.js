@@ -3,7 +3,7 @@ var FIRMWARE_TYPES = {
     'arduino':
     {
       name: 'Arduino',
-      source: 'src/Arduino.ino',
+      source: 'Arduino.ino',
       devices:
       {
         'uno':'Arduino Uno',
@@ -33,7 +33,7 @@ var FIRMWARE_TYPES = {
     'openmote':
     {
         name: 'Open Mote',
-        source: '',
+        source: 'main.c',
         devices:
         {
             'openmote':'Open Mote'

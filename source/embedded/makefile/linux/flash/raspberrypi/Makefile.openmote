@@ -2,3 +2,7 @@ PORT ?= /dev/ttyUSB0
 
 flash:
 	cd /wyliodrin/RIOT/examples/wyliodrin_project && make flash PORT="$(PORT)"
+
+serial:
+	stty -F $(PORT) $(BAUD)
+	socat $(PORT) -

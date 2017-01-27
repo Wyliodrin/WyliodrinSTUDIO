@@ -1,2 +1,6 @@
 flash:
 	ino upload -m $(DEVICE) -p $(PORT)
+
+serial:
+	stty -F $(PORT) $(BAUD)
+	socat $(PORT) -

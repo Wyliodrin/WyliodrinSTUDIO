@@ -1,5 +1,16 @@
 "use strict";
 var DEVICES = {};
+
+DEVICES[0x0000] = {
+  name: 'Unknown',
+  type: 'unknown'
+};
+DEVICES[0x0000][0x0000] = 
+{
+  name: 'Unknown',
+  type: 'unknown'
+};
+
 DEVICES[0x2341] = {
   name: 'Arduino',
   type: 'arduino'

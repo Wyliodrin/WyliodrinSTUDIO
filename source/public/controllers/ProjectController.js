@@ -307,12 +307,25 @@ var app = angular.module ('wyliodrinApp');
 					{
 						softwareEditor.getSession().setMode ('ace/mode/powershell');
 					}
+					softwareEditor.getSession().setTabSize (2);
+					softwareEditor.getSession().setUseSoftTabs (true);
 					//if it's software type file
 				}
 				else{
 					//if it's firmware type file
-					softwareEditor.getSession().setMode ('ace/mode/c_cpp');
-					softwareEditor.language = "c_cpp";
+					if (node.name.toLowerCase() == "makefile"){
+						//makefile
+						console.log("e makefile");
+						softwareEditor.getSession().setTabSize (4);
+						softwareEditor.getSession().setUseSoftTabs (false);
+					}
+					else{
+						//simple files
+						softwareEditor.getSession().setMode ('ace/mode/c_cpp');
+						softwareEditor.language = "c_cpp";
+						softwareEditor.getSession().setTabSize (2);
+						softwareEditor.getSession().setUseSoftTabs (true);
+					}
 				}
 			}
 		};
@@ -1161,8 +1174,27 @@ var app = angular.module ('wyliodrinApp');
 				      	for (var i =0;i<$scope.ports.length;i++){
 				      		var pid = parseInt($scope.ports[i].pid);
 				      		var vid = parseInt($scope.ports[i].vid);
-				      		$scope.ports[i].pid = $scope.map[vid][pid];
-				      		$scope.ports[i].vid = $scope.map[vid];
+
+				      		console.log("1");
+				      		console.log($scope.map[vid]);
+				      		if (!$scope.map[vid]){
+				      			console.log("if1");
+				      			$scope.ports[i].vid = $scope.map[0x0000];
+				      			$scope.ports[i].pid = $scope.map[0x0000][0x0000];
+				      		}
+				      		else{
+				      			console.log("else1");
+				      			$scope.ports[i].vid = $scope.map[vid];
+				      			if (!$scope.map[vid][pid]){
+				      				console.log("if2");
+				      				$scope.ports[i].pid = $scope.map[0x0000][0x0000];
+				      			}
+				      			else{
+				      				console.log("else2");
+				      				$scope.ports[i].pid = $scope.map[vid][pid];
+				      			}
+				      		}
+
 				      	}
 				      	
 				      	$scope.path = path;

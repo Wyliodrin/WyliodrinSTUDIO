@@ -16,7 +16,7 @@
 
  var flow = null;
  var flowsLoaded = false;
- var project = null;
+ var projectid = -1;
  var wyliodrin = null;
 
  function loadMain ()
@@ -37,17 +37,17 @@ window.addEventListener ('message', function (message)
     wyliodrin = message.source;
     // console.log ('message');
     // console.log (message);
-    project = message.data;
-    if (!project.id && project.id !== 0)
+    projectid = message.data.projectid;
+    /*if (!projectid && projectid !== 0)
     {
         project = {id:-1};
-    }
+    }*/
     // console.log (project);
-    if (project.id >= 0)
+    if (projectid >= 0)
     {
         try
         {
-            flow = JSON.parse(project.main);
+            flow = JSON.parse(message.data.content);
             // flow = project.main;
         }
         catch (exception)
@@ -903,9 +903,9 @@ RED.nodes = (function() {
         if (dirty === true)
         {
             console.log (JSON.stringify(RED.nodes.createCompleteNodeSet()));
-            if (project !== null && wyliodrin !== null)
+            if (projectid !== -1 && wyliodrin !== null)
             {
-                wyliodrin.postMessage ({type:'flow', projectId:project.id, flow:JSON.stringify(RED.nodes.createCompleteNodeSet())}, '*');
+                wyliodrin.postMessage ({type:'flow', projectId:projectid, flow:JSON.stringify(RED.nodes.createCompleteNodeSet())}, '*');
             }
             dirty = false;
         }

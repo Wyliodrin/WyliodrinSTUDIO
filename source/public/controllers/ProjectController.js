@@ -298,6 +298,8 @@ var app = angular.module ('wyliodrinApp');
 					}
 					if ($scope.project.language == "streams"){
 						$scope.showStreams = true;
+						red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
+						red.reload();
 					}
 					else{
 						$scope.showStreams = false;
@@ -1013,7 +1015,7 @@ var app = angular.module ('wyliodrinApp');
 								var parsedmessage = message.data;
 								console.log (parsedmessage);
 								console.log ($scope.project.id);
-								if (parsedmessage.type === 'flow' )//&& parsedmessage.projectId === $scope.project.id)
+								if (parsedmessage.type === 'flow')// && parsedmessage.projectId === $scope.project.id)
 								{
 									// console.log ('store');
 								// here put the new stream nodes \|/
@@ -1051,7 +1053,8 @@ var app = angular.module ('wyliodrinApp');
 							if ($scope.project.language === 'streams')
 							{
 								// here put when streams load \|/
-								red.contentWindow.postMessage ($scope.tree.selectednode.content, '*');
+								console.log($scope.tree.selectednode.content);
+								red.contentWindow.postMessage ({projectid:project.id,content:$scope.tree.selectednode.content}, '*');
 							}
 						});
 					}

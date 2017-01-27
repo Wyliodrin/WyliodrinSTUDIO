@@ -297,7 +297,7 @@ app.factory ('$wydevice', function ($timeout)
 {
   window.addEventListener ('message', function (message)
   {
-    console.log (message.data);
+    //console.log (message.data);
     wyliodrin = message.source;
     if (message.data.type === 'wydevice-message')
     {

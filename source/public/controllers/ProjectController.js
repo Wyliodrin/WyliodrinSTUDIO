@@ -307,12 +307,25 @@ var app = angular.module ('wyliodrinApp');
 					{
 						softwareEditor.getSession().setMode ('ace/mode/powershell');
 					}
+					softwareEditor.getSession().setTabSize (2);
+					softwareEditor.getSession().setUseSoftTabs (true);
 					//if it's software type file
 				}
 				else{
 					//if it's firmware type file
-					softwareEditor.getSession().setMode ('ace/mode/c_cpp');
-					softwareEditor.language = "c_cpp";
+					if (node.name.toLowerCase() == "makefile"){
+						//makefile
+						console.log("e makefile");
+						softwareEditor.getSession().setTabSize (4);
+						softwareEditor.getSession().setUseSoftTabs (false);
+					}
+					else{
+						//simple files
+						softwareEditor.getSession().setMode ('ace/mode/c_cpp');
+						softwareEditor.language = "c_cpp";
+						softwareEditor.getSession().setTabSize (2);
+						softwareEditor.getSession().setUseSoftTabs (true);
+					}
 				}
 			}
 		};

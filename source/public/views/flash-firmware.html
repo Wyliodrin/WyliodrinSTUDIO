@@ -8,7 +8,7 @@
 	<md-dialog-content ng-escape="a.cancel()" ng-repeat="port in ports" layout-gt-sm="column">
         <md-content layout-gt-sm="column" layout-padding>
             <div layout-gt-sm="row" flex class="flash-firmware">
-                <label><img ng-src="/public/drawable/{{map[port.vid].type}}-small.png" class="s24"><!--{{map[port.vid].name}}--> {{map[port.vid][port.pid].name}}</label><!--type o1f firmware-->
+                <label><img ng-src="/public/drawable/{{port.vid.type}}-small.png" class="s24"><!--{{map[port.vid].name}}--> {{port.pid.name}}</label><!--type o1f firmware-->
                 <label class="firm-port"><strong>Port:</strong> {{path.basename(port.p)}}</label><!--port-->
             </div>
         </md-content>

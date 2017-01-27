@@ -1,2 +1,3 @@
 compile:
-	mkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE); rm -f .build && ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)
+	mkdir src
+	mv * src; mkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE); ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)

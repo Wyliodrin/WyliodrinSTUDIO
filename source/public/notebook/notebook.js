@@ -22,247 +22,11 @@ require('./../tools/snippets/python.js');
 require('./../tools/snippets/markdown.js');
 require('./../tools/snippets/c_cpp.js');
 
-var MAKEFILE = {
-  'arduino':'compile:\n\tmkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) 2> /dev/null; rm -f .build && ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)\n\nflash:\n\tino upload -m $(DEVICE) -p $(PORT)\n\nserial:\n\tstty -F $(PORT) speed $(BAUD); socat $(PORT) - >&3\n',
-  'openmote':'compile:\n\trm -rf /wyliodrin/RIOT/examples/wyliodrin_project && mkdir /wyliodrin/RIOT/examples/wyliodrin_project && mkdir -p /wyliodrin/RIOT/examples/libs/bin; ln -s /wyliodrin/RIOT/examples/libs/bin /wyliodrin/RIOT/examples/wyliodrin_project/bin && cp -r * /wyliodrin/RIOT/examples/wyliodrin_project && rm /wyliodrin/RIOT/examples/wyliodrin_project/makefile && mv /wyliodrin/RIOT/examples/wyliodrin_project/makefile.firmware /wyliodrin/RIOT/examples/wyliodrin_project/Makefile && make -C /wyliodrin/RIOT/examples/wyliodrin_project WERROR=0 all\n\nflash:\n\tcd /wyliodrin/RIOT/examples/wyliodrin_project && make flash PORT="$(PORT)"\n\nserial:\n\tstty -F $(PORT) speed $(BAUD); socat $(PORT) - >&3\n\n'
-};
+var makefile = require ('makefile.js');
 
-var MAKEFILE_FIRMWARE = {
-  'openmote': `
-# name of your application
-APPLICATION = wyliodrin_project
+var DEVICES = require ('usb_mapping');
 
-# This example is specifically made/tested on the openmote but should be 
-# portable to other supported platforms
-BOARD ?= openmote-cc2538
-
-# Use 'jlink' to flash over jtag or 'cc2538-bsl' to flash over UART
-PROGRAMMER ?= cc2538-bsl
-
-# This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
-
-#to print float values
-LINKFLAGS += -u _printf_float
-USEMODEULE += printf_float
-
-# Include packages that pull up and auto-init the link layer.
-# NOTE: 6LoWPAN will be included if IEEE802.15.4 devices are present
-USEMODULE += gnrc_netdev_default
-USEMODULE += auto_init_gnrc_netif
-# Specify the mandatory networking modules for IPv6 and UDP
-USEMODULE += gnrc_ipv6_router_default
-USEMODULE += gnrc_udp
-# Add a routing protocol
-USEMODULE += gnrc_rpl
-USEMODULE += auto_init_gnrc_rpl
-# This application dumps received packets to STDIO using the pktdump module
-USEMODULE += gnrc_pktdump
-# Additional networking modules that can be dropped if not needed
-USEMODULE += gnrc_icmpv6_echo
-# Add also the shell, some shell commands
-USEMODULE += shell
-USEMODULE += shell_commands
-USEMODULE += ps
-USEMODULE += netstats_l2
-USEMODULE += netstats_ipv6
-
-# Set a custom 802.15.4 channel if needed
-DEFAULT_CHANNEL ?= 12
-CFLAGS += -DDEFAULT_CHANNEL=$(DEFAULT_CHANNEL)
-
-# Comment this out to disable code in RIOT that does safety checking
-# which is not needed in a production environment but helps in the
-# development process:
-CFLAGS += -DDEVELHELP
-
-# Comment this out to join RPL DODAGs even if DIOs do not contain
-# DODAG Configuration Options (see the doc for more info)
-# CFLAGS += -DGNRC_RPL_DODAG_CONF_OPTIONAL_ON_JOIN
-
-# Change this to 0 show compiler invocation lines by default:
-QUIET ?= 1
-
-include $(RIOTBASE)/Makefile.include`
-};
-
-var DEVICES = {};
-DEVICES[0x2341] = {
-  name: 'Arduino',
-  type: 'arduino'
-};
-DEVICES[0x2a03] = {
-  name: 'Arduino',
-  type: 'arduino'
-};
-DEVICES[0x2341][0x0001] = 
-{
-  name: 'Uno',
-  type: 'uno'
-};
-DEVICES[0x2341][0x0010] = {
-  name: 'Mega 2560',
-  type: 'mega2560'
-};
-DEVICES[0x2341][0x003f] = 
-{
-  name:'Mega ADK',
-  type: 'mega2560'
-};
-DEVICES[0x2341][0x0042] = 
-{
-  name: 'Mega 2560 rev3',
-  type: 'mega2560'
-};
-DEVICES[0x2341][0x0043] = 
-{
-  name: 'Uno R3',
-  type: 'uno'
-};
-DEVICES[0x2341][0x0044] = 
-{
-  name: 'Mega ADK rev3',
-  type: 'mega2560'
-};
-DEVICES[0x2341][0x8036] = 
-{
-  name: 'Leonardo',
-  type: 'leonardo'
-};
-DEVICES[0x2a03][0x0001] = 
-{
-  name: 'Linino ONE'
-};
-DEVICES[0x2a03][0x0036] = 
-{
-  name: 'Leonardo',
-  type: 'leonardo'
-};
-DEVICES[0x2a03][0x0037] = 
-{
-  name: 'Micro'
-};
-DEVICES[0x2a03][0x0038] = 
-{
-  name: 'Robot Control'
-};
-DEVICES[0x2a03][0x0039] =
-{
-  name: 'Robot Motor'
-};
-DEVICES[0x2a03][0x003a] = 
-{
-  name: 'Micro ADK rev3'
-};
-DEVICES[0x2a03][0x003c] = 
-{
-  name: 'Esplora'
-};
-DEVICES[0x2a03][0x003d] = 
-{
-  name: 'Due'
-};
-DEVICES[0x2a03][0x003e] = 
-{
-  name: 'Due'
-};
-DEVICES[0x2a03][0x0041] = 
-{
-  name: 'Yun'
-};
-DEVICES[0x2a03][0x0042] = 
-{
-  name: 'Mega 2560 rev3',
-  type: 'mega2560'
-};
-DEVICES[0x2a03][0x0043] = 
-{
-  name: 'Uno Rev3',
-  type: 'uno'
-};
-DEVICES[0x2a03][0x004d] = 
-{
-  name: 'Zero Pro'
-};
-DEVICES[0x2a03][0x8001] = 
-{
-  name: 'Linino ONE'
-};
-DEVICES[0x2a03][0x8036] = 
-{
-  name: 'Leonardo',
-  type: 'leonardo'
-};
-DEVICES[0x2a03][0x8037] = 
-{
-  name: 'Micro'
-};
-DEVICES[0x2a03][0x8038] = 
-{
-  name: 'Robot Control'
-};
-DEVICES[0x2a03][0x8039] = 
-{
-  name: 'Robot Motor'
-};
-DEVICES[0x2a03][0x803a] = 
-{
-  name: 'Micro ADK rev3'
-};
-DEVICES[0x2a03][0x803c] = 
-{
-  name: 'Esplora'
-};
-DEVICES[0x2a03][0x8041] = 
-{
-  name: 'Yun'
-};
-DEVICES[0x2a03][0x804d] = 
-{
-  name: 'Zero Pro'
-};
-
-var FIRMWARE_TYPES = {
-    'arduino':
-    {
-      name: 'Arduino',
-      source: 'src/Arduino.ino',
-      devices:
-      {
-        'uno':'Arduino Uno',
-        'atmega328':'Arduino Duemilanove w/ ATmega328',
-        'diecimila':'Arduino Diecimila or Duemilanove w/ ATmega168',
-        'nano328':'Arduino Nano w/ ATmega328',
-        'nano':'Arduino Nano w/ ATmega168',
-        'mega2560':'Arduino Mega 2560 or Mega ADK',
-        'mega':'Arduino Mega (ATmega1280)',
-        'leonardo':'Arduino Leonardo',
-        'mini328':'Arduino Mini w/ ATmega328',
-        'mini':'Arduino Mini w/ ATmega168',
-        'ethernet':'Arduino Ethernet',
-        'fio':'Arduino Fio',
-        'bt328':'Arduino BT w/ ATmega328',
-        'bt':'Arduino BT w/ ATmega168',
-        'lilypad328':'LilyPad Arduino w/ ATmega328',
-        'lilypad':'LilyPad Arduino w/ ATmega168',
-        'pro5v328':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega328',
-        'pro5v':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega168',
-        'pro328':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328',
-        'pro':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega168',
-        'atmega168':'Arduino NG or older w/ ATmega168',
-        'atmega8':'Arduino NG or older w/ ATmega8'
-      }
-    },
-    'openmote':
-    {
-      name: 'Open Mote',
-      source: 'main.c',
-      devices:
-      {
-        'openmote':'Open Mote'
-      }
-    }
-  };
+var FIRMWARE_TYPES = require ('firmware');
 
 var _ = require ('lodash');
 var EventEmitter = require ('events').EventEmitter;
@@ -403,6 +167,8 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   $scope.serialinput = '';
 
+  $scope.serialrates = [300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200];
+
   // hotkeys.bindTo($scope).add({
   //   combo: 'ctrl+enter',
   //   description: 'Run or flash',
@@ -421,6 +187,9 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   load ([]);
 
   var that = this;
+
+  var platform = '';
+  var category = '';
 
   window.addEventListener ('message', function (message)
   {
@@ -727,6 +496,19 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       var typedevice = item.port.type.split ('/');
       var type = typedevice[0];
       var device = typedevice[1];
+      var m = '';
+      if (makefile[platform].compileHere && makefile[platform].compileHere[category] && makefile[platform].compileHere[category][type])
+      {
+        m = makefile[platform].compileHere[category][type];
+      }
+      else if (makefile[platform].send)
+      {
+        m = makefile[platform].send[type];
+      }
+      if (makefile[platform].flash && makefile[platform].flash[category] && makefile[platform].flash[category][type])
+      {
+        m = m + '\n\n' + makefile[platform].flash[category][type];
+      }
       $wydevice.send ('note', {
         a:'f',
         l: label,
@@ -734,9 +516,9 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         s: FIRMWARE_TYPES[type].source,
         d: device,
         p: item.port.path,
-        m: MAKEFILE[type],
-        mfl: MAKEFILE_FIRMWARE[type],
-        b: 9600
+        m: m,
+        mfl: makefile[platform].compileAway[type],
+        b: item.port.baud || 9600
       });
       item.response = '';
       item.hasErrors = false;
@@ -752,7 +534,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       a:'f',
       f:''
     });
-    $scope.flashingLabel = null;
+    // $scope.flashingLabel = null;
   };
 
   this.serialinput = function (label)
@@ -969,6 +751,8 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     {
       $timeout (function ()
       {
+        platform = p.p;
+        category = p.c;
         if (p.pf && $scope.ports.length !== p.pf.length) 
         {
           $scope.ports = p.pf;
@@ -1003,6 +787,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       else if (status === 'DISCONNECTED')
       {
         $scope.evaluatingLabel = null;
+        $scope.flashingLabel = null;
       }
     });
   });

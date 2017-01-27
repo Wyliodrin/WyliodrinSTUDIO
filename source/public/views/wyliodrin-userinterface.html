@@ -353,7 +353,7 @@
 
 
                                         <div layout="column" flex="100">
-                                            <div ng-show="project.language!=='visual' && project.language !== 'streams'" flex="100" ui-ace="{
+                                            <div ng-show="showEditor && !showVisual && !showStreams" flex="100" ui-ace="{
                                               advanced: {
                                                   enableSnippets: true,
                                                   enableBasicAutocompletion: true,
@@ -370,7 +370,7 @@
                                               onLoad: aceSoftwareLoaded,
                                               onChange: aceSoftwareChanged
                                             }" ng-model="tree.selectednode.content"></div>
-                                            <div ng-show="project.language==='visual'" flex="100" layout="row">
+                                            <div ng-show="showVisual" flex="100" layout="row">
                                                 <iframe flex="{{showhidecode?65:100}}" src="/public/blockly/blockly_frame.html">
                                                 </iframe>
                                                 <div flex="{{showhidecode?35:0}}" ng-show="showhidecode" ui-ace="{
@@ -385,7 +385,7 @@
                                                   onLoad: aceShowLoaded
                                                 }" ng-model="tree.selectednode.content"></div>
                                             </div>
-                                            <div id="divred" ng-show="project.language==='streams'" flex="100">
+                                            <div id="divred" ng-show="showStreams" flex="100">
                                               <webview id="red" src="/public/red/red.html" partition="red">
                                               </webview>
                                             </div>

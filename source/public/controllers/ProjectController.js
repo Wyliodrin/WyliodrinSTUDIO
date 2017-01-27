@@ -35,10 +35,6 @@ var languageTools = ace.acequire ('ace/ext/language_tools');
 var ace_ui = require ('angular-ui-ace');
 var XTerm = require ('xterm');
 
-var MAPPING = { ////////////////////////////////////////////////////////////////////////////////////
-	'0xea60' : 'openmote',
-	'0x0043' : 'arduino'
-};
 var usb_mapping = require('usb_mapping');
 var firmware_mapping = require('firmware');
 
@@ -171,7 +167,8 @@ var app = angular.module ('wyliodrinApp');
 
 		//tree part
 		$scope.showEditor = false;
-
+		$scope.showVisual = false;
+		$scope.showStreams = false;
 
 		$scope.tree = {};
 
@@ -246,6 +243,20 @@ var app = angular.module ('wyliodrinApp');
 						if ((!node2.isdir) && (!node2.isspecial) && (node2.ismain)){
 							$scope.tree.selectednode = node2;
 							$scope.showEditor = true;
+							if ($scope.project.language == "visual"){
+								program.load ($scope.project, node2, $wydevice.device);
+								$scope.showVisual = true;
+							}
+							else{
+								$scope.showVisual = false;
+							}
+							if ($scope.project.language == "streams"){
+								//chestii de streams de load
+								$scope.showStreams = true;
+							}
+							else{
+								$scope.showStreams = false;
+							}
 						}
 					});
 					$scope.tree.expanded.push(node);
@@ -272,11 +283,26 @@ var app = angular.module ('wyliodrinApp');
 		this.treeSelect = function(node){
 			if (node.isspecial || node.isdir){
 				$scope.showEditor = false;
+				$scope.showVisual = false;
+				$scope.showStreams = false;
 			}
 			else{
 				$scope.showEditor = true;
 
 				if (hasDeepChild(node,$scope.project.tree[0].children[0])){
+					if ($scope.project.language == "visual"){
+						$scope.showVisual = true;
+					}
+					else{
+						$scope.showVisual = false;
+					}
+					if ($scope.project.language == "streams"){
+						$scope.showStreams = true;
+					}
+					else{
+						$scope.showStreams = false;
+					}
+
 					softwareEditor.language = $scope.project.language;
 					if ($scope.project.language === "nodejs")
 					{
@@ -295,7 +321,7 @@ var app = angular.module ('wyliodrinApp');
 					else
 					if ($scope.project.language === "visual")
 					{
-						program.load ($scope.project, $wydevice.device);
+						program.load ($scope.project, node, $wydevice.device);
 					}
 					else
 					if ($scope.project.language === "csharp")
@@ -313,6 +339,8 @@ var app = angular.module ('wyliodrinApp');
 				}
 				else{
 					//if it's firmware type file
+					$scope.showVisual = false;
+					$scope.showStreams = false;
 					if (node.name.toLowerCase() == "makefile"){
 						//makefile
 						console.log("e makefile");
@@ -437,7 +465,8 @@ var app = angular.module ('wyliodrinApp');
 			$mdDialog.show({
 				controller: function ($scope)
 				{
-					$scope.contentPopupRename = "";
+					$scope.selected = _.cloneDeep(that.getSelected().name);
+					$scope.contentPopupRename = $scope.selected;
 					this.ok = function ()
 					{
 						$mdDialog.hide ();
@@ -645,7 +674,7 @@ var app = angular.module ('wyliodrinApp');
 
 			storeProject: function ()
 			{
-				library.storeVisualProject ($scope.project.id, $scope.project.visualproject);
+				library.storeVisualProject ($scope.project.id, $scope.project.tree);
 				$timeout (function ()
 				{
 
@@ -952,7 +981,7 @@ var app = angular.module ('wyliodrinApp');
 			else
 			if (project.language === "visual")
 			{
-				program.load (project, $wydevice.device);
+				//program.load (project, $wydevice.device);
 			}
 			else
 			if (project.language === "csharp")
@@ -980,14 +1009,16 @@ var app = angular.module ('wyliodrinApp');
 							// console.log (message);
 							try
 							{
+								console.log(message);
 								var parsedmessage = message.data;
 								console.log (parsedmessage);
 								console.log ($scope.project.id);
-								if (parsedmessage.type === 'flow' && parsedmessage.projectId === $scope.project.id)
+								if (parsedmessage.type === 'flow' )//&& parsedmessage.projectId === $scope.project.id)
 								{
 									// console.log ('store');
-									$scope.project.main = parsedmessage.flow;
-									library.storeMain ($scope.project.id,parsedmessage.flow,$scope.project.tree);
+								// here put the new stream nodes \|/
+									$scope.tree.selectednode.content = parsedmessage.flow;
+									library.storeMain ($scope.project.id,$scope.project.main,$scope.project.tree);
 								}
 							}
 							catch (e)
@@ -1019,8 +1050,8 @@ var app = angular.module ('wyliodrinApp');
 							console.log ('contentload');
 							if ($scope.project.language === 'streams')
 							{
-								// console.log ($scope.project);
-								red.contentWindow.postMessage ($scope.project, '*');	
+								// here put when streams load \|/
+								red.contentWindow.postMessage ($scope.tree.selectednode.content, '*');
 							}
 						});
 					}
@@ -1196,6 +1227,20 @@ var app = angular.module ('wyliodrinApp');
 				      		}
 
 				      	}
+
+				      	$scope.check = function( criteria ) {
+						  return function( item ) {
+						  	if (item.isfirmware){
+						  		if (criteria == "unknown"){
+						  			return true;
+						  		}
+						  		if (item.ftype == criteria){
+						  			return true;
+						  		}
+						  	}
+						  	return false;
+						  };
+						};
 				      	
 				      	$scope.path = path;
 

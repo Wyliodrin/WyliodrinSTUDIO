@@ -63,6 +63,7 @@ var versions = [];
 
 var pendingUndo = false;
 
+var node;
 var project;
 
 var program = null;
@@ -156,9 +157,10 @@ var program = null;
             }
             generateSource ();
           },
-          program.load = function (_project, device)
+          program.load = function (_project, _node, device) //_project_id
           {
             program.device (device);
+            node = _node;
             project = _project;
             // console.log (project);
             debug ('Load project '+project.title+', loading project visual');
@@ -166,8 +168,8 @@ var program = null;
             try
             {
              versions = [];
-              versions.push (project.visualproject);
-              var xml = Blockly.Xml.textToDom(project.visualproject);
+              versions.push (node.visual);
+              var xml = Blockly.Xml.textToDom(node.visual);
               Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);  
               Blockly.mainWorkspace.zoomReset ();
             }
@@ -216,11 +218,11 @@ var program = null;
                 source = Blockly.Python.workspaceToCode (Blockly.mainWorkspace);
               }
               var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-              project.visualproject = Blockly.Xml.domToText (xml);
-              project.main = source;
+              node.visual = Blockly.Xml.domToText (xml);
+              node.content = source;
              if (pendingUndo===false)
              {
-                versions.push (project.visualproject);
+                versions.push (node.visual);
               }
               else
               {

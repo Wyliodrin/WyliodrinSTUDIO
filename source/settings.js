@@ -518,7 +518,7 @@ settings.LANGUAGES = [
 	{
 		title: 'streams',
 		text: 'Streams',
-		ext: '.stream',
+		ext: '.streams',
 		packagemanager: 
 		{
 			enable: false

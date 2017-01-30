@@ -14,11 +14,9 @@
                 <md-list-item class="task separator-line" ng-repeat="item in lst">
                 
                     <img ng-src="/public/drawable/{{item.language}}project.png" class="s24"></img>
-                    <span style="width:20%;">
-                        <h3>{{item.name}}</h3>
-                        <div>{{e.language (item.language)}}</div>
-                    </span>
-                    <span style="width:50%;">{{item.description}}</span>
+                    <span style="width:70%;">
+                        <h3>{{item.name}} <span>{{e.language (item.language)}}</span></h3>
+                        <div>{{item.description}}</div>
                     <md-button ng-show="!importing" class="md-secondary lib-app-btn right" ng-click="e.use (item)">{{ 'TOOLBAR_IMPORT' | translate }}</md-button>
             	</md-list-item>
             <!-- <md-list-item ng-repeat="(examplename, example) in EXAMPLE['board']" layout-padding class="task separator-line">

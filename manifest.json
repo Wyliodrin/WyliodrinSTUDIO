@@ -1,7 +1,7 @@
 {
   "name": "__MSG_appName__",
   "description":"__MSG_appDesc__",
-  "version": "11",
+  "version": "11.2",
   "manifest_version": 2,
   "default_locale":"en",
   "author":"Wyliodrin SRL",
@@ -24,7 +24,8 @@
       "public/notebook/*"
     ]
   },
-  "sockets": { "tcp": {"connect":"*:*"} },
+  "web_accessible_resources": ["*.ttf" ],
+  "sockets": { "tcp": {"connect":"*:*"}, "udp": { "bind": "*", "send": "*" } },
   "permissions": [
     "serial",
     { "fileSystem":["write"] },
@@ -33,7 +34,8 @@
     "app.window.fullscreen.overrideEsc",
     "webview",
     "https://api.mixpanel.com/*",
-    "https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json"
+    "https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json",
+    "system.network"
   ],
   "file_handlers":
   {

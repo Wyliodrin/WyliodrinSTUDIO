@@ -3,4 +3,7 @@ flash:
 
 serial:
 	stty -F $(PORT) $(BAUD)
-	socat $(PORT) -
+	socat -u $(PORT) - >&3
+
+stop:
+	killall socat

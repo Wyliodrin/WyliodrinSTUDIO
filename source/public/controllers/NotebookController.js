@@ -31,7 +31,7 @@ module.exports = function ()
 
 		window.addEventListener ('message', function (message)
 		{
-			console.log (message.data);
+			// console.log (message.data);
 			try
 			{
 				var parsedmessage = message.data;
@@ -42,7 +42,7 @@ module.exports = function ()
 				else
 				if (parsedmessage.type === 'notebook')
 				{
-					console.log (parsedmessage.d);
+					// console.log (parsedmessage.d);
 					library.storeNotebook (id, parsedmessage.d);
 				}
 				else

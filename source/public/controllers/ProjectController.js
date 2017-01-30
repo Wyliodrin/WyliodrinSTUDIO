@@ -1011,10 +1011,10 @@ var app = angular.module ('wyliodrinApp');
 							// console.log (message);
 							try
 							{
-								console.log(message);
+								// console.log(message);
 								var parsedmessage = message.data;
-								console.log (parsedmessage);
-								console.log ($scope.project.id);
+								// console.log (parsedmessage);
+								// console.log ($scope.project.id);
 								if (parsedmessage.type === 'flow')// && parsedmessage.projectId === $scope.project.id)
 								{
 									// console.log ('store');

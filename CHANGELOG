@@ -3,6 +3,8 @@ Wyliodrin STUDIO 11
 * Added yarn
 * Added file tree to projects
 * Added OpenMote firmware
+* Added latex in the notebook
+* Added rudimentary device discovery without chrome api
 * Fixed node 6 compatibility
 * Removed Chrome Device
 

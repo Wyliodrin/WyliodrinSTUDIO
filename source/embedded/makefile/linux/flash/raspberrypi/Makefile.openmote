@@ -6,3 +6,6 @@ flash:
 serial:
 	stty -F $(PORT) $(BAUD)
 	socat $(PORT) -
+
+stop:
+	killall socat

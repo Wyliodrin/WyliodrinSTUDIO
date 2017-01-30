@@ -8,6 +8,7 @@ window.jQuery = $;
 var angular = require ('angular');
 var angular_material = require ('angular-material');
 var path = require ('path');
+var katex = require ('katex');
 var marked = require ('marked');
 var brace = require ('brace');
 var angularUiAce = require ('angular-ui-ace');
@@ -795,8 +796,43 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
 app.filter ('markdown', function ($sce)
 {
+  var renderer = new marked.Renderer();
+  renderer.link = function (href, title, text)
+  {
+    console.log (href);
+    /*jshint scripturl:true*/
+    if (this.options.sanitize) {
+      var prot = '';
+      try {
+        prot = decodeURIComponent(window.unescape(href))
+          .replace(/[^\w:]/g, '')
+          .toLowerCase();
+      } catch (e) {
+        return '';
+      }
+      if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0) {
+        return '';
+      }
+    }
+    var download = '';
+    if (href.startsWith ('data:application/octet-stream'))
+    {
+      download = 'download="'+text+'"';
+    }
+    var out = '<a href="' + href + '"';
+    if (title) {
+      out += ' title="' + title + '"';
+    }
+    out += ' target="_blank"';
+    out += ' '+download;
+    out += '>' + text + '</a>';
+    return out;
+  };
+
+  
+
   marked.setOptions({
-      renderer: new marked.Renderer(),
+      renderer: renderer,
       gfm: true,
       tables: true,
       breaks: false,
@@ -804,61 +840,63 @@ app.filter ('markdown', function ($sce)
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      highlight: function (code) {
-        console.log (code);
-        return require('highlight.js').highlightAuto(code).value;
-      },
-      link: function (href, title, text)
-      {
-        /*jshint scripturl:true*/
-        if (this.options.sanitize) {
-          var prot = '';
-          try {
-            prot = decodeURIComponent(window.unescape(href))
-              .replace(/[^\w:]/g, '')
-              .toLowerCase();
-          } catch (e) {
-            return '';
-          }
-          if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0) {
-            return '';
-          }
-        }
-        var download = '';
-        if (href.startsWith ('data:application/octet-stream'))
+      highlight: function (code, lang) {
+        // console.log (code);
+        try
         {
-          download = 'download="'+text+'"';
+          return require('highlight.js').highlight(code, lang).value;
         }
-        var out = '<a href="' + href + '"';
-        if (title) {
-          out += ' title="' + title + '"';
+        catch (e)
+        {
+          return code;
         }
-        out += ' target="_blank"';
-        out += ' '+download;
-        out += '>' + text + '</a>';
-        return out;
-      }
+      },
+      latex: function (text, style)
+      {
+        // console.log (style);
+        // console.log (text);
+        try
+        {
+          var web = katex.renderToString (text, (style?{displayMode: true}:null));
+          if (style) web = '<span style="font-size: 20px">'+web+'</span>';
+          return web;
+        }
+        catch (e)
+        {
+          // console.log (e);
+          return text;
+        }
+      },
     });
 
   return function (item)
   {
+    // console.log (katex.renderToString ('x^3'));
     return $sce.trustAsHtml(marked (item));
   };
 });
 
+function EscapeTex(text) {
+  var re = /(`+)(\s*)([\s\S]*?[^`])(\s*)(\1)(?!`)/g;
+  var out = text.replace(re, function(m, p1, p2, p3, p4, p5, offset, string) {
+    return p1 + p2 + p3.replace(/\$/g, '\\$') + p4 + p5;
+  });
+
+  re = /^( {4}[^\n]+\n*)+/g;
+  out = out.replace(re, function(m, p1, offset, string) {
+    return p1.replace(/\$/g, '\\$');
+  });
+
+  re = /([^\\\$]|^)(\${1,2})(?!\$)(\s*)([\s\S]*?[^$])(\s*)(\2)(?!\2)/g;
+  out = out.replace(re, function(m, p1, p2, p3, p4, p5, p6, offset, string) {
+    return p1 + p2 + p3 + p4.replace(/(.)/g, '\\$1') + p5 + p6;
+  });
+
+  return out;
+}
+
 app.filter ('renderHtml', function ($sce)
 {
-  marked.setOptions({
-      renderer: new marked.Renderer(),
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false
-    });
-
   return function (item)
   {
     return $sce.trustAsHtml(item);

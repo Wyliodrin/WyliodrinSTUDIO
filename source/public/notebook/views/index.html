@@ -1,4 +1,4 @@
-
+<!doctype html>
 <html>
 	<head>
 		<script src="../notebook.js"></script>
@@ -101,7 +101,7 @@
 		                    </md-tooltip>
 		                </md-button>
 				  	</div>
-					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown"></span>
+					<span ng-if="item.type === 'markdown'" ng-bind-html="item.text | markdown" class="wiki"></span>
 					<div ng-if="item.type==='markdown' && editLabel === item.label" class="markdown-btns">
 						<md-button ng-click="n.image (item.label)">
 							<img src="../img/image-icon.png" class="s24">

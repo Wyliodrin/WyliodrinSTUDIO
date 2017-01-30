@@ -12,9 +12,12 @@ var emitter = new EventEmitter();
 
 var _ = require ('lodash');
 
+var dns = require ('./dns.js');
+
 const WYAPP = 0;
 const SSHSVC = 1;
 const WORKSTATION = 2;
+const DNS = 4;
 
 var devices = [];
 
@@ -79,7 +82,7 @@ class Device
 	{
 		this._id = id;
 		this.properties = {};
-		this.parametersArray = [null, null, null, null];
+		this.parametersArray = [null, null, null, null, null, null];
 	}
 
 	addParameters (priority, parameters)
@@ -424,6 +427,40 @@ chrome.mdns.onServiceList.addListener (function (services)
 	debug ('Compacting devices');
 	compactDevices ();
 }, {serviceType: '_workstation._tcp.local'});
+
+
+dns.services (function (err, finder)
+{
+	if (!err)
+	{
+		eraseDevices (DNS);
+		console.log (finder);
+		_.each (finder.byService_._wyapp, function (s, ip)
+		{
+			if (s)
+			{
+				var device = findDevice (ip);
+				if (device === null)
+				{
+					debug ('new device '+ip);
+					device = new Device (ip);
+					addDevice (device);
+				}
+				var parameters = 
+				{
+					name: 'Embedded Linux',
+					ip: ip,
+					category: 'board',
+					port: 7000,
+					secureport: 22,
+					wyliodrinappserver: true
+				};
+				device.addParameters (DNS, parameters);
+			}
+		});
+		compactDevices ();
+	}
+});
 
 module.exports.getLocalDevices = getLocalDevices;
 module.exports.getSerialDevices = getSerialDevices;

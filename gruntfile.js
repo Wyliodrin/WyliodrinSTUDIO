@@ -204,6 +204,13 @@ module.exports = function(grunt) {
         ]
       }
     },
+    embedFonts: {
+      notebook: {
+        files: {
+          'build/public/notebook/style/notebook.css': ['build/public/notebook/style/notebook.css']
+        }
+      }
+    },
     copy:
     {
       client:
@@ -246,6 +253,14 @@ module.exports = function(grunt) {
               cwd: 'source/',      // Src matches are relative to this path.
               src: ['public/notebook/**', '!public/notebook/**/*.js', '!public/notebook/**/*.less'], // Actual pattern(s) to match.
               dest: 'build/',   // Destination path prefix.
+              // ext: '.html',   // Dest filepaths will have this extension.
+              extDot: 'first'   // Extensions in filenames begin after the first dot
+            },
+            {
+              expand: true,     // Enable dynamic expansion.
+              cwd: 'node_modules/katex/dist/fonts',      // Src matches are relative to this path.
+              src: '*', // Actual pattern(s) to match.
+              dest: 'build/public/notebook/style/fonts/',   // Destination path prefix.
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
             },
@@ -594,6 +609,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-embed-fonts');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
@@ -605,6 +621,7 @@ module.exports = function(grunt) {
     'ngAnnotate',
     'copy',
     'less',
+    'embedFonts',
     'sass',
     'locale', 
     // 'cssmin',

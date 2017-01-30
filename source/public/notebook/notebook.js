@@ -222,7 +222,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       name: "evaluate",
       bindKey: {win: "shift-enter", mac: "shift-enter"},
       exec: function(editor) {
-          console.log ('hotkey');
+          // console.log ('hotkey');
           var item = findLabel ($scope.activeLabel);
           if (item)
           {
@@ -567,9 +567,9 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   this.port = function (label, port)
   {
-    console.log ('port');
+    // console.log ('port');
     var type = findFirmwareType (port.vid, port.pid);
-    console.log (type);
+    // console.log (type);
     if (type)
     {
       var item = findLabel (label);
@@ -799,7 +799,7 @@ app.filter ('markdown', function ($sce)
   var renderer = new marked.Renderer();
   renderer.link = function (href, title, text)
   {
-    console.log (href);
+    // console.log (href);
     /*jshint scripturl:true*/
     if (this.options.sanitize) {
       var prot = '';
@@ -917,7 +917,7 @@ app.directive ('response', function ($timeout)
         $scope.$watch ('value', function ()
         {
           // debug ('View schematics');
-          console.log ($scope.value);
+          // console.log ($scope.value);
           if ($scope.value && $scope.value.type)
           {
             var format = $scope.value.type.f;

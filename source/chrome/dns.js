@@ -284,8 +284,12 @@ var ServiceFinder = function(callback) {
         this.callback_('could not bind UDP socket');
         return true;
       }
+      var that = this;
       // Broadcast on it.
-      this.broadcast_(socket, address);
+      setInterval (function ()
+      {
+      	that.broadcast_(socket, address);
+      }, 5000);
     }.bind(this));
   }.bind(this));
 

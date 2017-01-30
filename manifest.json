@@ -24,7 +24,6 @@
       "public/notebook/*"
     ]
   },
-  "web_accessible_resources": ["*.ttf" ],
   "sockets": { "tcp": {"connect":"*:*"}, "udp": { "bind": "*", "send": "*" } },
   "permissions": [
     "serial",

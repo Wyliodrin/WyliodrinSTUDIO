@@ -84,6 +84,9 @@ module.exports = function ()
 						$scope.importing = false;
 					}
 				});
+			}, function ()
+			{
+				$scope.importing = false;
 			});
 		};
 

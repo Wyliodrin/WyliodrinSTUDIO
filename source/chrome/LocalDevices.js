@@ -431,9 +431,9 @@ chrome.mdns.onServiceList.addListener (function (services)
 
 dns.services (function (err, finder)
 {
+	eraseDevices (DNS);
 	if (!err)
 	{
-		eraseDevices (DNS);
 		console.log (finder);
 		_.each (finder.byService_._wyapp, function (s, ip)
 		{

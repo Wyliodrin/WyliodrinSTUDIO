@@ -286,10 +286,7 @@ var ServiceFinder = function(callback) {
       }
       var that = this;
       // Broadcast on it.
-      setInterval (function ()
-      {
-      	that.broadcast_(socket, address);
-      }, 5000);
+      that.broadcast_(socket, address);
     }.bind(this));
   }.bind(this));
 
@@ -446,21 +443,24 @@ function services (f)
 {
   var finder;
   var mode = 'service';
-  var callback_ = function(opt_error) {
+  setInterval (function ()
+  {
+    var callback_ = function(opt_error) {
 
-    if (opt_error) {
-      return console.warn(opt_error);
-    }
+      if (opt_error) {
+        return console.warn(opt_error);
+      }
 
-    // var outer = finder.services;
-    // var inner = finder.ips;
-    // console.log (outer('_wyapp'));
-    // console.log (inner);
-    f (opt_error, finder);
-  };
+      // var outer = finder.services;
+      // var inner = finder.ips;
+      // console.log (outer('_wyapp'));
+      // console.log (inner);
+      f (opt_error, finder);
+    };
 
-	if (finder) finder.shutdown();
-	finder = new ServiceFinder(callback_);
+    if (finder) finder.shutdown();
+    finder = new ServiceFinder(callback_);
+  }, 6000);
  }
 
  module.exports.services = services;

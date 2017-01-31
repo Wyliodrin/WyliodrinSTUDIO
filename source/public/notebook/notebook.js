@@ -217,7 +217,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     _editor.$blockScrolling = Infinity;
     _editor.getSession().setTabSize (2);
     _editor.getSession().setUseSoftTabs (true);
-    _editor.setOptions ({minLines:6, maxLines: Infinity});
+    _editor.setOptions ({minLines:3, maxLines: Infinity});
     _editor.commands.addCommand({
       name: "evaluate",
       bindKey: {win: "shift-enter", mac: "shift-enter"},
@@ -917,7 +917,7 @@ app.directive ('response', function ($timeout)
         $scope.$watch ('value', function ()
         {
           // debug ('View schematics');
-          // console.log ($scope.value);
+          console.log ($scope.value);
           if ($scope.value && $scope.value.type)
           {
             var format = $scope.value.type.f;

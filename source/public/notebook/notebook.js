@@ -25,6 +25,8 @@ require('./../tools/snippets/c_cpp.js');
 
 var makefile = require ('makefile.js');
 
+var highlight = require('highlight.js');
+
 var DEVICES = require ('usb_mapping');
 
 var FIRMWARE_TYPES = require ('firmware');
@@ -145,6 +147,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     $scope.editLabel = null;
     $scope.evaluatingLabel = null;
     $scope.flashingLabel = null;
+    $scope.serialLabel = null;
     // setTimeout (function ()
     // {
     //   $('a').each (function ()
@@ -464,6 +467,18 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     if (item) item.stdout = '';
   };
 
+  this.deleteexception= function (label)
+  {
+    var item = findLabel (label);
+    if (item) item.exception = '';
+  };
+
+  this.deleteresponse = function (label)
+  {
+    var item = findLabel (label);
+    if (item) item.response = '';
+  };
+
   this.evaluate = function (label)
   {
       var item = findLabel(label);
@@ -531,11 +546,40 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   this.stopflash = function (label)
   {
-    $wydevice.send ('note', {
-      a:'f',
-      f:''
-    });
+    if ($scope.flashingLabel)
+    {
+      $wydevice.send ('note', {
+        a:'',
+        f:''
+      });
+    }
+    else
+    if ($scope.serialLabel)
+    {
+      $wydevice.send ('note', {
+        a:'serial',
+        f:''
+      });
+    }
     // $scope.flashingLabel = null;
+  };
+
+  this.serial = function (label)
+  {
+    var item = findLabel (label);
+    if (item && $scope.connected)
+    {
+      $wydevice.send ('note', {
+        a:'serial',
+        l: label,
+        b: item.port.baud || 9600
+      });
+      item.response = '';
+      // item.hasErrors = false;
+      item.stdout = '';
+      item.stderr = '';
+      $scope.serialLabel = label;
+    }
   };
 
   this.serialinput = function (label)
@@ -741,8 +785,46 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         {
           $timeout (function ()
           {
-            if (!item.response || item.response.length === 0) item.hasErrors = true;
+            if (p.e) item.hasErrors = true;
             $scope.flashingLabel = null;
+          });
+        }
+      }
+      else
+      if (p.a === 'serial')
+      {
+        if (p.s === 'o')
+        {
+          if (item) $timeout (function ()
+          {
+            item.stdout = item.stdout + p.d;
+            store ();
+          });
+        }
+        else
+        if (p.s === 'e')
+        {
+          if (item) $timeout (function ()
+          {
+            item.stderr = item.stderr + p.d;
+            store ();
+          });
+        }
+        else
+        if (p.s === 'r')
+        {
+          if (item) $timeout (function ()
+          {
+            item.hasErrors = false;
+            item.response = item.response + p.d;
+            store ();
+          });
+        }
+        if (p.s === 'f')
+        {
+          $timeout (function ()
+          {
+            $scope.serialLabel = null;
           });
         }
       }
@@ -841,13 +923,17 @@ app.filter ('markdown', function ($sce)
       smartLists: true,
       smartypants: false,
       highlight: function (code, lang) {
-        // console.log (code);
+        // console.log (lang);
         try
         {
-          return require('highlight.js').highlight(code, lang).value;
+          var html = code;
+          if (!lang) html = highlight.highlightAuto (code).value;
+          else html = highlight.highlight(lang, code).value;
+          return html;
         }
         catch (e)
         {
+          // console.log (e);
           return code;
         }
       },

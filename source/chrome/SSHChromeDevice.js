@@ -59,7 +59,7 @@ export default class SSHChromeDevice extends EventEmitter
 		var that = this;
 		process.nextTick (function ()
 		{
-			console.log (that.status);
+			// console.log (that.status);
 			if (that.staus <= CONNECTING);
 			that.emit ('connecting');
 
@@ -96,10 +96,10 @@ export default class SSHChromeDevice extends EventEmitter
 
 			that.connection.on ('error', function (error)
 			{
-				console.log (JSON.stringify (error));
+				// console.log (JSON.stringify (error));
 				if (error.level === "client-authentication")
 				{
-					console.log ('connection login failed');
+					// console.log ('connection login failed');
 					that.emit ('connection_login_failed');
 					that.connection.end ();
 				}

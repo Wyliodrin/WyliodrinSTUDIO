@@ -50,7 +50,13 @@
 		                        <md-option ng-click="n.port(item.label, port)" ng-repeat="port in ports" value="{{port.p}}">{{port.s}}</md-option>
 		                    </md-select>
 						</md-input-container>
-						<md-input-container ng-show="connected && item.type === 'firmware' && ports && ports.length > 0">
+						<md-button ng-show="connected && ports && ports.length > 0 && item.type === 'firmware' && (flashingLabel === null && serialLabel === null)" ng-click="n.flash (item.label); $event.preventPropagation ();">
+		                    <img src="../img/flash-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Flash device
+		                    </md-tooltip>
+		                </md-button>
+		                <md-input-container ng-show="connected && item.type === 'firmware' && ports && ports.length > 0">
 							<md-select ng-model="item.port.brate" aria-label="type">
 		                        <md-option ng-click="n.brate (item.label, brate)" ng-repeat="brate in serialrates" value="{{brate}}">{{brate}}</md-option>
 		                    </md-select>
@@ -58,10 +64,10 @@
 						<md-button ng-show="connected && ports && ports.length > 0 && item.type === 'firmware' && flashingLabel === null" ng-click="n.flash (item.label); $event.preventPropagation ();">
 		                    <img src="../img/flash-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
-		                      Flash device
+		                      Serial
 		                    </md-tooltip>
 		                </md-button>
-		                <md-button ng-show="item.type === 'firmware' && flashingLabel === item.label && connected" ng-click="n.stopflash (item.label); $event.stopPropagation();">
+		                <md-button ng-show="item.type === 'firmware' && (flashingLabel === item.label || serialLabel === item.label) && connected" ng-click="n.stopflash (item.label); $event.stopPropagation();">
 		                    <img src="../img/stop-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Stop
@@ -219,15 +225,23 @@
 	                                              onChange: aceCodeChanged
 	                                            }" ng-model="item.text">
 	                                            </div>
-							<div class="alert alert-danger" ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml"></div>
+							<div class="alert alert-danger closepre" ng-show='item.exception && item.exception.length > 0' ng-bind-html="item.exception | renderHtml">
+								<md-button ng-click="n.deleteexception(item.label); $event.stopPropagation ();">
+				                    <img src="../img/close-icon.png" class="s24">
+				                    <md-tooltip md-direction="top">
+				                      Close
+				                    </md-tooltip>
+				                </md-button>
+				           </div>
 							<response ng-show='item.response' value="item.response"></response>
 							<pre class="alert alert-warning closepre" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
-							<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
-			                    <img src="../img/close-icon.png" class="s24">
-			                    <md-tooltip md-direction="top">
-			                      Close
-			                    </md-tooltip>
-			                </md-button></pre>
+								<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
+				                    <img src="../img/close-icon.png" class="s24">
+				                    <md-tooltip md-direction="top">
+				                      Close
+				                    </md-tooltip>
+				                </md-button>
+				           	</pre>
 							<pre ng-show='item.stdout && item.stdout.length > 0' class="closepre">{{item.stdout}}
 								<md-button ng-click="n.deletestdout(item.label); $event.stopPropagation ();">
 				                    <img src="../img/close-icon.png" class="s24">
@@ -270,16 +284,22 @@
 				                    </md-tooltip>
 				                </md-button>
                         	</div>
-	                        <pre ng-show='item.response && item.response.length > 0'>
+	                        <pre class="closepre" ng-show='item.response && item.response.length > 0'>
 	                        	{{item.response}}
+	                        	<md-button ng-click="n.deleteresponse(item.label); $event.stopPropagation ();">
+				                    <img src="../img/close-icon.png" class="s24">
+				                    <md-tooltip md-direction="top">
+				                      Close
+				                    </md-tooltip>
+				                </md-button>
 	                        </pre>
 							<pre class="alert closepre" ng-class="{'alert-danger':item.hasErrors, 'alert-warning':!item.hasErrors}" ng-show='item.stderr && item.stderr.length > 0'>{{item.stderr}}
-							<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
-			                    <img src="../img/close-icon.png" class="s24">
-			                    <md-tooltip md-direction="top">
-			                      Close
-			                    </md-tooltip>
-			                </md-button>
+								<md-button ng-click="n.deletestderr(item.label); $event.stopPropagation ();">
+				                    <img src="../img/close-icon.png" class="s24">
+				                    <md-tooltip md-direction="top">
+				                      Close
+				                    </md-tooltip>
+				                </md-button>
 							</pre>
 							<pre ng-show='item.stdout && item.stdout.length > 0' class="closepre">{{item.stdout}}
 								<md-button ng-click="n.deletestdout(item.label); $event.stopPropagation ();">
@@ -287,7 +307,8 @@
 				                    <md-tooltip md-direction="top">
 				                      Close
 				                    </md-tooltip>
-			                	</md-button></pre>
+			                	</md-button>
+			               	</pre>
 						</div>
 					</div>
 				</md-list-item>

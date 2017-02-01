@@ -72,7 +72,7 @@ export default class SerialChromeDevice extends EventEmitter
 		var that = this;
 		process.nextTick (function ()
 		{
-			console.log (that.status);
+			// console.log (that.status);
 			if (that.staus <= CONNECTING);
 			that.emit ('connecting');
 			chrome.serial.connect (that.port, options, function (connection)

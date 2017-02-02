@@ -112,13 +112,15 @@
 
     	<md-content flex class="task-box on-the-right" style="background:none;">
 	        <md-list style="padding-top:8px;padding-bottom:8px;">
-	            <md-list-item ng-repeat="file in files | orderBy:'[-isup,-isdir]'" layout-padding md-ink-ripple="false" class="separator-line file" ng-dblclick="fe.doubleclick(file)" ng-click="fe.click(file)" style="min-height: 40px; height: 40px;" ng-show="fe.hide(file)" ng-attr-class="{{fe.isSelected(file) && 'vasile' || 'viorel'}}">
+	            <md-list-item ng-repeat="file in files | orderBy:'[-isup,-isdir]'" layout-padding md-ink-ripple="false" class="separator-line file" style="min-height: 40px; height: 40px;" ng-show="fe.hide(file)">
+                    <div ng-dblclick="fe.doubleclick(file)" ng-click="fe.click(file)" ng-attr-class="{{fe.isSelected(file) && 'vasile' || 'viorel'}}" style="width:100%;">
 	            	<img ng-show="file.isup" ng-src="/public/drawable/up-icon.png" />
 	            	<img ng-show="file.isfile" ng-src="/public/drawable/file-icon.png" />
 	            	<img ng-show="file.isdir" ng-src="/public/drawable/folder-icon.png" />
                     <img ng-show="file.islink" ng-src="/public/drawable/link-icon2.png" />
 	                <span class="fileandfolder">{{file.name | limitTo:30}}{{file.name.length > 30 ? '...' : ''}}</span>
 	                <span ng-show="file.isfile">{{file.size}}</span>
+                    </div>
 	            </md-list-item>
 
 	        </md-list>

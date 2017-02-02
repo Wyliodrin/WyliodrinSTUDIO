@@ -267,13 +267,13 @@
                           </div>
 
                           <div style="position:absolute; bottom:60px; left:5px;"><!--butoane-->
-                            <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
+                            <md-button ng-show="!tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">
                                 <md-icon md-svg-src="/public/drawable/new-folder-icon.svg" class="s24" aria-label="New folder" ></md-icon>
                                 <md-tooltip md-direction="top">
                                     {{'New_folder' | translate}}
                                 </md-tooltip>
                             </md-button>
-                            <md-button ng-show="tree.selectednode.isdir && !tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New File" ng-click="p.newFileButton()">
+                            <md-button ng-show="!tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New File" ng-click="p.newFileButton()">
                                 <md-icon md-svg-src="/public/drawable/new-file.svg" class="s24" aria-label="New File" ></md-icon>
                                 <md-tooltip md-direction="top">
                                     {{'New_file' | translate}}

@@ -346,3 +346,31 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
 		text-align: justify;
 	}
 }
+
+
+.print {
+
+	position:fixed;
+	right:20px;
+	bottom:20px;
+	z-index:1000;
+
+	.md-button {
+		min-width:initial;
+		min-height:initial;
+		padding:20px;
+		margin:0px;
+		background:#eee;
+		border-radius:50px;
+		width: 75px;
+    	height: 75px;
+		img {padding:0px;}
+		
+	}
+
+
+	.md-button:hover {
+		background:#e54225 !important;;
+		img {filter: invert(100%);}	
+	}
+}

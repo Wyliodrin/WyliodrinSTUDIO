@@ -578,16 +578,32 @@ var app = angular.module ('wyliodrinApp');
 		};
 
 		this.newSomething = function(obj,parent){
-			if (!hasDirectChild(obj.name, parent)){
-				parent.children.push(
-					obj
-				);
-				//folder gol
-				checkSpecial($scope.project.tree[0]);
-				checkEmptyFolders($scope.project.tree[0]);
+			if (parent.isdir){
+				if (!hasDirectChild(obj.name, parent)){
+					parent.children.push(
+						obj
+					);
+					//folder gol
+					checkSpecial($scope.project.tree[0]);
+					checkEmptyFolders($scope.project.tree[0]);
+				}
+				else{
+					this.errorDialog($translate.instant('TREEsame_name'));
+				}
 			}
 			else{
-				this.errorDialog($translate.instant('TREEsame_name'));
+				var upper_parent = findParent(parent, $scope.project.tree[0]);
+				if (!hasDirectChild(obj.name, upper_parent)){
+					upper_parent.children.push(
+						obj
+					);
+					//folder gol
+					checkSpecial($scope.project.tree[0]);
+					checkEmptyFolders($scope.project.tree[0]);
+				}
+				else{
+					this.errorDialog($translate.instant('TREEsame_name'));
+				}
 			}
 			$scope.aceSoftwareChanged();
 		};

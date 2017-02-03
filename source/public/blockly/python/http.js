@@ -26,6 +26,7 @@ Blockly.Python['http_get'] = function(block) {
 Blockly.Python['http_post'] = function(block) {
   var value_method = block.getFieldValue('method');
   var value_link = Blockly.Python.valueToCode(block, 'link', Blockly.Python.ORDER_ATOMIC);
+  var format = block.getFieldValue('format');
   var value_data = Blockly.Python.valueToCode(block, 'data', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.import_requests();
   // // TODO: Assemble Python into code variable.
@@ -35,7 +36,7 @@ Blockly.Python['http_post'] = function(block) {
   //   code = "\#Init Spark block must be used first.\nprint('Init Spark block not used')\n";
   // }
   // TODO: Change ORDER_NONE to the correct strength.
-  code = "requests."+value_method+"(" +value_link+ ", data = "+value_data+")";
+  code = "requests."+value_method+"(" +value_link+ ", "+format+" = "+value_data+")";
   return [code, Blockly.Python.ORDER_NONE];
 };
 

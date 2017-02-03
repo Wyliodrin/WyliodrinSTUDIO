@@ -558,10 +558,19 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     {
       $wydevice.send ('note', {
         a:'serial',
-        f:''
+        l:''
       });
     }
     // $scope.flashingLabel = null;
+  };
+
+  this.print = function ()
+  {
+    $('body').css ('height', '');
+    setTimeout (function ()
+    {
+      window.print ();
+    });
   };
 
   this.serial = function (label)
@@ -572,6 +581,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       $wydevice.send ('note', {
         a:'serial',
         l: label,
+        p: item.port.path,
         b: item.port.baud || 9600
       });
       item.response = '';
@@ -601,6 +611,13 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   {
     $wydevice.send ('note', {
       a: 'reset'
+    });
+  };
+
+  this.stop_python = function ()
+  {
+    $wydevice.send ('note', {
+      a: 'stop'
     });
   };
 

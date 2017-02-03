@@ -61,8 +61,8 @@
 		                        <md-option ng-click="n.brate (item.label, brate)" ng-repeat="brate in serialrates" value="{{brate}}">{{brate}}</md-option>
 		                    </md-select>
 						</md-input-container>
-						<md-button ng-show="connected && ports && ports.length > 0 && item.type === 'firmware' && flashingLabel === null" ng-click="n.flash (item.label); $event.preventPropagation ();">
-		                    <img src="../img/flash-icon.png" class="s24">
+						<md-button ng-show="connected && ports && ports.length > 0 && item.type === 'firmware' && flashingLabel === null" ng-click="n.serial (item.label); $event.preventPropagation ();">
+		                    <img src="../img/serial-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
 		                      Serial
 		                    </md-tooltip>
@@ -391,6 +391,12 @@
 	                <img src="../img/reset-icon.png" class="s24">
 	                <md-tooltip md-direction="top">
 	                  Reset
+	                </md-tooltip>
+	            </md-button>
+	            <md-button ng-show="connected && status !== 'STOPPED'" ng-click="n.stop_python()">
+	                <img src="../img/stop-icon.png" class="s24">
+	                <md-tooltip md-direction="top">
+	                  Stop
 	                </md-tooltip>
 	            </md-button>
 			</div>

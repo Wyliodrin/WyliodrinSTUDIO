@@ -26,6 +26,8 @@ Blockly.Blocks['http_post'] = {
     this.appendValueInput("link")
         .appendField("link");
         //.appendField(new Blockly.FieldDropdown([["0", "0"], ["1", "1"]]), "value");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["form", "data"], ["json", "json"]]), "format");
     this.appendValueInput("data")
         .appendField("data");
         //.appendField(new Blockly.FieldDropdown([["0", "0"], ["1", "1"]]), "value");

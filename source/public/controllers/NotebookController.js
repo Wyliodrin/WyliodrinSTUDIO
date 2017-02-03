@@ -96,6 +96,11 @@ module.exports = function ()
 					    });
 					}
 				}
+				else
+				if (parsedmessage.type === 'print')
+				{
+					notebook.contentWindow.print ();
+				}
 			}
 			catch (e)
 			{

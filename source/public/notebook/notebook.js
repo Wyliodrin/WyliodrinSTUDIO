@@ -566,10 +566,11 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   this.print = function ()
   {
-    $('body').css ('height', '');
+    $('body').css ('height', 'initial');
     setTimeout (function ()
     {
       window.print ();
+      $('body').css ('height', '');
     });
   };
 

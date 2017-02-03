@@ -7,8 +7,8 @@
 
 	<body style="background:#fff;" ng-app="wyliodrinAppNotebook" ng-controller="NotebookController as n">
 		<md-content class="def-content" ng-click="n.activate (null);">
-		<div class="print">
-			<md-button>
+		<div class="print no-print">
+			<md-button ng-click="n.print (); $event.preventPropagation ();">
 	            <img src="../img/print-icon.png" class="s24">
 	            <md-tooltip md-direction="left">
 	              Print
@@ -393,7 +393,7 @@
 			  </md-list-item> -->
 			</md-list>
 			<div class="bottom-space"></div>
-			<div class="server-status" ng-class="{'connected':status === 'READY' || status === 'PROCESSING', 'stopped':status === 'STOPPED'}" ng-show="connected">
+			<div class="server-status no-print" ng-class="{'connected':status === 'READY' || status === 'PROCESSING', 'stopped':status === 'STOPPED'}" ng-show="connected">
 				Python {{status}}
 				<md-button ng-show="connected" ng-click="n.reset()">
 	                <img src="../img/reset-icon.png" class="s24">

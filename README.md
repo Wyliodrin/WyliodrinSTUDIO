@@ -108,4 +108,6 @@ This software is available under several licenses, depending of the use.
 
 Non-commercial & educational - GPLv3
 Please contact us at office@wyliodrin.com for a commercial license.
+This license allows you to write/distribute/sell an applications written in Wyliodrin STUDIO. If does not allow you to sell Wyliodrin STUDIO or any derived products.
+
 

@@ -1,5 +1,8 @@
 # Contributing to WyliodrinSTUDIO
 
+:+1::tada: Thank you for imporving IoT Education :tada::+1:
+
+We are a small project that is trying to make IoT education easier fro everyone.
 We would love your help with
 
  - [Translating](#translating)

@@ -2,7 +2,7 @@
 
 * [ ] Put an X between the brackets on this line if you have done all of the following:
     * Restarted Chrome (close all Chrome windows and apps)
-    * Have the lastes Wyliodrin STUDIO version (10.9)
+    * Have the latest Wyliodrin STUDIO version (10.9)
 
 ### Description
 

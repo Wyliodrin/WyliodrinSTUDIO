@@ -90,12 +90,12 @@ We would love your help. Click [here](CONTRIBUTING.md) to find out how to contri
 Wyliodrin STUDIO is a product of [Wyliodrin](http://www.wyliodrin.com)
 
 * [Alexandru Radovici](https://www.github.com/alexandruradovici) - Maintainer
+* [Razvan Serban](https://www.github.com/serban-razvan) - Developer
 * [Ioana Culic](https://www.github.com/ioanaculic) - Developer
 * [Ovidiu Stoica](https://www.github.com/oviska) - UX / UI
 
 Contributions
 
-* [Razvan Serban](https://www.github.com/serban-razvan) - Developer
 * [Paula Margarit](https://www.github.com/paula-elena) - Developer
 * [Daniel Dosaru](https://www.github.com/dosarudaniel) - Developer
 * [Mihai Popescu](https://www.github.com/mhpopescu) - Developer

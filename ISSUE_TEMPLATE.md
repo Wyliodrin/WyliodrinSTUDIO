@@ -22,7 +22,22 @@
 
 ### Version
 
+Wyliodrin STUDIO:
+<!--
 Please got to the *Help* menu (question mark in the toolbar) and select *About*. Please write the version number here.
+-->
+
+Chrome browser: 
+<!--
+Please got to the *Menu* and select *Help/About Google Chrome*. Please write the version number and Chrome or Chromium - depending on what you use here.
+-->
+
+OS name:
+OS version: 
+<!--
+Please write if you are using Windows/Linux/Mac and their version. For Linux, please write the distribution's name.
+-->
+
 
 ### Additional Information
 

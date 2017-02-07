@@ -5,11 +5,11 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content ng-escape="a.cancel()">
+    <md-dialog-content ng-escape="dialogRename.cancel()">
         <md-content layout-gt-sm="row" layout-padding>
             <md-input-container class="add-app-title">
                 <label>{{'Rename' | translate}}</label>
-                <input ng-model="contentPopupRename" minlength="1" ng-trim="true">
+                <input ng-model="contentPopupRename" md-autofocus ng-keypress="dialogRename.ok($event)" minlength="1" ng-trim="true">
             </md-input-container>
         </md-content>
     </md-dialog-content>

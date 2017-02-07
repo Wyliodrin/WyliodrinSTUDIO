@@ -10,6 +10,7 @@ not yet released
 * **Added** new examples system (fixes [#20](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Fixed** Raspberry Pi install ([#19](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Fixed** node 6 compatibility
+* **Fixed** hotkeys for tree actions 
 * **Removed** Chrome Device
 
 ## Wyliodrin STUDIO 10.10

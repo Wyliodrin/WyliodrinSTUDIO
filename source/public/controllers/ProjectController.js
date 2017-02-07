@@ -397,13 +397,10 @@ var app = angular.module ('wyliodrinApp');
 
 					this.ok = function (keyEvent)
 					{
-						if (keyEvent === undefined || keyEvent.which === 13)
-						{
-							if ($scope.contentPopupNewFolder.length !== 0)
-							{	
-								$mdDialog.hide ();
-								that.newFolder($scope.contentPopupNewFolder);
-							}
+						if ($scope.contentPopupNewFolder.length !== 0)
+						{	
+							$mdDialog.hide ();
+							that.newFolder($scope.contentPopupNewFolder);
 						}
 					};
 
@@ -429,13 +426,10 @@ var app = angular.module ('wyliodrinApp');
 
 					this.ok = function (keyEvent)
 					{
-						if (keyEvent === undefined || keyEvent.which === 13)
-						{
-							if ($scope.contentPopupNewFile.length !== 0)
-							{	
-								$mdDialog.hide ();
-								that.newFile($scope.contentPopupNewFile);
-							}
+						if ($scope.contentPopupNewFile.length !== 0)
+						{	
+							$mdDialog.hide ();
+							that.newFile($scope.contentPopupNewFile);
 						}
 					};
 
@@ -486,13 +480,10 @@ var app = angular.module ('wyliodrinApp');
 
 					this.ok = function (keyEvent)
 					{
-						if (keyEvent === undefined || keyEvent.which === 13)
-						{
-							if ($scope.contentPopupRename.length !== 0)
-							{	
-								$mdDialog.hide ();
-								that.rename($scope.contentPopupRename);
-							}
+						if ($scope.contentPopupRename.length !== 0)
+						{	
+							$mdDialog.hide ();
+							that.rename($scope.contentPopupRename);
 						}
 					};
 
@@ -543,13 +534,10 @@ var app = angular.module ('wyliodrinApp');
 
 					this.ok = function (keyEvent)
 					{
-						if (keyEvent === undefined || keyEvent.which === 13)
-						{
-							if ($scope.contentPopupNewFirmware.text && $scope.contentPopupNewFirmware.type)
-							{	
-								$mdDialog.hide ();
-								that.newFirmware($scope.contentPopupNewFirmware);
-							}
+						if ($scope.contentPopupNewFirmware.text && $scope.contentPopupNewFirmware.type)
+						{	
+							$mdDialog.hide ();
+							that.newFirmware($scope.contentPopupNewFirmware);
 						}
 					};
 

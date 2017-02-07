@@ -17,7 +17,7 @@
             </md-input-container>
             <md-input-container class="add-app-title">
                 <label>{{ 'New_firmware' | translate}}</label>
-                <input ng-model="contentPopupNewFirmware.text" md-autofocus ng-keypress="dialogFirmware.ok($event)" minlength="1" ng-trim="true">
+                <input ng-model="contentPopupNewFirmware.text" md-autofocus ng-enter="dialogFirmware.ok()" minlength="1" ng-trim="true">
             </md-input-container>
         </md-content>
     </md-dialog-content>

@@ -394,10 +394,17 @@ var app = angular.module ('wyliodrinApp');
 				controller: function ($scope)
 				{
 					$scope.contentPopupNewFolder = "";
-					this.ok = function ()
+
+					this.ok = function (keyEvent)
 					{
-						$mdDialog.hide ();
-						that.newFolder($scope.contentPopupNewFolder);
+						if (keyEvent === undefined || keyEvent.which === 13)
+						{
+							if ($scope.contentPopupNewFolder.length !== 0)
+							{	
+								$mdDialog.hide ();
+								that.newFolder($scope.contentPopupNewFolder);
+							}
+						}
 					};
 
 					this.cancel = function ()
@@ -419,10 +426,17 @@ var app = angular.module ('wyliodrinApp');
 				controller: function ($scope)
 				{
 					$scope.contentPopupNewFile = "";
-					this.ok = function ()
+
+					this.ok = function (keyEvent)
 					{
-						$mdDialog.hide ();
-						that.newFile($scope.contentPopupNewFile);
+						if (keyEvent === undefined || keyEvent.which === 13)
+						{
+							if ($scope.contentPopupNewFile.length !== 0)
+							{	
+								$mdDialog.hide ();
+								that.newFile($scope.contentPopupNewFile);
+							}
+						}
 					};
 
 					this.cancel = function ()
@@ -469,10 +483,17 @@ var app = angular.module ('wyliodrinApp');
 				{
 					$scope.selected = _.cloneDeep(that.getSelected().name);
 					$scope.contentPopupRename = $scope.selected;
-					this.ok = function ()
+
+					this.ok = function (keyEvent)
 					{
-						$mdDialog.hide ();
-						that.rename($scope.contentPopupRename);
+						if (keyEvent === undefined || keyEvent.which === 13)
+						{
+							if ($scope.contentPopupRename.length !== 0)
+							{	
+								$mdDialog.hide ();
+								that.rename($scope.contentPopupRename);
+							}
+						}
 					};
 
 					this.cancel = function ()
@@ -520,10 +541,16 @@ var app = angular.module ('wyliodrinApp');
 					$scope.contentPopupNewFirmware.text="";
 					$scope.contentPopupNewFirmware.type="";
 
-					this.ok = function ()
+					this.ok = function (keyEvent)
 					{
-						$mdDialog.hide ();
-						that.newFirmware($scope.contentPopupNewFirmware);
+						if (keyEvent === undefined || keyEvent.which === 13)
+						{
+							if ($scope.contentPopupNewFirmware.text && $scope.contentPopupNewFirmware.type)
+							{	
+								$mdDialog.hide ();
+								that.newFirmware($scope.contentPopupNewFirmware);
+							}
+						}
 					};
 
 					this.cancel = function ()

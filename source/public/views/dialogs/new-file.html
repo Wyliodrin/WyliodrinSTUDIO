@@ -5,11 +5,11 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content ng-escape="a.cancel()">
+    <md-dialog-content ng-escape="dialogFile.cancel()">
         <md-content layout-gt-sm="row" layout-padding>
             <md-input-container class="add-app-title">
                 <label>{{'New_file' | translate}}</label>
-                <input ng-model="contentPopupNewFile" minlength="1" ng-trim="true">
+                <input ng-model="contentPopupNewFile" md-autofocus ng-keypress="dialogFile.ok($event)" minlength="1" ng-trim="true">
             </md-input-container>
         </md-content>
     </md-dialog-content>

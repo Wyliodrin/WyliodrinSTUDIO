@@ -5,15 +5,15 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content ng-escape="a.cancel()">
+    <md-dialog-content ng-escape="dialogDelete.cancel()">
         <md-content layout-gt-sm="row" layout-padding>
             <h3>{{'want_to_delete' | translate}} <span style="color:#e54225">{{ selected.name }}?</span></h3>
         </md-content>
     </md-dialog-content>
     <md-dialog-actions layout="row">
         <span flex></span>
-        <md-button ng-click="dialogDelete.ok()">{{'Yes' | translate}}</md-button>
         <md-button ng-click="dialogDelete.cancel()">{{'No' | translate}}</md-button>
+        <md-button ng-click="dialogDelete.ok()">{{'Yes' | translate}}</md-button>
     </md-dialog-actions>
 
 </md-dialog>

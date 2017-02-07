@@ -5,7 +5,7 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content ng-escape="a.cancel()">
+    <md-dialog-content ng-escape="dialogFirmware.cancel()">
         <md-content layout-gt-sm="column" layout-padding>
             <md-input-container>
                 <label>Select board</label>
@@ -17,7 +17,7 @@
             </md-input-container>
             <md-input-container class="add-app-title">
                 <label>{{ 'New_firmware' | translate}}</label>
-                <input ng-model="contentPopupNewFirmware.text" minlength="1" ng-trim="true">
+                <input ng-model="contentPopupNewFirmware.text" md-autofocus ng-keypress="dialogFirmware.ok($event)" minlength="1" ng-trim="true">
             </md-input-container>
         </md-content>
     </md-dialog-content>

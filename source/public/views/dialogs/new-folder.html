@@ -5,11 +5,11 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content ng-escape="a.cancel()">
+    <md-dialog-content ng-escape="dialogFolder.cancel()">
         <md-content layout-gt-sm="row" layout-padding>
             <md-input-container class="add-app-title">
                 <label>{{'New_folder' | translate}}</label>
-                <input ng-model="contentPopupNewFolder" minlength="1" ng-trim="true">
+                <input ng-model="contentPopupNewFolder" md-autofocus ng-keypress="dialogFolder.ok($event)" minlength="1" ng-trim="true">
             </md-input-container>
         </md-content>
     </md-dialog-content>

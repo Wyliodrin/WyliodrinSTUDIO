@@ -16,6 +16,7 @@
                     <img ng-src="/public/drawable/{{item.language}}project.png" class="s24"></img>
                     <span style="width:70%;">
                         <h3>{{item.name}} <span>{{e.language (item.language)}}</span></h3>
+                        <div>{{item.author}}</div>
                         <div>{{item.description}}</div>
                     <md-button ng-show="!importing" class="md-secondary lib-app-btn right" ng-click="e.use (item)">{{ 'TOOLBAR_IMPORT' | translate }}</md-button>
             	</md-list-item>

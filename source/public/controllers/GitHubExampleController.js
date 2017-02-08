@@ -97,6 +97,7 @@ module.exports = function ()
 				console.log (res.data);
 				var example = res.data;
 				$scope.lst = example;
+				console.log(example);
 			}, function ()
 			{
 				$scope.lst = [];

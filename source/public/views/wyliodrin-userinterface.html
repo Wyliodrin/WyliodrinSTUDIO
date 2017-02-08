@@ -254,17 +254,27 @@
                     <div layout="column" ng-controller="ProjectController as p" style="positon:relative;">
 
                     <div flex="{{showXterm?65:100}}" layout="row">
-                        <div class="projectTree" layout="row">
+
+                        <div class="tree-hide">
+                            <md-button ng-hide="showTree" ng-click="p.showTreeButton()">
+                                <img src="/public/drawable/filem-show.png" class="s24">
+                                <md-tooltip md-direction="bottom">
+                                  Show File Manager
+                                </md-tooltip>
+                            </md-button>
+                          </div>
+
+                        <div class="projectTree" ng-show="showTree" layout="row">
                           <md-content treecontrol class="tree-classic" tree-model="project.tree[0].children" options="tree.options" on-selection="p.treeSelect(node)" selected-node="tree.selectednode" expanded-nodes="tree.expanded"><span ng-hide="node.isspecial">{{node.name}}</span><span ng-show="node.isspecial" style="font-style:italic;">{{node.name}}</span><span ng-show="node.isfirmware"> ({{tree.firmware_mapping[node.ftype].name}})</span></md-content>
 
-                          <div class="filem-hide">
-                            <md-button>
+                          <div class="tree-show">
+                            <md-button ng-show="showTree" ng-click="p.hideTreeButton()">
                                 <img src="/public/drawable/filem-hide.png" class="s24">
                                 <md-tooltip md-direction="bottom">
                                   Hide File Manager
                                 </md-tooltip>
                             </md-button>
-                          </div>
+                            </div>
 
                           <div style="position:absolute; bottom:60px; left:5px;"><!--butoane-->
                             <md-button ng-show="!tree.selectednode.isroot" class="fileexplorer-actions" aria-label="New Folder" ng-click="p.newFolderButton()">

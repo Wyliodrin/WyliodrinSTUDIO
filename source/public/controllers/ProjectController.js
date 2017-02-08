@@ -166,6 +166,8 @@ var app = angular.module ('wyliodrinApp');
 		$scope.showhidecode = false;
 
 		//tree part
+		$scope.showTree = true;
+
 		$scope.showEditor = false;
 		$scope.showVisual = false;
 		$scope.showStreams = false;
@@ -230,9 +232,15 @@ var app = angular.module ('wyliodrinApp');
 				}
 			}
 			return false;
-
-
 		}
+
+		this.showTreeButton = function(){
+			$scope.showTree = true;
+		};
+
+		this.hideTreeButton = function(){
+			$scope.showTree = false;
+		};
 
 		function dataToTree(data){
 			$scope.tree.expanded = [];

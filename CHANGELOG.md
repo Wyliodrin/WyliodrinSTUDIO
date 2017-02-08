@@ -8,6 +8,7 @@ not yet released
 * **Added** latex in the notebook
 * **Added** rudimentary device discovery without chrome api
 * **Added** new examples system (fixes [#20](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))
+* **Added** hide tree button
 * **Fixed** Raspberry Pi install ([#19](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Fixed** node 6 compatibility
 * **Fixed** hotkeys for tree actions 

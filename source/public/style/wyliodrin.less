@@ -978,21 +978,39 @@ outline:none;
 	img {margin-right:5px;}
 }
 
-.filem-hide {
-	position:absolute;
+.tree-hide {
+	position:relative;
 	top:40%;
 	right:0;
-	display:none;
 }
 
-.filem-hide .md-button {
+.tree-hide .md-button {
 	min-width:initial;
 	min-height:initial;
 	padding:0;
 	margin:0px;
+	position:relative;
 }
 
-.filem-hide .md-button:hover {
+.tree-hide .md-button:hover {
+	img {filter: invert(100%);}
+}
+
+.tree-show {
+	position:absolute;
+	top:40%;
+	right:0;
+}
+
+.tree-show .md-button {
+	min-width:initial;
+	min-height:initial;
+	padding:0;
+	margin:0px;
+	position:relative;
+}
+
+.tree-show .md-button:hover {
 	img {filter: invert(100%);}
 }
 

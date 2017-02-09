@@ -13,6 +13,7 @@ not yet released
 * **Fixed** Raspberry Pi install ([#19](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Fixed** node 6 compatibility
 * **Fixed** hotkeys for tree actions (fixes [#28](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/28))
+* **Fixed** defaults to No Firmware (fixes [#32](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/32))
 * **Removed** Chrome Device
 
 ## Wyliodrin STUDIO 10.10

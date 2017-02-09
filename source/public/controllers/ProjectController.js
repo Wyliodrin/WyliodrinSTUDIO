@@ -1248,27 +1248,45 @@ var app = angular.module ('wyliodrinApp');
 				      		var pid = parseInt($scope.ports[i].pid);
 				      		var vid = parseInt($scope.ports[i].vid);
 
-				      		console.log("1");
-				      		console.log($scope.map[vid]);
 				      		if (!$scope.map[vid]){
-				      			console.log("if1");
 				      			$scope.ports[i].vid = $scope.map[0x0000];
 				      			$scope.ports[i].pid = $scope.map[0x0000][0x0000];
 				      		}
 				      		else{
-				      			console.log("else1");
 				      			$scope.ports[i].vid = $scope.map[vid];
 				      			if (!$scope.map[vid][pid]){
-				      				console.log("if2");
 				      				$scope.ports[i].pid = $scope.map[0x0000][0x0000];
 				      			}
 				      			else{
-				      				console.log("else2");
 				      				$scope.ports[i].pid = $scope.map[vid][pid];
 				      			}
 				      		}
 
 				      	}
+
+				      	//workaround for NO FIRMWARE default
+				      	$scope.EMPTY = make_empty($scope.tree);
+
+				      	function rand(min, max) {
+							return Math.random() * (max - min) + min;
+						}
+						function make_empty(tree){
+							var a = rand(10,10000).toString();
+							while (checkID(tree,a)){
+								a = rand(10,10000).toString();
+							}
+							return a;
+						}
+						function check_empty(tree, a){
+
+							for (var i=0; i<tree.children.length;i++){
+								var x = tree.children[i];
+								if (x.name === a){
+									return true;
+								}
+							}
+							return false;
+						}
 
 				      	$scope.check = function( criteria ) {
 						  return function( item ) {

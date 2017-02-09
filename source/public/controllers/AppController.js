@@ -125,6 +125,7 @@ module.exports = function ()
 		{
 			chrome.app.window.current().onClosed.addListener (function ()
 			{
+				alert ('close');
 				$wydevice.disconnect ();
 			});
 		}

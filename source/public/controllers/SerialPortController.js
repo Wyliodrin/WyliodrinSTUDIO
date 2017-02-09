@@ -35,6 +35,7 @@ module.exports = function ()
 		var that = this;
 
 		var users = {};
+		var passwords = {};
 
 		var ip = '';
 		var port = 7000;
@@ -274,6 +275,7 @@ module.exports = function ()
 			      		port: (device.port >= 0?device.port:port),
 			      		secureport: (device.secureport >= 0?device.secureport:secureport),
 			      		username: users[(device.ip.length>0?device.ip:ip)] || '',
+			      		password: passwords[(device.ip.length>0?device.ip:ip)] || '',
 			      		category: device.category
 			      	};
 
@@ -284,6 +286,7 @@ module.exports = function ()
 			      		// device.ip = $scope.device.ip;
 			      		// device.port = $scope.device.port;
 			      		users[$scope.device.ip] = $scope.device.username;
+			      		passwords[$scope.device.ip] = $scope.device.passwords;
 			      		ip = $scope.device.ip;
 			      		port = $scope.device.port;
 			      		var type = 'chrome-socket';

@@ -14,13 +14,14 @@ import SocketChromeDevice from './SocketChromeDevice.js';
 import SSHChromeDevice from './SSHChromeDevice.js';
 
 var LocalDevices = require ('./LocalDevices.js');
+var devices = dict ();
 
 global.LocalDevices = LocalDevices;
 global.ChromeDevice = ChromeDevice;
 global.SerialChromeDevice = SerialChromeDevice;
 global.SocketChromeDevice = SocketChromeDevice;
 global.SSHChromeDevice = SSHChromeDevice;
-global.devices = dict ();
+global.devices = devices;
 
 var log = debug ('wyliodrin:background');
 chrome.app.runtime.onLaunched.addListener(function(launchData) {

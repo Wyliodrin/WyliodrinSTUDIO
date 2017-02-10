@@ -83,6 +83,7 @@ export default class SSHChromeDevice extends EventEmitter
 						that.emit ('separator');
 						stream.on ('close', function ()
 						{
+							console.log ('disconnect');
 							that.disconnect ();
 						});
 						stream.on ('data', function (data)

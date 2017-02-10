@@ -7,14 +7,17 @@ not yet released
 * **Added** OpenMote firmware
 * **Added** latex in the notebook
 * **Added** rudimentary device discovery without chrome api
-* **Added** new examples system (fixes [#20](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))
+* **Added** new examples system (fixes [#20](https://github.
+com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Added** hide tree button (fixes [#29](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/29))
 * **Added** saving password (fixes [#38](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/38))
+* **Added** showing message if board is already connected to another user (fixes [#31](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/31))
 * **Fixed** Raspberry Pi install ([#19](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Fixed** node 6 compatibility
 * **Fixed** hotkeys for tree actions (fixes [#28](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/28))
 * **Fixed** duplicate visual tree (fixes [#36](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/36))
 * **Fixed** defaults to No Firmware (fixes [#32](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/32))
+* **Fixed** disconnect when exit (fixes [#33](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/33))
 * **Removed** Chrome Device
 
 ## Wyliodrin STUDIO 10.10

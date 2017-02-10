@@ -431,65 +431,65 @@ module.exports = function(grunt) {
       'firmware':{},
       'start':{}
     };
-    var listsoftware = fs.readdirSync (EXAMPLE_FOLDER_SOFTWARE);
-    _.each (listsoftware, function (software)
-    {
-      if (software[0]!=='.')
-      {
-        example.software[software] = {};
-        var examplefile = fs.readdirSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software);
-        _.each (examplefile, function (file)
-        {
-          if (file[0]!=='.')
-          {
-            try
-            {
-              var project = path.basename (file, '.wylioapp');
-              console.log (project);
-              if (project.startsWith('start-'))
-              {
-                console.log (project);
-                if (!example.start[software]) example.start[software] = {};
-                example.start[software][project.substring(6)] = JSON.parse(fs.readFileSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software+'/'+file).toString());
-              }
-              else
-              {
-                example.software[software][project] = JSON.parse(fs.readFileSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software+'/'+file).toString());
-              }
-            }
-            catch (e)
-            {
-              console.log (e);
-            }
-          }
-        });
-      }
-    });
-    var EXAMPLE_FOLDER_FIRMWARE = 'source/embedded/example/firmware';
-    var listfirmware = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE);
-    _.each (listfirmware, function (firmware)
-    {
-      if (firmware[0]!=='.')
-      {
-        example.firmware[firmware] = {};
-        var examplefolder = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware);
-        _.each (examplefolder, function (folder)
-        {
-          if (folder[0]!=='.')
-          {
-            example.firmware[firmware][folder] = {};
-            var examplefile = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder);
-            _.each (examplefile, function (file)
-            {
-              if (file[0]!=='.')
-              {
-                example.firmware[firmware][folder][file] = fs.readFileSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/'+file+'.ino').toString();
-              }
-            });
-          }
-        });
-      }
-    });
+    // var listsoftware = fs.readdirSync (EXAMPLE_FOLDER_SOFTWARE);
+    // _.each (listsoftware, function (software)
+    // {
+    //   if (software[0]!=='.')
+    //   {
+    //     example.software[software] = {};
+    //     var examplefile = fs.readdirSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software);
+    //     _.each (examplefile, function (file)
+    //     {
+    //       if (file[0]!=='.')
+    //       {
+    //         try
+    //         {
+    //           var project = path.basename (file, '.wylioapp');
+    //           console.log (project);
+    //           if (project.startsWith('start-'))
+    //           {
+    //             console.log (project);
+    //             if (!example.start[software]) example.start[software] = {};
+    //             example.start[software][project.substring(6)] = JSON.parse(fs.readFileSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software+'/'+file).toString());
+    //           }
+    //           else
+    //           {
+    //             example.software[software][project] = JSON.parse(fs.readFileSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software+'/'+file).toString());
+    //           }
+    //         }
+    //         catch (e)
+    //         {
+    //           console.log (e);
+    //         }
+    //       }
+    //     });
+    //   }
+    // });
+    // var EXAMPLE_FOLDER_FIRMWARE = 'source/embedded/example/firmware';
+    // var listfirmware = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE);
+    // _.each (listfirmware, function (firmware)
+    // {
+    //   if (firmware[0]!=='.')
+    //   {
+    //     example.firmware[firmware] = {};
+    //     var examplefolder = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware);
+    //     _.each (examplefolder, function (folder)
+    //     {
+    //       if (folder[0]!=='.')
+    //       {
+    //         example.firmware[firmware][folder] = {};
+    //         var examplefile = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder);
+    //         _.each (examplefile, function (file)
+    //         {
+    //           if (file[0]!=='.')
+    //           {
+    //             example.firmware[firmware][folder][file] = fs.readFileSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/'+file+'.ino').toString();
+    //           }
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
     mkdirp.sync (CONFIG);
     fs.writeFileSync (CONFIG+'/example.js', '"use strict";\n module.exports = '+JSON.stringify (example)+';');
   });

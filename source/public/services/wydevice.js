@@ -127,6 +127,19 @@ app.factory ('$wydevice', function ($http)
 					        }
 				    	});
 				}
+				else
+				if (t === 'e')
+				{
+					if (d.s === 'busy')
+					{
+						that.emit ('connection_busy_error');
+					}
+					else
+					if (d.s === 'login')
+					{
+						that.emit ('connection_login_failed');
+					}
+				}
 				that.emit ('message', t, d);
 			});
 		},

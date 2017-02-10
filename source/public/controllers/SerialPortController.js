@@ -182,6 +182,19 @@ module.exports = function ()
 		    });
 		});
 
+		$wydevice.on ('connection_busy_error', function ()
+		{
+			var message = $mdDialog.confirm()
+		          .title($filter('translate')('DEVICE_CONNECTION_BUSY'))
+		          .ok($filter('translate')('OK'));
+		          // Should be a retry button???
+		    $mdDialog.show(message).then(function() {
+		      // $wyapp.emit ('board');
+		    }, function() {
+		     	
+		    });
+		});
+
 		$wydevice.on ('connection_login_failed', function ()
 		{
 			var message = $mdDialog.confirm()

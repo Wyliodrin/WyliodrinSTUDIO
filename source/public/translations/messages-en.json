@@ -898,5 +898,10 @@
   "GITHUB_EXAMPLE_Empty":
   {
     "message" :"Please write the name of a github repository that has examples"
+  },
+  "DEVICE_CONNECTION_BUSY":
+  {
+    "message":"The device is already connected to another user.",
+    "description":""
   }
 }

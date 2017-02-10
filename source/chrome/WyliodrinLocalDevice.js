@@ -81,6 +81,15 @@ export default class WyliodrinLocalDevice extends EventEmitter
 				if (m.t) 
 				{
 					if (m.t === 'ping') that.send ('pong', null);
+					if (m.t === 'e' && m.d.s === 'busy')
+					{
+						that.status = 'PING';
+						that.publishStatus ();
+						if (that.options.type !== 'chrome-ssh') 
+						{
+							that.disconnect ();
+						}
+					}
 					// else 
 					// if (m.t === 'pong') 
 					// {

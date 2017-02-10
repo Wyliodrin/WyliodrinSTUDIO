@@ -96,7 +96,7 @@ export default class SSHChromeDevice extends EventEmitter
 
 			that.connection.on ('error', function (error)
 			{
-				// console.log (JSON.stringify (error));
+				console.log (JSON.stringify (error));
 				if (error.level === "client-authentication")
 				{
 					// console.log ('connection login failed');

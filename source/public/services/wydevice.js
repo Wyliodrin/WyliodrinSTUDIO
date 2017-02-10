@@ -17,7 +17,7 @@ var _ = require ('lodash');
 
 debug ('Loading');
 
-import WyliodrinDevice from './WyliodrinDevice.js';
+var WyliodrinLocalDevice = null;
 
 var app = angular.module ('wyliodrinApp');
 
@@ -29,19 +29,26 @@ app.factory ('$wydevice', function ($http)
 	// var WyliodrinDevice = null;
 	// var service = null;
 
+	if (settings.platform.CHROME)
+	{
+		chrome.runtime.getBackgroundPage(function (backgroundPage) {
+		    WyliodrinLocalDevice = backgroundPage.WyliodrinLocalDevice;
+		});
+	}
+
 	var status = 'DISCONNECTED';
 
 	var deviceService = {
 		connect: function (strdevice, options)
 		{
-			if (!WyliodrinDevice) throw ('Wyliodrin device not initialised');
+			if (!WyliodrinLocalDevice) throw ('WyliodrinLocalDevice device not initialised');
 			if (device && device.status !== 'DISCONNECTED') device.disconnect();
 			debug (options);
 			var categoryhint = (options?options.category:undefined);
 			var platformhint = (options?options.platform:undefined);
 			console.log (categoryhint);
 			console.log (platformhint);
-			device = new WyliodrinDevice (strdevice, options);
+			device = new WyliodrinLocalDevice (strdevice, options);
 			var that = this;
 			
 			

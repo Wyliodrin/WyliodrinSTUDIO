@@ -8,20 +8,11 @@ var dict = require ('dict');
 
 debug.enable (settings.debug);
 
-import ChromeDevice from './ChromeDevice.js';
-import SerialChromeDevice from './SerialChromeDevice.js';
-import SocketChromeDevice from './SocketChromeDevice.js';
-import SSHChromeDevice from './SSHChromeDevice.js';
-
 var LocalDevices = require ('./LocalDevices.js');
-var devices = dict ();
+import WyliodrinLocalDevice from './WyliodrinLocalDevice.js';
 
 global.LocalDevices = LocalDevices;
-global.ChromeDevice = ChromeDevice;
-global.SerialChromeDevice = SerialChromeDevice;
-global.SocketChromeDevice = SocketChromeDevice;
-global.SSHChromeDevice = SSHChromeDevice;
-global.devices = devices;
+global.WyliodrinLocalDevice = WyliodrinLocalDevice;
 
 var log = debug ('wyliodrin:background');
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
@@ -45,11 +36,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 			log ('closed');
 			try
 			{
-				global.devices.forEach (function (port)
-				{
-					debug (port);
-					port.disconnect ();
-				});
+				WyliodrinLocalDevice.disconnectDevices ();
 			}
 			catch (e)
 			{

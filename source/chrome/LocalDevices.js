@@ -44,7 +44,7 @@ function deviceId (hostPort)
 		// TODO improve check for new serial devices
 		if (list.length !== serialDevices.length)
 		{
-			console.log (list);
+			// console.log (list);
 			serialDevices = [];
 			_.each (list, function (item)
 			{
@@ -69,7 +69,7 @@ function deviceId (hostPort)
 				serialDevices.push (device);		
 			});
 			serialDevices = _.sortBy (serialDevices, "priority");
-			console.log (serialDevices);
+			// console.log (serialDevices);
 			emitter.emit ('serial', serialDevices);
 		}
 		setTimeout (listSerialDevices, 1000);
@@ -253,7 +253,7 @@ function compactDevices ()
 		}
 	}
 	emitter.emit ('local', devices);
-	console.log (devices);
+	// console.log (devices);
 }
 
 debug ('mdns for _wyapp');
@@ -434,7 +434,7 @@ dns.services (function (err, finder)
 	eraseDevices (DNS);
 	if (!err)
 	{
-		console.log (finder);
+		// console.log (finder);
 		_.each (finder.byService_._wyapp, function (s, ip)
 		{
 			if (s)

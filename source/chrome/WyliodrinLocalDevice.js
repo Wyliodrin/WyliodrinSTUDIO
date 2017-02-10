@@ -9,25 +9,13 @@ var EventEmitter = require ('events').EventEmitter;
 var msgpack = require ('msgpack-lite');
 var dict = require ('dict');
 
-var ChromeDevice = null;
-var SerialChromeDevice = null;
-var SocketChromeDevice = null;
-var SSHChromeDevice = null;
+import SerialChromeDevice from './SerialChromeDevice.js';
+import SocketChromeDevice from './SocketChromeDevice.js';
+import SSHChromeDevice from './SSHChromeDevice.js';
 
 var devices = dict ();
 
-if (settings.platform.CHROME)
-{
-	chrome.runtime.getBackgroundPage(function (backgroundPage) {
-		ChromeDevice = backgroundPage.ChromeDevice;
-		SerialChromeDevice = backgroundPage.SerialChromeDevice;
-		SocketChromeDevice = backgroundPage.SocketChromeDevice;
-		SSHChromeDevice = backgroundPage.SSHChromeDevice;
-		devices = backgroundPage.devices;
-	});
-}
-
-export default class WyliodrinDevice extends EventEmitter
+export default class WyliodrinLocalDevice extends EventEmitter
 {
 	constructor (device, options)
 	{
@@ -62,8 +50,6 @@ export default class WyliodrinDevice extends EventEmitter
 			if (this.status === 'CONNECTED') this.send ('ping', null);
 		}, 5000);
 		var that = this;
-		if (this.options.type === 'chrome') this.port = new ChromeDevice ();
-		else
 		if (this.options.type === 'chrome-serial') this.port = new SerialChromeDevice (device, {bitrate: 115200});
 		else
 		if (this.options.type === 'chrome-socket') this.port = new SocketChromeDevice (device, this.options.port, options);

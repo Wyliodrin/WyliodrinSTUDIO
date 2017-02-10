@@ -19,7 +19,7 @@
             <md-input-container md-no-float class="md-block">
                 <label>Pick firmware</label>
                 <md-select ng-model="port.pick">
-                    <md-option value="">
+                    <md-option value="{{EMPTY}}" ng-selected="true">
                         No Firmware
                     </md-option>
                     <!--<md-option ng-repeat="firm in tree.children | filter:{ isfirmware : true, ftype: port.vid.type}" value="{{firm.name}}">-->

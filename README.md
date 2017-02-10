@@ -22,8 +22,8 @@ Wyliodrin STUDIO is a Chrome based IDE for software and hardware development for
 * Wyliodrin API documentation in C/C++, Python and Javascript
 
 ## Supported devices:
-* UDOO Neo 
 * Raspberry Pi and Arduino 
+* UDOO Neo 
 * BeagleBone Black 
 * Arduino Yun
 
@@ -31,6 +31,7 @@ Wyliodrin STUDIO is a Chrome based IDE for software and hardware development for
 * Visual Programming (translates to Python)
 * Javascript
 * Python
+* Streams (node-red)
 * Shell Script (bash)
 
 ## Install
@@ -66,7 +67,7 @@ You may build Wyliodrin STUDIO yourself
     cd WyliodrinSTUDIO
     yarn # npm install works slow
     patch node_modules/highcharts-ng/dist/highcharts-ng.js patches/highcharts-ng.patch
-    patch node_modules/angular-tree-control/css/tree-control-attribute.css patches/tree-
+    patch node_modules/angular-tree-control/css/tree-control-attribute.css patches/tree-control-attribute.patch
     patch node_modules/marked/lib/marked.js patches/marked.patch
     grunt
 

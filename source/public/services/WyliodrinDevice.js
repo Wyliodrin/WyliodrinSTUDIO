@@ -14,6 +14,8 @@ var SerialChromeDevice = null;
 var SocketChromeDevice = null;
 var SSHChromeDevice = null;
 
+var devices = dict ();
+
 if (settings.platform.CHROME)
 {
 	chrome.runtime.getBackgroundPage(function (backgroundPage) {
@@ -21,10 +23,9 @@ if (settings.platform.CHROME)
 		SerialChromeDevice = backgroundPage.SerialChromeDevice;
 		SocketChromeDevice = backgroundPage.SocketChromeDevice;
 		SSHChromeDevice = backgroundPage.SSHChromeDevice;
+		devices = backgroundPage.devices;
 	});
 }
-
-var devices = dict ();
 
 export default class WyliodrinDevice extends EventEmitter
 {

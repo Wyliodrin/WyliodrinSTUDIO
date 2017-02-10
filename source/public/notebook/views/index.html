@@ -10,7 +10,7 @@
 		<div class="print no-print">
 			<md-button ng-click="n.print (); $event.preventPropagation ();">
 	            <img src="../img/print-icon.png" class="s24">
-	            <md-tooltip md-direction="left">
+	            <md-tooltip md-direction="right">
 	              Print
 	            </md-tooltip>
 	        </md-button>
@@ -53,6 +53,12 @@
 		                        </md-optgroup>
 		                    </md-select>
 						</md-input-container>
+						<md-button  ng-show="item.type === 'firmware'">
+		                    <img src="../img/firmxamples-icon.png" class="s24">
+		                    <md-tooltip md-direction="bottom">
+		                      Load a firmware example
+		                    </md-tooltip>
+		                </md-button>
 						<md-input-container ng-show="connected && item.type === 'firmware' && ports && ports.length > 0">
 							<md-select ng-model="item.port.path" aria-label="type">
 		                        <md-option ng-click="n.port(item.label, port)" ng-repeat="port in ports" value="{{port.p}}">{{port.s}}</md-option>

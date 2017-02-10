@@ -885,6 +885,14 @@ color:#000;
     margin: 0px;
     position: relative;
     background: #fff;
+    padding: 10px 5px 0 5px;
+}
+
+.projectTree .tree-classic {
+    min-width: 195px;
+    margin: 0px;
+    position: relative;
+    background: #fff;
     margin-bottom: 95px;
     padding: 10px 5px 0 5px;
 }
@@ -899,17 +907,18 @@ outline:none;
 	padding:0 10px;
 }
 
+.file {
+	padding:0 !important;
+	img {vertical-align:middle;}
+}
+
 .vasile {
-	div, .md-focused {
-		background:#eee;
-		height:50px !important;
-	}
+	background:#eee;
 }
 .viorel {
-	div {
-		height:50px !important;
-	}	
 }
+
+.vasile:focus, .vasile:active, .viorel:focus,  .viorel:active { outline:0;}
 
 [treecontrol].tree-classic li .tree-selected {
 	font-weight:normal !important;
@@ -1023,7 +1032,6 @@ outline:none;
 .gitimport {
 	h3{ 
 		font-weight:bold;
-		margin-bottom:10px;
 		span {
 			padding: 3px;
 		    font-size: 10px;

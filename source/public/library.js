@@ -127,6 +127,12 @@ function storeMain (id, main,tree)
 	db.applications.update (id, {main:main,tree:tree});
 }
 
+function storeTree (id, tree)
+{
+	debug ('Store project tree '+id);
+	db.applications.update (id, {tree:tree});
+}
+
 function storeFirmware (id, firmware)
 {
 	debug ('Store project firmware '+id);
@@ -239,6 +245,7 @@ module.exports.retrieveValue = retrieveValue;
 module.exports.storeValue = storeValue;
 module.exports.storeNotebook = storeNotebook;
 module.exports.storeFirmware = storeFirmware;
+module.exports.storeTree = storeTree;
 module.exports.storeVisualProject = storeVisualProject;
 module.exports.storeWorkingProject = storeWorkingProject;
 module.exports.retrieveWorkingProject = retrieveWorkingProject;

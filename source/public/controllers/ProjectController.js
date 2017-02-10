@@ -715,7 +715,8 @@ var app = angular.module ('wyliodrinApp');
 
 			storeProject: function ()
 			{
-				library.storeVisualProject ($scope.project.id, $scope.project.tree);
+				//library.storeVisualProject ($scope.project.id, $scope.project.tree);
+				library.storeTree ($scope.project.id, $scope.project.tree);
 				$timeout (function ()
 				{
 
@@ -907,7 +908,7 @@ var app = angular.module ('wyliodrinApp');
 			// console.log (softwareEditor.$blockScrolling);
 			if ($scope.project.id > 0)
 			{
-				library.storeMain ($scope.project.id, $scope.project.tree.main, $scope.project.tree);
+				library.storeTree ($scope.project.id, $scope.project.tree);
 			}
 		};
 
@@ -927,6 +928,7 @@ var app = angular.module ('wyliodrinApp');
 			firmwareEditor.language = "c_cpp";
 		};
 
+		//i think not needed anymore
 		$scope.aceFirmwareChanged = function ()
 		{
 			// console.log ($scope.project);
@@ -1059,7 +1061,7 @@ var app = angular.module ('wyliodrinApp');
 									// console.log ('store');
 								// here put the new stream nodes \|/
 									$scope.tree.selectednode.content = parsedmessage.flow;
-									library.storeMain ($scope.project.id,$scope.project.main,$scope.project.tree);
+									library.storeTree ($scope.project.id, $scope.project.tree);
 								}
 							}
 							catch (e)

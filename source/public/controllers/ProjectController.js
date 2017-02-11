@@ -288,6 +288,10 @@ var app = angular.module ('wyliodrinApp');
 			}
 		}
 
+		function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 		this.treeSelect = function(node){
 			if (node.isspecial || node.isdir){
 				$scope.showEditor = false;
@@ -305,8 +309,20 @@ var app = angular.module ('wyliodrinApp');
 						$scope.showVisual = false;
 					}
 					if ($scope.project.language == "streams"){
+
 						$scope.showStreams = true;
+						/*console.log(1);
+						sleep(500).then(() => {
 						red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
+						console.log(2);
+						sleep(500).then(() => {
+							console.log(3);
+							red.reload();
+
+						});
+});*/
+						red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
+
 						red.reload();
 					}
 					else{
@@ -715,7 +731,6 @@ var app = angular.module ('wyliodrinApp');
 
 			storeProject: function ()
 			{
-				//library.storeVisualProject ($scope.project.id, $scope.project.tree);
 				library.storeTree ($scope.project.id, $scope.project.tree);
 				$timeout (function ()
 				{
@@ -918,26 +933,6 @@ var app = angular.module ('wyliodrinApp');
 			_editor.$blockScrolling = Infinity;
 		};
 
-		$scope.aceFirmwareLoaded = function (_editor)
-		{
-			firmwareEditor = _editor;
-			firmwareEditor.getSession().setMode ('ace/mode/c_cpp');
-			firmwareEditor.getSession().setTabSize (2);
-			firmwareEditor.getSession().setUseSoftTabs (true);
-			firmwareEditor.$blockScrolling = Infinity;
-			firmwareEditor.language = "c_cpp";
-		};
-
-		//i think not needed anymore
-		$scope.aceFirmwareChanged = function ()
-		{
-			// console.log ($scope.project);
-			if ($scope.project.id > 0)
-			{
-				library.storeFirmware ($scope.project.id, $scope.project.firmware);
-			}
-		};
-
 		$(window).resize (function ()
 		{
 			setSizes ();
@@ -1038,7 +1033,14 @@ var app = angular.module ('wyliodrinApp');
 			}
 			$timeout (function ()
 			{
+				if (project.tree === undefined){
+					//older style projects
+					project = library.convertToTree(project);
+					library.storeTree (project.id, project.tree);
+
+				}
 				$scope.project = project;
+
 				dataToTree($scope.project.tree);
 
 				if (red === null)

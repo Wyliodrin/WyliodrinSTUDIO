@@ -54,7 +54,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 
 chrome.serial.getConnections (function (connectionsInfo)
 {
-	console.log (connectionsInfo);
+	//console.log (connectionsInfo);
 });
 
 chrome.app.runtime.onRestarted.addListener(function() {

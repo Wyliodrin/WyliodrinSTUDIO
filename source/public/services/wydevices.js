@@ -34,13 +34,13 @@ app.factory ('$wydevices', function ($http)
 		    LocalDevices.registerSerialListener (function (serialDevices)
 		    {
 		    	devices.serial = serialDevices;
-		    	console.log (devices);
+		    	//console.log (devices);
 		    	devicesService.emit ('devices', devices);
 		    });
 		    LocalDevices.registerLocalListener (function (localDevices)
 		    {
 		    	devices.local = localDevices;
-		    	console.log (devices);
+		    	//console.log (devices);
 		    	devicesService.emit ('devices', devices);
 		    });
 		});

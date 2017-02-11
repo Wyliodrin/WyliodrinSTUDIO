@@ -55,23 +55,9 @@ function add (value, language, done, devicecategory)
 		}*/ //WHEN CONNECTED USE THIS BLUEPRINT // COMMENTED BECAUSE BLUEPRINT IS DIFFERENT FROM OUR PROJECT
 		if (!startproject)
 		{
-			var ext = _.filter(settings.LANGUAGES, { 'title' : language } )[0].ext;
-			startproject = {
-				tree: 
-				[{name:title, id:1,isdir:true,isroot:true,children:
-					[{name:language,id:2,isdir:true,issoftware:true,children:
-						[{name:'main'+ext,id:3,isdir:false,ismain:true,content:''}]
-					}]
-				}],
-				language: language,
-				notebook: [{
-					type: 'markdown',
-					text: '# Steps to build the project'
-				}]
-			};
+			startproject = generateProject(title,language);
+			
 		}
-		startproject.title = title;
-		startproject.date = new Date().getTime();
 		db.applications.add (startproject).then (function (id)
 		{
 			debug ('Added project with id '+id);
@@ -94,6 +80,37 @@ function add (value, language, done, devicecategory)
 			if (done) done (null, id);
 		});
 	}
+}
+
+function generateProject(title, language, date, mainContent, visualContent)
+{
+	if (!date){
+		date = new Date().getTime();
+	}
+
+	if (!mainContent){
+		mainContent = '';
+	}
+
+	var ext = _.filter(settings.LANGUAGES, { 'title' : language } )[0].ext;
+	var startproject = {
+		tree: 
+		[{name:title, id:1,isdir:true,isroot:true,children:
+			[{name:language,id:2,isdir:true,issoftware:true,children:
+				[{name:'main'+ext,id:3,isdir:false,ismain:true,content: mainContent , visual: visualContent }]
+			}]
+		}],
+		language: language,
+		notebook: [{
+			type: 'markdown',
+			text: '# Steps to build the project'
+		}]
+	};
+
+	startproject.title = title;
+	startproject.date = date;
+
+	return startproject;
 }
 
 function erase (id)
@@ -133,10 +150,10 @@ function storeTree (id, tree)
 	db.applications.update (id, {tree:tree});
 }
 
-function storeFirmware (id, firmware)
+function convertToTree(project)
 {
-	debug ('Store project firmware '+id);
-	db.applications.update (id, {firmware:firmware});
+	var temp = generateProject(project.title, project.language, project.date, project.main, project.visualproject);
+	return temp;
 }
 
 function storeWorkingProject (projectid)
@@ -215,12 +232,6 @@ function retrieveValue (key, defvalue, done)
 	});
 }
 
-function storeVisualProject (id, visualproject)
-{
-	debug ('Store project '+id);
-	db.applications.update (id, {visualproject:visualproject});
-}
-
 function storeNotebook (id, notebook)
 {
 	debug ('Store project '+id);
@@ -244,9 +255,8 @@ module.exports.storeMain = storeMain;
 module.exports.retrieveValue = retrieveValue;
 module.exports.storeValue = storeValue;
 module.exports.storeNotebook = storeNotebook;
-module.exports.storeFirmware = storeFirmware;
 module.exports.storeTree = storeTree;
-module.exports.storeVisualProject = storeVisualProject;
+module.exports.convertToTree = convertToTree;
 module.exports.storeWorkingProject = storeWorkingProject;
 module.exports.retrieveWorkingProject = retrieveWorkingProject;
 module.exports.storeDashboard = storeDashboard;

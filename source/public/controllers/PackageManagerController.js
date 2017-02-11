@@ -39,7 +39,7 @@ module.exports = function ()
 		$scope.runlanguage = '';
 		_.each ($scope.LANGUAGES, function (language)
 		{
-			console.log ($wydevice.device);
+			//console.log ($wydevice.device);
 			if (language.packagemanager.enable === true && (!$wydevice.device.capabilities || $wydevice.device.capabilities.l[language.title]))
 			{
 				debug ('Request package '+language.title);

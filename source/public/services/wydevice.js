@@ -81,7 +81,7 @@ app.factory ('$wydevice', function ($http)
 					device.removeAllListeners ();
 					device = null;
 				}
-				console.log (deviceService.device);
+				//console.log (deviceService.device);
 				that.emit ('status', _status);
 			});
 

@@ -11,6 +11,7 @@ not yet released
 com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Added** hide tree button (fixes [#29](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/29))
 * **Added** saving password (fixes [#38](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/38))
+* **Added** importing older style projects (fixes [#26](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/26))
 * **Added** showing message if board is already connected to another user (fixes [#31](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/31))
 * **Fixed** Raspberry Pi install ([#19](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Fixed** node 6 compatibility

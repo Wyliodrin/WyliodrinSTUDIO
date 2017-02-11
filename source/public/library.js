@@ -47,17 +47,9 @@ function add (value, language, done, devicecategory)
 	{
 		var title = value;
 		debug ('Adding project with title '+title+' in '+language);
-		var startproject = null;
-		/*if (devicecategory && settings.EXAMPLE.start[devicecategory])
-		{
-			debug ('Start '+devicecategory);
-			startproject = _.clone (settings.EXAMPLE.start[devicecategory][language]);
-		}*/ //WHEN CONNECTED USE THIS BLUEPRINT // COMMENTED BECAUSE BLUEPRINT IS DIFFERENT FROM OUR PROJECT
-		if (!startproject)
-		{
-			startproject = generateProject(title,language);
+
+		var startproject = generateProject(title,language);
 			
-		}
 		db.applications.add (startproject).then (function (id)
 		{
 			debug ('Added project with id '+id);

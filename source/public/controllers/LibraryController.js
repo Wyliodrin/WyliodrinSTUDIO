@@ -71,13 +71,33 @@ module.exports = function ()
 						var devicecategory = null;
 						if ($wydevice.device) devicecategory = $wydevice.device.category;
 						debug ('Project '+devicecategory);
+
+						var oldIds = _.map(that.getPrograms(), 'id');
+						//for using when chosing what project to open
+
 						library.add ($scope.project.title, $scope.project.language, null, devicecategory);
+
+						that.listProjects(function(err){
+							if (err){
+								console.log(err);
+							}
+							else{
+								var newIds = _.map(that.getPrograms(), 'id');
+								var idToLoad = _.difference(newIds, oldIds)[0];
+
+								var projectToLoad = _.filter(that.getPrograms(), {'id': idToLoad})[0];
+
+								that.load(projectToLoad);
+
+								$mdDialog.hide ();
+							}
+						});
 					}
 					else
 					{
 						debug ("Project name is unacceptable");
+						$wyapp.emit('library');
 					}
-					$wyapp.emit('library');
 		      	};
 				
 				this.cancel = function ()
@@ -151,7 +171,7 @@ module.exports = function ()
 			$mdDialog.hide ();
 		};
 
-		this.listProjects = function ()
+		this.listProjects = function (done)
 		{
 			debug ('list projects');
 			library.listProjects (function (err, list)
@@ -164,7 +184,13 @@ module.exports = function ()
 				{
 					debug ('programs '+list.length);
 					$scope.programs = list;
+					console.log("programs");
+					console.log($scope.programs);
 					$scope.$apply ();
+				}
+				if (done)
+				{
+					done(err);
 				}
 			});
 		};
@@ -316,6 +342,11 @@ module.exports = function ()
 		};
 
 		$scope.programs = [];
+
+		this.getPrograms = function()
+		{
+			return $scope.programs;
+		};
 		
 
 		this.listProjects ();

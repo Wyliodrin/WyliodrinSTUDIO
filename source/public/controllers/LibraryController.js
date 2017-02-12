@@ -184,8 +184,6 @@ module.exports = function ()
 				{
 					debug ('programs '+list.length);
 					$scope.programs = list;
-					console.log("programs");
-					console.log($scope.programs);
 					$scope.$apply ();
 				}
 				if (done)

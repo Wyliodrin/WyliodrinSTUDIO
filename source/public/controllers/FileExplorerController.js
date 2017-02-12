@@ -141,11 +141,12 @@ module.exports = function ()
 							}
 							if (!fileEntry) 
 							{
-								$timeout ( function()
+								//in case of popup when cancel before chosing download folder
+								/*$timeout ( function()
 								{
 									$scope.contentPopupError = $translate.instant('FEfile_write');
 								 	$scope.showPopupError = 1;
-							 	});
+							 	});*/
 							 	return;
 							}
 
@@ -549,20 +550,17 @@ module.exports = function ()
 			}
 			else
 			{
-				if (typeof actual !== 'object')
+				/*if (actual !== null && typeof actual === 'object' && actual.name && actual.name.startsWith(".")){
+					console.log("actual");
+					console.log(actual);
+				}*/
+				if (actual !== null && typeof actual === 'object' && actual.name && (!actual.name.startsWith(".")))
 				{
-					return false;
+					return true;
 				}
 				else
 				{
-					if (actual.name.startsWith("."))
-					{
-						return false;
-					}
-					else
-					{
-						return true;
-					}
+					return false;
 				}
 			}
 		};

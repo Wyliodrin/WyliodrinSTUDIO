@@ -11,6 +11,7 @@ not yet released
 com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Added** hide tree button (fixes [#29](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/29))
 * **Added** saving password (fixes [#38](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/38))
+* **Added** error when canceling download (fixes [#44](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/44))
 * **Added** importing older style projects (fixes [#26](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/26))
 * **Added** new project opens project (fixes [#30](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/30))
 * **Added** showing message if board is already connected to another user (fixes [#31](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/31))

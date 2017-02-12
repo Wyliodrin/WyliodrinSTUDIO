@@ -177,8 +177,14 @@
                             </md-tooltip>
                         </div>
                     </md-button>
-                   	<md-button ng-click="sp.exit()" class="icon-btn">
+                   	<md-button ng-show="status === 'CONNECTED'" ng-click="sp.exit()" class="icon-btn">
                     	<md-icon md-svg-src="/public/drawable/turn-off-icon.svg" class="s24" aria-label="Close" ></md-icon>
+                        <md-tooltip md-direction="bottom">
+                          {{ 'DEVICE_DISCONNECT' | translate }}
+                        </md-tooltip>
+                    </md-button>
+                    <md-button ng-hide="status === 'CONNECTED'" ng-click="sp.exitDialog()" class="icon-btn">
+                      <md-icon md-svg-src="/public/drawable/turn-off-icon.svg" class="s24" aria-label="Close" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'DEVICE_DISCONNECT' | translate }}
                         </md-tooltip>

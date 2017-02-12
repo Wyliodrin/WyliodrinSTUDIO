@@ -219,9 +219,38 @@ module.exports = function ()
 			var renameBoardDialog = $mdDialog.show({
 		      controller: function ($scope)
 		      {
-
-				  
 				$scope.name = $wydevice.device.name;
+
+				if ($wydevice.device.version){
+					$scope.version = $wydevice.device.version;
+				}
+				else{
+					$scope.version = "Unknown";
+				}
+
+				if ($wydevice.device.libversion){
+					$scope.libversion = $wydevice.device.libversion;
+				}
+				else{
+					$scope.libversion = "Unknown";
+				}
+				
+				if ($wydevice.device.os){
+					$scope.os = $wydevice.device.os;
+				}
+				else{
+					$scope.os = "Unknown";
+				}
+
+				$scope.supported = "";
+				_.forOwn($wydevice.device.capabilities.l, function(value, key) {
+					if (value){
+						var language = _.filter(settings.LANGUAGES, { 'title' : key } )[0];
+						if (language){
+							$scope.supported += language.text + " ";
+						}
+					}
+				});
 				  
 				  
 		      	this.rename = function ()
@@ -452,7 +481,39 @@ module.exports = function ()
 
 		this.exit = function ()
 		{
-			debug ('Disconnect');
+			debug ('Disconnect button');
+			$mdDialog.show({
+				controller: function ($scope)
+				{
+					this.disconnect = function ()
+					{
+						$wydevice.disconnect ();
+						$mdDialog.hide ();
+					};
+					this.poweroff = function ()
+					{
+						$wydevice.disconnect ("poweroff");
+						$mdDialog.hide ();
+					};
+					this.reboot = function ()
+					{
+						$wydevice.disconnect ("reboot");
+						$mdDialog.hide ();
+					};
+					this.cancel = function ()
+					{
+						$mdDialog.hide ();
+					};
+				},
+				controllerAs: 'disconnect',
+				templateUrl: '/public/views/dialogs/disconnect.html',
+				clickOutsideToClose:true,
+				fullscreen: false
+			});
+		};
+
+		this.exitDialog = function()
+		{
 			$wydevice.disconnect ();
 		};
 	});

@@ -46,8 +46,8 @@ app.factory ('$wydevice', function ($http)
 			debug (options);
 			var categoryhint = (options?options.category:undefined);
 			var platformhint = (options?options.platform:undefined);
-			console.log (categoryhint);
-			console.log (platformhint);
+			//console.log (categoryhint);
+			//console.log (platformhint);
 			device = new WyliodrinLocalDevice (strdevice, options);
 			var that = this;
 			
@@ -110,6 +110,8 @@ app.factory ('$wydevice', function ($http)
 					if (deviceService.device)
 					{
 						deviceService.device.version = d.v;
+						deviceService.device.libversion = d.libv;
+						deviceService.device.os = d.os;
 					}
 					$http.get('https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json?'+uuid.v4())
 				       .then(function(res){
@@ -157,9 +159,12 @@ app.factory ('$wydevice', function ($http)
 			}
 		},
 
-		disconnect: function ()
+		disconnect: function (data)
 		{
-			// console.log (device);
+			if (data && device)
+			{
+				device.send("disc",{a:data});
+			}
 			if (device)
 			{
 				device.disconnect ();

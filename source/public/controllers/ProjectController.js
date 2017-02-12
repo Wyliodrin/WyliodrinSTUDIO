@@ -1110,6 +1110,7 @@ var app = angular.module ('wyliodrinApp');
 			});
 		});
 
+		//obsolete i think
 		$wyapp.on ('firmware', function (firmware)
 		{
 			debug ('Firmware');

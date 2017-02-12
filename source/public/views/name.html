@@ -6,11 +6,15 @@
 	</md-toolbar>
     
 	<md-dialog-content ng-escape="a.cancel()">
-        <md-content layout-gt-sm="row" layout-padding>
+        <md-content layout-gt-sm="column" layout-padding>
             <md-input-container class="rename-title">
                 <label>{{ 'Name' | translate }}</label>
                 <input ng-model="name" minlength="3" ng-trim="true" ng-enter="a.rename()" md-autofocus="true">
            </md-input-container>
+           <label>Wyliodrin-app-server version: {{version}}</label>
+           <label>Libwyliodrin version: {{libversion}}</label>
+           <label>Operating System: {{os}}</label>
+           <label>Supported languages: {{supported}}</label>
         </md-content>
     </md-dialog-content>
 	<md-dialog-actions layout="row">

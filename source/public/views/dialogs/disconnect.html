@@ -1,0 +1,20 @@
+<md-dialog aria-label="Disconnect">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Disconnect</h2>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content ng-escape="disconnect.cancel()">
+        <md-content layout-gt-sm="row" layout-padding>
+        </md-content>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button ng-click="disconnect.disconnect()">Disconnect</md-button>
+        <md-button ng-click="disconnect.poweroff()">Power Off and Disconnect</md-button>
+        <md-button ng-click="disconnect.reboot()">Reboot and Disconnect</md-button>
+        <md-button ng-click="disconnect.cancel()">Cancel</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

@@ -105,10 +105,9 @@ Wyliodrin is a trademark of Wyliodrin SRL. All rights reservered.
 
 ## License
 
-This software is available under several licenses, depending of the use.
+GPLv3
 
-Non-commercial & educational - GPLv3
-Please contact us at office@wyliodrin.com for a commercial license.
+Please consider contacting us at office@wyliodrin.com if you plan to use it in a commercial software.
 This license allows you to write/distribute/sell an applications written in Wyliodrin STUDIO. If does not allow you to sell Wyliodrin STUDIO or any derived products.
 
 

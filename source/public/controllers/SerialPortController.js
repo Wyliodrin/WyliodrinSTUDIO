@@ -243,14 +243,17 @@ module.exports = function ()
 				}
 
 				$scope.supported = [];
-				_.forOwn($wydevice.device.capabilities.l, function(value, key) {
-					if (value){
-						var language = _.filter(settings.LANGUAGES, { 'title' : key } )[0];
-						if (language){
-							$scope.supported.push(language.text);
+				if ($wydevice.device.capabilities)
+				{
+					_.forOwn($wydevice.device.capabilities.l, function(value, key) {
+						if (value){
+							var language = _.filter(settings.LANGUAGES, { 'title' : key } )[0];
+							if (language){
+								$scope.supported.push(language.text);
+							}
 						}
-					}
-				});
+					});
+				}
 				  
 				  
 		      	this.rename = function ()

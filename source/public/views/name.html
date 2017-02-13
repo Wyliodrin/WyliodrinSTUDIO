@@ -14,7 +14,7 @@
            <label><strong>Wyliodrin-app-server version:</strong> {{version}}</label>
            <label><strong>Libwyliodrin version:</strong> {{libversion}}</label>
            <label><strong>Operating System:</strong> {{os}}</label>
-           <label class="langtype"><strong>Supported languages:</strong> <span>{{supported}}</span></label>
+           <label class="langtype"><strong>Supported languages:</strong> <span ng-repeat="lang in supported">{{lang}}</span></label>
         </md-content>
     </md-dialog-content>
 	<md-dialog-actions layout="row">

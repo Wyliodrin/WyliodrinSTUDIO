@@ -242,12 +242,12 @@ module.exports = function ()
 					$scope.os = "Unknown";
 				}
 
-				$scope.supported = "";
+				$scope.supported = [];
 				_.forOwn($wydevice.device.capabilities.l, function(value, key) {
 					if (value){
 						var language = _.filter(settings.LANGUAGES, { 'title' : key } )[0];
 						if (language){
-							$scope.supported += language.text + " ";
+							$scope.supported.push(language.text);
 						}
 					}
 				});

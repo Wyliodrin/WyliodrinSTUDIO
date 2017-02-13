@@ -10,7 +10,7 @@
 		<div class="print no-print">
 			<md-button ng-click="n.print (); $event.preventPropagation ();">
 	            <img src="../img/print-icon.png" class="s24">
-	            <md-tooltip md-direction="right">
+	            <md-tooltip md-direction="left">
 	              Print
 	            </md-tooltip>
 	        </md-button>
@@ -34,12 +34,7 @@
 		                      Stop
 		                    </md-tooltip>
 		                </md-button>
-			    		<!-- <md-button ng-show="item.type === 'code' && connected" ng-click="n.reset(); $event.preventPropagation ();">
-		                    <img src="../img/reset-icon.png" class="s24">
-		                    <md-tooltip md-direction="bottom">
-		                      Reset
-		                    </md-tooltip>
-		                </md-button> -->
+
 			    		<md-button ng-show="item.type === 'markdown'" ng-click="n.edit (item.label); $event.stopPropagation ();">
 		                    <img src="../img/edit-icon.png" class="s24">
 		                    <md-tooltip md-direction="bottom">
@@ -326,84 +321,14 @@
 						</div>
 					</div>
 				</md-list-item>
-			  <!-- <md-list-item flex class="section-active">
-			    <div class="md-list-item-text">
-					<div class="clearfix" style="padding: 10px; padding-left: 0px">
-					<img src="https://raw.githubusercontent.com/jupyter/nature-demo/master/images/jupyter-logo.png" width="150px" style="display: inline-block; margin-top: 5px;">
-					<a href="http://bit.ly/tmpnbdevrax"><img src="https://cloud.githubusercontent.com/assets/836375/4916141/2732892e-64d6-11e4-980f-11afcf03ca31.png" width="150px" class="pull-right" style="display: inline-block; margin: 0px;"></a>
-					</div>
 
-					## Welcome to the Temporary Notebook (tmpnb) service!
-
-					This Notebook Server was **launched just for you**. It's a temporary way for you to try out a recent development version of the IPython/Jupyter notebook.
-
-					<div class="alert alert-warning" role="alert" style="margin: 10px">
-					<p>**WARNING**</p>
-
-					<p>Don't rely on this server for anything you want to last - your server will be *deleted after 10 minutes of inactivity*.</p>
-					</div>
-
-					Your server is hosted thanks to [Rackspace](http://bit.ly/tmpnbdevrax), on their on-demand bare metal servers, [OnMetal](http://bit.ly/onmetal).
-
-			    </div>
-			  </md-list-item>
-			  <md-list-item flex class="section-regular">
-			    <div class="md-list-item-text">
-			     	<pre>
-					
-	%matplotlib notebook
-
-	import pandas as pd
-	import numpy as np
-	import matplotlib
-
-	from matplotlib import pyplot as plt
-	import seaborn as sns
-
-	ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
-	ts = ts.cumsum()
-
-	df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
-	                  columns=['A', 'B', 'C', 'D'])
-	df = df.cumsum()
-	df.plot(); plt.legend(loc='best')
-
-					</pre>
-			      <p>{{item.description}}</p>
-			    </div>
-			  </md-list-item>
-			  <md-list-item flex class="section-regular">
-			    <div class="md-list-item-text">
-			     	<pre>
-					
-	%matplotlib notebook
-
-	import pandas as pd
-	import numpy as np
-	import matplotlib
-
-	from matplotlib import pyplot as plt
-	import seaborn as sns
-
-	ts = pd.Series(np.random.randn(1000), index=pd.date_range('1/1/2000', periods=1000))
-	ts = ts.cumsum()
-
-	df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
-	                  columns=['A', 'B', 'C', 'D'])
-	df = df.cumsum()
-	df.plot(); plt.legend(loc='best')
-
-					</pre>
-			      <p>{{item.description}}</p>
-			    </div>
-			  </md-list-item> -->
 			</md-list>
 			<div class="bottom-space"></div>
 			<div class="server-status no-print" ng-class="{'connected':status === 'READY' || status === 'PROCESSING', 'stopped':status === 'STOPPED'}" ng-show="connected">
 				Python {{status}}
 				<md-button ng-show="connected" ng-click="n.reset()">
 	                <img src="../img/reset-icon.png" class="s24">
-	                <md-tooltip md-direction="top">
+	                <md-tooltip md-direction="left">
 	                  Reset
 	                </md-tooltip>
 	            </md-button>

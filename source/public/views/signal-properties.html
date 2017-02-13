@@ -18,19 +18,8 @@
                 <label>{{ 'SIGNAL_PROPERTIES_SignalColor' | translate }}</label>
                 <input type="color" ng-model="signal.color" class="signalcolor">
             </md-input-container>
-            <!-- {{signal.style}} -->
         </md-content>
 	      
-
-		      <!-- <md-select ng-model="signal.description">
-		          <md-option ng-repeat="language in languages" value="{{language.title}}">
-		            {{language.text}}
-		          </md-option>
-		        </md-select> -->
-		    
-      	<!-- <md-grid-list md-cols="4" md-row-height="3:3">
-    		<md-grid-tile ng-repeat="style in styles"><md-button><img ng-src="{{'drawable/'+style+'.png'}}" ng-click="s.style (style)"></md-button></md-grid-list>
-    	</md-grid-list> -->
 	<md-list>
       <md-list-item ng-repeat="(property, propertyValue) in properties" class="sig-properties">
         <div ng-bind-html="propertyValue.text | translate"></div>
@@ -46,7 +35,6 @@
       </md-list-item>
     </md-list>
 	</md-dialog-content>
-	<!--<md-dialog-actions layout="row" ng-show="addSignal">-->
 	<md-dialog-actions layout-gt-sm="row" ng-if="addSignal">
 		<md-button ng-click="s.add ()">{{ 'TOOLBAR_ADD' | translate }}</md-button>
 		<md-button ng-click="s.close ()">{{ 'TOOLBAR_CANCEL' | translate }}</md-button>

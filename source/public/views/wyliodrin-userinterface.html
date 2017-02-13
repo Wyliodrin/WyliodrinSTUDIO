@@ -4,12 +4,6 @@
         	<div class="overlogo"></div>
 			<h1><img src="/public/drawable/wyliodrin-small-logo.png" alt="Wyliodrin" title="Wyliodrin"></h1>
 			<span flex></span>
-           <!--  <md-button class="icon-btn-lg" ng-click="t.documentation()">
-                <md-icon md-svg-src="/public/drawable/help-icon.svg" class="s24" aria-label="Help" ></md-icon>
-                <md-tooltip md-direction="bottom">
-                  Help
-                </md-tooltip>
-            </md-button> -->
 
 
             
@@ -54,11 +48,7 @@
 			            Wyliodrin API
 			          </md-button>
 			        </md-menu-item>
-              <!-- <md-menu-item>
-                <md-button ng-click="t.example()">
-                  Examples
-                </md-button>
-              </md-menu-item> -->
+
               <md-menu-item>
                 <md-button ng-click="t.forum()">
                   {{ 'TOOLBAR_FORUM' | translate }}
@@ -74,16 +64,7 @@
                         {{ 'TOOLBAR_ABOUT' | translate }}
                       </md-button>
                     </md-menu-item>
-                    <!-- <md-menu-item>
-                      <md-button ng-click="t.licence()">
-                        Usage licence
-                      </md-button>
-                    </md-menu-item> -->
-                    <!-- <md-menu-item>
-                      <md-button ng-click="t.welcome()">
-                        Welcome
-                      </md-button>
-                    </md-menu-item> -->
+
 			      </md-menu-content>
 			    </md-menu>
 			  </div>
@@ -96,23 +77,6 @@
                </md-tooltip>
             </md-button>
 			<div ng-controller="SerialPortsController as sp" class="title-button toggle-connection">
-              <!--<div ng-if="!connected" class="serial-select-title">{{ 'DEVICE_PORT' | translate }}:</div>
-                <md-input-container ng-hide="connected" class="serial-select">
-                    <md-select ng-model="serialPort" aria-label="serial port">
-                        <md-optgroup class="title-button" label="{{ 'DEVICE_Chrome' | translate }}">
-                          <md-option class="title-button" ng-value="{path:'chrome'}">{{ 'chrome' | translate }}</md-option>
-                        </md-optgroup>
-                        <md-optgroup ng-if="devicesinstall.length > 0" class="title-button" label="{{ 'DEVICE_Install' | translate }}">
-                          <md-option class="title-button" ng-value="device" ng-repeat="device in devicesinstall">{{device.name}}</md-option>
-                        </md-optgroup>
-                        <md-optgroup class="title-button" label="{{ 'DEVICE_Network' | translate }}">
-                          <md-option class="title-button" ng-value="device" ng-repeat="device in devices">{{device.name}}</md-option>
-                        </md-optgroup>
-                        <md-optgroup class="title-button" label="{{ 'DEVICE_Serial' | translate }}">
-                          <md-option class="title-button" ng-value="serialport" ng-repeat="serialport in serialPorts">{{serialport.path}}</md-option>
-                        </md-optgroup>
-                    </md-select>
-                </md-input-container>-->
               <div ng-if="connected" layout="row">
                    	<img ng-if="device.category === 'board'" ng-src="/public/drawable/board_{{device.platform}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
                     <img ng-if="device.category !== 'board'" ng-src="/public/drawable/{{device.category}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
@@ -190,7 +154,7 @@
                         </md-tooltip>
                     </md-button>
                </div>
-                <!-- <select ng-model="serialPort" ng-options="serialport.path for serialport in serialPorts track by serialport.path"></select> -->
+
 				<md-button ng-show="!connected" ng-click="sp.open()" class="open-close">{{ 'DEVICE_CONNECT' | translate }}</md-button>
                 
 				<div class="{{a.status()}}" >{{status | translate}}</div>
@@ -236,20 +200,11 @@
 	</md-toolbar>
     <div class="tabs-box-container">
         <md-tabs ng-hide="project_disable && shell_disable" flex="100" class="tabs-box">
-            <!-- <md-tab >
-                <md-tab-label>Welcome</md-tab-label>
-                <md-tab-body>
-    
-                </md-tab-body>
-            </md-tab> -->
+
             <md-tab ng-disabled="project_disable">
               <md-tab-label>{{ 'PROJECT_NOTEBOOK' | translate }}</md-tab-label>
               <md-tab-body>
-                <!-- <div ng-controller="ReadmeController as r">
-                  <div ng-bind-html="html" id="readme">
-                  </div>
-                  <a href="#" class="examplestatus" id="examplestatus" ng-click="r.edit()">{{ 'WYLIODRIN_USERINTERFACE_README_Edit' | translate }}</a>
-                </div> -->
+
                 <iframe ng-controller="NotebookController" flex style="width:100%; height:100%; border:0;" src="/public/notebook/views/index.html" id="notebook">
                 </iframe>
               </md-tab-body>
@@ -318,53 +273,6 @@
 
                         <div flex="100" ng-show="showEditor" layout="row"><!--editor text-->
     
-                            <!-- <md-tabs md-align-tabs="bottom" flex="100" class="tabs-box software_label">
-                                <md-tab>
-                                    <md-tab-label>{{label[device.category].software}}</md-tab-label>
-                                    <md-tab-body>
-                                        <div layout="column">
-                                            <div ng-show="project.language!=='visual' && project.language !== 'streams'" flex="100" ui-ace="{
-                                              advanced: {
-                                                  enableSnippets: true,
-                                                  enableBasicAutocompletion: true,
-                                                  enableLiveAutocompletion: true
-                                              },
-                                              useWrapMode : true,
-                                              showGutter: true,
-                                              mode:'python',
-                                              theme:'chrome',
-                                              rendererOptions: { 
-                                                fontSize: 14 
-                                              },
-                                              firstLineNumber: 1,
-                                              onLoad: aceSoftwareLoaded,
-                                              onChange: aceSoftwareChanged
-                                            }" ng-model="tree.selectednode.content"></div>
-                                            <div ng-show="project.language==='visual'" flex="100" layout="row">
-                                                <iframe flex="{{showhidecode?65:100}}" src="/public/blockly/blockly_frame.html">
-                                                </iframe>
-                                                <div flex="{{showhidecode?35:0}}" ng-show="showhidecode" ui-ace="{
-                                                  useWrapMode : false,
-                                                  showGutter: true,
-                                                  rendererOptions: { 
-                                                    fontSize: 14 
-                                                  },
-                                                  mode: (device.category!=='chrome'?'python':'javascript'),
-                                                  theme:'chrome',
-                                                  firstLineNumber: 1,
-                                                  onLoad: aceShowLoaded
-                                                }" ng-model="tree.selectednode.content"></div>
-                                            </div>
-                                            <div id="divred" ng-show="project.language==='streams'" flex="100">
-                                              <webview id="red" src="/public/red/red.html" partition="red">
-                                              </webview>
-                                            </div>
-                                        </div>
-                                    </md-tab-body>
-                                </md-tab>
-
-                                
-                            </md-tabs> -->
 
 
 
@@ -423,7 +331,6 @@
                 <md-tab-body>
                     <div layout="column" ng-controller="DashboardController as d">
                         <div flex="100" class="dashboard-content">
-                            <!-- <md-button ng-click="d.add()">Add</md-button> -->
                             <md-grid-list class="graph-signal" md-cols="4" md-row-height="200px">
                                 <md-grid-tile md-colspan="{{d.colspan (signal)}}" md-rowspan="{{d.rowspan(signal)}}" ng-repeat="signal in project.dashboard track by $index" language="project.language">
                                   <dashboard-viewer signal="signal" erase="d.erase(signal)" left="d.left (signal)" right="d.right(signal)">

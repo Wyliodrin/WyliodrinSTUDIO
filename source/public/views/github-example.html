@@ -20,16 +20,7 @@
                         <div style="padding:3px 0;">{{item.description}}</div>
                     <md-button ng-show="!importing" class="md-secondary lib-app-btn right" ng-click="e.use (item)">{{ 'TOOLBAR_IMPORT' | translate }}</md-button>
             	</md-list-item>
-            <!-- <md-list-item ng-repeat="(examplename, example) in EXAMPLE['board']" layout-padding class="task separator-line">
-            
-                <md-icon ng-show="task.TT!=='?'" md-svg-src="/public/drawable/process-icon.svg" class="s24" aria-label="Process" ></md-icon>
-                <md-icon ng-show="task.TT==='?'" md-svg-src="/public/drawable/task-icon.svg" class="s24" aria-label="Service" ></md-icon>
-                    <span style="width:70%;">
-                        <h3 style="font-weight:600;">{{examplename}}</h3>
-                        <p>{{e.language (example.language)}}</p>
-                    </span>
-                <md-button class="md-secondary lib-app-btn right" ng-click="e.use (examplename, example)">{{ 'TOOLBAR_IMPORT' | translate }}</md-button>
-            </md-list-item> -->
+
             </md-list>
             <div ng-show="importing" style="text-align: center; padding: 20px;"><img src="/public/drawable/loading.gif" /></div>
             <div ng-show="lst.length === 0">

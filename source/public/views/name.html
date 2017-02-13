@@ -1,4 +1,4 @@
-<md-dialog aria-label="{{ 'Name' | translate }}">
+<md-dialog aria-label="{{ 'Name' | translate }}" class="devicedtl">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>{{ 'Name' | translate }}</h2>
@@ -11,10 +11,10 @@
                 <label>{{ 'Name' | translate }}</label>
                 <input ng-model="name" minlength="3" ng-trim="true" ng-enter="a.rename()" md-autofocus="true">
            </md-input-container>
-           <label>Wyliodrin-app-server version: {{version}}</label>
-           <label>Libwyliodrin version: {{libversion}}</label>
-           <label>Operating System: {{os}}</label>
-           <label>Supported languages: {{supported}}</label>
+           <label><strong>Wyliodrin-app-server version:</strong> {{version}}</label>
+           <label><strong>Libwyliodrin version:</strong> {{libversion}}</label>
+           <label><strong>Operating System:</strong> {{os}}</label>
+           <label class="langtype"><strong>Supported languages:</strong> <span>{{supported}}</span></label>
         </md-content>
     </md-dialog-content>
 	<md-dialog-actions layout="row">

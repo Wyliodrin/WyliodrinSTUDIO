@@ -11,8 +11,7 @@
                 {{ 'RESISTOR_COLORCODE_FromColorToNumber' | translate }}
             </md-tab-label>
             <md-tab-body>
-                
-                <!--start code first page-->
+
                 <md-dialog-content style="text-align:center;">
                     <div layout="row" layout-padding>
                         <md-input-container>
@@ -52,7 +51,7 @@
                                 <md-option value="{{color.value}}" ng-repeat="color in tolerance">{{color.color}}</md-option>
                             </md-select>
                         </md-input-container>
-                        <!-- {{r | number}} {{u}}&Omega; {{value.color5}}% -->
+
                     </div>
                     <img src="/public/drawable/resistorcolorcode.png">
                 </md-dialog-content>

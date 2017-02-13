@@ -1,0 +1,49 @@
+{
+	"board":
+	{
+		"firmware":"",
+		"text": "Embedded Device"
+	},
+	"raspberrypi":
+	{
+		"firmware":"arduino",
+		"text": "Raspberry Pi",
+		"usename": "pi",
+		"password": "raspberry"
+	},
+	"udooneo":
+	{
+		"firmware":"arduino",
+		"text": "UDOO Neo",
+		"username": "udooer",
+		"password": "udooer"
+	},
+	"arduinoyun":
+	{
+		"firmware":"arduino",
+		"text": "Arduino Yun",
+		"username": "root",
+		"password": "doghunter"
+	},
+	"beagleboneblack":
+	{
+		"firmware":"",
+		"text": "BeagleBone Black",
+		"username": "udooer",
+		"password": "udooer"
+	},
+	"dragonboard":
+	{
+		"firmware":"",
+		"text": "DragonBoard 410C",
+		"usename": "",
+		"password": ""
+	},
+	"cisco829":
+	{
+		"firmware":"",
+		"text": "Cisco IR 829",
+		"usename": "root",
+		"password": ""
+	}
+}

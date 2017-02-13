@@ -20,68 +20,7 @@ var settings = {
 
 settings.platform = require ('./config/platform.js');
 
-settings.LABEL = {
-	'board':
-	{
-		'software':'Software',
-		'firmware':'Firmware',
-		text: 'Embedded Device'
-	},
-	'raspberrypi':
-	{
-		'software':'Raspberry Pi',
-		'firmware':'Arduino',
-		text: 'Raspberry Pi',
-		usename: 'pi',
-		password: 'raspberry'
-	},
-	'udooneo':
-	{
-		'software':'UDOO Neo',
-		'firmware':'Arduino',
-		text: 'UDOO Neo',
-		username: 'udooer',
-		password: 'udooer'
-	},
-	'arduinoyun':
-	{
-		'software':'Arduino Yun',
-		'firmware':'Arduino',
-		text: 'Arduino Yun',
-		username: 'root',
-		password: 'doghunter'
-	},
-	'beagleboneblack':
-	{
-		'software':'BeagleBone Black',
-		'firmware':'',
-		text: 'BeagleBone Black',
-		username: 'udooer',
-		password: 'udooer'
-	},
-	'chrome':
-	{
-		'software':'JavaScript',
-		'firmware':'',
-		text:'Chrome'
-	},
-	'dragonboard':
-	{
-		'software':'DragonBoard 410C',
-		'firmware':'',
-		text: 'DragonBoard 410C',
-		usename: '',
-		password: ''
-	},
-	'cisco829':
-	{
-		'software':'Cisco IR 829',
-		'firmware':'',
-		text: 'Cisco IR 829',
-		usename: 'root',
-		password: ''
-	},
-};
+settings.LABEL = require ('./embedded/embedded.json');
 
 settings.STYLE_NAMES = {
 	'line': 'Line',
@@ -102,42 +41,42 @@ settings.FIRMWARES_V2 = {
 	'openmote':'Open Mote'
 };
 
-settings.FIRMWARES = {
-	'raspberrypi':
-	{
-		'uno':'Arduino Uno',
-		'openmote':'Open Mote',
-		'atmega328':'Arduino Duemilanove w/ ATmega328',
-		'diecimila':'Arduino Diecimila or Duemilanove w/ ATmega168',
-		'nano328':'Arduino Nano w/ ATmega328',
-		'nano':'Arduino Nano w/ ATmega168',
-		'mega2560':'Arduino Mega 2560 or Mega ADK',
-		'mega':'Arduino Mega (ATmega1280)',
-		'leonardo':'Arduino Leonardo',
-		'mini328':'Arduino Mini w/ ATmega328',
-		'mini':'Arduino Mini w/ ATmega168',
-		'ethernet':'Arduino Ethernet',
-		'fio':'Arduino Fio',
-		'bt328':'Arduino BT w/ ATmega328',
-		'bt':'Arduino BT w/ ATmega168',
-		'lilypad328':'LilyPad Arduino w/ ATmega328',
-		'lilypad':'LilyPad Arduino w/ ATmega168',
-		'pro5v328':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega328',
-		'pro5v':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega168',
-		'pro328':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328',
-		'pro':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega168',
-		'atmega168':'Arduino NG or older w/ ATmega168',
-		'atmega8':'Arduino NG or older w/ ATmega8'
-	},
-	'udooneo':
-	{
-		'm4':'Arduino M4'
-	},
-	'arduinoyun':
-	{
-		'arduino':'Arduino'
-	}
-};
+// settings.FIRMWARES = {
+// 	'raspberrypi':
+// 	{
+// 		'uno':'Arduino Uno',
+// 		'openmote':'Open Mote',
+// 		'atmega328':'Arduino Duemilanove w/ ATmega328',
+// 		'diecimila':'Arduino Diecimila or Duemilanove w/ ATmega168',
+// 		'nano328':'Arduino Nano w/ ATmega328',
+// 		'nano':'Arduino Nano w/ ATmega168',
+// 		'mega2560':'Arduino Mega 2560 or Mega ADK',
+// 		'mega':'Arduino Mega (ATmega1280)',
+// 		'leonardo':'Arduino Leonardo',
+// 		'mini328':'Arduino Mini w/ ATmega328',
+// 		'mini':'Arduino Mini w/ ATmega168',
+// 		'ethernet':'Arduino Ethernet',
+// 		'fio':'Arduino Fio',
+// 		'bt328':'Arduino BT w/ ATmega328',
+// 		'bt':'Arduino BT w/ ATmega168',
+// 		'lilypad328':'LilyPad Arduino w/ ATmega328',
+// 		'lilypad':'LilyPad Arduino w/ ATmega168',
+// 		'pro5v328':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega328',
+// 		'pro5v':'Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega168',
+// 		'pro328':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega328',
+// 		'pro':'Arduino Pro or Pro Mini (3.3V, 8 MHz) w/ ATmega168',
+// 		'atmega168':'Arduino NG or older w/ ATmega168',
+// 		'atmega8':'Arduino NG or older w/ ATmega8'
+// 	},
+// 	'udooneo':
+// 	{
+// 		'm4':'Arduino M4'
+// 	},
+// 	'arduinoyun':
+// 	{
+// 		'arduino':'Arduino'
+// 	}
+// };
 
 settings.LICENSE = fs.readFileSync (__dirname+'/../LICENSE').toString();
 

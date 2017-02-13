@@ -367,60 +367,170 @@ module.exports = function(grunt) {
 
   grunt.registerTask ('makefile', 'Makefile', function ()
   {
-    var MAKEFILE_FOLDER_LINUX = 'source/embedded/makefile/linux';
-    var listmakefile = fs.readdirSync (MAKEFILE_FOLDER_LINUX);
+    var MAKEFILE_FOLDER_LINUX = '';
+    var FIRMWARE_MAKEFILE_FOLDER_LINUX = '';
+    var MAKEFILE_FOLDER_WINDOWS = '';
+    var FIRMWARE_MAKEFILE_FOLDER_WINDOWS = '';
+    var devices = require ('./source/embedded/embedded.json');
+    // console.log (devices);
     var makefile = {
       linux:{},
       windows:{}
     };
-    _.each (listmakefile, function (mf)
+    _.each (devices, function (deviceobject, device)
     {
-      if (mf.startsWith ('Makefile'))
+      var listmakefile = [];
+      // Linux
+      makefile.linux[device] = {
+        firmware: {}
+      };
+      MAKEFILE_FOLDER_LINUX = 'source/embedded/'+device+'/linux/makefile';
+      FIRMWARE_MAKEFILE_FOLDER_LINUX = 'source/embedded/'+device+'/linux/firmware';
+      try
       {
-        var ln = path.extname (mf).substring (1);
-        console.log ('makefile '+ln);
-        makefile.linux[ln] = fs.readFileSync (MAKEFILE_FOLDER_LINUX+'/'+mf).toString ();
+        listmakefile = fs.readdirSync (MAKEFILE_FOLDER_LINUX);
+        _.each (listmakefile, function (mf)
+        {
+          if (mf.startsWith ('Makefile'))
+          {
+            var ln = path.extname (mf).substring (1);
+            console.log ('linux makefile ('+device+') '+ln);
+            makefile.linux[device][ln] = fs.readFileSync (MAKEFILE_FOLDER_LINUX+'/'+mf).toString ();
+          }
+        });  
       }
-    });
-    var MAKEFILE_FOLDER_WINDOWS = 'source/embedded/makefile/windows';
-    listmakefile = fs.readdirSync (MAKEFILE_FOLDER_WINDOWS);
-    _.each (listmakefile, function (mf)
-    {
-      if (mf.startsWith ('make'))
+      catch (e)
       {
-        var ln = path.extname (mf).substring (1);
-        console.log ('makefile '+ln);
-        makefile.windows[ln] = fs.readFileSync (MAKEFILE_FOLDER_WINDOWS+'/'+mf).toString ();
+        // console.log ('No linux makefile for '+device);
       }
+
+      // Linux Firmware
+      /*
+      {
+        firmware:
+        {
+          server: // makefile to send to server
+          build: // makefile to build locally
+          flash: // makefile to flash locally
+        }
+      }
+      */
+
+      try
+      {
+        var listmakefiletype = fs.readdirSync (FIRMWARE_MAKEFILE_FOLDER_LINUX);
+        _.each (listmakefiletype, function (makefiletype)
+        {
+          try
+          {
+            var listmakefile = fs.readdirSync (FIRMWARE_MAKEFILE_FOLDER_LINUX+'/'+makefiletype);
+            _.each (listmakefile, function (mf)
+            {
+              if (mf.startsWith ('Makefile'))
+              {
+                var ln = path.extname (mf).substring (1);
+                console.log ('linux firmware makefile ('+device+') '+ln);
+                if (!makefile.linux[device].firmware[ln]) makefile.linux[device].firmware[ln] = {};
+                makefile.linux[device].firmware[ln][makefiletype] = fs.readFileSync (FIRMWARE_MAKEFILE_FOLDER_LINUX+'/'+makefiletype+'/'+mf).toString ();
+              }
+            });  
+          }
+          catch (e)
+          {
+            // console.log (e);
+          }
+        });
+      }
+      catch (e)
+      {
+
+      }
+
+      // Windows
+      makefile.windows[device] = {
+        firmware: {}
+      };
+      MAKEFILE_FOLDER_WINDOWS = 'source/embedded/'+device+'/windows/makefile';
+      try
+      {
+        listmakefile = fs.readdirSync (MAKEFILE_FOLDER_WINDOWS);
+        _.each (listmakefile, function (mf)
+        {
+          if (mf.startsWith ('make'))
+          {
+            var ln = path.extname (mf).substring (1);
+            console.log ('windows makefile ('+device+') '+ln);
+            makefile.windows[device][ln] = fs.readFileSync (MAKEFILE_FOLDER_WINDOWS+'/'+mf).toString ();
+          }
+        });  
+      }
+      catch (e)
+      {
+        // console.log ('No windows makefile for '+device);
+      }
+
+      try
+      {
+        var listmakefiletype = fs.readdirSync (FIRMWARE_MAKEFILE_FOLDER_WINDOWS);
+        _.each (listmakefiletype, function (makefiletype)
+        {
+          try
+          {
+            var listmakefile = fs.readdirSync (FIRMWARE_MAKEFILE_FOLDER_WINDOWS+'/'+makefiletype);
+            _.each (listmakefile, function (mf)
+            {
+              if (mf.startsWith ('Makefile'))
+              {
+                var ln = path.extname (mf).substring (1);
+                console.log ('linux firmware makefile ('+device+') '+ln);
+                if (!makefile.windows[device].firmware[ln]) makefile.windows[device].firmware[ln] = {};
+                makefile.windows[device].firmware[ln][makefiletype] = fs.readFileSync (FIRMWARE_MAKEFILE_FOLDER_WINDOWS+'/'+makefiletype+'/'+mf).toString ();
+              }
+            });  
+          }
+          catch (e)
+          {
+            // console.log (e);
+          }
+        });
+      }
+      catch (e)
+      {
+
+      }
+
     });
+
+    // console.log (JSON.stringify (makefile, null, 4));
+
     mkdirp.sync (CONFIG);
-    fs.writeFileSync ('source/config/makefile.js', '"use strict";\n module.exports = '+JSON.stringify (makefile)+';');
+    fs.writeFileSync ('source/config/makefile.js', '"use strict";\n module.exports = '+JSON.stringify (makefile, null, 2)+';');
   });
 
 
-  grunt.registerTask ('makefile_v2', 'Makefile_v2', function ()////////////////////////////////////////////////
-  {
-    function recurse(folder){
-      var ret = {};
-      var content = fs.readdirSync(folder);
-      _.each(content, function (file)
-      {
-        var p = path.join(folder,file);
-        if (fs.lstatSync(p).isDirectory())
-        {
-          ret[file] = recurse(p);
-        }
-        else
-        {
-          var name = path.extname(file).substring(1);
-          ret[name] = fs.readFileSync(p).toString();
-        }
-      });
-      return ret;
-    }
-    var makefile = recurse("source/embedded/makefile");
-    fs.writeFileSync ('source/config/makefile_v2.js', '"use strict";\n module.exports = '+JSON.stringify (makefile)+';');
-  });
+  // grunt.registerTask ('makefile_v2', 'Makefile_v2', function ()////////////////////////////////////////////////
+  // {
+  //   function recurse(folder){
+  //     var ret = {};
+  //     var content = fs.readdirSync(folder);
+  //     _.each(content, function (file)
+  //     {
+  //       var p = path.join(folder,file);
+  //       if (fs.lstatSync(p).isDirectory())
+  //       {
+  //         ret[file] = recurse(p);
+  //       }
+  //       else
+  //       {
+  //         var name = path.extname(file).substring(1);
+  //         ret[name] = fs.readFileSync(p).toString();
+  //       }
+  //     });
+  //     return ret;
+  //   }
+  //   var makefile = recurse("source/embedded/makefile");
+  //   fs.writeFileSync ('source/config/makefile_v2.js', '"use strict";\n module.exports = '+JSON.stringify (makefile)+';');
+  // });
 
 
   grunt.registerTask ('example', 'Example', function ()
@@ -496,29 +606,40 @@ module.exports = function(grunt) {
 
   grunt.registerTask ('install', 'Install', function ()
   {
-    var INSTALL_FOLDER = 'source/embedded/install';
-    var listinstall = fs.readdirSync (INSTALL_FOLDER);
+    var devices = require ('./source/embedded/embedded.json');
+    // console.log (devices);
     var install = {
       linux:{},
       windows:{}
     };
-    _.each (listinstall, function (installfile)
+    for (var device in devices)
     {
-      if (path.extname (installfile) === '.sh')
+      var installfile = '';
+      // Linux
+      installfile = 'source/embedded/'+device+'/linux/install/install.sh';
+      
+      try
       {
-        install.linux[path.basename(installfile, '.sh')] = fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString();  
+        install.linux[path.basename(installfile, '.sh')] = fs.readFileSync (installfile).toString();  
         install.linux[path.basename(installfile, '.sh')] = install.linux[path.basename(installfile, '.sh')].replace (/\r?\n/g, ' && ');
-	if (install.linux[path.basename(installfile, '.sh')].slice (-3) === '&& ')
-	{
-		var length = install.linux[path.basename(installfile, '.sh')].length;
-		install.linux[path.basename(installfile, '.sh')] = install.linux[path.basename(installfile, '.sh')].slice (0, length-3);
-	}
-        console.log ('Install: '+path.basename(installfile, '.sh'));
+        if (install.linux[path.basename(installfile, '.sh')].slice (-3) === '&& ')
+        {
+          var length = install.linux[path.basename(installfile, '.sh')].length;
+          install.linux[path.basename(installfile, '.sh')] = install.linux[path.basename(installfile, '.sh')].slice (0, length-3);
+        }
+        console.log ('Install file linux '+device);
       }
-      else
-      if (path.extname (installfile) === '.cmd')
+      catch (e)
       {
-        var data = fs.readFileSync (INSTALL_FOLDER+'/'+installfile).toString().split ('\n');
+        console.log ('No install file for linux '+device);
+      }
+
+      // Windows
+      installfile = 'source/embedded/'+device+'/windows/install/install.cmd';
+      
+      try
+      {
+        var data = fs.readFileSync (installfile).toString().split ('\n');
         for (var i=0; i<data.length; i++)
         {
           data[i] = data[i].trim ();
@@ -532,9 +653,13 @@ module.exports = function(grunt) {
         install.windows[path.basename(installfile, '.cmd')] = 'powershell.exe -OutputFormat Text -EncodedCommand '+new Buffer (buffer, 'utf16le').toString('base64');  
         // install.windows[path.basename(installfile, '.cmd')] = install.windows[path.basename(installfile, '.cmd')].replace (/\r?\n/g, '^\r\n');
         // install.windows[path.basename(installfile, '.cmd')] = install.windows[path.basename(installfile, '.cmd')] + '\r\n';
-        console.log ('Install: '+path.basename(installfile, '.cmd'));
-      }      
-    });
+        console.log ('Install file windows '+device); 
+      }
+      catch (e)
+      {
+        console.log ('No install file for windows '+device);
+      }
+    }
     mkdirp.sync (CONFIG);
     fs.writeFileSync (CONFIG+'/install.js', '"use strict";\n module.exports = '+JSON.stringify (install, null, 2)+';');
   });
@@ -616,7 +741,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'makefile', 'makefile_v2', 'languages', 'example', 'install', 'jshint', 
+  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'makefile', /* 'makefile_v2',*/ 'languages', 'example', 'install', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',

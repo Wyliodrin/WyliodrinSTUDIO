@@ -988,9 +988,10 @@ outline:none;
 }
 
 .tree-hide {
-	position:relative;
-	top:40%;
-	right:0;
+    position: absolute;
+    top: 40%;
+    left: -15px;
+    z-index: 100;
 }
 
 .tree-hide .md-button {
@@ -1003,12 +1004,14 @@ outline:none;
 
 .tree-hide .md-button:hover {
 	img {filter: invert(100%);}
+	background: transparent !important;
 }
 
 .tree-show {
 	position:absolute;
 	top:40%;
-	right:0;
+	right: -15px;
+    z-index: 100;
 }
 
 .tree-show .md-button {
@@ -1021,6 +1024,7 @@ outline:none;
 
 .tree-show .md-button:hover {
 	img {filter: invert(100%);}
+	background: transparent !important;
 }
 
 .gitinput {
@@ -1066,3 +1070,36 @@ outline:none;
 }
 
 .devicedtl {min-width:500px;}
+
+.disconnect {
+	background:#191e25;
+	padding: 3% 2%;
+
+
+	.icon-btn{
+		background: transparent !important;
+		text-transform:none;
+		color: #fff !important;
+	    min-width: 80px;
+	    min-height:80px;
+	    padding: 0;
+    	margin: 0;
+	}
+
+	.icon-btn .s24{
+		color: #fff !important;
+		width:40px;
+		height:40px;
+	}
+
+	.icon-btn:hover { 
+		background:#e54225 !important;
+	}
+
+	md-dialog-actions {
+		padding: 0;
+    	margin: 0;
+	}
+
+
+}

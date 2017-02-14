@@ -236,6 +236,29 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         }
       });
   };
+
+  $scope.aceFirmwareLoaded = function (_editor)
+  {
+    _editor.$blockScrolling = Infinity;
+    _editor.getSession().setTabSize (2);
+    _editor.getSession().setUseSoftTabs (true);
+    _editor.setOptions ({minLines:3, maxLines: 35});
+    _editor.commands.addCommand({
+      name: "evaluate",
+      bindKey: {win: "shift-enter", mac: "shift-enter"},
+      exec: function(editor) {
+          // console.log ('hotkey');
+          var item = findLabel ($scope.activeLabel);
+          if (item)
+          {
+            if (item.type === 'code') that.evaluate ($scope.activeLabel);
+            else
+            if (item.type === 'firmware') that.flash ($scope.activeLabel);
+          }
+        }
+      });
+  };
+
   $scope.aceCodeChanged = function ()
   {
     store ();

@@ -42,10 +42,16 @@ module.exports = function ()
 			return 'status label c-status label-'+$scope.status;
 		};
 
+		this.application = function ()
+		{
+			// console.log ('application');
+			$wyapp.emit ('tab_application');
+		};
+
 		this.shell = function ()
 		{
-			console.log ('shell');
-			$wyapp.emit ('shell');
+			// console.log ('shell');
+			$wyapp.emit ('tab_shell');
 		};
 
 		$wyapp.on ('load', function (project)

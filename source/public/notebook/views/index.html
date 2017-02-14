@@ -276,10 +276,10 @@
 	                                              rendererOptions: { 
 	                                                fontSize: 14,
 	                                                minLines: 1,
-	                                                maxLines: Infinity
+	                                                maxLines: 35
 	                                              },
 	                                              firstLineNumber: 1,
-	                                              onLoad: aceCodeLoaded,
+	                                              onLoad: aceFirmwareLoaded,
 	                                              onChange: aceCodeChanged
 	                                            }" ng-model="item.text"></div>
 							<div class="sendval" ng-show="flashingLabel === item.label && item.response && item.response.length > 0">

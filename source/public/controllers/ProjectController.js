@@ -147,6 +147,8 @@ var app = angular.module ('wyliodrinApp');
 			running: '='
 		};
 
+		var firstFocus = true;
+
 		$scope.project = 
 		{
 			id: -1,
@@ -196,6 +198,20 @@ var app = angular.module ('wyliodrinApp');
 		};
 		$scope.tree.expanded = [];
 		$scope.tree.firmware_mapping = firmware_mapping; //openmote -> Open Mote
+
+		$wyapp.on ('tab_application', function ()
+		{
+			setTimeout (function ()
+			{
+				if (softwareEditor)
+				{
+					softwareEditor.focus ();
+				}
+			}, (firstFocus?3000:0));
+			// at the first focus, the tab will not display correctly if we focus 
+			// the aeditor immediatly
+			firstFocus = false;
+		});
 
 		function nodeEqual(n1,n2){
 			if (angular.equals(n1,n2))

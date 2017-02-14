@@ -80,9 +80,9 @@ module.exports = function ()
 			}
 		});
 
-		$wyapp.on ('shell', function ()
+		$wyapp.on ('tab_shell', function ()
 		{
-			console.log ('focus');
+			// console.log ('focus');
 			setTimeout (function ()
 			{
 				shell.focus ();

@@ -20,7 +20,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('XTermController', function ($scope, $element, $timeout, $wydevice)
+	app.controller ('XTermController', function ($scope, $element, $timeout, $wydevice, $wyapp)
 	{
 		debug ('Registering');
 		var shell;
@@ -78,6 +78,15 @@ module.exports = function ()
 					});
 				}
 			}
+		});
+
+		$wyapp.on ('shell', function ()
+		{
+			console.log ('focus');
+			setTimeout (function ()
+			{
+				shell.focus ();
+			});
 		});
 
 		$(window).resize (function ()

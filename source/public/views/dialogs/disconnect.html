@@ -4,19 +4,19 @@
         <md-button  ng-click="disconnect.disconnect()" class="icon-btn">
             <md-icon md-svg-src="/public/drawable/disconnect-icon.svg" class="s24" aria-label="Close" ></md-icon>
             <md-tooltip md-direction="bottom">
-              Disconnect
+              {{ 'Disconnect' | translate }}
             </md-tooltip>
         </md-button>
         <md-button  ng-click="disconnect.reboot()" class="icon-btn">
             <md-icon md-svg-src="/public/drawable/restart-icon.svg" class="s24" aria-label="Close" ></md-icon>
             <md-tooltip md-direction="bottom">
-              Reboot and Disconnect
+              {{ 'Reboot and Disconnect' | translate }}
             </md-tooltip>
         </md-button>
         <md-button  ng-click="disconnect.poweroff()" class="icon-btn">
             <md-icon md-svg-src="/public/drawable/turn-off-icon.svg" class="s24" aria-label="Close" ></md-icon>
             <md-tooltip md-direction="bottom">
-              Power Off and Disconnect
+              {{ 'Power Off and Disconnect' | translate }}
             </md-tooltip>
         </md-button>
         <!-- <md-button  ng-click="disconnect.cancel()" class="icon-btn">

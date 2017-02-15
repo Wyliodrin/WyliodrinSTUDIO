@@ -1,7 +1,7 @@
 <md-dialog aria-label="Flash {{label[device].firmware}}" style="min-width: 400px;">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			<h2>Flash firmware</h2>
+			<h2>{{'FLASH_FIRMWARE' | translate}}</h2>
 		</div>
 	</md-toolbar>
     
@@ -12,15 +12,15 @@
                 <label><img ng-src="/public/drawable/{{port.vid.type}}-small.png" class="s24">{{port.pid.name}}</label><!--type of firmware-->
 
 
-                <label class="firm-port"><strong>Port:</strong> {{path.basename(port.p)}}</label><!--port-->
+                <label class="firm-port"><strong>{{'Port' | translate}}:</strong> {{path.basename(port.p)}}</label><!--port-->
             </div>
         </md-content>
         <md-content layout-gt-sm="column" layout-padding>
             <md-input-container md-no-float class="md-block">
-                <label>Pick firmware</label>
+                <label>{{'Pick_firmware' | translate}}</label>
                 <md-select ng-model="port.pick">
                     <md-option value="{{EMPTY}}" ng-selected="true">
-                        No Firmware
+                        {{'No_firmware' | translate}}
                     </md-option>
 
                     <md-option ng-repeat="firm in tree.children | filter:check(port.vid.type)" value="{{firm.name}}">
@@ -34,6 +34,6 @@
     
 	<md-dialog-actions layout="row">
 
-        <md-button ng-click="f.run()">Run</md-button>
+        <md-button ng-click="f.run()">{{'Run' | translate}}</md-button>
 	</md-dialog-actions>
 </md-dialog>

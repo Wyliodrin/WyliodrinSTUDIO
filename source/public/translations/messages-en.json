@@ -359,6 +359,10 @@
     "message": "Connect to address",
     "description": ""
   },
+  "AUTHENTICATE_IP": {
+    "message": "IP",
+    "description": "Internet Protocol (IP)"
+  },
   "AUTHENTICATE_Login": {
     "message": "Login using any user from the device",
     "description": ""
@@ -413,6 +417,10 @@
   },
   "FLASH_FIRMWARE_RunWithoutFlash": {
     "message": "Run without flash",
+    "description": ""
+  },
+  "FLASH_FIRMWARE": {
+    "message": "Flash firmware",
     "description": ""
   },
   "LIBRARY_Library": {
@@ -533,6 +541,18 @@
   },
   "TASK_MANAGER_TaskManager": {
     "message": "Task Manager",
+    "description": ""
+  },
+  "File_explorer": {
+    "message": "File Explorer",
+    "description": ""
+  },
+  "Show_file_manager": {
+    "message": "Show File Manager",
+    "description": ""
+  },
+  "Hide_file_manager": {
+    "message": "Hide File Manager",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_Error": {
@@ -903,5 +923,77 @@
   {
     "message":"The device is already connected to another user.",
     "description":""
+  },
+  "Disconnect": {
+    "message": "Disconnect",
+    "description": ""
+  },
+  "Reboot_Disconnect": {
+    "message": "Reboot and Disconnect",
+    "description": ""
+  },
+  "Poweroff_Disconnect": {
+    "message": "Power Off and Disconnect",
+    "description": ""
+  },
+  "Error": {
+    "message": "Error",
+    "description": ""
+  },
+  "Select_board": {
+    "message": "Select board",
+    "description": ""
+  },
+  "Port": {
+    "message": "Port",
+    "description": ""
+  },
+  "Pick_firmware": {
+    "message": "Pick firmware",
+    "description": ""
+  },
+  "No_firmware": {
+    "message": "No firmware",
+    "description": ""
+  },
+  "Run": {
+    "message": "Run",
+    "description": ""
+  },
+  "Github": {
+    "message": "Github",
+    "description": ""
+  },
+  "username": {
+    "message": "username",
+    "description": ""
+  },
+  "repository": {
+    "message": "repository",
+    "description": ""
+  },
+  "Author": {
+    "message": "Author",
+    "description": ""
+  },
+  "Wyliodrin_app_server_version": {
+    "message": "Wyliodrin-app-server version",
+    "description": ""
+  },
+  "Libwyliodrin_version": {
+    "message": "Libwyliodrin version",
+    "description": ""
+  },
+  "Operating_system": {
+    "message": "Operating System",
+    "description": ""
+  },
+  "Supported_languages": {
+    "message": "Supported languages",
+    "description": ""
+  },
+  "status": {
+    "message": "status",
+    "description": ""
   }
 }

@@ -114,7 +114,7 @@
                     <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.fe)" class="icon-btn" ng-click="t.fileexplorer()">
                       <md-icon md-svg-src="/public/drawable/fileexplorer-icon.svg" class="s24" aria-label="File Explorer" ></md-icon>
                         <md-tooltip md-direction="bottom">
-                          File Explorer
+                          {{ 'File_explorer' | translate }}
                         </md-tooltip>
                     </md-button>
                     <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.pm)" class="icon-btn" ng-click="t.packagemanager()">
@@ -220,7 +220,7 @@
                             <md-button ng-hide="showTree" ng-click="p.showTreeButton()">
                                 <img src="/public/drawable/filem-show.png" class="s24">
                                 <md-tooltip md-direction="bottom">
-                                  Show File Manager
+                                  {{ 'Show_file_manager' | translate }}
                                 </md-tooltip>
                             </md-button>
                           </div>
@@ -232,7 +232,7 @@
                             <md-button ng-show="showTree" ng-click="p.hideTreeButton()">
                                 <img src="/public/drawable/filem-hide.png" class="s24">
                                 <md-tooltip md-direction="top">
-                                  Hide File Manager
+                                  {{ 'Hide_file_manager' | translate }}
                                 </md-tooltip>
                             </md-button>
                             </div>

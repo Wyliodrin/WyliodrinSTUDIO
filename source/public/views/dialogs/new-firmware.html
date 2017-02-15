@@ -8,7 +8,7 @@
     <md-dialog-content ng-escape="dialogFirmware.cancel()">
         <md-content layout-gt-sm="column" layout-padding>
             <md-input-container>
-                <label>Select board</label>
+                <label>{{ 'Select_board' | translate}}</label>
                 <md-select ng-model="contentPopupNewFirmware.type">
                     <md-option ng-repeat="(key,firmware) in firmwares" value="{{key}}">
                         {{firmware.name}}

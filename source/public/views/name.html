@@ -11,10 +11,10 @@
                 <label>{{ 'Name' | translate }}</label>
                 <input ng-model="name" minlength="3" ng-trim="true" ng-enter="a.rename()" md-autofocus="true">
            </md-input-container>
-           <label><strong>Wyliodrin-app-server version:</strong> {{version}}</label>
-           <label><strong>Libwyliodrin version:</strong> {{libversion}}</label>
-           <label><strong>Operating System:</strong> {{os}}</label>
-           <label class="langtype"><strong>Supported languages:</strong> <span ng-repeat="lang in supported">{{lang}}</span></label>
+           <label><strong>{{ 'Wyliodrin_app_server_version' | translate }}:</strong> {{version}}</label>
+           <label><strong>{{ 'Libwyliodrin_version' | translate }}:</strong> {{libversion}}</label>
+           <label><strong>{{ 'Operating_system' | translate }}:</strong> {{os}}</label>
+           <label class="langtype"><strong>{{ 'Supported_languages' | translate }}:</strong> <span ng-repeat="lang in supported">{{lang}}</span></label>
         </md-content>
     </md-dialog-content>
 	<md-dialog-actions layout="row">

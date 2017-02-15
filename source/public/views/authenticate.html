@@ -8,7 +8,7 @@
 	<md-dialog-content layout-padding>
         <md-content ng-enter="a.connect()" ng-escape="a.exit()">
             <md-input-container style="width:64%;">
-                <label>IP</label>
+                <label>{{ 'AUTHENTICATE_IP' | translate }}</label>
                 <input ng-model="device.ip" ng-trim="true" md-autofocus="device.ip.length === 0">
            </md-input-container>
            <md-input-container ng-hide="device.secure" style="width:30%;">

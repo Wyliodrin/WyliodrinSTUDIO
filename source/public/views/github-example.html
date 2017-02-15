@@ -7,7 +7,7 @@
     
     <md-dialog-content ng-escape="e.exit()">
             <md-input-container class="md-block gitinput">
-                <label>Github username/repository</label>
+                <label>{{'Github' | translate}} {{'username' | translate}}/{{'repository' | translate}}</label>
                 <input ng-model="repo" ng-change="e.load ();"></input>
             </md-input-container>
             <md-list ng-show="importing === false && lst.length > 0" class="gitimport">
@@ -16,7 +16,7 @@
                     <img ng-src="/public/drawable/{{item.language}}project.png" class="s24"></img>
                     <span style="width:70%;">
                         <h3>{{item.name}} <span>{{e.language (item.language)}}</span></h3>
-                        <div style="padding:3px 0;"><i>Author: {{item.author}}</i></div>
+                        <div style="padding:3px 0;"><i>{{'Author' | translate}}: {{item.author}}</i></div>
                         <div style="padding:3px 0;">{{item.description}}</div>
                     <md-button ng-show="!importing" class="md-secondary lib-app-btn right" ng-click="e.use (item)">{{ 'TOOLBAR_IMPORT' | translate }}</md-button>
             	</md-list-item>

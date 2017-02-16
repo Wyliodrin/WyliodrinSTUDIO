@@ -24,6 +24,7 @@ com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Fixed** duplicate visual tree (fixes [#36](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/36))
 * **Fixed** defaults to No Firmware (fixes [#32](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/32))
 * **Fixed** disconnect when exit (fixes [#33](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/33))
+* **Fixed** wrong environment for shell for linux (fixes [#54](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/54))
 * **Removed** Chrome Device
 
 ## Wyliodrin STUDIO 10.10

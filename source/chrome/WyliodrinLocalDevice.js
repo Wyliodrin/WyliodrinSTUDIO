@@ -268,7 +268,7 @@ export default class WyliodrinLocalDevice extends EventEmitter
 
 			// console.log (this.port.send);
 			// console.log (Buffer.isBuffer (buffer));
-			if (tag === 's' && this.options.type === 'chrome-ssh') this.port.shell (data);
+			if (tag === 's' && this.status === 'INSTALL') this.port.shell (data);
 			else this.port.send (buffer);
 		}
 		else if (this.options.type === 'chrome-ssh')

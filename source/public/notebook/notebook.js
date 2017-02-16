@@ -1044,7 +1044,7 @@ app.directive ('response', function ($timeout)
         $scope.$watch ('value', function ()
         {
           // debug ('View schematics');
-          console.log ($scope.value);
+          //console.log ($scope.value);
           if ($scope.value && $scope.value.type)
           {
             var format = $scope.value.type.f;

@@ -267,9 +267,11 @@ var app = angular.module ('wyliodrinApp');
 						if ((!node2.isdir) && (!node2.isspecial) && (node2.ismain)){
 							$scope.tree.selectednode = node2;
 							$scope.showEditor = true;
+							$scope.showTree = true;
 							if ($scope.project.language == "visual"){
 								program.load ($scope.project, node2, $wydevice.device);
 								$scope.showVisual = true;
+								$scope.showTree = false;
 							}
 							else{
 								$scope.showVisual = false;
@@ -277,6 +279,7 @@ var app = angular.module ('wyliodrinApp');
 							if ($scope.project.language == "streams"){
 								//chestii de streams de load
 								$scope.showStreams = true;
+								$scope.showTree = false;
 							}
 							else{
 								$scope.showStreams = false;

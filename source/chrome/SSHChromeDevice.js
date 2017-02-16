@@ -45,6 +45,7 @@ export default class SSHChromeDevice extends EventEmitter
 		this.previousByte = 0;
 		this.status = CONNECTING;
 		this.shouldDisconnect = false;
+
 		if (!addresses.has (this.address))
 		{
 			addresses.set (this.address, this);
@@ -365,7 +366,8 @@ export default class SSHChromeDevice extends EventEmitter
 				{
 					if (this.previousByte === PACKET_SEPARATOR)
 					{
-						this.emit ('data', this._packet ());
+						var packet = this._packet ();
+						this.emit ('data', packet);
 						this.previousByte = 0;
 					}
 					else

@@ -45,6 +45,7 @@ export default class WyliodrinLocalDevice extends EventEmitter
 		this.packetsWithErrors = 0;
 		this.name = 'Unknown';
 		this.category = (options?options.category || 'board':'board');
+		this.shell = false;
 		this.timerstatus = setInterval (function ()
 		{
 			if (this.status === 'CONNECTED') this.send ('ping', null);
@@ -89,6 +90,10 @@ export default class WyliodrinLocalDevice extends EventEmitter
 						{
 							that.disconnect ();
 						}
+					}
+					if (m.t === 'i')
+					{
+						if (m.d.p === 'linux') that.shell = true;
 					}
 					// else 
 					// if (m.t === 'pong') 
@@ -268,7 +273,7 @@ export default class WyliodrinLocalDevice extends EventEmitter
 
 			// console.log (this.port.send);
 			// console.log (Buffer.isBuffer (buffer));
-			if (tag === 's' && this.status === 'INSTALL') this.port.shell (data);
+			if (tag === 's' && this.options.type === 'chrome-ssh' && this.shell === false) this.port.shell (data);
 			else this.port.send (buffer);
 		}
 		else if (this.options.type === 'chrome-ssh')

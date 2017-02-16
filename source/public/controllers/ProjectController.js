@@ -147,8 +147,6 @@ var app = angular.module ('wyliodrinApp');
 			running: '='
 		};
 
-		var firstFocus = true;
-
 		$scope.project = 
 		{
 			id: -1,
@@ -207,10 +205,7 @@ var app = angular.module ('wyliodrinApp');
 				{
 					softwareEditor.focus ();
 				}
-			}, (firstFocus?3000:0));
-			// at the first focus, the tab will not display correctly if we focus 
-			// the aeditor immediatly
-			firstFocus = false;
+			}, 400);
 		});
 
 		function nodeEqual(n1,n2){

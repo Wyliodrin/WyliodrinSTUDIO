@@ -15,7 +15,7 @@ com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Added** importing older style projects (fixes [#26](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/26))
 * **Added** new project opens project (fixes [#30](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/30))
 * **Added** showing message if board is already connected to another user (fixes [#31](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/31))
-* **Fixed** Rename project dialog scrollbar removed
+* **Fixed** Rename project dialog scrollbar removed([#55](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/55))
 * **Fixed** Application focus 
 * **Fixed** Shell focus ([#51](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/51))
 * **Fixed** Raspberry Pi install ([#19](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/20))

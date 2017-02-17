@@ -95,7 +95,7 @@ module.exports = function ()
 			// console.log ($element.width ());
 			// console.log ($element.height ());
 		});
-		shell.on ('key', function (key)
+		shell.on ('data', function (key)
 		{
 			// xterm.write (key);
 			$wydevice.send ('s', {a:'k', t:key});

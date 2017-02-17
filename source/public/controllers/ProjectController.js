@@ -1001,7 +1001,7 @@ var app = angular.module ('wyliodrinApp');
 			setSizes (); 
 		});
 
-		shell.on ('key', function (key)
+		shell.on ('data', function (key)
 		{
 			// xterm.write (key);
 			$wydevice.send ('tp', {a:'k', t:key});

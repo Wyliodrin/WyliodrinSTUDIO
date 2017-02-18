@@ -69,15 +69,15 @@ angular-sanitize@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.6.1.tgz#cacffec3199ed66297afbb1ef366ec66616b3b3f"
 
-angular-translate-loader-static-files@~2.13.1:
-  version "2.13.1"
-  resolved "https://registry.yarnpkg.com/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.13.1.tgz#61f0365fa749bc10afd6952eb1fa36de5f03569d"
+angular-translate-loader-static-files@^2.13.1:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.14.0.tgz#8bd4a27a36fd0c506be6cb18d3104390fb65bc86"
   dependencies:
-    angular-translate "~2.13.1"
+    angular-translate "~2.14.0"
 
-angular-translate@~2.13.1:
-  version "2.13.1"
-  resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.13.1.tgz#05673eb371986fc11edc151f590299d7e0c46228"
+angular-translate@^2.13.1, angular-translate@~2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.14.0.tgz#10dfcc3876fdb56280ef8fd30df63934a05755ff"
   dependencies:
     angular ">=1.2.26 <=1.6"
 
@@ -89,9 +89,9 @@ angular-ui-ace@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/angular-ui-ace/-/angular-ui-ace-0.2.3.tgz#3cb903428100621a367fc7f641440e97a42a26d0"
 
-angular-ui-tree@^2.22.2:
-  version "2.22.2"
-  resolved "https://registry.yarnpkg.com/angular-ui-tree/-/angular-ui-tree-2.22.2.tgz#42c4dd582d10c191bbcda6693d7d71c094af155e"
+angular-ui-tree@^2.22.5:
+  version "2.22.5"
+  resolved "https://registry.yarnpkg.com/angular-ui-tree/-/angular-ui-tree-2.22.5.tgz#99071fb963feaf2eac11c98e95e40628c135813f"
 
 "angular@>=1.2.26 <=1.6", angular@~1.5.6:
   version "1.5.11"

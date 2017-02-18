@@ -261,7 +261,7 @@
 						</div>
 						<div ng-if="item.type==='firmware'">
 							<div class="code-logo">
-				    			<img ng-src="{{'../img/'+item.port.type.split('/')[0]+'.png'}}" class="s24">
+				    			<img ng-src="../img/{{(item.port.type.split('/')[0]?item.port.type.split('/')[0]:'unknown-device')}}.png" class="s24">
 				    		</div>
 							<div ui-ace="{
 	                                              advanced: {
@@ -280,7 +280,8 @@
 	                                              },
 	                                              firstLineNumber: 1,
 	                                              onLoad: aceFirmwareLoaded,
-	                                              onChange: aceCodeChanged
+	                                              onChange: aceCodeChanged,
+	                                              onUnload: aceFirmwareUnloaded
 	                                            }" ng-model="item.text"></div>
 							<div class="sendval" ng-show="flashingLabel === item.label && item.response && item.response.length > 0">
 								<md-input-container md-no-float>

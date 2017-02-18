@@ -31,6 +31,8 @@ var DEVICES = require ('usb_mapping');
 
 var FIRMWARE_TYPES = require ('firmware');
 
+var FIRMWARE_MAX_LINES = 35;
+
 var _ = require ('lodash');
 var EventEmitter = require ('events').EventEmitter;
 var uuid = require ('uuid');
@@ -126,6 +128,8 @@ app.config( [
 
 app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wydevice)
 {
+  var that = this;
+
   function store ()
   {
     if (wyliodrin) wyliodrin.postMessage ({type:'notebook', d:$scope.items}, '*');
@@ -133,6 +137,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   function load (items)
   {
+    that.firmwareEditors = [];
     if (!items) items = [];
     $scope.items = items;
     if ($scope.items.length === 0)
@@ -190,10 +195,10 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   load ([]);
 
-  var that = this;
-
   var platform = '';
   var category = '';
+
+  this.firmwareEditors = [];
 
   window.addEventListener ('message', function (message)
   {
@@ -242,7 +247,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     _editor.$blockScrolling = Infinity;
     _editor.getSession().setTabSize (2);
     _editor.getSession().setUseSoftTabs (true);
-    _editor.setOptions ({minLines:3, maxLines: 35});
+    _editor.setOptions ({minLines:3, maxLines: FIRMWARE_MAX_LINES});
     _editor.commands.addCommand({
       name: "evaluate",
       bindKey: {win: "shift-enter", mac: "shift-enter"},
@@ -257,11 +262,18 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
           }
         }
       });
+    that.firmwareEditors.push (_editor);
   };
 
   $scope.aceCodeChanged = function ()
   {
     store ();
+  };
+
+  $scope.aceFirmwareUnloaded = function (_editor)
+  {
+    console.log ('unload');
+    _.remove (that.firmwareEditors, function (editor) { return editor === _editor;});
   };
   $scope.aceEditLoaded = function (_editor)
   {
@@ -590,11 +602,19 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   this.print = function ()
   {
     $('body').css ('height', 'initial');
-    setTimeout (function ()
+    _.map (that.firmwareEditors, function (editor)
+    {
+      editor.setOptions ({minLines:3, maxLines: Infinity});
+    });
+    $timeout (function ()
     {
       window.print ();
       $('body').css ('height', '');
-    });
+      _.map (that.firmwareEditors, function (editor)
+      {
+        editor.setOptions ({minLines:3, maxLines: FIRMWARE_MAX_LINES});
+      });
+    }, 400);
   };
 
   this.serial = function (label)

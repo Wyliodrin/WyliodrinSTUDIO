@@ -1,0 +1,13 @@
+--- node_modules/angular-ui-ace/src/ui-ace.js	2017-02-18 02:07:40.000000000 +0200
++++ patches/ui-ace.js	2017-02-18 02:07:20.000000000 +0200
+@@ -312,6 +312,10 @@
+         updateOptions(options);
+ 
+         elm.on('$destroy', function () {
++          if (opts.onUnload)
++          {
++            opts.onUnload (acee);
++          }
+           acee.session.$stopWorker();
+           acee.destroy();
+         });

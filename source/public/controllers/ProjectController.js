@@ -325,16 +325,6 @@ var app = angular.module ('wyliodrinApp');
 					if ($scope.project.language == "streams"){
 
 						$scope.showStreams = true;
-						/*console.log(1);
-						sleep(500).then(() => {
-						red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
-						console.log(2);
-						sleep(500).then(() => {
-							console.log(3);
-							red.reload();
-
-						});
-});*/
 						red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
 
 						red.reload();

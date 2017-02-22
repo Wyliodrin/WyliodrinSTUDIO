@@ -632,7 +632,7 @@ module.exports = function(grunt) {
     var rimraf = require("rimraf");
 
     var BASE_FOLDER = '.';
-    var END_FOLDER = '';
+    var END_FOLDER = '.';
     var folders = [ {name:"source", children:[
                       {name:"chrome"},
                       {name:"settings.js"},
@@ -645,15 +645,13 @@ module.exports = function(grunt) {
                         {name:"mixpanel.js"},
                         {name:"wyliodrin.js"}
                       ]}
-                    ]}
+                    ]},
+                    {name:"gruntfile.js"}
                   ];
 
     function recurse(obj, baseSource, baseDest){
       var source = path.join(baseSource, obj.name);
       var dest = path.join(baseDest, obj.name)+".FIXED"
-      console.log("source" + source);
-      console.log("dest" + dest);
-      console.log();
       try 
       {
         var stat = fs.lstatSync(source);
@@ -661,6 +659,7 @@ module.exports = function(grunt) {
       catch (err)
       {
         console.log(source + " does not exist");
+        console.log("Aborting!");
         throw "ERROR !";
       }
       if (stat.isDirectory())
@@ -709,9 +708,6 @@ module.exports = function(grunt) {
     _.each(folders, function (folder){
       recurse(folder,BASE_FOLDER,END_FOLDER);
     });
-    
-
-    console.log("Files that needed fixing are in " + END_FOLDER);
   });
 
 

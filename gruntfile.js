@@ -600,6 +600,121 @@ module.exports = function(grunt) {
   });
 
 
+  grunt.registerTask ('codingstyle', 'Coding Style', function ()
+  {
+    //we use a whitelist approach
+    //let only what we know it is safe to modify here in (folders)
+
+    //options
+    var options = {
+      "indent_size": 4,
+      "indent_char": " ",
+      "indent_with_tabs": false,
+      "eol": "\n",
+      "end_with_newline": false,
+      "indent_level": 0,
+      "preserve_newlines": true,
+      "max_preserve_newlines": 10,
+      "space_in_paren": false,
+      "space_in_empty_paren": false,
+      "jslint_happy": true,
+      "space_after_anon_function": true,
+      "brace_style": "expand",
+      "break_chained_methods": false,
+      "keep_array_indentation": false,
+      "unescape_strings": false,
+      "wrap_line_length": 0,
+      "e4x": false,
+      "comma_first": false,
+      "operator_position": "before-newline"
+    };
+    var beautify = require('js-beautify').js_beautify;
+    var rimraf = require("rimraf");
+
+    var BASE_FOLDER = '.';
+    var END_FOLDER = '';
+    var folders = [ {name:"source", children:[
+                      {name:"chrome"},
+                      {name:"settings.js"},
+                      {name:"public", children:[
+                        {name:"controllers"},
+                        {name:"dashboardtags"},
+                        {name:"notebook"},
+                        {name:"services"},
+                        {name:"library.js"},
+                        {name:"mixpanel.js"},
+                        {name:"wyliodrin.js"}
+                      ]}
+                    ]}
+                  ];
+
+    function recurse(obj, baseSource, baseDest){
+      var source = path.join(baseSource, obj.name);
+      var dest = path.join(baseDest, obj.name)+".FIXED"
+      console.log("source" + source);
+      console.log("dest" + dest);
+      console.log();
+      try 
+      {
+        var stat = fs.lstatSync(source);
+      }
+      catch (err)
+      {
+        console.log(source + " does not exist");
+        throw "ERROR !";
+      }
+      if (stat.isDirectory())
+      {
+        mkdirp(dest);
+        var children;
+        if (obj.children){
+          //if whitelisted picked folders/files
+          children = obj.children;
+        }
+        else{
+          //all of them
+          children = fs.readdirSync(source);
+          children = _.map(children, function (n){
+            return {name:n};
+          })
+        }
+        _.each(children, function (child){
+          recurse(child, source, dest);
+        });
+      }
+      if (stat.isFile())
+      {
+        if (path.extname(obj.name) == ".js")
+        {
+          var content = fs.readFileSync(source,"utf8");
+          var fixed = beautify(content, options);
+          if (content !== fixed){
+            fs.writeFileSync(dest,fixed);
+            console.log(source + " needed fixing.");
+          }
+        }
+      }
+    }
+
+    try
+    {
+      rimraf.sync('*.FIXED');
+    }
+    catch (err)
+    {
+      console.log("Failed to delete old files");
+      throw "ERROR !";
+    }
+    
+    _.each(folders, function (folder){
+      recurse(folder,BASE_FOLDER,END_FOLDER);
+    });
+    
+
+    console.log("Files that needed fixing are in " + END_FOLDER);
+  });
+
+
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-ng-annotate');

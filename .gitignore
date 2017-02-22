@@ -20,6 +20,9 @@ source/config/
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+# Coding style folder
+*.FIXED
+
 # node-waf configuration
 .lock-wscript
 

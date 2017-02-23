@@ -117,8 +117,14 @@
                           {{ 'File_explorer' | translate }}
                         </md-tooltip>
                     </md-button>
+                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.dep)" class="icon-btn" ng-click="t.deploy()">
+                      <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Deploy" ></md-icon>
+                        <md-tooltip md-direction="bottom">
+                          {{ 'Deploy' | translate }}
+                        </md-tooltip>
+                    </md-button>
                     <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.pm)" class="icon-btn" ng-click="t.packagemanager()">
-                    	<md-icon md-svg-src="/public/drawable/library-icon.svg" class="s24" aria-label="{ackage Manager" ></md-icon>
+                    	<md-icon md-svg-src="/public/drawable/library-icon.svg" class="s24" aria-label="Package Manager" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'NETWORK_PackageManager' | translate }}
                         </md-tooltip>

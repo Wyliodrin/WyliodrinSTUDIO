@@ -1027,5 +1027,9 @@
   "UPDATE_SD_CARD_IMAGE": {
     "message":"Please update your SD Card image before running this project",
     "description":""
+  },
+  "Deploy": {
+    "message": "Deploy",
+    "description": ""
   }
 }

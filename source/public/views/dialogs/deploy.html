@@ -1,0 +1,21 @@
+<md-dialog aria-label="Deploy">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ 'Deploy' | translate }}</h2>
+        </div>
+    </md-toolbar>
+
+    <!--<md-dialog-content ng-escape="dialogFile.cancel()">
+        <md-content layout-gt-sm="row" layout-padding>
+            <md-input-container class="add-app-title">
+                <label>{{'New_file' | translate}}</label>
+                <input ng-model="contentPopupNewFile" md-autofocus ng-enter="dialogFile.ok()" minlength="1" ng-trim="true">
+            </md-input-container>
+        </md-content>
+    </md-dialog-content>-->
+
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised" aria-label="Exit" ng-click="dep.exit()">{{'Exit' | translate}}</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

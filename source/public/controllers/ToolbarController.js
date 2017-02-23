@@ -185,6 +185,21 @@ module.exports = function ()
 		      fullscreen: false
 		    });
 		};
+
+		this.deploy = function ()
+		{
+			debug ('Deploy');
+			$mdDialog.show({
+		      controller: 'DeployController',
+		      controllerAs: 'dep',
+		      templateUrl: '/public/views/dialogs/deploy.html',
+		      // parent: angular.element(document.body),
+		      // targetEvent: ev,
+		      escapeToClose: false,
+		      clickOutsideToClose: false,
+		      fullscreen: false
+		    });
+		};
 		
 		this.network = function ()
 		{

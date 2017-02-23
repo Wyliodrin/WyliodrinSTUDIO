@@ -995,5 +995,9 @@
   "status": {
     "message": "status",
     "description": ""
+  },
+  "Deploy": {
+    "message": "Deploy",
+    "description": ""
   }
 }

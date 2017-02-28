@@ -5,14 +5,34 @@
         </div>
     </md-toolbar>
 
-    <!--<md-dialog-content ng-escape="dialogFile.cancel()">
-        <md-content layout-gt-sm="row" layout-padding>
-            <md-input-container class="add-app-title">
-                <label>{{'New_file' | translate}}</label>
-                <input ng-model="contentPopupNewFile" md-autofocus ng-enter="dialogFile.ok()" minlength="1" ng-trim="true">
-            </md-input-container>
-        </md-content>
-    </md-dialog-content>-->
+    <md-dialog-content class="task-box">
+        <md-list>
+            <md-list-item ng-repeat="proj in list" layout-padding class="separator-line task">
+
+                <!--<md-icon ng-show="task.TT!=='?'" md-svg-src="/public/drawable/process-icon.svg" class="s24" aria-label="Process" ></md-icon>--> 
+
+                <!--code above for putting picture-->
+
+                <h3>{{proj.name}}</h3>
+                <span>{{proj.status}}</span>
+                <md-button ng-hide="!proj.away || ( proj.busy || stopped(proj) )" class="md-secondary lib-app-btn right" ng-click="stop(proj)">Stop</md-button>
+                <md-button ng-hide="!proj.away || (proj.busy || running(proj))" class="md-secondary lib-app-btn right" ng-click="run(proj)">Run</md-button>
+                <md-button ng-hide="!proj.away || (proj.busy || stopped(proj))" class="md-secondary lib-app-btn right" ng-click="restart(proj)">Restart</md-button>
+
+                <md-button ng-hide="!proj.here || proj.away || proj.busy" class="md-secondary lib-app-btn right" ng-click="deploy(proj)">Deploy</md-button>
+
+                <md-button ng-hide="!proj.away || proj.busy" class="md-secondary lib-app-btn right" ng-click="undeploy(proj)">Undeploy</md-button>
+
+                <md-button ng-hide="( !proj.away || !proj.here ) || proj.busy" class="md-secondary lib-app-btn right" ng-click="redeploy(proj)">Redeploy</md-button>
+
+                <div ng-show="proj.busy"><img src="/public/drawable/loading.gif" /></div>
+
+            </md-list-item>
+
+
+
+        </md-list>
+    </md-dialog-content>
 
     <md-dialog-actions layout="row">
         <md-button class="md-raised" aria-label="Exit" ng-click="dep.exit()">{{'Exit' | translate}}</md-button>

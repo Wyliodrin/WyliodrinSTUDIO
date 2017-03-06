@@ -26,7 +26,7 @@ module.exports = function ()
 
 	app.controller('DeployController', function($scope, $timeout, $mdDialog, $wydevice, $translate){
 
-		that = this;
+		var that = this;
 
 		var message = function (t, p)
 		{
@@ -34,16 +34,20 @@ module.exports = function ()
 			{
 				$timeout ( function ()
 					{
-						if (p.a == "ACK")
+						if (p.a === 'ACK')
 						{
 							_.filter($scope.list, {hash:p.b})[0].busy = false;
-							that.retake(true);
+							that.retake();
+						}
+						if (p.a === 'ls')
+						{
+							$scope.joinLists($scope.local, $scope.board);
 						}
 					});
 			}
-		}
+		};
 
-
+		$scope.keep_busy = false;
 
 		$scope.list=[];
 
@@ -58,26 +62,28 @@ module.exports = function ()
 		//busy TRUE FALSE
 
 		$scope.local = [];
-		//title id date
+		//hash din title id date
+		//supervisor_file
+		//supervisor_name
 
 		//vedem
 		$scope.board = [];
 
-		$scope.getLocal = function()
+		$scope.getLocal = function(done)
 		{
-			$scope.listProjects();
-			$scope.makeHash($scope.local, ["title", "id", "date"]);
-		}
+			$scope.listProjects(done);
+			//$scope.makeHash($scope.local, ["title", "id", "date"]);
+		};
 
 		$scope.getBoard = function()
 		{
-			//le iau de departe$scope......
-			$scope.makeHash($scope.board, []) ////////////////////
-		}
+			$wydevice.send ('dep', {a:"ls"});
+			//$scope.makeHash($scope.board, []) ////////////////////
+		};
 
 		$scope.makeHash = function(arr, fields){
 				/////////////////////////////////////////
-		}
+		};
 
 
 		$scope.listProjects = function (done)
@@ -92,6 +98,7 @@ module.exports = function ()
 				{
 					$scope.local = list;
 					$scope.$apply ();
+					console.log(list);
 				}
 				if (done)
 				{
@@ -125,46 +132,52 @@ module.exports = function ()
 			//obj.busy = false;  done async
 		}
 
-		function joinLists(list1, list2, keep_busy){
+		function joinLists(list1, list2){
+			if ($scope.keep_busy){
+
+			}
+			else{
+
+			}
 			////////////
 		}
 
-		function action (obj, act)
+		function action (data, obj, act)
 		{
 			busy(obj, function (){
-				$wydevice.send ('dep', {a:act,b:obj.hash});
+				$wydevice.send ('dep', {a:act,b:data});
 			});
 		}
 
 		$scope.stop = function (obj)
 		{
-			action(obj, "stop");
+			action(obj.hash, obj, "stop");
 		};
 
 		$scope.run = function (obj)
 		{
-			action(obj, "run");
+			action(obj.hash, obj, "run");
 		};
 
 		$scope.restart = function (obj)
 		{
-			action(obj, "restart");
+			action(obj.hash, obj, "restart");
 		};
 
 		$scope.deploy = function (obj)
 		{
-			action(obj, "deploy");
-		}
+			action(obj, obj, "deploy");
+		};
 
 		$scope.undeploy = function (obj)
 		{
-			action(obj, "undeploy");
-		}
+			action(obj.hash, obj, "undeploy");
+		};
 
 		$scope.redeploy = function (obj)
 		{
-			action(obj, "redeplo"y);
-		}
+			action(obj, obj, "redeploy");
+		};
 
 		$wydevice.on ('message', message);
 
@@ -174,14 +187,12 @@ module.exports = function ()
 			$mdDialog.hide ();
 		};
 
-		this.retake(keep_busy)
+		this.retake = function ()
 		{
-			$scope.getLocal();
-			$scope.getBoard();
-			$scope.joinLists($scope.local, $scope.board, keep_busy);
-		}
+			$scope.getLocal($scope.getBoard());
+		};
 
-		this.retake(false);
+		this.retake();
 
 
 

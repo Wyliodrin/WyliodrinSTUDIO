@@ -17,6 +17,8 @@ var mixpanel = require ('mixpanel');
 
 var library = require ('library');
 
+md5 = require('js-md5');
+
 debug ('Loading');
 
 module.exports = function ()
@@ -41,13 +43,12 @@ module.exports = function ()
 						}
 						if (p.a === 'ls')
 						{
+							$scope.board = p.b;
 							$scope.joinLists($scope.local, $scope.board);
 						}
 					});
 			}
 		};
-
-		$scope.keep_busy = false;
 
 		$scope.list=[];
 
@@ -58,13 +59,12 @@ module.exports = function ()
 		//hash ...
 		//away TRUE FALSE
 		//here TRUE FALSE
-		//status RUNNING STOPPED
+		//status RUNNING STOPPED ////////////////////ERROR(!!!!!!!!!!!!!!!!111111)
 		//busy TRUE FALSE
 
 		$scope.local = [];
 		//hash din title id date
 		//supervisor_file
-		//supervisor_name
 
 		//vedem
 		$scope.board = [];
@@ -72,17 +72,11 @@ module.exports = function ()
 		$scope.getLocal = function(done)
 		{
 			$scope.listProjects(done);
-			//$scope.makeHash($scope.local, ["title", "id", "date"]);
 		};
 
 		$scope.getBoard = function()
 		{
 			$wydevice.send ('dep', {a:"ls"});
-			//$scope.makeHash($scope.board, []) ////////////////////
-		};
-
-		$scope.makeHash = function(arr, fields){
-				/////////////////////////////////////////
 		};
 
 
@@ -132,14 +126,38 @@ module.exports = function ()
 			//obj.busy = false;  done async
 		}
 
-		function joinLists(list1, list2){
-			if ($scope.keep_busy){
+		function joinLists(local, board)
+		{
+			$scope.makeHash($scope.local, ["title", "id", "date"]);
 
-			}
-			else{
 
+			_.each(local, function(local_proj)
+			{
+				_.each(board, function (board_proj)
+				{
+					if (local.hash == board.hash && local.hash !== null && board.hash !== null)
+					{
+						var deep = _.cloneDeep(local);
+						deep.here = treu
+						///////////////////////////////////////////////////////////
+						$scope.list.push()
+					}
+				});
+			});
+			////////////////////////////////
+		}
+
+		$scope.makeHash = function (list, elem)
+		{
+			for (var i = 0 ; i < list.length ; i++){
+
+				var str = "";
+				_.each(elem, function (e){
+					str += list[i][e]; //concating all needed
+				});
+
+				list[i].hash = md5(str);
 			}
-			////////////
 		}
 
 		function action (data, obj, act)

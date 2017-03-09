@@ -13,8 +13,8 @@
 
                 <!--code above for putting picture-->
 
-                <h3>{{proj.name}}</h3>
-                <span>{{proj.status}}</span>
+                <h3>{{proj.title}}</h3>
+                <!--<span>{{proj.status}}</span>-->
                 <md-button ng-hide="!proj.away || ( proj.busy || stopped(proj) )" class="md-secondary lib-app-btn right" ng-click="stop(proj)">Stop</md-button>
                 <md-button ng-hide="!proj.away || (proj.busy || running(proj))" class="md-secondary lib-app-btn right" ng-click="run(proj)">Run</md-button>
                 <md-button ng-hide="!proj.away || (proj.busy || stopped(proj))" class="md-secondary lib-app-btn right" ng-click="restart(proj)">Restart</md-button>

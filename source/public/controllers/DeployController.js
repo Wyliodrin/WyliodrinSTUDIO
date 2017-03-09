@@ -59,7 +59,7 @@ module.exports = function ()
 		//hash ...
 		//away TRUE FALSE
 		//here TRUE FALSE
-		//status RUNNING STOPPED ////////////////////ERROR(!!!!!!!!!!!!!!!!111111)
+		//status RUNNING STOPPED ////////////////////ERROR(!!!!!!!!!!!!!!!!111111) in dau eu
 		//busy TRUE FALSE
 
 		$scope.local = [];
@@ -130,21 +130,43 @@ module.exports = function ()
 		{
 			$scope.makeHash($scope.local, ["title", "id", "date"]);
 
+			_.each(local, function(local_proj)
+			{
+				local_proj.here = true;
+			});
+
+			_.each(board, function(board_proj)
+			{
+				board_proj.away = true;
+			});
 
 			_.each(local, function(local_proj)
 			{
-				_.each(board, function (board_proj)
-				{
-					if (local.hash == board.hash && local.hash !== null && board.hash !== null)
-					{
-						var deep = _.cloneDeep(local);
-						deep.here = treu
-						///////////////////////////////////////////////////////////
-						$scope.list.push()
-					}
-				});
+				var board_proj = _.find(board, {'hash': local_proj.hash});
+				var proj = _.assign({},board_proj, local_proj);
+				$scope.list.push(proj);
 			});
-			////////////////////////////////
+
+			var local_rest = _.filter(local, function (local_proj)
+			{
+				if (_.find(board, {'hash':local_proj.hash}) === undefined){
+					return true;
+				}
+				return false;
+			});
+
+			var board_rest = _.filter(board, function (board_proj)
+			{
+				if (_.find(local, {'hash':board_proj.hash}) === undefined){
+					return true;
+				}
+				return false;
+			});
+
+			$scope.list = _.concat($scope.list, local_rest, board_rest);
+
+
+			//////////////////////////////// sorting ceva
 		}
 
 		$scope.makeHash = function (list, elem)

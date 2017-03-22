@@ -40,6 +40,7 @@ module.exports = function ()
 						console.log(p);
 						if (p.a === 'ACK')
 						{
+							console.log ("am primit ack la "+ p.b);
 							_.filter($scope.list, {hash:p.b})[0].busy = false;
 							that.retake();
 						}
@@ -108,7 +109,7 @@ module.exports = function ()
 
 		$scope.stopped = function (obj)
 		{
-			if (obj.status == "STOPPED")
+			if (obj.status == "STOPPED" || obj.status == "EXITED")
 			{
 				return true;
 			}
@@ -220,7 +221,14 @@ module.exports = function ()
 
 		$scope.deploy = function (obj)
 		{
-			obj.supervisor_file = "ceva aleator"; ///////////////////////////////////////////
+			obj.supervisor_file = {
+				user:"pi",
+				autostart:"true",
+				exitcodes:"255",
+				autorestart:"unexpected",
+				environment:"NODE_PATH=\"/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules\"",
+				priority:"40"};
+
 			action(obj, obj, "deploy");
 		};
 

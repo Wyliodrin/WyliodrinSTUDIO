@@ -36,6 +36,8 @@ module.exports = function ()
 			{
 				$timeout ( function ()
 					{
+						console.log("Am primit de pe retea:");
+						console.log(p);
 						if (p.a === 'ACK')
 						{
 							_.filter($scope.list, {hash:p.b})[0].busy = false;
@@ -44,6 +46,8 @@ module.exports = function ()
 						if (p.a === 'ls')
 						{
 							$scope.board = p.b;
+							console.log("de pe board am primit");
+							console.log($scope.board);
 							$scope.joinLists($scope.local, $scope.board);
 						}
 					});
@@ -92,6 +96,7 @@ module.exports = function ()
 				{
 					$scope.local = list;
 					$scope.$apply ();
+					console.log("ce am local");
 					console.log(list);
 				}
 				if (done)
@@ -126,8 +131,10 @@ module.exports = function ()
 			//obj.busy = false;  done async
 		}
 
-		function joinLists(local, board)
+		$scope.joinLists = function(local, board)
 		{
+			$scope.list=[];
+
 			$scope.makeHash($scope.local, ["title", "id", "date"]);
 
 			_.each(local, function(local_proj)
@@ -143,8 +150,13 @@ module.exports = function ()
 			_.each(local, function(local_proj)
 			{
 				var board_proj = _.find(board, {'hash': local_proj.hash});
-				var proj = _.assign({},board_proj, local_proj);
-				$scope.list.push(proj);
+				if (board_proj === undefined)
+				{}
+				else
+				{
+					var proj = _.assign({},board_proj, local_proj);
+					$scope.list.push(proj);
+				}
 			});
 
 			var local_rest = _.filter(local, function (local_proj)
@@ -164,10 +176,12 @@ module.exports = function ()
 			});
 
 			$scope.list = _.concat($scope.list, local_rest, board_rest);
+			console.log("tot");
+			console.log($scope.list);
 
 
 			//////////////////////////////// sorting ceva
-		}
+		};
 
 		$scope.makeHash = function (list, elem)
 		{

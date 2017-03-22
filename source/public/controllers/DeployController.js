@@ -17,7 +17,7 @@ var mixpanel = require ('mixpanel');
 
 var library = require ('library');
 
-md5 = require('js-md5');
+var md5 = require('js-md5');
 
 debug ('Loading');
 
@@ -171,16 +171,16 @@ module.exports = function ()
 
 		$scope.makeHash = function (list, elem)
 		{
-			for (var i = 0 ; i < list.length ; i++){
-
+			_.each(list, function(proj)
+			{
 				var str = "";
 				_.each(elem, function (e){
-					str += list[i][e]; //concating all needed
+					str += proj[e]; //concating all needed
 				});
 
-				list[i].hash = md5(str);
-			}
-		}
+				proj.hash = md5(str);
+			});
+		};
 
 		function action (data, obj, act)
 		{
@@ -206,6 +206,7 @@ module.exports = function ()
 
 		$scope.deploy = function (obj)
 		{
+			obj.supervisor_file = "ceva aleator"; ///////////////////////////////////////////
 			action(obj, obj, "deploy");
 		};
 

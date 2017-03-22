@@ -220,6 +220,7 @@ module.exports = function ()
 
 		$scope.deploy = function (obj)
 		{
+			obj.supervisor_file = "ceva aleator"; ///////////////////////////////////////////
 			action(obj, obj, "deploy");
 		};
 

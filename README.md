@@ -93,11 +93,11 @@ it
 After the installation open the options tab (the 3 dots button in the top-right corner) and go to settings.In the new window choose the extensions option and check the developer mode box.It will appear another three options including one called 'Load unpacked extension'.
 After choosing this option go to the the folder ,where you have built the project and open it.
 
-[The 3 dots button](extra/Options.png)
-[Settings option](extra/Settings.png)
-[Extensions](extra/Extensions.png)
-[developer mode box](extra/DeveloperMode.png)
-[Load unpacked extension](extra/LoadUnpackedExtension.png)
+![The 3 dots button](extra/Options.png)
+![Settings option](extra/Settings.png)
+![Extensions](extra/Extensions.png)
+![developer mode box](extra/DeveloperMode.png)
+![Load unpacked extension](extra/LoadUnpackedExtension.png)
 
 ## Contribute
 

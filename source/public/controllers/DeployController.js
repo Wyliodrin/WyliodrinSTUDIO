@@ -74,6 +74,8 @@ module.exports = function ()
 		//vedem
 		$scope.board = [];
 
+		$scope.CONTORTEST = 0;
+
 		$scope.getLocal = function(done)
 		{
 			$scope.listProjects(done);
@@ -81,6 +83,8 @@ module.exports = function ()
 
 		$scope.getBoard = function()
 		{
+			$scope.CONTORTEST+=1;
+			console.log("am intrt aici de "+$scope.CONTORTEST+" ori---------------");
 			$wydevice.send ('dep', {a:"ls"});
 		};
 
@@ -109,7 +113,7 @@ module.exports = function ()
 
 		$scope.stopped = function (obj)
 		{
-			if (obj.status == "STOPPED" || obj.status == "EXITED")
+			if (obj.status == "STOPPED" || obj.status == "EXITED" || obj.status == "FATAL")
 			{
 				return true;
 			}
@@ -118,7 +122,7 @@ module.exports = function ()
 
 		$scope.running = function (obj)
 		{
-			if (obj.status == "RUNNING")
+			if (obj.status == "RUNNING" || obj.status == "STARTING" || obj.status == "RUNNING")
 			{
 				return true;
 			}
@@ -247,6 +251,7 @@ module.exports = function ()
 
 		this.exit = function ()
 		{
+			$wydevice.send ('dep', {a:"exit"});
 			$mdDialog.hide ();
 		};
 

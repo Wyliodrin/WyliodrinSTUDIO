@@ -42,7 +42,7 @@ module.exports = function ()
 						{
 							console.log ("am primit ack la "+ p.b);
 							_.filter($scope.list, {hash:p.b})[0].busy = false;
-							that.retake();
+							//that.retake();
 						}
 						if (p.a === 'ls')
 						{
@@ -74,8 +74,6 @@ module.exports = function ()
 		//vedem
 		$scope.board = [];
 
-		$scope.CONTORTEST = 0;
-
 		$scope.getLocal = function(done)
 		{
 			$scope.listProjects(done);
@@ -83,8 +81,6 @@ module.exports = function ()
 
 		$scope.getBoard = function()
 		{
-			$scope.CONTORTEST+=1;
-			console.log("am intrt aici de "+$scope.CONTORTEST+" ori---------------");
 			$wydevice.send ('dep', {a:"ls"});
 		};
 

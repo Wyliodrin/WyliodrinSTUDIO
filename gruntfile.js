@@ -604,6 +604,7 @@ module.exports = function(grunt) {
     var enFileContent = require (enFilePath);
     var otherLanguagesFiles = fs.readdirSync(TRANSLATION_FOLDER, {extensions: ['.json', '.JSON']});
     var keysEn;
+    var missingKeysNo;
 
     function getMissingIDs() {
       var enFileIndex = otherLanguagesFiles.indexOf('messages-en.json');
@@ -614,10 +615,14 @@ module.exports = function(grunt) {
       otherLanguagesFiles.forEach(function(file) {
         var fileContent = require ('./' + TRANSLATION_FOLDER + '/' + file);
         var keys = Object.keys(fileContent);
+        var missingKeys = _.difference(keysEn, keys);
+        missingKeysNo = missingKeys.length;
+        var missingKeysPercentage = (missingKeysNo / keys.length) * 100;
 
-        console.log('Missing IDs from ' + file + ':\n');
-        console.log(_.difference(keysEn, keys));
-        console.log('\n');
+        console.log('There is a percentage of ' + missingKeysPercentage.toFixed(2) + '% missing IDs from ' + file + '.');
+        fs.appendFileSync('missingIDs.log', '[' + file + ']:' + '\n');
+        fs.appendFileSync('missingIDs.log', missingKeys.join("\r\n"));
+        fs.appendFileSync('missingIDs.log', '\n\n');
       }); 
     }
 

@@ -95,7 +95,7 @@ After choosing this option go to the the folder ,where you have built the projec
 
 <img src="extra/Options.png" alt="The 3 dots button" width="200" height="200"/>
 <img src="extra/Settings.png" alt="Settings option" width="200" height="200"/>
-<img src="extra/Extensions.png" alt="Extensions" width="200" height="200"/>
+<img src="extra/Extensions.png" alt="Extension" width="200" height="200"/>
 <img src="extra/DeveloperMode.png" alt="developer mode box" width="200" height="200"/>
 <img src="extra/LoadUnpackedExtension.png" alt="Load unpacked extension" width="200" height="200"/>
 

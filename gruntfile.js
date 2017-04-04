@@ -7,6 +7,7 @@ var mkdirp = require ('mkdirp');
 var path = require ('path');
 
 var CONFIG = 'source/config';
+var TRANSLATION_FOLDER = 'source/public/translations';
 
 module.exports = function(grunt) {
 
@@ -573,8 +574,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask ('locale', 'Locale', function ()
   {
-    var TRANSLATION_FOLDER = 'source/public/translations';
-
     var languagelist = fs.readdirSync (TRANSLATION_FOLDER);
 
     _.each (languagelist, function(file)
@@ -599,6 +598,37 @@ module.exports = function(grunt) {
     });
   });
 
+  grunt.registerTask ('verifyTranslation', 'Verify Translation', function ()
+  {
+    var enFilePath = './' + TRANSLATION_FOLDER + '/messages-en.json';
+    var enFileContent = require (enFilePath);
+    var otherLanguagesFiles = fs.readdirSync(TRANSLATION_FOLDER, {extensions: ['.json', '.JSON']});
+    var keysEn;
+    var missingKeysNo;
+
+    function getMissingIDs() {
+      var enFileIndex = otherLanguagesFiles.indexOf('messages-en.json');
+      keysEn = Object.keys(enFileContent);
+
+      otherLanguagesFiles.splice(enFileIndex, 1);
+
+      otherLanguagesFiles.forEach(function(file) {
+        var fileContent = require ('./' + TRANSLATION_FOLDER + '/' + file);
+        var keys = Object.keys(fileContent);
+        var missingKeys = _.difference(keysEn, keys);
+        missingKeysNo = missingKeys.length;
+        var missingKeysPercentage = (missingKeysNo / keys.length) * 100;
+
+        console.log('There is a percentage of ' + missingKeysPercentage.toFixed(2) + '% missing IDs from ' + file + '.');
+        fs.appendFileSync('missingIDs.log', '[' + file + ']:' + '\n');
+        fs.appendFileSync('missingIDs.log', missingKeys.join("\r\n"));
+        fs.appendFileSync('missingIDs.log', '\n\n');
+      }); 
+    }
+
+    getMissingIDs();
+
+  });
 
   grunt.registerTask ('codingstyle', 'Coding Style', function ()
   {
@@ -736,6 +766,7 @@ module.exports = function(grunt) {
     'embedFonts',
     'sass',
     'locale', 
+    'verifyTranslation'
     // 'cssmin',
     // 'uglify',
     // 'htmlmin'

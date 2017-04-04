@@ -4,14 +4,16 @@
 # exit 2 ~ grunt is not installed
 # exit 3 ~ grunt failed
 
-if which yarn > /dev/null ; then
-    yarn
-else
-	if !(which npm > /dev/null) ; then
-		echo "$(tput setaf 1)Npm is not installed."
-		exit 1
-	fi
-    npm install
+if [ "$TRAVIS" != "true" ] ; then
+    if which yarn > /dev/null ; then
+        yarn
+    else
+    	if !(which npm > /dev/null) ; then
+    		echo "$(tput setaf 1)Npm is not installed."
+    		exit 1
+    	fi
+        npm install
+    fi
 fi
 
 if !(which grunt > /dev/null) ; then

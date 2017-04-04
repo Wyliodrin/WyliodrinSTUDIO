@@ -83,7 +83,7 @@ The build is in the *build* folder
 * DEBUG_WYLIODRIN='wyliodrin.*' - enable debug messages (this will have a performance impact)
 * MIXPANEL_WYLIODRIN='' - mixpanel token for anonymous statistics sending
 
-### Loading the app
+## Loading the app
 
 First step in loading the app is to install chrome explorer if you haven't already installed
 it [Download chrome](https://www.google.com/chrome/browser/desktop/index.html)

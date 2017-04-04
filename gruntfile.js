@@ -651,10 +651,11 @@ module.exports = function(grunt) {
 
     function recurse(obj, baseSource, baseDest){
       var source = path.join(baseSource, obj.name);
-      var dest = path.join(baseDest, obj.name)+".FIXED"
+      var dest = path.join(baseDest, obj.name)+".FIXED";
+      var stat = null;
       try 
       {
-        var stat = fs.lstatSync(source);
+        stat = fs.lstatSync(source);
       }
       catch (err)
       {
@@ -675,7 +676,7 @@ module.exports = function(grunt) {
           children = fs.readdirSync(source);
           children = _.map(children, function (n){
             return {name:n};
-          })
+          });
         }
         _.each(children, function (child){
           recurse(child, source, dest);

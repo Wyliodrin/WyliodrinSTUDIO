@@ -86,12 +86,15 @@ The build is in the *build* folder
 ### Loading the app
 
 First step in loading the app is to install chrome explorer if you haven't already installed
-it  
-[Download chrome]
-(https://www.google.com/chrome/browser/desktop/index.html)
+it [Download chrome](https://www.google.com/chrome/browser/desktop/index.html)
 
-After the installation open the options tab (the 3 dots button in the top-right corner) and go to settings.In the new window choose the extensions option and check the developer mode box.It will appear another three options including one called 'Load unpacked extension'.
-After choosing this option go to the the folder ,where you have built the project and open the folder called 'build',then press open.
+After the installation:
+* open the options tab (the 3 dots button in the top-right corner)
+* go to Settings
+* in the Settings menu choose the Extensions option 
+* check the developer mode box (top of the page)
+* another three options will appear including one called 'Load unpacked extension'
+* Select 'Load unpacked extension', go to the the folder where you have built the project and open the folder called 'build', then press open.
 
 ## Contribute
 

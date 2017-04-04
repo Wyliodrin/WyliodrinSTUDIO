@@ -83,6 +83,19 @@ The build is in the *build* folder
 * DEBUG_WYLIODRIN='wyliodrin.*' - enable debug messages (this will have a performance impact)
 * MIXPANEL_WYLIODRIN='' - mixpanel token for anonymous statistics sending
 
+## Loading the app
+
+First step in loading the app is to install chrome explorer if you haven't already installed
+it [Download chrome](https://www.google.com/chrome/browser/desktop/index.html)
+
+After the installation:
+* open the options tab (the 3 dots button in the top-right corner)
+* go to Settings
+* in the Settings menu choose the Extensions option 
+* check the developer mode box (top of the page)
+* another three options will appear including one called 'Load unpacked extension'
+* Select 'Load unpacked extension', go to the the folder where you have built the project and open the folder called 'build', then press open.
+
 ## Contribute
 
 We would love your help. Click [here](CONTRIBUTING.md) to find out how to contribute.

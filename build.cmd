@@ -61,34 +61,35 @@ IF %ERRORLEVEL% NEQ 0 (
 REM If no errors were found
 IF %errorFound% == false (
     
-    SET "errors=true"
+    SET "errors=false"
 
     cmd /C yarn
     IF %ERRORLEVEL% NEQ 0 SET "errors=true"
 
-    cd ./node_modules/highcharts-ng/dist/
-    git apply ../../../patches/highcharts-ng.patch
-    IF %ERRORLEVEL% NEQ 0 SET "errors=true"
-    cd ../../..
+    SETLOCAL
+    SET __COMPAT_LAYER=RunAsInvoker 
 
-    cd ./node_modules/angular-tree-control/css/
-    git apply ../../../patches/tree-control-attribute.patch
-    IF %ERRORLEVEL% NEQ 0 SET "errors=true"
-    cd ../../..
-    
-    cd ./node_modules/marked/lib/
-    git apply ../../patches/marked.patch
-    IF %ERRORLEVEL% NEQ 0 SET "errors=true"
-    cd ../../..
+    cd patches
 
-    cd ./node_modules/angular-ui-ace/src
-    git apply ../../../patches/angular-ui-ace.patch
+    patch.exe ../node_modules/highcharts-ng/dist/highcharts-ng.js highcharts-ng.patch
     IF %ERRORLEVEL% NEQ 0 SET "errors=true"
-    cd ../../..
+
+    patch.exe ../node_modules/angular-tree-control/css/tree-control-attribute.css tree-control-attribute.patch
+    IF %ERRORLEVEL% NEQ 0 SET "errors=true"
+
+    patch.exe ../node_modules/marked/lib/marked.js marked.patch
+    IF %ERRORLEVEL% NEQ 0 SET "errors=true"
+
+    patch.exe ../node_modules/angular-ui-ace/src/ui-ace.js angular-ui-ace.patch
+    IF %ERRORLEVEL% NEQ 0 SET "errors=true"
+
+    cd ..
 
     cmd /C grunt
     IF %ERRORLEVEL% NEQ 0 SET "errors=true"
     
+    TITLE Build Wyliodrin!
+
     IF !errors! == false (
         ECHO SUCCESSFULLY BUILT!
     ) ELSE (

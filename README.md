@@ -61,7 +61,40 @@ You will need
 * [grunt](http://gruntjs.com/)
 * [yarn](https://yarnpkg.com/) (optional)
 
-You may build Wyliodrin STUDIO yourself
+### Build Instructions for Windows users
+
+#### Build using the provided script
+
+Just run the [build.cmd](./build.cmd) script as administrator.
+
+*or*
+
+#### You may build Wyliodrin STUDIO yourself
+
+    git clone https://www.github.com/Wyliodrin/WyliodrinSTUDIO
+    cd WyliodrinSTUDIO
+    yarn & REM npm install works slow
+    cd patches
+    patch.exe ../node_modules/highcharts-ng/dist/highcharts-ng.js highcharts-ng.patch
+    patch.exe ../node_modules/angular-tree-control/css/tree-control-attribute.css tree-control-attribute.patch
+    patch.exe ../node_modules/marked/lib/marked.js marked.patch
+    patch.exe ../node_modules/angular-ui-ace/src/ui-ace.js angular-ui-ace.patch
+    cd ..
+    grunt
+
+Install grunt 
+
+    npm install -g grunt-cli 
+
+### Build Instructions for Linux users
+
+#### Build using the provided script
+
+Just run the [build.sh](./build.sh) script.
+
+*or*
+
+#### You may build Wyliodrin STUDIO yourself
 
     git clone https://www.github.com/Wyliodrin/WyliodrinSTUDIO
     cd WyliodrinSTUDIO
@@ -72,7 +105,7 @@ You may build Wyliodrin STUDIO yourself
     patch node_modules/angular-ui-ace/src/ui-ace.js patches/angular-ui-ace.patch
     grunt
 
-### Install grunt 
+Install grunt 
 
     sudo npm install -g grunt-cli 
 

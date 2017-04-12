@@ -14,7 +14,7 @@ We would love your help with
 ## Translating
 
 We would like to see WyliodrinSTUDIO in as many languages as possible. For this
-we need your help. 
+we need your help.
 
 All you need to do is translate the [source/public/translations/messages-en.json](source/public/translations/messages-en.json) file. Make a new file, called messages-your_langauge_code.json. The lanuage code
 is a two letter code for each language.
@@ -86,9 +86,44 @@ Please write the following data:
  - WyliodrinSTUDIO version (in the About menu)
  - The Chrome browser version that runs it
 
-## Pull Request
+## Contributing Code
+###  Fork the repository
+A fork of the project is needed in order to temporary commit changes to the original project without affecting the master branch. You can use this to propose new changes or fix a few bugs.
 
-If you have any interesting feature or bug fix, please send us a pull request. Before sending it, make sure you follow the [coding standards](#coding_standards).
+####  FORK OUR REPOSITORY
+ 1. Open the [Wyliodrin/WyliodrinSTUDIO](https://github.com/Wyliodrin/WyliodrinSTUDIO) repository in the GitHub webpage.
+ 2. In the top-right corner of the page, click *Fork*.
+
+Now, you have a fork of the WyliodrinSTUDIO repository on your account, but you also need to create a clone of your fork locally on your computer.
+
+####  MAKE A CLONE OF YOUR FORK
+1. Open the WyliodrinSTUDIO repository from YOUR account repository.
+2. Under the repository name, to the right side click ![Clone or download](http://imgur.com/aEWwV6z.png).
+3. Copy the URL from the **Clone with HTTPs** box.
+4. Open Git Bash and type ```git clone``` and paste the URL. Press Enter. Your local clone will be created.
+
+### Make a new branch for a feature or bugfix
+Every time you want to fix a bug or add a feature, you need to create a branch for it, which will be a copy of your master branch.
+
+#### MAKE A NEW BRANCH
+  1. Open Git Bash and type ```git branch name_new_branch```
+  2. When you finished working on a branch and you want to switch to another, type the command: ```git checkout name_of_your_branch```
+
+  Tip: You can see your branches by using: ```git branch```
+
+### Merge the branch back
+- Open Git Bash and go to the top level of your local repository.
+- Type ```git status``` to make sure you are on the corect branch and to check if you have all your changes committed.
+- Change the branch ```git checkout master```.
+- Merge changes from your branch into the master branch ```git merge name_your_branch```.
+
+### Make a pull request
+When you finished developing your branch, the next step is to "save" the changes to the master branch. This can be done by sending a request to the project maintainers to pull your fork into original repository.
+
+ 1. On GitHub, go to your fork's webpage.
+ 2. Under the repository name, to the left side click [New pull request](https://github.com/Wyliodrin/WyliodrinSTUDIO/compare?expand=1).
+ 3. You need to follow and complete the [PULL_REQUEST_TEMPLATE](https://github.com/Wyliodrin/WyliodrinSTUDIO/blob/master/PULL_REQUEST_TEMPLATE.md).
+ 4. Give your pull request a name and click submit button.
 
 ## Features
 

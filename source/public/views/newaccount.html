@@ -1,0 +1,24 @@
+<md-content layout="column" flex class="login-box">
+
+  <div class="login-right">
+    <img src="/public/drawable/login/logo.png" class="login-logo">
+    <h2>Create new account</h2>
+    <md-input-container md-no-float>
+        <input  placeholder="Your username" class="login-user">
+    </md-input-container>
+    <br>
+    <md-input-container md-no-float>
+        <input minlength="3" placeholder="Password" type="{{passwordCheckbox ? 'text' : 'password'}}" class="login-pass">
+    </md-input-container>
+    <br>
+    <md-input-container md-no-float>
+        <input minlength="3" placeholder="Repeat password" type="{{passwordCheckbox ? 'text' : 'password'}}" class="login-pass">
+    </md-input-container>
+    <br>
+    <md-button class="login-btn">Create account</md-button>
+    <br>
+    <md-button>Cancel</md-button>
+    <div class="login-triangle"></div>
+</div>
+
+</md-content>

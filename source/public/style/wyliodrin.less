@@ -991,3 +991,62 @@ outline:none;
 	img {max-width:40px; margin-right:10px; padding: 0 0 5px 0;}
 	md-list-item {padding-top:10px; padding-bottom:10px;}
 }
+
+
+.login-box {background: url('../drawable/login/bg2.jpg') #fff no-repeat center center; height:100%; width:100%; text-align:center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+
+.login-right {position:absolute; right:0; width:33%; min-width:530px; background:#191e25; color:#fff; height:100%;
+
+	.login-logo {margin-top:15%; padding-bottom:30px;}
+	
+	md-input-container {font-size:16px; text-align:left; color:#fff; height: 28px; width:220px;}
+	label, .md-focused label{color:#fff;}
+	
+	input {
+		color: #fff;
+		font-weight: 300;
+	}
+	
+	h2 {font-size:26px; font-weight: normal}
+
+	.md-input {
+		border-color: #fff;
+	}
+	
+	.login-user {background: url('../drawable/login/user.png') no-repeat; background-position:0px 5px; padding-left:25px;}
+	.login-pass {background: url('../drawable/login/pass.png') no-repeat; background-position:0px 5px; padding-left:25px;}
+
+	md-input-container:not(.md-input-invalid).md-input-focused label {
+		color: #000;
+	}
+	
+	button { width:220px; line-height:50px; font-weight: 300;}
+	
+	.login-btn, .login-btn:hover {background:#e54225; margin-top:30px;}
+	
+	input::-webkit-input-placeholder, input:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	  color: #cccdce; font-weight:100px;
+	}
+	input::-moz-placeholder, input:focus::-moz-placeholder { /* Firefox 19+ */
+	  color: #cccdce; font-weight:100px;
+	}
+	input:-ms-input-placeholder, input:focus:-ms-input-placeholder { /* IE 10+ */
+	  color: #cccdce; font-weight:100px;
+	}
+	input:-moz-placeholder, input:focus:-moz-placeholder { /* Firefox 18- */
+	  color: #cccdce; font-weight:100px;
+	}
+	
+	.login-triangle {
+		width: 0;
+		height: 0;
+		position: absolute;
+		z-index: 100;
+		left: -40px;
+		top: 0;
+		background: none !important;
+		border-bottom: 100vh solid #191e25;
+		border-left: 40px solid transparent;
+	}
+
+}

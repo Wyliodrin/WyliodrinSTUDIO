@@ -1,0 +1,2 @@
+run:
+	node /home/pi/main.js

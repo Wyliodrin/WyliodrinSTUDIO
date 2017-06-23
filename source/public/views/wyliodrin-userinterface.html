@@ -77,8 +77,7 @@
                </md-tooltip>
             </md-button>
 			<div ng-controller="SerialPortsController as sp" class="title-button toggle-connection">
-              <!-- <div ng-if="connected" layout="row"> -->
-              <div layout="row">
+              <div ng-if="connected" layout="row">
                    	<img ng-if="device.category === 'board'" ng-src="/public/drawable/board_{{device.platform}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
                     <img ng-if="device.category !== 'board'" ng-src="/public/drawable/{{device.category}}.png" ng-class="{'separator':status === 'SEPARATOR' || status === 'PING'}" class="device-img">
                     <div ng-show="status === 'PING'" class="warning">
@@ -94,8 +93,7 @@
                       	{{ 'WYLIODRIN_USERINTERFACE_devicename' | translate }}
                       </md-tooltip>
 			        </div>
-                    <!-- <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt"> -->
-                    <md-button ng-click="t.send()" class="run-bt">
+                    <md-button ng-hide="running || status !== 'CONNECTED'" ng-click="t.send()" class="run-bt">
                     	<md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Run project" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'WYLIODRIN_USERINTERFACE_RunProject' | translate }}

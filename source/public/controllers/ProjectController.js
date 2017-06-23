@@ -1153,6 +1153,7 @@ var app = angular.module ('wyliodrinApp');
 		$wyapp.on ('send', function ()
 		{
 			debug ('Run');
+			console.log ('send');
 			function run (tree, ports, withFirmware)
 			{
 
@@ -1160,7 +1161,9 @@ var app = angular.module ('wyliodrinApp');
 
 				//do the software makefile
 				//example for [linux][python]
-				var makefileSoft = 'make';//settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];
+				console.log (settings.MAKEFILE_STOARGE[$wydevice.device.platform]);
+				console.log ($scope.project.language);
+				var makefileSoft = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];
 
 				//100% there exists a software folder
 				tree.children[0].m = makefileSoft;
@@ -1233,6 +1236,7 @@ var app = angular.module ('wyliodrinApp');
 
 				shell.reset ();
 				$wydevice.send ('tp', runmessage);
+				console.log ('has sent');
 				$timeout (function ()
 				{
 					$scope.showXterm = true;
@@ -1251,7 +1255,7 @@ var app = angular.module ('wyliodrinApp');
 				}
 			}
 
-
+			console.log ($scope.device.capabilities);
 			//var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
 			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
 			{

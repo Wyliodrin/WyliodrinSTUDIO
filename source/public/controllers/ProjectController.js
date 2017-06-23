@@ -171,6 +171,7 @@ var app = angular.module ('wyliodrinApp');
 		$scope.showEditor = false;
 		$scope.showVisual = false;
 		$scope.showStreams = false;
+		$scope.showBpmn = false;
 
 		$scope.tree = {};
 
@@ -279,6 +280,14 @@ var app = angular.module ('wyliodrinApp');
 							else{
 								$scope.showStreams = false;
 							}
+							if ($scope.project.language == "bpmn"){
+								program.load ($scope.project, node2, $wydevice.device);
+								$scope.showBpmn = true;
+								$scope.showTree = false;
+							}
+							else{
+								$scope.showBpmn = false;
+							}
 						}
 					});
 					$scope.tree.expanded.push(node);
@@ -321,6 +330,12 @@ var app = angular.module ('wyliodrinApp');
 					}
 					else{
 						$scope.showVisual = false;
+					}
+					if ($scope.project.language == "bpmn"){
+						$scope.showBpmn = true;
+					}
+					else{
+						$scope.showBpmn = false;
 					}
 					if ($scope.project.language == "streams"){
 
@@ -371,6 +386,7 @@ var app = angular.module ('wyliodrinApp');
 					//if it's firmware type file
 					$scope.showVisual = false;
 					$scope.showStreams = false;
+					$scope.showBpmn = false;
 					if (node.name.toLowerCase() == "makefile"){
 						//makefile
 						console.log("e makefile");
@@ -1144,15 +1160,14 @@ var app = angular.module ('wyliodrinApp');
 
 				//do the software makefile
 				//example for [linux][python]
-				var makefileSoft = settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];
+				var makefileSoft = 'make';//settings.MAKEFILE_STOARGE[$wydevice.device.platform][$scope.project.language];
 
 				//100% there exists a software folder
 				tree.children[0].m = makefileSoft;
-
-				console.log(ports);
+				console.log ('run');
 
 				var runmessage = {a:'start', l:$scope.project.language, t:tree, onlysoft:(!withFirmware)};
-
+				console.log (runmessage);
 				//add wyliodrin firmware makefile
 				if (withFirmware)
 				{

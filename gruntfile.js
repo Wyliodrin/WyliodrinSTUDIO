@@ -24,7 +24,10 @@ module.exports = function(grunt) {
 
   var tasks = {
     jshint: {
-      files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', '!source/public/red/**/*.js', '!source/public/documentation/**/*.js', '!source/public/tools/snippets/**/*.js', '!source/chrome/interpreter.js'],
+      files: ['Gruntfile.js', 'source/**/*.js', '!source/public/blockly/**/*.js', 
+              '!source/public/red/**/*.js', '!source/public/documentation/**/*.js', 
+              '!source/public/tools/snippets/**/*.js', '!source/chrome/interpreter.js',
+              '!source/public/bpmn/**/*.js'],
       options: {
         esnext: true,
         node: true,
@@ -38,6 +41,23 @@ module.exports = function(grunt) {
           navigator: true
         }
       }
+    },
+    run_grunt: {
+        options: {
+            minimumFiles: 1
+        },
+        simple_target: {
+            options: {
+                log: false,
+                process: function(res){
+                    if (res.fail){
+                        res.output = 'new content'
+                        grunt.log.writeln('bork bork');
+                    }
+                }
+            },
+            src: ['Gruntfile.js', 'source/public/bpmn/Gruntfile.js']
+        },
     },
     browserify: {
       chrome:
@@ -220,7 +240,7 @@ module.exports = function(grunt) {
             {
               expand: true,     // Enable dynamic expansion.
               cwd: 'source/',      // Src matches are relative to this path.
-              src: ['public/**/*.html', '!public/documentation/**'], // Actual pattern(s) to match.
+              src: ['public/**/*.html', '!public/documentation/**', '!public/bpmn/**'], // Actual pattern(s) to match.
               dest: 'build/',   // Destination path prefix.
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
@@ -245,6 +265,14 @@ module.exports = function(grunt) {
               expand: true,     // Enable dynamic expansion.
               cwd: 'source/',      // Src matches are relative to this path.
               src: ['public/blockly/**', '!public/blockly/blockly.js'], // Actual pattern(s) to match.
+              dest: 'build/',   // Destination path prefix.
+              // ext: '.html',   // Dest filepaths will have this extension.
+              extDot: 'first'   // Extensions in filenames begin after the first dot
+            },
+             {
+              expand: true,     // Enable dynamic expansion.
+              cwd: 'source/',      // Src matches are relative to this path.
+              src: ['public/bpmn/dist/**'], // Actual pattern(s) to match.
               dest: 'build/',   // Destination path prefix.
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
@@ -299,7 +327,7 @@ module.exports = function(grunt) {
           {
             expand: true,     // Enable dynamic expansion.
             cwd: 'build/',      // Src matches are relative to this path.
-            src: ['public/**/*.js', '!public/blockly/blockly/**', '!public/red/**'], // Actual pattern(s) to match.
+            src: ['public/**/*.js', '!public/blockly/blockly/**', '!public/red/**', '!public/bpmn'], // Actual pattern(s) to match.
             dest: 'build/',   // Destination path prefix.
             ext: '.js',   // Dest filepaths will have this extension.
             extDot: 'first'   // Extensions in filenames begin after the first dot
@@ -755,10 +783,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-run-grunt');
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'makefile', 'makefile_v2', 'languages', 'example', 'install', 'jshint', 
+  grunt.registerTask('default', ['run_grunt', 'mixpanel', 'debug', 'platform', 'makefile', 'makefile_v2', 'languages', 'example', 'install', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',
@@ -771,5 +800,4 @@ module.exports = function(grunt) {
     // 'uglify',
     // 'htmlmin'
     ]);
-
 };

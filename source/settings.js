@@ -525,6 +525,15 @@ settings.LANGUAGES = [
 		}
 	},
 	{
+		title: 'bpmn',
+		text: 'BPMN',
+		ext: '.bpmn',
+		packagemanager: 
+		{
+			enable: false
+		}
+	},
+	{
 		title: 'nodejs',
 		text: 'Javascript',
 		ext: '.js',

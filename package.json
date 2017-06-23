@@ -24,6 +24,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-embed-fonts": "^0.5.0",
     "grunt-ng-annotate": "^3.0.0",
+    "grunt-run-grunt": "^0.1.4",
     "grunt-sass": "^2.0.0",
     "js-beautify": "^1.6.12",
     "mkdirp": "^0.5.1"
@@ -39,6 +40,8 @@
     "angular-tree-control": "^0.2.28",
     "angular-ui-ace": "^0.2.3",
     "angular-ui-tree": "^2.22.5",
+    "bpmn-js": "^0.20.7",
+    "bpmn-js-properties-panel": "^0.14.0",
     "brace": "^0.10.0",
     "browser-request": "^0.3.3",
     "compare-versions": "^3.0.0",

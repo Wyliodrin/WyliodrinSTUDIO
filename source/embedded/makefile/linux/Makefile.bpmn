@@ -1,2 +1,3 @@
 run:
-	node /home/pi/main.js
+	ls
+	node /home/pi/bpmn-wyliodrin/main.js main.bpmn

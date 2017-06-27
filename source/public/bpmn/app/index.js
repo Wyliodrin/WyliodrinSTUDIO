@@ -27,7 +27,7 @@ var bpmnModeler = new BpmnModeler({
   }
 });
 
-var newDiagramXML = fs.readFileSync(__dirname + '/../resources/newDiagram.bpmn', 'utf-8');
+var newDiagramXML = fs.readFileSync(__dirname + '/../newDiagram.bpmn', 'utf-8');
 
 function createNewDiagram() {
   console.log ('create new diagram');
@@ -36,7 +36,7 @@ function createNewDiagram() {
 
 function openDiagram(xml) {
 
-  bpmnModeler.importXML(xml, function(err) {
+  bpmnModeler.importXML(newDiagramXML, function(err) {
 
     if (err) {
       container

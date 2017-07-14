@@ -1,0 +1,3 @@
+compile:
+	mkdir src
+	mv `ls -1 | grep -v -e '^Makefile' -e '^makefile' -e '^src$$'` src ; mkdir /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE); ln -s /tmp/arduino_$(PROJECTID)_$(FIRMWARE)_$(DEVICE) .build && ino build -m $(DEVICE)

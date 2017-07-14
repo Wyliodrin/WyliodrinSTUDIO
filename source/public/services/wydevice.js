@@ -102,7 +102,10 @@ app.factory ('$wydevice', function ($http)
 				if (t === 'capabilities')
 				{
 					debug (d);
+					console.log(d);
+
 					deviceService.device.capabilities = d;
+					console.log(deviceService.device.capabilities);
 				}
 				else
 				if ((t === 'v' || t === 'sv') && !d.s)

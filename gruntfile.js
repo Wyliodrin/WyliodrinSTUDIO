@@ -306,6 +306,29 @@ module.exports = function(grunt) {
           },
         ]
       }
+    },
+    nwjs: {
+      'standalone-win': {
+          options: {
+              platforms: ['win'],
+              buildDir: './standalone/standalone-win' 
+          },
+          src: ['./build/**/*'] 
+      },
+      'standalone-linux': {
+          options: {
+              platforms: ['linux'],
+              buildDir: './standalone/standalone-linux' 
+          },
+          src: ['./build/**/*']
+      },
+      'standalone-osx': {
+          options: {
+              platforms: ['osx64'],
+              buildDir: './standalone/standalone-osx' 
+          },
+          src: ['./build/**/*']
+      }
     }
   };
 
@@ -755,6 +778,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-nw-builder');
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
@@ -772,4 +796,19 @@ module.exports = function(grunt) {
     // 'htmlmin'
     ]);
 
+  grunt.registerTask('create-package-file', [], function() {
+        var fs = require('fs')
+          , manifest = JSON.parse(fs.readFileSync('./build/manifest.json', 'utf8'))
+          , en_messages = JSON.parse(fs.readFileSync('./build/_locales/en/messages.json', 'utf8'))
+          , appName = en_messages.appName.message
+          , appDesc = en_messages.appDesc.message;
+        
+        manifest.name = appName;
+        manifest.description = appDesc;
+
+        fs.writeFileSync('./build/package.json', JSON.stringify(manifest), 'utf8');
+  });
+  grunt.registerTask('standalone-win', ['create-package-file', 'nwjs:standalone-win']);
+  grunt.registerTask('standalone-linux', ['create-package-file', 'nwjs:standalone-linux']);
+  grunt.registerTask('standalone-osx', ['create-package-file', 'nwjs:standalone-osx']);
 };

@@ -248,7 +248,7 @@
     "description": ""
   },
   "DownloadImage": {
-    "message": "Téléchargez l' <a href='{{link1}}' target='_blank'>image de la carte SD (bêta)</a>, ouvrir-la et écrivez-la sur la carte SD. Vous pouvez trouver plus d'informations sur la façon d'écrire l'image de la carte SD sur<a href='{{link2}}' target='_blank'>la page des tutoriels</a>.",
+    "message": "Téléchargez l' <a href='{{link1}}' target='_blank'>image de la carte SD</a>, ouvrir-la et écrivez-la sur la carte SD. Vous pouvez trouver plus d'informations sur la façon d'écrire l'image de la carte SD sur<a href='{{link2}}' target='_blank'>la page des tutoriels</a>.",
     "description": ""
   },
   "AdvancedUser": {

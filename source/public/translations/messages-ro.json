@@ -248,7 +248,7 @@
     "description": ""
   },
   "DownloadImage": {
-    "message": "Descărcați <a href='{{link1}}' target='_blank'>imaginea de SD card (beta)</a>, dezarhivați-o și scrieți-o pe card. Puteți găsi mai multe informații despre scrierea imaginii pe SD card pe  <a href='{{link2}}' target='_blank'>pagina de tutoriale</a>.",
+    "message": "Descărcați <a href='{{link1}}' target='_blank'>imaginea de SD card</a>, dezarhivați-o și scrieți-o pe card. Puteți găsi mai multe informații despre scrierea imaginii pe SD card pe  <a href='{{link2}}' target='_blank'>pagina de tutoriale</a>.",
     "description": ""
   },
   "AdvancedUser": {

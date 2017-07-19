@@ -299,7 +299,7 @@ module.exports = function(grunt) {
           {
             expand: true,     // Enable dynamic expansion.
             cwd: 'build/',      // Src matches are relative to this path.
-            src: ['public/**/*.js', '!public/blockly/blockly/**', '!public/red/**'], // Actual pattern(s) to match.
+            src: ['public/**/*.js', '!public/notebook/**', '!public/blockly/blockly/**', '!public/red/**'], // Actual pattern(s) to match.
             dest: 'build/',   // Destination path prefix.
             ext: '.js',   // Dest filepaths will have this extension.
             extDot: 'first'   // Extensions in filenames begin after the first dot

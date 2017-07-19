@@ -248,7 +248,7 @@
     "description": ""
   },
   "DownloadImage": {
-    "message": "Download the <a href='{{link1}}' target='_blank'>SD Card image (beta)</a>, unzip it and write it on the card. You can find more information on how to write the SD card image on our <a href='{{link2}}' target='_blank'>tutorial page</a>.",
+    "message": "Download the <a href='{{link1}}' target='_blank'>SD Card image</a>, unzip it and write it on the card. You can find more information on how to write the SD card image on our <a href='{{link2}}' target='_blank'>tutorial page</a>.",
     "description": ""
   },
   "AdvancedUser": {

@@ -1,5 +1,4 @@
-## Wyliodrin STUDIO 11
-not yet released
+## Wyliodrin STUDIO 12
 
 * **Added** notebook
 * **Added** yarn

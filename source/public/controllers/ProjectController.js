@@ -327,7 +327,7 @@ var app = angular.module ('wyliodrinApp');
 						$scope.showStreams = true;
 						red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
 
-						red.reload();
+						// red.reload();
 					}
 					else{
 						$scope.showStreams = false;
@@ -385,6 +385,10 @@ var app = angular.module ('wyliodrinApp');
 						softwareEditor.getSession().setUseSoftTabs (true);
 					}
 				}
+				setTimeout (function ()
+				{
+					$(window).trigger ('resize');
+				});
 			}
 		};
 
@@ -1039,7 +1043,17 @@ var app = angular.module ('wyliodrinApp');
 			{
 				if (project.tree === undefined){
 					//older style projects
+					$mdDialog.show(
+				      $mdDialog.alert()
+				        .clickOutsideToClose(true)
+				        .title($filter('translate')('TOOLBAR_UPDATE'))
+				        .textContent($filter('translate')('UPDATE_SD_CARD_IMAGE'))
+				        .ariaLabel($filter('translate')('UPDATE_SD_CARD_IMAGE'))
+				        .ok($filter('translate')('Ok'))
+				    );
 					project = library.convertToTree(project);
+					console.log ('Project');
+					console.log (project);
 					library.storeTree (project.id, project.tree);
 
 				}

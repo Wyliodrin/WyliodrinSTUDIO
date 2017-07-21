@@ -1,7 +1,4 @@
- 
- 
-<script type="text/x-red" data-template-name="scan ble">
-   <!-- data-template-name identifies the node type this is for              -->
+<script type="text/x-red" data-template-name="scan ble"><!-- data-template-name identifies the node type this is for              -->
 
    <!-- Each of the following divs creates a field in the edit dialog.       -->
    <!-- Generally, there should be an input for each property of the node.   -->
@@ -29,11 +26,7 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-
-</script>
-<script type="text/x-red" data-template-name="read ble">
-    <!-- Limit to list of UUIDs -->
+    </div></script><script type="text/x-red" data-template-name="read ble"><!-- Limit to list of UUIDs -->
     <div class="form-row">
         <label for="node-input-ids"><i class="fa fa-tasks"></i> Restrict by Name</label>
         <input type="text" id="node-input-ids" placeholder="Comma separated list">
@@ -71,11 +64,7 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-
-</script>
-<script type="text/x-red" data-template-name="notify ble">
-    <!-- Limit to list of UUIDs -->
+    </div></script><script type="text/x-red" data-template-name="notify ble"><!-- Limit to list of UUIDs -->
     <div class="form-row">
         <label for="node-input-ids"><i class="fa fa-tasks"></i> Restrict by Name</label>
         <input type="text" id="node-input-ids" placeholder="Comma separated list">
@@ -113,11 +102,7 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-
-</script>
-<script type="text/x-red" data-template-name="write ble">
-    <!-- Limit to list of UUIDs -->
+    </div></script><script type="text/x-red" data-template-name="write ble"><!-- Limit to list of UUIDs -->
     <div class="form-row">
         <label for="node-input-ids"><i class="fa fa-tasks"></i> Restrict by Name</label>
         <input type="text" id="node-input-ids" placeholder="Comma separated list">
@@ -155,14 +140,7 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-
-</script>
- 
- 
- 
-<script type="text/javascript">
-    RED.nodes.registerType('scan ble',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('scan ble',{
         category: 'Bluetooth',      // the palette category
         color:"#207FC3",
         defaults: {             // defines the editable properties of the node
@@ -268,10 +246,7 @@ RED.nodes.registerType('write ble',{
         labelStyle: function() { // sets the class to apply to the label
             return this.name ? "node_label_italic" : "";
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="ble in">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="ble in"><div class="form-row">
         <label for="node-input-arduino"><i class="fa fa-tasks"></i> Arduino</label>
         <input type="text" id="node-input-arduino">
     </div>
@@ -290,10 +265,7 @@ RED.nodes.registerType('write ble',{
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('ble in',{
+    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div></script><script type="text/javascript">RED.nodes.registerType('ble in',{
         category: 'Bluetooth',
         color:"#3fadb5",
         defaults: {
@@ -313,10 +285,7 @@ RED.nodes.registerType('write ble',{
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="ble out">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="ble out"><div class="form-row">
         <label for="node-input-arduino"><i class="fa fa-tasks"></i> Arduino</label>
         <input type="text" id="node-input-arduino">
     </div>
@@ -336,10 +305,7 @@ RED.nodes.registerType('write ble',{
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('ble out',{
+    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div></script><script type="text/javascript">RED.nodes.registerType('ble out',{
         category: 'Bluetooth',
         color:"#3fadb5",
         defaults: {
@@ -358,18 +324,12 @@ RED.nodes.registerType('write ble',{
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="ble-board">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="ble-board"><div class="form-row">
         <label for="node-config-input-device"><i class="fa fa-random"></i> Name</label>
         <input type="text" id="node-config-input-device" style="width:60%;" placeholder=""/>
         <a id="node-config-lookup-serial" class="btn"><i id="node-config-lookup-serial-icon" class="fa fa-search"></i></a>
     </div>
-    <div class="form-tips"><b>Tip:</b> Use search to try to auto-detect serial port.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('ble-board',{
+    <div class="form-tips"><b>Tip:</b> Use search to try to auto-detect serial port.</div></script><script type="text/javascript">RED.nodes.registerType('ble-board',{
         category: 'config',
         defaults: {
             device: {value:"",required:true}
@@ -404,9 +364,7 @@ RED.nodes.registerType('write ble',{
                 });
             });
         }
-    });
-</script><script type="text/x-red" data-help-name="scan ble">
-    <p>This node allows scanning for BLE devices, restricted if necessary by the services they offer.</p>
+    });</script><script type="text/x-red" data-help-name="scan ble"><p>This node allows scanning for BLE devices, restricted if necessary by the services they offer.</p>
     <p>This node will generate one message per BLE device detected according to the node configuration.</p>
     <p>The <b>msg.payload</b> will contain the <i>peripheral uuid</i> and the <i>local name</i> of the BLE device detected.</p>
     <p>Additionally it will set the following values:</p>
@@ -426,22 +384,13 @@ RED.nodes.registerType('write ble',{
         <li>Sets the <b>msg.measuredPower</b> to the <i>measured power at one meter</i> of the BLE device detected.</li>
         <li>Sets the <b>msg.accuracy</b> to the <i>accuracy</i> estimated for this measurement.</li>
         <li>Sets the <b>msg.proximity</b> to the <i>proximity</i> guessed for this device. The value will be one of: 'unknown', 'immediate', 'near', 'far' </li>
-    </ul>
-</script><script type="text/x-red" data-help-name="ble in">
-    <p>Arduino input node. Connects to local Arduino and monitors the selected pin for changes. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
+    </ul></script><script type="text/x-red" data-help-name="ble in"><p>Arduino input node. Connects to local Arduino and monitors the selected pin for changes. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
     <p>The Arduino must be loaded with the Standard Firmata sketch available in the Arduino examples.</p>
     <p>You can select either Digital or Analogue input. Outputs the value read as <b>msg.payload</b> and the pin number as <b>msg.topic</b>.</p>
     <p>It only outputs on a change of value - fine for digital inputs, but you can get a lot of data from analogue pins which you must then handle.</p>
-    <p>You can set the sample rate in ms from 20 to 65535.</p>
-</script><script type="text/x-red" data-help-name="ble out">
-    <p>Arduino output node. Connects to local Arduino and writes to the selected digital pin. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
+    <p>You can set the sample rate in ms from 20 to 65535.</p></script><script type="text/x-red" data-help-name="ble out"><p>Arduino output node. Connects to local Arduino and writes to the selected digital pin. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
     <p>The Arduino must be loaded with the Standard Firmata sketch available in the Arduino examples.</p>
-    <p>You can select Digital, Analogue (PWM) or Servo type outputs. Expects a numeric value in <b>msg.payload</b>. The pin number is set in the properties panel.</p>
-</script> 
- 
-<script type="text/x-red" data-template-name="buffer">
-
-    <div class="form-row" id="node-send">
+    <p>You can select Digital, Analogue (PWM) or Servo type outputs. Expects a numeric value in <b>msg.payload</b>. The pin number is set in the properties panel.</p></script><script type="text/x-red" data-template-name="buffer"><div class="form-row" id="node-send">
         <label for="node-input-send"><i class="fa fa-tasks"></i> Send </label>
         <select id="node-input-send" style="width:270px !important">
           <option value="full">when buffer is full</option>
@@ -479,22 +428,10 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-
-</script>
- 
-<script type="text/x-red" data-template-name="set event">
-
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="set event"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-
-</script>
- 
- 
-<script type="text/javascript">
-    RED.nodes.registerType('buffer',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('buffer',{
         category: 'function',      // the palette category
         color:"#E6E0F8",
         defaults: {             // defines the editable properties of the node
@@ -566,17 +503,9 @@ RED.nodes.registerType('write ble',{
 
 
         },
-    });
-</script>
-<script type="text/x-red" data-help-name="buffer">
-    <p>Store an array and sends it when it is full or when it receives a message with <b>event</b>. It stores as arrays all the components of the message and mixes them.</p>
+    });</script><script type="text/x-red" data-help-name="buffer"><p>Store an array and sends it when it is full or when it receives a message with <b>event</b>. It stores as arrays all the components of the message and mixes them.</p>
     <p>If a value is stored, it knows how to mix the messages. Sends the value when a messages is received with <b>event</b>.</p>
-    <p>If use sliding window is selected, the array wil delete one element at a time.</p>
-</script><script type="text/x-red" data-help-name="set event">
-    <p>Sets the <b>event</b> porperty for msg. Useful for buffer.</p>
-</script> 
-<script type="text/x-red" data-template-name="say">
-    <div class="form-row">
+    <p>If use sliding window is selected, the array wil delete one element at a time.</p></script><script type="text/x-red" data-help-name="set event"><p>Sets the <b>event</b> porperty for msg. Useful for buffer.</p></script><script type="text/x-red" data-template-name="say"><div class="form-row">
         <label for="node-input-complete"><i class="fa fa-list"></i> Language</label>
         <select type="text" id="node-input-language" style="display: inline-block; width: 250px; vertical-align: top;">
             <option value="en">English</option>
@@ -595,10 +524,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('say',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('say',{
         category: 'multimedia',
         defaults: {
             name: {value:""},
@@ -615,13 +541,7 @@ RED.nodes.registerType('write ble',{
         outputs:0,
         icon: "bridge.png",
         align: "right"
-    });
-</script>
-<script type="text/x-red" data-help-name="say">
-    <p>Says the <b>payload</b> in a specific lanuage.</b>
-</script> 
-<script type="text/x-red" data-template-name="print">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-help-name="say"><p>Says the <b>payload</b> in a specific lanuage.</b></script><script type="text/x-red" data-template-name="print"><div class="form-row">
         <label for="node-input-complete"><i class="fa fa-list"></i> Output</label>
         <select type="text" id="node-input-complete" style="display: inline-block; width: 250px; vertical-align: top;">
             <option value="false">payload only</option>
@@ -635,10 +555,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('print',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('print',{
         category: 'output',
         defaults: {
             name: {value:""},
@@ -663,20 +580,12 @@ RED.nodes.registerType('write ble',{
                 RED.nodes.dirty (true);
             }
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="print">
-    <p>The print node can be connected to the output of any node. It will display <b>msg.payload</b> field of any messages it receives.
+    });</script><script type="text/x-red" data-help-name="print"><p>The print node can be connected to the output of any node. It will display <b>msg.payload</b> field of any messages it receives.
     <p>The button to the right of the node will toggle it's output on and off so you can de-clutter the console window.</p>
     <p>If the payload is an object it will be stringified first for display and indicate that by saying "(Object) ".</p>
     <p>If the payload is a buffer it will be stringified first for display and indicate that by saying "(Buffer) ".</p>
     <p>Optionally can show the complete msg object - but the screen can get messy.</p>
-    <p>If a <b>field</b> is specified, it will display msg[<b>field</b>].</p>
-</script> 
- 
-<script type="text/x-red" data-template-name="playstation">
-
-    <div class="form-row" id="node-config">
+    <p>If a <b>field</b> is specified, it will display msg[<b>field</b>].</p></script><script type="text/x-red" data-template-name="playstation"><div class="form-row" id="node-config">
         <label for="node-input-config"><i class="fa fa-tasks"></i> Controller </label>
         <select id="node-input-config" style="width:270px !important">
           <option value="dualShock3">Playstation 3</option>
@@ -692,13 +601,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-
-</script>
- 
- 
-<script type="text/javascript">
-    RED.nodes.registerType('playstation',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('playstation',{
         category: 'input',      // the palette category
         color:"#3d99d8",
         defaults: {             // defines the editable properties of the node
@@ -719,19 +622,13 @@ RED.nodes.registerType('write ble',{
         oneditprepare: function() {
 
         },
-    });
-</script>
-<script type="text/x-red" data-help-name="playstation">
-    <p>Get input from a playstation controller.</p>
+    });</script><script type="text/x-red" data-help-name="playstation"><p>Get input from a playstation controller.</p>
     <p>The values are:
     <ul>
       <li><b>msg.payload</b> - button</li>
       <li><b>msg.topic</b> - action</li>
     </ul>
-    </p>
-</script> 
-<script type="text/x-red" data-template-name="run">
-    <div class="form-row node-input-payload">
+    </p></script><script type="text/x-red" data-template-name="run"><div class="form-row node-input-payload">
         <label for="node-input-payloadType"><i class="icon-envelope"></i> Payload</label>
         <select id="node-input-payloadType" style="width:125px !important">
           <option value="date">timestamp</option>
@@ -881,13 +778,7 @@ RED.nodes.registerType('write ble',{
         });
 
         $("#run-time-time").injecttimespinner();
-    };
-
-    </script>
-</script>
-<style>.run-time-row{padding-left:110px;}.run-time-row select{margin:3px 0;}.run-time-days{width:262px;}.run-time-times{width:90px;}.run-time-row>.ui-spinner{height:28px;margin:3px 0;border-color:rgb(204,204,204);}#run-time-time{margin-top:3px;width:75px;}.run-time-count{width:40px!important;}</style>
-<script type="text/javascript">
-    RED.nodes.registerType('run',{
+    };</script><style>.run-time-row{padding-left:110px;}.run-time-row select{margin:3px 0;}.run-time-days{width:262px;}.run-time-times{width:90px;}.run-time-row>.ui-spinner{height:28px;margin:3px 0;border-color:rgb(204,204,204);}#run-time-time{margin-top:3px;width:75px;}.run-time-count{width:40px!important;}</style><script type="text/javascript">RED.nodes.registerType('run',{
         category: 'input',
         color:"#a6bbcf",
         defaults: {
@@ -1103,18 +994,11 @@ RED.nodes.registerType('write ble',{
         //         });
         //     }
         // }
-    });
-
-</script><script type="text/x-red" data-help-name="run">
-    <p>If no payload is specified the payload is set to the current time in millisecs since 1970. This allows subsequent functions to perform time based actions.</p>
+    });</script><script type="text/x-red" data-help-name="run"><p>If no payload is specified the payload is set to the current time in millisecs since 1970. This allows subsequent functions to perform time based actions.</p>
     <p>The repeat function does what it says on the tin and continuously sends the payload every x seconds.</p>
     <p>The Fire once at start option actually waits 50mS before firing to give other nodes a chance to instantiate properly.</p>
     <p><b>Note: </b>"Interval between times" and "at a specific time" will use cron. This means that 20 mins will be at the next hour, 20 mins past and 40 mins past - not in 20 minutes time.
-    If you want every 20 mins from now - use the basic "interval" option.</p>
-</script> 
- 
-<script type="text/x-red" data-template-name="octave">
-    <div class="form-row" style="margin-bottom: 0px;">
+    If you want every 20 mins from now - use the basic "interval" option.</p></script><script type="text/x-red" data-template-name="octave"><div class="form-row" style="margin-bottom: 0px;">
             <label for="node-input-func"><i class="fa fa-wrench"></i> Function</label>
             <input type="hidden" id="node-input-func" autofocus="autofocus">
     </div>
@@ -1130,10 +1014,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="python">
-    <div class="form-row" style="margin-bottom: 0px;">
+    </div></script><script type="text/x-red" data-template-name="python"><div class="form-row" style="margin-bottom: 0px;">
             <label for="node-input-func"><i class="fa fa-wrench"></i> Function</label>
             <input type="hidden" id="node-input-func" autofocus="autofocus">
     </div>
@@ -1149,10 +1030,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="r language">
-    <div class="form-row" style="margin-bottom: 0px;">
+    </div></script><script type="text/x-red" data-template-name="r language"><div class="form-row" style="margin-bottom: 0px;">
             <label for="node-input-func"><i class="fa fa-wrench"></i> Function</label>
             <input type="hidden" id="node-input-func" autofocus="autofocus">
     </div>
@@ -1168,11 +1046,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="fourier">
-
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="fourier"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
@@ -1200,13 +1074,7 @@ RED.nodes.registerType('write ble',{
           <option value="tukey">Turkey</option>
           <option value="welch">Welch</option>
         </select>
-    </div>
-</script>
- 
- 
-<script type="text/javascript">
-
-      RED.nodes.registerType('octave',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('octave',{
         color:"#e6e0e8",
         category: 'signal processing',
         defaults: {
@@ -1474,34 +1342,22 @@ RED.nodes.registerType('write ble',{
             updateproperties ($(this).is(":checked"));
           });
         },
-    });
-</script>
-<script type="text/x-red" data-help-name="octave">
-  <p>A function block where you can write <b>Octave</b> code.</p>
+    });</script><script type="text/x-red" data-help-name="octave"><p>A function block where you can write <b>Octave</b> code.</p>
   <p>The message is passed in as an` object called <code>msg</code>.</p>
   <p>By convention it will have a <code>msg.payload</code> property containing
      the body of the message.</p>
-  <p>The function will return the <b>msg</b> object.</p>
-</script><script type="text/x-red" data-help-name="python">
-  <p>A function block where you can write <b>Python</b> code.</p>
+  <p>The function will return the <b>msg</b> object.</p></script><script type="text/x-red" data-help-name="python"><p>A function block where you can write <b>Python</b> code.</p>
   <p>The message is passed in as an` object called <code>msg</code>.</p>
   <p>By convention it will have a <code>msg.payload</code> property containing
      the body of the message.</p>
-  <p>The function will return the <b>msg</b> object.</p>
-</script><script type="text/x-red" data-help-name="r language">
-  <p>A function block where you can write <b>R Language</b> code.</p>
+  <p>The function will return the <b>msg</b> object.</p></script><script type="text/x-red" data-help-name="r language"><p>A function block where you can write <b>R Language</b> code.</p>
   <p>The message is passed in as an` object called <code>msg</code>.</p>
   <p>By convention it will have a <code>msg.payload</code> property containing
      the body of the message.</p>
-  <p>The function will return the <b>msg</b> object.</p>
-</script><script type="text/x-red" data-help-name="fft">
-    <p>Computes FFT or iFFT. The signal is in the <b>payload</b>.</p>
+  <p>The function will return the <b>msg</b> object.</p></script><script type="text/x-red" data-help-name="fft"><p>Computes FFT or iFFT. The signal is in the <b>payload</b>.</p>
     <p>The real part is <b>payload</b> or <b>payload[0]</b></p>
     <p>The imaginary part is <b>payload[1]</b></p>
-    <p>The fields <b>r</b> and <b><i</b> may also memorize the signal.</p>
-</script> 
-<script type="text/x-red" data-template-name="value">
-    <div class="form-row">
+    <p>The fields <b>r</b> and <b><i</b> may also memorize the signal.</p></script><script type="text/x-red" data-template-name="value"><div class="form-row">
         <label for="node-input-value"><i class="fa fa-tag"></i> Variable Name</label>
         <input type="text" id="node-input-value" placeholder="Variable name">
     </div>
@@ -1515,26 +1371,17 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="message callback">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="message callback"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="set x value">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="set x value"><div class="form-row">
         <label for="node-input-value"><i class="fa fa-tag"></i> Variable Name</label>
         <input type="text" id="node-input-value" placeholder="Variable name">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('value',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('value',{
         color:"#e6e0f8",
         category: 'function',
         defaults: {
@@ -1557,25 +1404,25 @@ RED.nodes.registerType('write ble',{
         }
     });
 
-    // RED.nodes.registerType('message callback',{
-    //     color:"#e6e0f8",
-    //     category: 'function',
-    //     defaults: {
-    //         name: {value:""},
-    //     },
-    //     inputs:1,
-    //     outputs:2,
-    //     icon: "storage.png",
-    //     label: function() {
-    //         return this.value || this.name;
-    //     },
-    //     oneditprepare: function() {
+    RED.nodes.registerType('message callback',{
+        color:"#e6e0f8",
+        category: 'function',
+        defaults: {
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:2,
+        icon: "storage.png",
+        label: function() {
+            return this.value || this.name;
+        },
+        oneditprepare: function() {
             
-    //     },
-    //     oneditsave: function() {
+        },
+        oneditsave: function() {
             
-    //     }
-    // });
+        }
+    });
 
     RED.nodes.registerType('set x value',{
         color:"#e6e0f8",
@@ -1596,21 +1443,7 @@ RED.nodes.registerType('write ble',{
         oneditsave: function() {
             
         }
-    });
-
-</script>
-<script type="text/x-red" data-help-name="value">
-    <p>Loads the <b>payload</b> into a variable</p>.
-          
-</script><script type="text/x-red" data-help-name="message callback">
-    <p>Store a message, attaches an id and sends the message. When a message with an attached id is recived, the stored message is extended with the recived message.</p>.
-          
-</script><script type="text/x-red" data-help-name="set x value">
-  <p>Loads the <b>value</b> into msg.x</p>.
-        
-</script> 
-<script type="text/x-red" data-template-name="visual">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-help-name="value"><p>Loads the <b>payload</b> into a variable</p>.</script><script type="text/x-red" data-help-name="message callback"><p>Store a message, attaches an id and sends the message. When a message with an attached id is recived, the stored message is extended with the recived message.</p>.</script><script type="text/x-red" data-help-name="set x value"><p>Loads the <b>value</b> into msg.x</p>.</script><script type="text/x-red" data-template-name="visual"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
@@ -1626,10 +1459,7 @@ RED.nodes.registerType('write ble',{
         <label for="node-input-outputs"><i class="fa fa-random"></i> Outputs</label>
         <input id="node-input-outputs" style="width: 60px; height: 1.7em;" value="1">
     </div>
-    <div class="form-tips">See the Info tab for help writing functions.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('visual',{
+    <div class="form-tips">See the Info tab for help writing functions.</div></script><script type="text/javascript">RED.nodes.registerType('visual',{
         color:"#fdd0a2",
         category: 'function',
         defaults: {
@@ -1765,11 +1595,7 @@ RED.nodes.registerType('write ble',{
             $("#node-input-xmlvisual").val(this.xmlvisualsource);
             // delete this.editor;
         }
-    });
-
-</script>
-<script type="text/x-red" data-help-name="visual">
-    <p>A function block where you can write code to do more interesting things.</p>
+    });</script><script type="text/x-red" data-help-name="visual"><p>A function block where you can write code to do more interesting things.</p>
     <p>The message is passed in as a JavaScript object called <code>msg</code>.</p>
     <p>By convention it will have a <code>msg.payload</code> property containing
        the body of the message.</p>
@@ -1783,11 +1609,7 @@ RED.nodes.registerType('write ble',{
           messages are sent to the corresponding output.</p>
     <p>If null is returned, either by itself or as an element of the array, no
           message is passed on.</p>
-    <p>See the <a target="_new" href="http://nodered.org/docs/writing-functions.html">online documentation</a> for more help.</p>
-          
-</script> 
-<script type="text/javascript">
-    RED.nodes.registerType('http request',{
+    <p>See the <a target="_new" href="http://nodered.org/docs/writing-functions.html">online documentation</a> for more help.</p></script><script type="text/javascript">RED.nodes.registerType('http request',{
         category: 'function',
         color:"rgb(231, 231, 174)",
         defaults: {
@@ -1992,10 +1814,7 @@ RED.nodes.registerType('write ble',{
         label: function() {
             return (this.name.length>0)?this.name:'Web '+this.template;
         },
-    });
-</script>
-<script type="text/x-red" data-template-name="http request">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="http request"><div class="form-row">
         <label for="node-input-method"><i class="fa fa-tasks"></i> Method</label>
         <select type="text" id="node-input-method" style="width:72%;">
         <option value="GET">GET</option>
@@ -2024,10 +1843,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="web route">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="web route"><div class="form-row">
         <label for="node-input-server"><i class="fa fa-tag"></i> Server</label>
         <input type="text" id="node-input-server" placeholder="/">
     </div>
@@ -2056,10 +1872,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="webserver">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="webserver"><div class="form-row">
         <label for="node-config-input-port"><i class="fa fa-random"></i> Port</label>
         <input id="node-config-input-port" style="width: 60px; height: 1.7em;" value="5000">
     </div>
@@ -2071,10 +1884,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-config-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="web response">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="web response"><div class="form-row">
         <label for="node-input-error"><i class="fa fa-tag"></i> Status/Error</label>
         <input type="text" id="node-input-error" placeholder="">
     </div>
@@ -2085,10 +1895,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="web html">
-    <div class="form-row" style="margin-bottom: 0px;">
+    </div></script><script type="text/x-red" data-template-name="web html"><div class="form-row" style="margin-bottom: 0px;">
             <label for="node-input-template"><i class="fa fa-wrench"></i> HTML Template</label>
             <input type="hidden" id="node-input-template" autofocus="autofocus">
     </div>
@@ -2101,20 +1908,14 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="web template">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="web template"><div class="form-row">
         <label for="node-input-template"><i class="fa fa-tag"></i> Template</label>
         <input type="text" id="node-input-template" placeholder="template.html">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-help-name="http request">
-    <p>Provides a node for making http requests.</p>
+    </div></script><script type="text/x-red" data-help-name="http request"><p>Provides a node for making http requests.</p>
     <p>The URL and HTTP method can be configured in the node, if they are left blank they should be set in an incoming message on <code>msg.url</code> and <code>msg.method</code>:</p>
     <ul>
         <li><code>url</code>, if set, is used as the url of the request. Must start with http: or https:</li>
@@ -2133,9 +1934,7 @@ RED.nodes.registerType('write ble',{
         <li><code>payload</code> is the body of the response</li>
         <li><code>statusCode</code> is the status code of the response, or the error code if the request could not be completed</li>
         <li><code>headers</code> is an object containing the response headers</li>
-    </ul>
-</script><script type="text/x-red" data-help-name="web route">
-    Runs a web server listening on <b>port</b> and registers and registers the <b>route</b> for <b>method</b>. This uses expressjs.
+    </ul></script><script type="text/x-red" data-help-name="web route">Runs a web server listening on <b>port</b> and registers and registers the <b>route</b> for <b>method</b>. This uses expressjs.
     Whenever a request is made to <b>route</b>, msg will contain the following:
     <ul>
         <li><b>payload</b> requests data
@@ -2147,25 +1946,11 @@ RED.nodes.registerType('write ble',{
         <li> <b>req</b> - request </li>
         <li> <b>res</b> - response </li>
         <li> <b>next</b> - next </li>
-    </ul>
-          
-</script><script type="text/x-red" data-help-name="webserver">
-    Web server
-          
-</script><script type="text/x-red" data-help-name="web response">
-    Send a response for a web request. This must be the message returned from a web route.
-    The <b>payload</b> is sent back.
-          
-</script><script type="text/x-red" data-help-name="web html">
-  <p>A template where you can write <b>HTML</b> code.</p>
-  <p>If Replace variables is checked, the {{variable}} will be replaced from msg.payload.</p>
-</script><script type="text/x-red" data-help-name="web template">
-    Send a template as response for a web request. It uses jinja templates lecated in the <b>templates</b> folder. Items in the template are replaced by <b>payload</b>.
+    </ul></script><script type="text/x-red" data-help-name="webserver">Web server</script><script type="text/x-red" data-help-name="web response">Send a response for a web request. This must be the message returned from a web route.
+    The <b>payload</b> is sent back.</script><script type="text/x-red" data-help-name="web html"><p>A template where you can write <b>HTML</b> code.</p>
+  <p>If Replace variables is checked, the {{variable}} will be replaced from msg.payload.</p></script><script type="text/x-red" data-help-name="web template">Send a template as response for a web request. It uses jinja templates lecated in the <b>templates</b> folder. Items in the template are replaced by <b>payload</b>.
 
-    This must be the message returned from a web route.    
-          
-</script><script type="text/javascript">
-    RED.nodes.registerType('digitalwrite',{
+    This must be the message returned from a web route.</script><script type="text/javascript">RED.nodes.registerType('digitalwrite',{
         category: 'IO Pins',
         color: '#a6bbcf',
         defaults: {
@@ -2386,30 +2171,21 @@ RED.nodes.registerType('write ble',{
             updateproperties (this.value);
           });
         },
-    });
-</script>
-<script type="text/x-red" data-template-name="digitalwrite">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="digitalwrite"><div class="form-row">
         <label for="node-input-pin"><i class="fa fa-circle"></i> Pin Number</label>
         <input type="text" id="node-input-pin" placeholder="0">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="digitalread">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="digitalread"><div class="form-row">
         <label for="node-input-pin"><i class="fa fa-circle"></i> Pin Number</label>
         <input type="number" id="node-input-pin" placeholder="0">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="shift out">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="shift out"><div class="form-row">
         <label for="node-input-pin"><i class="fa fa-circle"></i> Data Pin Number</label>
         <input type="text" id="node-input-pin" placeholder="0">
     </div>
@@ -2439,10 +2215,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="shift in">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="shift in"><div class="form-row">
         <label for="node-input-pin"><i class="fa fa-circle"></i> Data Pin Number</label>
         <input type="number" id="node-input-pin" placeholder="0">
     </div>
@@ -2460,20 +2233,14 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="analogwrite">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="analogwrite"><div class="form-row">
         <label for="node-input-pin"><i class="fa fa-circle"></i> Pin Number</label>
         <input type="number" id="node-input-pin" placeholder="0">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="analogread">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="analogread"><div class="form-row">
         <label for="node-input-pin"><i class="fa fa-circle"></i> Pin Number</label>
         <input type="number" id="node-input-pin" placeholder="0">
     </div>
@@ -2488,11 +2255,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
- 
-<script type="text/x-red" data-template-name="sendsignal">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="sendsignal"><div class="form-row">
         <label for="node-input-to"><i class="fa fa-list"></i> To</label>
         <select type="text" id="node-input-to" style="display: inline-block; width: 250px; vertical-align: tops;">
             <option value="dashboard">Dashboard</option>
@@ -2518,41 +2281,21 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-dashboarduuid"><i class="icon-tag"></i> Dashboard UUID</label>
         <input type="text" id="node-input-dashboarduuid" placeholder="">
-    </div>-->
-</script>
- 
-<script type="text/x-red" data-help-name="digitalwrite">
-    <p>Write a digital value on a pin. The value written is in <b>payload</b> and should be is HIGH (1) or LOW (0).</p>
+    </div>--></script><script type="text/x-red" data-help-name="digitalwrite"><p>Write a digital value on a pin. The value written is in <b>payload</b> and should be is HIGH (1) or LOW (0).</p>
 
-    <p>If no pin is specified, the pin number is the <b>topic</b> field of msg.</p>
-</script><script type="text/x-red" data-help-name="digitalread">
-    <p>When it receives an input, reads a digital value from a pin. The value read is in <b>payload</b> and is HIGH (1) or LOW (0).</p>
+    <p>If no pin is specified, the pin number is the <b>topic</b> field of msg.</p></script><script type="text/x-red" data-help-name="digitalread"><p>When it receives an input, reads a digital value from a pin. The value read is in <b>payload</b> and is HIGH (1) or LOW (0).</p>
 
-    <p>If no pin is specified, the pin number is the <b>topic</b> field of msg.</p>
-</script><script type="text/x-red" data-help-name="shift out">
-    <p>Shifts out a byte value on a pin using the clock pin as clock. The value written is in <b>payload</b>.</p>
+    <p>If no pin is specified, the pin number is the <b>topic</b> field of msg.</p></script><script type="text/x-red" data-help-name="shift out"><p>Shifts out a byte value on a pin using the clock pin as clock. The value written is in <b>payload</b>.</p>
 
     <p>If no data pin is specified, the pin number is the <b>topic</b> field of msg.</p>
-    <p>If no clock pin is specified, the pin number is the <b>clock</b> field of msg.</p>
-</script><script type="text/x-red" data-help-name="shift in">
-    <p>When it receives an input, shifts in a byte value from a pin using the clock pin as clock. The value read is in <b>payload</b>.</p>
+    <p>If no clock pin is specified, the pin number is the <b>clock</b> field of msg.</p></script><script type="text/x-red" data-help-name="shift in"><p>When it receives an input, shifts in a byte value from a pin using the clock pin as clock. The value read is in <b>payload</b>.</p>
 
     <p>If no data pin is specified, the pin number is the <b>topic</b> field of msg.</p>
-    <p>If no clock pin is specified, the pin number is the <b>clock</b> field of msg.</p>
-</script><script type="text/x-red" data-help-name="analogwrite">
-    <p>Write a PWM value on a pin. The value written is in [0, 255].</p>
+    <p>If no clock pin is specified, the pin number is the <b>clock</b> field of msg.</p></script><script type="text/x-red" data-help-name="analogwrite"><p>Write a PWM value on a pin. The value written is in [0, 255].</p>
 
-    <p>If no pin is specified, the pin number is the <b>topic</b> field of msg.</p>
-</script><script type="text/x-red" data-help-name="analogread">
-    <p>When it receives an input, reads an analog value from a pin. The value read is in [0, 1023].</p>
+    <p>If no pin is specified, the pin number is the <b>topic</b> field of msg.</p></script><script type="text/x-red" data-help-name="analogread"><p>When it receives an input, reads an analog value from a pin. The value read is in [0, 1023].</p>
 
-    <p>If no pin is specified, the pin number is the <b>topic</b> field of msg.</p>
-</script><script type="text/x-red" data-help-name="button">
-    <p>Sends the value of a signal, puts a flag if <b>flag</b> is set.</p>
-</script><script type="text/x-red" data-help-name="sendsignal">
-    <p>Sends the value of a signal, puts a flag if <b>flag</b> is set.</p>
-</script><script type="text/javascript">
-    RED.nodes.registerType('send',{
+    <p>If no pin is specified, the pin number is the <b>topic</b> field of msg.</p></script><script type="text/x-red" data-help-name="button"><p>Sends the value of a signal, puts a flag if <b>flag</b> is set.</p></script><script type="text/x-red" data-help-name="sendsignal"><p>Sends the value of a signal, puts a flag if <b>flag</b> is set.</p></script><script type="text/javascript">RED.nodes.registerType('send',{
         category: 'social',
         color: '#a6bbcf',
         defaults: {
@@ -2613,10 +2356,7 @@ RED.nodes.registerType('write ble',{
         label: function() {
             return this.name||"Mobile senors "+this.mobile;
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="send">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="send"><div class="form-row">
         <label for="node-input-label"><i class="icon-tag"></i> Label</label>
         <input type="text" id="node-input-label" placeholder="label">
     </div>
@@ -2630,45 +2370,31 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="receive">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="receive"><div class="form-row">
         <label for="node-input-label"><i class="icon-tag"></i> Label</label>
         <input type="text" id="node-input-label" placeholder="*">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="receivesignal">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="receivesignal"><div class="form-row">
         <label for="node-input-signal"><i class="icon-tag"></i> Signal</label>
         <input type="text" id="node-input-signal" placeholder="*">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="mobile sensors">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="mobile sensors"><div class="form-row">
         <label for="node-input-mobile"><i class="icon-tag"></i> Mobile</label>
         <input type="text" id="node-input-mobile" placeholder="mobile">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-help-name="send">
-    <p>Send message with a specified <b>label</b> to a board or boards. The message to send is <b>payload</b>. It will be serialized as string. You may send the whole message by checking "Send whole message"</p>
+    </div></script><script type="text/x-red" data-help-name="send"><p>Send message with a specified <b>label</b> to a board or boards. The message to send is <b>payload</b>. It will be serialized as string. You may send the whole message by checking "Send whole message"</p>
 
     <p>The message will be sent to the board with <b>boardid</b>. This has to be one id or more ids separated with commas. If this is missing, the <b>Board ID</b> part of the message has to be filled.
-    </p>
-</script><script type="text/x-red" data-help-name="receive">
-    <p>Receive message from a board with label <b>Label</b>. If label is <b>*</b>, it will receive all the messages.</p>
+    </p></script><script type="text/x-red" data-help-name="receive"><p>Receive message from a board with label <b>Label</b>. If label is <b>*</b>, it will receive all the messages.</p>
 
     <p>Message will be filled with:
     <ul>
@@ -2676,9 +2402,7 @@ RED.nodes.registerType('write ble',{
         <li> <b>sender</b> - the board id of the sender of the message</li>
         <li> <b>payload</b> - the message
     </ul>
-    </p>
-</script><script type="text/x-red" data-help-name="receivesignal">
-    <p>Receive a signal from a board. If signal is <b>*</b>, it will receive all the signals.</p>
+    </p></script><script type="text/x-red" data-help-name="receivesignal"><p>Receive a signal from a board. If signal is <b>*</b>, it will receive all the signals.</p>
 
     <p>Message will be filled with:
     <ul>
@@ -2686,9 +2410,7 @@ RED.nodes.registerType('write ble',{
         <li> <b>sender</b> - the board id of the sender of the message</li>
         <li> <b>payload</b> - the signal value
     </ul>
-    </p>
-</script><script type="text/x-red" data-help-name="mobile sensors">
-    <p>Receive sensors from a mobile.</p>
+    </p></script><script type="text/x-red" data-help-name="mobile sensors"><p>Receive sensors from a mobile.</p>
 
     <p>Message will be filled with:
     <ul>
@@ -2696,16 +2418,10 @@ RED.nodes.registerType('write ble',{
         <li> <b>payload</b> - the sensors, a key data store, key is the senosr type, data is usually an array 
         </li>
     </ul>
-    </p>
-</script> 
-<script type="text/x-red" data-template-name="catch">
-    <div class="form-row">
+    </p></script><script type="text/x-red" data-template-name="catch"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('catch',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('catch',{
         category: 'input',
         color:"#e49191",
         defaults: {
@@ -2720,9 +2436,7 @@ RED.nodes.registerType('write ble',{
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script><script type="text/x-red" data-help-name="catch">
-    <p>Catch errors thrown by nodes on the same tab.</p>
+    });</script><script type="text/x-red" data-help-name="catch"><p>Catch errors thrown by nodes on the same tab.</p>
     <p>If a node throws a error whilst handling a message, the flow will typically
        halt. This node can be used to catch those errors and handle them with a
        dedicated flow.</p>
@@ -2740,10 +2454,7 @@ RED.nodes.registerType('write ble',{
         <li><code>source.type</code> : the type of the node that threw the error</li>
        </ul>
    </p>
-   <p>If the message already had a <code>error</code> property, it is copied to <code>_error</code>.</p>
-</script> 
-<script type="text/x-red" data-template-name="exec">
-    <div class="form-row">
+   <p>If the message already had a <code>error</code> property, it is copied to <code>_error</code>.</p></script><script type="text/x-red" data-template-name="exec"><div class="form-row">
         <label for="node-input-command"><i class="fa fa-file"></i> Command</label>
         <input type="text" id="node-input-command" placeholder="command">
     </div>
@@ -2765,10 +2476,7 @@ RED.nodes.registerType('write ble',{
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips" id="spawnTip">Tip: <i>spawn</i> expects only one command word - and appended args to be comma separated.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('exec',{
+    <div class="form-tips" id="spawnTip">Tip: <i>spawn</i> expects only one command word - and appended args to be comma separated.</div></script><script type="text/javascript">RED.nodes.registerType('exec',{
         category: 'advanced-function',
         color:"darksalmon",
         defaults: {
@@ -2797,18 +2505,13 @@ RED.nodes.registerType('write ble',{
                 }
             });
         }
-    });
-</script><script type="text/x-red" data-help-name="exec">
-    <p>Calls out to a system command.<br/></p>
+    });</script><script type="text/x-red" data-help-name="exec"><p>Calls out to a system command.<br/></p>
     <p>Provides 3 outputs... stdout, stderr, and return code.</p>
     <p>By default uses exec() which calls the command, blocks while waiting for completion, and then returns the complete result in one go, along with any errors.</p>
     <p>Optionally can use spawn() instead, which returns output from stdout and stderr as the command runs (ie one line at a time). On completion it then returns a return code (on the 3rd output).</p>
     <p>Spawn only expects one command word, with all extra parameters to be comma separated and passed as the append.</p>
     <p>The optional append gets added to the command after the <b>msg.payload</b> - so you can do things like pipe the result to another command.</p>
-    <p>If stdout is binary a <i>buffer</i> is returned - otherwise returns a <i>string</i>.</p>
-</script> 
-<script type="text/x-red" data-template-name="function">
-    <div class="form-row">
+    <p>If stdout is binary a <i>buffer</i> is returned - otherwise returns a <i>string</i>.</p></script><script type="text/x-red" data-template-name="function"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
@@ -2824,10 +2527,7 @@ RED.nodes.registerType('write ble',{
         <label for="node-input-outputs"><i class="fa fa-random"></i> Outputs</label>
         <input id="node-input-outputs" style="width: 60px; height: 1.7em;" value="1">
     </div>
-    <div class="form-tips">See the Info tab for help writing functions.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('function',{
+    <div class="form-tips">See the Info tab for help writing functions.</div></script><script type="text/javascript">RED.nodes.registerType('function',{
         color:"#fdd0a2",
         category: 'function',
         defaults: {
@@ -2899,9 +2599,7 @@ RED.nodes.registerType('write ble',{
             $("#node-input-func").val(this.editor.getValue());
             delete this.editor;
         }
-    });
-</script><script type="text/x-red" data-help-name="function">
-    <p>A function block where you can write code to do more interesting things.</p>
+    });</script><script type="text/x-red" data-help-name="function"><p>A function block where you can write code to do more interesting things.</p>
     <p>The message is passed in as a JavaScript object called <code>msg</code>.</p>
     <p>By convention it will have a <code>msg.payload</code> property containing
        the body of the message.</p>
@@ -2928,11 +2626,7 @@ RED.nodes.registerType('write ble',{
           messages are sent to the corresponding output.</p>
     <p>If null is returned, either by itself or as an element of the array, no
           message is passed on.</p>
-    <p>See the <a target="_new" href="http://nodered.org/docs/writing-functions.html">online documentation</a> for more help.</p>
-
-</script> 
-<script type="text/x-red" data-template-name="template">
-    <div class="form-row">
+    <p>See the <a target="_new" href="http://nodered.org/docs/writing-functions.html">online documentation</a> for more help.</p></script><script type="text/x-red" data-template-name="template"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
@@ -2944,10 +2638,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-field"><i class="fa fa-edit"></i> Property</label>
         msg.<input type="text" id="node-input-field" placeholder="payload" style="width: 64%;">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('template',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('template',{
         color:"rgb(243, 181, 103)",
         category: 'function',
         defaults: {
@@ -2999,10 +2690,7 @@ RED.nodes.registerType('write ble',{
             $("#node-input-template").val(this.editor.getText())
             delete this.editor;
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="template">
-    <p>Creates a new message based on the provided template.</p>
+    });</script><script type="text/x-red" data-help-name="template"><p>Creates a new message based on the provided template.</p>
     <p>This uses the <i><a href="http://mustache.github.io/mustache.5.html" target="_new">mustache</a></i> format.</p>
     <p>For example, when a template of:
     <pre>Hello {{name}}. Today is {{date}}</pre>
@@ -3013,12 +2701,7 @@ RED.nodes.registerType('write ble',{
   payload: ...
 }</pre>
     <p>The resulting payload will be:
-    <pre>Hello Fred. Today is Monday</pre>
-</script> 
- 
-<script type="text/x-red" data-template-name="delay">
-
-    <div class="form-row">
+    <pre>Hello Fred. Today is Monday</pre></script><script type="text/x-red" data-template-name="delay"><div class="form-row">
         <label for="node-input-pauseType"><i class="fa fa-tasks"></i> Action</label>
         <select id="node-input-pauseType" style="width:270px !important">
           <option value="delay">Delay message</option>
@@ -3071,13 +2754,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-
-</script>
- 
- 
-<script type="text/javascript">
-    RED.nodes.registerType('delay',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('delay',{
         category: 'function',      // the palette category
         color:"#E6E0F8",
         defaults: {             // defines the editable properties of the node
@@ -3174,18 +2851,13 @@ RED.nodes.registerType('write ble',{
             }
           });
         }
-    });
-</script><script type="text/x-red" data-help-name="delay">
-    <p>Introduces a delay into a flow or rate limits messages.</p>
+    });</script><script type="text/x-red" data-help-name="delay"><p>Introduces a delay into a flow or rate limits messages.</p>
     <p>Default delay is 5 seconds and rate limit of 1 msg/second, but both can be configured.</p>
     <p>If you select a rate limit you may optionally discard any intermediate messages that arrive.</p>
     <p>The "topic based fair queue" adds messages to a release queue tagged by their <b>msg.topic</b> property.
     At each "tick", derived from the rate, the next "topic" is released.
     Any messages arriving on the same topic before release replace those in that position in the queue.
-    So each "topic" gets a turn - but the most recent value is always the one sent.</p>
-</script> 
-<script type="text/x-red" data-template-name="trigger">
-    <div class="form-row">
+    So each "topic" gets a turn - but the most recent value is always the one sent.</p></script><script type="text/x-red" data-template-name="trigger"><div class="form-row">
         Send
         <select id="node-input-op1type" style="width:200px !important">
             <option value="val">the string payload</option>
@@ -3227,10 +2899,7 @@ RED.nodes.registerType('write ble',{
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="name">
     </div>
-    <div class="form-tips">The node can be reset by sending a message with the <b>msg.reset</b> property set</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('trigger',{
+    <div class="form-tips">The node can be reset by sending a message with the <b>msg.reset</b> property set</div></script><script type="text/javascript">RED.nodes.registerType('trigger',{
         category: 'function',
         color:"#E6E0F8",
         defaults: {
@@ -3303,9 +2972,7 @@ RED.nodes.registerType('write ble',{
             }
         
         }
-    });
-</script><script type="text/x-red" data-help-name="trigger">
-    <p>Creates two messages on the output separated by a timeout whenever ANY <b>msg</b> arrives on the input.</p>
+    });</script><script type="text/x-red" data-help-name="trigger"><p>Creates two messages on the output separated by a timeout whenever ANY <b>msg</b> arrives on the input.</p>
     <p>For example, this can be used to toggle a Raspberry PI GPIO pin on and off.</p>
     <p>The two output states can be specified as can the duration of the timer.
     Either output can be set to a value, or templated from the inbound
@@ -3317,10 +2984,7 @@ RED.nodes.registerType('write ble',{
     <p>Setting the timer to 0 creates an "infinite" timeout - the first output will happen but the second
     never will, and neither can the first be retriggered - so a true one shot.</p>
     <p>If a <b>msg.reset</b> property is present any timeout currently in progress
-    will be cleared and the second output will not happen.</p>
-</script> 
-<script type="text/x-red" data-template-name="comment">
-    <div class="form-row">
+    will be cleared and the second output will not happen.</p></script><script type="text/x-red" data-template-name="comment"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-comment"></i> Comment</label>
         <input type="text" id="node-input-name" placeholder="Comment">
     </div>
@@ -3329,10 +2993,7 @@ RED.nodes.registerType('write ble',{
         <input type="hidden" id="node-input-info" autofocus="autofocus">
         <div style="height: 250px;" class="node-text-editor" id="node-input-info-editor" ></div>
     </div>
-    <div class="form-tips">Tip: this isn't meant for "War and Peace" - but useful notes can be kept here.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('comment',{
+    <div class="form-tips">Tip: this isn't meant for "War and Peace" - but useful notes can be kept here.</div></script><script type="text/javascript">RED.nodes.registerType('comment',{
         category: 'function',
         color:"#ffffff",
         defaults: {
@@ -3382,18 +3043,9 @@ RED.nodes.registerType('write ble',{
             $("#node-input-info").val(this.editor.getText());
             delete this.editor;
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="comment">
-    <p>Simple comment block.</p>
-</script> 
-<script type="text/x-red" data-template-name="unknown">
-    <div class="form-tips"><p>This node is a type unknown to your installation of Node-RED.</p>
+    });</script><script type="text/x-red" data-help-name="comment"><p>Simple comment block.</p></script><script type="text/x-red" data-template-name="unknown"><div class="form-tips"><p>This node is a type unknown to your installation of Node-RED.</p>
     <p><i>If you deploy with the node in this state, it will lose all of its configuration.</i></p>
-    <p>See the Info side bar for more help</p></div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('unknown',{
+    <p>See the Info side bar for more help</p></div></script><script type="text/javascript">RED.nodes.registerType('unknown',{
         category: 'unknown',
         color:"#fff0f0",
         defaults: {
@@ -3408,18 +3060,12 @@ RED.nodes.registerType('write ble',{
         labelStyle: function() {
             return "node_label_unknown";
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="unknown">
-    <p>This node is a type unknown to your installation of Node-RED.</p>
+    });</script><script type="text/x-red" data-help-name="unknown"><p>This node is a type unknown to your installation of Node-RED.</p>
     <p><i>If you deploy with the node in this state, it will lose all of its configuration.</i></p>
     <p>It is possible this node type is already installed, but is missing a dependency. Check the Node-RED start-up log for
        any error messages associated with the missing node type. Use <b>npm install &lt;module&gt;</b> to install any missing modules
        and restart Node-RED and reimport the nodes.</p>
-    <p>Otherwise, you should contact the author of the flow to obtain a copy of the missing node type.</p>
-</script> 
-<script type="text/x-red" data-template-name="PID control">
-    <div class="form-row">
+    <p>Otherwise, you should contact the author of the flow to obtain a copy of the missing node type.</p></script><script type="text/x-red" data-template-name="PID control"><div class="form-row">
         <label for="node-input-target" style="width:120px;"><i class="fa fa-dot-circle-o"></i> Set Point</label>
         <input type="text" id="node-input-target" placeholder="target value" style="width:60%;">
     </div>
@@ -3440,10 +3086,7 @@ RED.nodes.registerType('write ble',{
         <input type="text" id="node-input-name" placeholder="Name" style="width:60%;">
     </div>
     <div class="form-tips"><b>Tip:</b> This node ONLY works on numbers<br>
-    The damping factors are typically in the range 0 - 1.<br></div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('PID control',{
+    The damping factors are typically in the range 0 - 1.<br></div></script><script type="text/javascript">RED.nodes.registerType('PID control',{
         color:"#d6ba48",
         category: 'function',
         defaults: {
@@ -3462,16 +3105,11 @@ RED.nodes.registerType('write ble',{
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script><script type="text/x-red" data-help-name="PID control">
-    <p>A PID controller node.</p>
+    });</script><script type="text/x-red" data-help-name="PID control"><p>A PID controller node.</p>
     <p>This node ONLY expects a numeric <b>msg.payload</b> containing the current reading.
     It will output the correction that needs to be applied in order to move to the preset <i>set point</i> value.</p>
     <p>See <a href="https://en.wikipedia.org/wiki/PID_controller" target="_new">Wikipedia</a> for more details.</p>
-    <p>The <i>set point</i> may be overridden by <b>msg.setpoint</b>. If you do so the edit box value can be used as the initial value.</p>
-</script> 
-<script type="text/x-red" data-template-name="random">
-    <div class="form-row">
+    <p>The <i>set point</i> may be overridden by <b>msg.setpoint</b>. If you do so the edit box value can be used as the initial value.</p></script><script type="text/x-red" data-template-name="random"><div class="form-row">
         <label for="node-input-inte"><i class="fa fa-random"></i> Generate</label>
         <select type="text" id="node-input-inte" style="width: 300px;">
             <option value="true">a whole number - integer</option>
@@ -3490,10 +3128,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name" style="width: 300px;">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('random',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('random',{
         category: 'function',
         color:"#E2D96E",
         defaults: {
@@ -3511,14 +3146,9 @@ RED.nodes.registerType('write ble',{
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script><script type="text/x-red" data-help-name="random">
-    <p>Generates a random number between a low and high value.</p>
+    });</script><script type="text/x-red" data-help-name="random"><p>Generates a random number between a low and high value.</p>
     <p>If you return an integer it can <i>include</i> both the low and high values.</p>
-    <p>If you return a floating point value it will be <i>between</i> the low and high values.</p>
-</script> 
-<script type="text/x-red" data-template-name="rbe">
-    <div class="form-row">
+    <p>If you return a floating point value it will be <i>between</i> the low and high values.</p></script><script type="text/x-red" data-template-name="rbe"><div class="form-row">
         <label for="node-input-func"><i class="fa fa-wrench"></i> Mode</label>
         <select type="text" id="node-input-func" style="width:74%;">
             <option value="rbe">RBE - report if value changed</option>
@@ -3532,10 +3162,7 @@ RED.nodes.registerType('write ble',{
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"/> Name</label>
         <input type="text" id="node-input-name" placeholder="Name" style="width:71%;">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('rbe',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('rbe',{
         color:"#E2D96E",
         category: 'function',
         defaults: {
@@ -3562,19 +3189,14 @@ RED.nodes.registerType('write ble',{
                 }
             });
         }
-    });
-</script><script type="text/x-red" data-help-name="rbe">
-    <p>Report by Exception node - only passes on data if it has changed.</p>
+    });</script><script type="text/x-red" data-help-name="rbe"><p>Report by Exception node - only passes on data if it has changed.</p>
     <p>In <b>RBE</b> mode this node only outputs the msg if the <b>msg.payload</b> is
     different to the previous one. Works on numbers and strings.</p>
     <p>In <b>deadband</b> mode the incoming payload should contain a parseable <i>number</i> and is
     output only if greater than + or - the <i>band gap</i> away from the previous output.</p>
     <p>Deadband also supports % - only sends if the input differs by more than x% of the original value.</p>
     <p><b>Note:</b> This works on a per <b>msg.topic</b> basis. This means that a single rbe node can
-handle multiple topics at the same time.</p>
-</script> 
-<script type="text/x-red" data-template-name="arduino in">
-    <div class="form-row">
+handle multiple topics at the same time.</p></script><script type="text/x-red" data-template-name="arduino in"><div class="form-row">
         <label for="node-input-arduino"><i class="fa fa-tasks"></i> Arduino</label>
         <input type="text" id="node-input-arduino">
     </div>
@@ -3593,10 +3215,7 @@ handle multiple topics at the same time.</p>
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('arduino in',{
+    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div></script><script type="text/javascript">RED.nodes.registerType('arduino in',{
         category: 'Arduino',
         color:"#3fadb5",
         defaults: {
@@ -3616,10 +3235,7 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="arduino out">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="arduino out"><div class="form-row">
         <label for="node-input-arduino"><i class="fa fa-tasks"></i> Arduino</label>
         <input type="text" id="node-input-arduino">
     </div>
@@ -3639,10 +3255,7 @@ handle multiple topics at the same time.</p>
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('arduino out',{
+    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div></script><script type="text/javascript">RED.nodes.registerType('arduino out',{
         category: 'Arduino',
         color:"#3fadb5",
         defaults: {
@@ -3661,18 +3274,12 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="arduino-board">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="arduino-board"><div class="form-row">
         <label for="node-config-input-device"><i class="fa fa-random"></i> Port</label>
         <input type="text" id="node-config-input-device" style="width:60%;" placeholder="e.g. /dev/ttyUSB0  COM1"/>
         <a id="node-config-lookup-serial" class="btn"><i id="node-config-lookup-serial-icon" class="fa fa-search"></i></a>
     </div>
-    <div class="form-tips"><b>Tip:</b> Use search to try to auto-detect serial port.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('arduino-board',{
+    <div class="form-tips"><b>Tip:</b> Use search to try to auto-detect serial port.</div></script><script type="text/javascript">RED.nodes.registerType('arduino-board',{
         category: 'config',
         defaults: {
             device: {value:"",required:true}
@@ -3707,21 +3314,370 @@ handle multiple topics at the same time.</p>
                 });
             });
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="arduino in">
-    <p>Arduino input node. Connects to local Arduino and monitors the selected pin for changes. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
+    });</script><script type="text/x-red" data-help-name="arduino in"><p>Arduino input node. Connects to local Arduino and monitors the selected pin for changes. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
     <p>The Arduino must be loaded with the Standard Firmata sketch available in the Arduino examples.</p>
     <p>You can select either Digital or Analogue input. Outputs the value read as <b>msg.payload</b> and the pin number as <b>msg.topic</b>.</p>
     <p>It only outputs on a change of value - fine for digital inputs, but you can get a lot of data from analogue pins which you must then handle.</p>
-    <p>You can set the sample rate in ms from 20 to 65535.</p>
-</script><script type="text/x-red" data-help-name="arduino out">
-    <p>Arduino output node. Connects to local Arduino and writes to the selected digital pin. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
+    <p>You can set the sample rate in ms from 20 to 65535.</p></script><script type="text/x-red" data-help-name="arduino out"><p>Arduino output node. Connects to local Arduino and writes to the selected digital pin. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
     <p>The Arduino must be loaded with the Standard Firmata sketch available in the Arduino examples.</p>
-    <p>You can select Digital, Analogue (PWM) or Servo type outputs. Expects a numeric value in <b>msg.payload</b>. The pin number is set in the properties panel.</p>
-</script> 
-<script type="text/x-red" data-template-name="watch">
-    <div class="form-row node-input-filename">
+    <p>You can select Digital, Analogue (PWM) or Servo type outputs. Expects a numeric value in <b>msg.payload</b>. The pin number is set in the properties panel.</p></script><script type="text/x-red" data-template-name="tls-config"><div class="form-row">
+        <label style="width: 120px;" for="node-config-input-cert"><i class="fa fa-file-text-o"></i> <span data-i18n="tls.label.cert"></span></label>
+        <input style="width: 60%;" type="text" id="node-config-input-cert" data-i18n="[placeholder]tls.placeholder.cert">
+    </div>
+    <div class="form-row">
+        <label style="width: 120px;" for="node-config-input-key"><i class="fa fa-file-text-o"></i> <span data-i18n="tls.label.key"></span></label>
+        <input style="width: 60%;" type="text" id="node-config-input-key" data-i18n="[placeholder]tls.placeholder.key">
+    </div>
+    <div class="form-row">
+        <label style="width: 120px;" for="node-config-input-ca"><i class="fa fa-file-text-o"></i> <span data-i18n="tls.label.ca"></span></label>
+        <input style="width: 60%;" type="text" id="node-config-input-ca" data-i18n="[placeholder]tls.placeholder.ca">
+    </div>
+    <div class="form-row">
+        <input type="checkbox" id="node-config-input-verifyservercert" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-config-input-verifyservercert" style="width: 70%;" data-i18n="tls.label.verify-server-cert"></label>
+    </div>
+    <div class="form-row">
+        <label style="width: 120px;" for="node-config-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <input style="width: 60%;" type="text" id="node-config-input-name" data-i18n="[placeholder]common.label.name">
+    </div></script><script type="text/javascript">RED.nodes.registerType('tls-config',{
+        category: 'config',
+        defaults: {
+            name: {value:""},
+            cert: {value:"", validate: function(v) {
+                var currentKey = $("#node-config-input-key").val();
+                if (currentKey === undefined) {
+                    currentKey = this.key;
+                }
+                return currentKey === '' || v != '';
+            }},
+            key: {value:"", validate: function(v) {
+                var currentCert = $("#node-config-input-cert").val();
+                if (currentCert === undefined) {
+                    currentCert = this.cert;
+                }
+                return currentCert === '' || v != '';
+            }},
+            ca: {value:""},
+            verifyservercert: {value: true}
+        },
+        label: function() {
+            return this.name || this._("tls.tls");
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });</script><script type="text/x-red" data-help-name="tls-config"><p>Configuration options for TLS connections.</p></script><script type="text/x-red" data-template-name="mqtt in"><div class="form-row">
+        <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
+        <input type="text" id="node-input-broker">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-tasks"></i> <span data-i18n="common.label.topic"></span></label>
+        <input type="text" id="node-input-topic" data-i18n="[placeholder]common.label.topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-qos"><i class="fa fa-empire"></i> <span data-i18n="mqtt.label.qos"></span></label>
+        <select id="node-input-qos" style="width:125px !important">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name">
+    </div></script><script type="text/javascript">RED.nodes.registerType('mqtt in',{
+        category: 'input',
+        defaults: {
+            name: {value:""},
+            topic: {value:"",required:true,validate: RED.validators.regex(/^(#$|(\+|[^+#]*)(\/(\+|[^+#]*))*(\/(\+|#|[^+#]*))?$)/)},
+            qos: {value: "2"},
+            broker: {type:"mqtt-broker", required:true}
+        },
+        color:"#d8bfd8",
+        inputs:0,
+        outputs:1,
+        icon: "bridge.png",
+        label: function() {
+            return this.name||this.topic||"mqtt";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            if (this.qos === undefined) {
+                $("#node-input-qos").val("2");
+            }
+        }
+    });</script><script type="text/x-red" data-template-name="mqtt out"><div class="form-row">
+        <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
+        <input type="text" id="node-input-broker">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-tasks"></i> <span data-i18n="common.label.topic"></span></label>
+        <input type="text" id="node-input-topic" data-i18n="[placeholder]common.label.topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-qos"><i class="fa fa-empire"></i> <span data-i18n="mqtt.label.qos"></span></label>
+        <select id="node-input-qos" style="width:125px !important">
+            <option value=""></option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="mqtt.retain"></span> &nbsp;<select id="node-input-retain" style="width:125px !important">
+            <option value=""></option>
+            <option value="false" data-i18n="mqtt.false"></option>
+            <option value="true" data-i18n="mqtt.true"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="common.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name">
+    </div>
+    <div class="form-tips"><span data-i18n="mqtt.tip"></span></div></script><script type="text/javascript">RED.nodes.registerType('mqtt out',{
+        category: 'output',
+        defaults: {
+            name: {value:""},
+            topic: {value:""},
+            qos: {value:""},
+            retain: {value:""},
+            broker: {type:"mqtt-broker", required:true}
+        },
+        color:"#d8bfd8",
+        inputs:1,
+        outputs:0,
+        icon: "bridge.png",
+        align: "right",
+        label: function() {
+            return this.name||this.topic||"mqtt";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });</script><script type="text/x-red" data-template-name="mqtt-broker"><div class="form-row">
+        <ul style="background: #fff; min-width: 600px; margin-bottom: 20px;" id="node-config-mqtt-broker-tabs"></ul>
+    </div>
+    <div id="node-config-mqtt-broker-tabs-content" style="min-height: 170px;">
+        <div id="mqtt-broker-tab-connection" style="display:none">
+            <div class="form-row node-input-broker">
+                <label for="node-config-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
+                <input class="input-append-left" type="text" id="node-config-input-broker" placeholder="localhost" style="width: 40%;" >
+                <label for="node-config-input-port" style="margin-left: 10px; width: 35px; "> <span data-i18n="mqtt.label.port"></span></label>
+                <input type="text" id="node-config-input-port" data-i18n="[placeholder]mqtt.label.port" style="width:45px">
+            </div>
+            <div class="form-row">
+                <input type="checkbox" id="node-config-input-usetls" style="display: inline-block; width: auto; vertical-align: top;">
+                <label for="node-config-input-usetls" style="width: auto" data-i18n="mqtt.label.use-tls"></label>
+                <div id="node-config-row-tls" class="hide">
+                    <label style="width: auto; margin-left: 20px; margin-right: 10px;" for="node-config-input-tls"><span data-i18n="mqtt.label.tls-config"></span></label><input style="width: 300px;" type="text" id="node-config-input-tls">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="node-config-input-clientid"><i class="fa fa-tag"></i> <span data-i18n="mqtt.label.clientid"></span></label>
+                <input type="text" id="node-config-input-clientid" data-i18n="[placeholder]mqtt.placeholder.clientid">
+            </div>
+            <div class="form-row">
+                <label for="node-config-input-keepalive" style="width: auto"><i class="fa fa-clock-o"></i> <span data-i18n="mqtt.label.keepalive"></span></label>
+                <input type="text" id="node-config-input-keepalive" style="width: 50px">
+                <input type="checkbox" id="node-config-input-cleansession" style="margin-left: 30px; height: 1em;display: inline-block; width: auto; vertical-align: middle;">
+                <label for="node-config-input-cleansession" style="width: auto;" data-i18n="mqtt.label.cleansession"></label>
+            </div>
+            <div class="form-row">
+                <input type="checkbox" id="node-config-input-compatmode" style="display: inline-block; width: auto; vertical-align: top;">
+                <label for="node-config-input-compatmode" style="width: auto;" data-i18n="mqtt.label.compatmode"></label>
+            </div>
+        </div>
+        <div id="mqtt-broker-tab-security" style="display:none">
+            <div class="form-row">
+                <label for="node-config-input-user"><i class="fa fa-user"></i> <span data-i18n="common.label.username"></span></label>
+                <input type="text" id="node-config-input-user">
+            </div>
+            <div class="form-row">
+                <label for="node-config-input-password"><i class="fa fa-lock"></i> <span data-i18n="common.label.password"></span></label>
+                <input type="password" id="node-config-input-password">
+            </div>
+        </div>
+        <div id="mqtt-broker-tab-birth" style="display:none">
+            <div class="form-row">
+                <label for="node-config-input-birthTopic"><i class="fa fa-tasks"></i> <span data-i18n="common.label.topic"></span></label>
+                <input type="text" id="node-config-input-birthTopic" data-i18n="[placeholder]mqtt.placeholder.birth-topic">
+            </div>
+            <div class="form-row">
+                <label for="node-config-input-birthQos"><i class="fa fa-empire"></i> <span data-i18n="mqtt.label.qos"></span></label>
+                <select id="node-config-input-birthQos" style="width:125px !important">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="mqtt.retain"></span> &nbsp;<select id="node-config-input-birthRetain" style="width:125px !important">
+                    <option value="false" data-i18n="mqtt.false"></option>
+                    <option value="true" data-i18n="mqtt.true"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="node-config-input-birthPayload"><i class="fa fa-envelope"></i> <span data-i18n="common.label.payload"></span></label>
+                <input type="text" id="node-config-input-birthPayload" data-i18n="[placeholder]common.label.payload">
+            </div>
+        </div>
+        <div id="mqtt-broker-tab-will" style="display:none">
+            <div class="form-row">
+                <label for="node-config-input-willTopic"><i class="fa fa-tasks"></i> <span data-i18n="common.label.topic"></span></label>
+                <input type="text" id="node-config-input-willTopic" data-i18n="[placeholder]mqtt.placeholder.will-topic">
+            </div>
+            <div class="form-row">
+                <label for="node-config-input-willQos"><i class="fa fa-empire"></i> <span data-i18n="mqtt.label.qos"></span></label>
+                <select id="node-config-input-willQos" style="width:125px !important">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                &nbsp;&nbsp;<i class="fa fa-history"></i>&nbsp;<span data-i18n="mqtt.retain"></span> &nbsp;<select id="node-config-input-willRetain" style="width:125px !important">
+                    <option value="false" data-i18n="mqtt.false"></option>
+                    <option value="true" data-i18n="mqtt.true"></option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="node-config-input-willPayload"><i class="fa fa-envelope"></i> <span data-i18n="common.label.payload"></span></label>
+                <input type="text" id="node-config-input-willPayload" data-i18n="[placeholder]common.label.payload">
+            </div>
+        </div>
+    </div></script><script type="text/javascript">RED.nodes.registerType('mqtt-broker',{
+        category: 'config',
+        defaults: {
+            broker: {value:"",required:true},
+            port: {value:1883,required:true,validate:RED.validators.number()},
+            tls: {type:"tls-config",required: false},
+            clientid: {value:"", validate: function(v) {
+                    if ($("#node-config-input-clientid").length) {
+                        // Currently editing the node
+                        return $("#node-config-input-cleansession").is(":checked") || v.length > 0;
+                    } else {
+                        return this.cleansession || v.length > 0;
+                    }
+                }},
+            usetls: {value: false},
+            verifyservercert: { value: false},
+            compatmode: { value: true},
+            keepalive: {value:60,validate:RED.validators.number()},
+            cleansession: {value: true},
+            willTopic: {value:""},
+            willQos: {value:"0"},
+            willRetain: {value:false},
+            willPayload: {value:""},
+            birthTopic: {value:""},
+            birthQos: {value:"0"},
+            birthRetain: {value:false},
+            birthPayload: {value:""},
+            user: {value:""},
+            password: {value: ""}
+        },
+        // credentials: {
+        //     user: {type:"text"},
+        //     password: {type: "password"}
+        // },
+        label: function() {
+            if (this.broker === "") { this.broker = "localhost"; }
+            return (this.clientid?this.clientid+"@":"")+this.broker+":"+this.port;
+        },
+        oneditprepare: function () {
+            var tabs = RED.tabs.create({
+                id: "node-config-mqtt-broker-tabs",
+                onchange: function(tab) {
+                    $("#node-config-mqtt-broker-tabs-content").children().hide();
+                    $("#" + tab.id).show();
+                }
+            });
+            tabs.addTab({
+                id: "mqtt-broker-tab-connection",
+                label: this._("mqtt.tabs-label.connection")
+            });
+            tabs.addTab({
+                id: "mqtt-broker-tab-security",
+                label: this._("mqtt.tabs-label.security")
+            });
+            tabs.addTab({
+                id: "mqtt-broker-tab-birth",
+                label: this._("mqtt.tabs-label.birth")
+            });
+            tabs.addTab({
+                id: "mqtt-broker-tab-will",
+                label: this._("mqtt.tabs-label.will")
+            });
+            setTimeout(function() { tabs.resize()},0);
+            if (typeof this.cleansession === 'undefined') {
+                this.cleansession = true;
+                $("#node-config-input-cleansession").prop("checked",true);
+            }
+            if (typeof this.usetls === 'undefined') {
+                this.usetls = false;
+                $("#node-config-input-usetls").prop("checked",false);
+            }
+            if (typeof this.compatmode === 'undefined') {
+                this.compatmode = true;
+                $("#node-config-input-compatmode").prop('checked', true);
+            }
+            if (typeof this.keepalive === 'undefined') {
+                this.keepalive = 15;
+                $("#node-config-input-keepalive").val(this.keepalive);
+            }
+            if (typeof this.willQos === 'undefined') {
+                this.willQos = "0";
+                $("#node-config-input-willQos").val("0");
+            }
+            if (typeof this.birthQos === 'undefined') {
+                this.birthQos = "0";
+                $("#node-config-input-birthQos").val("0");
+            }
+            function updateTLSOptions() {
+                if ($("#node-config-input-usetls").is(':checked')) {
+                    $("#node-config-row-tls").show();
+                } else {
+                    $("#node-config-row-tls").hide();
+                }
+            }
+            updateTLSOptions();
+            $("#node-config-input-usetls").on("click",function() {
+                updateTLSOptions();
+            });
+            var node = this;
+            function updateClientId() {
+                if ($("#node-config-input-cleansession").is(":checked")) {
+                    $("#node-config-input-clientid").attr("placeholder",node._("mqtt.placeholder.clientid"));
+                } else {
+                    $("#node-config-input-clientid").attr("placeholder",node._("mqtt.placeholder.clientid-nonclean"));
+                }
+                $("#node-config-input-clientid").change();
+            }
+            setTimeout(updateClientId,0);
+            $("#node-config-input-cleansession").on("click",function() {
+                updateClientId();
+            });
+        },
+        oneditsave: function() {
+            if (!$("#node-config-input-usetls").is(':checked')) {
+                $("#node-config-input-tls").val("");
+            }
+        }
+    });</script><script type="text/x-red" data-help-name="mqtt in"><p>Connects to a broker and subscribes to the specified topic.</p>
+    <p>Outputs a message with the properties:</p>
+    <ul>
+       <li><code>msg.topic</code></li>
+       <li><code>msg.payload</code></li>
+       <li><code>msg.qos</code></li>
+       <li><code>msg.retain</code></li>
+    </ul>
+    <p><code>msg.payload</code> will be a String, unless it is detected as a binary buffer.</p></script><script type="text/x-red" data-help-name="mqtt out"><p>Connects to a MQTT broker and publishes messages.</p>
+    <p><code>msg.payload</code> is used as the payload of the published message.
+    If it contains an Object it will be converted to JSON before being sent.
+    </p>
+    <p>The topic used can be configured in the node or, if left blank, can be set
+       by <code>msg.topic</code>.</p>
+    <p>Likewise the QoS and retain values can be configured in the node or, if left
+       blank, set by <code>msg.qos</code> and <code>msg.retain</code> respectively.
+       By default, messages are published at QoS 0 with the retain flag set to false.</p></script><script type="text/x-red" data-help-name="mqtt-broker"><p>A minimum MQTT broker connecton requires only a broker server address to be added to the default configuration.</p>
+    <p>To secure the connection with SSL/TLS, a TLS Configuration must also be configured and selected.</p>
+    <p>If you create a Client ID it must be unique to the broker you are connecting to.</p>
+    <p>For more information about MQTT see the <a href="http://www.eclipse.org/paho/" target="_new">Eclipse Paho</a> site.</p></script><script type="text/x-red" data-template-name="watch"><div class="form-row node-input-filename">
          <label for="node-input-files"><i class="fa fa-file"></i> File(s)</label>
          <input type="text" id="node-input-files" placeholder="File(s) or Directory">
     </div>
@@ -3729,10 +3685,7 @@ handle multiple topics at the same time.</p>
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-     <div id="node-input-tip" class="form-tips">On Windows you must use double slashes \\ in any directory names.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('watch',{
+     <div id="node-input-tip" class="form-tips">On Windows you must use double slashes \\ in any directory names.</div></script><script type="text/javascript">RED.nodes.registerType('watch',{
         category: 'advanced-input',
         defaults: {
             name: {value:""},
@@ -3748,29 +3701,20 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="watch">
-    <p>Watches a directory or file for any changes.</p>
+    });</script><script type="text/x-red" data-help-name="watch"><p>Watches a directory or file for any changes.</p>
     <p>You can enter a list of comma separated directories or files if you like. You will need to put " around any that have spaces in.</p>
     <p>On Windows you must use double slashes \\ in any directory names.</p>
     <p>The full filename of the file that actually changed is put into <b>msg.payload</b>, while a stringified version of the watched criteria is returned in <b>msg.topic</b>.</p>
     <p><b>msg.file</b> contains just the short filename of the file that changed.</p>
     <p>Of course in Linux, <i>everything</i> could be a file and thus watched...</p>
-    <p><b>Note: </b>The directory or file must exist in order to be watched. If the file or directory gets deleted it may no longer be monitored even if it gets re-created.</p>
-</script> 
-<script type="text/x-red" data-template-name="serial in">
-    <div class="form-row node-input-serial">
+    <p><b>Note: </b>The directory or file must exist in order to be watched. If the file or directory gets deleted it may no longer be monitored even if it gets re-created.</p></script><script type="text/x-red" data-template-name="serial in"><div class="form-row node-input-serial">
         <label for="node-input-serial"><i class="fa fa-random"></i> Serial Port</label>
         <input type="text" id="node-input-serial">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('serial in',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('serial in',{
         category: 'input',
         defaults: {
             name: {name:""},
@@ -3787,20 +3731,14 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="serial out">
-    <div class="form-row node-input-serial">
+    });</script><script type="text/x-red" data-template-name="serial out"><div class="form-row node-input-serial">
         <label for="node-input-serial"><i class="fa fa-random"></i> Serial Port</label>
         <input type="text" id="node-input-serial">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('serial out',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('serial out',{
         category: 'output',
         defaults: {
             name: {name:""},
@@ -3818,10 +3756,7 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="serial-port">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="serial-port"><div class="form-row">
         <label for="node-config-input-serialport"><i class="fa fa-random"></i> Serial Port</label>
         <input type="text" id="node-config-input-serialport" style="width:60%;" placeholder="/dev/ttyUSB0"/>
         <a id="node-config-lookup-serial" class="btn"><i id="node-config-lookup-serial-icon" class="fa fa-search"></i></a>
@@ -3907,10 +3842,7 @@ handle multiple topics at the same time.</p>
         </div>
     </div>
     <div class="form-tips" id="tip-split">Tip: the "Split on" character is used to split the input into separate messages. It can also be added to every message sent out to the serial port.</div>
-    <div class="form-tips" id="tip-bin" hidden>Tip: In timeout mode timeout starts from arrival of first character.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('serial-port',{
+    <div class="form-tips" id="tip-bin" hidden>Tip: In timeout mode timeout starts from arrival of first character.</div></script><script type="text/javascript">RED.nodes.registerType('serial-port',{
         category: 'config',
         defaults: {
             //name: {value:""},
@@ -3986,22 +3918,14 @@ handle multiple topics at the same time.</p>
                 });
             });
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="serial in">
-    <p>Reads data from a local serial port.</p>
+    });</script><script type="text/x-red" data-help-name="serial in"><p>Reads data from a local serial port.</p>
     <p>Can either <ul><li>wait for a "split" character (default \n). Also accepts hex notation (0x0a).</li>
     <li>Wait for a timeout in milliseconds for the first character received</li>
     <li>Wait to fill a fixed sized buffer</li></ul></p>
     <p>It then outputs <b>msg.payload</b> as either a UTF8 ascii string or a binary Buffer object.</p>
-    <p>If no split character is specified, or a timeout or buffer size of 0, then a stream of single characters is sent - again either as ascii chars or size 1 binary buffers.</p>
-</script><script type="text/x-red" data-help-name="serial out">
-    <p>Provides a connection to an outbound serial port.</p>
+    <p>If no split character is specified, or a timeout or buffer size of 0, then a stream of single characters is sent - again either as ascii chars or size 1 binary buffers.</p></script><script type="text/x-red" data-help-name="serial out"><p>Provides a connection to an outbound serial port.</p>
     <p>Only the <b>msg.payload</b> is sent.</p>
-    <p>Optionally the new line character used to split the input can be appended to every message sent out to the serial port.</p>
-</script> 
-<script type="text/x-red" data-template-name="tcp in">
-    <div class="form-row">
+    <p>Optionally the new line character used to split the input can be appended to every message sent out to the serial port.</p></script><script type="text/x-red" data-template-name="tcp in"><div class="form-row">
         <label for="node-input-server"><i class="fa fa-dot-circle-o"></i> Type</label>
         <select id="node-input-server" style="width:120px; margin-right:5px;">
             <option value="server">Listen on</option>
@@ -4039,10 +3963,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('tcp in',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('tcp in',{
         category: 'input',
         color:"Silver",
         defaults: {
@@ -4092,10 +4013,7 @@ handle multiple topics at the same time.</p>
             $("#node-input-datatype").change(updateOptions);
             $("#node-input-datamode").change(updateOptions);
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="tcp out">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="tcp out"><div class="form-row">
         <label for="node-input-beserver"><i class="fa fa-dot-circle-o"></i> Type</label>
         <select id="node-input-beserver" style="width:150px; margin-right:5px;">
             <option value="server">Listen on</option>
@@ -4131,10 +4049,7 @@ handle multiple topics at the same time.</p>
     </div>
     <div class="form-tips hidden" id="fin-tip2">
         <b>Note:</b> Closing the connection after each message is generally not a good thing - but is useful to indicate an end-of-file for example. The receiving client will need to reconnect.
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('tcp out',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('tcp out',{
         category: 'output',
         color:"Silver",
         defaults: {
@@ -4185,10 +4100,7 @@ handle multiple topics at the same time.</p>
             updateOptions();
             $("#node-input-beserver").change(updateOptions);
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="tcp request">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="tcp request"><div class="form-row">
         <label for="node-input-server"><i class="fa fa-globe"></i> Server</label>
         <input type="text" id="node-input-server" placeholder="ip.address" style="width:45%">
         &nbsp;port <input type="text" id="node-input-port" placeholder="number" style="width:60px">
@@ -4230,10 +4142,7 @@ handle multiple topics at the same time.</p>
                 if (previous != "sit") $("#node-input-splitc").val("0");
                 $("#node-units").text("");
             }
-        });
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('tcp request',{
+        });</script><script type="text/javascript">RED.nodes.registerType('tcp request',{
         category: 'function',
         color:"Silver",
         defaults: {
@@ -4252,29 +4161,18 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="tcp in">
-    <p>Provides a choice of tcp inputs. Can either connect to a remote tcp port,
-       or accept incoming connections.</p>
-</script><script type="text/x-red" data-help-name="tcp out">
-    <p>Provides a choice of tcp outputs. Can either connect to a remote tcp port,
+    });</script><script type="text/x-red" data-help-name="tcp in"><p>Provides a choice of tcp inputs. Can either connect to a remote tcp port,
+       or accept incoming connections.</p></script><script type="text/x-red" data-help-name="tcp out"><p>Provides a choice of tcp outputs. Can either connect to a remote tcp port,
     accept incoming connections, or reply to messages received from a TCP In node.</p>
     <p>Only <b>msg.payload</b> is sent.</p>
     <p>If <b>msg.payload</b> is a string containing a Base64 encoding of binary
     data, the Base64 decoding option will cause it to be converted back to binary
-    before being sent.</p>
-</script><script type="text/x-red" data-help-name="tcp request">
-    <p>A simple TCP request node - sends the <b>msg.payload</b> to a server tcp port and expects a response.</p>
+    before being sent.</p></script><script type="text/x-red" data-help-name="tcp request"><p>A simple TCP request node - sends the <b>msg.payload</b> to a server tcp port and expects a response.</p>
     <p>Connects, sends the "request", reads the "response". It can either count a number of
     returned characters into a fixed buffer, match a specified character before returning,
     wait a fixed timeout from first reply and then return, or just sit and wait for data.</p>
     <p>The response will be output in <b>msg.payload</b> as a buffer, so you may want to .toString() it.</p>
-    <p>If you leave tcp host or port blank they must be set by using the <b>msg.host</b> and <b>msg.port</b> properties.</p>
-</script> 
- 
-<script type="text/x-red" data-template-name="udp in">
-    <div class="form-row">
+    <p>If you leave tcp host or port blank they must be set by using the <b>msg.host</b> and <b>msg.port</b> properties.</p></script><script type="text/x-red" data-template-name="udp in"><div class="form-row">
         <label for="node-input-port"><i class="fa fa-sign-in"></i> Listen</label>
         on port <input type="text" id="node-input-port" placeholder="Port" style="width: 45px">
         for <select id="node-input-multicast" style='width:40%'>
@@ -4314,11 +4212,7 @@ handle multiple topics at the same time.</p>
                 $(".node-input-group").show();
                 $(".node-input-iface").show();
             }
-        });
-    </script>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('udp in',{
+        });</script><script type="text/javascript">RED.nodes.registerType('udp in',{
         category: 'input',
         color:"Silver",
         defaults: {
@@ -4341,11 +4235,7 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
- 
-<script type="text/x-red" data-template-name="udp out">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="udp out"><div class="form-row">
         <label for="node-input-port"><i class="fa fa-envelope"></i> Send a</label>
         <select id="node-input-multicast" style='width:40%'>
           <option value="false">udp message</option>
@@ -4396,11 +4286,7 @@ handle multiple topics at the same time.</p>
             if (id === "broad") {
                 $("#node-input-addr")[0].placeholder = '255.255.255.255';
             }
-        });
-    </script>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('udp out',{
+        });</script><script type="text/javascript">RED.nodes.registerType('udp out',{
         category: 'output',
         color:"Silver",
         defaults: {
@@ -4449,20 +4335,12 @@ handle multiple topics at the same time.</p>
             });
             $("#node-input-multicast").change();
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="udp in">
-    <p>A udp input node, that produces a <b>msg.payload</b> containing a <i>BUFFER</i>, string, or base64 encoded string. Supports multicast.</p>
+    });</script><script type="text/x-red" data-help-name="udp in"><p>A udp input node, that produces a <b>msg.payload</b> containing a <i>BUFFER</i>, string, or base64 encoded string. Supports multicast.</p>
     <p>It also provides <b>msg.ip</b> and <b>msg.port</b> to the ip address and port from which the message was received.</p>
-    <p>On some systems you may need to be root to use ports below 1024 and/or broadcast.</p>
-</script><script type="text/x-red" data-help-name="udp out">
-    <p>This node sends <b>msg.payload</b> to the designated udp host and port. Supports multicast.</p>
+    <p>On some systems you may need to be root to use ports below 1024 and/or broadcast.</p></script><script type="text/x-red" data-help-name="udp out"><p>This node sends <b>msg.payload</b> to the designated udp host and port. Supports multicast.</p>
     <p>You may also use <b>msg.ip</b> and <b>msg.port</b> to set the destination values.<br/><b>Note</b>: the statically configured values have precedence.</p>
     <p>If you select broadcast either set the address to the local broadcast ip address, or maybe try 255.255.255.255, which is the global broadcast address.</p>
-    <p>On some systems you may need to be root to use ports below 1024 and/or broadcast.</p>
-</script> 
-<script type="text/x-red" data-template-name="switch">
-    <div class="form-row">
+    <p>On some systems you may need to be root to use ports below 1024 and/or broadcast.</p></script><script type="text/x-red" data-template-name="switch"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
@@ -4482,10 +4360,7 @@ handle multiple topics at the same time.</p>
             <option value="true">checking all rules</option>
             <option value="false">stopping after first match</option>
         </select>
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('switch', {
+    </div></script><script type="text/javascript">RED.nodes.registerType('switch', {
         color: "#E2D96E",
         category: 'function',
         defaults: {
@@ -4641,16 +4516,11 @@ handle multiple topics at the same time.</p>
             });
             node.outputs = node.rules.length;
         }
-    });
-</script><script type="text/x-red" data-help-name="switch">
-    <p>A simple function node to route messages based on its properties.</p>
+    });</script><script type="text/x-red" data-help-name="switch"><p>A simple function node to route messages based on its properties.</p>
     <p>When a message arrives, the selected property is evaluated against each
     of the defined rules. The message is then sent to the output of <i>all</i>
     rules that pass.</p>
-    <p>Note: the <i>otherwise</i> rule applies as a "not any of" the rules preceding it.</p>
-</script> 
-<script type="text/x-red" data-template-name="change">
-    <div class="form-row">
+    <p>Note: the <i>otherwise</i> rule applies as a "not any of" the rules preceding it.</p></script><script type="text/x-red" data-template-name="change"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
@@ -4664,10 +4534,7 @@ handle multiple topics at the same time.</p>
     </div>
     <div class="form-row">
         <a href="#" class="btn btn-mini" id="node-input-add-rule" style="margin-top: 4px;"><i class="fa fa-plus"></i> rule</a>
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('change', {
+    </div></script><script type="text/javascript">RED.nodes.registerType('change', {
         color: "#E2D96E",
         category: 'function',
         defaults: {
@@ -4860,9 +4727,7 @@ handle multiple topics at the same time.</p>
                 node.rules.push(r);
             });
         }
-    });
-</script><script type="text/x-red" data-help-name="change">
-    <p>Set, change or delete properties of a message.</p>
+    });</script><script type="text/x-red" data-help-name="change"><p>Set, change or delete properties of a message.</p>
     <p>The node can specify multiple rules that will be applied to the message in turn.</p>
     <p>The available operations are:</p>
     <ul>
@@ -4871,10 +4736,7 @@ handle multiple topics at the same time.</p>
         <li><b>Change</b> - search &amp; replace parts of the property. If regular expressions
             are enabled, the <b>replace with</b> property can include capture groups, for example <code>$1</code></li>
         <li><b>Delete</b> - delete a property.</li>
-    </ul>
-</script> 
-<script type="text/x-red" data-template-name="range">
-    <div class="form-row">
+    </ul></script><script type="text/x-red" data-template-name="range"><div class="form-row">
         <label for="node-input-action"><i class="fa fa-dot-circle-o"></i> Action</label>
         <select id="node-input-action" style="width:70%; margin-right:5px;">
             <option value="scale">Scale msg.payload</option>
@@ -4903,10 +4765,7 @@ handle multiple topics at the same time.</p>
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips" id="node-tip">Tip: This node ONLY works with numbers.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('range', {
+    <div class="form-tips" id="node-tip">Tip: This node ONLY works with numbers.</div></script><script type="text/javascript">RED.nodes.registerType('range', {
         color: "#E2D96E",
         category: 'function',
         defaults: {
@@ -4927,17 +4786,11 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name ? "node_label_italic" : "";
         }
-    });
-</script><script type="text/x-red" data-help-name="range">
-    <p>A simple function node to remap numeric input values to another scale.</p>
+    });</script><script type="text/x-red" data-help-name="range"><p>A simple function node to remap numeric input values to another scale.</p>
     <p>Currently only does a linear scaling.</p>
     <p><b>Note:</b> This only operates on <b>numbers</b>. Anything else will try to be made into a number and rejected if that fails.</p>
     <p><i>Scale and limit to target range</i> means that the result will never be outside the range specified within the result range.</p>
-    <p><i>Scale and wrap within the target range</i> means that the result will essentially be a "modulo-style" wrap-around within the result range.</p>
-</script>
- 
-<script type="text/x-red" data-template-name="csv">
-    <div class="form-row">
+    <p><i>Scale and wrap within the target range</i> means that the result will essentially be a "modulo-style" wrap-around within the result range.</p></script><script type="text/x-red" data-template-name="csv"><div class="form-row">
         <label for="node-input-temp"><i class="fa fa-list"></i> Columns</label>
         <input type="text" id="node-input-temp" placeholder="comma-separated column names">
     </div>
@@ -4984,10 +4837,7 @@ handle multiple topics at the same time.</p>
             <option value='\r'>Mac (\r)</option>
             <option value='\r\n'>Windows (\r\n)</option>
        </select>
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('csv',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('csv',{
         category: 'function',
         color:"#DEBD5C",
         defaults: {
@@ -5029,19 +4879,13 @@ handle multiple topics at the same time.</p>
                 }
             });
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="csv">
-    <p>A function that parses the <b>msg.payload</b> to convert csv to/from a javascript object.
+    });</script><script type="text/x-red" data-help-name="csv"><p>A function that parses the <b>msg.payload</b> to convert csv to/from a javascript object.
     Places the result in the payload.</p>
     <p>If the input is a string it tries to parse it as CSV and creates a javascript object.</p>
     <p>If the input is a javascript object it tries to build a CSV string.</p>
     <p>The columns template should contain an ordered list of column headers. For csv input these become the property names.
     For csv output these specify the properties to extract from the object and the order for the csv.</p>
-    <p><b>Note:</b> the columns should always be specified comma separated - even if another separator is chosen for the data.</p>
-    </script> 
-<script type="text/x-red" data-template-name="html">
-    <div class="form-row">
+    <p><b>Note:</b> the columns should always be specified comma separated - even if another separator is chosen for the data.</p></script><script type="text/x-red" data-template-name="html"><div class="form-row">
         <label for="node-input-tag"><i class="fa fa-filter"></i> Select</label>
         <input type="text" id="node-input-tag" placeholder="h1">
     </div>
@@ -5066,10 +4910,7 @@ handle multiple topics at the same time.</p>
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div class="form-tips">Tip: The <b>Select</b> value is a <a href="http://api.jquery.com/category/selectors/" target="_new"><i><u>jQuery</u></i></a> style selector.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('html',{
+    <div class="form-tips">Tip: The <b>Select</b> value is a <a href="http://api.jquery.com/category/selectors/" target="_new"><i><u>jQuery</u></i></a> style selector.</div></script><script type="text/javascript">RED.nodes.registerType('html',{
         category: 'function',
         color:"#DEBD5C",
         defaults: {
@@ -5087,22 +4928,13 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="html">
-    <p>Extracts elements from an html document held in <b>msg.payload</b> using a selector.</p>
+    });</script><script type="text/x-red" data-help-name="html"><p>Extracts elements from an html document held in <b>msg.payload</b> using a selector.</p>
     <p>The selector uses the <a href="http://api.jquery.com/category/selectors/" target="_new">jQuery syntax</a>.</p>
     <p>The result is either a single message with a payload containing an array of the matched elements, or multiple
-       messages that each contain a matched element.</p>
-</script> 
-<script type="text/x-red" data-template-name="json">
-    <div class="form-row">
+       messages that each contain a matched element.</p></script><script type="text/x-red" data-template-name="json"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('json',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('json',{
         category: 'function',
         color:"#DEBD5C",
         defaults: {
@@ -5117,21 +4949,12 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="json">
-    <p>A function that parses the <b>msg.payload</b> to convert a JSON string to/from a javascript object. Places the result back into the payload.</p>
+    });</script><script type="text/x-red" data-help-name="json"><p>A function that parses the <b>msg.payload</b> to convert a JSON string to/from a javascript object. Places the result back into the payload.</p>
     <p>If the input is a JSON string it tries to parse it to a javascript object.</p>
-    <p>If the input is a javascript object it creates a JSON string.</p>
-</script> 
-<script type="text/x-red" data-template-name="xml">
-    <div class="form-row">
+    <p>If the input is a javascript object it creates a JSON string.</p></script><script type="text/x-red" data-template-name="xml"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('xml',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('xml',{
         category: 'function',
         color:"#DEBD5C",
         defaults: {
@@ -5146,22 +4969,13 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="xml">
-    <p>A function that parses the <b>msg.payload</b> to convert xml to/from a javascript object. Places the result in the payload.</p>
+    });</script><script type="text/x-red" data-help-name="xml"><p>A function that parses the <b>msg.payload</b> to convert xml to/from a javascript object. Places the result in the payload.</p>
     <p>If the input is a string it tries to parse it as XML and creates a javascript object.</p>
     <p>If the input is a javascript object it tries to build an XML string.</p>
-    <p>See <a href="https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/README.md" target="_new">the xml2js docs <i>here</i></a> for more information.</p>
-</script> 
-<script type="text/x-red" data-template-name="base64">
-    <div class="form-row">
+    <p>See <a href="https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/README.md" target="_new">the xml2js docs <i>here</i></a> for more information.</p></script><script type="text/x-red" data-template-name="base64"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('base64',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('base64',{
         category: 'function',
         color:"#DEBD5C",
         defaults: {
@@ -5176,20 +4990,12 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script><script type="text/x-red" data-help-name="base64">
-    <p>A function that converts the <b>msg.payload</b> to and from base64 format.</p>
+    });</script><script type="text/x-red" data-help-name="base64"><p>A function that converts the <b>msg.payload</b> to and from base64 format.</p>
     <p>If the input is a buffer it converts it to a Base64 encoded string.</p>
-    <p>If the input is a Base64 string it converts it back to a binary buffer.</p>
-</script> 
-<script type="text/x-red" data-template-name="msgpack">
-    <div class="form-row">
+    <p>If the input is a Base64 string it converts it back to a binary buffer.</p></script><script type="text/x-red" data-template-name="msgpack"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('msgpack',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('msgpack',{
         category: 'function',
         color:"#DEBD5C",
         defaults: {
@@ -5204,14 +5010,9 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script><script type="text/x-red" data-help-name="msgpack">
-    <p>A function that converts the <b>msg.payload</b> to and from <a href = "https://github.com/msgpack/msgpack-node"><i>msgpack</i></a> format.</p>
+    });</script><script type="text/x-red" data-help-name="msgpack"><p>A function that converts the <b>msg.payload</b> to and from <a href = "https://github.com/msgpack/msgpack-node"><i>msgpack</i></a> format.</p>
     <p>If the input is NOT a buffer it tries to convert it to a msgpack buffer.</p>
-    <p>If the input is a msgpack buffer it tries to decode it back.</p>
-</script> 
-<script type="text/x-red" data-template-name="twitter-credentials">
-    <div class="form-row">
+    <p>If the input is a msgpack buffer it tries to decode it back.</p></script><script type="text/x-red" data-template-name="twitter-credentials"><div class="form-row">
         <label for="node-config-input-screen_name"><i class="icon-bookmark"></i> Screen Name</label>
         <input type="text" id="node-config-input-screen_name">
     </div>
@@ -5230,10 +5031,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-config-input-access_token_secret"> Token Secret</label>
         <input type="password" id="node-config-input-access_token_secret">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('twitter-credentials',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('twitter-credentials',{
         category: 'config',
         defaults: {
             screen_name: {value:""},
@@ -5247,10 +5045,7 @@ handle multiple topics at the same time.</p>
             return this.screen_name;
         },
         exportable: false,
-    });
-</script>
-<script type="text/x-red" data-template-name="twitter in">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="twitter in"><div class="form-row">
         <label for="node-input-twitter"><i class="fa fa-user"></i> Log in as</label>
         <input type="text" id="node-input-twitter">
     </div>
@@ -5273,10 +5068,7 @@ handle multiple topics at the same time.</p>
     </div>
     <div class="form-tips">Tip: Use commas without spaces between multiple search terms. Comma = OR, Space = AND.
     <br/>The Twitter API WILL NOT deliver 100% of all tweets.
-    <br/>Tweets of who you follow will include their retweets and favourites.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('twitter in',{
+    <br/>Tweets of who you follow will include their retweets and favourites.</div></script><script type="text/javascript">RED.nodes.registerType('twitter in',{
         category: 'social-input',
         color:"#C0DEED",
         defaults: {
@@ -5323,20 +5115,14 @@ handle multiple topics at the same time.</p>
             $("#node-input-user").change();
         
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="twitter out">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="twitter out"><div class="form-row">
         <label for="node-input-twitter"><i class="fa fa-user"></i> Twitter</label>
         <input type="text" id="node-input-twitter">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('twitter out',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('twitter out',{
         category: 'social-output',
         color:"#C0DEED",
         defaults: {
@@ -5350,10 +5136,7 @@ handle multiple topics at the same time.</p>
         label: function() {
             return this.name;
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="twitter in">
-    <p>Twitter input node. Can be used to search either:
+    });</script><script type="text/x-red" data-help-name="twitter in"><p>Twitter input node. Can be used to search either:
     <ul><li>the public or a user's stream for tweets containing the configured search term</li>
         <li>all tweets by specific users</li>
         <li>direct messages received by the authenticated user</li>
@@ -5365,14 +5148,9 @@ handle multiple topics at the same time.</p>
     <p><b>Note:</b> when set to a specific user's tweets, or your direct messages, the node is subject to
       Twitter's API rate limiting. If you deploy the flows multiple times within a 15 minute window, you may
       exceed the limit and will see errors from the node. These errors will clear when the current 15 minute window
-      passes.</p>
-</script><script type="text/x-red" data-help-name="twitter out">
-    <p>Twitter out node. Tweets the <b>msg.payload</b>.</p>
+      passes.</p></script><script type="text/x-red" data-help-name="twitter out"><p>Twitter out node. Tweets the <b>msg.payload</b>.</p>
     <p>If <b>msg.media</b> exists and is a Buffer object, this node will treat it
-       as an image and attach it to the tweet.</p>
-</script> 
-<script type="text/x-red" data-template-name="feedparse">
-    <div class="form-row">
+       as an image and attach it to the tweet.</p></script><script type="text/x-red" data-template-name="feedparse"><div class="form-row">
         <label for="node-input-url"><i class="fa fa-globe"></i> Feed url</label>
         <input type="text" id="node-input-url">
     </div>
@@ -5384,10 +5162,7 @@ handle multiple topics at the same time.</p>
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <!-- <div class="form-tips"></div> -->
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('feedparse',{
+    <!-- <div class="form-tips"></div> --></script><script type="text/javascript">RED.nodes.registerType('feedparse',{
         category: 'advanced-input',
         color:"#C0DEED",
         defaults: {
@@ -5404,14 +5179,7 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-
-</script>
-<script type="text/x-red" data-help-name="feedparse">
-    <p>Monitors an RSS/atom feed for new entries.</p>
-</script> 
-<script type="text/x-red" data-template-name="twilio sms">
-    <div class="form-row" id="node-input-credentials-row">
+    });</script><script type="text/x-red" data-help-name="feedparse"><p>Monitors an RSS/atom feed for new entries.</p></script><script type="text/x-red" data-template-name="twilio sms"><div class="form-row" id="node-input-credentials-row">
         <label for="node-input-creds"><i class="fa fa-folder-o"></i> Credentials</label>
         <select id="node-input-creds">
             <option value="global">Use global credentials</option>
@@ -5429,10 +5197,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="twilio call out">
-    <div class="form-row" id="node-input-credentials-row">
+    </div></script><script type="text/x-red" data-template-name="twilio call out"><div class="form-row" id="node-input-credentials-row">
         <label for="node-input-creds"><i class="fa fa-folder-o"></i> Credentials</label>
         <select id="node-input-creds">
             <option value="global">Use global credentials</option>
@@ -5461,10 +5226,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="twilio-api">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="twilio-api"><div class="form-row">
         <label for="node-config-input-sid">Account SID</label>
         <input type="text" id="node-config-input-sid">
     </div>
@@ -5479,10 +5241,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-config-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    (function() {
+    </div></script><script type="text/javascript">(function() {
         var hasGlobal = false;
         // $.getJSON('twilio-api/global',function(data) {
         //     hasGlobal = data.hasToken;
@@ -5592,20 +5351,13 @@ handle multiple topics at the same time.</p>
                 }
             }
         });
-    })();
-</script><script type="text/x-red" data-help-name="twilio sms">
-    <p>Sends an SMS message using the Twilio service.</p>
+    })();</script><script type="text/x-red" data-help-name="twilio sms"><p>Sends an SMS message using the Twilio service.</p>
     <p><code>msg.payload</code> is used as the body of the message. The node can be configured with the number
     to send the message to. Alternatively, if the number is left blank, it can be set using <code>msg.topic</code>.</p>
-    <p>You must have an account with Twilio to use this node. You can register for one <a href="https://www.twilio.com/">here</a>.</p>
-</script><script type="text/x-red" data-help-name="twilio call out">
-    <p>Sends a call message using the Twilio service.</p>
+    <p>You must have an account with Twilio to use this node. You can register for one <a href="https://www.twilio.com/">here</a>.</p></script><script type="text/x-red" data-help-name="twilio call out"><p>Sends a call message using the Twilio service.</p>
     <p><code>msg.payload</code> is used as the body of the message. The node can be configured with the number
     to send the message to. Alternatively, if the number is left blank, it can be set using <code>msg.topic</code>.</p>
-    <p>You must have an account with Twilio to use this node. You can register for one <a href="https://www.twilio.com/">here</a>.</p>
-</script> 
-<script type="text/x-red" data-template-name="e-mail">
-    <div class="form-row">
+    <p>You must have an account with Twilio to use this node. You can register for one <a href="https://www.twilio.com/">here</a>.</p></script><script type="text/x-red" data-template-name="e-mail"><div class="form-row">
         <label for="node-input-name"><i class="fa fa-envelope"></i> To</label>
         <input type="text" id="node-input-name" placeholder="email@address.com">
     </div>
@@ -5654,10 +5406,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-input-dname"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-dname" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-(function() {
+    </div></script><script type="text/javascript">(function() {
     RED.nodes.registerType('e-mail',{
         category: 'social-output',
         color:"#c7e9c0",
@@ -5685,10 +5434,7 @@ handle multiple topics at the same time.</p>
 
         }
     });
-})();
-</script>
-<script type="text/x-red" data-template-name="e-mail in">
-    <div class="form-row node-input-repeat">
+})();</script><script type="text/x-red" data-template-name="e-mail in"><div class="form-row node-input-repeat">
         <label for="node-input-repeat"><i class="fa fa-repeat"></i> Check Repeat (S)</label>
         <input type="text" id="node-input-repeat" placeholder="300">
     </div>
@@ -5713,10 +5459,7 @@ handle multiple topics at the same time.</p>
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <div id="node-input-tip" class="form-tips">Tip: <b>ONLY</b> retrieves the single most recent email.</div>
-</script>
-<script type="text/javascript">
-(function() {
+    <div id="node-input-tip" class="form-tips">Tip: <b>ONLY</b> retrieves the single most recent email.</div></script><script type="text/javascript">(function() {
     RED.nodes.registerType('e-mail in',{
         category: 'social-input',
         color:"#c7e9c0",
@@ -5746,22 +5489,14 @@ handle multiple topics at the same time.</p>
 
         }
     });
-})();
-</script>
-<script type="text/x-red" data-help-name="e-mail">
-    <p>Sends the <b>msg.payload</b> as an email, with a subject of <b>msg.topic</b>.</p>
+})();</script><script type="text/x-red" data-help-name="e-mail"><p>Sends the <b>msg.payload</b> as an email, with a subject of <b>msg.topic</b>.</p>
     <!-- <p>It sends the message to the configured recipient <i>only</i>.</p> -->
     <p>You may dynamically overide the default recipient by setting a <b>msg.to</b> property.</p>
-    <!-- <p><b>msg.topic</b> is used to set the subject of the email, and <b>msg.payload</b> is the body text.</p> -->
-</script><script type="text/x-red" data-help-name="e-mail in">
-    <p>Repeatedly gets a <b>single email</b> from an IMAP server and forwards on as a msg if not already seen.</p>
+    <!-- <p><b>msg.topic</b> is used to set the subject of the email, and <b>msg.payload</b> is the body text.</p> --></script><script type="text/x-red" data-help-name="e-mail in"><p>Repeatedly gets a <b>single email</b> from an IMAP server and forwards on as a msg if not already seen.</p>
     <p>The subject is loaded into <b>msg.topic</b> and <b>msg.payload</b> is the plain text body.
        If there is text/html then that is returned in <b>msg.html</b>. <b>msg.from</b> and <b>msg.date</b> are also set if you need them.</p>
     <p>Uses the imap module.</p>
-    <p><b>Note:</b> this node <i>only</i> gets the most recent single email from the inbox, so set the repeat (polling) time appropriately.</p>
-</script> 
-<script type="text/x-red" data-template-name="irc in">
-    <div class="form-row">
+    <p><b>Note:</b> this node <i>only</i> gets the most recent single email from the inbox, so set the repeat (polling) time appropriately.</p></script><script type="text/x-red" data-template-name="irc in"><div class="form-row">
         <label for="node-input-ircserver"><i class="fa fa-globe"></i> IRC Server</label>
         <input type="text" id="node-input-ircserver">
     </div>
@@ -5774,10 +5509,7 @@ handle multiple topics at the same time.</p>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-tips">The channel to join must start with a # (as per normal irc rules...)<br/>
-    You may join multiple channels by comma separating a list - #chan1,#chan2,etc.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('irc in',{
+    You may join multiple channels by comma separating a list - #chan1,#chan2,etc.</div></script><script type="text/javascript">RED.nodes.registerType('irc in',{
         category: 'social-input',
         defaults: {
             name: {value:""},
@@ -5803,10 +5535,7 @@ handle multiple topics at the same time.</p>
             else { this.channel = this.channel; }
             $("#node-input-channel").val(this.channel);
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="irc out">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="irc out"><div class="form-row">
         <label for="node-input-ircserver"><i class="fa fa-globe"></i> IRC Server</label>
         <input type="text" id="node-input-ircserver">
     </div>
@@ -5827,10 +5556,7 @@ handle multiple topics at the same time.</p>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-tips">The channel to join must start with a # (as per normal irc rules...)<br/>
-    Sending the complete object will stringify the whole msg object before sending.</div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('irc out',{
+    Sending the complete object will stringify the whole msg object before sending.</div></script><script type="text/javascript">RED.nodes.registerType('irc out',{
         category: 'social-output',
         defaults: {
             name: {value:""},
@@ -5856,20 +5582,14 @@ handle multiple topics at the same time.</p>
             }
             else { this.channel = this.channel; }
         }
-    });
-</script>
-<script type="text/x-red" data-template-name="irc-server">
-    <div class="form-row">
+    });</script><script type="text/x-red" data-template-name="irc-server"><div class="form-row">
         <label for="node-config-input-server"><i class="fa fa-globe"></i> IRC Server</label>
         <input type="text" id="node-config-input-server" placeholder="irc.freenode.net">
     </div>
     <div class="form-row">
         <label for="node-config-input-nickname"><i class="fa fa-user"></i> Nickname</label>
         <input type="text" id="node-config-input-nickname" placeholder="joe123">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('irc-server',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('irc-server',{
         category: 'config',
         defaults: {
             server: {value:"",required:true},
@@ -5878,10 +5598,7 @@ handle multiple topics at the same time.</p>
         label: function() {
             return this.server;
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="irc in">
-    <p>Connects to a channel on an IRC server.</p>
+    });</script><script type="text/x-red" data-help-name="irc in"><p>Connects to a channel on an IRC server.</p>
     <p>You may join multiple channels by comma separating a list - #chan1,#chan2,#etc.</p>
     <p>Any messages on that channel will appear on the <code>msg.payload</code> at the output,
     while <code>msg.topic</code> will contain who it is from.
@@ -5931,17 +5648,12 @@ handle multiple topics at the same time.</p>
         </tr>
     </tbody>
 </table>
-</p>
-</script><script type="text/x-red" data-help-name="irc out">
-    <p>Sends messages to a channel on an IRC server</p>
+</p></script><script type="text/x-red" data-help-name="irc out"><p>Sends messages to a channel on an IRC server</p>
     <p>You can send just the <code>msg.payload</code>, or the complete <code>msg</code> object to the selected channel,
     or you can select to use <code>msg.topic</code> to send the <code>msg.payload</code> to a specific user (private message) or channel.</p>
     <p>If multiple output channels are listed (eg. #chan1,#chan2), then the message will be sent to all of them.</p>
     <p><b>Note:</b> you can only send to channels you have previously joined so they MUST be specified in the node - even if you then decide to use a subset in msg.topic</p>
-    <p>You may send RAW commands using <code>msg.raw</code> - This must contain an array of parameters - eg. <pre>["privmsg","#nodered","Hello world"]</pre></p>
-</script> 
-<script type="text/x-red" data-template-name="tail">
-    <div class="form-row node-input-filename">
+    <p>You may send RAW commands using <code>msg.raw</code> - This must contain an array of parameters - eg. <pre>["privmsg","#nodered","Hello world"]</pre></p></script><script type="text/x-red" data-template-name="tail"><div class="form-row node-input-filename">
          <label for="node-input-filename"><i class="fa fa-file"></i> Filename</label>
          <input type="text" id="node-input-filename" placeholder="Filename">
     </div>
@@ -5954,10 +5666,7 @@ handle multiple topics at the same time.</p>
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
-    <!-- <div class="form-tips">WON'T work on Windows.</div> -->
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('tail',{
+    <!-- <div class="form-tips">WON'T work on Windows.</div> --></script><script type="text/javascript">RED.nodes.registerType('tail',{
         category: 'storage-input',
         defaults: {
             name: {value:""},
@@ -5974,14 +5683,8 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script>
-<script type="text/x-red" data-help-name="tail">
-    <p>Tails (watches for things to be added) to the configured file. (Linux/Mac ONLY)</p>
-    <p>This won't work on Windows filesystems, as it relies on the tail -F command.</p>
-</script> 
-<script type="text/x-red" data-template-name="file">
-    <div class="form-row node-input-filename">
+    });</script><script type="text/x-red" data-help-name="tail"><p>Tails (watches for things to be added) to the configured file. (Linux/Mac ONLY)</p>
+    <p>This won't work on Windows filesystems, as it relies on the tail -F command.</p></script><script type="text/x-red" data-template-name="file"><div class="form-row node-input-filename">
          <label for="node-input-filename"><i class="fa fa-file"></i> Filename</label>
          <input type="text" id="node-input-filename" placeholder="Filename">
     </div>
@@ -6001,10 +5704,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/x-red" data-template-name="file in">
-    <div class="form-row">
+    </div></script><script type="text/x-red" data-template-name="file in"><div class="form-row">
          <label for="node-input-filename"><i class="fa fa-file"></i> Filename</label>
          <input type="text" id="node-input-filename" placeholder="Filename">
     </div>
@@ -6018,10 +5718,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('file',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('file',{
         category: 'storage-output',
         defaults: {
             name: {value:""},
@@ -6066,21 +5763,12 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-
-</script>
-<script type="text/x-red" data-help-name="file">
-    <p>Writes <b>msg.payload</b> to the file specified, e.g. to create a log.</p>
+    });</script><script type="text/x-red" data-help-name="file"><p>Writes <b>msg.payload</b> to the file specified, e.g. to create a log.</p>
     <p>The filename can be configured in the node, if left blank it should be set in an incoming message on <b>msg.filename</b>.</p>
     <p>A newline is added to every message. But this can be turned off if required, for example, to allow binary files to be written.</p>
     <p>The default behaviour is to append to the file. This can be changed to overwrite the file each time, for example if you want to output a "static" web page or report.</p>
-    <p>This node can also be configured to delete a file if required. <i>Note:</i> Using msg.delete is now deprecated.</p>
-</script><script type="text/x-red" data-help-name="file in">
-    <p>Reads the specified file and sends the content as <b>msg.payload</b>, and the filename as <b>msg.filename</b>.</p>
-    <p>The filename can be configured in the node, if left blank it should be set in an incoming message on <b>msg.filename</b>.</p>
-</script> 
-<script type="text/x-red" data-template-name="redis out">
-    <div class="form-row node-input-hostname">
+    <p>This node can also be configured to delete a file if required. <i>Note:</i> Using msg.delete is now deprecated.</p></script><script type="text/x-red" data-help-name="file in"><p>Reads the specified file and sends the content as <b>msg.payload</b>, and the filename as <b>msg.filename</b>.</p>
+    <p>The filename can be configured in the node, if left blank it should be set in an incoming message on <b>msg.filename</b>.</p></script><script type="text/x-red" data-template-name="redis out"><div class="form-row node-input-hostname">
         <label for="node-input-hostname"><i class="fa fa-bookmark"></i> Host</label>
         <input class="input-append-left" type="text" id="node-input-hostname" placeholder="127.0.0.1" style="width: 40%;" ><button id="node-input-hostname-lookup" class="btn input-append-right"><span class="caret"></span></button>
         <label for="node-input-port" style="margin-left: 10px; width: 35px; "> Port</label>
@@ -6106,10 +5794,7 @@ handle multiple topics at the same time.</p>
     <div class="form-tips">
         If key is blank, the topic will be used as the key.<br>
         If type is hash, payload should be an object or field=value string.
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('redis out',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('redis out',{
         category: 'storage-output',
         color:"#ffaaaa",
         defaults: {
@@ -6160,13 +5845,118 @@ handle multiple topics at the same time.</p>
                 e.preventDefault();
             });
         }
-    });
-</script><script type="text/x-red" data-help-name="redis out">
-    <p>A Redis output node. Options include Hash, Set, List and String.</p>
-    <p>To run this you need a local Redis server running. For details see <a href="http://redis.io/" target="_new">the Redis site</a>.</p>
-</script> 
-<script type="text/x-red" data-template-name="daemon">
+    });</script><script type="text/x-red" data-help-name="redis out"><p>A Redis output node. Options include Hash, Set, List and String.</p>
+    <p>To run this you need a local Redis server running. For details see <a href="http://redis.io/" target="_new">the Redis site</a>.</p></script><script type="text/x-red" data-template-name="MySQLdatabase"><div class="form-row">
+        <label for="node-config-input-host"><i class="fa fa-globe"></i> Host</label>
+        <input type="text" id="node-config-input-host">
+    </div>
     <div class="form-row">
+        <label for="node-config-input-port"><i class="fa fa-random"></i> Port</label>
+        <input type="text" id="node-config-input-port">
+    </div>
+        <div class="form-row">
+        <label for="node-config-input-user"><i class="fa fa-user"></i> User</label>
+        <input type="text" id="node-config-input-user">
+    </div>
+        <div class="form-row">
+        <label for="node-config-input-pass"><i class="fa fa-lock"></i> Password</label>
+        <input type="password" id="node-config-input-password">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-db"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-config-input-db">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-tz"><i class="fa fa-clock-o"></i> Timezone</label>
+        <input type="text" id="node-config-input-tz">
+    </div></script><script type="text/javascript">RED.nodes.registerType('MySQLdatabase',{
+        category: 'config',
+        defaults: {
+            host: {value:"127.0.0.1",required:true},
+            port: {value:"3306",required:true},
+            user: {value:"",required:true},
+            pass: {value:"",required:true},
+            db: {value:"",required:true},
+            tz: {value:""}
+        },
+        label: function() {
+            return this.db;
+        }
+    });</script><script type="text/x-red" data-template-name="mysql"><div class="form-row">
+        <label for="node-input-mydb"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-input-mydb">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div></script><script type="text/javascript">RED.nodes.registerType('mysql',{
+        category: 'storage-input',
+        color:"#e97b00",
+        defaults: {
+            mydb: {type:"MySQLdatabase",required:true},
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "db.png",
+        label: function() {
+            var levelNode = RED.nodes.node(this.mydb);
+            return this.name||(levelNode?levelNode.label():"mysql");
+        },
+            labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });</script><script type="text/x-red" data-help-name="mysql"><p>Allows basic access to a MySQL database.</p>
+    <p>This node uses the <b>query</b> operation against the configured database. This does allow both INSERTS and DELETES.
+    By it's very nature it allows SQL injection... so <i>be careful out there...</i></p>
+    <p><b>msg.topic</b> must hold the <i>query</i> for the database, and the result is returned in <b>msg.payload</b>.</p>
+    <p><b>msg.payload</b> can contain an array of values to bind to the topic.</p>
+    <p>Typically the returned payload will be an array of the result rows.</p>
+    <p>If nothing is found for the key then <i>null</i> is returned,</p>
+    <p>The reconnect timeout in milliseconds can be changed by adding a line to <b>settings.js</b>
+    <pre>mysqlReconnectTime: 30000,</pre></p></script><script type="text/x-red" data-template-name="sqlitedb"><div class="form-row">
+        <label for="node-config-input-db"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-config-input-db" placeholder="/tmp/sqlite">
+    </div></script><script type="text/javascript">RED.nodes.registerType('sqlitedb',{
+        category: 'config',
+        defaults: {
+            db: {value:"",required:true}
+        },
+        label: function() {
+            return this.db;
+        }
+    });</script><script type="text/x-red" data-template-name="sqlite"><div class="form-row">
+        <label for="node-input-mydb"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-input-mydb">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div></script><script type="text/javascript">RED.nodes.registerType('sqlite',{
+        category: 'storage-input',
+        color:"#e97b00",
+        defaults: {
+            mydb: {type:"sqlitedb",required:true},
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "sqlite.png",
+        label: function() {
+            var dbNode = RED.nodes.node(this.mydb);
+            return this.name||(dbNode?dbNode.label():"sqlite");
+        },
+            labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });</script><script type="text/x-red" data-help-name="sqlite"><p>Allows basic access to a Sqlite database.</p>
+    <p>This node uses the <b>db.all</b> operation against the configured database. This does allow INSERTS, UPDATES and DELETES.
+    By it's very nature it is SQL injection... so <i>be careful out there...</i></p>
+    <p><b>msg.topic</b> must hold the <i>query</i> for the database, and the result is returned in <b>msg.payload</b>.</p>
+    <p><b>msg.payload</b> can contain an array of values to bind to the topic.</p>
+    <p>Typically the returned payload will be an array of the result rows, (or an error).</p>
+    <p>The reconnect timeout in milliseconds can be changed by adding a line to <b>settings.js</b>
+    <pre>sqliteReconnectTime: 20000,</pre></p></script><script type="text/x-red" data-template-name="daemon"><div class="form-row">
         <label for="node-input-command"><i class="fa fa-file"></i> Command</label>
         <input type="text" id="node-input-command" placeholder="command">
     </div>
@@ -6195,10 +5985,7 @@ handle multiple topics at the same time.</p>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-<script type="text/javascript">
-    RED.nodes.registerType('daemon',{
+    </div></script><script type="text/javascript">RED.nodes.registerType('daemon',{
         category: 'advanced-function',
         color:"darksalmon",
         defaults: {
@@ -6219,10 +6006,7 @@ handle multiple topics at the same time.</p>
         labelStyle: function() {
             return this.name?"node_label_italic":"";
         }
-    });
-</script><script type="text/x-red" data-help-name="daemon">
-    <p>Calls out to a long running system command. Sends <b>msg.payload</b> to stdin of the process.</p>
+    });</script><script type="text/x-red" data-help-name="daemon"><p>Calls out to a long running system command. Sends <b>msg.payload</b> to stdin of the process.</p>
     <p>Provides 3 outputs... stdout, stderr, and return code , from the running command.</p>
     <p>If the called program stops (i.e. a return code is produced), this node can attempt to restart the command.</p>
-    <p><b>Note :</b> when you stop Node-RED running we may not get a chance to kill the called program so it may remain running. You <i>may</i> have to kill it manually.</p>
-</script>
+    <p><b>Note :</b> when you stop Node-RED running we may not get a chance to kill the called program so it may remain running. You <i>may</i> have to kill it manually.</p></script>

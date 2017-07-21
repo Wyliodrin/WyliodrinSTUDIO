@@ -500,5 +500,49 @@
     "enabled": true,
     "module": "node-red",
     "version": "0.11.1"
+  },
+  {
+    "id": "node-red/tls",
+    "name": "tls",
+    "types": [
+      "tls-config"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/mqtt",
+    "name": "mqtt",
+    "types": [
+      "mqtt in",
+      "mqtt out",
+      "mqtt-broker"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/mysql",
+    "name": "mysql",
+    "types": [
+      "MySQLdatabase",
+      "mysql"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
+  },
+  {
+    "id": "node-red/sqlite",
+    "name": "sqlite",
+    "types": [
+      "sqlitedb",
+      "sqlite"
+    ],
+    "enabled": true,
+    "module": "node-red",
+    "version": "0.11.1"
   }
 ]

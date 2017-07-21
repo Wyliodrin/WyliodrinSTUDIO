@@ -1,3 +1,7 @@
+## Wyliodrin STUDIO 12.1
+
+* fixed loading streams projects
+
 ## Wyliodrin STUDIO 12
 
 * **Added** notebook

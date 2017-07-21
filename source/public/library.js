@@ -10,6 +10,11 @@ var _ = require ('lodash');
 
 var db = new dexie ("WyliodrinApp");
 
+db.version(7).stores ({
+	applications:"++id,name,date,main,dashboard,firmware,notebook,visualproject,language,schematics,tree",
+	settings:"key,value"
+});
+
 db.version(6).stores ({
 	applications:"++id,name,date,main,dashboard,firmware,notebook,visualproject,language,schematics",
 	settings:"key,value"
@@ -48,7 +53,7 @@ function add (value, language, done, devicecategory)
 		var title = value;
 		debug ('Adding project with title '+title+' in '+language);
 
-		var startproject = generateProject(title,language);
+		var startproject = generateProject(undefined, title,language);
 			
 		db.applications.add (startproject).then (function (id)
 		{
@@ -74,7 +79,7 @@ function add (value, language, done, devicecategory)
 	}
 }
 
-function generateProject(title, language, date, mainContent, visualContent)
+function generateProject(id, title, language, date, mainContent, visualContent)
 {
 	if (!date){
 		date = new Date().getTime();
@@ -86,6 +91,8 @@ function generateProject(title, language, date, mainContent, visualContent)
 
 	var ext = _.filter(settings.LANGUAGES, { 'title' : language } )[0].ext;
 	var startproject = {
+		id: id,
+		title: title,
 		tree: 
 		[{name:title, id:1,isdir:true,isroot:true,children:
 			[{name:language,id:2,isdir:true,issoftware:true,children:
@@ -144,7 +151,7 @@ function storeTree (id, tree)
 
 function convertToTree(project)
 {
-	var temp = generateProject(project.title, project.language, project.date, project.main, project.visualproject);
+	var temp = generateProject(project.id, project.title, project.language, project.date, project.main, project.visualproject);
 	return temp;
 }
 

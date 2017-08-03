@@ -91,7 +91,6 @@ function generateProject(id, title, language, date, mainContent, visualContent)
 
 	var ext = _.filter(settings.LANGUAGES, { 'title' : language } )[0].ext;
 	var startproject = {
-		id: id,
 		title: title,
 		tree: 
 		[{name:title, id:1,isdir:true,isroot:true,children:
@@ -105,6 +104,8 @@ function generateProject(id, title, language, date, mainContent, visualContent)
 			text: '# Steps to build the project'
 		}]
 	};
+
+	if (id) startproject.id = id;
 
 	startproject.title = title;
 	startproject.date = date;

@@ -41,7 +41,10 @@ module.exports = function ()
 
 		$wyapp.on ('dashboard', function ()
 		{
-			library.storeDashboard ($scope.project.id, $scope.project.dashboard);
+			if ($scope.project.id)
+			{
+				library.storeDashboard ($scope.project.id, $scope.project.dashboard);
+			}
 			$timeout (function ()
 			{
 				$(window).trigger ('resize');
@@ -182,6 +185,7 @@ module.exports = function ()
 
 		$wyapp.on ('load', function (project)
 		{
+			console.log (project);
 			$timeout (function ()
 			{
 				$scope.project = project;

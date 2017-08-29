@@ -123,8 +123,8 @@ it [Download chrome](https://www.google.com/chrome/browser/desktop/index.html)
 
 After the installation:
 * open the options tab (the 3 dots button in the top-right corner)
-* go to Settings
-* in the Settings menu choose the Extensions option 
+* go to More tools
+* in the More tools menu choose the Extensions option 
 * check the developer mode box (top of the page)
 * another three options will appear including one called 'Load unpacked extension'
 * Select 'Load unpacked extension', go to the the folder where you have built the project and open the folder called 'build', then press open.

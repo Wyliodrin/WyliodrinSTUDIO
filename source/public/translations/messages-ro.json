@@ -359,6 +359,10 @@
     "message": "Conectează-te la adresa",
     "description": ""
   },
+  "AUTHENTICATE_IP": {
+    "message": "IP",
+    "description": ""
+  },
   "AUTHENTICATE_Login": {
     "message": "Conectează-te folosind orice utilizator al dispozitivului",
     "description": ""
@@ -413,6 +417,10 @@
   },
   "FLASH_FIRMWARE_RunWithoutFlash": {
     "message": "Rulează fără a scrie",
+    "description": ""
+  },
+  "FLASH_FIRMWARE": {
+    "message": "Flash firmware",
     "description": ""
   },
   "LIBRARY_Library": {
@@ -533,6 +541,18 @@
   },
   "TASK_MANAGER_TaskManager": {
     "message": "Administrare procese",
+    "description": ""
+  },
+  "File_explorer": {
+    "message": "Explorare de fișiere",
+    "description": ""
+  },
+  "Show_file_manager": {
+    "message": "Afișare administrare fișiere",
+    "description": ""
+  },
+  "Hide_file_manager": {
+    "message": "Ascunde administrare fișiere",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_Error": {
@@ -684,6 +704,16 @@
     "message":"Bibliotecă proiecte",
     "description":""
   },
+  "PLATFORM_windows":
+  {
+    "message":"Windows 10 IoT Core",
+    "description":""
+  },
+  "PLATFORM_linux":
+  {
+    "message":"Linux",
+    "description":""
+  },
   "PortSelectSerialChrome":
   {
     "message":"Select Local Computer as port and connect to it. Connect your Arduino to the USB port of your computer.",
@@ -719,5 +749,247 @@
   "IR829_setup": {
     "message": "Unzipuiți, intrați în folder și executați programul de instalare de configurare cu următoarele comenzi:",
     "description": ""
+  },
+  "Empty_folder": {
+    "message": "Fișier gol",
+    "description": ""
+  },
+  "Loading": {
+    "message": "Se încarcă . . .",
+    "description": ""
+  },
+  "Show_hidden": {
+    "message": "Arată fișiere ascunse",
+    "description": ""
+  },
+  "want_to_delete": {
+    "message": "Sunteți sigur că vreți să ștergeți?",
+    "description": ""
+  },
+  "folder_name": {
+    "message": "Alegeți numele directorului",
+    "description": ""
+  },
+  "Ok": {
+    "message": "Ok",
+    "description": ""
+  },
+  "Cancel": {
+    "message": "Renunță",
+    "description": ""
+  },
+  "choose_name": {
+    "message": "Alegeți numele pentru ",
+    "description": ""
+  },
+  "will_upload": {
+    "message": "Fișierul va fi încărcat imediat.",
+    "description": ""
+  },
+  "will_download": {
+    "message": "Fișierul va fi descărcat imediat.",
+    "description": ""
+  },
+  "folder": {
+    "message": "director",
+    "description": ""
+  },
+  "file": {
+    "message": "fișier",
+    "description": ""
+  },
+  "link": {
+    "message": "legătură",
+    "description": ""
+  },
+  "Refresh": {
+    "message": "Reîncărcați",
+    "description": ""
+  },
+  "New_folder": {
+    "message": "Dosar nou",
+    "description": ""
+  },
+  "New_file": {
+    "message": "Fișier nou",
+    "description": ""
+  },
+  "New_firmware": {
+    "message": "Firmware nou",
+    "description": ""
+  },
+  "Upload_here": {
+    "message": "Încărcați pe server aici",
+    "description": ""
+  },
+  "Rename": {
+    "message": "Redenumiți",
+    "description": ""
+  },
+  "Download": {
+    "message": "Descărcați",
+    "description": ""
+  },
+  "Delete": {
+    "message": "Ștergeți",
+    "description": ""
+  },
+  "Exit": {
+    "message": "Ieșire",
+    "description": ""
+  },
+  "FEinexistent_folder": {
+    "message": "Ați accesat un dosar inexistent."
+  },
+  "FEread_permission": {
+    "message": "Nu aveți permisiuni de citire aici."
+  },
+  "FEread_permission_local": {
+    "message": "Nu aveți permisiuni de citire pentru acest fișier de pe discul dvs."
+  },
+  "FEwrite_permission": {
+    "message": "Nu aveți permisiuni de scriere aici."
+  },
+  "FEdelete_permission": {
+    "message": "Nu aveți permisiuni de ștergre aici."
+  },
+  "FErename_permission": {
+    "message": "Nu aveți permisiuni pentru redenumire aici."
+  },
+  "FEfile_write": {
+    "message": "Scrierea fișierului pe disk a eșuat."
+  },
+  "FEnew_folder": {
+    "message": "Crearea unui nou dosar a eșuat. "
+  },
+  "FEdelete": {
+    "message": "Ștergere eșuată. "
+  },
+  "FErename": {
+    "message" :"Redenumire eșuată. "
+  },
+  "FEupload": {
+    "message": "Încărcare eșuată. "
+  },
+  "FEdownload": {
+    "message": "Descărcare eșuată. "
+  },
+  "FEexists": {
+    "message": "Există un alt fișier/director cu aceeași denumire."
+  },
+  "FEunknown": {
+    "message": "Eroare necunoscută."
+  },
+  "FEnot_exists": {
+    "message": "Fișierul/directorul nu mai există."
+  },
+  "DASHBOARD_values_export": {
+    "message": "Exportare"
+  },
+  "TREEsame_name": {
+    "message": "La destinație există un alt fișier/director cu aceeași denumire."
+  },
+  "TREEdelete_special": {
+    "message": "Nu se poate șterge."
+  },
+  "TREEdelete_root": {
+    "message": "Nu se poate șterge directorul rădăcină."
+  },
+  "TREEdelete_software": {
+    "message": "Nu se poate șterge directorul de software."
+  },
+  "TREEno_root": {
+    "message": "Nu se poate crea în directorul rădăcină (folosiți Firmware)."
+  },
+  "PROJECT_NOTEBOOK": {
+    "message": "Notebook"
+  },
+  "GITHUB_EXAMPLE_Example": {
+    "message": "Încărcați un exemplu"
+  },
+  "GITHUB_EXAMPLE_Empty":
+  {
+    "message": "Vă rugăm să scrieți numele unui repository github care conține exemple"
+  },
+  "DEVICE_CONNECTION_BUSY":
+  {
+    "message": "Aparatul este deja conectat cu un alt utilizator.",
+    "description":""
+  },
+  "Disconnect": {
+    "message": "Deconectați",
+    "description": ""
+  },
+  "Reboot_Disconnect": {
+    "message": "Reporniți și Deconectați",
+    "description": ""
+  },
+  "Poweroff_Disconnect": {
+    "message": "Opriți și Deconectați",
+    "description": ""
+  },
+  "Error": {
+    "message": "Eroare",
+    "description": ""
+  },
+  "Select_board": {
+    "message": "Selectați placa",
+    "description": ""
+  },
+  "Port": {
+    "message": "Port",
+    "description": ""
+  },
+  "Pick_firmware": {
+    "message": "Alegeți firmware",
+    "description": ""
+  },
+  "No_firmware": {
+    "message": "Nu există firmware",
+    "description": ""
+  },
+  "Run": {
+    "message": "Rulați",
+    "description": ""
+  },
+  "Github": {
+    "message": "Github",
+    "description": ""
+  },
+  "username": {
+    "message": "nume de utilizator",
+    "description": ""
+  },
+  "repository": {
+    "message": "repository",
+    "description": ""
+  },
+  "Author": {
+    "message": "Autor",
+    "description": ""
+  },
+  "Wyliodrin_app_server_version": {
+    "message": "Versiunea de Wyliodrin-app-server",
+    "description": ""
+  },
+  "Libwyliodrin_version": {
+    "message": "Versiunea de Libwyliodrin",
+    "description": ""
+  },
+  "Operating_system": {
+    "message": "Sistem de operare",
+    "description": ""
+  },
+  "Supported_languages": {
+    "message": "Limbaje acceptate",
+    "description": ""
+  },
+  "status": {
+    "message": "status",
+    "description": ""
+  },
+  "UPDATE_SD_CARD_IMAGE": {
+    "message":"Vă rugăm să actualizați imaginea cardului SD înainte să rulați proiectul.",
+    "description":""
   }
 }

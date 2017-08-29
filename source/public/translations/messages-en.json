@@ -774,14 +774,6 @@
     "message": "Ok",
     "description": ""
   },
-  "Yes": {
-    "message": "Yes",
-    "description": ""
-  },
-  "No": {
-    "message": "No",
-    "description": ""
-  },
   "Cancel": {
     "message": "Cancel",
     "description": ""

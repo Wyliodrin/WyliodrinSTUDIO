@@ -25,7 +25,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('DashboardController', function($scope, $element, $wyapp, $wydevice, $timeout, $wysignalproperties, $mdDialog){
+	app.controller('DashboardController', function($scope, $element, $wyapp, $wydevice, $timeout, $wysignalproperties, $mdDialog, $filter){
 		debug ('Registering');
 		$scope.project = 
 		{
@@ -128,8 +128,8 @@ module.exports = function ()
 		          // .textContent('All of the banks have agreed to forgive you your debts.')
 		          // .ariaLabel('Lucky day')
 		          // .targetEvent(ev)
-		          .ok('Yes')
-		          .cancel('No');
+		          .ok(($filter('translate')('YES')))
+		          .cancel(($filter('translate')('NO')));
 		    $mdDialog.show(message).then(function() {
 		    	var pos = _.indexOf($scope.project.dashboard, signal);
 		    	mixpanel.track ('Dashboard Erase',

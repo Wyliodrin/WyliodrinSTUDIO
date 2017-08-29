@@ -359,6 +359,10 @@
     "message": "Connecter à l'adresse",
     "description": ""
   },
+  "AUTHENTICATE_IP": {
+    "message": "IP",
+    "description": ""
+  },
   "AUTHENTICATE_Login": {
     "message": "Connectez-vous avec un utilisateur du dispositif",
     "description": ""
@@ -413,6 +417,10 @@
   },
   "FLASH_FIRMWARE_RunWithoutFlash": {
     "message": "Courir sans écrire",
+    "description": ""
+  },
+  "FLASH_FIRMWARE": {
+    "message": "Flash firmware",
     "description": ""
   },
   "LIBRARY_Library": {
@@ -535,6 +543,18 @@
     "message": "Gestionnaire des tâches",
     "description": ""
   },
+  "File_explorer": {
+    "message": "Explorateur de fichiers",
+    "description": ""
+  },
+  "Show_file_manager": {
+    "message": "Montrer l'explorateur de fichiers",
+    "description": ""
+  },
+  "Hide_file_manager": {
+    "message": "Cacher l'explorateur de fichiers",
+    "description": ""
+  },
   "WYLIODRIN_USERINTERFACE_Error": {
     "message": "pourrait avoir une erreur",
     "description": ""
@@ -650,6 +670,11 @@
     "message":"Utiliser une connexion sécurisée - ssh (fonctionne plus lent)",
     "description":""
   },
+  "DEVICE_Install":
+  {
+    "message":"Installable",
+    "description":""
+  },
   "INSTALL_SelectBoard": {
     "message": "S'il vous plaît sélectionner la carte que vous souhaitez installer sur",
     "description": ""
@@ -677,6 +702,16 @@
   "PROJECT_library":
   {
     "message":"Bibliothèque projets",
+    "description":""
+  },
+  "PLATFORM_windows":
+  {
+    "message":"Windows 10 IoT Core",
+    "description":""
+  },
+  "PLATFORM_linux":
+  {
+    "message":"Linux",
     "description":""
   },
   "PortSelectSerialChrome":
@@ -714,5 +749,247 @@
   "IR829_setup": {
     "message": "Décompressez, entrez le dossier et exécuter le programme d'installation d'installation avec les commandes suivantes:",
     "description": ""
+  },
+  "Empty_folder": {
+    "message": "Dossier vide",
+    "description": ""
+  },
+  "Loading": {
+    "message": "En proces de chargement. . .",
+    "description": ""
+  },
+  "Show_hidden": {
+    "message": "Montrer les chachés",
+    "description": ""
+  },
+  "want_to_delete": {
+    "message": "Êtes-vous sûr que vous voulez le/les supprimer?",
+    "description": ""
+  },
+  "folder_name": {
+    "message": "Choisissez le nom du dossier",
+    "description": ""
+  },
+  "Ok": {
+    "message": "Ok",
+    "description": ""
+  },
+  "Cancel": {
+    "message": "Renoncer",
+    "description": ""
+  },
+  "choose_name": {
+    "message": "Choisissez le nom pour ",
+    "description": ""
+  },
+  "will_upload": {
+    "message": "Le fichier sera téléchargé vers le serveur immédiatement.",
+    "description": ""
+  },
+  "will_download": {
+    "message": "Le fichier sera téléchargé immédiatement.",
+    "description": ""
+  },
+  "folder": {
+    "message": "dossier",
+    "description": ""
+  },
+  "file": {
+    "message": "fichier",
+    "description": ""
+  },
+  "link": {
+    "message": "liaison",
+    "description": ""
+  },
+  "Refresh": {
+    "message": "Recharger",
+    "description": ""
+  },
+  "New_folder": {
+    "message": "Nouveau dossier",
+    "description": ""
+  },
+  "New_file": {
+    "message": "Nouveau fichier",
+    "description": ""
+  },
+  "New_firmware": {
+    "message": "Nouveau Firmware",
+    "description": ""
+  },
+  "Upload_here": {
+    "message": "Téléchargez vers le serveur ici.",
+    "description": ""
+  },
+  "Rename": {
+    "message": "Renommez",
+    "description": ""
+  },
+  "Download": {
+    "message": "",
+    "description": "Téléchargez"
+  },
+  "Delete": {
+    "message": "Supprimer",
+    "description": ""
+  },
+  "Exit": {
+    "message": "Sortir",
+    "description": ""
+  },
+  "FEinexistent_folder": {
+    "message": "Vous avez accessé un dossier inéxistant."
+  },
+  "FEread_permission": {
+    "message": "Vous n'avez pas de permissions pour lire ici."
+  },
+  "FEread_permission_local": {
+    "message": "Vous n'avez pas de permissions pour lire sur votre disk."
+  },
+  "FEwrite_permission": {
+    "message": "Vous n'avez pas de permissions pour écrire ici."
+  },
+  "FEdelete_permission": {
+    "message": "Vous n'avez pas de permissions pour supprimer ici."
+  },
+  "FErename_permission": {
+    "message": "Vous n'avez pas de permissions pour renommer ici."
+  },
+  "FEfile_write": {
+    "message": "L'écrit du fichier sur disk a échoué."
+  },
+  "FEnew_folder": {
+    "message": "Création du nouveau fichier échouée."
+  },
+  "FEdelete": {
+    "message": "Supprimation échouée."
+  },
+  "FErename": {
+    "message" :"L'action de renommer échouée."
+  },
+  "FEupload": {
+    "message": "Téléchargement vers le serveur échoué."
+  },
+  "FEdownload": {
+    "message": "Téléchargement échoué."
+  },
+  "FEexists": {
+    "message": "Un autre fichier/dossier avec le même nom existe ici."
+  },
+  "FEunknown": {
+    "message": "Erreur inconnue"
+  },
+  "FEnot_exists": {
+    "message": "Le fichier/dossier n'existe plus."
+  },
+  "DASHBOARD_values_export": {
+    "message": "Exporter"
+  },
+  "TREEsame_name": {
+    "message": "Un fichier ou un dossier avec le même nom existe à la destination."
+  },
+  "TREEdelete_special": {
+    "message": "Impossible de supprimer."
+  },
+  "TREEdelete_root": {
+    "message": "Impossible de supprimer le dossier racine."
+  },
+  "TREEdelete_software": {
+    "message": "Impossible de supprimer le dossier software."
+  },
+  "TREEno_root": {
+    "message": "Impossible de créer le dossier racine (utilisez New Firmware)."
+  },
+  "PROJECT_NOTEBOOK": {
+    "message": "Notebook"
+  },
+  "GITHUB_EXAMPLE_Example": {
+    "message": "Chargez un exemple"
+  },
+  "GITHUB_EXAMPLE_Empty":
+  {
+    "message": "S'il vous plaît, écrivez le nom du github repositoire qui contient des exemples."
+  },
+  "DEVICE_CONNECTION_BUSY":
+  {
+    "message": "L'appareil est déjà connecté à un autre utilisateur.",
+    "description":""
+  },
+  "Disconnect": {
+    "message": "Déconnectez",
+    "description": ""
+  },
+  "Reboot_Disconnect": {
+    "message": "Redémarrez et Déconnectez",
+    "description": ""
+  },
+  "Poweroff_Disconnect": {
+    "message": "Arrêtez et Déconnectez",
+    "description": ""
+  },
+  "Error": {
+    "message": "Erreur",
+    "description": ""
+  },
+  "Select_board": {
+    "message": "Séléctez la plaque",
+    "description": ""
+  },
+  "Port": {
+    "message": "Port",
+    "description": ""
+  },
+  "Pick_firmware": {
+    "message": "Prennez le firmware",
+    "description": ""
+  },
+  "No_firmware": {
+    "message": "Le firmware n'existe pas",
+    "description": ""
+  },
+  "Run": {
+    "message": "Exécute",
+    "description": ""
+  },
+  "Github": {
+    "message": "Github",
+    "description": ""
+  },
+  "username": {
+    "message": "nom de l'utilisateur",
+    "description": ""
+  },
+  "repository": {
+    "message": "repositoire",
+    "description": ""
+  },
+  "Author": {
+    "message": "Auteur",
+    "description": ""
+  },
+  "Wyliodrin_app_server_version": {
+    "message": "Version de Wyliodrin-app-server",
+    "description": ""
+  },
+  "Libwyliodrin_version": {
+    "message": "Version de Libwyliodrin",
+    "description": ""
+  },
+  "Operating_system": {
+    "message": "Système Opérateur",
+    "description": ""
+  },
+  "Supported_languages": {
+    "message": "Langage de programmation supportés",
+    "description": ""
+  },
+  "status": {
+    "message": "status",
+    "description": ""
+  },
+  "UPDATE_SD_CARD_IMAGE": {
+    "message":"S'il vous plaît, réactualisez l'image du card SD avant que vous exécutiez le projet",
+    "description":""
   }
 }

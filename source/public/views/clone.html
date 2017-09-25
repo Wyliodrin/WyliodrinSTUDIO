@@ -1,0 +1,20 @@
+<md-dialog aria-label="{{ 'CLONE_CloneApp' | translate }}">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{ 'CLONE_CloneApp' | translate }}</h2>
+		</div>
+	</md-toolbar>
+    
+	<md-dialog-content ng-escape="a.cancel()">
+        <md-content layout-gt-sm="row" layout-padding>
+            <md-input-container class="clone-title">
+                <label>{{ 'Add clone title' | translate }}</label>
+                <input ng-model="title" minlength="3" ng-trim="true" ng-enter="a.clone()" md-autofocus="true">
+           </md-input-container>
+        </md-content>
+    </md-dialog-content>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="a.clone()">{{ 'TOOLBAR_CLONE' | translate }}</md-button>
+		<md-button ng-click="a.cancel()">{{ 'TOOLBAR_CANCEL' | translate }}</md-button>
+	</md-dialog-actions>
+</md-dialog>

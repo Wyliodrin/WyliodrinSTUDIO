@@ -107,6 +107,10 @@
     "message": "Delete",
     "description": ""
   },
+  "TOOLBAR_CLONE": {
+    "message": "Clone",
+    "description": ""
+  },
   "TOOLBAR_IMPORT": {
     "message": "Import",
     "description": ""
@@ -475,6 +479,10 @@
     "message": "Rename Application",
     "description": ""
   },
+  "CLONE_CloneApp": {
+    "message": "Clone Application",
+    "description": ""
+  },
   "RESISTOR_COLORCODE_FromColorToNumber": {
     "message": "From Color to Number",
     "description": ""
@@ -621,6 +629,10 @@
   },
   "LIBRARY_ProjectErase": {
     "message": "Would you like to delete project {{title}}?",
+    "description": ""
+  },
+  "LIBRARY_ProjectClone": {
+    "message": "This name is already used. Pick another one!",
     "description": ""
   },
   "SCHEMATICS_ERASE": {

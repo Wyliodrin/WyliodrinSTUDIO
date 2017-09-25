@@ -54,7 +54,7 @@ function add (value, language, done, devicecategory)
 		debug ('Adding project with title '+title+' in '+language);
 
 		var startproject = generateProject(undefined, title,language);
-			
+
 		db.applications.add (startproject).then (function (id)
 		{
 			debug ('Added project with id '+id);
@@ -79,7 +79,25 @@ function add (value, language, done, devicecategory)
 	}
 }
 
-function generateProject(id, title, language, date, mainContent, visualContent)
+function cloneProject (project, newTitle, done)
+{
+
+	var clonedProject = generateProject(undefined, newTitle, project.language, undefined, project.mainContent, project.visualContent, project.tree, project.notebook);
+	console.log(clonedProject);
+	db.applications.add (clonedProject).then (function (id)
+	{
+		// console.log('am adaugat proiectul in db');
+		debug ('Cloned project with id' + project.id);
+		if (done) done (null, id);
+	}).catch (function (err)
+	{
+		console.log (err);
+		debug (err);
+		if (done) done (err);
+	});
+}
+
+function generateProject(id, title, language, date, mainContent, visualContent, projectTree, projectNotebook)
 {
 	if (!date){
 		date = new Date().getTime();
@@ -90,20 +108,35 @@ function generateProject(id, title, language, date, mainContent, visualContent)
 	}
 
 	var ext = _.filter(settings.LANGUAGES, { 'title' : language } )[0].ext;
-	var startproject = {
-		title: title,
-		tree: 
-		[{name:title, id:1,isdir:true,isroot:true,children:
-			[{name:language,id:2,isdir:true,issoftware:true,children:
-				[{name:'main'+ext,id:3,isdir:false,ismain:true,content: mainContent , visual: visualContent }]
+
+	var startproject;
+
+	if (projectTree != undefined)
+	{
+		 startproject = {
+			title: title,
+			tree: projectTree,
+			language: language,
+			notebook: projectNotebook
+		};
+	}
+	else
+	{
+		startproject = {
+			title: title,
+			tree:
+			[{name:title, id:1,isdir:true,isroot:true,children:
+				[{name:language,id:2,isdir:true,issoftware:true,children:
+					[{name:'main'+ext,id:3,isdir:false,ismain:true,content: mainContent , visual: visualContent }]
+				}]
+			}],
+			language: language,
+			notebook: [{
+				type: 'markdown',
+				text: '# Steps to build the project'
 			}]
-		}],
-		language: language,
-		notebook: [{
-			type: 'markdown',
-			text: '# Steps to build the project'
-		}]
-	};
+		};
+	}
 
 	if (id) startproject.id = id;
 
@@ -263,3 +296,5 @@ module.exports.storeDashboard = storeDashboard;
 module.exports.storeSchematics = storeSchematics;
 module.exports.add = add;
 module.exports.rename = rename;
+module.exports.generateProject = generateProject;
+module.exports.cloneProject = cloneProject;

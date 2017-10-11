@@ -59,31 +59,31 @@ function removeComments(str) {
         regex: false,
         blockComment: false,
         lineComment: false,
-        condComp: false 
+        condComp: false
     };
     for (var i = 0, l = str.length; i < l; i++) {
- 
+
         if (mode.regex) {
             if (str[i] === '/' && str[i-1] !== '\'') {
                 mode.regex = false;
             }
             continue;
         }
- 
+
         if (mode.singleQuote) {
             if (str[i] === "'" && str[i-1] !== '\'') {
                 mode.singleQuote = false;
             }
-            continue;
+            continue;//tree
         }
- 
+
         if (mode.doubleQuote) {
             if (str[i] === '"' && str[i-1] !== '\'') {
                 mode.doubleQuote = false;
             }
             continue;
         }
- 
+
         if (mode.blockComment) {
             if (str[i] === '*' && str[i+1] === '/') {
                 str[i+1] = '';
@@ -92,7 +92,7 @@ function removeComments(str) {
             str[i] = '';
             continue;
         }
- 
+
         if (mode.lineComment) {
             if (str[i+1] === 'n' || str[i+1] === 'r') {
                 mode.lineComment = false;
@@ -100,19 +100,19 @@ function removeComments(str) {
             str[i] = '';
             continue;
         }
- 
+
         if (mode.condComp) {
             if (str[i-2] === '@' && str[i-1] === '*' && str[i] === '/') {
                 mode.condComp = false;
             }
             continue;
         }
- 
+
         mode.doubleQuote = str[i] === '"';
         mode.singleQuote = str[i] === "'";
- 
+
         if (str[i] === '/') {
- 
+
             if (str[i+1] === '*' && str[i+2] === '@') {
                 mode.condComp = true;
                 continue;
@@ -128,9 +128,9 @@ function removeComments(str) {
                 continue;
             }
             mode.regex = true;
- 
+
         }
- 
+
     }
     return str.join('').slice(2, -2);
 }
@@ -147,7 +147,7 @@ var app = angular.module ('wyliodrinApp');
 			running: '='
 		};
 
-		$scope.project = 
+		$scope.project =
 		{
 			id: -1,
 			tree:[]
@@ -295,7 +295,7 @@ var app = angular.module ('wyliodrinApp');
 						i--;
 					}
 				}
-				
+
 				x.children.forEach( function (y){
 					checkSpecial(y);
 				});
@@ -306,34 +306,61 @@ var app = angular.module ('wyliodrinApp');
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
 		this.treeSelect = function(node){
+      console.log(7);
+      console.log($scope.project.tree);
 			if (node.isspecial || node.isdir){
 				$scope.showEditor = false;
 				$scope.showVisual = false;
 				$scope.showStreams = false;
+        // console.log("daca e director");
 			}
 			else{
 				$scope.showEditor = true;
 
 				if (hasDeepChild(node,$scope.project.tree[0].children[0])){
+          // console.log("intru in if ul cu has deep child");
 					if ($scope.project.language == "visual"){
-						$scope.showVisual = true;
+            // console.log("am intrat in if-ul de la visual");
+
+            if (node.isdir == false && node.ismain == true)
+            {
+              $scope.showVisual = true;
+            }
+
+            if(node.isdir == false && node.ismain == undefined)
+            {
+              $scope.showVisual = false;
+            }
 					}
 					else{
 						$scope.showVisual = false;
 					}
 					if ($scope.project.language == "streams"){
 
-						$scope.showStreams = true;
-						red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
-
-						// red.reload();
+            if(node.isdir == false && node.ismain == true)
+            {
+              // console.log("am intrat in if-ul de la streams");
+  						$scope.showStreams = true;
+              // eu zic ca aici e problema sau nu e tratat cazul in care am fisier simplu - like - ce/cum afisez continutul?
+  						// red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
+  						// red.reload();
+            }
 					}
 					else{
+            // console.log("ascund streams1");
 						$scope.showStreams = false;
 					}
 
-					softwareEditor.language = $scope.project.language;
+          // caz in care am fisier text
+          if(node.isdir == false && node.ismain == undefined)
+          {
+            console.log("text");
+            $scope.showStreams = false;
+          }
+
+					//softwareEditor.language = $scope.project.language;
 					if ($scope.project.language === "nodejs")
 					{
 						softwareEditor.getSession().setMode ('ace/mode/javascript');
@@ -363,8 +390,8 @@ var app = angular.module ('wyliodrinApp');
 					{
 						softwareEditor.getSession().setMode ('ace/mode/powershell');
 					}
-					softwareEditor.getSession().setTabSize (2);
-					softwareEditor.getSession().setUseSoftTabs (true);
+					// softwareEditor.getSession().setTabSize (2);
+					// softwareEditor.getSession().setUseSoftTabs (true);
 					//if it's software type file
 				}
 				else{
@@ -430,7 +457,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function (keyEvent)
 					{
 						if ($scope.contentPopupNewFolder.length !== 0)
-						{	
+						{
 							$mdDialog.hide ();
 							that.newFolder($scope.contentPopupNewFolder);
 						}
@@ -459,7 +486,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function (keyEvent)
 					{
 						if ($scope.contentPopupNewFile.length !== 0)
-						{	
+						{
 							$mdDialog.hide ();
 							that.newFile($scope.contentPopupNewFile);
 						}
@@ -513,7 +540,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function (keyEvent)
 					{
 						if ($scope.contentPopupRename.length !== 0)
-						{	
+						{
 							$mdDialog.hide ();
 							that.rename($scope.contentPopupRename);
 						}
@@ -567,7 +594,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function (keyEvent)
 					{
 						if ($scope.contentPopupNewFirmware.text && $scope.contentPopupNewFirmware.type)
-						{	
+						{
 							$mdDialog.hide ();
 							that.newFirmware($scope.contentPopupNewFirmware);
 						}
@@ -683,7 +710,7 @@ var app = angular.module ('wyliodrinApp');
 			$scope.aceSoftwareChanged();
 		};
 
-		
+
 
 		function findParent(node, tree){
 
@@ -880,11 +907,11 @@ var app = angular.module ('wyliodrinApp');
 		          }
 
 			var snippetCompleter = {
-		        getCompletions: function (editor, session, pos, prefix, callback) 
+		        getCompletions: function (editor, session, pos, prefix, callback)
 		        {
 		          callback (null, wyliodrinFunctions[editor.language]);
 		        },
-		        getDocTooltip: function (item) 
+		        getDocTooltip: function (item)
 		        {
 		          if (item.type === 'libwyliodrin')
 		          {
@@ -912,13 +939,13 @@ var app = angular.module ('wyliodrinApp');
 		            else
 		              title = title + ")";
 
-		            item.docHTML = "<b>" + lang.escapeHTML (title) + "</b><br>" + lang.escapeHTML (f.description) + 
+		            item.docHTML = "<b>" + lang.escapeHTML (title) + "</b><br>" + lang.escapeHTML (f.description) +
 		                                "<br>" + argsDescription;
 		          }
 		       },
 		       updateArgsHints: function (item)
 		       {
-		       	
+
 		       }
 		    };
 
@@ -992,7 +1019,7 @@ var app = angular.module ('wyliodrinApp');
 		shell.open ($element.find ('#xterm')[0]);
 		$timeout (function ()
 		{
-			setSizes (); 
+			setSizes ();
 		});
 
 		shell.on ('data', function (key)
@@ -1324,7 +1351,7 @@ var app = angular.module ('wyliodrinApp');
 						  	return false;
 						  };
 						};
-				      	
+
 				      	$scope.path = path;
 
 				      	/*this.runAndFlash = function ()

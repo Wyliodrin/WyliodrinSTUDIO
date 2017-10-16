@@ -314,21 +314,19 @@ var app = angular.module ('wyliodrinApp');
 				$scope.showEditor = false;
 				$scope.showVisual = false;
 				$scope.showStreams = false;
-        // console.log("daca e director");
 			}
 			else{
 				$scope.showEditor = true;
 
 				if (hasDeepChild(node,$scope.project.tree[0].children[0])){
-          // console.log("intru in if ul cu has deep child");
 					if ($scope.project.language == "visual"){
-            // console.log("am intrat in if-ul de la visual");
 
             if (node.isdir == false && node.ismain == true)
             {
               $scope.showVisual = true;
             }
 
+            // hide the visuals in case a text file is selected
             if(node.isdir == false && node.ismain == undefined)
             {
               $scope.showVisual = false;
@@ -341,26 +339,24 @@ var app = angular.module ('wyliodrinApp');
 
             if(node.isdir == false && node.ismain == true)
             {
-              // console.log("am intrat in if-ul de la streams");
   						$scope.showStreams = true;
-              // eu zic ca aici e problema sau nu e tratat cazul in care am fisier simplu - like - ce/cum afisez continutul?
   						// red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
   						// red.reload();
             }
+
+            // hide the streams in case a text file is selected
+            if(node.isdir == false && node.ismain == undefined)
+            {
+              console.log("text");
+              $scope.showStreams = false;
+            }
+
 					}
 					else{
-            // console.log("ascund streams1");
 						$scope.showStreams = false;
 					}
 
-          // caz in care am fisier text
-          if(node.isdir == false && node.ismain == undefined)
-          {
-            console.log("text");
-            $scope.showStreams = false;
-          }
-
-					//softwareEditor.language = $scope.project.language;
+					softwareEditor.language = $scope.project.language;
 					if ($scope.project.language === "nodejs")
 					{
 						softwareEditor.getSession().setMode ('ace/mode/javascript');
@@ -390,8 +386,8 @@ var app = angular.module ('wyliodrinApp');
 					{
 						softwareEditor.getSession().setMode ('ace/mode/powershell');
 					}
-					// softwareEditor.getSession().setTabSize (2);
-					// softwareEditor.getSession().setUseSoftTabs (true);
+					softwareEditor.getSession().setTabSize (2);
+					softwareEditor.getSession().setUseSoftTabs (true);
 					//if it's software type file
 				}
 				else{

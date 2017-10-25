@@ -139,6 +139,7 @@ Wyliodrin STUDIO is a product of [Wyliodrin](http://www.wyliodrin.com)
 
 * [Alexandru Radovici](https://www.github.com/alexandruradovici) - Maintainer
 * [Razvan Serban](https://www.github.com/serban-razvan) - Developer
+* [Alexandru Neculai](https://www.github.com/NeculaiAlex) - Developer
 * [Ioana Culic](https://www.github.com/ioanaculic) - Developer
 * [Ovidiu Stoica](https://www.github.com/oviska) - UX / UI
 

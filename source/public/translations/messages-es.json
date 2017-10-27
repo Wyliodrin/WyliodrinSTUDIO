@@ -204,23 +204,23 @@
     "description": ""
   },
   "SD_CARD4_GetAMinimum": {
-    "message": "Conseguir un card SD de mínimo 4 GB (Recomendamos 8 GB clase 10)",
+    "message": "Obtener una tarjeta SD de mínimo 4 GB (Recomendamos 8 GB de clase 10)",
     "description": ""
   },
   "InsertTheCard": {
-    "message": "Insert the card into the {{device}}, connect the {{device}} to the <b>serial cable</b> or to the <b>network cable</b> and power it on",
+    "message": "Inserte la tarjeta en el {{device}}, conecte el {{device}} al <b>cable serie</b> o al <b>cable de red</b> y encendelo",
     "description": ""
   },
   "MakeSureYou": {
-    "message": "Make sure you connect it to the Internet (Ethernet or WiFi)",
+    "message": "Asegúrese que lo conectes a Internet (Ethernet o WiFi)",
     "description": ""
   },
   "YouMightHave": {
-    "message": "You might have to install drivers for the cables:",
+    "message": "Es posible que debas instalar los drivers para los cables:",
     "description": ""
   },
   "MakeSureThat": {
-    "message": "Make sure that your Arduino Yun is up to date. Please follow this",
+    "message": "Asegúrese que su Arduino Yun está actualizado. Por favor sigue este:",
     "description": ""
   },
   "tutorial": {
@@ -228,71 +228,71 @@
     "description": ""
   },
   "InstallNodeJSOn": {
-    "message": "Install NodeJS on the Arduino Yun following this",
+    "message": "Instale NodeJS sobre Arduino Yun siguiendo este",
     "description": ""
   },
   "ConnectViaSsh": {
-    "message": "Connect via ssh to your Arduino Yun. The address is",
+    "message": "Conecte via ssh a Arduino Yun. La dirección IP es",
     "description": ""
   },
   "AndTheUser": {
-    "message": "and the user",
+    "message": "y el usuario",
     "description": ""
   },
   "AndPassword": {
-    "message": "and password",
+    "message": "y la contraseña",
     "description": ""
   },
   "RunTheWyliodrin": {
-    "message": "Run the Wyliodrin install script.",
+    "message": "Ejecute el script de instalación the Wyliodrin.",
     "description": ""
   },
   "ResetYour": {
-    "message": "Reset your Arduino Yun.",
+    "message": "Configure de nuevo su Arduino Yun.",
     "description": ""
   },
   "DownloadImage": {
-    "message": "Download the <a href='{{link1}}' target='_blank'>SD Card image</a>, unzip it and write it on the card. You can find more information on how to write the SD card image on our <a href='{{link2}}' target='_blank'>tutorial page</a>.",
+    "message": "Descargue el <a href='{{link1}}' target='_blank'>la imagen de la tarjeta SD</a>, descomprimela y escribala sobre la tarjeta. Puedes encontrar más informaciones sobre como escribir la imagen de la tarjeta SD en nuestra <a href='{{link2}}' target='_blank'>página de tutoriales</a>.",
     "description": ""
   },
   "AdvancedUser": {
-    "message": "If you are an advanced user, you may install the <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
+    "message": "Si tú eres un usuario avanzado, tu puedes instalar el <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
     "description": ""
   },
   "CablePurchase": {
-    "message": "You can purchase the serial cable from the <a href='{{link1}}' target='_blank'>{{name1}}</a> and <a href='{{link2}}' target='_blank'>{{name2}}</a> online stores.",
+    "message": "Tu puedes obtener el cable serie de <a href='{{link1}}' target='_blank'>{{name1}}</a> y <a href='{{link2}}' target='_blank'>{{name2}}</a> tiendas en línea.",
     "description": ""
   },
   "PortSelectNetwork": {
-    "message": "Your board should appear in the Network list. You will need to login with a username that exists on the device.",
+    "message": "Tu placa tiene que aparecer en la lista con redes. Tienes que autentificarte con un nombre de usuario que existe sobre el dispositivo.",
     "description": ""
   },
   "PortSelectSerial": {
-    "message": "Select the serial port and press Connect. Port names are different in every OS:",
+    "message": "Seleccione el puerto serie y haga clic sobre Connect. Los nombres de puertos son diferentes en cada SO:",
     "description": ""
   },
   "YouMightSerial": {
-    "message": "You might have to install drivers for the serial:",
+    "message": "Es posible que tenga que instalar los drivers para el puerto serie:",
     "description": ""
   },
   "ABOUT_Version": {
-    "message": "Version",
+    "message": "Versión",
     "description": ""
   },
   "ABOUT_DevelopedBy": {
-    "message": "Developed By",
+    "message": "Desarrollado por",
     "description": ""
   },
   "ABOUT_ContributionsBy": {
-    "message": "Contributions By",
+    "message": "En colaboración con",
     "description": ""
   },
   "ABOUT_Maintainer": {
-    "message": "Maintainer",
+    "message": "Mantenedor",
     "description": ""
   },
   "ABOUT_Development": {
-    "message": "Development",
+    "message": "Desarrollo",
     "description": ""
   },
   "ABOUT_UI_UX": {
@@ -300,67 +300,67 @@
     "description": ""
   },
   "ABOUT_UsageParam": {
-    "message": "Allow sending usage parameters",
+    "message": "Permitir el envio de los parámetros de uso",
     "description": ""
   },
   "ABOUT_AnonymousUsageParam": {
-    "message": "Allow sending anonymous usage parameters in order to help us improve the software",
+    "message": "Permitir enviar parámetros de uso anónimos para ayudarnos mejorar el software",
     "description": ""
   },
   "ABOUT_ProvidedBy": {
-    "message": "Provided by",
+    "message": "Proporcionado por",
     "description": ""
   },
   "ABOUT_Sponsor": {
-    "message": "Sponsor",
+    "message": "Patrocinador",
     "description": ""
   },
   "ABOUT_License": {
-    "message": "License",
+    "message": "Licencia",
     "description": ""
   },
   "ADD_APP_AddApp": {
-    "message": "Add Application",
+    "message": "Añadir aplicación",
     "description": ""
   },
   "TOOLBAR_AddNewApp": {
-    "message": "Add new application",
+    "message": "Añadir una applicación nueva",
     "description": ""
   },
   "ADD_APP_Title": {
-    "message": "Title",
+    "message": "Título",
     "description": ""
   },
   "ADD_APP_Language": {
-    "message": "Language",
+    "message": "Idioma",
     "description": ""
   },
   "WELCOME_Welcome": {
-    "message": "Welcome to Wyliodrin STUDIO",
+    "message": "Bienvenido a Wyliodrin STUDIO",
     "description": ""
   },
   "WELCOME_StartWork": {
-    "message": "Start working on your projects right away!",
+    "message": "¡Empiece trabajar en su proyecto ahora!",
     "description": ""
   },
   "WELCOME_CreateNewApp": {
-    "message": "Create new application",
+    "message": "Crear una aplicación nueva",
     "description": ""
   },
   "WELCOME_ConnectBoard": {
-    "message": "Connect board",
+    "message": "Conectar la placa",
     "description": ""
   },
   "WELCOME_SendUsageParam": {
-    "message": "Allow sending usage parameters",
+    "message": "Permitir el envio de los parámetros de uso",
     "description": ""
   },
   "WELCOME_SendAnonUsageParam": {
-    "message": "Allow sending anonymous usage parameters in order to help us improve the software",
+    "message": "Permitir enviar parámetros de uso anónimos para ayudarnos mejorar el software",
     "description": ""
   },
   "AUTHENTICATE_ConnectToAddress": {
-    "message": "Connect to address",
+    "message": "Conectarse a la dirección",
     "description": ""
   },
   "AUTHENTICATE_IP": {
@@ -368,35 +368,35 @@
     "description": "Internet Protocol (IP)"
   },
   "AUTHENTICATE_Login": {
-    "message": "Login using any user from the device",
+    "message": "Autentificarse utilisando cualquier usuario del dispositivo",
     "description": ""
   },
   "BOARD_GetStart": {
-    "message": "Getting Started",
+    "message": "Empiece",
     "description": ""
   },
   "BOARD_SelectBoard": {
-    "message": "Please select the board you want to setup",
+    "message": "Seleccione la placa que tú quieres configurarla",
     "description": ""
   },
   "DASHBOARD_VIEWER_InvalidSignal": {
-    "message": "Signal name invalid",
+    "message": "El nombre de la señal inválido",
     "description": ""
   },
   "DASHBOARD_VIEWER_MoveLeft": {
-    "message": "Move left",
+    "message": "Mover a la izquierda",
     "description": ""
   },
   "DASHBOARD_VIEWER_MoveRight": {
-    "message": "Move right",
+    "message": "Mover a la derecha",
     "description": ""
   },
   "DASHBOARD_VIEWER_GraphSettings": {
-    "message": "Graph settings",
+    "message": "Configuraciones del gráfico",
     "description": ""
   },
   "DASHBOARD_VIEWER_EraseGraph": {
-    "message": "Erase graph",
+    "message": "Borrar el el gráfico",
     "description": ""
   },
   "DASHBOARD_VIEWER_BlockSendSignalValues": {

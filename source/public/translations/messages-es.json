@@ -396,55 +396,55 @@
     "description": ""
   },
   "DASHBOARD_VIEWER_EraseGraph": {
-    "message": "Borrar el el gráfico",
+    "message": "Borrar el gráfico",
     "description": ""
   },
   "DASHBOARD_VIEWER_BlockSendSignalValues": {
-    "message": "Use the sendSignal block to send signal values",
+    "message": "Use el sendSignal block para enviar los valores de la señal",
     "description": ""
   },
   "DASHBOARD_VIEWER_SendSignalValues": {
-    "message": "Use the sendSignal function to send signal values",
+    "message": "Use la fonccion sendSignal para enviar los valores de la señal",
     "description": ""
   },
   "DASHBOARD_VIEWER_SignalName": {
-    "message": "Signal name must be at lowercase without spaces",
+    "message": "El nombre de la señal tiene que tener las letras en minúsculas sin espacios",
     "description": ""
   },
   "FIRMWARE_EXAMPLE_SelectFirmware": {
-    "message": "Select firmware",
+    "message": "Seleccione firmware",
     "description": ""
   },
   "FLASH_FIRMWARE_RunAndFlash": {
-    "message": "Run and flash",
+    "message": "Ejecutar y escribir",
     "description": ""
   },
   "FLASH_FIRMWARE_RunWithoutFlash": {
-    "message": "Run without flash",
+    "message": "Ejecutar sin escribir",
     "description": ""
   },
   "FLASH_FIRMWARE": {
-    "message": "Flash firmware",
+    "message": "Escriba firmware",
     "description": ""
   },
   "LIBRARY_Library": {
-    "message": "Library",
+    "message": "Librería",
     "description": ""
   },
   "LIBRARY_LoadAnExample": {
-    "message": "Load an example",
+    "message": "Cargue un ejemplo",
     "description": ""
   },
   "LICENSE_UsageLicense": {
-    "message": "Usage License",
+    "message": "Licencia del uso",
     "description": ""
   },
   "NETWORK_NetworkManager": {
-    "message": "Network Manager",
+    "message": "Los parámetros de la red",
     "description": ""
   },
   "NETWORK_PackageManager": {
-    "message": "Package Manager",
+    "message": "Herramienta de paquetes",
     "description": ""
   },
   "NETWORK_SSID": {
@@ -456,7 +456,7 @@
     "description": ""
   },
   "NETWORK_Mask": {
-    "message": "Mask",
+    "message": "Máscara",
     "description": ""
   },
   "NETWORK_Broadcast": {
@@ -464,75 +464,75 @@
     "description": ""
   },
   "NETWORK_SignalStrength": {
-    "message": "Signal strength",
+    "message": "Fuerza de la señal",
     "description": ""
   },
   "NETWORK_Disc_ChangeNet": {
-    "message": "Disconnect / Change network",
+    "message": "Desconectar / Cambiar red",
     "description": ""
   },
   "PACKAGE_MANAGER_LinkToTheLibrary": {
-    "message": "Link to the library",
+    "message": "Enlace hacia la librería",
     "description": ""
   },
   "RENAME_RenameApp": {
-    "message": "Rename Application",
+    "message": "Cambiar el nombre de la aplicación",
     "description": ""
   },
   "CLONE_CloneApp": {
-    "message": "Clone Application",
+    "message": "Clonar la aplicación",
     "description": ""
   },
   "RESISTOR_COLORCODE_FromColorToNumber": {
-    "message": "From Color to Number",
+    "message": "De color a número",
     "description": ""
   },
   "RESISTOR_COLORCODE_FromNumberToColor": {
-    "message": "From Number to Color",
+    "message": "De número a color",
     "description": ""
   },
   "RESISTOR_COLORCODE_Stripes": {
-    "message": "Stripes",
+    "message": "Banda",
     "description": ""
   },
   "VALUE_Four": {
-    "message": "Four",
+    "message": "Cuatro",
     "description": ""
   },
   "VALUE_Five": {
-    "message": "Five",
+    "message": "Cinco",
     "description": ""
   },
   "RESISTOR_COLORCODE_Stripe": {
-    "message": "Stripe",
+    "message": "Banda",
     "description": ""
   },
   "VALUE_Value": {
-    "message": "Value",
+    "message": "Valor",
     "description": ""
   },
   "RESISTOR_COLORCODE_Resistance": {
-    "message": "Resistance",
+    "message": "Resistencia",
     "description": ""
   },
   "VALUE_Tolerance": {
-    "message": "Tolerance",
+    "message": "Tolerancia",
     "description": ""
   },
   "SIGNAL_PROPERTIES_Signal": {
-    "message": "Signal",
+    "message": "Señal",
     "description": ""
   },
   "SIGNAL_PROPERTIES_AddSignal": {
-    "message": "Add signal",
+    "message": "Añadir señal",
     "description": ""
   },
   "SIGNAL_PROPERTIES_SignalName": {
-    "message": "Signal Name",
+    "message": "El nombre de la señal",
     "description": ""
   },
   "SIGNAL_PROPERTIES_Description": {
-    "message": "Description",
+    "message": "Descripción",
     "description": ""
   },
   "SIGNAL_PROPERTIES_SignalColor": {
@@ -540,67 +540,67 @@
     "description": ""
   },
   "SOFTWARE_EXAMPLE_Example": {
-    "message": "Example",
+    "message": "Ejemplo",
     "description": ""
   },
   "SOFTWARE_EXAMPLE_SelectSoftware": {
-    "message": "Select software",
+    "message": "Seleccione el software",
     "description": ""
   },
   "TASK_MANAGER_TaskManager": {
-    "message": "Task Manager",
+    "message": "Herramiento de tareas",
     "description": ""
   },
   "File_explorer": {
-    "message": "File Explorer",
+    "message": "Explorador de archivos",
     "description": ""
   },
   "Show_file_manager": {
-    "message": "Show File Manager",
+    "message": "Mostrar Herramiento de archivos",
     "description": ""
   },
   "Hide_file_manager": {
-    "message": "Hide File Manager",
+    "message": "Esconder el Herramiento de archivos",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_Error": {
-    "message": "might have an error",
+    "message": "Puede tener un error",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_RunProject": {
-    "message": "Run project",
+    "message": "Ejecutar proyecto",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_StopProject": {
-    "message": "Stop project",
+    "message": "Interrumpir proyecto",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_NoInternet": {
-    "message": "has no Internet",
+    "message": "No tiene internet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_Examples": {
-    "message": "examples",
+    "message": "Ejemplos",
     "description": ""
   },
   "SIGNAL_line": {
-    "message": "Line",
+    "message": "Línea",
     "description": ""
   },
   "SIGNAL_thermometer": {
-    "message": "Thermometer",
+    "message": "Termómetro",
     "description": ""
   },
   "SIGNAL_speedometer": {
-    "message": "Speedometer",
+    "message": "Velocímetro",
     "description": ""
   },
   "SIGNAL_vumeter": {
-    "message": "VUMeter",
+    "message": "VU-metro",
     "description": ""
   },
   "SIGNAL_gauge": {
-    "message": "Gauge",
+    "message": "Calibrador",
     "description": ""
   },
   "SIGNAL_extra": {
@@ -608,19 +608,19 @@
     "description": ""
   },
   "SIGNAL_switch": {
-    "message": "Switch",
+    "message": "Conmutador",
     "description": ""
   },
   "SIGNAL_slider": {
-    "message": "Slider",
+    "message": "Potenciómetro",
     "description": ""
   },
   "TOOLBAR_ExitQuestion": {
-    "message": "Are you sure you want to exit?",
+    "message": "¿Estás seguro que quieres salir?",
     "description": ""
   },
   "YES": {
-    "message": "Yes",
+    "message": "Sí",
     "description": ""
   },
   "NO": {
@@ -628,15 +628,15 @@
     "description": ""
   },
   "LIBRARY_ProjectErase": {
-    "message": "Would you like to delete project {{title}}?",
+    "message": "¿Queres borrar el proyecto {{title}}?",
     "description": ""
   },
   "LIBRARY_ProjectClone": {
-    "message": "This name is already used. Pick another one!",
+    "message": "Este nombre ya es utilizado. Elija un otro nombre!",
     "description": ""
   },
   "SCHEMATICS_ERASE": {
-    "message": "Would you like to erase the scematics?",
+    "message": "¿Queres borrar el esquema?",
     "description": ""
   },
   "TOOLBAR_FORUM": {
@@ -644,7 +644,7 @@
     "description": ""
   },
   "FIRMWARE_EXAMPLE_Example": {
-    "message": "Example",
+    "message": "Ejemplo",
     "description": ""
   },
   "DEVICE_CONNECTION_TIMEOUT":
@@ -654,46 +654,46 @@
   },
   "DEVICE_CONNECTION_ERROR":
   {
-    "message":"Connection error, please check your board's IP and make sure it is running the Wyliodrin Image.",
+    "message":"Ocurrió una desconexión por tiempo , por favor verifique el IP de tu placa y asegúrese de la ejecución de la imagen de Wyliodrin.",
     "description":""
   },
   "DEVICE_CONNECTION_FAILED":
   {
-    "message":"Login failed, please check your username and password.",
+    "message":"Error en el login, por favor verifique el nombre del usuario y la contraseña.",
     "description":""
   },
   "DEVICE_QUESTION_INSTALL_SHELL":
   {
-    "message":"Wyliodrin is not installed on this device, would you like to install it or just open a shell?",
+    "message":"Wyliodrin no esta instadado en su dispositivo, quieres instalarlo o solamente abrir un shell?",
     "description":""
   },
   "DEVICE_INSTALL":
   {
-    "message":"Install",
+    "message":"Instalar",
     "description":""
   },
   "TOOLBAR_INSTALL":
   {
-    "message":"Install",
+    "message":"Instalar",
     "description":""
   },
   "USER_SecureConnection":
   {
-    "message":"Use a secure connection - ssh (works slower)",
+    "message":"Use una conexión segura - ssh (funciona lentamente)",
     "description":""
   },
   "DEVICE_Install":
   {
-    "message":"Installable",
+    "message":"Puede instalarse",
     "description":""
   },
   "INSTALL_SelectBoard": {
-    "message": "Please select the board you want to install on to",
+    "message": "Por favor seleccione la placa que quieres utilisar para la instalación",
     "description": ""
   },
   "INSTALL_Success":
   {
-    "message":"Wyliodrin installation was successful, please disconnect and reconnect to your board",
+    "message":"La instalación de Wyliodrin ha sido exitosa, por favor desconecte y conecte a su placa",
     "description":""
   },
   "DEVICE_Chrome":
@@ -703,17 +703,17 @@
   },
   "chrome":
   {
-    "message":"Local Computer",
+    "message":"Ordenador Local",
     "description":""
   },
   "PROJECT_no_language_capability":
   {
-    "message":"This device does not know how to run a project in this language",
+    "message":"Este dispositivo no sabe como ejecutar un proyecto en este leguaje.",
     "description":""
   },
   "PROJECT_library":
   {
-    "message":"Projects Library",
+    "message":"Librería de proyectos",
     "description":""
   },
   "PLATFORM_windows":
@@ -728,58 +728,58 @@
   },
   "PortSelectSerialChrome":
   {
-    "message":"Select Local Comoputer as port and connect to it. Connect your Arduino to the USB port of your computer.",
+    "message":"Seleccione el Ordenador Local como puerto y conectate. Conecte tu Arduino al puerto USB de tu ordenador.",
     "description":""
   },
   "PortSelectSerialFirmata":
   {
-    "message":"You need to specify the port for your Arduino in firmata.connect()",
+    "message":"Tienes que specificar el puerto para tu Arduino en firmata.connect()",
     "description":""
   },
   "BOARD_Connect":
   {
-    "message":"Select a device to connect to",
+    "message":"Seleccione un dispositivo para conectarse",
     "description":""
   },
   "WYLIODRIN_USERINTERFACE_devicename":
   {
-    "message":"Rename device",
+    "message":"Cambia el nombre del dispositivo",
     "description":""
   },
   "IR829_wiki1": {
-    "message": "Follow the instructions <a href='{{link1}}' target='_blank'>here</a> and reach a Linux environment within the router.",
+    "message": "Siga las instrucciones <a href='{{link1}}' target='_blank'>aqui</a> y acceda a Linux en el rúter.",
     "description": ""
   },
   "IR829_wiki2": {
-    "message": "The link contains all the necessary informations to get confortable with Cisco's IOS environment before you reach the Linux console.",
+    "message": "El enlace contiene todas las informaciones necesarias para sentirse cómodo con el Cisco IOS antes de trabajar en la consola Linux.",
     "description": ""
   },
   "IR829_wget": {
-    "message": "In the Linux environment, use wget and download the bundle pack for Wyliodrin server as a zip with the following command:",
+    "message": "En Linux, use wget y descarque el paquete bundle para el server Wyliodrin como un zip con el siguiente comando:",
     "description": ""
   },
   "IR829_setup": {
-    "message": "Unzip, enter the folder and run the setup installer with the following commands:",
+    "message": "Descomprima, enter el archivo y ejecuta la configuración de la instalación con los siguientes comandos:",
     "description": ""
   },
   "Empty_folder": {
-    "message": "Empty Folder",
+    "message": "Vaciar el archivo",
     "description": ""
   },
   "Loading": {
-    "message": "Loading . . .",
+    "message": "Cargandose . . .",
     "description": ""
   },
   "Show_hidden": {
-    "message": "Show Hidden",
+    "message": "Mostrar los escondidos",
     "description": ""
   },
   "want_to_delete": {
-    "message": "Are you sure you want to delete",
+    "message": "Estás seguro que queres borrar esto?",
     "description": ""
   },
   "folder_name": {
-    "message": "Choose the name for the folder",
+    "message": "Elija el nombre para el archivo",
     "description": ""
   },
   "Ok": {
@@ -787,19 +787,19 @@
     "description": ""
   },
   "Cancel": {
-    "message": "Cancel",
+    "message": "Cancelar",
     "description": ""
   },
   "choose_name": {
-    "message": "Choose the name for the ",
+    "message": "Elija el nombre para ",
     "description": ""
   },
   "will_upload": {
-    "message": "The file will be uploaded immediately.",
+    "message": "El archivo estará cargado inmediatamente.",
     "description": ""
   },
   "will_download": {
-    "message": "The file will be downloaded immediately.",
+    "message": "El archivo estará descargado inmediatamente.",
     "description": ""
   },
   "folder": {
@@ -807,133 +807,133 @@
     "description": ""
   },
   "file": {
-    "message": "file",
+    "message": "fichiero",
     "description": ""
   },
   "link": {
-    "message": "link",
+    "message": "enlace",
     "description": ""
   },
   "Refresh": {
-    "message": "Refresh",
+    "message": "Actualisar",
     "description": ""
   },
   "New_folder": {
-    "message": "New Folder",
+    "message": "Nuevo Folder",
     "description": ""
   },
   "New_file": {
-    "message": "New File",
+    "message": "Nuevo fichiero",
     "description": ""
   },
   "New_firmware": {
-    "message": "New Firmware",
+    "message": "Nuevo Firmware",
     "description": ""
   },
   "Upload_here": {
-    "message": "Upload Here",
+    "message": "Cargar aquí",
     "description": ""
   },
   "Rename": {
-    "message": "Rename",
+    "message": "Poner un otro nombre",
     "description": ""
   },
   "Download": {
-    "message": "Download",
+    "message": "Descargar",
     "description": ""
   },
   "Delete": {
-    "message": "Delete",
+    "message": "Borrar",
     "description": ""
   },
   "Exit": {
-    "message": "Exit",
+    "message": "Salida",
     "description": ""
   },
   "FEinexistent_folder": {
-    "message": "You have entered in an inexistent folder."
+    "message": "Has entrado en un folder inexistente."
   },
   "FEread_permission": {
-    "message": "You don't have read permissions here."
+    "message": "Aquí no tenga permiso para leer."
   },
   "FEread_permission_local": {
-    "message": "You do not have read permissions for that file on your disk."
+    "message": "No tenga permiso para ese fichiero sobre el disco."
   },
   "FEwrite_permission": {
-    "message": "You do not have permissions to write here."
+    "message": "Aquí no tenga permiso para escribir."
   },
   "FEdelete_permission": {
-    "message": "You do not have permissions to delete here."
+    "message": "Aquí no tenga permiso para borrar."
   },
   "FErename_permission": {
-    "message": "You do not have permissions to rename here."
+    "message": "Aquí no tenga permiso para cambiar el nombre."
   },
   "FEfile_write": {
-    "message": "Writing file to disk failed."
+    "message": "Erros en la escritura del fichiero sobre el disco."
   },
   "FEnew_folder": {
-    "message": "Creating a new folder failed. "
+    "message": "Error en la creación de un nuevo folder. "
   },
   "FEdelete": {
-    "message": "Deleting failed. "
+    "message": "Error en la acción de borrar. "
   },
   "FErename": {
-    "message" :"Renaming failed. "
+    "message" :"Error en la acción de cambio de nombre. "
   },
   "FEupload": {
-    "message": "Uploading failed. "
+    "message": "Error en la acción de cargar. "
   },
   "FEdownload": {
-    "message": "Downloading failed. "
+    "message": "Error en la acción descargar. "
   },
   "FEexists": {
-    "message": "Another file/folder with the same name exists here."
+    "message": "Aquí hay un otro fichiero/folder con el mismo nombre."
   },
   "FEunknown": {
-    "message": "Unknown error."
+    "message": "Error desconocido."
   },
   "FEnot_exists": {
-    "message": "The file/folder does not exists anymore."
+    "message": "El fichier/folder ya no existe."
   },
   "DASHBOARD_values_export": {
-    "message": "Export"
+    "message": "Exportar"
   },
   "TREEsame_name": {
-    "message": "A file or folder with the same name exists at the destination."
+    "message": "Un fichiero/folder con el mismo nombre existe."
   },
   "TREEdelete_special": {
-    "message": "Cannot delete."
+    "message": "Imposible de borrar."
   },
   "TREEdelete_root": {
-    "message": "Cannot delete the root folder."
+    "message": "Imposible de borrar el folder root."
   },
   "TREEdelete_software": {
-    "message": "Cannot delete the software folder."
+    "message": "Imposible de borrar el folder de software."
   },
   "TREEno_root": {
-    "message": "Cannot create to root folder (use New Firmware instead)."
+    "message": "Imposible de crear el folder root (use nuevo Firmware en lugar)."
   },
   "PROJECT_NOTEBOOK": {
     "message": "Notebook"
   },
   "GITHUB_EXAMPLE_Example": {
-    "message": "Load an example"
+    "message": "Cargue un ejemplo"
   },
   "GITHUB_EXAMPLE_Empty":
   {
-    "message" :"Please write the name of a github repository that has examples"
+    "message" :"Por favor escribe el nombre de un depósito github que tiene ejemplos"
   },
   "DEVICE_CONNECTION_BUSY":
   {
-    "message":"The device is already connected to another user.",
+    "message":"El dispositivo ya está conectado por otro usuario.",
     "description":""
   },
   "Disconnect": {
-    "message": "Disconnect",
+    "message": "Desconectar",
     "description": ""
   },
   "Reboot_Disconnect": {
-    "message": "Reboot and Disconnect",
+    "message": "Reiniciar y desconectar",
     "description": ""
   },
   "Poweroff_Disconnect": {
@@ -945,15 +945,15 @@
     "description": ""
   },
   "Select_board": {
-    "message": "Select board",
+    "message": "Seleccione la placa",
     "description": ""
   },
   "Port": {
-    "message": "Port",
+    "message": "Puerto",
     "description": ""
   },
   "Pick_firmware": {
-    "message": "Pick firmware",
+    "message": "Escoger firmware",
     "description": ""
   },
   "No_firmware": {
@@ -961,7 +961,7 @@
     "description": ""
   },
   "Run": {
-    "message": "Run",
+    "message": "Ejecutar",
     "description": ""
   },
   "Github": {
@@ -969,31 +969,31 @@
     "description": ""
   },
   "username": {
-    "message": "username",
+    "message": "Nombre de usuario",
     "description": ""
   },
   "repository": {
-    "message": "repository",
+    "message": "depósito",
     "description": ""
   },
   "Author": {
-    "message": "Author",
+    "message": "Autor",
     "description": ""
   },
   "Wyliodrin_app_server_version": {
-    "message": "Wyliodrin-app-server version",
+    "message": "Versión Wyliodrin-app-server",
     "description": ""
   },
   "Libwyliodrin_version": {
-    "message": "Libwyliodrin version",
+    "message": "Versión Libwyliodrin",
     "description": ""
   },
   "Operating_system": {
-    "message": "Operating System",
+    "message": "Sistema operativo",
     "description": ""
   },
   "Supported_languages": {
-    "message": "Supported languages",
+    "message": "Idiomas",
     "description": ""
   },
   "status": {
@@ -1001,7 +1001,7 @@
     "description": ""
   },
   "UPDATE_SD_CARD_IMAGE": {
-    "message":"Please update your SD Card image before running this project",
+    "message":"Por favor actualice su imagen de tarjeta SD antes la ejecución del proyecto",
     "description":""
   }
 }

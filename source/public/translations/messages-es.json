@@ -1,0 +1,1007 @@
+{
+  "LANGUAGE": {
+    "message": "Español",
+    "description": ""
+  },
+  "appName": {
+    "message": "Wyliodrin STUDIO",
+    "description": ""
+  },
+  "appDesc": {
+    "message": "Wyliodrin STUDIO es un IDE para el desarrollo software y hardware para los sistemas de Internet de las cosas como Raspberry Pi, UDOO y Arduino",
+    "description": ""
+  },
+  "DEVICE_CONNECT": {
+    "message": "Conectar",
+    "description": ""
+  },
+  "DEVICE_ADDRESS": {
+    "message": "Dirección IP",
+    "description": ""
+  },
+  "DEVICE_PORT": {
+    "message": "Puerto",
+    "description": ""
+  },
+  "DEVICE_DISCONNECT": {
+    "message": "Desconectar",
+    "description": ""
+  },
+  "DEVICE_Network": {
+    "message": "Red",
+    "description": ""
+  },
+  "DEVICE_Serial": {
+    "message": "Serie",
+    "description": ""
+  },
+  "USER_Username": {
+    "message": "Nombre de usuario",
+    "description": ""
+  },
+  "USER_Password": {
+    "message": "Contraseña",
+    "description": ""
+  },
+  "USER_ShowPassword": {
+    "message": "Mostrar la contraseña",
+    "description": ""
+  },
+  "TOOLBAR_PROJECTS": {
+    "message": "Proyectos",
+    "description": ""
+  },
+  "TOOLBAR_HELP": {
+    "message": "Ayuda",
+    "description": ""
+  },
+  "TOOLBAR_EXIT": {
+    "message": "Salida",
+    "description": ""
+  },
+  "TOOLBAR_FULLSCREEN": {
+    "message": "Pantalla Completa",
+    "description": ""
+  },
+  "TOOLBAR_RESTORE": {
+    "message": "Restablecer",
+    "description": ""
+  },
+  "TOOLBAR_MINIMIZE": {
+    "message": "Minimizar",
+    "description": ""
+  },
+  "TOOLBAR_SETUP": {
+    "message": "Configuración",
+    "description": ""
+  },
+  "TOOLBAR_RESISTOR_COLOR_CODE": {
+    "message": "El código de colores de la resistencia",
+    "description": ""
+  },
+  "TOOLBAR_ABOUT": {
+    "message": "Sobre",
+    "description": ""
+  },
+  "TOOLBAR_CREATE": {
+    "message": "Crear",
+    "description": ""
+  },
+  "TOOLBAR_CANCEL": {
+    "message": "Cancelar",
+    "description": ""
+  },
+  "TOOLBAR_EXPORT": {
+    "message": "Exportar",
+    "description": ""
+  },
+  "TOOLBAR_OPTIONS": {
+    "message": "Opciones",
+    "description": ""
+  },
+  "TOOLBAR_RENAME": {
+    "message": "Cambiar el nombre",
+    "description": ""
+  },
+  "TOOLBAR_DELETE": {
+    "message": "Borrar",
+    "description": ""
+  },
+  "TOOLBAR_CLONE": {
+    "message": "Clonar",
+    "description": ""
+  },
+  "TOOLBAR_IMPORT": {
+    "message": "Importar",
+    "description": ""
+  },
+  "TOOLBAR_INSTALL": {
+    "message": "Instalar",
+    "description": ""
+  },
+  "TOOLBAR_UNINSTALL": {
+    "message": "Desinstalar",
+    "description": ""
+  },
+  "TOOLBAR_ADD": {
+    "message": "Añadir",
+    "description": ""
+  },
+  "TOOLBAR_CLOSE": {
+    "message": "Cerrar",
+    "description": ""
+  },
+  "TOOLBAR_STOP": {
+    "message": "Stop",
+    "description": ""
+  },
+  "TOOLBAR_UPDATE": {
+    "message": "Actualización",
+    "description": ""
+  },
+  "TOOLBAR_NETWORK": {
+    "message": "Red",
+    "description": ""
+  },
+  "SCHEMATICS_LOAD": {
+    "message": "Cargar",
+    "description": ""
+  },
+  "TOOLBAR_ERASE": {
+    "message": "Borrar",
+    "description": ""
+  },
+  "PROJECT_APPLICATION": {
+    "message": "Aplicación",
+    "description": ""
+  },
+  "PROJECT_DASHBOARD": {
+    "message": "El tablero de Control",
+    "description": ""
+  },
+  "PROJECT_SCHEMATICS": {
+    "message": "Esquema",
+    "description": ""
+  },
+  "PROJECT_PINLAYOUT": {
+    "message": "Diagrama de asignación de pines",
+    "description": ""
+  },
+  "PROJECT_SHELL": {
+    "message": "Shell",
+    "description": ""
+  },
+  "PROJECT_ShowConsole": {
+    "message": "Mostrar la Consola",
+    "description": ""
+  },
+  "PROJECT_HideConsole": {
+    "message": "Esconder la Consola",
+    "description": ""
+  },
+  "DISCONNECTED": {
+    "message": "DESCONECTADO",
+    "description": ""
+  },
+  "CONNECTED": {
+    "message": "CONECTADO",
+    "description": ""
+  },
+  "CONNECTING": {
+    "message": "CONECTANDOSE",
+    "description": ""
+  },
+  "SEPARATOR": {
+    "message": "ESPERANDO",
+    "description": ""
+  },
+  "ERROR": {
+    "message": "ERROR",
+    "description": ""
+  },
+  "PING": {
+    "message": "PING",
+    "description": ""
+  },
+  "SD_CARD4_GetAMinimum": {
+    "message": "Obtener una tarjeta SD de mínimo 4 GB (Recomendamos 8 GB de clase 10)",
+    "description": ""
+  },
+  "InsertTheCard": {
+    "message": "Inserte la tarjeta en el {{device}}, conecte el {{device}} al <b>cable serie</b> o al <b>cable de red</b> y encendelo",
+    "description": ""
+  },
+  "MakeSureYou": {
+    "message": "Asegúrese que lo conectes a Internet (Ethernet o WiFi)",
+    "description": ""
+  },
+  "YouMightHave": {
+    "message": "Es posible que debas instalar los drivers para los cables:",
+    "description": ""
+  },
+  "MakeSureThat": {
+    "message": "Asegúrese que su Arduino Yun está actualizado. Por favor sigue este:",
+    "description": ""
+  },
+  "tutorial": {
+    "message": "tutorial",
+    "description": ""
+  },
+  "InstallNodeJSOn": {
+    "message": "Instale NodeJS sobre Arduino Yun siguiendo este",
+    "description": ""
+  },
+  "ConnectViaSsh": {
+    "message": "Conecte via ssh a Arduino Yun. La dirección IP es",
+    "description": ""
+  },
+  "AndTheUser": {
+    "message": "y el usuario",
+    "description": ""
+  },
+  "AndPassword": {
+    "message": "y la contraseña",
+    "description": ""
+  },
+  "RunTheWyliodrin": {
+    "message": "Ejecute el script de instalación the Wyliodrin.",
+    "description": ""
+  },
+  "ResetYour": {
+    "message": "Configure de nuevo su Arduino Yun.",
+    "description": ""
+  },
+  "DownloadImage": {
+    "message": "Descargue el <a href='{{link1}}' target='_blank'>la imagen de la tarjeta SD</a>, descomprimela y escribala sobre la tarjeta. Puedes encontrar más informaciones sobre como escribir la imagen de la tarjeta SD en nuestra <a href='{{link2}}' target='_blank'>página de tutoriales</a>.",
+    "description": ""
+  },
+  "AdvancedUser": {
+    "message": "Si tú eres un usuario avanzado, tu puedes instalar el <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
+    "description": ""
+  },
+  "CablePurchase": {
+    "message": "Tu puedes obtener el cable serie de <a href='{{link1}}' target='_blank'>{{name1}}</a> y <a href='{{link2}}' target='_blank'>{{name2}}</a> tiendas en línea.",
+    "description": ""
+  },
+  "PortSelectNetwork": {
+    "message": "Tu placa tiene que aparecer en la lista con redes. Tienes que autentificarte con un nombre de usuario que existe sobre el dispositivo.",
+    "description": ""
+  },
+  "PortSelectSerial": {
+    "message": "Seleccione el puerto serie y haga clic sobre Connect. Los nombres de puertos son diferentes en cada SO:",
+    "description": ""
+  },
+  "YouMightSerial": {
+    "message": "Es posible que tenga que instalar los drivers para el puerto serie:",
+    "description": ""
+  },
+  "ABOUT_Version": {
+    "message": "Versión",
+    "description": ""
+  },
+  "ABOUT_DevelopedBy": {
+    "message": "Desarrollado por",
+    "description": ""
+  },
+  "ABOUT_ContributionsBy": {
+    "message": "En colaboración con",
+    "description": ""
+  },
+  "ABOUT_Maintainer": {
+    "message": "Mantenedor",
+    "description": ""
+  },
+  "ABOUT_Development": {
+    "message": "Desarrollo",
+    "description": ""
+  },
+  "ABOUT_UI_UX": {
+    "message": "UI / UX",
+    "description": ""
+  },
+  "ABOUT_UsageParam": {
+    "message": "Permitir el envio de los parámetros de uso",
+    "description": ""
+  },
+  "ABOUT_AnonymousUsageParam": {
+    "message": "Permitir enviar parámetros de uso anónimos para ayudarnos mejorar el software",
+    "description": ""
+  },
+  "ABOUT_ProvidedBy": {
+    "message": "Proporcionado por",
+    "description": ""
+  },
+  "ABOUT_Sponsor": {
+    "message": "Patrocinador",
+    "description": ""
+  },
+  "ABOUT_License": {
+    "message": "Licencia",
+    "description": ""
+  },
+  "ADD_APP_AddApp": {
+    "message": "Añadir aplicación",
+    "description": ""
+  },
+  "TOOLBAR_AddNewApp": {
+    "message": "Añadir una applicación nueva",
+    "description": ""
+  },
+  "ADD_APP_Title": {
+    "message": "Título",
+    "description": ""
+  },
+  "ADD_APP_Language": {
+    "message": "Idioma",
+    "description": ""
+  },
+  "WELCOME_Welcome": {
+    "message": "Bienvenido a Wyliodrin STUDIO",
+    "description": ""
+  },
+  "WELCOME_StartWork": {
+    "message": "¡Empiece trabajar en su proyecto ahora!",
+    "description": ""
+  },
+  "WELCOME_CreateNewApp": {
+    "message": "Crear una aplicación nueva",
+    "description": ""
+  },
+  "WELCOME_ConnectBoard": {
+    "message": "Conectar la placa",
+    "description": ""
+  },
+  "WELCOME_SendUsageParam": {
+    "message": "Permitir el envio de los parámetros de uso",
+    "description": ""
+  },
+  "WELCOME_SendAnonUsageParam": {
+    "message": "Permitir enviar parámetros de uso anónimos para ayudarnos mejorar el software",
+    "description": ""
+  },
+  "AUTHENTICATE_ConnectToAddress": {
+    "message": "Conectarse a la dirección",
+    "description": ""
+  },
+  "AUTHENTICATE_IP": {
+    "message": "IP",
+    "description": "Internet Protocol (IP)"
+  },
+  "AUTHENTICATE_Login": {
+    "message": "Autentificarse utilisando cualquier usuario del dispositivo",
+    "description": ""
+  },
+  "BOARD_GetStart": {
+    "message": "Empiece",
+    "description": ""
+  },
+  "BOARD_SelectBoard": {
+    "message": "Seleccione la placa que tú quieres configurarla",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_InvalidSignal": {
+    "message": "El nombre de la señal inválido",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveLeft": {
+    "message": "Mover a la izquierda",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveRight": {
+    "message": "Mover a la derecha",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_GraphSettings": {
+    "message": "Configuraciones del gráfico",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_EraseGraph": {
+    "message": "Borrar el gráfico",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_BlockSendSignalValues": {
+    "message": "Use el sendSignal block para enviar los valores de la señal",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SendSignalValues": {
+    "message": "Use la fonccion sendSignal para enviar los valores de la señal",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SignalName": {
+    "message": "El nombre de la señal tiene que tener las letras en minúsculas sin espacios",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_SelectFirmware": {
+    "message": "Seleccione firmware",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunAndFlash": {
+    "message": "Ejecutar y escribir",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunWithoutFlash": {
+    "message": "Ejecutar sin escribir",
+    "description": ""
+  },
+  "FLASH_FIRMWARE": {
+    "message": "Escriba firmware",
+    "description": ""
+  },
+  "LIBRARY_Library": {
+    "message": "Librería",
+    "description": ""
+  },
+  "LIBRARY_LoadAnExample": {
+    "message": "Cargue un ejemplo",
+    "description": ""
+  },
+  "LICENSE_UsageLicense": {
+    "message": "Licencia del uso",
+    "description": ""
+  },
+  "NETWORK_NetworkManager": {
+    "message": "Los parámetros de la red",
+    "description": ""
+  },
+  "NETWORK_PackageManager": {
+    "message": "Herramienta de paquetes",
+    "description": ""
+  },
+  "NETWORK_SSID": {
+    "message": "SSID",
+    "description": ""
+  },
+  "NETWORK_IP": {
+    "message": "IP",
+    "description": ""
+  },
+  "NETWORK_Mask": {
+    "message": "Máscara",
+    "description": ""
+  },
+  "NETWORK_Broadcast": {
+    "message": "Broadcast",
+    "description": ""
+  },
+  "NETWORK_SignalStrength": {
+    "message": "Fuerza de la señal",
+    "description": ""
+  },
+  "NETWORK_Disc_ChangeNet": {
+    "message": "Desconectar / Cambiar red",
+    "description": ""
+  },
+  "PACKAGE_MANAGER_LinkToTheLibrary": {
+    "message": "Enlace hacia la librería",
+    "description": ""
+  },
+  "RENAME_RenameApp": {
+    "message": "Cambiar el nombre de la aplicación",
+    "description": ""
+  },
+  "CLONE_CloneApp": {
+    "message": "Clonar la aplicación",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromColorToNumber": {
+    "message": "De color a número",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromNumberToColor": {
+    "message": "De número a color",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripes": {
+    "message": "Banda",
+    "description": ""
+  },
+  "VALUE_Four": {
+    "message": "Cuatro",
+    "description": ""
+  },
+  "VALUE_Five": {
+    "message": "Cinco",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripe": {
+    "message": "Banda",
+    "description": ""
+  },
+  "VALUE_Value": {
+    "message": "Valor",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Resistance": {
+    "message": "Resistencia",
+    "description": ""
+  },
+  "VALUE_Tolerance": {
+    "message": "Tolerancia",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Signal": {
+    "message": "Señal",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_AddSignal": {
+    "message": "Añadir señal",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalName": {
+    "message": "El nombre de la señal",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Description": {
+    "message": "Descripción",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalColor": {
+    "message": "Color",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_Example": {
+    "message": "Ejemplo",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_SelectSoftware": {
+    "message": "Seleccione el software",
+    "description": ""
+  },
+  "TASK_MANAGER_TaskManager": {
+    "message": "Herramiento de tareas",
+    "description": ""
+  },
+  "File_explorer": {
+    "message": "Explorador de archivos",
+    "description": ""
+  },
+  "Show_file_manager": {
+    "message": "Mostrar Herramiento de archivos",
+    "description": ""
+  },
+  "Hide_file_manager": {
+    "message": "Esconder el Herramiento de archivos",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Error": {
+    "message": "Puede tener un error",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_RunProject": {
+    "message": "Ejecutar proyecto",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_StopProject": {
+    "message": "Interrumpir proyecto",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_NoInternet": {
+    "message": "No tiene internet",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Examples": {
+    "message": "Ejemplos",
+    "description": ""
+  },
+  "SIGNAL_line": {
+    "message": "Línea",
+    "description": ""
+  },
+  "SIGNAL_thermometer": {
+    "message": "Termómetro",
+    "description": ""
+  },
+  "SIGNAL_speedometer": {
+    "message": "Velocímetro",
+    "description": ""
+  },
+  "SIGNAL_vumeter": {
+    "message": "VU-metro",
+    "description": ""
+  },
+  "SIGNAL_gauge": {
+    "message": "Calibrador",
+    "description": ""
+  },
+  "SIGNAL_extra": {
+    "message": "Extra",
+    "description": ""
+  },
+  "SIGNAL_switch": {
+    "message": "Conmutador",
+    "description": ""
+  },
+  "SIGNAL_slider": {
+    "message": "Potenciómetro",
+    "description": ""
+  },
+  "TOOLBAR_ExitQuestion": {
+    "message": "¿Estás seguro que quieres salir?",
+    "description": ""
+  },
+  "YES": {
+    "message": "Sí",
+    "description": ""
+  },
+  "NO": {
+    "message": "No",
+    "description": ""
+  },
+  "LIBRARY_ProjectErase": {
+    "message": "¿Queres borrar el proyecto {{title}}?",
+    "description": ""
+  },
+  "LIBRARY_ProjectClone": {
+    "message": "Este nombre ya es utilizado. Elija un otro nombre!",
+    "description": ""
+  },
+  "SCHEMATICS_ERASE": {
+    "message": "¿Queres borrar el esquema?",
+    "description": ""
+  },
+  "TOOLBAR_FORUM": {
+    "message": "Forum",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_Example": {
+    "message": "Ejemplo",
+    "description": ""
+  },
+  "DEVICE_CONNECTION_TIMEOUT":
+  {
+    "message":"Connection timeout, please check your board's IP and make sure it is running the Wyliodrin Image.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_ERROR":
+  {
+    "message":"Ocurrió una desconexión por tiempo , por favor verifique el IP de tu placa y asegúrese de la ejecución de la imagen de Wyliodrin.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_FAILED":
+  {
+    "message":"Error en el login, por favor verifique el nombre del usuario y la contraseña.",
+    "description":""
+  },
+  "DEVICE_QUESTION_INSTALL_SHELL":
+  {
+    "message":"Wyliodrin no esta instadado en su dispositivo, quieres instalarlo o solamente abrir un shell?",
+    "description":""
+  },
+  "DEVICE_INSTALL":
+  {
+    "message":"Instalar",
+    "description":""
+  },
+  "TOOLBAR_INSTALL":
+  {
+    "message":"Instalar",
+    "description":""
+  },
+  "USER_SecureConnection":
+  {
+    "message":"Use una conexión segura - ssh (funciona lentamente)",
+    "description":""
+  },
+  "DEVICE_Install":
+  {
+    "message":"Puede instalarse",
+    "description":""
+  },
+  "INSTALL_SelectBoard": {
+    "message": "Por favor seleccione la placa que quieres utilisar para la instalación",
+    "description": ""
+  },
+  "INSTALL_Success":
+  {
+    "message":"La instalación de Wyliodrin ha sido exitosa, por favor desconecte y conecte a su placa",
+    "description":""
+  },
+  "DEVICE_Chrome":
+  {
+    "message":"Chrome",
+    "description":""
+  },
+  "chrome":
+  {
+    "message":"Ordenador Local",
+    "description":""
+  },
+  "PROJECT_no_language_capability":
+  {
+    "message":"Este dispositivo no sabe como ejecutar un proyecto en este leguaje.",
+    "description":""
+  },
+  "PROJECT_library":
+  {
+    "message":"Librería de proyectos",
+    "description":""
+  },
+  "PLATFORM_windows":
+  {
+    "message":"Windows 10 IoT Core",
+    "description":""
+  },
+  "PLATFORM_linux":
+  {
+    "message":"Linux",
+    "description":""
+  },
+  "PortSelectSerialChrome":
+  {
+    "message":"Seleccione el Ordenador Local como puerto y conectate. Conecte tu Arduino al puerto USB de tu ordenador.",
+    "description":""
+  },
+  "PortSelectSerialFirmata":
+  {
+    "message":"Tienes que specificar el puerto para tu Arduino en firmata.connect()",
+    "description":""
+  },
+  "BOARD_Connect":
+  {
+    "message":"Seleccione un dispositivo para conectarse",
+    "description":""
+  },
+  "WYLIODRIN_USERINTERFACE_devicename":
+  {
+    "message":"Cambia el nombre del dispositivo",
+    "description":""
+  },
+  "IR829_wiki1": {
+    "message": "Siga las instrucciones <a href='{{link1}}' target='_blank'>aqui</a> y acceda a Linux en el rúter.",
+    "description": ""
+  },
+  "IR829_wiki2": {
+    "message": "El enlace contiene todas las informaciones necesarias para sentirse cómodo con el Cisco IOS antes de trabajar en la consola Linux.",
+    "description": ""
+  },
+  "IR829_wget": {
+    "message": "En Linux, use wget y descarque el paquete bundle para el server Wyliodrin como un zip con el siguiente comando:",
+    "description": ""
+  },
+  "IR829_setup": {
+    "message": "Descomprima, enter el archivo y ejecuta la configuración de la instalación con los siguientes comandos:",
+    "description": ""
+  },
+  "Empty_folder": {
+    "message": "Vaciar el archivo",
+    "description": ""
+  },
+  "Loading": {
+    "message": "Cargandose . . .",
+    "description": ""
+  },
+  "Show_hidden": {
+    "message": "Mostrar los escondidos",
+    "description": ""
+  },
+  "want_to_delete": {
+    "message": "Estás seguro que queres borrar esto?",
+    "description": ""
+  },
+  "folder_name": {
+    "message": "Elija el nombre para el archivo",
+    "description": ""
+  },
+  "Ok": {
+    "message": "Ok",
+    "description": ""
+  },
+  "Cancel": {
+    "message": "Cancelar",
+    "description": ""
+  },
+  "choose_name": {
+    "message": "Elija el nombre para ",
+    "description": ""
+  },
+  "will_upload": {
+    "message": "El archivo estará cargado inmediatamente.",
+    "description": ""
+  },
+  "will_download": {
+    "message": "El archivo estará descargado inmediatamente.",
+    "description": ""
+  },
+  "folder": {
+    "message": "folder",
+    "description": ""
+  },
+  "file": {
+    "message": "fichiero",
+    "description": ""
+  },
+  "link": {
+    "message": "enlace",
+    "description": ""
+  },
+  "Refresh": {
+    "message": "Actualisar",
+    "description": ""
+  },
+  "New_folder": {
+    "message": "Nuevo Folder",
+    "description": ""
+  },
+  "New_file": {
+    "message": "Nuevo fichiero",
+    "description": ""
+  },
+  "New_firmware": {
+    "message": "Nuevo Firmware",
+    "description": ""
+  },
+  "Upload_here": {
+    "message": "Cargar aquí",
+    "description": ""
+  },
+  "Rename": {
+    "message": "Poner un otro nombre",
+    "description": ""
+  },
+  "Download": {
+    "message": "Descargar",
+    "description": ""
+  },
+  "Delete": {
+    "message": "Borrar",
+    "description": ""
+  },
+  "Exit": {
+    "message": "Salida",
+    "description": ""
+  },
+  "FEinexistent_folder": {
+    "message": "Has entrado en un folder inexistente."
+  },
+  "FEread_permission": {
+    "message": "Aquí no tenga permiso para leer."
+  },
+  "FEread_permission_local": {
+    "message": "No tenga permiso para ese fichiero sobre el disco."
+  },
+  "FEwrite_permission": {
+    "message": "Aquí no tenga permiso para escribir."
+  },
+  "FEdelete_permission": {
+    "message": "Aquí no tenga permiso para borrar."
+  },
+  "FErename_permission": {
+    "message": "Aquí no tenga permiso para cambiar el nombre."
+  },
+  "FEfile_write": {
+    "message": "Erros en la escritura del fichiero sobre el disco."
+  },
+  "FEnew_folder": {
+    "message": "Error en la creación de un nuevo folder. "
+  },
+  "FEdelete": {
+    "message": "Error en la acción de borrar. "
+  },
+  "FErename": {
+    "message" :"Error en la acción de cambio de nombre. "
+  },
+  "FEupload": {
+    "message": "Error en la acción de cargar. "
+  },
+  "FEdownload": {
+    "message": "Error en la acción descargar. "
+  },
+  "FEexists": {
+    "message": "Aquí hay un otro fichiero/folder con el mismo nombre."
+  },
+  "FEunknown": {
+    "message": "Error desconocido."
+  },
+  "FEnot_exists": {
+    "message": "El fichier/folder ya no existe."
+  },
+  "DASHBOARD_values_export": {
+    "message": "Exportar"
+  },
+  "TREEsame_name": {
+    "message": "Un fichiero/folder con el mismo nombre existe."
+  },
+  "TREEdelete_special": {
+    "message": "Imposible de borrar."
+  },
+  "TREEdelete_root": {
+    "message": "Imposible de borrar el folder root."
+  },
+  "TREEdelete_software": {
+    "message": "Imposible de borrar el folder de software."
+  },
+  "TREEno_root": {
+    "message": "Imposible de crear el folder root (use nuevo Firmware en lugar)."
+  },
+  "PROJECT_NOTEBOOK": {
+    "message": "Notebook"
+  },
+  "GITHUB_EXAMPLE_Example": {
+    "message": "Cargue un ejemplo"
+  },
+  "GITHUB_EXAMPLE_Empty":
+  {
+    "message" :"Por favor escribe el nombre de un depósito github que tiene ejemplos"
+  },
+  "DEVICE_CONNECTION_BUSY":
+  {
+    "message":"El dispositivo ya está conectado por otro usuario.",
+    "description":""
+  },
+  "Disconnect": {
+    "message": "Desconectar",
+    "description": ""
+  },
+  "Reboot_Disconnect": {
+    "message": "Reiniciar y desconectar",
+    "description": ""
+  },
+  "Poweroff_Disconnect": {
+    "message": "Power Off and Disconnect",
+    "description": ""
+  },
+  "Error": {
+    "message": "Error",
+    "description": ""
+  },
+  "Select_board": {
+    "message": "Seleccione la placa",
+    "description": ""
+  },
+  "Port": {
+    "message": "Puerto",
+    "description": ""
+  },
+  "Pick_firmware": {
+    "message": "Escoger firmware",
+    "description": ""
+  },
+  "No_firmware": {
+    "message": "No firmware",
+    "description": ""
+  },
+  "Run": {
+    "message": "Ejecutar",
+    "description": ""
+  },
+  "Github": {
+    "message": "Github",
+    "description": ""
+  },
+  "username": {
+    "message": "Nombre de usuario",
+    "description": ""
+  },
+  "repository": {
+    "message": "depósito",
+    "description": ""
+  },
+  "Author": {
+    "message": "Autor",
+    "description": ""
+  },
+  "Wyliodrin_app_server_version": {
+    "message": "Versión Wyliodrin-app-server",
+    "description": ""
+  },
+  "Libwyliodrin_version": {
+    "message": "Versión Libwyliodrin",
+    "description": ""
+  },
+  "Operating_system": {
+    "message": "Sistema operativo",
+    "description": ""
+  },
+  "Supported_languages": {
+    "message": "Idiomas",
+    "description": ""
+  },
+  "status": {
+    "message": "status",
+    "description": ""
+  },
+  "UPDATE_SD_CARD_IMAGE": {
+    "message":"Por favor actualice su imagen de tarjeta SD antes la ejecución del proyecto",
+    "description":""
+  }
+}

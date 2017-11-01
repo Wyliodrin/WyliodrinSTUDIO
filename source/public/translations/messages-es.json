@@ -252,15 +252,15 @@
     "description": ""
   },
   "DownloadImage": {
-    "message": "Descargue el <a href='{{link1}}' target='_blank'>la imagen de la tarjeta SD</a>, descomprimela y escribala sobre la tarjeta. Puedes encontrar más informaciones sobre como escribir la imagen de la tarjeta SD en nuestra <a href='{{link2}}' target='_blank'>página de tutoriales</a>.",
+    "message": "Descargue <a href='{{link1}}' target='_blank'>la imagen de la tarjeta SD</a>, descomprimela y escribala sobre la tarjeta. Puedes encontrar más informaciones sobre como escribir la imagen de la tarjeta SD en nuestra <a href='{{link2}}' target='_blank'>página de tutoriales</a>.",
     "description": ""
   },
   "AdvancedUser": {
-    "message": "Si tú eres un usuario avanzado, tu puedes instalar el <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
+    "message": "Si tú eres un usuario avanzado, tú puedes instalar el <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
     "description": ""
   },
   "CablePurchase": {
-    "message": "Tu puedes obtener el cable serie de <a href='{{link1}}' target='_blank'>{{name1}}</a> y <a href='{{link2}}' target='_blank'>{{name2}}</a> tiendas en línea.",
+    "message": "Tu puedes obtener el cable serie de <a href='{{link1}}' target='_blank'>{{name1}}</a> y <a href='{{link2}}' target='_blank'>{{name2}}</a> desde tiendas en línea.",
     "description": ""
   },
   "PortSelectNetwork": {
@@ -332,7 +332,7 @@
     "description": ""
   },
   "ADD_APP_Language": {
-    "message": "Idioma",
+    "message": "Lenguaje de programación",
     "description": ""
   },
   "WELCOME_Welcome": {
@@ -372,7 +372,7 @@
     "description": ""
   },
   "BOARD_GetStart": {
-    "message": "Empiece",
+    "message": "Empezar",
     "description": ""
   },
   "BOARD_SelectBoard": {
@@ -993,7 +993,7 @@
     "description": ""
   },
   "Supported_languages": {
-    "message": "Idiomas",
+    "message":"Lenguajes de programación",
     "description": ""
   },
   "status": {

@@ -28,7 +28,7 @@
     "description": ""
   },
   "DEVICE_Network": {
-    "message": "Reseau",
+    "message": "Réseau",
     "description": ""
   },
   "DEVICE_Serial": {
@@ -200,7 +200,7 @@
     "description": ""
   },
   "SD_CARD4_GetAMinimum": {
-    "message": "Prenez une carte SD de minimum (on recommandent 8 GB classe 10)",
+    "message": "Prenez une carte SD de minimum 4GB (on recommande 8 GB de classe 10)",
     "description": ""
   },
   "InsertTheCard": {
@@ -208,7 +208,7 @@
     "description": ""
   },
   "MakeSureYou": {
-    "message": "Assurez-vous que vous vous connectez la carte à l'Internet (Ethernet ou WiFi)",
+    "message": "Assurez-vous que la carte est connectée à l'Internet (Ethernet ou WiFi)",
     "description": ""
   },
   "YouMightHave": {
@@ -216,7 +216,7 @@
     "description": ""
   },
   "MakeSureThat": {
-    "message": "Assurez-vous que votre Arduino Yun est à jour. Suivez ces étapes:",
+    "message": "Assurez-vous que votre Arduino Yun est mis à jour. Suivez ces étapes:",
     "description": ""
   },
   "tutorial": {
@@ -228,15 +228,15 @@
     "description": ""
   },
   "ConnectViaSsh": {
-    "message": "Connectez-vous via ssh à votre Arduino Yun. L'adress est",
+    "message": "Connectez-vous via ssh à votre Arduino Yun. L'adresse est:",
     "description": ""
   },
   "AndTheUser": {
-    "message": "et l'utilisateur",
+    "message": ",l'utilisateur:",
     "description": ""
   },
   "AndPassword": {
-    "message": "et le mot de passe",
+    "message": "et le mot de passe:",
     "description": ""
   },
   "RunTheWyliodrin": {
@@ -260,7 +260,7 @@
     "description": ""
   },
   "PortSelectNetwork": {
-    "message": "Votre carte doit apparaître dans la liste des réseaux. Vous aurez besoin de se connecter avec un nom d'utilisateur qui existe sur le carte.",
+    "message": "Votre carte doit apparaître dans la liste des réseaux. Vous aurez besoin de se connecter avec un nom d'utilisateur qui existe sur la carte.",
     "description": ""
   },
   "PortSelectSerial": {
@@ -300,7 +300,7 @@
     "description": ""
   },
   "ABOUT_AnonymousUsageParam": {
-    "message": "Autoriser l'envoi des paramètres d'utilisation anonymes afin de nous aider à améliorer le logiciel",
+    "message": "Autoriser l'envoi des paramètres d'utilisation anonymes pour nous aider à améliorer le logiciel",
     "description": ""
   },
   "ABOUT_ProvidedBy": {
@@ -404,7 +404,7 @@
     "description": ""
   },
   "DASHBOARD_VIEWER_SignalName": {
-    "message": "Nom du signal doit contenir seulement letters au minuscule sans espaces",
+    "message": "Nom du signal doit contenir seulement lettres en minuscule sans espaces",
     "description": ""
   },
   "FIRMWARE_EXAMPLE_SelectFirmware": {
@@ -412,11 +412,11 @@
     "description": ""
   },
   "FLASH_FIRMWARE_RunAndFlash": {
-    "message": "Courir et écrire",
+    "message": "Executer et écrire",
     "description": ""
   },
   "FLASH_FIRMWARE_RunWithoutFlash": {
-    "message": "Courir sans écrire",
+    "message": "Executer sans écrire",
     "description": ""
   },
   "FLASH_FIRMWARE": {
@@ -436,7 +436,7 @@
     "description": ""
   },
   "NETWORK_NetworkManager": {
-    "message": "Parameters de réseau",
+    "message": "Parametres de réseau",
     "description": ""
   },
   "NETWORK_PackageManager": {
@@ -464,7 +464,7 @@
     "description": ""
   },
   "NETWORK_Disc_ChangeNet": {
-    "message": "Déconnecter / Changer reseau",
+    "message": "Déconnecter / Changer réseau",
     "description": ""
   },
   "PACKAGE_MANAGER_LinkToTheLibrary": {
@@ -476,7 +476,7 @@
     "description": ""
   },
   "RESISTOR_COLORCODE_FromColorToNumber": {
-    "message": "De couleur à la valeur",
+    "message": "De couleur à valeur",
     "description": ""
   },
   "RESISTOR_COLORCODE_FromNumberToColor": {
@@ -560,11 +560,11 @@
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_RunProject": {
-    "message": "Courir projet",
+    "message": "Lancer projet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_StopProject": {
-    "message": "Stop project",
+    "message": "Stop projet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_NoInternet": {
@@ -624,7 +624,7 @@
     "description": ""
   },
   "SCHEMATICS_ERASE": {
-    "message": "Voulez-vous effacer la schémas?",
+    "message": "Voulez-vous effacer le schéma?",
     "description": ""
   },
   "TOOLBAR_FORUM": {
@@ -647,12 +647,12 @@
   },
   "DEVICE_CONNECTION_FAILED":
   {
-    "message":"Échec de la connexion, s'il vous plaît vérifier votre nom d'utilisateur et mot de passe.",
+    "message":"Échec de la connexion, s'il vous plaît vérifier votre nom d'utilisateur et le mot de passe.",
     "description":""
   },
   "DEVICE_QUESTION_INSTALL_SHELL":
   {
-    "message":"Wyliodrin est pas installé sur cet appareil, souhaitez-vous l'installer ou juste ouvrir un shell?",
+    "message":"Wyliodrin n'est pas installé sur cet appareil, souhaitez-vous l'installer ou juste ouvrir un shell?",
     "description":""
   },
   "DEVICE_INSTALL":
@@ -681,7 +681,7 @@
   },
   "INSTALL_Success":
   {
-    "message":"l'installation Wyliodrin a réussi, s'il vous plaît déconnecter et se reconnecter à votre carte",
+    "message":"L'installation Wyliodrin a réussi, s'il vous plaît déconnecter et se reconnecter à votre carte",
     "description":""
   },
   "DEVICE_Chrome":
@@ -696,7 +696,7 @@
   },
   "PROJECT_no_language_capability":
   {
-    "message":"Ce dispositif ne sait pas comment gérer un projet dans cette language",
+    "message":"Ce dispositif ne sait pas comment gérer un projet dans ce langage",
     "description":""
   },
   "PROJECT_library":
@@ -716,12 +716,12 @@
   },
   "PortSelectSerialChrome":
   {
-    "message":"Select Local Computer as port and connect to it. Connect your Arduino to the USB port of your computer.",
+    "message":"Sélectionez l'ordinateur local comme port et connectez vous a lui. Connectez votre Arduino au port USB de votre ordinateur.",
     "description":""
   },
   "PortSelectSerialFirmata":
   {
-    "message":"You need to specify the port for your Arduino in firmata.connect()",
+    "message":"Vous devez specifier le port pour Arduino en firmata.connect()",
     "description":""
   },
   "BOARD_Connect":
@@ -755,7 +755,7 @@
     "description": ""
   },
   "Loading": {
-    "message": "En proces de chargement. . .",
+    "message": "En cours de chargement. . .",
     "description": ""
   },
   "Show_hidden": {
@@ -839,7 +839,7 @@
     "description": ""
   },
   "FEinexistent_folder": {
-    "message": "Vous avez accessé un dossier inéxistant."
+    "message": "Vous avez accedé un dossier inéxistant."
   },
   "FEread_permission": {
     "message": "Vous n'avez pas de permissions pour lire ici."
@@ -857,7 +857,7 @@
     "message": "Vous n'avez pas de permissions pour renommer ici."
   },
   "FEfile_write": {
-    "message": "L'écrit du fichier sur disk a échoué."
+    "message": "L'écriture du fichier sur disk a échoué."
   },
   "FEnew_folder": {
     "message": "Création du nouveau fichier échouée."
@@ -909,7 +909,7 @@
   },
   "GITHUB_EXAMPLE_Empty":
   {
-    "message": "S'il vous plaît, écrivez le nom du github repositoire qui contient des exemples."
+    "message": "S'il vous plaît, écrivez le nom du dépôt github qui contient des exemples."
   },
   "DEVICE_CONNECTION_BUSY":
   {
@@ -949,7 +949,7 @@
     "description": ""
   },
   "Run": {
-    "message": "Exécute",
+    "message": "Exécuter",
     "description": ""
   },
   "Github": {
@@ -961,7 +961,7 @@
     "description": ""
   },
   "repository": {
-    "message": "repositoire",
+    "message": "dépôt",
     "description": ""
   },
   "Author": {
@@ -981,7 +981,7 @@
     "description": ""
   },
   "Supported_languages": {
-    "message": "Langage de programmation supportés",
+    "message": "Langages de programmation supportés",
     "description": ""
   },
   "status": {

@@ -989,7 +989,7 @@
     "description": ""
   },
   "UPDATE_SD_CARD_IMAGE": {
-    "message":"S'il vous plaît, remettez à jour l'image du card SD avant que vous exécutiez le projet",
+    "message":"S'il vous plaît, remettez à jour l'image de la carte SD avant que vous exécutiez le projet",
     "description":""
   }
 }

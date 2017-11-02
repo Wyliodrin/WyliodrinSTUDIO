@@ -775,6 +775,10 @@
     "description": ""
   },
   "want_to_delete": {
+    "message": "Estás seguro que queres borrar esto?",
+    "description": ""
+  },
+  "deleting_el": {
     "message": "Estás seguro que queres borrar esto ",
     "description": ""
   },

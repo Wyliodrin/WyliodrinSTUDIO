@@ -80,7 +80,7 @@
     "description": ""
   },
   "TOOLBAR_ABOUT": {
-    "message": "Sobre",
+    "message": "Acerca de",
     "description": ""
   },
   "TOOLBAR_CREATE": {
@@ -208,7 +208,7 @@
     "description": ""
   },
   "InsertTheCard": {
-    "message": "Inserte la tarjeta en el {{device}}, conecte el {{device}} al <b>cable serie</b> o al <b>cable de red</b> y encendelo",
+    "message": "Inserte la tarjeta en el {{device}}, conecte el {{device}} al <b>cable serie</b> o al <b>cable de red</b> y enciendalo",
     "description": ""
   },
   "MakeSureYou": {
@@ -216,7 +216,7 @@
     "description": ""
   },
   "YouMightHave": {
-    "message": "Es posible que debas instalar los drivers para los cables:",
+    "message": "Es posible que deba instalar los drivers para los cables:",
     "description": ""
   },
   "MakeSureThat": {
@@ -232,19 +232,19 @@
     "description": ""
   },
   "ConnectViaSsh": {
-    "message": "Conecte via ssh a Arduino Yun. La dirección IP es",
+    "message": "Conecte via ssh a Arduino Yun. La dirección IP es:",
     "description": ""
   },
   "AndTheUser": {
-    "message": "y el usuario",
+    "message": ",el usuario:",
     "description": ""
   },
   "AndPassword": {
-    "message": "y la contraseña",
+    "message": "y la contraseña:",
     "description": ""
   },
   "RunTheWyliodrin": {
-    "message": "Ejecute el script de instalación the Wyliodrin.",
+    "message": "Ejecute el script de instalación de Wyliodrin.",
     "description": ""
   },
   "ResetYour": {
@@ -252,19 +252,19 @@
     "description": ""
   },
   "DownloadImage": {
-    "message": "Descargue <a href='{{link1}}' target='_blank'>la imagen de la tarjeta SD</a>, descomprimela y escribala sobre la tarjeta. Puedes encontrar más informaciones sobre como escribir la imagen de la tarjeta SD en nuestra <a href='{{link2}}' target='_blank'>página de tutoriales</a>.",
+    "message": "Descargue <a href='{{link1}}' target='_blank'>la imagen de la tarjeta SD</a>, descomprimala y escribala sobre la tarjeta. Puedes encontrar más informaciones sobre como escribir la imagen de la tarjeta SD en nuestra <a href='{{link2}}' target='_blank'>página de tutoriales</a>.",
     "description": ""
   },
   "AdvancedUser": {
-    "message": "Si tú eres un usuario avanzado, tú puedes instalar el <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
+    "message": "Si es un usuario avanzado, puede instalar el <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
     "description": ""
   },
   "CablePurchase": {
-    "message": "Tu puedes obtener el cable serie de <a href='{{link1}}' target='_blank'>{{name1}}</a> y <a href='{{link2}}' target='_blank'>{{name2}}</a> desde tiendas en línea.",
+    "message": "Puede obtener el cable serie en las tiendas en línea de <a href='{{link1}}' target='_blank'>{{name1}}</a> y <a href='{{link2}}' target='_blank'>{{name2}}</a>.",
     "description": ""
   },
   "PortSelectNetwork": {
-    "message": "Tu placa tiene que aparecer en la lista con redes. Tienes que autentificarte con un nombre de usuario que existe sobre el dispositivo.",
+    "message": "Su placa debe aparecer en la lista con redes. Tiene que autentificarse con un nombre de usuario que existe sobre el dispositivo.",
     "description": ""
   },
   "PortSelectSerial": {
@@ -272,7 +272,7 @@
     "description": ""
   },
   "YouMightSerial": {
-    "message": "Es posible que tenga que instalar los drivers para el puerto serie:",
+    "message": "Es posible que deba instalar los drivers para el puerto serie:",
     "description": ""
   },
   "ABOUT_Version": {
@@ -284,15 +284,15 @@
     "description": ""
   },
   "ABOUT_ContributionsBy": {
-    "message": "En colaboración con",
+    "message": "Con la colaboración de",
     "description": ""
   },
   "ABOUT_Maintainer": {
-    "message": "Mantenedor",
+    "message": "Administrador",
     "description": ""
   },
   "ABOUT_Development": {
-    "message": "Desarrollo",
+    "message": "Desarrollador",
     "description": ""
   },
   "ABOUT_UI_UX": {
@@ -324,7 +324,7 @@
     "description": ""
   },
   "TOOLBAR_AddNewApp": {
-    "message": "Añadir una applicación nueva",
+    "message": "Añadir una aplicación nueva",
     "description": ""
   },
   "ADD_APP_Title": {
@@ -372,11 +372,11 @@
     "description": ""
   },
   "BOARD_GetStart": {
-    "message": "Empezar",
+    "message": "Comienzo",
     "description": ""
   },
   "BOARD_SelectBoard": {
-    "message": "Seleccione la placa que tú quieres configurarla",
+    "message": "Seleccione la placa que desea configurar",
     "description": ""
   },
   "DASHBOARD_VIEWER_InvalidSignal": {
@@ -408,7 +408,7 @@
     "description": ""
   },
   "DASHBOARD_VIEWER_SignalName": {
-    "message": "El nombre de la señal tiene que tener las letras en minúsculas sin espacios",
+    "message": "El nombre de la señal debe tener las letras en minúsculas sin espacios",
     "description": ""
   },
   "FIRMWARE_EXAMPLE_SelectFirmware": {
@@ -432,7 +432,7 @@
     "description": ""
   },
   "LIBRARY_LoadAnExample": {
-    "message": "Cargue un ejemplo",
+    "message": "Cargar un ejemplo",
     "description": ""
   },
   "LICENSE_UsageLicense": {
@@ -596,7 +596,7 @@
     "description": ""
   },
   "SIGNAL_vumeter": {
-    "message": "VU-metro",
+    "message": "UV-metro",
     "description": ""
   },
   "SIGNAL_gauge": {
@@ -649,7 +649,7 @@
   },
   "DEVICE_CONNECTION_TIMEOUT":
   {
-    "message":"Connection timeout, please check your board's IP and make sure it is running the Wyliodrin Image.",
+    "message":"Ocurrió una desconexión por tiempo , por favor verifique el IP de tu placa y asegúrese de la ejecución de la imagen de Wyliodrin.",
     "description":""
   },
   "DEVICE_CONNECTION_ERROR":
@@ -659,12 +659,12 @@
   },
   "DEVICE_CONNECTION_FAILED":
   {
-    "message":"Error en el login, por favor verifique el nombre del usuario y la contraseña.",
+    "message":"Error en el login, por favor verifique el nombre de usuario y contraseña.",
     "description":""
   },
   "DEVICE_QUESTION_INSTALL_SHELL":
   {
-    "message":"Wyliodrin no esta instadado en su dispositivo, quieres instalarlo o solamente abrir un shell?",
+    "message":"Wyliodrin no esta instalado en su dispositivo, quieres instalarlo o solamente abrir un shell?",
     "description":""
   },
   "DEVICE_INSTALL":
@@ -728,12 +728,12 @@
   },
   "PortSelectSerialChrome":
   {
-    "message":"Seleccione el Ordenador Local como puerto y conectate. Conecte tu Arduino al puerto USB de tu ordenador.",
+    "message":"Seleccione el Ordenador Local como puerto y conectese. Conecte tu Arduino al puerto USB de tu ordenador.",
     "description":""
   },
   "PortSelectSerialFirmata":
   {
-    "message":"Tienes que specificar el puerto para tu Arduino en firmata.connect()",
+    "message":"Tiene que specificar el puerto para su Arduino en firmata.connect()",
     "description":""
   },
   "BOARD_Connect":
@@ -747,11 +747,11 @@
     "description":""
   },
   "IR829_wiki1": {
-    "message": "Siga las instrucciones <a href='{{link1}}' target='_blank'>aqui</a> y acceda a Linux en el rúter.",
+    "message": "Siga las instrucciones <a href='{{link1}}' target='_blank'>aqui</a> y acceda al ambiente Linux del router.",
     "description": ""
   },
   "IR829_wiki2": {
-    "message": "El enlace contiene todas las informaciones necesarias para sentirse cómodo con el Cisco IOS antes de trabajar en la consola Linux.",
+    "message": "El enlace contiene todas las informaciones necesarias para sentirse cómodo con el ambiente Cisco IOS antes de que comience trabajar en la consola Linux.",
     "description": ""
   },
   "IR829_wget": {
@@ -759,7 +759,7 @@
     "description": ""
   },
   "IR829_setup": {
-    "message": "Descomprima, enter el archivo y ejecuta la configuración de la instalación con los siguientes comandos:",
+    "message": "Descomprima, entre en el archivo y ejecute la configuración de la instalación con los siguientes comandos:",
     "description": ""
   },
   "Empty_folder": {
@@ -869,7 +869,7 @@
     "message": "Aquí no tenga permiso para cambiar el nombre."
   },
   "FEfile_write": {
-    "message": "Erros en la escritura del fichiero sobre el disco."
+    "message": "Error en la escritura del fichiero sobre el disco."
   },
   "FEnew_folder": {
     "message": "Error en la creación de un nuevo folder. "
@@ -893,7 +893,7 @@
     "message": "Error desconocido."
   },
   "FEnot_exists": {
-    "message": "El fichier/folder ya no existe."
+    "message": "El fichiero/folder ya no existe."
   },
   "DASHBOARD_values_export": {
     "message": "Exportar"
@@ -914,10 +914,10 @@
     "message": "Imposible de crear el folder root (use nuevo Firmware en lugar)."
   },
   "PROJECT_NOTEBOOK": {
-    "message": "Notebook"
+    "message": "Block de notas"
   },
   "GITHUB_EXAMPLE_Example": {
-    "message": "Cargue un ejemplo"
+    "message": "Cargar un ejemplo"
   },
   "GITHUB_EXAMPLE_Empty":
   {
@@ -1001,7 +1001,7 @@
     "description": ""
   },
   "UPDATE_SD_CARD_IMAGE": {
-    "message":"Por favor actualice su imagen de tarjeta SD antes la ejecución del proyecto",
+    "message":"Por favor actualice su imagen de tarjeta SD antes de la ejecución de proyecto",
     "description":""
   }
 }

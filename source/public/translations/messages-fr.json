@@ -763,6 +763,10 @@
     "description": ""
   },
   "want_to_delete": {
+    "message": "Êtes-vous sûr que vous voulez le/les supprimer?",
+    "description": ""
+  },
+  "deleting_el": {
     "message": "Êtes-vous sûr que vous voulez le/les supprimer ",
     "description": ""
   },

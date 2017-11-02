@@ -775,7 +775,7 @@
     "description": ""
   },
   "want_to_delete": {
-    "message": "Estás seguro que queres borrar esto?",
+    "message": "Estás seguro que queres borrar esto ",
     "description": ""
   },
   "folder_name": {

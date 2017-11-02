@@ -763,6 +763,10 @@
     "description": ""
   },
   "want_to_delete": {
+    "message": "Sunteți sigur că vreți să ștergeți?",
+    "description": ""
+  },
+  "deleting_el": {
     "message": "Sunteți sigur că vreți să ștergeți ",
     "description": ""
   },

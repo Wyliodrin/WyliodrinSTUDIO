@@ -778,6 +778,10 @@
     "message": "Estás seguro que queres borrar esto?",
     "description": ""
   },
+  "deleting_el": {
+    "message": "Estás seguro que queres borrar esto ",
+    "description": ""
+  },
   "folder_name": {
     "message": "Elija el nombre para el archivo",
     "description": ""

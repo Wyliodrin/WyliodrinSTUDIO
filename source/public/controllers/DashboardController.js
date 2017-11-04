@@ -124,7 +124,7 @@ module.exports = function ()
 		this.erase = function (signal)
 		{
 			var message = $mdDialog.confirm()
-		          .title('Would you like to delete '+signal.title+'?')
+		          .title(($filter('translate')('deleting_el'))+' '+signal.title+'?')
 		          // .textContent('All of the banks have agreed to forgive you your debts.')
 		          // .ariaLabel('Lucky day')
 		          // .targetEvent(ev)

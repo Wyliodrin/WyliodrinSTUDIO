@@ -766,6 +766,10 @@
     "message": "Sunteți sigur că vreți să ștergeți?",
     "description": ""
   },
+  "deleting_el": {
+    "message": "Sunteți sigur că vreți să ștergeți ",
+    "description": ""
+  },
   "folder_name": {
     "message": "Alegeți numele directorului",
     "description": ""

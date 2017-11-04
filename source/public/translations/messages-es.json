@@ -212,7 +212,7 @@
     "description": ""
   },
   "MakeSureYou": {
-    "message": "Asegúrese que lo conectes a Internet (Ethernet o WiFi)",
+    "message": "Asegúrese que esté conectado a Internet (Ethernet o WiFi)",
     "description": ""
   },
   "YouMightHave": {
@@ -232,7 +232,7 @@
     "description": ""
   },
   "ConnectViaSsh": {
-    "message": "Conecte via ssh a Arduino Yun. La dirección IP es:",
+    "message": "Conectese via ssh a Arduino Yun. La dirección IP es:",
     "description": ""
   },
   "AndTheUser": {
@@ -316,7 +316,7 @@
     "description": ""
   },
   "ABOUT_License": {
-    "message": "Licencia",
+    "message": "Licencia de uso",
     "description": ""
   },
   "ADD_APP_AddApp": {
@@ -548,7 +548,7 @@
     "description": ""
   },
   "TASK_MANAGER_TaskManager": {
-    "message": "Herramiento de tareas",
+    "message": "Herramienta de tareas",
     "description": ""
   },
   "File_explorer": {
@@ -628,15 +628,15 @@
     "description": ""
   },
   "LIBRARY_ProjectErase": {
-    "message": "¿Queres borrar el proyecto {{title}}?",
+    "message": "¿Desea borrar el proyecto ?{{title}}?",
     "description": ""
   },
   "LIBRARY_ProjectClone": {
-    "message": "Este nombre ya es utilizado. Elija un otro nombre!",
+    "message": "Este nombre ha sido utilizado. Elija un otro",
     "description": ""
   },
   "SCHEMATICS_ERASE": {
-    "message": "¿Queres borrar el esquema?",
+    "message": "¿Desea borrar el esquema?",
     "description": ""
   },
   "TOOLBAR_FORUM": {
@@ -688,12 +688,12 @@
     "description":""
   },
   "INSTALL_SelectBoard": {
-    "message": "Por favor seleccione la placa que quieres utilisar para la instalación",
+    "message": "Por favor seleccione la placa que desea utilisar para la instalación",
     "description": ""
   },
   "INSTALL_Success":
   {
-    "message":"La instalación de Wyliodrin ha sido exitosa, por favor desconecte y conecte a su placa",
+    "message":"La instalación de Wyliodrin ha sido exitosa, por favor desconectese y conectese de nuevo a su placa",
     "description":""
   },
   "DEVICE_Chrome":
@@ -733,7 +733,7 @@
   },
   "PortSelectSerialFirmata":
   {
-    "message":"Tiene que specificar el puerto para su Arduino en firmata.connect()",
+    "message":"Deba specificar el puerto para su Arduino en firmata.connect()",
     "description":""
   },
   "BOARD_Connect":
@@ -755,7 +755,7 @@
     "description": ""
   },
   "IR829_wget": {
-    "message": "En Linux, use wget y descarque el paquete bundle para el server Wyliodrin como un zip con el siguiente comando:",
+    "message": "En Linux, use wget y descargue el paquete bundle para el server Wyliodrin como un zip con el siguiente comando:",
     "description": ""
   },
   "IR829_setup": {
@@ -795,11 +795,11 @@
     "description": ""
   },
   "will_upload": {
-    "message": "El archivo estará cargado inmediatamente.",
+    "message": "El archivo estará cargado rápidamente.",
     "description": ""
   },
   "will_download": {
-    "message": "El archivo estará descargado inmediatamente.",
+    "message": "El archivo estará descargado rápidamente.",
     "description": ""
   },
   "folder": {
@@ -884,7 +884,7 @@
     "message": "Error en la acción de cargar. "
   },
   "FEdownload": {
-    "message": "Error en la acción descargar. "
+    "message": "Error en la acción de descargar. "
   },
   "FEexists": {
     "message": "Aquí hay un otro fichiero/folder con el mismo nombre."
@@ -1001,7 +1001,7 @@
     "description": ""
   },
   "UPDATE_SD_CARD_IMAGE": {
-    "message":"Por favor actualice su imagen de tarjeta SD antes de la ejecución de proyecto",
+    "message":"Por favor actualice su imagen de tarjeta SD antes de la ejecución del proyecto",
     "description":""
   }
 }

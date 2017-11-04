@@ -8,7 +8,7 @@
     "description": ""
   },
   "appDesc": {
-    "message": "Wyliodrin STUDIO est un IDE pour le développement des logiciels et de matériel pour les systèmes IdO comme le Raspberry Pi, UDOO et Arduino",
+    "message": "Wyliodrin STUDIO est un IDE pour le développement des logiciels et de matériel pour les systèmes d'IdO comme le Raspberry Pi, UDOO et Arduino",
     "description": ""
   },
   "DEVICE_CONNECT": {
@@ -52,11 +52,11 @@
     "description": ""
   },
   "TOOLBAR_HELP": {
-    "message": "Aider",
+    "message": "Aide",
     "description": ""
   },
   "TOOLBAR_EXIT": {
-    "message": "Sortir",
+    "message": "Sortie",
     "description": ""
   },
   "TOOLBAR_FULLSCREEN": {
@@ -80,7 +80,7 @@
     "description": ""
   },
   "TOOLBAR_ABOUT": {
-    "message": "Sur le logiciel",
+    "message": "À propos de ce logiciel",
     "description": ""
   },
   "TOOLBAR_CREATE": {
@@ -200,11 +200,11 @@
     "description": ""
   },
   "SD_CARD4_GetAMinimum": {
-    "message": "Prenez une carte SD de minimum 4GB (on recommande 8 GB de classe 10)",
+    "message": "Prenez une carte SD- minimum 4GB (on recommande 8 GB, de classe 10)",
     "description": ""
   },
   "InsertTheCard": {
-    "message": "Insérez la carte SD dans le {{device}}, connectez le {{device}} au <b>câble série</b> ou au <b>câble du réseau</b> et allumer-le",
+    "message": "Insérez la carte SD dans le {{device}}, connectez le {{device}} au <b>câble série</b> ou au <b>câble du réseau</b> et allumer le dispositif",
     "description": ""
   },
   "MakeSureYou": {
@@ -212,7 +212,7 @@
     "description": ""
   },
   "YouMightHave": {
-    "message": "Vous pourriez avoir à installer des pilotes pour les câbles:",
+    "message": "Il est possible que vous deviez installer des pilotes pour les câbles:",
     "description": ""
   },
   "MakeSureThat": {
@@ -224,7 +224,7 @@
     "description": ""
   },
   "InstallNodeJSOn": {
-    "message": "Installez NodeJS sur le Arduino Yun suivant ces étapes",
+    "message": "Installez NodeJS sur Arduino Yun suivant ces étapes",
     "description": ""
   },
   "ConnectViaSsh": {
@@ -244,11 +244,11 @@
     "description": ""
   },
   "ResetYour": {
-    "message": "Réinitialiser votre Arduino Yun.",
+    "message": "Réinitialisez votre Arduino Yun.",
     "description": ""
   },
   "DownloadImage": {
-    "message": "Téléchargez l' <a href='{{link1}}' target='_blank'>image de la carte SD</a>, ouvrir-la et écrivez-la sur la carte SD. Vous pouvez trouver plus d'informations sur la façon d'écrire l'image de la carte SD sur<a href='{{link2}}' target='_blank'>la page des tutoriels</a>.",
+    "message": "Téléchargez l' <a href='{{link1}}' target='_blank'>image de la carte SD</a>, décompressez-la et écrivez-la sur la carte SD. Vous pouvez trouver plus d'informations sur la façon d'écrire l'image de la carte SD sur<a href='{{link2}}' target='_blank'>la page avec tutoriels</a>.",
     "description": ""
   },
   "AdvancedUser": {
@@ -256,7 +256,7 @@
     "description": ""
   },
   "CablePurchase": {
-    "message": "Vous pouvez acheter le câble série dans les magasins en ligne: <a href='{{link1}}' target='_blank'>{{name1}}</a> et <a href='{{link2}}' target='_blank'>{{name2}}</a>.",
+    "message": "Vous pouvez trouver le câble série sur les magasins en ligne: <a href='{{link1}}' target='_blank'>{{name1}}</a> et <a href='{{link2}}' target='_blank'>{{name2}}</a>.",
     "description": ""
   },
   "PortSelectNetwork": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "YouMightSerial": {
-    "message": "Vous pourriez avoir à installer des pilotes pour le port série:",
+    "message": "Il est possible que vous deviez installer des pilotes pour le port série:",
     "description": ""
   },
   "ABOUT_Version": {
@@ -280,7 +280,7 @@
     "description": ""
   },
   "ABOUT_ContributionsBy": {
-    "message": "Contributions par",
+    "message": "Avec la contribution de",
     "description": ""
   },
   "ABOUT_Maintainer": {
@@ -288,7 +288,7 @@
     "description": ""
   },
   "ABOUT_Development": {
-    "message": "Développement",
+    "message": "Développeur",
     "description": ""
   },
   "ABOUT_UI_UX": {
@@ -340,7 +340,7 @@
     "description": ""
   },
   "WELCOME_CreateNewApp": {
-    "message": "Créer nouvelle application",
+    "message": "Créer une nouvelle application",
     "description": ""
   },
   "WELCOME_ConnectBoard": {
@@ -352,7 +352,7 @@
     "description": ""
   },
   "WELCOME_SendAnonUsageParam": {
-    "message": "Autoriser l'envoi des paramètres d'utilisation anonymes afin de nous aider à améliorer le logiciel",
+    "message": "Autoriser l'envoi des paramètres d'utilisation anonymes pour nous aider à améliorer le logiciel",
     "description": ""
   },
   "AUTHENTICATE_ConnectToAddress": {
@@ -364,7 +364,7 @@
     "description": ""
   },
   "AUTHENTICATE_Login": {
-    "message": "Connectez-vous avec un utilisateur du dispositif",
+    "message": "Connectez-vous en utilisant n'importe quel utilisateur du dispositif",
     "description": ""
   },
   "BOARD_GetStart": {
@@ -372,7 +372,7 @@
     "description": ""
   },
   "BOARD_SelectBoard": {
-    "message": "Sélectionnez la carte de configurer",
+    "message": "Sélectionnez la carte que vous desirez la configurer",
     "description": ""
   },
   "DASHBOARD_VIEWER_InvalidSignal": {
@@ -404,7 +404,7 @@
     "description": ""
   },
   "DASHBOARD_VIEWER_SignalName": {
-    "message": "Nom du signal doit contenir seulement lettres en minuscule sans espaces",
+    "message": "Le nom du signal doit contenir seulement lettres en minuscule sans espaces",
     "description": ""
   },
   "FIRMWARE_EXAMPLE_SelectFirmware": {
@@ -412,11 +412,11 @@
     "description": ""
   },
   "FLASH_FIRMWARE_RunAndFlash": {
-    "message": "Executer et écrire",
+    "message": "Exécuter et écrire",
     "description": ""
   },
   "FLASH_FIRMWARE_RunWithoutFlash": {
-    "message": "Executer sans écrire",
+    "message": "Exécuter sans écrire",
     "description": ""
   },
   "FLASH_FIRMWARE": {
@@ -436,11 +436,11 @@
     "description": ""
   },
   "NETWORK_NetworkManager": {
-    "message": "Parametres de réseau",
+    "message": "Gestion de réseau",
     "description": ""
   },
   "NETWORK_PackageManager": {
-    "message": "Gestionnaire des paquets",
+    "message": "Gestion des paquets",
     "description": ""
   },
   "NETWORK_SSID": {
@@ -472,7 +472,7 @@
     "description": ""
   },
   "RENAME_RenameApp": {
-    "message": "Renommer application",
+    "message": "Renommer l'application",
     "description": ""
   },
   "RESISTOR_COLORCODE_FromColorToNumber": {
@@ -520,7 +520,7 @@
     "description": ""
   },
   "SIGNAL_PROPERTIES_SignalName": {
-    "message": "Nom du signal",
+    "message": "Nom de signal",
     "description": ""
   },
   "SIGNAL_PROPERTIES_Description": {
@@ -540,7 +540,7 @@
     "description": ""
   },
   "TASK_MANAGER_TaskManager": {
-    "message": "Gestionnaire des tâches",
+    "message": "Gestionnaire de tâches",
     "description": ""
   },
   "File_explorer": {
@@ -560,15 +560,15 @@
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_RunProject": {
-    "message": "Lancer projet",
+    "message": "Lancer le projet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_StopProject": {
-    "message": "Stop projet",
+    "message": "Arrêter le projet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_NoInternet": {
-    "message": "n'a pas d'Internet",
+    "message": "n'a pas d'internet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_Examples": {
@@ -637,17 +637,17 @@
   },
   "DEVICE_CONNECTION_TIMEOUT":
   {
-    "message":"Délai de connexion, s'il vous plaît vérifier l'adresse IP de votre carte et assurez-vous qu'il est en cours d'exécution de la Wyliodrin Image.",
+    "message":"Délai de connexion, s'il vous plaît vérifiez l'adresse IP de votre carte et assurez-vous que l'image de Wyliodrin est en cours d'exécution.",
     "description":""
   },
   "DEVICE_CONNECTION_ERROR":
   {
-    "message":"Erreur de connexion, s'il vous plaît vérifier l'adresse IP de votre carte et assurez-vous qu'il est en cours d'exécution de la Wyliodrin Image.",
+    "message":"Erreur de connexion, s'il vous plaît vérifier l'adresse IP de votre carte et assurez-vous assurez-vous que l'image de Wyliodrin est en cours d'exécution.",
     "description":""
   },
   "DEVICE_CONNECTION_FAILED":
   {
-    "message":"Échec de la connexion, s'il vous plaît vérifier votre nom d'utilisateur et le mot de passe.",
+    "message":"Échec de connexion, s'il vous plaît vérifiez votre nom d'utilisateur et votre mot de passe.",
     "description":""
   },
   "DEVICE_QUESTION_INSTALL_SHELL":
@@ -667,7 +667,7 @@
   },
   "USER_SecureConnection":
   {
-    "message":"Utiliser une connexion sécurisée - ssh (fonctionne plus lent)",
+    "message":"Utiliser une connexion sécurisée - ssh (fonctionnement lente)",
     "description":""
   },
   "DEVICE_Install":
@@ -676,12 +676,12 @@
     "description":""
   },
   "INSTALL_SelectBoard": {
-    "message": "S'il vous plaît sélectionner la carte que vous souhaitez installer sur",
+    "message": "S'il vous plaît sélectionnez la carte sur laquelle vous souhaitez installer",
     "description": ""
   },
   "INSTALL_Success":
   {
-    "message":"L'installation Wyliodrin a réussi, s'il vous plaît déconnecter et se reconnecter à votre carte",
+    "message":"L'installation Wyliodrin a réussi, s'il vous plaît déconnectez vous et reconnectez vous à votre carte",
     "description":""
   },
   "DEVICE_Chrome":
@@ -716,7 +716,7 @@
   },
   "PortSelectSerialChrome":
   {
-    "message":"Sélectionez l'ordinateur local comme port et connectez vous a lui. Connectez votre Arduino au port USB de votre ordinateur.",
+    "message":"Sélectionez l'ordinateur local comme port et connectez vous à lui. Connectez votre Arduino au port USB de votre ordinateur.",
     "description":""
   },
   "PortSelectSerialFirmata":
@@ -726,7 +726,7 @@
   },
   "BOARD_Connect":
   {
-    "message":"Sélectionnez un appareil pour se connecter à",
+    "message":"Sélectionnez un appareil pour se connecter à lui",
     "description":""
   },
   "WYLIODRIN_USERINTERFACE_devicename":
@@ -739,15 +739,15 @@
     "description": ""
   },
   "IR829_wiki2": {
-    "message": "Le lien contient toutes les informations nécessaires pour se familiariser avec l'environnement Cisco IOS avant d'arriver à la console Linux.",
+    "message": "Le lien contient toutes les informations nécessaires pour se familiariser avec l'environnement Cisco IOS avant de travailler sur la console Linux.",
     "description": ""
   },
   "IR829_wget": {
-    "message": "Dans l'environnement Linux, utilisez wget et télécharger le pack bundle pour le serveur Wyliodrin comme un zip avec la commande suivante:",
+    "message": "Dans l'environnement Linux, utilisez wget et télécharger comme un zip le paquetage bundle pour le serveur Wyliodrin, avec la commande suivante:",
     "description": ""
   },
   "IR829_setup": {
-    "message": "Décompressez, entrez le dossier et exécuter le programme d'installation d'installation avec les commandes suivantes:",
+    "message": "Décompressez, entrez le dossier et exécuter le programme d'installation avec les commandes suivantes:",
     "description": ""
   },
   "Empty_folder": {
@@ -767,7 +767,7 @@
     "description": ""
   },
   "folder_name": {
-    "message": "Choisissez le nom du dossier",
+    "message": "Choisissez un nom pour le dossier",
     "description": ""
   },
   "Ok": {
@@ -783,11 +783,11 @@
     "description": ""
   },
   "will_upload": {
-    "message": "Le fichier sera téléchargé vers le serveur immédiatement.",
+    "message": "Le fichier sera téléchargé rapidement vers le serveur.",
     "description": ""
   },
   "will_download": {
-    "message": "Le fichier sera téléchargé immédiatement.",
+    "message": "Le fichier sera téléchargé rapidement.",
     "description": ""
   },
   "folder": {
@@ -799,7 +799,7 @@
     "description": ""
   },
   "link": {
-    "message": "liaison",
+    "message": "lien",
     "description": ""
   },
   "Refresh": {
@@ -819,33 +819,33 @@
     "description": ""
   },
   "Upload_here": {
-    "message": "Téléchargez vers le serveur ici.",
+    "message": "Charger",
     "description": ""
   },
   "Rename": {
-    "message": "Renommez",
+    "message": "Renommer",
     "description": ""
   },
   "Download": {
     "message": "",
-    "description": "Téléchargez"
+    "description": "Télécharger"
   },
   "Delete": {
     "message": "Supprimer",
     "description": ""
   },
   "Exit": {
-    "message": "Sortir",
+    "message": "Sortie",
     "description": ""
   },
   "FEinexistent_folder": {
-    "message": "Vous avez accedé un dossier inéxistant."
+    "message": "Vous avez acceder à un dossier inéxistant."
   },
   "FEread_permission": {
-    "message": "Vous n'avez pas de permissions pour lire ici."
+    "message": "Vous n'avez pas de permissions pour lire ici"
   },
   "FEread_permission_local": {
-    "message": "Vous n'avez pas de permissions pour lire sur votre disk."
+    "message": "Vous n'avez pas de permissions pour lire pour ce fichier sur votre disk."
   },
   "FEwrite_permission": {
     "message": "Vous n'avez pas de permissions pour écrire ici."
@@ -869,13 +869,13 @@
     "message" :"L'action de renommer échouée."
   },
   "FEupload": {
-    "message": "Téléchargement vers le serveur échoué."
+    "message": "Chargement échoué."
   },
   "FEdownload": {
     "message": "Téléchargement échoué."
   },
   "FEexists": {
-    "message": "Un autre fichier/dossier avec le même nom existe ici."
+    "message": "Il y a un autre fichier/dossier avec le même nom ici."
   },
   "FEunknown": {
     "message": "Erreur inconnue"
@@ -887,7 +887,7 @@
     "message": "Exporter"
   },
   "TREEsame_name": {
-    "message": "Un fichier ou un dossier avec le même nom existe à la destination."
+    "message": "Il y a un fichier ou un dossier avec le même nom à la destination."
   },
   "TREEdelete_special": {
     "message": "Impossible de supprimer."
@@ -913,19 +913,19 @@
   },
   "DEVICE_CONNECTION_BUSY":
   {
-    "message": "L'appareil est déjà connecté à un autre utilisateur.",
+    "message": "Le dispositif est déjà connecté à un autre utilisateur.",
     "description":""
   },
   "Disconnect": {
-    "message": "Déconnectez",
+    "message": "Déconnecter",
     "description": ""
   },
   "Reboot_Disconnect": {
-    "message": "Redémarrez et Déconnectez",
+    "message": "Redémarrer et Déconnecter",
     "description": ""
   },
   "Poweroff_Disconnect": {
-    "message": "Arrêtez et Déconnectez",
+    "message": "Arrêter et Déconnecter",
     "description": ""
   },
   "Error": {
@@ -933,7 +933,7 @@
     "description": ""
   },
   "Select_board": {
-    "message": "Séléctez la plaque",
+    "message": "Sélectionnez la plaque",
     "description": ""
   },
   "Port": {
@@ -977,7 +977,7 @@
     "description": ""
   },
   "Operating_system": {
-    "message": "Système Opérateur",
+    "message": "Système d'exploitation",
     "description": ""
   },
   "Supported_languages": {
@@ -989,7 +989,7 @@
     "description": ""
   },
   "UPDATE_SD_CARD_IMAGE": {
-    "message":"S'il vous plaît, réactualisez l'image du card SD avant que vous exécutiez le projet",
+    "message":"S'il vous plaît, remettez à jour l'image de la carte SD avant que vous exécutiez le projet",
     "description":""
   }
 }

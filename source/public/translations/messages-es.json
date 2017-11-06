@@ -802,6 +802,26 @@
     "message": "El archivo estará descargado inmediatamente.",
     "description": ""
   },
+  "exportvalue": {
+    "message": "Valor de Exportación",
+    "description": ""
+  },
+  "downloadasPNG": {
+    "message": "Descargar imagen PNG",
+    "description": ""
+  },
+  "PrinttheChart": {
+    "message": "Tabla de impresión",
+    "description": ""
+  },
+  "downloadasJPEG": {
+    "message": "Descargar imagen JPEG",
+    "description": ""
+  },
+  "downloadasSVG": {
+    "message": "Descargar la imagen de vector SVG",
+    "description": ""
+  },
   "folder": {
     "message": "folder",
     "description": ""

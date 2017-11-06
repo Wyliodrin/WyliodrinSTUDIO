@@ -790,6 +790,26 @@
     "message": "Fișierul va fi descărcat imediat.",
     "description": ""
   },
+  "exportvalue": {
+    "message": "Exporta Valoarea",
+    "description": ""
+  },
+  "downloadasPNG": {
+    "message": "Descarca imaginea in format PNG",
+    "description": ""
+  },
+  "PrinttheChart": {
+    "message": "Printeaza Graficul",
+    "description": ""
+  },
+  "downloadasJPEG": {
+    "message": "Descarca imaginea in format JPEG",
+    "description": ""
+  },
+  "downloadasSVG": {
+    "message": "Descarca imaginea in format vector SVG",
+    "description": ""
+  },
   "folder": {
     "message": "director",
     "description": ""

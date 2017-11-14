@@ -794,6 +794,26 @@
     "message": "Le fichier sera téléchargé rapidement.",
     "description": ""
   },
+  "exportvalue": {
+    "message": "Valeur d'exportation",
+    "description": ""
+  },
+  "downloadasPNG": {
+    "message": "Télécharger l'image PNG",
+    "description": ""
+  },
+  "PrinttheChart": {
+    "message": "Imprimer le graphique",
+    "description": ""
+  },
+  "downloadasJPEG": {
+    "message": "Télécharger l'image JPEG",
+    "description": ""
+  },
+  "downloadasSVG": {
+    "message": "Télécharger l'image vectorielle SVG",
+    "description": ""
+  },
   "folder": {
     "message": "dossier",
     "description": ""

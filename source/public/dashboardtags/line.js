@@ -5,6 +5,8 @@ var angular = require ('angular');
 
 var _ = require ('lodash');
 
+var $ = require ('jquery');
+
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:line');
@@ -19,7 +21,7 @@ debug ('Loading');
 module.exports = function ()
 {
 	var app = angular.module ('wyliodrinApp');
-	app.directive ('line', function ($wydevice, $timeout, $wyapp, $mdDialog){
+	app.directive ('line', function ($wydevice, $timeout, $wyapp, $mdDialog, $filter){
 		debug ('Registering');
 		return {
 			restrict: 'E',
@@ -45,6 +47,13 @@ module.exports = function ()
 					    	type: ($scope.signal.properties.logarithmic)?'logarithmic':undefined,
 					    	title: $scope.signal.properties.axisName
 					    },
+						lang:
+						{
+							printChart: $filter('translate')('PrinttheChart'),
+							downloadPNG: $filter('translate')('downloadasPNG'),
+							downloadJPEG: $filter('translate')('downloadasJPEG'),
+							downloadSVG: $filter('translate')('downloadasSVG'),
+						},
 					    exporting:
 						{
 							buttons:
@@ -52,7 +61,7 @@ module.exports = function ()
 								contextButton: {
 									menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.concat (
 										{
-											text: 'Export Value',
+											text: $filter('translate')('exportvalue'),
 										    onclick: function () {
 										        downloadValue (this);
 										    }

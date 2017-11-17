@@ -645,7 +645,6 @@ var app = angular.module ('wyliodrinApp');
 			var obj = {name:arg.text,id:makeID($scope.project.tree[0]),isdir:true,isfirmware:true,ftype:arg.type,fport:"auto",children:[]};
 			this.newSomething(obj,$scope.project.tree[0]);
 			checkEmptyFolders($scope.project.tree[0]);
-			console.log($scope.project.tree[0].children.length);
 			if(arg.type=='openmote')
 				this.newSomething({name:'main.cpp',isdir:false,children:[]},$scope.project.tree[0].children[$scope.project.tree[0].children.length-1]);
 			else if(arg.type=='arduino')

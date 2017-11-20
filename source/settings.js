@@ -15,7 +15,8 @@ var makefile = require ('./config/makefile.js');
 var makefile_v2 = require('./config/makefile_v2.js');
 
 var settings = {
-	debug: require ('./config/debug.js')
+	debug: require ('./config/debug.js'),
+	example: example
 };
 
 settings.platform = require ('./config/platform.js');

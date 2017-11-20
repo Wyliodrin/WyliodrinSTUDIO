@@ -142,6 +142,12 @@ function generateProject(id, title, language, date, mainContent, visualContent, 
 
 	startproject.title = title;
 	startproject.date = date;
+	var ispython;
+	if(startproject.language=='python')
+	{
+		ispython=true;
+	}
+	//if(startproject.language==)
 
 	return startproject;
 }

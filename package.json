@@ -65,7 +65,7 @@
     "test": "true"
   },
   "browser": {
-    "examples": "./source/config/examples.js",
+    "example": "./source/config/example.js",
     "settings": "./source/settings.js",
     "library": "./source/public/library.js",
     "mixpanel": "./source/public/mixpanel.js",

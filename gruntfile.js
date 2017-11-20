@@ -489,31 +489,31 @@ module.exports = function(grunt) {
     //     });
     //   }
     // });
-    // var EXAMPLE_FOLDER_FIRMWARE = 'source/embedded/example/firmware';
-    // var listfirmware = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE);
-    // _.each (listfirmware, function (firmware)
-    // {
-    //   if (firmware[0]!=='.')
-    //   {
-    //     example.firmware[firmware] = {};
-    //     var examplefolder = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware);
-    //     _.each (examplefolder, function (folder)
-    //     {
-    //       if (folder[0]!=='.')
-    //       {
-    //         example.firmware[firmware][folder] = {};
-    //         var examplefile = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder);
-    //         _.each (examplefile, function (file)
-    //         {
-    //           if (file[0]!=='.')
-    //           {
-    //             example.firmware[firmware][folder][file] = fs.readFileSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/'+file+'.ino').toString();
-    //           }
-    //         });
-    //       }
-    //     });
-    //   }
-    // });
+     var EXAMPLE_FOLDER_FIRMWARE = 'source/embedded/example/firmware';
+     var listfirmware = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE);
+     _.each (listfirmware, function (firmware)
+     {
+       if (firmware[0]!=='.')
+       {
+         example.firmware[firmware] = {};
+         var examplefolder = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware);
+         _.each (examplefolder, function (folder)
+         {
+           if (folder[0]!=='.')
+           {
+             example.firmware[firmware][folder] = {};
+             var examplefile = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder);
+             _.each (examplefile, function (file)
+             {
+               if (file[0]!=='.')
+               {
+                 example.firmware[firmware][folder][file] = fs.readFileSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/'+file+'.ino').toString();
+               }
+             });
+           }
+         });
+       }
+     });
     mkdirp.sync (CONFIG);
     fs.writeFileSync (CONFIG+'/example.js', '"use strict";\n module.exports = '+JSON.stringify (example)+';');
   });

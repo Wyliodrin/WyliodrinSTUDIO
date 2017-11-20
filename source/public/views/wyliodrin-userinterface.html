@@ -270,7 +270,15 @@
                             </md-button>
                           </div>
                         </div>
-
+                        <div flex="100" ng-show="!showEditor && !tree.selectednode.issoftware">
+                          <img src="/public/drawable/python-logo.svg" ng-show="tree.selectednode.ispython"></img>
+                            <img src="/public/drawable/arduino-UNO-chip.png" ng-show="tree.selectednode.isarduino" vspace="125" hspace="250" align="middle" height="250" width="450"></img>
+                            <img src="/public/drawable/OpenMote-chip.png" ng-show="tree.selectednode.isopenmote" vspace="125" hspace="250" align="middle" height="250" width="450"></img>
+                          <p></p>
+                            <object hspace="375"><md-button ng-click="p.firmwareexample()">
+                            <p align="center"> {{'Load_FirmwwareExample' | translate}} </p>
+                          </md-button></object>
+                        </div>
                         <div flex="100" ng-show="showEditor" layout="row"><!--editor text-->
     
 

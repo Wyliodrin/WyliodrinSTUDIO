@@ -32,8 +32,6 @@ module.exports = function ()
 		};
 		$scope.EXAMPLE = settings.example.firmware;
 
-		console.log ($scope);
-
 		$scope.label = settings.LABEL;
 
 		$scope.device = $wydevice.device;

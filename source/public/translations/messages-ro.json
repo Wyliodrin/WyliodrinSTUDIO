@@ -431,6 +431,10 @@
     "message": "Deschide un exemplu",
     "description": ""
   },
+  "Load_FirmwwareExample":{
+    "message": "Incarcati un exemplu firmware",
+    "description": ""
+  },
   "LICENSE_UsageLicense": {
     "message": "Licență de folosire",
     "description": ""

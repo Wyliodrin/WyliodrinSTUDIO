@@ -431,6 +431,10 @@
     "message": "Ouvrir un exemple",
     "description": ""
   },
+  "Load_FirmwwareExample":{
+    "message": "Charger un exemple de firmware",
+    "description": ""
+  },
   "LICENSE_UsageLicense": {
     "message": "Licence d'utilisation",
     "description": ""

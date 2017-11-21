@@ -643,6 +643,14 @@ var app = angular.module ('wyliodrinApp');
 
 		this.newFirmware = function(arg){
 			var obj = {name:arg.text,id:makeID($scope.project.tree[0]),isdir:true,isfirmware:true,ftype:arg.type,fport:"auto",children:[]};
+			if(arg.type=='openmote')
+			{
+				obj.isopenmote = true;
+			}
+			if(arg.type=='arduino')
+			{
+				obj.isarduino = true;
+			}
 			this.newSomething(obj,$scope.project.tree[0]);
 			checkEmptyFolders($scope.project.tree[0]);
 			if(arg.type=='openmote')
@@ -830,7 +838,11 @@ var app = angular.module ('wyliodrinApp');
 
 		this.firmwareexample = function ()
 		{
+			window.wyliodrinSTUDIO_selectedftype=$scope.tree.selectednode.ftype;
+			window.wyliodrinSTUDIO_selectedname=$scope.tree.selectednode.name;
 			$mdDialog.show({
+				
+			  //window.wyliodrinSTUDIO_selectedftype=$scope.tree.selectednode.ftype;
 		      controller: 'FirmwareExampleController',
 		      controllerAs: 'f',
 		      templateUrl: '/public/views/firmware-example.html',
@@ -1159,13 +1171,30 @@ var app = angular.module ('wyliodrinApp');
 		$wyapp.on ('firmware', function (firmware)
 		{
 			debug ('Firmware');
+			console.log($scope.tree.selectednode.ftype);
 			$timeout (function ()
 			{
 				$scope.project.firmware = firmware;
+				var index;
+				for(index=0;$scope.project.tree[0].children[index].name!=window.wyliodrinSTUDIO_selectedname;index++)
+				{
+				}
+				if($scope.project.tree[0].children[index].children.length==1)
+				{
+					$scope.project.tree[0].children[index].children[0].content=$scope.project.firmware;	
+				}
+				else
+				{
+					for(var index1=$scope.project.tree[0].children[index].children.length-1;index1>=1;index1--)
+					{
+						$scope.project.tree[0].children[index].children.splice(index1,1);
+					}
+					$scope.project.tree[0].children[index].children[0].content=$scope.project.firmware;	
+				}
 			});
 			mixpanel.track ('Project Load Firmware',
 			{
-				langauge: $scope.project.language,
+				langauge: $scope.project.language
 			});
 		});
 
@@ -1268,7 +1297,6 @@ var app = angular.module ('wyliodrinApp');
 					});
 				});
 			}
-
 
 			var firmwareAvailable = [];
 			for (var i=0; i<$scope.project.tree[0].children.length;i++){

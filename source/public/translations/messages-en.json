@@ -435,6 +435,10 @@
     "message": "Load an example",
     "description": ""
   },
+  "Load_FirmwwareExample":{
+    "message": "Load a firmware example",
+    "description": ""
+  },
   "LICENSE_UsageLicense": {
     "message": "Usage License",
     "description": ""

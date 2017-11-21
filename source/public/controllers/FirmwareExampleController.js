@@ -20,19 +20,25 @@ module.exports = function ()
 
 	app.controller('FirmwareExampleController', function($scope, $mdDialog, $wydevice, $wyapp){
 		debug ('Registering');
-
+		
 		mixpanel.track ('Firmware Example',
 		{
-			firmware: settings.EXAMPLE.firmware
+			firmware: settings.example.firmware
 		});
+		$scope.project =
+		{
+			id: -1,
+			tree:[]
+		};
+		$scope.EXAMPLE = settings.example.firmware;
 
-		$scope.EXAMPLE = settings.EXAMPLE.firmware;
+		console.log ($scope);
 
 		$scope.label = settings.LABEL;
 
 		$scope.device = $wydevice.device;
 
-		if ($scope.device) $scope.firmware = $scope.label[$wydevice.device.category].firmware;
+		$scope.firmware = window.wyliodrinSTUDIO_selectedftype;
 
 		$scope.category = ($scope.device?$scope.device.category:'board');
 

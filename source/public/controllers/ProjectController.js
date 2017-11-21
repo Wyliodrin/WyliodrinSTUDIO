@@ -1171,7 +1171,6 @@ var app = angular.module ('wyliodrinApp');
 		$wyapp.on ('firmware', function (firmware)
 		{
 			debug ('Firmware');
-			console.log($scope.tree.selectednode.ftype);
 			$timeout (function ()
 			{
 				$scope.project.firmware = firmware;

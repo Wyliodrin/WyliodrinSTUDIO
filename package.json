@@ -52,7 +52,7 @@
     "jquery": "^3.2.1",
     "katex": "^0.7.1",
     "lodash": "^4.17.4",
-    "marked": "^0.3.7",
+    "8fold-marked": "^0.3.8",
     "material-design-icons": "^3.0.1",
     "msgpack-lite": "^0.1.26",
     "mustache": "^2.3.0",

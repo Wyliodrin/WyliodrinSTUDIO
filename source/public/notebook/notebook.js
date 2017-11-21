@@ -9,7 +9,7 @@ var angular = require ('angular');
 var angular_material = require ('angular-material');
 var path = require ('path');
 var katex = require ('katex');
-var marked = require ('marked');
+var marked = require ('8fold-marked');
 var brace = require ('brace');
 var angularUiAce = require ('angular-ui-ace');
 require('brace/mode/python');

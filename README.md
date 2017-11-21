@@ -142,13 +142,13 @@ Wyliodrin STUDIO is a product of [Wyliodrin](http://www.wyliodrin.com)
 * [Alexandru Neculai](https://www.github.com/NeculaiAlex) - Developer
 * [Ioana Culic](https://www.github.com/ioanaculic) - Developer
 * [Ovidiu Stoica](https://www.github.com/oviska) - UX / UI
+* [Catalin Dabuleanu](https://github.com/CatalinDabuleanu) - Developer
 
 Contributions
 
 * [Paula Margarit](https://www.github.com/paula-elena) - Developer
 * [Daniel Dosaru](https://www.github.com/dosarudaniel) - Developer
 * [Mihai Popescu](https://www.github.com/mhpopescu) - Developer
-* [Dabuleanu Catalini](https://github.com/CatalinDabuleanu) - Developer
 
 Wyliodrin is a trademark of Wyliodrin SRL. All rights reservered.
 

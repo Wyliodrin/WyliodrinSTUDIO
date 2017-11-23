@@ -491,6 +491,7 @@ module.exports = function(grunt) {
     // });
      var EXAMPLE_FOLDER_FIRMWARE = 'source/embedded/example/firmware';
      var listfirmware = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE);
+    //  var i=0;
      _.each (listfirmware, function (firmware)
      {
        if (firmware[0]!=='.')
@@ -507,7 +508,16 @@ module.exports = function(grunt) {
              {
                if (file[0]!=='.')
                {
-                 example.firmware[firmware][folder][file] = fs.readFileSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/'+file+'.ino').toString();
+                // i = 0;
+                example.firmware[firmware][folder][file] = {};
+                //fs.readdirSync(EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file));
+                fs.readdirSync(EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/').forEach(actualfile => {
+                  if (actualfile[0]!=='.')
+                  {
+                    example.firmware[firmware][folder][file][actualfile] = fs.readFileSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/'+actualfile).toString();
+                    // i++;
+                  }
+                });
                }
              });
            }

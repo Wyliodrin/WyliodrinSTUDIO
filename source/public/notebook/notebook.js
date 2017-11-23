@@ -883,6 +883,7 @@ app.filter ('markdown', function ($sce)
   var renderer = new marked.Renderer();
   renderer.link = function (href, title, text)
   {
+    /*jshint scripturl:true*/
     if (this.options.sanitize) {
       var prot = '';
       try {
@@ -1011,7 +1012,7 @@ app.directive ('response', function ($timeout)
           else
           {
             $element[0].innerHTML = '';
-          }       
+          }
         });
       },
 

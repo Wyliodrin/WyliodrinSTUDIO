@@ -761,7 +761,7 @@ var app = angular.module ('wyliodrinApp');
 				if ($scope.showhidecode === false) return 'show';
 				else return 'hide';
 			},
-		};;
+		};
 
 		window.getProgram = function ()
 		{

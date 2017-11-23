@@ -14,7 +14,6 @@ Blockly.Python.brickpi_sensors = function ()
 {
     if (!Blockly.Python.definitions_['brickpi_sensors'])
     {
-        // Blockly.Python.definitions_['brickpi_sensors'] = 'BrickPiSetupSensors()\n';
     }
 }
 
@@ -37,11 +36,9 @@ Blockly.Python.set_sensor = function (port, type)
 
 Blockly.Python.brickpi_motor_set = function() {
     Blockly.Python.brickpi ();
-    //var value_motor_number = Blockly.Python.valueToCode(this, 'motor_num', Blockly.Python.ORDER_ATOMIC);
     var value_motor_power = Blockly.Python.valueToCode(this, 'motor_power', Blockly.Python.ORDER_NONE);
     var code;
     var value_motor_number= this.getTitleValue('motor_num');
-    //var value_motor_power = parseInt(this.getTitleValue('motor_power'));
     if (value_motor_number == 'All')
     {
         Blockly.Python.enable_motor (false, 'PORT_A');
@@ -140,13 +137,3 @@ Blockly.Python.brickpi_sensor_ultrasonic=function() {
     
     return['BrickPi.Sensor[PORT_'+b+']', Blockly.Python.ORDER_ATOMIC];
 };
-
-// Blockly.Python.sensor_sound=function() {
-//     var b=this.getTitleValue("port");;
-
-//     Blockly.Python.brickpi ();
-//     Blockly.Python.brickpi_sensors ();
-//     Blockly.Python.set_sensor (b, 'TYPE_SENSOR_SOUND');
-    
-//     return['BrickPi.Sensor[PORT_'+b+']', Blockly.Python.ORDER_ATOMIC];
-// };

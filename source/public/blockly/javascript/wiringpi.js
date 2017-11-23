@@ -14,10 +14,6 @@ Blockly.JavaScript.rapiro = function ()
     Blockly.JavaScript.SerialPort = serial;
     Blockly.JavaScript.definitions_['import_serial'] = 'var '+serial+' = require ("serialport").SerialPort;';
   }
-  // if (!Blockly.JavaScript.definitions_['import_signal_os'])
-  // {
-  //   Blockly.JavaScript.definitions_['import_signal_os'] = 'import signal, os\n';
-  // }
   if (!Blockly.JavaScript.definitions_['rapiro_setup'])
   {
     var rapiro = Blockly.JavaScript.variableDB_.getDistinctName(
@@ -49,10 +45,6 @@ Blockly.JavaScript.bmp180_init = function ()
   {
     Blockly.JavaScript.bmp180_device = Blockly.JavaScript.variable_init ('bmp180_device', Blockly.JavaScript.wyliodrin+'.Adafruit_BMP085_Unified ();\n#bmp180_device#.begin()');
     Blockly.JavaScript.definitions_['bmp180_init'] = '';
-    // var bmp180_device = Blockly.JavaScript.variableDB_.getDistinctName(
-    //     'bmp180_device', Blockly.Generator.NAME_TYPE);
-    // Blockly.JavaScript.bmp180_device = bmp180_device;
-    // Blockly.JavaScript.definitions_['bmp180_init'] = bmp180_device + ' = Adafruit_BMP085_Unified ()\n'+bmp180_device+'.begin()\n';
   } 
 }
 
@@ -65,7 +57,7 @@ Blockly.JavaScript.buttons_switched = function ()
     Blockly.JavaScript.definitions_['buttons_variable'] = buttons+' = []\n';
     Blockly.JavaScript.buttons = buttons;
     Blockly.JavaScript.definitions_['buttons_switched'] = 'function buttonSwitched(button, expectedValue)\n'+'{\n'+
-                            '  var value = '+Blockly.JavaScript.wyliodrin+'.digitalRead (button);\n'+//prefixez functiile cu wyliodrin (vezi import) 
+                            '  var value = '+Blockly.JavaScript.wyliodrin+'.digitalRead (button);\n'+ 
                             '  var stable = true;\n'+
                             '  for(var i=0;i<100;i++)\n'+
           '  {\n'+
@@ -138,17 +130,6 @@ Blockly.JavaScript.mplayer = function ()
 
 Blockly.JavaScript.bass_init = function ()
 {
-  // if (!Blockly.JavaScript.definitions_['import_pybass'])
-  // {
-  //  // Blockly.JavaScript.definitions_['import_pybass'] = 'from pybass import *\nfrom ctypes import *\n';
-  //   var pb = Blockly.JavaScript.variableDB_.getDistinctName(
-  //       'pybass', Blockly.Generator.NAME_TYPE);
-  //   Blockly.JavaScript.pybass = pb;
-  //   Blockly.JavaScript.definitions_['import_pybass'] = 'var '+pb+' = require("pybass");';
-  //   Blockly.JavaScript.definitions_['bass_init'] = 'BASS_Init (-1, 44800, 0, 0, 0);\n'+
-  //                                   'BASS_PluginLoad (\'/usr/local/lib/libbassflac.so\', 0);\n'+
-  //                                   'BASS_PluginLoad (\'/usr/local/lib/libbass_aac.so\', 0);\n';
-  // }
 }
 
 Blockly.JavaScript.hi_lo_words = function ()
@@ -162,10 +143,7 @@ Blockly.JavaScript.hi_lo_words = function ()
 
 Blockly.JavaScript.stream_level = function ()
 {
-  // if (!Blockly.JavaScript.definitions_['stream_level'])
-  // {
-  //   Blockly.JavaScript.definitions_['stream_level'] = 'function StreamLevel(stream, scale\n'+'{\n'+'  level = '+Blockly.JavaScript.pybass+'.BASS_ChannelGetLevel(stream);\n  return ((HIWORD(level)+LOWORD(level))/2)*scale/32768;\n'+'}\n';
-  // }
+
 }
 
 Blockly.JavaScript.setpinmode = function (pin, mode)
@@ -193,7 +171,6 @@ Blockly.JavaScript.signalName = function (name)
 Blockly.JavaScript['setpin'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
-  // console.log ('value_pin '+value_pin);
   Blockly.JavaScript.setpinmode (value_pin, 1);
   var value_value = block.getFieldValue ('value');
   // TODO: Assemble Python into code variable.
@@ -204,7 +181,6 @@ Blockly.JavaScript['setpin'] = function(block) {
 Blockly.JavaScript['readpin'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
-  // console.log ('value_pin '+value_pin);
   Blockly.JavaScript.setpinmode (value_pin, 0);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.digitalRead ('+value_pin+')';
@@ -216,7 +192,6 @@ Blockly.JavaScript['digitalwrite'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.digitalWrite ('+value_pin+', '+value_value+');\n';
@@ -237,7 +212,6 @@ Blockly.JavaScript['analogwrite'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.analogWrite ('+value_pin+', '+value_value+');\n';
@@ -347,53 +321,16 @@ Blockly.JavaScript['print'] = function(block) {
 
 Blockly.JavaScript['read'] = function(block) {
   // TODO: Assemble Python into code variable.
-  // var type = parseInt (block.getFieldValue("type"));
-  // var code;
-  // if (type == 0)
-  // {
-  //   code = 'raw_input ("") // implement';
-  // }
-  // else if (type == 1)
-  // {
-  //   code = 'raw_input ("") // implement'; 
-  // }
-  // else if (type == 2)
-  // {
-  //   code = 'raw_input ("") // implement';
-  // }
   // TODO: Change ORDER_NONE to the correct strength.
-  //return [code, Blockly.JavaScript.ORDER_NONE];
   return "//Block not supported in JavaScript.\n";
 };
 
 Blockly.JavaScript['readwrite'] = function(block) {
-  // var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-  // // TODO: Assemble Python into code variable.
-  // var type = parseInt (block.getFieldValue("type"));
-  // var code;
-  // if (type == 0)
-  // {
-  //   code = 'raw_input ('+value_value+') // implement';
-  // }
-  // else if (type == 1)
-  // {
-  //   code = 'raw_input ('+value_value+') // implement'; 
-  // }
-  // else if (type == 2)
-  // {
-  //   code = 'raw_input ('+value_value+') // implement';
-  // }
   // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   return "//Block not supported in JavaScript.\n";
 };
 
 Blockly.JavaScript['readwritenr'] = function(block) {
-  // var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-  // // TODO: Assemble Python into code variable.
-  // var code = 'int(raw_input ('+value_value+')) // implement';
-  // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   return "//Block not supported in JavaScript.\n";
 };
 
@@ -483,199 +420,91 @@ Blockly.JavaScript['setvolume'] = function(block) {
 };
 
 Blockly.JavaScript['load_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_filename = Blockly.JavaScript.valueToCode(block, 'filename', Blockly.JavaScript.ORDER_ATOMIC);
-  // var dropdown_type = block.getFieldValue('type');
   // // TODO: Assemble Python into code variable.
-  // var code = '';
-  // if (dropdown_type == 0)
-  // {
-  //   code = 'BASS_StreamCreateFile (False, '+value_filename+', 0, 0, 0)';
-  // }
-  // else if (dropdown_type == 1)
-  // {
-  //   code = Blockly.JavaScript.pybass+'.BASS_StreamCreateURL ('+value_filename+', 0, 0, DOWNLOADPROC(0), 0)';
-  // }
   // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   Blockly.JavaScript.NoSupportFor ('Load Audio Stream');
   return ["null /* Block not supported in JavaScript. */", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['play_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
   // // TODO: Assemble Python into code variable.
-  // var code = Blockly.JavaScript.pybass'BASS_ChannelPlay ('+value_stream+', False);\n';
-  // return code;
   Blockly.JavaScript.NoSupportFor ('Play Audio Stream');
   return "//Block not supported in JavaScript.\n";
 };
 
 Blockly.JavaScript['pause_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
   // // TODO: Assemble Python into code variable.
-  // var code = 'BASS_ChannelPause ('+value_stream+', False);\n';
-  // return code;
   Blockly.JavaScript.NoSupportFor ('Pause Audio Stream');
   return "//Block not supported in JavaScript.\n";
 };
 
 Blockly.JavaScript['stop_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
   // // TODO: Assemble Python into code variable.
-  // var code = 'BASS_ChannelStop ('+value_stream+');\n';
-  // return code;
   Blockly.JavaScript.NoSupportFor ('Stop Audio Stream');
   return "//Block not supported in JavaScript.\n";
 };
 
 Blockly.JavaScript['isplaying_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
   // // TODO: Assemble Python into code variable.
-  // code = 'BASS_ChannelIsActive ('+value_stream+') == BASS_ACTIVE_PLAYING';
   // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   Blockly.JavaScript.NoSupportFor ('Load Audio Stream');
   return ["null /* Block not supported in JavaScript. */", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['level_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // Blockly.JavaScript.hi_lo_words ();
-  // Blockly.JavaScript.stream_level ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
-  // var value_scale = Blockly.JavaScript.valueToCode(block, 'scale', Blockly.JavaScript.ORDER_ATOMIC);
   // // TODO: Assemble Python into code variable.
-  // var code = 'StreamLevel ('+value_stream+', '+value_scale+')';
   // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   Blockly.JavaScript.NoSupportFor ('Load Audio Stream');
   return ["0 /* Block not supported in JavaScript. */", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['level_side_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // Blockly.JavaScript.hi_lo_words ();
-  // Blockly.JavaScript.stream_level ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
-  // var value_scale = Blockly.JavaScript.valueToCode(block, 'scale', Blockly.JavaScript.ORDER_ATOMIC);
   // // TODO: Assemble Python into code variable.
-  // var code = 'StreamLevel ('+value_stream+', '+value_scale+')';
   // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   Blockly.JavaScript.NoSupportFor ('Level Side Audio Stream');
   return ["null /* Block not supported in JavaScript. */", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['position_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
-  // var dropdown_type = block.getFieldValue('type');
   // // TODO: Assemble Python into code variable.
-  // var code = '';
-  // if (dropdown_type == 0)
-  // {
-  //   code = 'BASS_ChannelBytes2Seconds ('+value_stream+', BASS_ChannelGetPosition ('+value_stream+', BASS_POS_BYTE))';
-  // }
-  // else if (dropdown_type == 1)
-  // {
-  //   code = 'BASS_ChannelGetPosition ('+value_stream+', BASS_POS_BYTE)';
-  // }
   // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   Blockly.JavaScript.NoSupportFor ('Position Audio Stream');
   return ["null /* Block not supported in JavaScript. */", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['data_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // Blockly.JavaScript.titleFromStream();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
-  // var dropdown_type = block.getFieldValue('type');
-  // // TODO: Assemble Python into code variable.
-  // var code = '';
-  // if (dropdown_type == 0)
-  // {
-  //       code = 'titleFromStream(BASS_ChannelGetTags ('+value_stream+', BASS_TAG_META)).value';
-  // }
   // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   Blockly.JavaScript.NoSupportFor ('Data Audio Stream');
   return ["null /* Block not supported in JavaScript. */", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['set_position_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
-  // var value_pos = Blockly.JavaScript.valueToCode(block, 'pos', Blockly.JavaScript.ORDER_ATOMIC);
-  // var dropdown_type = block.getFieldValue('type');
-  // // TODO: Assemble Python into code variable.
-  // var code = '';
-  // var code = '';
-  // if (dropdown_type == 0)
-  // {
-  //   code = 'BASS_ChannelSetPosition ('+value_stream+', BASS_ChannelSeconds2Bytes('+value_stream+', '+value_pos+'), BASS_POS_BYTE)\n';
-  // }
-  // else if (dropdown_type == 1)
-  // {
-  //   code = 'BASS_ChannelSetPosition ('+value_stream+', '+value_pos+', BASS_POS_BYTE)\n';
-  // }
-  // return code;
   Blockly.JavaScript.NoSupportFor ('Set Position Audio Stream');
   return "//Block not supported in JavaScript.\n";
 };
 
 Blockly.JavaScript['volume_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
-  // // TODO: Assemble Python into code variable.
-  // var code = 'BASS_ChannelGetAttribute ('+value_stream+', BASS_ATTRIB_VOL)*100';
-  // // TODO: Change ORDER_NONE to the correct strength.
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   Blockly.JavaScript.NoSupportFor ('Volume Audio Stream');
   return ["0 /* Block not supported in JavaScript. */", Blockly.JavaScript.ORDER_ATOMIC];
 };
 
 Blockly.JavaScript['set_volume_audio_stream'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_stream = Blockly.JavaScript.valueToCode(block, 'stream', Blockly.JavaScript.ORDER_ATOMIC);
-  // var value_vol = Blockly.JavaScript.valueToCode(block, 'vol', Blockly.JavaScript.ORDER_ATOMIC);
-  // // TODO: Assemble Python into code variable.
-  // var code = 'BASS_ChannelSetAttribute ('+value_stream+', BASS_ATTRIB_VOL, '+value_vol+'/100.0)\n';
-  // // TODO: Change ORDER_NONE to the correct strength.
-  // return code;
   Blockly.JavaScript.NoSupportFor ('Set Volume Audio Stream');
   return "//Block not supported in JavaScript.\n";
 };
 
 Blockly.JavaScript['set_volume_audio'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // var value_vol = Blockly.JavaScript.valueToCode(block, 'vol', Blockly.JavaScript.ORDER_ATOMIC);
-  // // TODO: Assemble Python into code variable.
-  // var code = 'BASS_SetVolume ('+value_vol+'/100.0)\n';
-  // return code;
   Blockly.JavaScript.NoSupportFor ('Set Volume Audio');
   return "//Block not supported in JavaScript.\n";
 };
 
 Blockly.JavaScript['get_volume_audio'] = function(block) {
-  // Blockly.JavaScript.bass_init ();
-  // // TODO: Assemble Python into code variable.
-  // var code = 'BASS_GetVolume ()*100';
-  // return [code, Blockly.JavaScript.ORDER_NONE];
   Blockly.JavaScript.NoSupportFor ('Get Volume Audio');
   return ["0 /* Block not supported in JavaScript. */", Blockly.JavaScript.ORDER_ATOMIC];
 };
-
-//Blockly.JavaScript['set_led'] = Blockly.JavaScript['setpin'];
 Blockly.JavaScript['set_led'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
-  // console.log ('value_pin '+value_pin);
   var value_value = block.getFieldValue ('value');
   var code = "";
   if (!Blockly.JavaScript.setpinmode (value_pin, 1))
@@ -741,7 +570,6 @@ Blockly.JavaScript['init_lcd_i2c'] = function(block) {
   var dropdown_cols = block.getFieldValue('cols');
   var value_i2caddress = Blockly.JavaScript.valueToCode(block, 'i2caddress', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.lcd = Blockly.JavaScript.variable_init ('lcd_variable', 'new '+Blockly.JavaScript.wyliodrin+'.LiquidCrystal ('+value_i2caddress+'-32)\n#lcd_variable#.begin('+dropdown_cols+', '+dropdown_rows+')');
-  // Blockly.JavaScript.definitions_['lcd_variable'] = Blockly.JavaScript.lcd + ' = lcdInit ('+dropdown_rows+', '+dropdown_cols+', 4, '+value_rs+', '+value_strobe+', '+value_d0+', '+value_d1+', '+value_d2+', '+value_d3+', 0, 0, 0, 0)\n';
   // TODO: Assemble Python into code variable.
   var code = '';
   return code;
@@ -758,7 +586,6 @@ Blockly.JavaScript['init_lcd'] = function(block) {
   var value_d2 = Blockly.JavaScript.valueToCode(block, 'd2', Blockly.JavaScript.ORDER_ATOMIC);
   var value_d3 = Blockly.JavaScript.valueToCode(block, 'd3', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.lcd = Blockly.JavaScript.variable_init ('lcd_variable', 'new '+Blockly.JavaScript.wyliodrin+'.LiquidCrystal ('+value_rs+', '+value_strobe+', '+value_d0+', '+value_d1+', '+value_d2+', '+value_d3+')\n#lcd_variable#.begin ('+dropdown_rows+', '+dropdown_cols+')');
-  // Blockly.JavaScript.definitions_['lcd_variable'] = Blockly.JavaScript.lcd + ' = lcdInit ('+dropdown_rows+', '+dropdown_cols+', 4, '+value_rs+', '+value_strobe+', '+value_d0+', '+value_d1+', '+value_d2+', '+value_d3+', 0, 0, 0, 0)\n';
   // TODO: Assemble Python into code variable.
   var code = '';
   return code;
@@ -818,7 +645,6 @@ Blockly.JavaScript['button_is'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   var value_type = block.getFieldValue ('type');
-  // console.log ('value_pin '+value_pin);
   Blockly.JavaScript.setpinmode (value_pin, 0);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.digitalRead ('+value_pin+') == '+value_type;
@@ -838,7 +664,6 @@ Blockly.JavaScript['button_event'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   var value_type = block.getFieldValue ('type');
-  // console.log ('value_pin '+value_pin);
   Blockly.JavaScript.setpinmode (value_pin, 0);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.digitalRead ('+value_pin+') == '+value_type;
@@ -850,8 +675,6 @@ Blockly.JavaScript['button_switched'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   var value_type = block.getFieldValue ('type');
-  // Blockly.JavaScript.button_initial_value (value_pin);
-  // console.log ('value_pin '+value_pin);
   Blockly.JavaScript.setpinmode (value_pin, 0);
   Blockly.JavaScript.buttons_switched ();
   Blockly.JavaScript.buttons_initial_value (value_pin);
@@ -911,20 +734,6 @@ Blockly.JavaScript['rapiro_wave_hand'] = function(block) {
   return code;
 };
 
-// Blockly.JavaScript['rapiro_move'] = function(block) {
-//   var motor = leadingnumbers (block.getFieldValue('motor'), 2);
-//   var angle = block.getFieldValue('NAME');
-//   console.log ('angle: '+angle);
-//   angle = leadingnumbers (angle, 3);
-//   var time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC) * 10;
-//   if (time < 0) time = 0;
-//   if (time > 255) time = 255;
-//   time = leadingnumbers (time, 3);
-//   // TODO: Assemble Python into code variable.
-//   var code = Blockly.JavaScript.rapiro_robot+'.write (\'#PS'+motor+'A'+angle+'T'+time+'\')\nsleep('+time/10+')\n';
-//   return code;
-// };
-
 Blockly.JavaScript['rapiro_angle'] = function(block) {
   var angle = block.getFieldValue('angle');
   // TODO: Assemble JavaScript into code variable.
@@ -938,11 +747,9 @@ Blockly.JavaScript['rapiro_move'] = function(block) {
   var motor = block.getFieldValue('motor');
   var angle = Blockly.JavaScript.valueToCode(block, 'degrees', Blockly.JavaScript.ORDER_ATOMIC);
   console.log ('angle: '+angle);
-  // angle = leadingnumbers (angle, 3);
   var time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC) * 10;
   if (time < 0) time = 0;
   if (time > 255) time = 255;
-  // time = leadingnumbers (time, 3);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.rapiro_robot+'.write (\'#PS\'+'+motor+'.zfill(2)+\'A\'+str('+angle+').zfill(3)+\'T\'+str('+time+').zfill(3))\nsleep('+time/10+')\n';
   return code;
@@ -1057,21 +864,11 @@ Blockly.JavaScript['sevensegmdispl_setup'] = function(block) {
 Blockly.JavaScript['sevensegmdispl_display'] = function(block) {
   Blockly.JavaScript.sevenSegment();
   var value_ssd = Blockly.JavaScript.valueToCode(block, 'ssd', Blockly.JavaScript.ORDER_ATOMIC);
-  //var variable_ssd = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('ssd'), Blockly.Variables.NAME_TYPE);
   var value_tobedispl = Blockly.JavaScript.valueToCode(block, 'tobedispl', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = "display("+value_ssd+", \"\"+"+value_tobedispl+");";
   return code;
 };
-
-/*Blockly.JavaScript['upm_adafruit_7segment_setup'] = function(block) {
-  Blockly.JavaScript.wiringpi();
-  var value_gopigo = Blockly.JavaScript.valueToCode(block, 'gopigo', Blockly.JavaScript.ORDER_ATOMIC);
-   TODO: Assemble JavaScript into code variable.
-  var code = Blockly.JavaScript.wyliodrin+'.Adafruit_7segment()'
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};*/
-
 
 Blockly.JavaScript.Adafruit_7segment_init = function ()
 {

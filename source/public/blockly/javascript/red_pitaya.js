@@ -2,7 +2,6 @@ Blockly.JavaScript['rp_analogwrite'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.analogWrite ('+value_pin+', '+value_value+');\n';
@@ -13,7 +12,6 @@ Blockly.JavaScript['rp_analogwritevoltage'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.analogWriteVoltage ('+value_pin+', '+value_value+');\n';
@@ -24,7 +22,6 @@ Blockly.JavaScript['rp_analogwriteraw'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.analogWriteRaw ('+value_pin+', '+value_value+');\n';
@@ -123,7 +120,6 @@ Blockly.JavaScript['rp_digitalwrite'] = function(block) {
   Blockly.JavaScript.wiringpi ();
   var value_pin = Blockly.JavaScript.valueToCode(block, 'pin', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = Blockly.JavaScript.wyliodrin+'.digitalWrite ('+value_pin+', '+value_value+');\n';

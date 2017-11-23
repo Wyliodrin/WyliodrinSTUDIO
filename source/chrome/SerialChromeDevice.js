@@ -72,7 +72,6 @@ export default class SerialChromeDevice extends EventEmitter
 		var that = this;
 		process.nextTick (function ()
 		{
-			// console.log (that.status);
 			if (that.staus <= CONNECTING);
 			that.emit ('connecting');
 			chrome.serial.connect (that.port, options, function (connection)
@@ -92,7 +91,6 @@ export default class SerialChromeDevice extends EventEmitter
 						{
 							that.status = SEPARRATOR;
 							that.emit ('separator');
-							// console.log (connection);
 							connections.set (''+connection.connectionId, that);
 						}
 					}
@@ -153,7 +151,6 @@ export default class SerialChromeDevice extends EventEmitter
 			{
 				this.isSending = true;
 				var arraydata = this.buffers[0];
-				// this.buffers.splice (0, 1);
 				chrome.serial.send (this.connection.connectionId, arraydata, function (sendInfo)
 				{
 					if (sendInfo.error)
@@ -175,7 +172,6 @@ export default class SerialChromeDevice extends EventEmitter
 						debug ('Sent '+sendInfo.bytesSent+' of '+arraydata.byteLength+' to '+that.port+' using connectionId '+that.connection.connectionId);
 						if (sendInfo.bytesSent < arraydata.byteLength)
 						{
-							// console.log ('Sent less bytes than request');
 							debug ('Sent less bytes than in data, sending '+(that.buffers[0].byteLength-sendInfo.bytesSent)+' into the bytes next data');
 							that.buffers[0] = that.buffers[0].slice (sendInfo.bytesSent);
 						}
@@ -228,7 +224,6 @@ export default class SerialChromeDevice extends EventEmitter
 						arraydatauint[pos] = data[offset];
 						offset++;
 					}
-					// console.log (arraydatauint[pos]);
 				}	
 				this.buffers.push (arraydata);
 				this._send ();
@@ -249,7 +244,6 @@ export default class SerialChromeDevice extends EventEmitter
 					{
 						arraydatauint[pos] = PACKET_SEPARATOR;
 					}
-					// console.log (arraydatauint[pos]);
 				}
 				this.buffers.push (arraydata);
 				this._send ();
@@ -300,7 +294,6 @@ export default class SerialChromeDevice extends EventEmitter
 		// TODO more efficient to string
 		for (var pos=0; pos<datauint.length; pos++)
 		{
-			// console.log (datauint[pos]);
 			if (this.receivedFirstPacketSeparator)
 			{
 				if (datauint[pos] === PACKET_SEPARATOR)
@@ -335,7 +328,6 @@ export default class SerialChromeDevice extends EventEmitter
 					{
 						debug ('Random bytes for port '+this.port+' using connectionId '+this.connection.connectionId);
 					}
-					// console.log ('adding byte to data');
 					this._addToBuffer(datauint[pos]);
 					this.previousByte = datauint[pos];
 				}

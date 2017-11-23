@@ -45,16 +45,10 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 		});
 	});
 
-	// chrome.app.window.onClosed.addListener (function (data)
-	// {
-	// 	debug ('closed');
-	// 	debug (data);
-	// });
 });
 
 chrome.serial.getConnections (function (connectionsInfo)
 {
-	//console.log (connectionsInfo);
 });
 
 chrome.app.runtime.onRestarted.addListener(function() {

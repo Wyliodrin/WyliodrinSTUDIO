@@ -451,10 +451,6 @@ function services (f)
         return console.warn(opt_error);
       }
 
-      // var outer = finder.services;
-      // var inner = finder.ips;
-      // console.log (outer('_wyapp'));
-      // console.log (inner);
       f (opt_error, finder);
     };
 

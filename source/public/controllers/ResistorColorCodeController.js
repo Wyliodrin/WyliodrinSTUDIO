@@ -123,25 +123,20 @@ module.exports = function ()
 		$scope.$watchCollection ('value', function ()
 		{
 			var value = parseInt($scope.value.color1)*10 + parseInt($scope.value.color2);
-			// debug (value);
 			if ($scope.value.number === '5')
 			{
 				value = value*10 + parseInt($scope.value.color3);
-				// debug (value);
 			}
 			value = value * parseFloat($scope.value.color4);
-			// debug (value);
 			if (value > 1000000)
 			{
 				value = value / 1000000;
-				// debug (value);
 				$scope.u = 'M';
 			}
 			else
 			if (value > 1000)
 			{
 				value = value / 1000;
-				// debug (value);
 				$scope.u = 'K';
 			}
 			else
@@ -235,7 +230,6 @@ module.exports = function ()
 				var digit2 = 0;
 				var digit3 = 0;
 				var multiplier = 0;
-				//debug (value);
 				if ($scope.second.value.stripes === '4')
 				{
 					while (Math.trunc(value / 100) !== 0)
@@ -300,14 +294,11 @@ module.exports = function ()
 				if ($scope.second.r > 1000000)
 				{
 					$scope.second.r = $scope.second.r / 1000000;
-					// debug (value);
 					$scope.second.u = 'M';
 				}
 				else
 				if ($scope.second.r > 1000)
 				{
-					$scope.second.r = $scope.second.r / 1000;
-					// debug (value);
 					$scope.second.u = 'K';
 				}
 				else

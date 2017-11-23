@@ -66,7 +66,6 @@ app.factory ('$wydevice', function ($timeout)
 {
   window.addEventListener ('message', function (message)
   {
-    //console.log (message.data);
     wyliodrin = message.source;
     if (message.data.type === 'wydevice-message')
     {
@@ -122,7 +121,6 @@ app.config( [
     function( $compileProvider )
     {   
         $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
-        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
     }
 ]);
 
@@ -153,18 +151,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
     $scope.evaluatingLabel = null;
     $scope.flashingLabel = null;
     $scope.serialLabel = null;
-    // setTimeout (function ()
-    // {
-    //   $('a').each (function ()
-    //     {
-    //       var l = $(this);
-    //       if (l.attr ('href').startsWith ('data:application/octet-stream'))
-    //       {
-    //         l.attr ('download', l.text());
-    //       }
-    //       l.attr ('target', '_blank');
-    //     });
-    // }, 500);
   }
 
   $scope.connected = false;
@@ -177,21 +163,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   $scope.serialinput = '';
 
   $scope.serialrates = [300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200];
-
-  // hotkeys.bindTo($scope).add({
-  //   combo: 'ctrl+enter',
-  //   description: 'Run or flash',
-  //   callback: function() {
-  //     console.log ('hotkey');
-  //     var item = findLabel ($scope.activeLabel);
-  //     if (item)
-  //     {
-  //       if (item.type === 'code') that.evaluate ($scope.activeLabel);
-  //       else
-  //       if (item.type === 'firmware') that.flash ($scope.activeLabel);
-  //     }
-  //   }
-  // });
 
   load ([]);
 
@@ -230,7 +201,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       name: "evaluate",
       bindKey: {win: "shift-enter", mac: "shift-enter"},
       exec: function(editor) {
-          // console.log ('hotkey');
           var item = findLabel ($scope.activeLabel);
           if (item)
           {
@@ -252,7 +222,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       name: "evaluate",
       bindKey: {win: "shift-enter", mac: "shift-enter"},
       exec: function(editor) {
-          // console.log ('hotkey');
           var item = findLabel ($scope.activeLabel);
           if (item)
           {
@@ -284,19 +253,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   };
   $scope.aceEditChanged = function (_editor)
   {
-    // setTimeout (function ()
-    // {
-    //   $('a').each (function ()
-    //     {
-    //       var l = $(this);
-    //       console.log (l.attr ('href'));
-    //       if (l.attr ('href').startsWith ('data:application/octet-stream'))
-    //       {
-    //         l.attr ('download', l.text());
-    //       }
-    //       l.attr ('target', '_blank');
-    //     });
-    // }, 500);
     store ();
   };
 
@@ -476,8 +432,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         var message = $mdDialog.confirm()
                 .title('Erase Item')
                 .textContent('Are you sure you want to erase this item?')
-                // .ariaLabel('Lucky day')
-                // .targetEvent(ev)
                 .ok('YES')
                 .cancel('NO');
           $mdDialog.show(message).then(function() {
@@ -596,7 +550,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         l:''
       });
     }
-    // $scope.flashingLabel = null;
   };
 
   this.print = function ()
@@ -629,7 +582,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
         b: item.port.baud || 9600
       });
       item.response = '';
-      // item.hasErrors = false;
       item.stdout = '';
       item.stderr = '';
       $scope.serialLabel = label;
@@ -672,9 +624,7 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
 
   this.port = function (label, port)
   {
-    // console.log ('port');
     var type = findFirmwareType (port.vid, port.pid);
-    // console.log (type);
     if (type)
     {
       var item = findLabel (label);
@@ -691,7 +641,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   {
     return _.find ($scope.items, function (item)
     {
-      // console.log (item);
       return item.label === label;
     });
   }
@@ -699,16 +648,12 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   function firmwareName (port)
   {
     var portName = port.s;
-    // console.log (port);
-    // console.log (DEVICES[port.vid]);
-    // console.log (DEVICES[port.vid][port.pid]);
     if (port.vid)
     {
       if (DEVICES[port.vid]) portName = DEVICES[port.vid].name;
     }
     if (port.vid && port.pid && DEVICES[port.vid] && DEVICES[port.vid][port.pid])
     {
-      // console.log (port);
       portName = portName+' '+DEVICES[port.vid][port.pid].name;
     }
     return portName + ' ('+path.basename (port.p)+')';
@@ -727,12 +672,9 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
   $wydevice.on ('message', function (t, p)
   {
     var item = null;
-    // console.log (t);
-    // console.log (p);
     if (t === 'note')
     {
       if (p.l) item = findLabel (p.l);
-      // console.log (item);
       if (p.a === 'status')
       {
         if (p.r === 'r')
@@ -813,7 +755,6 @@ app.controller ('NotebookController', function ($scope, $timeout, $mdDialog, $wy
       else
       if (p.a === 'f')
       {
-        // item = findLabel ($scope.flashingLabel);
         if (p.s === 'o')
         {
           if (item) $timeout (function ()
@@ -942,8 +883,6 @@ app.filter ('markdown', function ($sce)
   var renderer = new marked.Renderer();
   renderer.link = function (href, title, text)
   {
-    // console.log (href);
-    /*jshint scripturl:true*/
     if (this.options.sanitize) {
       var prot = '';
       try {
@@ -984,7 +923,6 @@ app.filter ('markdown', function ($sce)
       smartLists: true,
       smartypants: false,
       highlight: function (code, lang) {
-        // console.log (lang);
         try
         {
           var html = code;
@@ -994,14 +932,11 @@ app.filter ('markdown', function ($sce)
         }
         catch (e)
         {
-          // console.log (e);
           return code;
         }
       },
       latex: function (text, style)
       {
-        // console.log (style);
-        // console.log (text);
         try
         {
           var web = katex.renderToString (text, (style?{displayMode: true}:null));
@@ -1010,7 +945,6 @@ app.filter ('markdown', function ($sce)
         }
         catch (e)
         {
-          // console.log (e);
           return text;
         }
       },
@@ -1018,7 +952,6 @@ app.filter ('markdown', function ($sce)
 
   return function (item)
   {
-    // console.log (katex.renderToString ('x^3'));
     return $sce.trustAsHtml(marked (item));
   };
 });
@@ -1054,7 +987,6 @@ app.directive ('response', function ($timeout)
   {
     return {
       restrict: 'E',
-      // templateNamespace: 'svg',
       scope: {
         value: '=',
       },
@@ -1063,8 +995,6 @@ app.directive ('response', function ($timeout)
         $scope.wider = false;
         $scope.$watch ('value', function ()
         {
-          // debug ('View schematics');
-          //console.log ($scope.value);
           if ($scope.value && $scope.value.type)
           {
             var format = $scope.value.type.f;
@@ -1081,21 +1011,7 @@ app.directive ('response', function ($timeout)
           else
           {
             $element[0].innerHTML = '';
-          }
-          // $timeout (function ()
-          // {
-          //   try
-          //   {
-          //     var box = $('schematics svg')[0].getBBox ();
-          //     if (box.width > box.height) $scope.wider = true;
-          //     else $scope.wider = false;
-          //   }
-          //   catch (e)
-          //   {
-
-          //   }
-          // });
-          
+          }       
         });
       },
 

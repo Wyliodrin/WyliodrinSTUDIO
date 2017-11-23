@@ -40,7 +40,6 @@ module.exports = function ()
 
       	this.exit = function ()
       	{
-      		// $wyapp.emit ('library_setup');
       		$mdDialog.hide ();
       		debug ('Library Setup Request');
       	};

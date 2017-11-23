@@ -30,7 +30,6 @@ Blockly.JavaScript.import = function (label, module)
 
 Blockly.JavaScript.variable_init = function (label, text)
 {
-	// console.log ('label '+label+', text '+text);
 	if (!Blockly.JavaScript.definitions_[label])
 	{
 	    var w;
@@ -61,7 +60,6 @@ Blockly.JavaScript.variable_init = function (label, text)
 
 Blockly.JavaScript.function_init = function (label, text)
 {
-	// console.log ('label '+label+', text '+text);
 	if (!Blockly.JavaScript.definitions_[label])
 	{
 	    var w;

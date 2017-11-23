@@ -22,7 +22,6 @@ Blockly.JavaScript.intel_galileo_setup_onboard_led = function ()
 Blockly.JavaScript['intel_galileo_set_onboard_led'] = function(block) {
   Blockly.JavaScript.intel_galileo_pymraa ();
   Blockly.JavaScript.intel_galileo_setup_onboard_led ();
-  // console.log ('value_pin '+value_pin);
   var value_value = block.getFieldValue ('value');
   // TODO: Assemble JavaScript into code variable.
   var code = Blockly.JavaScript.intel_galileo_onboard_led+'.write ('+value_value+');\n';

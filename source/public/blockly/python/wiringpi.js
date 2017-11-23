@@ -24,10 +24,6 @@ Blockly.Python.rapiro = function ()
   {
     Blockly.Python.definitions_['import_time'] = 'from time import *\n';
   }
-  // if (!Blockly.Python.definitions_['import_signal_os'])
-  // {
-  //   Blockly.Python.definitions_['import_signal_os'] = 'import signal, os\n';
-  // }
   if (!Blockly.Python.definitions_['rapiro_setup'])
   {
     var rapiro = Blockly.Python.variableDB_.getDistinctName(
@@ -194,10 +190,8 @@ Blockly.Python.signalName = function (name)
 Blockly.Python['setpin'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
-  // console.log ('value_pin '+value_pin);
   Blockly.Python.setpinmode (value_pin, 1);
   var value_value = block.getFieldValue ('value');
-  // TODO: Assemble Python into code variable.
   var code = 'digitalWrite ('+value_pin+', '+value_value+')\n';
   return code;
 };
@@ -205,7 +199,6 @@ Blockly.Python['setpin'] = function(block) {
 Blockly.Python['readpin'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
-  // console.log ('value_pin '+value_pin);
   Blockly.Python.setpinmode (value_pin, 0);
   // TODO: Assemble Python into code variable.
   var code = 'digitalRead ('+value_pin+')';
@@ -217,7 +210,6 @@ Blockly.Python['digitalwrite'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.Python.valueToCode(block, 'value', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = 'digitalWrite ('+value_pin+', '+value_value+')\n';
@@ -238,7 +230,6 @@ Blockly.Python['analogwrite'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.Python.valueToCode(block, 'value', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = 'analogWrite ('+value_pin+', '+value_value+')\n';
@@ -618,11 +609,9 @@ Blockly.Python['get_volume_audio'] = function(block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-// Blockly.Python['set_led'] = Blockly.Python['setpin'];
 Blockly.Python['set_led'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
-  // console.log ('value_pin '+value_pin);
   var value_value = block.getFieldValue ('value');
   var code = "";
   if (!Blockly.Python.setpinmode (value_pin, 1))
@@ -760,7 +749,6 @@ Blockly.Python['button_is'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   var value_type = block.getFieldValue ('type');
-  // console.log ('value_pin '+value_pin);
   Blockly.Python.setpinmode (value_pin, 0);
   // TODO: Assemble Python into code variable.
   var code = 'digitalRead ('+value_pin+') == '+value_type;
@@ -772,7 +760,6 @@ Blockly.Python['button_event'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   var value_type = block.getFieldValue ('type');
-  // console.log ('value_pin '+value_pin);
   Blockly.Python.setpinmode (value_pin, 0);
   // TODO: Assemble Python into code variable.
   var code = 'digitalRead ('+value_pin+') == '+value_type;
@@ -784,8 +771,6 @@ Blockly.Python['button_switched'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   var value_type = block.getFieldValue ('type');
-  // Blockly.Python.button_initial_value (value_pin);
-  // console.log ('value_pin '+value_pin);
   Blockly.Python.setpinmode (value_pin, 0);
   Blockly.Python.buttons_switched ();
   Blockly.Python.buttons_initial_value (value_pin);
@@ -857,20 +842,6 @@ Blockly.Python['rapiro_wave_hand'] = function(block) {
   return code;
 };
 
-// Blockly.Python['rapiro_move'] = function(block) {
-//   var motor = leadingnumbers (block.getFieldValue('motor'), 2);
-//   var angle = block.getFieldValue('NAME');
-//   console.log ('angle: '+angle);
-//   angle = leadingnumbers (angle, 3);
-//   var time = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC) * 10;
-//   if (time < 0) time = 0;
-//   if (time > 255) time = 255;
-//   time = leadingnumbers (time, 3);
-//   // TODO: Assemble Python into code variable.
-//   var code = Blockly.Python.rapiro_robot+'.write (\'#PS'+motor+'A'+angle+'T'+time+'\')\nsleep('+time/10+')\n';
-//   return code;
-// };
-
 Blockly.Python['rapiro_angle'] = function(block) {
   var angle = block.getFieldValue('angle');
   // TODO: Assemble JavaScript into code variable.
@@ -884,11 +855,9 @@ Blockly.Python['rapiro_move'] = function(block) {
   var motor = block.getFieldValue('motor');
   var angle = Blockly.Python.valueToCode(block, 'degrees', Blockly.Python.ORDER_ATOMIC);
   console.log ('angle: '+angle);
-  // angle = leadingnumbers (angle, 3);
   var time = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC) * 10;
   if (time < 0) time = 0;
   if (time > 255) time = 255;
-  // time = leadingnumbers (time, 3);
   // TODO: Assemble Python into code variable.
   var code = Blockly.Python.rapiro_robot+'.write (\'#PS\'+str('+motor+').zfill(2)+\'A\'+str('+angle+').zfill(3)+\'T\'+str('+time+').zfill(3))\nsleep('+time/10+')\n';
   return code;

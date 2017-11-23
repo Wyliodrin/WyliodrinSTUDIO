@@ -24,23 +24,7 @@ module.exports = function ()
 	{
 		debug ('Registering');
 		var that = this;
-	/*	this.add = function ()
-		{
-			debug ('add project '+$scope.project.title+' language '+$scope.project.language);
-			if ($scope.project.title.trim().length > 3)
-			{
-				library.add ($scope.project.title, $scope.project.language);
-				this.listProjects();
-			}
-			else
-			{
-				debug ("Project name is unacceptable");
-			}
-		};
-	*/
-
 		this.openMenu = function($mdOpenMenu, ev) {
-	      // originatorEv = ev;
 	      $mdOpenMenu(ev);
 	    };
 
@@ -108,8 +92,6 @@ module.exports = function ()
 		      },
 		      controllerAs: 'a',
 		      templateUrl: '/public/views/add-app.html',
-		      // parent: angular.element(window.body),
-		      // targetEvent: ev,
 		      clickOutsideToClose:true,
 		      fullscreen: false
 		    });
@@ -118,7 +100,6 @@ module.exports = function ()
 
 		this.load = function (project)
 		{
-			// console.log (project);
 			$mdDialog.hide ();
 			$wyapp.emit ('load', project);
 		};
@@ -159,8 +140,6 @@ module.exports = function ()
 		      },
 		      controllerAs: 'a',
 		      templateUrl: '/public/views/rename.html',
-		      // parent: angular.element(window.body),
-		      // targetEvent: ev,
 		      clickOutsideToClose:true,
 		      fullscreen: false
 		    });
@@ -190,9 +169,6 @@ module.exports = function ()
 						{
 							var message = $mdDialog.alert()
 						          .title($filter('translate')('LIBRARY_ProjectClone', {title:project.title}))
-						          // .textContent('All of the banks have agreed to forgive you your debts.')
-						          // .ariaLabel('Lucky day')
-						          // .targetEvent(ev)
 						          .ok($filter('translate')('OK'));
 
 							$mdDialog.show(message).then(function () {
@@ -211,8 +187,6 @@ module.exports = function ()
 				},
 				controllerAs: 'a',
 				templateUrl: '/public/views/clone.html',
-				// parent: angular.element(window.body),
-				// targetEvent: ev,
 				clickOutsideToClose:true,
 				fullscreen: false
 			});
@@ -252,9 +226,6 @@ module.exports = function ()
 			var that = this;
 			var message = $mdDialog.confirm()
 		          .title($filter('translate')('LIBRARY_ProjectErase', {title:project.title}))
-		          // .textContent('All of the banks have agreed to forgive you your debts.')
-		          // .ariaLabel('Lucky day')
-		          // .targetEvent(ev)
 		          .ok($filter('translate')('YES'))
 		          .cancel($filter('translate')('NO'));
 		    $mdDialog.show(message).then(function() {
@@ -330,8 +301,6 @@ module.exports = function ()
 		      controller: 'GitHubExampleController',
 		      controllerAs: 'e',
 		      templateUrl: '/public/views/github-example.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      clickOutsideToClose: false,
 		      fullscreen: false
 		    });

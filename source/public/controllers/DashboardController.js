@@ -125,9 +125,6 @@ module.exports = function ()
 		{
 			var message = $mdDialog.confirm()
 		          .title(($filter('translate')('deleting_el'))+' '+signal.title+'?')
-		          // .textContent('All of the banks have agreed to forgive you your debts.')
-		          // .ariaLabel('Lucky day')
-		          // .targetEvent(ev)
 		          .ok(($filter('translate')('YES')))
 		          .cancel(($filter('translate')('NO')));
 		    $mdDialog.show(message).then(function() {
@@ -176,7 +173,6 @@ module.exports = function ()
 
 			_.each (settings.SIGNAL_PROPERTIES[style], function (propertyValue, property)
 			{
-				// console.log (property);
 				signal.properties[property] = propertyValue.value;
 			});
 
@@ -227,30 +223,6 @@ module.exports = function ()
 			replace: true,
 			link: function (scope, element, attrs)
 			{
-				// console.log (element.text);
-				// var chart = new highcharts.Chart({
-			 //        chart: {
-			 //          renderTo: element.find('#viewer')[0],
-			 //          plotBackgroundColor: null,
-			 //          plotBorderWidth: null,
-			 //          plotShadow: true
-			 //        },
-			 //        title: {
-			 //          text: scope.signal.title
-			 //        },
-			 //        plotOptions: {
-			          
-			 //        },
-			 //        series: [{
-			 //          type: 'spline',
-			 //          name: scope.signal.title,
-			 //          data: [4,5,245,23,4,45,23,532,53245],
-			 //          color: scope.signal.color
-			 //        }]
-			 //      });
-				// scope.$watch("value", function (newValue) {
-			 //        chart.series[0].setData(newValue, true);
-			 //      }, true);
 			}
 		};
 	});

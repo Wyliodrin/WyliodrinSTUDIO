@@ -158,9 +158,7 @@ Blockly.Python.alcoholSetup = function ()
   if (!Blockly.Python.definitions_['alcoholSetup'])
   {
     Blockly.Python.definitions_['alcoholSetup'] = 'def getAlcohol(pin):\n'+
-                          //"  "+Blockly.Python.wyliodrin+".digitalWrite( pin+1, 0 )\n"+
                           "  digitalWrite( pin+1, 0 )\n"+
-                          //"  value = "+Blockly.Python.wyliodrin+".analogRead(pin)\n"+
                           "  value = analogRead(pin)\n"+
                           "  return 1023 - value\n"
                             ;
@@ -223,7 +221,6 @@ Blockly.Python['grove_setpwm'] = function(block) {
   Blockly.Python.grove();
   var value_value_pwm = Blockly.Python.valueToCode(block, 'value_pwm', Blockly.Python.ORDER_ATOMIC);
   var dropdown_value_pwmpin = block.getFieldValue('value_pwmPin');
-  //Blockly.Python.setpinmode(dropdown_value_pwmpin, 1);
   // TODO: Assemble Python into code variable.
   var code = 'analogWrite ('+Blockly.Python.grovepins+'+'+dropdown_value_pwmpin+', '+value_value_pwm+')\n';
   return code;
@@ -244,7 +241,6 @@ Blockly.Python['grove_ledbrightness'] = function(block) {
   Blockly.Python.grove()
   var value_led_brvalue = Blockly.Python.valueToCode(block, 'led_brValue', Blockly.Python.ORDER_ATOMIC);
   var dropdown_value_pinr = block.getFieldValue('value_pinR');
-  //Blockly.Python.setpinmode(dropdown_value_pinr, 1);
   // TODO: Assemble Python into code variable.
   var code = "analogWrite ("+Blockly.Python.grovepins+"+"+dropdown_value_pinr+", "+value_led_brvalue+")\n";
   return code;
@@ -281,10 +277,6 @@ Blockly.Python['grove_buttonsw'] = function(block) {
 Blockly.Python['grove_ras'] = function(block) {
   Blockly.Python.grove()
   var dropdown_value_apin = block.getFieldValue('value_aPin');
-  //Blockly.Python.setpinmode (dropdown_value_apin, 0)
-  //Blockly.Python.rasSetup()
-  // TODO: Assemble Python into code variable.
-  //var code = Blockly.Python.rasVar+' = analogRead('+dropdown_value_apin+')';
   Blockly.Python.getDegrees();
   var code = 'getDegrees ('+Blockly.Python.grovepins+'+'+dropdown_value_apin+')';
   // TODO: Change ORDER_NONE to the correct strength.
@@ -307,11 +299,6 @@ Blockly.Python['grove_buzzervol'] = function(block) {
   Blockly.Python.grove()
   var value_volVar = Blockly.Python.valueToCode(block, 'volVar', Blockly.Python.ORDER_ATOMIC);
   var dropdown_value_apinb = block.getFieldValue('value_aPinB');
-  // TODO: Assemble Python into code variable.
-  //Blockly.Python.getVolume();
-  // var code = "volume = volumeFunction("+value_volVar+")\n"+ 
-  // "analogWrite("+dropdown_value_apinb+", volume)";
-  //Blockly.Python.setpinmode(dropdown_value_apinb, 1);
   var code = "analogWrite ("+Blockly.Python.grovepins+'+'+dropdown_value_apinb+", "+value_volVar+")\n";
   return code;
 };
@@ -349,8 +336,6 @@ Blockly.Python['grove_sounds'] = function(block) {
   Blockly.Python.grove();
   var dropdown_value_sspin = block.getFieldValue('value_ssPin');
   // TODO: Assemble Python into code variable.
-  //Blockly.Python.setpinmode (dropdown_value_sspin, 0)
-  //Blockly.Python.soundSensorSetup()
   var code = 'analogRead('+Blockly.Python.grovepins+'+'+dropdown_value_sspin+')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
@@ -362,7 +347,6 @@ Blockly.Python['grove_temperatures'] = function(block) {
   Blockly.Python.grove();
   var dropdown_value_tspin = block.getFieldValue('value_tsPin');
   // TODO: Assemble Python into code variable.
-  //Blockly.Python.temperatureSensorSetup()
   Blockly.Python.mathSetup();
   Blockly.Python.BSet();
   Blockly.Python.getTemperature();
@@ -433,7 +417,6 @@ Blockly.Python['grove_lcdprint'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     var value_message = Blockly.Python.valueToCode(block, 'message', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.write(str('+value_message+'))\n';
@@ -450,7 +433,6 @@ Blockly.Python['grove_lcdisplay'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.display()\n';
     return code;
@@ -466,7 +448,6 @@ Blockly.Python['grove_lcdisplayoff'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.noDisplay()\n';
     return code;
@@ -482,7 +463,6 @@ Blockly.Python['grove_lcdblinkon'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.blink()\n';
     return code;
@@ -498,7 +478,6 @@ Blockly.Python['grove_lcdblinkoff'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.noBlink()\n';
     return code;
@@ -514,7 +493,6 @@ Blockly.Python['grove_lcdcursor'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.cursor()\n';
     return code;
@@ -530,7 +508,6 @@ Blockly.Python['grove_lcdnocursor'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.noCursor()\n';
     return code;
@@ -546,7 +523,6 @@ Blockly.Python['grove_lcdscrolll'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.scrollDisplayLeft()\n';
     return code;
@@ -562,7 +538,6 @@ Blockly.Python['grove_lcdscrollr'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.scrollDisplayRight()\n';
     return code;
@@ -578,7 +553,6 @@ Blockly.Python['grove_lcdtdrl'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.rightToLeft()\n';
     return code;
@@ -594,7 +568,6 @@ Blockly.Python['grove_lcdtdlr'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.leftToRight()\n';
     return code;
@@ -610,7 +583,6 @@ Blockly.Python['grove_lcdautos'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.autoscroll()\n';
     return code;
@@ -626,7 +598,6 @@ Blockly.Python['grove_lcdnoautos'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     // TODO: Assemble Python into code variable.
     var code = Blockly.Python.LCD+'.noAutoscroll()\n';
     return code;
@@ -642,7 +613,6 @@ Blockly.Python['grove_lcdsetcursor'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     var value_value_cursorrow = Blockly.Python.valueToCode(block, 'value_cursorRow', Blockly.Python.ORDER_ATOMIC);
     var value_value_cursorcolumn = Blockly.Python.valueToCode(block, 'value_cursorColumn', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
@@ -669,7 +639,6 @@ Blockly.Python['grove_lcdcolor'] = function(block) {
   if(Blockly.Python.definitions_['lcd'])
   {
     Blockly.Python.grove();
-    //Blockly.Python.LCDSet();
     var value_value_color = Blockly.Python.valueToCode(block, 'value_color', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
     Blockly.Python.colorSetup();
@@ -726,25 +695,13 @@ Blockly.Python.ServoSetup = function(index)
   }
 }
 
-// Blockly.Python.servoInit = function(index)
-// {
-//   if(!Blockly.Python.definitions_['servo_setup'+index])
-//   {
-//     Blockly.Python.definitions_['servo_setup'+index] =Blockly.Python.Servo[index]+" = Servo()\n"+
-//                                                         Blockly.Python.Servo[index]+".attach("+index+")\n";
-//   }
-// }
-
 Blockly.Python['grove_servo'] = function(block) {
   Blockly.Python.grove();
   var dropdown_value_servopin = block.getFieldValue('value_servopin');
   var value_value_servo = Blockly.Python.valueToCode(block, 'value_servo', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
- // Blockly.Python.setpinmode (dropdown_value_tpin, 1);
  Blockly.Python.ServoSetup(dropdown_value_servopin);
- //Blockly.Python.servoInit(dropdown_value_servopin);
  var code = Blockly.Python.Servo[dropdown_value_servopin]+".write ("+value_value_servo+")\n";
- // var code = '('+value_value_servo+')';
   return code;
 };
 
@@ -773,9 +730,6 @@ Blockly.Python['grove_motionsensor'] = function(block) {
 
 Blockly.Python['grove_ledbar'] = function(block) {
   Blockly.Python.grove();
-  //Blockly.Python.ledBarImport();
-  // var value_clk = Blockly.Python.valueToCode(block, 'clk', Blockly.Python.ORDER_ATOMIC);
-  // var value_data = Blockly.Python.valueToCode(block, 'data', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pinvalue = block.getFieldValue('pinValue');
   var value_value = Blockly.Python.valueToCode(block, 'value', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.setpinmode (dropdown_pinvalue, 1);

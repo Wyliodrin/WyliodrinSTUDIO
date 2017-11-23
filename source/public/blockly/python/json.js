@@ -26,8 +26,6 @@ Blockly.Python['json_items'] = function(block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-// Doru
-
 Blockly.Python.spark_getFunc = function()
 {
   if(!Blockly.Python.definitions_['spark_getFunc_function'])

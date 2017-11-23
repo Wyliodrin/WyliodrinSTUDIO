@@ -78,24 +78,6 @@ Blockly.Blocks.brickpi_sensor_ultrasonic={
     }
 };
 
-// Blockly.Blocks.sensor_sound={
-//     category:"Sensors",
-//     helpUrl:"",
-//     init:function() {
-//     this.setColour(50);
-//     this.appendDummyInput("")
-//         .appendField("LEGO Sound Sensor:");
-//     this.appendDummyInput("")
-//         .appendField("Port")
-//         .appendField(new Blockly.FieldDropdown([["1","1"],["2","2"],
-//             ["3","3"],["4","4"]]),"port");
-//     this.setInputsInline(!0);
-//     this.setOutput(!0,"Number");
-//     this.setTooltip("Returns the value of a sound sensor");
-//     }
-// };
-
-
 Blockly.Blocks.brickpi_motor_set= {
     category: 'Motors',
     helpUrl: 'https://projects.wyliodrin.com/wiki/languages/visual#lego_run_motor',
@@ -105,10 +87,6 @@ Blockly.Blocks.brickpi_motor_set= {
         .appendField("LEGO Run Motor")
             .appendField(new Blockly.FieldDropdown([["1", "PORT_A"], ["2", "PORT_B"], 
                 ["3","PORT_C"],["4","PORT_D"],["All","All"]]), 'motor_num');
-      /*this.appendDummyInput()
-        .appendField(' MotorPower')
-            .appendField(new Blockly.FieldTextInput('100',
-            Blockly.Blocks.math_number.validator), 'motor_power');*/
     this.appendDummyInput("")
             .appendField(" to power");
     this.appendValueInput('motor_power')
@@ -130,10 +108,6 @@ Blockly.Blocks.brickpi_light_set= {
         .appendField("Set light on motor port")
             .appendField(new Blockly.FieldDropdown([["1", "1"], ["2", "2"], 
                 ["3","3"],["4","4"],["All","All"]]), 'motor_num');
-      /*this.appendDummyInput()
-        .appendField(' MotorPower')
-            .appendField(new Blockly.FieldTextInput('100',
-            Blockly.Blocks.math_number.validator), 'motor_power');*/
     this.appendDummyInput("")
             .appendField(" to power");
     this.appendValueInput('motor_power')

@@ -43,8 +43,6 @@ Blockly.Blocks['dict_get'] = {
         .appendField('of');
     this.setInputsInline(true);
     this.setOutput(true);
-    //this.setPreviousStatement(true);
-    //this.setNextStatement(true);
   }
 };
 
@@ -54,7 +52,6 @@ Blockly.Blocks['dict_get_literal'] = {
     this.setColour(Blockly.Blocks.dicts.HUE);   
     this.appendValueInput('DICT')
         .appendField('get')
-        //.appendField('get') // TODO: fix this to be outside
         .appendField(this.newQuote_(true))
         .appendField(new Blockly.FieldTextInput(
                      'key'),
@@ -64,8 +61,6 @@ Blockly.Blocks['dict_get_literal'] = {
         .appendField('of');
     this.setInputsInline(true);
     this.setOutput(true);
-    //this.setPreviousStatement(true);
-    //this.setNextStatement(true);
   },
   /**
    * Create an image of an open or closed quote.
@@ -91,9 +86,6 @@ Blockly.Blocks['dict_keys'] = {
         .setCheck('dict')
         .appendField('get all keys from');
     this.setInputsInline(false);
-    this.setOutput(true, 'Array');
-    //this.setPreviousStatement(true);
-    //this.setNextStatement(true);
   }
 };
 

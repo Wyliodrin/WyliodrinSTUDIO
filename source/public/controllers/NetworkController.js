@@ -27,7 +27,6 @@ module.exports = function ()
 		});
 
 		$scope.interfaces = [];
-		// wifinetworks[interface]
 		$scope.wifinetworks = {
 		};
 
@@ -68,7 +67,6 @@ module.exports = function ()
 				{
 					$timeout (function ()
 					{
-						// debug (p);
 						if (p.e)
 						{
 						}
@@ -89,23 +87,12 @@ module.exports = function ()
 								});
 							}
 						}
-						// debug ($scope.wifinetworks[p.i]);
 					});
 				}
 			}
 		};
 
 		$wydevice.on ('message',message);
-
-		/* var status = function (status)
-		{
-			if (status !== 'CONNECTED' || status !== 'PING')
-			{
-				that.exit ();
-			}
-		};
-
-		$wydevice.on ('status', status); */
 
 		this.askPassword = function (ninterface, network)
 		{
@@ -162,7 +149,6 @@ module.exports = function ()
 			debug ('Exiting');
 			$mdDialog.hide ();
 			$wydevice.send ('net', {a:'stop'});
-			// $wydevice.removeListener ('status', status);
 			$wydevice.removeListener ('message', message); 
 		};
 	});

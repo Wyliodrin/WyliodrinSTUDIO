@@ -112,8 +112,6 @@ Blockly.JavaScript['webserver_statements'] = function(block) {
   var value_return = Blockly.JavaScript.valueToCode(block, 'return', Blockly.JavaScript.ORDER_ATOMIC);
   var route_function= Blockly.JavaScript.variableDB_.getDistinctName(
         'route', Blockly.Generator.NAME_TYPE);
-  // var globals = Blockly.Variables.allVariables(block);
-  // globals = globals.length ? '  global ' + globals.join(', ') + '\n' : '';
   var vars = Blockly.Variables.allVariables();
   var data = '';
   for (var i = vars.length - 1; i >= 0; i--) {
@@ -150,7 +148,6 @@ Blockly.JavaScript['webserver_statements'] = function(block) {
     parameter = parameter.next;
   }
   // TODO: Assemble JavaScript into code variable.
-  // var code = '@'+Blockly.JavaScript.app+'.route ("'+route+'", methods=[\''+dropdown_method+'\'])\ndef '+route_function+'('+parameters+'):\n'+globals+statements_statements+ret;
   var code = Blockly.JavaScript.app+'.'+dropdown_method.toLowerCase()+' (\''+route+'\', function (request, response)\n'+
     '{\n'+
       statements_statements+

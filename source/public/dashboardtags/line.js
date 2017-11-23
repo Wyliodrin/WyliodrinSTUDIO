@@ -95,9 +95,6 @@ module.exports = function ()
 						{
 							enabled: $scope.signal.properties.hideLegend === false,
 							align: 'right',
-				        	// backgroundColor: '#FCFFC5',
-				        	// borderColor: 'black',
-				        	// borderWidth: 2,
 					    	layout: 'vertical',
 					    	verticalAlign: 'top',
 					    	y: 100,
@@ -110,7 +107,6 @@ module.exports = function ()
 					},
 					size: 
 					{
-						// width: 400,
 						height: 300
 					},
 					title:
@@ -137,18 +133,6 @@ module.exports = function ()
 				{
 					debug ('Signal setup');
 					$wyapp.emit ('dashboard');
-					// console.log ('signal');
-					// console.log ($scope.signal);
-					// console.log ($scope.signal.properties);
-					// $scope.setup.options.chart.type = $scope.signal.type;
-					// $scope.setup.series =
-					// [{
-					// 	title: $scope.signal.title,
-					// 	color: $scope.signal.color,
-					// 	data: []
-					// }];
-
-					// $scope.setup.title.text = $scope.signal.title;
 
 					$scope.setup.options.chart.type = ($scope.signal.properties.style!=='step'?$scope.signal.properties.style:'line');
 					$scope.setup.options.yAxis.min = ($scope.signal.properties.fixedAxis)?$scope.signal.properties.minAxisValue:undefined;
@@ -189,7 +173,6 @@ module.exports = function ()
 							}
 						}
 					}
-					// console.log (value);
 					var values_export = $mdDialog.show({
 						        controller: function ($scope)
 						        {
@@ -201,18 +184,9 @@ module.exports = function ()
 						        },
 						        controllerAs: 'v',
 								templateUrl: '/public/views/values-export.html',
-								// parent: angular.element(window.body),
-								// targetEvent: ev,
 								clickOutsideToClose:true,
 								fullscreen: false
 						});
-					// bootbox.dialog({
-				 //            title: "Export Value",
-				 //            message: 'Value<textarea id="value" style="width:100%" rows="5"></textarea>',
-				 //        }
-				 //    );
-				    // $('#value').val (stringify (value));
-					// console.log (value);
 				}
 			},
 			conrollerAs: 'l',
@@ -224,12 +198,10 @@ module.exports = function ()
 					{
 						_.each (scope.buffer, function (s)
 						{
-							// console.log (s);
 							scope.setup.series[0].data.push (s);
 						});
 						if (scope.signal.properties.maxPoints <= scope.setup.series[0].data.length)
 						{
-							// console.log (scope.setup.series[0].data.length+' '+scope.signal.properties.maxPoints+' ');
 							scope.setup.series[0].data.splice (0, scope.setup.series[0].data.length-scope.signal.properties.maxPoints);
 						}
 						scope.buffer.splice (0, scope.buffer.length);
@@ -243,11 +215,9 @@ module.exports = function ()
 
 				var update = function (t, values)
 				{
-					// console.log (scope.signal.title);
 					if (t === 'v')
 					{
 						var v = (values.s?values.s[scope.signal.title]:undefined);
-						// console.log (v);
 						if (v !== undefined)
 						{
 							scope.buffer.push ([values.t, v]);
@@ -259,8 +229,6 @@ module.exports = function ()
 									scope.signal.values = true;
 								});
 							}
-							// console.log (values.t+', '+v);
-							// console.log (scope.setup.series);
 						}
 					}
 				};

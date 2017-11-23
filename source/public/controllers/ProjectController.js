@@ -1175,20 +1175,37 @@ var app = angular.module ('wyliodrinApp');
 			{
 				$scope.project.firmware = firmware;
 				var index;
+				var indexfirm;
+				var i=0;
+				// var i=0;
+				console.log(firmware);
 				for(index=0;$scope.project.tree[0].children[index].name!=window.wyliodrinSTUDIO_selectedname;index++)
 				{
 				}
 				if($scope.project.tree[0].children[index].children.length==1)
 				{
-					$scope.project.tree[0].children[index].children[0].content=$scope.project.firmware;	
+					i=0;
+					$scope.project.tree[0].children[index].children.splice(0,1);
+					_.each (firmware, function (firmwareData, firmwareFilename)
+					{
+						that.newFile(firmwareFilename);
+						$scope.project.tree[0].children[index].children[i].content=firmwareData;
+						i++;
+					});
 				}
 				else
 				{
-					for(var index1=$scope.project.tree[0].children[index].children.length-1;index1>=1;index1--)
+				 	for(var index1=$scope.project.tree[0].children[index].children.length-1;index1>=0;index1--)
 					{
 						$scope.project.tree[0].children[index].children.splice(index1,1);
 					}
-					$scope.project.tree[0].children[index].children[0].content=$scope.project.firmware;	
+					i=0;
+					_.each(firmware,function(firmwareData, firmwareFilename){
+
+						that.newFile(firmwareFilename);
+						$scope.project.tree[0].children[index].children[i].content=firmwareData;
+						i++;	
+					});
 				}
 			});
 			mixpanel.track ('Project Load Firmware',

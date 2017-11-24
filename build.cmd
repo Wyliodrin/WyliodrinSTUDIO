@@ -77,7 +77,7 @@ IF %errorFound% == false (
     patch.exe ../node_modules/angular-tree-control/css/tree-control-attribute.css tree-control-attribute.patch
     IF %ERRORLEVEL% NEQ 0 SET "errors=true"
 
-    patch.exe ../node_modules/marked/lib/marked.js marked.patch
+    patch.exe ../node_modules/8fold-marked/lib/marked.js marked.patch
     IF %ERRORLEVEL% NEQ 0 SET "errors=true"
 
     patch.exe ../node_modules/angular-ui-ace/src/ui-ace.js angular-ui-ace.patch

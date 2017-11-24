@@ -807,11 +807,11 @@ module.exports = function(grunt) {
     ]);
 
   grunt.registerTask('create-package-file', [], function() {
-        var fs = require('fs')
-          , manifest = JSON.parse(fs.readFileSync('./build/manifest.json', 'utf8'))
-          , en_messages = JSON.parse(fs.readFileSync('./build/_locales/en/messages.json', 'utf8'))
-          , appName = en_messages.appName.message
-          , appDesc = en_messages.appDesc.message;
+        var fs = require('fs'), 
+	    manifest = JSON.parse(fs.readFileSync('./build/manifest.json', 'utf8')), 
+	    en_messages = JSON.parse(fs.readFileSync('./build/_locales/en/messages.json', 'utf8')), 
+	    appName = en_messages.appName.message, 
+	    appDesc = en_messages.appDesc.message;
         
         manifest.name = appName;
         manifest.description = appDesc;

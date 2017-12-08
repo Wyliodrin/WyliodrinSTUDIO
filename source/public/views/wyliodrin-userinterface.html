@@ -111,16 +111,16 @@
                           {{ 'TOOLBAR_UPDATE' | translate }}
                         </md-tooltip>
                     </md-button>
+                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.dep)" class="icon-btn" ng-click="t.deploy()">
+                      <md-icon md-svg-src="/public/drawable/deploy-icon.svg" class="s24" aria-label="Deploy" ></md-icon>
+                        <md-tooltip md-direction="bottom">
+                          {{ 'Deploy' | translate }}
+                        </md-tooltip>
+                    </md-button>
                     <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.fe)" class="icon-btn" ng-click="t.fileexplorer()">
                       <md-icon md-svg-src="/public/drawable/fileexplorer-icon.svg" class="s24" aria-label="File Explorer" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'File_explorer' | translate }}
-                        </md-tooltip>
-                    </md-button>
-                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.dep)" class="icon-btn" ng-click="t.deploy()">
-                      <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Deploy" ></md-icon>
-                        <md-tooltip md-direction="bottom">
-                          {{ 'Deploy' | translate }}
                         </md-tooltip>
                     </md-button>
                     <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.pm)" class="icon-btn" ng-click="t.packagemanager()">

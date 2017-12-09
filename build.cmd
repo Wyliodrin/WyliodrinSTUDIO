@@ -8,14 +8,12 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 REM Existing verification commands
 SET "node_version_cmd=node -v"
 SET "git_version_cmd=git --version"
-SET "yarn_version_cmd=cmd /C yarn --version"
 SET "grunt_npmlist_cmd=npm list -g grunt-cli | findstr grunt-cli"
 
 REM Errors
 SET "git_notFound_error=ERROR: 'git' is not installed"
 SET "node_notFound_error=ERROR: NodeJS not found"
-SET "node_version_error=ERROR: NodeJS version has to be >= 4"
-SET "yarn_notFound_error=ERROR: 'yarn' is not installed"
+SET "node_version_error=ERROR: NodeJS version has to be >= 6"
 SET "grunt_notFound_error=ERROR: npm 'grunt-cli' package is not installed"
 
 SET "errorFound=false"
@@ -44,13 +42,6 @@ IF %ERRORLEVEL% NEQ 0 (
     )
 )
 
-REM If 'yarn' was not found
-%yarn_version_cmd% > NUL 2> NUL 
-IF %ERRORLEVEL% NEQ 0 (
-    ECHO !yarn_notFound_error!
-    SET "errorFound=true"
-)
-
 REM If 'grunt-cli' was not found
 %grunt_npmlist_cmd% > NUL 2> NUL
 IF %ERRORLEVEL% NEQ 0 (
@@ -63,7 +54,7 @@ IF %errorFound% == false (
     
     SET "errors=false"
 
-    cmd /C yarn
+    cmd /C npm install
     IF %ERRORLEVEL% NEQ 0 SET "errors=true"
 
     SETLOCAL

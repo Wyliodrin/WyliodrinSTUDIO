@@ -171,6 +171,19 @@ function retrieveProject (id, done)
 	});
 }
 
+function retrieveAllProjects (done)
+{
+	debug ('Retrieving all projects');
+	db.applications.toArray ().then(function (project_list)
+	{
+		debug ('Retrieved all projects');
+		done (project_list);
+	}).catch (function (error)
+	{
+		done (null);
+	});
+}
+
 function rename (id, title)
 {
 	debug ('Store project main '+id);

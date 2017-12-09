@@ -62,44 +62,60 @@ app.config(function($mdThemingProvider) {
 
 //require ('./translate.js')();
 
-require ('./controllers/TranslateController.js')();
+function startup ()
+{
 
-require ('./controllers/AppController.js')();
-require ('./controllers/DashboardController.js')();
-require ('./controllers/LibraryController.js')();
-require ('./controllers/PackageManagerController.js')();
-require ('./controllers/ProjectController.js')();
-require ('./controllers/TaskManagerController.js')();
-require ('./controllers/SchematicsController.js')();
-require ('./controllers/UpdateController.js')();
-require ('./controllers/BoardController.js')();
-require ('./controllers/FirmwareExampleController.js')();
-require ('./controllers/SerialPortController.js')();
-require ('./controllers/NotebookController.js')();
-require ('./controllers/ResistorColorCodeController.js')();
-require ('./controllers/InstallController.js')();
-require ('./controllers/SoftwareExampleController.js')();
-require ('./controllers/GitHubExampleController.js')();
-require ('./controllers/NetworkController.js')();
-require ('./controllers/ToolbarController.js')();
-require ('./controllers/XTermController.js')();
-require ('./controllers/FileExplorerController.js')();
-require ('./services/wyapp.js');
-require ('./services/wydevice.js');
-require ('./services/wydevices.js');
-require ('./services/wysignalproperties.js');
+  require ('./controllers/TranslateController.js')();
 
-require ('./dashboardtags/line.js')();
-require ('./dashboardtags/thermometer.js')();
-require ('./dashboardtags/speedometer.js')();
-require ('./dashboardtags/vumeter.js')();
-require ('./dashboardtags/slider.js')();
-require ('./dashboardtags/switch.js')();
-require ('./dashboardtags/gauge.js')();
-require ('./dashboardtags/extra.js')();
+  require ('./controllers/AppController.js')();
+  require ('./controllers/DashboardController.js')();
+  require ('./controllers/LibraryController.js')();
+  require ('./controllers/PackageManagerController.js')();
+  require ('./controllers/ProjectController.js')();
+  require ('./controllers/TaskManagerController.js')();
+  require ('./controllers/SchematicsController.js')();
+  require ('./controllers/UpdateController.js')();
+  require ('./controllers/BoardController.js')();
+  require ('./controllers/FirmwareExampleController.js')();
+  require ('./controllers/SerialPortController.js')();
+  require ('./controllers/NotebookController.js')();
+  require ('./controllers/ResistorColorCodeController.js')();
+  require ('./controllers/InstallController.js')();
+  require ('./controllers/SoftwareExampleController.js')();
+  require ('./controllers/GitHubExampleController.js')();
+  require ('./controllers/NetworkController.js')();
+  require ('./controllers/ToolbarController.js')();
+  require ('./controllers/XTermController.js')();
+  require ('./controllers/FileExplorerController.js')();
+  require ('./services/wyapp.js');
+  require ('./services/wydevice.js');
+  require ('./services/wydevices.js');
+  require ('./services/wysignalproperties.js');
 
+  require ('./dashboardtags/line.js')();
+  require ('./dashboardtags/thermometer.js')();
+  require ('./dashboardtags/speedometer.js')();
+  require ('./dashboardtags/vumeter.js')();
+  require ('./dashboardtags/slider.js')();
+  require ('./dashboardtags/switch.js')();
+  require ('./dashboardtags/gauge.js')();
+  require ('./dashboardtags/extra.js')();
 
+}
 
+console.log (settings);
 
+if (settings.platform.CHROME)
+{
+  chrome.runtime.getPlatformInfo(function (system)
+  {
+    settings.system = system;
+    startup ();
+  });
+}
+else
+{
+  startup ();
+}
 
 

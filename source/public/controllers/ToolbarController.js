@@ -373,6 +373,44 @@ module.exports = function ()
 		      fullscreen: false
 		    });
 		});
+
+		$wyapp.on ('download_standalone', function ()
+		{
+			debug ('Download Standalone');
+			$mdDialog.show({
+		      templateUrl: '/public/views/download-standalone.html',
+		      // parent: angular.element(document.body),
+		      controller: function ($scope)
+		      {
+		      	this.exportAll = function ()
+		      	{
+		      		console.log ('export All');
+		      		library.retrieveAllProjects (function (project_list)
+		      			{
+		      				console.log (project_list);
+		      			});
+		      	};
+
+		      	this.download = function ()
+		      	{
+		      		console.log ('download');
+		      		var a = document.createElement('a'); 
+				    a.href = 'http://www.wyliodrin.com/'; 
+				    a.target='_blank'; 
+				    a.click(); 
+		      	};
+
+		      	this.exit = function ()
+		      	{
+		      		$mdDialog.hide ();
+		      	};
+		      },
+		      controllerAs: 'p',
+		      // targetEvent: ev,
+		      clickOutsideToClose: true,
+		      fullscreen: false
+		    });
+		});
 		
 		this.board = function ()
 		{

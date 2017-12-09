@@ -822,6 +822,13 @@ var app = angular.module ('wyliodrinApp');
 						$wyapp.emit ('library');
 					}
 				});
+				setTimeout (function ()
+				{
+					if (settings.variant.STORE && settings.system.PlatformOs !== 'cros')
+					{
+						$wyapp.emit ('download_standalone');
+					}
+				}, 2000);
 			});
 			return program;
 		};

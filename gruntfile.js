@@ -389,6 +389,13 @@ module.exports = function(grunt) {
     fs.writeFileSync (CONFIG+'/platform.js', '"use strict";\n module.exports.'+process.env.PLATFORM+'=true;');
   });
 
+  grunt.registerTask ('variant', 'Variant', function ()
+  {
+    mkdirp.sync (CONFIG);
+    if (!process.env.VARIANT) process.env.VARIANT = 'STORE';
+    fs.writeFileSync (CONFIG+'/variant.js', '"use strict";\n module.exports.'+process.env.VARIANT+'=true;');
+  });
+
   grunt.registerTask ('makefile', 'Makefile', function ()
   {
     var MAKEFILE_FOLDER_LINUX = 'source/embedded/makefile/linux';
@@ -792,7 +799,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'makefile', 'makefile_v2', 'languages', 'example', 'install', 'jshint', 
+  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'variant', 'makefile', 'makefile_v2', 'languages', 'example', 'install', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',

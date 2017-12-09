@@ -20,6 +20,8 @@ var settings = {
 };
 
 settings.platform = require ('./config/platform.js');
+settings.variant = require ('./config/variant.js');
+
 
 settings.LABEL = {
 	'board':

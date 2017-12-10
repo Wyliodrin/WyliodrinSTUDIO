@@ -371,6 +371,13 @@ module.exports = function(grunt) {
     fs.writeFileSync (CONFIG+'/platform.js', '"use strict";\n module.exports.'+process.env.PLATFORM+'=true;');
   });
 
+  grunt.registerTask ('variant', 'Variant', function ()
+  {
+    mkdirp.sync (CONFIG);
+    if (!process.env.VARIANT) process.env.VARIANT = 'STORE';
+    fs.writeFileSync (CONFIG+'/variant.js', '"use strict";\n module.exports.'+process.env.VARIANT+'=true;');
+  });
+
   grunt.registerTask ('makefile', 'Makefile', function ()
   {
     var MAKEFILE_FOLDER_LINUX = 'source/embedded/makefile/linux';
@@ -729,7 +736,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
-  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'makefile', 'makefile_v2', 'languages', 'example', 'install', 'jshint', 
+  grunt.registerTask('default', ['mixpanel', 'debug', 'platform', 'variant', 'makefile', 'makefile_v2', 'languages', 'example', 'install', 'jshint', 
     'browserify',
     'ngAnnotate',
     'copy',
@@ -741,11 +748,11 @@ module.exports = function(grunt) {
     ]);
 
   grunt.registerTask('create-package-file', [], function() {
-        var fs = require('fs')
-          , manifest = JSON.parse(fs.readFileSync('./build/manifest.json', 'utf8'))
-          , en_messages = JSON.parse(fs.readFileSync('./build/_locales/en/messages.json', 'utf8'))
-          , appName = en_messages.appName.message
-          , appDesc = en_messages.appDesc.message;
+        var fs = require('fs'), 
+	    manifest = JSON.parse(fs.readFileSync('./build/manifest.json', 'utf8')), 
+	    en_messages = JSON.parse(fs.readFileSync('./build/_locales/en/messages.json', 'utf8')), 
+	    appName = en_messages.appName.message, 
+	    appDesc = en_messages.appDesc.message;
         
         manifest.name = appName;
         manifest.description = appDesc;

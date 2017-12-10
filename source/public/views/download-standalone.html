@@ -1,0 +1,22 @@
+<md-dialog aria-label="Wyliodrin App" class="about-box" style="width: 550px; height:500px;">
+    <md-dialog-content class="pre-box" ng-escape="p.exit()">
+        <div class="announcement">
+            <h2><img src="/public/drawable/warning-icon-2.png">Important Announcement</h2>
+            <p>The Google Chrome Store will be available only for Chromebooks starting 01.01.2018, so in order to continue using Wyliodrin STUDIO on your computer you will have to download the new standalone version. If you are using a Chomebook nothing will change for you.</p>
+            <p><strong>We strongly advise you to export your projects and import them in the standalone version.</strong></p>
+            <span style="margin-top: 20px;">
+                <md-button class="export-btn" ng-click="exportAll">Export all your projects</md-button>
+            </span>
+            <span>
+                <md-button class="export-btn" ng-click="download">Download the standalone version</md-button>
+            </span>
+        </div>
+        
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <div class="provided">
+            {{ 'ABOUT_ProvidedBy' | translate }} <a href="http://www.wyliodrin.com" target="_blank">Wyliodrin SRL</a>
+        </div>
+        <md-button ng-click="p.exit()">{{ 'TOOLBAR_EXIT' | translate }}</md-button>
+    </md-dialog-actions> 
+</md-dialog>

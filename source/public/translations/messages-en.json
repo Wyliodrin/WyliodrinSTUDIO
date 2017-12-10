@@ -1027,5 +1027,17 @@
   "UPDATE_SD_CARD_IMAGE": {
     "message":"Please update your SD Card image before running this project",
     "description":""
+  },
+  "delete_el": {
+    "message":"Are you sure you want to delete the element?",
+    "description":""
+  },
+  "EXPORT_PROJECTS": {
+    "message":"Export all your projects",
+    "description":""
+  },
+  "DOWNLOAD_STANDALONE": {
+    "message":"Download the standalone version",
+    "description":""
   }
 }

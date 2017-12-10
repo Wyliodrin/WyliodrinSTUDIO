@@ -72,10 +72,8 @@ module.exports = function ()
 					{
 						$scope.contentPopupError = $translate.instant('FEinexistent_folder');
 						$scope.showPopupError = 1;
-						//ne ducem inapoi
 						$scope.cwd = $scope.cwd.slice(0,$scope.cwd.lastIndexOf("/"));
 						if ($scope.cwd === "")
-							//inseamna ca am ajuns la root
 						{
 							$scope.cwd = "/"; 
 						}
@@ -104,7 +102,6 @@ module.exports = function ()
 				$timeout (function ()
 				{
 					$scope.cwd = p;
-					//am primit homeul, continui
 					that.refresh();
 				});
 			}
@@ -141,18 +138,11 @@ module.exports = function ()
 							}
 							if (!fileEntry) 
 							{
-								//in case of popup when cancel before chosing download folder
-								/*$timeout ( function()
-								{
-									$scope.contentPopupError = $translate.instant('FEfile_write');
-								 	$scope.showPopupError = 1;
-							 	});*/
 							 	return;
 							}
 
 							$scope.downloadvars.call=fileEntry;
 							$scope.showPopupDownload = 1;
-							//redundant rezolva
 							if (p.end)
 							{
 								var toArrayBuffer = function(buffer) {
@@ -171,13 +161,11 @@ module.exports = function ()
 							 		{
 							 			$scope.contentPopupError = $translate.instant('FEfile_write');
 							 			$scope.showPopupError = 1;
-							 			//console.log ('Filewriter error ' + error);
 							 		};
 							 		fileWriter.write (new Blob ([vasile], {type:''}), function (error)
 						 			{
 						 				$scope.contentPopupError = $translate.instant('FEfile_write');
 						 				$scope.showPopupError = 1;
-						 				//console.log ('Error on write '+ error);
 						 			});
 							 	});
 							 	$scope.showPopupDownload = 0;
@@ -187,7 +175,6 @@ module.exports = function ()
 							{
 								that.download($scope.downloadvars.a,$scope.downloadvars.b,p.i);
 							}
-							//redundant, rezolva
 
 						});
 					}
@@ -212,13 +199,11 @@ module.exports = function ()
 							 		{
 							 			$scope.contentPopupError = $translate.instant('FEfile_write');
 							 			$scope.showPopupError = 1;
-							 			//console.log ('Filewriter error ' + error);
 							 		};
 							 		fileWriter.write (new Blob ([vasile], {type:''}), function (error)
 						 			{
 						 				$scope.contentPopupError = $translate.instant('FEfile_write');
 						 				$scope.showPopupError = 1;
-						 				//console.log ('Error on write '+ error);
 						 			});
 							 	});
 							 	$scope.showPopupDownload = 0;
@@ -231,8 +216,6 @@ module.exports = function ()
 						}
 						else
 						{
-							//that.delete({folder:$scope.uploadvars.a,file:$scope.uploadvars.b});
-							//delete local file
 							$scope.downloadvars = {};
 						}
 					}
@@ -550,10 +533,6 @@ module.exports = function ()
 			}
 			else
 			{
-				/*if (actual !== null && typeof actual === 'object' && actual.name && actual.name.startsWith(".")){
-					console.log("actual");
-					console.log(actual);
-				}*/
 				if (actual !== null && typeof actual === 'object' && actual.name && (!actual.name.startsWith(".")))
 				{
 					return true;
@@ -658,7 +637,6 @@ module.exports = function ()
 			{
 				$scope.cwd=$scope.cwd+folder;
 			}
-			//$scope.cwd = path.join($scope.cwd,folder)
 
 			this.refresh();
 
@@ -745,7 +723,6 @@ module.exports = function ()
 			{
 				$scope.downloadvars.a = cwd;
 				$scope.downloadvars.b = filename;
-				//$scope.downloadvars.c = undefined;
 				$scope.downloadvars.d = $scope.MAXPACKET; //variable for full file size; placeholder for now
 			}
 			$wydevice.send ('fe', {a:'down',b:cwd,c:filename,z:index,size:$scope.MAXPACKET});

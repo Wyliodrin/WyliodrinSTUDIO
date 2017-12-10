@@ -54,11 +54,6 @@ function init(token, userid) {
   }
 }
 
-// chrome.runtime.getPlatformInfo (function (info)
-// {
-//   console.log (info);
-// });
-
 function track(event, properties) {
   debug (event);
   if (userid && global.usage && mixpanel.token)
@@ -79,8 +74,6 @@ function track(event, properties) {
 
     var data = new Buffer (JSON.stringify(payload)).toString ('base64');
     var url = api + '/track?data=' + data;
-
-    // console.log (url);
 
     $.get(url);
   }

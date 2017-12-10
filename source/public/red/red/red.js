@@ -35,28 +35,18 @@
 window.addEventListener ('message', function (message)
 {
     wyliodrin = message.source;
-    // console.log ('message');
-    // console.log (message);
     projectid = message.data.projectid;
-    /*if (!projectid && projectid !== 0)
-    {
-        project = {id:-1};
-    }*/
-    // console.log (project);
     if (projectid >= 0)
     {
         try
         {
             flow = JSON.parse(message.data.content);
-            // flow = project.main;
         }
         catch (exception)
         {
             flow = [];
         }
     }
-    // console.log (flow);
-    // console.log ({type:'flow', flow: JSON.stringify(flow)});
     if (flowsLoaded === true) loadMain ();
 });
 
@@ -72,8 +62,6 @@ var RED = (function() {
             url: 'nodes.json',
             dataType:'json',
             success: function(data) {
-                // data = JSON.parse (data);
-                // console.log (data)
                 RED.nodes.setNodeList(data);
 
                 var nsCount = 0;
@@ -119,88 +107,6 @@ var RED = (function() {
     function loadFlows() {
         flowsLoaded = true;
         loadMain ();
-        // $.ajax({
-        //     headers: {
-        //         "Accept":"application/json"
-        //     },
-        //     cache: false,
-        //     url: 'flows',
-        //     success: function(nodes) {
-        //         RED.nodes.import(nodes);
-        //         RED.nodes.dirty(false);
-        //         RED.view.redraw(true);
-                // RED.comms.subscribe("status/#",function(topic,msg) {
-                //     var parts = topic.split("/");
-                //     var node = RED.nodes.node(parts[1]);
-                //     if (node) {
-                //         if (msg.text) {
-                //             msg.text = node._(msg.text.toString(),{defaultValue:msg.text.toString()});
-                //         }
-                //         node.status = msg;
-                //         if (statusEnabled) {
-                //             node.dirty = true;
-                //             RED.view.redraw();
-                //         }
-                //     }
-                // });
-                // RED.comms.subscribe("node/#",function(topic,msg) {
-                //     var i,m;
-                //     var typeList;
-                //     var info;
-
-                //     if (topic == "node/added") {
-                //         var addedTypes = [];
-                //         for (i=0;i<msg.length;i++) {
-                //             m = msg[i];
-                //             var id = m.id;
-                //             RED.nodes.addNodeSet(m);
-                //             addedTypes = addedTypes.concat(m.types);
-                //             RED.i18n.loadCatalog(id, function() {
-                //                 $.get('nodes/'+id, function(data) {
-                //                     $("body").append(data);
-                //                 });
-                //             });
-                //         }
-                //         if (addedTypes.length) {
-                //             typeList = "<ul><li>"+addedTypes.join("</li><li>")+"</li></ul>";
-                //             RED.notify(RED._("palette.event.nodeAdded", {count:addedTypes.length})+typeList,"success");
-                //         }
-                //     } else if (topic == "node/removed") {
-                //         for (i=0;i<msg.length;i++) {
-                //             m = msg[i];
-                //             info = RED.nodes.removeNodeSet(m.id);
-                //             if (info.added) {
-                //                 typeList = "<ul><li>"+m.types.join("</li><li>")+"</li></ul>";
-                //                 RED.notify(RED._("palette.event.nodeRemoved", {count:m.types.length})+typeList,"success");
-                //             }
-                //         }
-                //     } else if (topic == "node/enabled") {
-                //         if (msg.types) {
-                //             info = RED.nodes.getNodeSet(msg.id);
-                //             if (info.added) {
-                //                 RED.nodes.enableNodeSet(msg.id);
-                //                 typeList = "<ul><li>"+msg.types.join("</li><li>")+"</li></ul>";
-                //                 RED.notify(RED._("palette.event.nodeEnabled", {count:msg.types.length})+typeList,"success");
-                //             } else {
-                //                 $.get('nodes/'+msg.id, function(data) {
-                //                     $("body").append(data);
-                //                     typeList = "<ul><li>"+msg.types.join("</li><li>")+"</li></ul>";
-                //                     RED.notify(RED._("palette.event.nodeAdded", {count:msg.types.length})+typeList,"success");
-                //                 });
-                //             }
-                //         }
-                //     } else if (topic == "node/disabled") {
-                //         if (msg.types) {
-                //             RED.nodes.disableNodeSet(msg.id);
-                //             typeList = "<ul><li>"+msg.types.join("</li><li>")+"</li></ul>";
-                //             RED.notify(RED._("palette.event.nodeDisabled", {count:msg.types.length})+typeList,"success");
-                //         }
-                //     }
-                    // Refresh flow library to ensure any examples are updated
-                    // RED.library.loadFlowLibrary();
-        //         });
-        //     }
-        // });
     }
 
     var statusEnabled = false;
@@ -221,15 +127,7 @@ var RED = (function() {
                 ]},
                 null,
                 {id:"menu-item-import-clipboard",label:RED._("menu.label.import"),onselect:RED.clipboard.import},
-                // {id:"menu-item-import",label:RED._("menu.label.import"),options:[
-                    // {id:"menu-item-import-clipboard",label:RED._("menu.label.clipboard"),onselect:RED.clipboard.import},
-                    // {id:"menu-item-import-library",label:RED._("menu.label.library"),options:[]}
-                // ]},
                 {id:"menu-item-export-clipboard",label:RED._("menu.label.export"),disabled:true,onselect:RED.clipboard.export},
-                // {id:"menu-item-export",label:RED._("menu.label.export"),disabled:true,options:[
-                    // {id:"menu-item-export-clipboard",label:RED._("menu.label.clipboard"),disabled:true,onselect:RED.clipboard.export},
-                    // {id:"menu-item-export-library",label:RED._("menu.label.library"),disabled:true,onselect:RED.library.export}
-                // ]},
                 null,
                 {id:"menu-item-config-nodes",label:RED._("menu.label.displayConfig"),onselect:function(){}},
                 {id:"menu-item-workspace",label:RED._("menu.label.flows"),options:[
@@ -244,11 +142,6 @@ var RED = (function() {
                 ]},
                 null,
                 {id:"menu-item-keyboard-shortcuts",label:RED._("menu.label.keyboardShortcuts"),onselect:RED.keyboard.showHelp},
-                // {id:"menu-item-help",
-                //     label: RED.settings.theme("menu.menu-item-help.label","Node-RED Website"),
-                //     href: RED.settings.theme("menu.menu-item-help.url","http://nodered.org/docs")
-                // },
-                // {id:"menu-item-node-red-version", label:"v"+RED.settings.version}
             ]
         });
 
@@ -263,10 +156,8 @@ var RED = (function() {
         RED.view.init();
         RED.editor.init();
 
-        // RED.deploy.init(RED.settings.theme("deployButton",null));
 
         RED.keyboard.add(/* ? */ 191,{shift:true},function(){RED.keyboard.showHelp();d3.event.preventDefault();});
-        // RED.comms.connect();
 
         $("#main-container").show();
         $(".header-toolbar").show();
@@ -931,7 +822,6 @@ RED.nodes = (function() {
             },
             addNodeSet: function(ns) {
                 ns.added = false;
-                // console.log (ns);
                 nodeSets[ns.id] = ns;
                 for (var j=0;j<ns.types.length;j++) {
                     typeToId[ns.types[j]] = ns.id;
@@ -988,8 +878,6 @@ RED.nodes = (function() {
                 }
             },
             registerNodeType: function(nt,def) {
-                // console.log (nt);
-                // console.log (def);
                 nodeDefinitions[nt] = def;
                 if (def.category != "subflows") {
                     def.set = nodeSets[typeToId[nt]];
@@ -2442,13 +2330,6 @@ RED.deploy = (function() {
                         .html("<li>"+invalidNodes.map(function(A) { return (A.tab?"["+A.tab+"] ":"")+A.label+" ("+A.type+")"}).join("</li><li>")+"</li>");
 
                 } else if (hasUnusedConfig && !ignoreDeployWarnings.unusedConfig) {
-                    // showWarning = true;
-                    // $( "#node-dialog-confirm-deploy-type" ).val("unusedConfig");
-                    // $( "#node-dialog-confirm-deploy-unused" ).show();
-                    //
-                    // unusedConfigNodes.sort(sortNodeInfo);
-                    // $( "#node-dialog-confirm-deploy-unused-list" )
-                    //     .html("<li>"+unusedConfigNodes.map(function(A) { return (A.tab?"["+A.tab+"] ":"")+A.label+" ("+A.type+")"}).join("</li><li>")+"</li>");
                 }
                 if (showWarning) {
                     $( "#node-dialog-confirm-deploy-hide" ).prop("checked",false);
@@ -3534,17 +3415,6 @@ RED.view = (function() {
                 touchStartTime = setTimeout(function() {
                     touchStartTime = null;
                     showTouchMenu(obj,pos);
-                    //lasso = vis.append('rect')
-                    //    .attr("ox",point[0])
-                    //    .attr("oy",point[1])
-                    //    .attr("rx",2)
-                    //    .attr("ry",2)
-                    //    .attr("x",point[0])
-                    //    .attr("y",point[1])
-                    //    .attr("width",0)
-                    //    .attr("height",0)
-                    //    .attr("class","lasso");
-                    //outer_background.attr("fill","#e3e3f3");
                 },touchLongPressTimeout);
             }
         })
@@ -3880,15 +3750,6 @@ RED.view = (function() {
         var i;
         var node;
         mouse_position = d3.touches(this)[0]||d3.mouse(this);
-        // Prevent touch scrolling...
-        //if (d3.touches(this)[0]) {
-        //    d3.event.preventDefault();
-        //}
-
-        // TODO: auto scroll the container
-        //var point = d3.mouse(this);
-        //if (point[0]-container.scrollLeft < 30 && container.scrollLeft > 0) { container.scrollLeft -= 15; }
-        //console.log(d3.mouse(this),container.offsetWidth,container.offsetHeight,container.scrollLeft,container.scrollTop);
 
         if (lasso) {
             var ox = parseInt(lasso.attr("ox"));
@@ -4476,9 +4337,6 @@ RED.view = (function() {
     }
 
     function portMouseDown(d,portType,portIndex) {
-        //console.log(d,portType,portIndex);
-        // disable zoom
-        //vis.call(d3.behavior.zoom().on("zoom"), null);
         mousedown_node = d;
         selected_link = null;
         mouse_mode = RED.state.JOINING;
@@ -4583,9 +4441,6 @@ RED.view = (function() {
 
     function nodeMouseDown(d) {
         focusView();
-        //var touch0 = d3.event;
-        //var pos = [touch0.pageX,touch0.pageY];
-        //RED.touch.radialMenu.show(d3.select(this),pos);
         if (mouse_mode == RED.state.IMPORT_DRAGGING) {
             RED.keyboard.remove(/* ESCAPE */ 27);
 
@@ -4935,9 +4790,6 @@ RED.view = (function() {
                                 node.classed("node_hovered",false);
                         });
 
-                   //node.append("rect").attr("class", "node-gradient-top").attr("rx", 6).attr("ry", 6).attr("height",30).attr("stroke","none").attr("fill","url(#gradient-top)").style("pointer-events","none");
-                   //node.append("rect").attr("class", "node-gradient-bottom").attr("rx", 6).attr("ry", 6).attr("height",30).attr("stroke","none").attr("fill","url(#gradient-bottom)").style("pointer-events","none");
-
                     if (d._def.icon) {
 
                         var icon_group = node.append("g")
@@ -4970,19 +4822,7 @@ RED.view = (function() {
                         if ("right" == d._def.align) {
                             icon_group.attr('class','node_icon_group node_icon_group_'+d._def.align);
                             icon_shade_border.attr("d",function(d) { return "M 0 1 l 0 "+(d.h-2)})
-                            //icon.attr('class','node_icon node_icon_'+d._def.align);
-                            //icon.attr('class','node_icon_shade node_icon_shade_'+d._def.align);
-                            //icon.attr('class','node_icon_shade_border node_icon_shade_border_'+d._def.align);
                         }
-
-                        //if (d.inputs > 0 && d._def.align == null) {
-                        //    icon_shade.attr("width",35);
-                        //    icon.attr("transform","translate(5,0)");
-                        //    icon_shade_border.attr("transform","translate(5,0)");
-                        //}
-                        //if (d._def.outputs > 0 && "right" == d._def.align) {
-                        //    icon_shade.attr("width",35); //icon.attr("x",5);
-                        //}
 
                         var img = new Image();
                         img.src = "icons/"+d._def.icon;
@@ -4990,14 +4830,7 @@ RED.view = (function() {
                             icon.attr("width",Math.min(img.width,30));
                             icon.attr("height",Math.min(img.height,30));
                             icon.attr("x",15-Math.min(img.width,30)/2);
-                            //if ("right" == d._def.align) {
-                            //    icon.attr("x",function(d){return d.w-img.width-1-(d.outputs>0?5:0);});
-                            //    icon_shade.attr("x",function(d){return d.w-30});
-                            //    icon_shade_border.attr("d",function(d){return "M "+(d.w-30)+" 1 l 0 "+(d.h-2);});
-                            //}
                         }
-
-                        //icon.style("pointer-events","none");
                         icon_group.style("pointer-events","none");
                     }
                     var text = node.append('svg:text').attr('class','node_label').attr('x', 38).attr('dy', '.35em').attr('text-anchor','start');
@@ -5017,10 +4850,6 @@ RED.view = (function() {
                     var statusLabel = status.append("svg:text")
                         .attr("class","node_status_label")
                         .attr('x',20).attr('y',9);
-
-                    //node.append("circle").attr({"class":"centerDot","cx":0,"cy":0,"r":5});
-
-                    //node.append("path").attr("class","node_error").attr("d","M 3,-3 l 10,0 l -5,-8 z");
                     node.append("image").attr("class","node_error hidden").attr("xlink:href","icons/node-error.png").attr("x",0).attr("y",-6).attr("width",10).attr("height",9);
                     node.append("image").attr("class","node_changed hidden").attr("xlink:href","icons/node-changed.png").attr("x",12).attr("y",-6).attr("width",10).attr("height",10);
             });
@@ -5028,7 +4857,6 @@ RED.view = (function() {
             node.each(function(d,i) {
                     if (d.dirty) {
                         dirtyNodes[d.id] = d;
-                        //if (d.x < -50) deleteSelection();  // Delete nodes if dragged back to palette
                         if (d.resize) {
                             var l = d._def.label;
                             try {
@@ -5044,7 +4872,6 @@ RED.view = (function() {
                             d.resize = false;
                         }
                         var thisNode = d3.select(this);
-                        //thisNode.selectAll(".centerDot").attr({"cx":function(d) { return d.w/2;},"cy":function(d){return d.h/2}});
                         thisNode.attr("transform", function(d) { return "translate(" + (d.x-d.w/2) + "," + (d.y-d.h/2) + ")"; });
 
                         if (mouse_mode != RED.state.MOVING_ACTIVE) {
@@ -5054,19 +4881,13 @@ RED.view = (function() {
                                 .classed("node_selected",function(d) { return d.selected; })
                                 .classed("node_highlighted",function(d) { return d.highlighted; })
                             ;
-                            //thisNode.selectAll(".node-gradient-top").attr("width",function(d){return d.w});
-                            //thisNode.selectAll(".node-gradient-bottom").attr("width",function(d){return d.w}).attr("y",function(d){return d.h-30});
 
                             thisNode.selectAll(".node_icon_group_right").attr('transform', function(d){return "translate("+(d.w-30)+",0)"});
                             thisNode.selectAll(".node_label_right").attr('x', function(d){return d.w-38});
-                            //thisNode.selectAll(".node_icon_right").attr("x",function(d){return d.w-d3.select(this).attr("width")-1-(d.outputs>0?5:0);});
-                            //thisNode.selectAll(".node_icon_shade_right").attr("x",function(d){return d.w-30;});
-                            //thisNode.selectAll(".node_icon_shade_border_right").attr("d",function(d){return "M "+(d.w-30)+" 1 l 0 "+(d.h-2)});
 
                             var inputPorts = thisNode.selectAll(".port_input");
                             if (d.inputs === 0 && !inputPorts.empty()) {
                                 inputPorts.remove();
-                                //nodeLabel.attr("x",30);
                             } else if (d.inputs === 1 && inputPorts.empty()) {
                                 var inputGroup = thisNode.append("g").attr("class","port_input");
                                 inputGroup.append("rect").attr("class","port").attr("rx",3).attr("ry",3).attr("width",10).attr("height",10)
@@ -5099,7 +4920,6 @@ RED.view = (function() {
                                 var x = d.w - 5;
                                 d._ports.each(function(d,i) {
                                         var port = d3.select(this);
-                                        //port.attr("y",(y+13*i)-5).attr("x",x);
                                         port.attr("transform", function(d) { return "translate("+x+","+((y+13*i)-5)+")";});
                                 });
                             }
@@ -5198,10 +5018,6 @@ RED.view = (function() {
                                     }
                                     return 1;
                             });
-
-                            //thisNode.selectAll('.node_right_button').attr("transform",function(d){return "translate("+(d.w - d._def.button.width.call(d))+","+0+")";}).attr("fill",function(d) {
-                            //         return typeof d._def.button.color  === "function" ? d._def.button.color.call(d):(d._def.button.color != null ? d._def.button.color : d._def.color)
-                            //});
 
                             thisNode.selectAll('.node_badge_group').attr("transform",function(d){return "translate("+(d.w-40)+","+(d.h+3)+")";});
                             thisNode.selectAll('text.node_badge_label').text(function(d,i) {
@@ -5963,15 +5779,6 @@ RED.palette = (function() {
                 content: "hi",
                 delay: { show: 750, hide: 50 }
             });
-
-            // $(d).popover({
-            //     title:d.type,
-            //     placement:"right",
-            //     trigger: "hover",
-            //     delay: { show: 750, hide: 50 },
-            //     html: true,
-            //     container:'body'
-            // });
             $(d).click(function() {
                 RED.view.focus();
                 var helpText;
@@ -6368,7 +6175,6 @@ RED.sidebar.info = (function() {
         } else if (node._def && node._def.info) {
             var info = node._def.info;
             table += '<div class="node-help">'+marked(typeof info === "function" ? info.call(node) : info)+'</div>';
-            //table += '<div class="node-help">'+(typeof info === "function" ? info.call(node) : info)+'</div>';
         }
 
         $(content).html(table);
@@ -7550,7 +7356,6 @@ RED.editor = (function() {
             });
         }
 
-        //tabSelect.append('<option value="'+activeWorkspace.id+'"'+(activeWorkspace.id==configNode.z?" selected":"")+'>'+workspaceLabel+'</option>');
         tabSelect.i18n();
 
         $( "#node-config-dialog" ).dialog("option","buttons",buttons);
@@ -8322,27 +8127,8 @@ RED.library = (function() {
         });
 
         $('#node-input-'+options.type+'-menu-save-library').click(function(e) {
-            //var found = false;
             var name = $("#node-input-name").val().replace(/(^\s*)|(\s*$)/g,"");
 
-            //var buildPathList = function(data,root) {
-            //    var paths = [];
-            //    if (data.d) {
-            //        for (var i in data.d) {
-            //            var dn = root+(root==""?"":"/")+i;
-            //            var d = {
-            //                label:dn,
-            //                files:[]
-            //            };
-            //            for (var f in data.d[i].f) {
-            //                d.files.push(data.d[i].f[f].fn.split("/").slice(-1)[0]);
-            //            }
-            //            paths.push(d);
-            //            paths = paths.concat(buildPathList(data.d[i],root+(root==""?"":"/")+i));
-            //        }
-            //    }
-            //    return paths;
-            //};
             $("#node-dialog-library-save-folder").attr("value","");
 
             var filename = name.replace(/[^\w-]/g,"-");
@@ -8350,18 +8136,6 @@ RED.library = (function() {
                 filename = "unnamed-"+options.type;
             }
             $("#node-dialog-library-save-filename").attr("value",filename+".js");
-
-            //var paths = buildPathList(libraryData,"");
-            //$("#node-dialog-library-save-folder").autocomplete({
-            //        minLength: 0,
-            //        source: paths,
-            //        select: function( event, ui ) {
-            //            $("#node-dialog-library-save-filename").autocomplete({
-            //                    minLength: 0,
-            //                    source: ui.item.files
-            //            });
-            //        }
-            //});
 
             $( "#node-dialog-library-save" ).dialog( "open" );
             e.preventDefault();
@@ -8433,30 +8207,6 @@ RED.library = (function() {
             }
             var fullpath = pathname+(pathname===""?"":"/")+filename;
             if (!overwrite) {
-                //var pathnameParts = pathname.split("/");
-                //var exists = false;
-                //var ds = libraryData;
-                //for (var pnp in pathnameParts) {
-                //    if (ds.d && pathnameParts[pnp] in ds.d) {
-                //        ds = ds.d[pathnameParts[pnp]];
-                //    } else {
-                //        ds = null;
-                //        break;
-                //    }
-                //}
-                //if (ds && ds.f) {
-                //    for (var f in ds.f) {
-                //        if (ds.f[f].fn == fullpath) {
-                //            exists = true;
-                //            break;
-                //        }
-                //    }
-                //}
-                //if (exists) {
-                //    $("#node-dialog-library-save-content").html(RED._("library.dialogSaveOverwrite",{libraryType:options.type,libraryName:fullpath}));
-                //    $("#node-dialog-library-save-confirm").dialog( "open" );
-                //    return;
-                //}
             }
             var queryArgs = [];
             var data = {};
@@ -8550,7 +8300,6 @@ RED.library = (function() {
             });
 
             if (RED.settings.theme("menu.menu-item-import-library") !== false) {
-                // loadFlowLibrary();
             }
 
             exportToLibraryDialog = $('<div id="library-dialog" class="hide"><form class="dialog-form form-horizontal"></form></div>')
@@ -8918,8 +8667,6 @@ RED.subflow = (function() {
             '<a id="workspace-subflow-output-add" class="button" href="#"><i class="fa fa-plus"></i></a>'+
             '</div>').appendTo(toolbar);
 
-        // $('<a class="button disabled" id="workspace-subflow-add-input" href="#" data-i18n="[append]subflow.input"><i class="fa fa-plus"></i> </a>').appendTo(toolbar);
-        // $('<a class="button" id="workspace-subflow-add-output" href="#" data-i18n="[append]subflow.output"><i class="fa fa-plus"></i> </a>').appendTo(toolbar);
         $('<a class="button" id="workspace-subflow-delete" href="#" data-i18n="[append]subflow.deleteSubflow"><i class="fa fa-trash"></i> </a>').appendTo(toolbar);
         toolbar.i18n();
 

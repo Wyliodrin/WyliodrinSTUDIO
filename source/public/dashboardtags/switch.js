@@ -50,24 +50,12 @@ module.exports = function ()
 			conrollerAs: 'l',
 			link: function (scope, element, attrs)
 			{
-				// var updateData = function ()
-				// {
-				// 	if (scope.update === true)
-				// 	{
-				// 		scope.update = false;
-				// 	}
-				// };
-
-				// var dataupdater = setInterval (updateData, 200);
 
 				var update = function (t, values)
 				{
-					// console.log (scope.signal.title);
 					if (t === 'v')
 					{
-						// console.log (values);
 						var v = (values.s?values.s[scope.signal.title]:undefined);
-						// console.log (v);
 						if (v !== undefined)
 						{
 							
@@ -77,8 +65,6 @@ module.exports = function ()
 							{
 								scope.value = v;
 							});
-							// console.log (values.t+', '+v);
-							// console.log (scope.setup.series);
 						}
 					}
 				};
@@ -89,7 +75,6 @@ module.exports = function ()
 				{
 					debug ('Erase switch');
 					$wydevice.removeListener ('message', update);
-					// clearInterval (dataupdater);
 				});
 			}
 		};

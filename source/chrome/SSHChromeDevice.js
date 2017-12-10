@@ -60,7 +60,6 @@ export default class SSHChromeDevice extends EventEmitter
 		var that = this;
 		process.nextTick (function ()
 		{
-			// console.log (that.status);
 			if (that.staus <= CONNECTING);
 			that.emit ('connecting');
 
@@ -89,7 +88,6 @@ export default class SSHChromeDevice extends EventEmitter
 						});
 						stream.on ('data', function (data)
 						{
-							// console.log (data);
 							that.receiveData (data);
 						});
 					}
@@ -101,7 +99,6 @@ export default class SSHChromeDevice extends EventEmitter
 				console.log (JSON.stringify (error));
 				if (error.level === "client-authentication")
 				{
-					// console.log ('connection login failed');
 					that.emit ('connection_login_failed');
 					that.connection.end ();
 				}
@@ -120,45 +117,6 @@ export default class SSHChromeDevice extends EventEmitter
 				username: that.options.username,
 				password: that.options.password
 			});
-
-			// chrome.sockets.tcp.create ({}, function (createInfo)
-			// {
-			// 	that.connection = createInfo;
-			// 	chrome.sockets.tcp.connect (createInfo.socketId, that.ip, that.port | 0, function (result)
-			// 	{
-			// 		if(chrome.runtime.lastError) 
-			// 		{
-			// 			debug ('Socket error');
-			// 			debug (chrome.runtime.lastError);
-			// 		} 
-			// 		if (result >= 0)
-			// 		{
-			// 			// that.connection = createInfo;
-			// 			if (!that.shouldDisconnect)
-			// 			{
-			// 				debug ('Connected to '+that.address+' with socketId '+createInfo.socketId);
-			// 				if (that.status < SEPARRATOR)
-			// 				{
-			// 					that.status = SEPARRATOR;
-			// 					that.emit ('separator');
-			// 					// console.log (connection);
-			// 					connections.set (''+createInfo.socketId, that);
-			// 				}
-			// 			}
-			// 			else that.disconnect ();
-			// 		}
-			// 		else
-			// 		{
-			// 			// TODO error
-			// 			if (that.status <= ERROR)
-			// 			{
-			// 				that.status = ERROR;
-			// 				that.emit ('error');
-			// 			}
-			// 			addresses.delete (that.address);
-			// 		}
-			// 	});
-			// });
 		});
 	}
 
@@ -209,41 +167,6 @@ export default class SSHChromeDevice extends EventEmitter
 					that.isSending = false;
 					that._send ();
 				});
-				// this.buffers.splice (0, 1);
-				// chrome.sockets.tcp.send (this.connection.socketId, arraydata, function (sendInfo)
-				// {
-				// 	if (sendInfo.error)
-				// 	{
-				// 		debug ('Sending '+arraydata.byteLength+' to port '+that.address+' retuned an error '+sendInfo.error+' '+chrome.runtime.lastError);
-				// 		if (sendInfo.error === 'system_error')
-				// 		{
-				// 			if (that.status <= ERROR)
-				// 			{
-				// 				that.status = ERROR;
-				// 				that.emit ('error');
-				// 				that.buffers = [];
-				// 				that.disconnect ();
-				// 			}
-				// 		}
-				// 	}
-				// 	else
-				// 	{
-				// 		debug ('Sent '+sendInfo.bytesSent+' of '+arraydata.byteLength+' to '+that.address+' using socketId '+that.connection.socketId);
-				// 		if (sendInfo.bytesSent < arraydata.byteLength)
-				// 		{
-				// 			// console.log ('Sent less bytes than request');
-				// 			debug ('Sent less bytes than in data, sending '+(that.buffers[0].byteLength-sendInfo.bytesSent)+' into the bytes next data');
-				// 			that.buffers[0] = that.buffers[0].slice (sendInfo.bytesSent);
-				// 		}
-				// 		else
-				// 		{
-				// 			debug ('There are '+that.buffers.length+' data to send');
-				// 			that.buffers.splice (0, 1);
-				// 		}
-				// 	}
-				// 	that.isSending = false;
-				// 	that._send ();
-				// });
 			}
 			else
 			{
@@ -261,55 +184,6 @@ export default class SSHChromeDevice extends EventEmitter
 		if (this.isConnected() && this.stream !== null)
 		{
 			data = this._escape (data);
-			// var additional = false;
-			// var size = data.length+2;
-			// var arraydata;
-			// var arraydatauint;
-			// var pos;
-			// if (size % SERIAL_BUFFER_SIZE > 0) additional = true;
-			// debug ('Splitting data into '+(((size/SERIAL_BUFFER_SIZE)>>0)+(additional?1:0))+' packets ');
-			// var offset = 0;
-			// for (var split = ((size / SERIAL_BUFFER_SIZE)>>0)-1; split >= 0; split--)
-			// {
-			// 	arraydata = new ArrayBuffer (SERIAL_BUFFER_SIZE);
-			// 	arraydatauint = new Uint8Array (arraydata);
-			// 	for (pos = 0; pos<SERIAL_BUFFER_SIZE; pos++)
-			// 	{
-			// 		if (split === 0 && (pos === SERIAL_BUFFER_SIZE-2 || pos === SERIAL_BUFFER_SIZE-1) && additional === false)
-			// 		{
-			// 			arraydatauint[pos] = PACKET_SEPARATOR;
-			// 		}
-			// 		else
-			// 		{
-			// 			arraydatauint[pos] = data[offset];
-			// 			offset++;
-			// 		}
-			// 		// console.log (arraydatauint[pos]);
-			// 	}	
-			// 	this.buffers.push (arraydata);
-			// 	this._send ();
-			// }
-			// if (additional === true)
-			// {
-			// 	arraydata = new ArrayBuffer (size % SERIAL_BUFFER_SIZE);
-			// 	arraydatauint = new Uint8Array (arraydata);
-			// 	var additional_size = size%SERIAL_BUFFER_SIZE;
-			// 	for (pos = 0; pos<additional_size; pos++)
-			// 	{
-			// 		if (pos !== additional_size-2 && pos !== additional_size-1)
-			// 		{
-			// 			arraydatauint[pos] = data[offset];
-			// 			offset++;
-			// 		}
-			// 		else
-			// 		{
-			// 			arraydatauint[pos] = PACKET_SEPARATOR;
-			// 		}
-			// 		// console.log (arraydatauint[pos]);
-			// 	}
-			// 	this.buffers.push (arraydata);
-			// 	this._send ();
-			// }
 			this.buffers.push (data);
 			this.buffers.push (BUFFER_SEPARRATOR);
 			this._send ();
@@ -395,7 +269,6 @@ export default class SSHChromeDevice extends EventEmitter
 					{
 						debug ('Random bytes for port '+this.address);
 					}
-					// console.log ('adding byte to data');
 					this._addToBuffer(datauint[pos]);
 					this.previousByte = datauint[pos];
 				}
@@ -448,7 +321,6 @@ export default class SSHChromeDevice extends EventEmitter
 						that.emit ('message', 's', {a:'o', r:'d'});
 						stream.on ('data', function (data)
 						{
-							// console.log (data);
 							that.emit ('message', 's', {a:'k', t:data.toString()});
 						});
 						stream.stderr.on ('data', function (data)
@@ -486,7 +358,6 @@ export default class SSHChromeDevice extends EventEmitter
 				if (this.openShell === null)
 				{
 					debug ('Shell not open');
-					// that.emit ('message', 's', {a:'k', e:'shell not open'});
 				}
 				else
 				{
@@ -500,7 +371,6 @@ export default class SSHChromeDevice extends EventEmitter
 				if (this.openShell === null)
 				{
 					debug ('Shell not open');
-					// that.emit ('message', 's', {a:'k', e:'shell not open'});
 				}
 				else
 				{
@@ -582,18 +452,9 @@ export default class SSHChromeDevice extends EventEmitter
 		this.shouldDisconnect = true;
 		if (this.isConnected())
 		{
-			// var socketId = this.connection.socketId;
 			this.status = DISCONNECTED;
 			this.emit ('disconnected');
 			debug ('Disconnecting port '+this.address);
-			// chrome.sockets.tcp.disconnect (socketId, function ()
-			// {
-			// 	debug ('Disconnected '+socketId+' port '+this.address);
-			// 	chrome.sockets.tcp.close (socketId, function ()
-			// 	{
-
-			// 	});
-			// });
 			this.receivedFirstPacketSeparator = false;
 			addresses.delete (this.address);
 			connections.delete (''+this.connection.socketId);

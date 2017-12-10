@@ -21,12 +21,9 @@ module.exports = function ()
 
 	//taking language list 
 	var available = settings.TRANSLATE;
-  // console.log (available);
 
 
 	app.config(function ($translateProvider) {
-
-    // $translateProvider.useSanitizeValueStrategy('escape');
 
     $translateProvider.useStaticFilesLoader({
     files: [{
@@ -38,25 +35,8 @@ module.exports = function ()
     $translateProvider
       .uniformLanguageTag('bcp47')
 
-      //languages in bcp-47 (standard) format are formed from two parts:
-      //language and geolocation of respective language
-      //using both we can pinpoint to a certain file to pertain
-      //to specific irregularities of languages
-
-
-     //  .registerAvailableLanguageKeys(['en', 'de'], {
-	    // 'en-US': 'en',
-     //    'en-UK': 'en',
-     //    'de-DE': 'de',
-     //    'de-CH': 'de'
-     //  })
-      //.registerAvailableLanguageKeys(['en', 'de'], {
-	  //  'en-*': 'en',
-      //  'de-*': 'de'
-      //})
       .determinePreferredLanguage();
 
-    //$translateProvider.preferredLanguage('en');
     $translateProvider.fallbackLanguage('en');
 
     });
@@ -77,7 +57,6 @@ module.exports = function ()
       {
         if (language)
         {
-          // mixpanel.language (language);
           that.changeLanguage (language);
         }
         else
@@ -86,18 +65,14 @@ module.exports = function ()
         }
       });
 
-      // console.log (available);
       this.changeLanguage = function (langKey) {
             $translate.use(langKey);
             var languagecode = $translate.proposedLanguage() || $translate.use();
             console.log (languagecode);
-            // $timeout (function ()
-            // {
               $scope.language = {
                 code: languagecode,
                 title: available[languagecode]
               };
-            // });
             mixpanel.language (langKey);
             library.storeValue ('language', languagecode);
           };

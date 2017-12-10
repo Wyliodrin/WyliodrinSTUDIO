@@ -36,7 +36,6 @@ Blockly.Blocks['sendsignalsandflag'] = {
     this.appendValueInput("debug_text")
     .setCheck("String")
     .appendField("and flag");
-    //this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('');
@@ -53,7 +52,6 @@ Blockly.Blocks['sendsignals'] = {
     this.appendValueInput("value_value")
         .setCheck("Array")
         .appendField("with values");
-    //this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('');

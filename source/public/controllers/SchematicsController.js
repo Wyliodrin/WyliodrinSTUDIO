@@ -64,9 +64,6 @@ module.exports = function ()
 			var that = this;
 			var message = $mdDialog.confirm()
 		          .title($filter('translate')('SCHEMATICS_ERASE'))
-		          // .textContent('All of the banks have agreed to forgive you your debts.')
-		          // .ariaLabel('Lucky day')
-		          // .targetEvent(ev)
 		          .ok($filter('translate')('YES'))
 		          .cancel($filter('translate')('NO'));
 		    $mdDialog.show(message).then(function() {

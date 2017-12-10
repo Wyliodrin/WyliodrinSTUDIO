@@ -48,9 +48,6 @@ Blockly.JavaScript['firmata_serial'] = function(block) {
   var text_port = block.getFieldValue('port');
   var dropdown_baudrate = block.getFieldValue('baudrate');
   // TODO: Assemble JavaScript into code variable.
-  // var arguments = '-b '+dropdown_baudrate;
-  // if (text_port!='auto') arguments += ' -p '+text_port;
-  // var code = 'require ("child_process").exec (\'ino serial '+arguments+'\');';
   Blockly.JavaScript.NoSupportFor ('Arduino');
   var code = '// Block not supported in JavaScript\n';
   return code;

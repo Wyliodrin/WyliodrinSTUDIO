@@ -34,8 +34,6 @@ module.exports = function ()
 			cols = Math.floor(($element.width ())/9);
 	  		rows = Math.floor(($element.height()-12)/14);
 
-	  		// console.log ('cols '+cols+' rows '+rows);
-
 			shell.resize (cols, rows);
 			$wydevice.send ('s', {a:'r', c:cols, r: rows});
 		}
@@ -62,7 +60,6 @@ module.exports = function ()
 
 		$wydevice.on ('message', function (t, p)
 		{
-			// console.log (p);
 			if (t === 's')
 			{
 				if (p.a === 'k')
@@ -82,7 +79,6 @@ module.exports = function ()
 
 		$wyapp.on ('tab_shell', function ()
 		{
-			// console.log ('focus');
 			setTimeout (function ()
 			{
 				shell.focus ();
@@ -92,12 +88,9 @@ module.exports = function ()
 		$(window).resize (function ()
 		{
 			setSizes ();
-			// console.log ($element.width ());
-			// console.log ($element.height ());
 		});
 		shell.on ('data', function (key)
 		{
-			// xterm.write (key);
 			$wydevice.send ('s', {a:'k', t:key});
 		});
 	});

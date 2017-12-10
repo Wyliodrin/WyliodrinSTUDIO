@@ -31,7 +31,6 @@ Blockly.JavaScript.lcdEqual = function(lcd)
     var l = Blockly.JavaScript.variableDB_.getDistinctName('lcdSPIDisplay', Blockly.Generator.NAME_TYPE);
     Blockly.JavaScript.LCDSpi = l;
     Blockly.JavaScript.definitions_['lcdSPIDisplay'] = lcd+' = '+Blockly.JavaScript.LCDSpi+';\n';
-    //lcd+' = '+globalVar+';\n';
 }
 
 Blockly.JavaScript.spiLcdAtr = function(lcd, globalVar)
@@ -70,7 +69,6 @@ Blockly.JavaScript.colors = function ()
 {
   if (!Blockly.JavaScript.definitions_['import_struct'])
   {
-    //Blockly.JavaScript.definitions_['import_struct'] = 'import struct;\n';
   }
   if (!Blockly.JavaScript.definitions_['color2rgb'])
   {
@@ -95,8 +93,6 @@ Blockly.JavaScript['ada_setnokiadisplay'] = function(block) {
   var value_cs = Blockly.JavaScript.valueToCode(block, 'cs', Blockly.JavaScript.ORDER_ATOMIC);
   var value_rst = Blockly.JavaScript.valueToCode(block, 'rst', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  //Blockly.JavaScript.lcdDisplay();
-  //Blockly.JavaScript.spiLcdEqual(variable_lcdvariable);
   var code = variable_lcdvariable+' = new '+Blockly.JavaScript.wyliodrin+'.Adafruit_PCD8544('+value_sclk+", "+value_din+", "+value_dc+", "+value_cs+", "+value_rst+');\n';
   Blockly.JavaScript.spiLcdAtr(variable_lcdvariable, Blockly.JavaScript.LCDSpi);
   return code;
@@ -420,7 +416,6 @@ Blockly.JavaScript['ada_fillscreen'] = function(block) {
   value_lcdvar+'.fillScreen('+Blockly.JavaScript.colorChanged+');\n';
   return code;
 };
-//pt nokia diplay
 Blockly.JavaScript['ada_clearscreen'] = function(block) {
   Blockly.JavaScript.grove();
   // TODO: Assemble JavaScript into code variable.
@@ -428,7 +423,6 @@ Blockly.JavaScript['ada_clearscreen'] = function(block) {
   var code = value_lcdvar+'.clearDisplay();\n';
   return code;
 };
-//pt nokia diplay
 Blockly.JavaScript['ada_setcontrast'] = function(block) {
   Blockly.JavaScript.grove();
   var value_lcdvar = Blockly.JavaScript.valueToCode(block, 'lcdVar', Blockly.JavaScript.ORDER_ATOMIC);

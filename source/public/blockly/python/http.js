@@ -14,10 +14,6 @@ Blockly.Python['http_get'] = function(block) {
   Blockly.Python.import_requests();
   // // TODO: Assemble Python into code variable.
   var code;
-  // if(!Blockly.Python.sparkId)
-  // {
-  //   code = "\#Init Spark block must be used first.\nprint('Init Spark block not used')\n";
-  // }
   // TODO: Change ORDER_NONE to the correct strength.
   code = "requests."+value_method+"(" +value_link+ ")";
   return [code, Blockly.Python.ORDER_NONE];
@@ -31,10 +27,6 @@ Blockly.Python['http_post'] = function(block) {
   Blockly.Python.import_requests();
   // // TODO: Assemble Python into code variable.
   var code;
-  // if(!Blockly.Python.sparkId)
-  // {
-  //   code = "\#Init Spark block must be used first.\nprint('Init Spark block not used')\n";
-  // }
   // TODO: Change ORDER_NONE to the correct strength.
   code = "requests."+value_method+"(" +value_link+ ", "+format+" = "+value_data+")";
   return [code, Blockly.Python.ORDER_NONE];
@@ -46,10 +38,6 @@ Blockly.Python['http_format'] = function(block) {
   Blockly.Python.import_requests();
   // // TODO: Assemble Python into code variable.
   var code;
-  // if(!Blockly.Python.sparkId)
-  // {
-  //   code = "\#Init Spark block must be used first.\nprint('Init Spark block not used')\n";
-  // }
   // TODO: Change ORDER_NONE to the correct strength.
   code = value_data+"."+value_format;
   return [code, Blockly.Python.ORDER_NONE];

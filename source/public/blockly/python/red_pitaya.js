@@ -2,7 +2,6 @@ Blockly.Python['rp_analogwrite'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.Python.valueToCode(block, 'value', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = 'analogWrite ('+value_pin+', '+value_value+');\n';
@@ -13,7 +12,6 @@ Blockly.Python['rp_analogwritevoltage'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.Python.valueToCode(block, 'value', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = 'analogWriteVoltage ('+value_pin+', '+value_value+');\n';
@@ -24,7 +22,6 @@ Blockly.Python['rp_analogwriteraw'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.Python.valueToCode(block, 'value', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = 'analogWriteRaw ('+value_pin+', '+value_value+');\n';
@@ -123,7 +120,6 @@ Blockly.Python['rp_digitalwrite'] = function(block) {
   Blockly.Python.wiringpi ();
   var value_pin = Blockly.Python.valueToCode(block, 'pin', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.setpinmode (value_pin, 1);
-  // console.log ('value_pin '+value_pin);
   var value_value = Blockly.Python.valueToCode(block, 'value', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = 'digitalWrite ('+value_pin+', '+value_value+');\n';

@@ -39,7 +39,6 @@ module.exports = function ()
 		$scope.runlanguage = '';
 		_.each ($scope.LANGUAGES, function (language)
 		{
-			//console.log ($wydevice.device);
 			if (language.packagemanager.enable === true && (!$wydevice.device.capabilities || $wydevice.device.capabilities.l[language.title]))
 			{
 				debug ('Request package '+language.title);
@@ -66,14 +65,12 @@ module.exports = function ()
 							var available = {};
 							for (var index = 0; index < $scope.LANGUAGES.length; index++)
 							{
-								// debug ($scope.LANGUAGES[index].title);
 								if ($scope.LANGUAGES[index].title.toLowerCase() === p.l.toLowerCase())
 								{
 									readonly = $scope.LANGUAGES[index].packagemanager.readonly;
 									available = _.clone ($scope.LANGUAGES[index].packagemanager.available);
 								}
 							}
-							// debug (readonly);
 							var available_packages = [];
 							_.each ($scope.packages[p.l], function (v)
 							{
@@ -93,7 +90,6 @@ module.exports = function ()
 									v.w = available[title].website;
 									delete available[title];
 								}
-								// debug (v);
 							});
 							_.each (available, function (v, n)
 							{

@@ -22,7 +22,6 @@ Blockly.JavaScript['gopigo_direction'] = function(block) {
 
 
 Blockly.JavaScript['gopigo_stop'] = function(block) {
-  //var value_gopigo = Blockly.JavaScript.valueToCode(block, 'gopigo', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   Blockly.JavaScript.NoSupportFor ('GoPiGo');
   var code = '// GoPiGo is not supported in JavaScript';
@@ -30,7 +29,6 @@ Blockly.JavaScript['gopigo_stop'] = function(block) {
 };
 
 Blockly.JavaScript['gopigo_increase_speed'] = function(block) {
-  //var value_gopigo = Blockly.JavaScript.valueToCode(block, 'gopigo', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   Blockly.JavaScript.NoSupportFor ('GoPiGo');
   var code = '// GoPiGo is not supported in JavaScript';
@@ -38,7 +36,6 @@ Blockly.JavaScript['gopigo_increase_speed'] = function(block) {
 };
 
 Blockly.JavaScript['gopigo_decrease_speed'] = function(block) {
-  //var value_gopigo = Blockly.JavaScript.valueToCode(block, 'gopigo', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript deto code variable.
   Blockly.JavaScript.NoSupportFor ('GoPiGo');
   var code = '// GoPiGo is not supported in JavaScript';
@@ -46,7 +43,6 @@ Blockly.JavaScript['gopigo_decrease_speed'] = function(block) {
 };
 
 Blockly.JavaScript['gopigo_volt'] = function(block) {
- //var value_gopigo = Blockly.JavaScript.valueToCode(block, 'gopigo', Blockly.JavaScript.ORDER_ATOMIC);
   
  // TODO: Assemble JavaScript deto code variable.
  Blockly.JavaScript.NoSupportFor ('GoPiGo');

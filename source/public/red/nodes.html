@@ -972,28 +972,6 @@ RED.nodes.registerType('write ble',{
             $("#node-input-crontab").val(crontab);
 
         },
-        // button: {
-        //     onclick: function() {
-        //         var label = (this.name||this.payload).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-        //         d3.xhr("run/"+this.id).post(function(err,resp) {
-        //                 if (err) {
-        //                     if (err.status == 404) {
-        //                         RED.notify("<strong>Error</strong>: run node not deployed","error");
-        //                     } else if (err.status == 500) {
-        //                         RED.notify("<strong>Error</strong>: run failed, see log for details.","error");
-        //                     } else if (err.status == 0) {
-        //                         RED.notify("<strong>Error</strong>: no response from server","error");
-        //                     } else {
-        //                         RED.notify("<strong>Error</strong>: unexpected error: ("+err.status+")"+err.response,"error");
-        //                     }
-        //                 } else if (resp.status == 200) {
-        //                     RED.notify("Successfully injected: "+label,"success");
-        //                 } else {
-        //                     RED.notify("<strong>Error</strong>: unexpected response: ("+resp.status+") "+resp.response,"error");
-        //                 }
-        //         });
-        //     }
-        // }
     });</script><script type="text/x-red" data-help-name="run"><p>If no payload is specified the payload is set to the current time in millisecs since 1970. This allows subsequent functions to perform time based actions.</p>
     <p>The repeat function does what it says on the tin and continuously sends the payload every x seconds.</p>
     <p>The Fire once at start option actually waits 50mS before firing to give other nodes a chance to instantiate properly.</p>
@@ -1139,7 +1117,6 @@ RED.nodes.registerType('write ble',{
             this.noerr = 0;
             $("#node-input-noerr").val(0);
             for (var k=0; k < annot.length; k++) {
-                //console.log(annot[k].type,":",annot[k].text, "on line", annot[k].row);
                 if (annot[k].type === "error") {
                     $("#node-input-noerr").val(annot.length);
                     this.noerr = annot.length;
@@ -1158,7 +1135,6 @@ RED.nodes.registerType('write ble',{
             func: {value:"print msg\n"},
             stdout: {value:true},
             stderr: {value:true}
-            // outputs: {value:1}
         },
         inputs:1,
         outputs:1,
@@ -1168,9 +1144,6 @@ RED.nodes.registerType('write ble',{
         },
         oneditprepare: function() {
             var that = this;
-            // $( "#node-input-outputs" ).spinner({
-            //     min:1
-            // });
             function functionDialogResize() {
                 var rows = $("#dialog-form>div:not(.node-text-editor-row)");
                 var height = $("#dialog-form").height();
@@ -1480,26 +1453,14 @@ RED.nodes.registerType('write ble',{
             });
 
             this.xmlvisualsource = $('#node-input-xmlvisual').val();
-            // alert (this.xmlvisual); 
             this.source = "";
 
             function functionDialogResize(ev, ui) {
-                // var rows = $("#dialog-form>div:not(.node-text-editor-row)");
-                // var height = $("#dialog-form").height();
-                // console.log ('height: '+height);
-                // for (var i=0;i<rows.size();i++) {
-                //     height -= $(rows[i]).outerHeight(true);
-                // }
-                // var editorRow = $("#dialog-form>div.node-text-editor-row");
-                //  height -= (parseInt(editorRow.css("marginTop"))+parseInt(editorRow.css("marginBottom")));
-                // console.log ('height: '+height);
-                // $(".node-text-editor").css("height",height+"px");
                 $("#node-input-func-editor").css("height",(ui.size.height-300)+"px");
             };
 
             $( "#dialog" ).on("dialogresize", functionDialogResize);
             $( "#dialog" ).one("dialogopen", function(ev, ui) {
-                // var size = $( "#dialog" ).dialog('option','sizeCache-function');
                 var size = {
                     width: $(window).width()-35,
                     height: $(window).height()-35
@@ -1508,7 +1469,6 @@ RED.nodes.registerType('write ble',{
                     $("#dialog").dialog('option','width',size.width);
                     $("#dialog").dialog('option','height',size.height);
                     functionDialogResize(ev, {size:size});
-                    // $("#dialog").trigger ('dialogresize');
                 }
             });
             $( "#dialog" ).one("dialogclose", function(ev,ui) {
@@ -1516,28 +1476,6 @@ RED.nodes.registerType('write ble',{
                 $( "#dialog" ).off("dialogresize",functionDialogResize);
             });
             var that = this;
-            // require(["orion/editor/edit"], function(edit) {
-            //     that.editor = edit({
-            //         parent:document.getElementById('node-input-func-editor'),
-            //         lang:"js",
-            //         contents: $("#node-input-func").val()
-            //     });
-            //     RED.library.create({
-            //         url:"functions", // where to get the data from
-            //         type:"function", // the type of object the library is for
-            //         editor:that.editor, // the field name the main text body goes to
-            //         fields:['name','outputs']
-            //     });
-            //     $("#node-input-name").focus();
-
-            // });
-
-            // RED.library.create({
-            //     url:"functions", // where to get the data from
-            //     type:"visual", // the type of object the library is for
-            //     // editor:that.editor, // the field name the main text body goes to
-            //     fields:['name','outputs']
-            // });
 
             var div = $("#node-input-func-editor");
             div.append ('<iframe id="fvisualiframe" src="/visual2/html/blockly_frame.html?nrfile=toolbox&blocks=&readonly=false" style="width:100%; height:100%; float:left;"></iframe>');
@@ -1546,7 +1484,6 @@ RED.nodes.registerType('write ble',{
             {
               try
               {
-                // console.log (text);
                 var xml = blockly.Xml.textToDom(text);
                 blockly.mainWorkspace.clear ();
                 blockly.Xml.domToWorkspace(blockly.mainWorkspace, xml);
@@ -1556,7 +1493,6 @@ RED.nodes.registerType('write ble',{
               {
                 var xml = blockly.Xml.textToDom('<xml></xml>');
                 blockly.Xml.domToWorkspace(blockly.mainWorkspace, xml);
-                // console.log ('blockly: '+e);
                 return '<xml></xml>';
               }
               return text;
@@ -1723,8 +1659,6 @@ RED.nodes.registerType('write ble',{
 
     var html = window.atob ('PCFET0NUWVBFIGh0bWw+DQo8aHRtbCBuZy1hcHA9Im15QXBwIj4NCiAgPGhlYWQ+DQogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vYWpheC5nb29nbGVhcGlzLmNvbS9hamF4L2xpYnMvYW5ndWxhcmpzLzEuMy4xNC9hbmd1bGFyLm1pbi5qcyI+PC9zY3JpcHQ+DQogICAgPHNjcmlwdCBzcmM9Ii9zb2NrZXQuaW8vc29ja2V0LmlvLmpzIj48L3NjcmlwdD4NCiAgICA8c2NyaXB0Pg0KICAgICAgICBhbmd1bGFyLm1vZHVsZSgnbXlBcHAnLFtdKS5jb250cm9sbGVyICgnV3lsaW9kcmluQ3RybCcsIGZ1bmN0aW9uICgkc2NvcGUsICR0aW1lb3V0KQ0KICAgICAgICB7DQogICAgICAgICAgICB2YXIgc29ja2V0ID0gaW8oKTsNCiAgICAgICAgICAgIHNvY2tldC5vbigndmFsdWUnLCBmdW5jdGlvbiAoZGF0YSkgew0KICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nIChkYXRhKTsNCiAgICAgICAgICAgICAgICAkdGltZW91dCAoZnVuY3Rpb24gKCkNCiAgICAgICAgICAgICAgICB7DQogICAgICAgICAgICAgICAgICAgICRzY29wZVtkYXRhLnZhcmlhYmxlXSA9IGRhdGEudmFsdWU7ICAgICAgDQogICAgICAgICAgICAgICAgfSk7DQogICAgICAgICAgICAgICAgaWYgKHR5cGVvZiB3eWxpb2RyaW4ub25VcGRhdGUgPT09ICJmdW5jdGlvbiIpDQogICAgICAgICAgICAgICAgew0KICAgICAgICAgICAgICAgICAgICB3eWxpb2RyaW4ub25VcGRhdGUgKGRhdGEudmFyaWFibGUsIGRhdGEudmFsdWUpOw0KICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgIH0pOw0KICAgICAgICB9KTsNCiAgICAgICAgDQogICAgICAgIHZhciB3eWxpb2RyaW4gPSB7DQogICAgICAgICAgb25VcGRhdGU6IG51bGwsDQogICAgICAgIH07DQogICAgPC9zY3JpcHQ+DQogIDwvaGVhZD4NCiAgPGJvZHkgbmctY29udHJvbGxlcj0iV3lsaW9kcmluQ3RybCI+DQogICAgVmFsdWUge3sgdmFsdWUgfX0NCiAgICA8c2NyaXB0Pg0KICAgICAgLy8gVGhpcyBmdW5jdGlvbiBpcyBjYWxsZWQgZXZlcnl0aW1lIGEgdmFyaWFibGUgaXMgdXBkYXRlZA0KICAgICAgd3lsaW9kcmluLm9uVXBkYXRlID0gZnVuY3Rpb24gKHZhcmlhYmxlLCBkYXRhKQ0KICAgICAgew0KICAgICAgICBjb25zb2xlLmxvZyAodmFyaWFibGUrJyAnK2RhdGEpOw0KICAgICAgfQ0KICAgIDwvc2NyaXB0Pg0KICA8L2JvZHk+DQo8L2h0bWw+').toString();
 
-    // console.log (html);
-
     RED.nodes.registerType('web html',{
         color:"rgb(215, 215, 180)",
         category: 'output',
@@ -1732,7 +1666,6 @@ RED.nodes.registerType('write ble',{
             name: {value:''},
             template: {value:html},
             replace: {value: false}
-            // outputs: {value:1}
         },
         inputs:1,
         outputs:0,
@@ -1742,9 +1675,6 @@ RED.nodes.registerType('write ble',{
         },
         oneditprepare: function() {
             var that = this;
-            // $( "#node-input-outputs" ).spinner({
-            //     min:1
-            // });
             function functionDialogResize() {
                 var rows = $("#dialog-form>div:not(.node-text-editor-row)");
                 var height = $("#dialog-form").height();
@@ -1789,7 +1719,6 @@ RED.nodes.registerType('write ble',{
             this.noerr = 0;
             $("#node-input-noerr").val(0);
             for (var k=0; k < annot.length; k++) {
-                //console.log(annot[k].type,":",annot[k].text, "on line", annot[k].row);
                 if (annot[k].type === "error") {
                     $("#node-input-noerr").val(annot.length);
                     this.noerr = annot.length;
@@ -2104,28 +2033,6 @@ RED.nodes.registerType('write ble',{
             return this.name||"Analog Read "+(this.pin.length>0?this.pin:"msg.topic");
         }
     });
-
-    // RED.nodes.registerType('button',{
-    //     category: 'Signals',
-    //     color: '#a6bbcf',
-    //     defaults: {
-    //         name: {value:""},
-    //         button: {
-    //             value: "signal", 
-    //             required: true, 
-    //             validate: RED.validators.regex(/[A-Za-z]+/)
-    //         },
-    //         address:{values:""},
-    //         dashboarduuid:{value:""}
-    //     },
-    //     inputs:1,
-    //     outputs:1,
-    //     icon: "serial.png",
-    //     // align: 'left',
-    //     label: function() {
-    //         return this.name||"Button "+this.button;
-    //     }
-    // });
     
     RED.nodes.registerType('sendsignal',{
         category: 'Signals',
@@ -2139,8 +2046,6 @@ RED.nodes.registerType('write ble',{
             },
             to: {value: 'dashboard'},
             deviceid: {value: ''}
-            // address:{values:""},
-            // dashboarduuid:{value:""}
         },
         inputs:1,
         outputs:0,
@@ -2590,7 +2495,6 @@ RED.nodes.registerType('write ble',{
             this.noerr = 0;
             $("#node-input-noerr").val(0);
             for (var k=0; k < annot.length; k++) {
-                //console.log(annot[k].type,":",annot[k].text, "on line", annot[k].row);
                 if (annot[k].type === "error") {
                     $("#node-input-noerr").val(annot.length);
                     this.noerr = annot.length;
@@ -3180,7 +3084,6 @@ RED.nodes.registerType('write ble',{
             return this.name?"node_label_italic":"";
         },
         oneditprepare: function() {
-            //$( "#node-input-gap" ).spinner({min:0});
             $("#node-input-func").on("change",function() {
                 if ($("#node-input-func").val() === "rbe") {
                     $("#node-bandgap").hide();
@@ -3845,7 +3748,6 @@ handle multiple topics at the same time.</p></script><script type="text/x-red" d
     <div class="form-tips" id="tip-bin" hidden>Tip: In timeout mode timeout starts from arrival of first character.</div></script><script type="text/javascript">RED.nodes.registerType('serial-port',{
         category: 'config',
         defaults: {
-            //name: {value:""},
             serialport: {value:"",required:true},
             serialbaud: {value:57600,required:true},
             databits: {value:8,required:true},
@@ -3897,12 +3799,8 @@ handle multiple topics at the same time.</p></script><script type="text/x-red" d
             } catch(err) {
             }
             $("#node-config-lookup-serial").click(function() {
-                //$("#node-config-lookup-serial-icon").removeClass('fa fa-search');
-                //$("#node-config-lookup-serial-icon").addClass('fa fa-spinner');
                 $("#node-config-lookup-serial").addClass('disabled');
                 $.getJSON('serialports',function(data) {
-                    //$("#node-config-lookup-serial-icon").addClass('fa fa-search');
-                    //$("#node-config-lookup-serial-icon").removeClass('fa fa-spinner');
                     $("#node-config-lookup-serial").removeClass('disabled');
                     var ports = [];
                     $.each(data, function(i, port){
@@ -4540,7 +4438,6 @@ handle multiple topics at the same time.</p></script><script type="text/x-red" d
         defaults: {
             name: {value:""},
             rules:{value:[{t:"set",p:"payload",to:""}]},
-            // legacy
             action: {value:""},
             property: {value:""},
             from: {value:""},
@@ -4843,7 +4740,6 @@ handle multiple topics at the same time.</p></script><script type="text/x-red" d
         defaults: {
             name: {value:""},
             sep: {value:',',required:true,validate:RED.validators.regex(/^.{1,2}$/)},
-            //quo: {value:'"',required:true},
             hdrin: {value:""},
             hdrout: {value:""},
             multi: {value:"one",required:true},
@@ -5243,9 +5139,6 @@ handle multiple topics at the same time.</p></script><script type="text/x-red" d
         <input type="text" id="node-config-input-name" placeholder="Name">
     </div></script><script type="text/javascript">(function() {
         var hasGlobal = false;
-        // $.getJSON('twilio-api/global',function(data) {
-        //     hasGlobal = data.hasToken;
-        // });
         RED.nodes.registerType('twilio-api',{
             category: 'config',
             defaults: {

@@ -65,8 +65,6 @@ app.factory ('$wysignalproperties', function ($mdDialog)
 		      },
 		      controllerAs: 's',
 		      templateUrl: 'signal-properties.html',
-		      // parent: $element,
-		      // targetEvent: ev,
 		      clickOutsideToClose:true,
 		      fullscreen: false
 		    });

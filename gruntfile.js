@@ -35,7 +35,8 @@ module.exports = function(grunt) {
           DEBUG: true,
           Blob: true,
           FileReader: true,
-          navigator: true
+          navigator: true,
+          nodeRequire: true
         }
       }
     },
@@ -102,7 +103,12 @@ module.exports = function(grunt) {
         },
       options:{
         external: libs,
-        transform: [["brfs", {}]]
+        transform: [["brfs", {}]],
+        postBundleCB: function (err, src, next) {
+          // HACK: save Node's `require` before it gets overrided by browserify
+          // console.log (src.toString ());
+          next(err, 'if (typeof storedNodeRequire === "undefined") { var storedNodeRequire = "yes"; var nodeRequire = undefined; if (typeof require !== "undefined") nodeRequire = require; } console.log (nodeRequire);' + src);
+        }
       }
     },
     ngAnnotate:

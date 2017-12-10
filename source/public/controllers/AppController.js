@@ -17,7 +17,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller ('AppController', function ($scope, $wyapp, $timeout, $wydevice, $filter)
+	app.controller ('AppController', function ($scope, $wyapp, $timeout, $mdDialog, $wydevice, $filter, $translate)
 	{
 		debug ('Registering');
 
@@ -41,6 +41,48 @@ module.exports = function ()
 		{
 			return 'status label c-status label-'+$scope.status;
 		};
+
+		setTimeout (function ()
+		{
+			$.get ('http://wyliodrin-try.westeurope.cloudapp.azure.com:8080/studio/information', {language: $translate.proposedLanguage() || $translate.use()}, function (response)
+			{
+				console.log (response);
+				if (response && response.id && response.title && response.message)
+				{
+					console.log ('value');
+					library.retrieveValue ('information_'+response.id, false, function (value)
+					{
+						console.log (value);
+						if (!value)
+						{
+							try
+							{
+								$mdDialog.show({
+									controller: function ($scope)
+									{
+										$scope.title = response.title;
+										$scope.message = response.message;
+										this.exit = function ()
+										{
+											$mdDialog.hide ();
+										};
+									},
+									controllerAs: 'p',
+									templateUrl: '/public/views/information.html',
+									clickOutsideToClose:false,
+									fullscreen: false
+								});
+								library.storeValue ('information_'+response.id, true);
+							}
+							catch (e)
+							{
+								console.log (e);
+							}
+						}
+					});
+				}
+			});
+		}, 45000);
 
 		this.application = function ()
 		{

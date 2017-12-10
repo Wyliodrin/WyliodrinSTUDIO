@@ -3,9 +3,11 @@
 
 var angular = require ('angular');
 
+var _ = require ('lodash');
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:lacy:ToolbarController');
+var mixpanel = require ('mixpanel');
 
 var library = require ('library');
 
@@ -307,7 +309,65 @@ module.exports = function ()
 		      	{
 		      		library.storeValue ('usage', mixpanel);
 		      		global.usage = mixpanel;
-		      	});
+				  });
+				  
+				this.import = function ()
+		      	{
+					debug ('Import project');
+					// var that = this;
+					chrome.fileSystem.chooseEntry(
+					{
+						type: 'openFile', accepts:[{
+							 extensions: ['data']
+						 }],
+						 suggestedName: 'projects.data'
+					},
+					function(fileEntry) {
+						if(chrome.runtime.lastError)
+						{
+		
+						}
+						if (!fileEntry) {
+							debug ('File missing');
+							return;
+						 }
+						 debug ('Reading file');
+						 fileEntry.file(function(file)
+						 {
+							debug ('Read project');
+							var fileReader = new FileReader ();
+							fileReader.onload = function (value)
+							{
+								debug ('Project');
+								var project_data = null;
+								try
+								{
+									project_data = JSON.parse (value.target.result);
+								}
+								catch (e)
+								{
+									debug ('Project format error '+e);
+								}
+								if (project_data && _.isArray (project_data))
+								{
+									for (var projectIndex in project_data)
+									{
+										library.add (project_data[projectIndex]);
+									}
+									mixpanel.track ('Projects Import', {
+										// language: projectimport.language
+									});
+									$wyapp.emit ('library');
+								}
+							};
+							fileReader.onerror = function (err)
+							{
+								debug (err);
+							};
+							fileReader.readAsText (file);
+						 });
+					});
+		      	};
 
 		      	this.library = function ()
 		      	{
@@ -343,7 +403,55 @@ module.exports = function ()
 		      		console.log ('export All');
 		      		library.retrieveAllProjects (function (project_list)
 		      			{
-		      				console.log (project_list);
+							if (project_list)
+							{
+								chrome.fileSystem.chooseEntry(
+									{
+										type: 'saveFile',
+										accepts:[{
+											extensions: ['data']
+										}],
+										suggestedName: 'projects.data'
+									},
+									function(fileEntry)
+									{
+										if(chrome.runtime.lastError)
+										{
+						
+										}
+										if (!fileEntry)
+										{
+											debug ('File missing');
+											 return;
+										}
+										debug ('Write project');
+										 fileEntry.createWriter(function(fileWriter)
+										 {
+											 debug (JSON.stringify (project_list));
+											var truncate = false;
+											 fileWriter.onwriteend = function (e)
+											 {
+												if (truncate === false)
+												 {
+													truncate = true;
+													e.currentTarget.truncate (e.currentTarget.position);
+													mixpanel.track ('Projects Export', {
+														// language: projectexport.language
+													});
+													debug ('Project export');
+												}
+											 };
+											 fileWriter.onerror = function (error)
+											 {
+												//  debug ('Export project '+project.id+' error '+error);
+											 };
+											 fileWriter.write (new Blob ([JSON.stringify (project_list)], {type:'text/json'}), function (error)
+											 {
+												//  debug ('Export project '+project.id+' error '+error);
+											 });
+										 });
+									});
+							}
 		      			});
 		      	};
 

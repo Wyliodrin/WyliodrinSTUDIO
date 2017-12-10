@@ -1,10 +1,70 @@
 
 "use strict";
 
+var _ = require ('lodash');
 var dexie = require ('dexie');
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
 var debug = require ('debug')('wyliodrin:library');
+
+var store = false;
+var update = false;
+
+function loadAllProjects ()
+{
+	console.log (folder);
+	console.log (projects_data);
+	if (fs.existsSync (folder) && fs.existsSync (projects_data))
+	{
+		console.log (projects_data);
+		retrieveAllProjects (function (project_list)
+		{
+			var folder = path.join (os.homedir (), '.WyliodrinSTUDIO');
+			var projects_data = path.join (folder, 'projects.data');	
+			console.log (projects_data);
+			console.log (project_list);
+			if (project_list && project_list.length === 0)
+			{
+				console.log (projects_data);
+				var projects = JSON.parse (fs.readFileSync (projects_data));
+				for (var projectIndex in projects)
+				{
+					add (projects[projectIndex]);
+				}
+				console.log (projects);
+			}
+		});
+	}
+}
+
+function storeAllProjects ()
+{
+	if (store == false)
+	{
+		store = true;
+		var folder = path.join (os.homedir (), '.WyliodrinSTUDIO');
+		fs.mkdir (folder, function (err)
+		{
+			retrieveAllProjects (function (project_list)
+			{
+				console.log (project_list);
+				fs.writeFile (path.join (folder, 'projects.data'), JSON.stringify (project_list), function (err)
+				{
+					store = false;
+					if (update)
+					{
+						update = false;
+						process.nextTick (storeAllProjects);
+					}
+				});
+			});
+		});
+	}
+	else
+	{
+		update = true;
+	}
+}
 
 var _ = require ('lodash');
 
@@ -46,6 +106,26 @@ db.version(1).stores ({
 
 db.open ();
 
+if (nodeRequire)
+{
+	var fs = nodeRequire ('fs');
+	var os = nodeRequire ('os');
+	var path = nodeRequire ('path');
+	setInterval (function ()
+	{
+		if (update) storeAllProjects ();
+	}, 60000);
+
+	console.log ('Store all projects');
+
+	var folder = path.join (os.homedir (), '.WyliodrinSTUDIO');
+	var projects_data = path.join (folder, 'projects.data');	
+	process.nextTick (function ()
+	{
+		loadAllProjects ();
+	});
+}
+
 function add (value, language, done, devicecategory)
 {
 	if (_.isString (value))
@@ -77,6 +157,7 @@ function add (value, language, done, devicecategory)
 			if (done) done (null, id);
 		});
 	}
+	update = true;
 }
 
 function cloneProject (project, newTitle, done)
@@ -95,6 +176,7 @@ function cloneProject (project, newTitle, done)
 		debug (err);
 		if (done) done (err);
 	});
+	update = true;
 }
 
 function generateProject(id, title, language, date, mainContent, visualContent, projectTree, projectNotebook)
@@ -156,6 +238,7 @@ function erase (id)
 {
 	debug ('Erasing project '+id);
 	db.applications.delete (id);
+	update = true;
 }
 
 function retrieveProject (id, done)
@@ -177,9 +260,18 @@ function retrieveAllProjects (done)
 	db.applications.toArray ().then(function (project_list)
 	{
 		debug ('Retrieved all projects');
+		// console.log (project_list);
+		for (var projectIndex in project_list)
+		{
+			project_list[projectIndex] = _.clone (project_list[projectIndex]);
+			delete project_list[projectIndex].id;
+			delete project_list[projectIndex].$$hashKey;
+			console.log (project_list[projectIndex]);
+		}
 		done (project_list);
 	}).catch (function (error)
 	{
+		console.log (error);
 		done (null);
 	});
 }
@@ -188,18 +280,21 @@ function rename (id, title)
 {
 	debug ('Store project main '+id);
 	db.applications.update (id, {title:title});
+	update = true;
 }
 
 function storeMain (id, main,tree)
 {
 	debug ('Store project main '+id);
 	db.applications.update (id, {main:main,tree:tree});
+	update = true;
 }
 
 function storeTree (id, tree)
 {
 	debug ('Store project tree '+id);
 	db.applications.update (id, {tree:tree});
+	update = true;
 }
 
 function convertToTree(project)
@@ -224,12 +319,14 @@ function storeDashboard (id, dashboard)
 {
 	debug ('Store project dashboard '+id);
 	db.applications.update (id, {dashboard:dashboard});
+	update = true;
 }
 
 function storeSchematics (id, schematics)
 {
 	debug ('Store project schematics '+id);
 	db.applications.update (id, {schematics:schematics});
+	update = true;
 }
 
 function retrieveWorkingProject (done)
@@ -270,7 +367,7 @@ function retrieveValue (key, defvalue, done)
 	}).catch (function (error)
 	{
 		debug ('Using '+defvalue);
-		if (defvalue)
+		if (defvalue !== undefined)
 		{
 			db.settings.put ({key:key, value:defvalue}).then (function ()
 			{
@@ -288,6 +385,7 @@ function storeNotebook (id, notebook)
 {
 	debug ('Store project '+id);
 	db.applications.update (id, {notebook:notebook});
+	update = true;
 }
 
 function listProjects (done)
@@ -310,6 +408,7 @@ module.exports.storeNotebook = storeNotebook;
 module.exports.storeTree = storeTree;
 module.exports.convertToTree = convertToTree;
 module.exports.storeWorkingProject = storeWorkingProject;
+module.exports.retrieveAllProjects = retrieveAllProjects;
 module.exports.retrieveWorkingProject = retrieveWorkingProject;
 module.exports.storeDashboard = storeDashboard;
 module.exports.storeSchematics = storeSchematics;

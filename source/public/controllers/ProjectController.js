@@ -784,7 +784,7 @@ var app = angular.module ('wyliodrinApp');
 				});
 				setTimeout (function ()
 				{
-					if (settings.variant.STORE && settings.system.PlatformOs !== 'cros')
+					if (!nodeRequire && settings.system.PlatformOs !== 'cros')
 					{
 						$wyapp.emit ('download_standalone');
 					}

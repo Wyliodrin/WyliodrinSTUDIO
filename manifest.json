@@ -34,6 +34,7 @@
     "webview",
     "https://api.mixpanel.com/*",
     "https://cdn.rawgit.com/Wyliodrin/wyliodrin-app-server/master/package.json",
+    "https://www.wyliodrin.com/",
     "system.network"
   ],
   "file_handlers":

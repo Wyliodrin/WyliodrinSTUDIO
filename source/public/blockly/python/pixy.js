@@ -3,15 +3,6 @@ Blockly.Python.pixyImport = function ()
   Blockly.Python.wiringpi();
 }
 
-// Blockly.Python.pixySet = function()
-// {
-//   if(!Blockly.Python.definitions_['pixy_setup'])
-//   {
-//     var p = Blockly.Python.variableDB_.getDistinctName('pixy', Blockly.Generator.NAME_TYPE);
-//     Blockly.Python.pixy = p;
-//     Blockly.Python.definitions_['pixy_setup'] = Blockly.Python.pixy+" = Pixy()\n";
-//   }
-// }
 
 Blockly.Python.pixyAtr = function(pixy)
 {

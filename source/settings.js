@@ -10,12 +10,11 @@ var install = require ('./config/install.js');
 var translate = require ('./config/languages.js');
 
 var makefile = require ('./config/makefile.js');
-// var makefileplus = require ('./config/makefileplus.js');
-// var makefileplusplus = require ('./config/makefileplusplus.js');
 var makefile_v2 = require('./config/makefile_v2.js');
 
 var settings = {
-	debug: require ('./config/debug.js')
+	debug: require ('./config/debug.js'),
+	example: example
 };
 
 settings.platform = require ('./config/platform.js');
@@ -146,10 +145,6 @@ settings.VERSION = JSON.parse(fs.readFileSync (__dirname+'/../manifest.json').to
 settings.SENDER = 6000;
 
 settings.MAKEFILE_STOARGE = makefile;
-//old
-// settings.MAKE_FIRMWARE = makefileplus;
-// settings.MAKE_OWN_FIRMWARE = makefileplusplus;
-// /old
 
 settings.MAKEFILE_V2 = makefile_v2;
 

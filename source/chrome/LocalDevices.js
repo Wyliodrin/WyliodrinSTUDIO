@@ -44,7 +44,6 @@ function deviceId (hostPort)
 		// TODO improve check for new serial devices
 		if (list.length !== serialDevices.length)
 		{
-			// console.log (list);
 			serialDevices = [];
 			_.each (list, function (item)
 			{
@@ -69,7 +68,6 @@ function deviceId (hostPort)
 				serialDevices.push (device);		
 			});
 			serialDevices = _.sortBy (serialDevices, "priority");
-			// console.log (serialDevices);
 			emitter.emit ('serial', serialDevices);
 		}
 		setTimeout (listSerialDevices, 1000);
@@ -253,7 +251,6 @@ function compactDevices ()
 		}
 	}
 	emitter.emit ('local', devices);
-	// console.log (devices);
 }
 
 debug ('mdns for _wyapp');
@@ -312,9 +309,6 @@ chrome.mdns.onServiceList.addListener (function (services)
 			wyliodrinappserver: true
 		};
 		device.addParameters (WYAPP, parameters);
-		// $scope.devices.push ({ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: service.serviceName.split('.')[0]+' ('+service.ipAddress+')'});
-		// var deviceindex = _.findIndex ($scope.devicesinstall, function (device) { return device.ip === service.ipAddress; });
-		// if (deviceindex >= 0) $scope.devicesinstall.splice (deviceindex, 1);
 	});
 	debug ('Compacting devices');
 	compactDevices ();
@@ -350,11 +344,6 @@ chrome.mdns.onServiceList.addListener (function (services)
 				device = new Device (id);
 				addDevice (device);
 			}
-			// var deviceindex = _.findIndex ($scope.devices, function (device) { return device.ip === service.ipAddress; });
-			// if (deviceindex < 0)
-			// {
-			// 	$scope.devicesinstall.push ({category: category, ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: name.substring (6)+' ('+service.ipAddress+')', type:'_sshsvc._tcp.local', platform:'windows'});
-			// }
 			var parameters = 
 			{
 				name: name.substring(6),
@@ -379,7 +368,6 @@ chrome.mdns.onServiceList.addListener (function (services)
 	debug (services);
 	eraseDevices (WORKSTATION);
 	var regex = /([^[]+) \[([0-9a-f:]+)\]/;
-	// removeDevices ('_workstation._tcp.local');
 	_.each (services, function (service)
 	{
 		debug ('Service');
@@ -391,13 +379,11 @@ chrome.mdns.onServiceList.addListener (function (services)
 			if (data[2].toLowerCase().startsWith ('b8:27:eb') || data[1] === 'raspberrypi')
 			{
 				category = 'raspberrypi';
-				// $scope.devicesinstall.push ({category: 'raspberrypi', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
 			}
 			else
 			if (data[2].toLowerCase().startsWith ('d0:5f:b8'))
 			{
 				category = 'beagleboneblack';
-				// $scope.devicesinstall.push ({category: 'beagleboneblack', ip: service.ipAddress, port: parseInt(service.serviceHostPort.substring (service.serviceHostPort.lastIndexOf (':')+1)), secureport:22, name: data[1]+' ('+service.ipAddress+')', type:'_workstation._tcp.local', platform:'linux'});
 			}
 			if (category)
 			{
@@ -434,7 +420,6 @@ dns.services (function (err, finder)
 	eraseDevices (DNS);
 	if (!err)
 	{
-		// console.log (finder);
 		_.each (finder.byService_._wyapp, function (s, ip)
 		{
 			if (s)

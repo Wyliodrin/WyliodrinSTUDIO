@@ -42,16 +42,6 @@ module.exports = function ()
 
 		$wydevice.send ('tm', {a:'run'});
 
-		/*var status = function (status)
-		{
-			if (status !== 'CONNECTED' || status !== 'PING')
-			{
-				that.exit ();
-			}
-		};
-
-		$wydevice.on ('status', status); */
-
 		this.stop = function (task)
 		{
 			debug ('Stopping '+task.PID);
@@ -70,7 +60,6 @@ module.exports = function ()
 			debug ('Exiting');
 			$mdDialog.hide ();
 			$wydevice.send ('tm', {a:'stop'});
-			// $wydevice.removeListener ('status', status);
 			$wydevice.removeListener ('message', message);
 		};
 	});

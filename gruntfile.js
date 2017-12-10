@@ -7,6 +7,7 @@ var mkdirp = require ('mkdirp');
 var path = require ('path');
 
 var CONFIG = 'source/config';
+var TRANSLATION_FOLDER = 'source/public/translations';
 
 module.exports = function(grunt) {
 
@@ -103,16 +104,6 @@ module.exports = function(grunt) {
         external: libs,
         transform: [["brfs", {}]]
       }
-      // streamsproject: {
-      //   files: {
-      //     'build/public/red/blockly.js': ['source/public/blockly/blockly.js']
-      //   },
-      //   options: {
-      //     transform: [
-      //             ["brfs", {}]
-      //          ],
-      //   }
-      // }
     },
     ngAnnotate:
     {
@@ -127,14 +118,14 @@ module.exports = function(grunt) {
           archive: 'publish/publish-'+manifest.version+'.zip'
         },
         files: [
-          {expand: true, cwd: 'build/', src: ['**'], dest: 'publish/'}, // makes all src relative to cwd
+          {expand: true, cwd: 'build/', src: ['**'], dest: 'publish/'}, 
         ]
       }
     },
     htmlmin: {
       client:
       {
-        options: {                                 // Target options
+        options: {                               
           removeComments: true,
           collapseWhitespace: true
         },
@@ -232,14 +223,6 @@ module.exports = function(grunt) {
               // ext: '.html',   // Dest filepaths will have this extension.
               extDot: 'first'   // Extensions in filenames begin after the first dot
             },
-            /*{
-              expand: true,     // Enable dynamic expansion.
-              cwd: 'source/',      // Src matches are relative to this path.
-              src: ['public/translations/**'], // Actual pattern(s) to match.
-              dest: 'build/',   // Destination path prefix.
-              // ext: '.html',   // Dest filepaths will have this extension.
-              extDot: 'first'   // Extensions in filenames begin after the first dot
-            }, */
             {
               expand: true,     // Enable dynamic expansion.
               cwd: 'source/',      // Src matches are relative to this path.
@@ -298,12 +281,35 @@ module.exports = function(grunt) {
           {
             expand: true,     // Enable dynamic expansion.
             cwd: 'build/',      // Src matches are relative to this path.
-            src: ['public/**/*.js', '!public/blockly/blockly/**', '!public/red/**'], // Actual pattern(s) to match.
+            src: ['public/**/*.js', '!public/notebook/**', '!public/blockly/blockly/**', '!public/red/**'], // Actual pattern(s) to match.
             dest: 'build/',   // Destination path prefix.
             ext: '.js',   // Dest filepaths will have this extension.
             extDot: 'first'   // Extensions in filenames begin after the first dot
           },
         ]
+      }
+    },
+    nwjs: {
+      'standalone-win': {
+          options: {
+              platforms: ['win'],
+              buildDir: './standalone/standalone-win' 
+          },
+          src: ['./build/**/*'] 
+      },
+      'standalone-linux': {
+          options: {
+              platforms: ['linux'],
+              buildDir: './standalone/standalone-linux' 
+          },
+          src: ['./build/**/*']
+      },
+      'standalone-osx': {
+          options: {
+              platforms: ['osx64'],
+              buildDir: './standalone/standalone-osx' 
+          },
+          src: ['./build/**/*']
       }
     }
   };
@@ -398,7 +404,7 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask ('makefile_v2', 'Makefile_v2', function ()////////////////////////////////////////////////
+  grunt.registerTask ('makefile_v2', 'Makefile_v2', function ()
   {
     function recurse(folder){
       var ret = {};
@@ -431,65 +437,37 @@ module.exports = function(grunt) {
       'firmware':{},
       'start':{}
     };
-    // var listsoftware = fs.readdirSync (EXAMPLE_FOLDER_SOFTWARE);
-    // _.each (listsoftware, function (software)
-    // {
-    //   if (software[0]!=='.')
-    //   {
-    //     example.software[software] = {};
-    //     var examplefile = fs.readdirSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software);
-    //     _.each (examplefile, function (file)
-    //     {
-    //       if (file[0]!=='.')
-    //       {
-    //         try
-    //         {
-    //           var project = path.basename (file, '.wylioapp');
-    //           console.log (project);
-    //           if (project.startsWith('start-'))
-    //           {
-    //             console.log (project);
-    //             if (!example.start[software]) example.start[software] = {};
-    //             example.start[software][project.substring(6)] = JSON.parse(fs.readFileSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software+'/'+file).toString());
-    //           }
-    //           else
-    //           {
-    //             example.software[software][project] = JSON.parse(fs.readFileSync (EXAMPLE_FOLDER_SOFTWARE+'/'+software+'/'+file).toString());
-    //           }
-    //         }
-    //         catch (e)
-    //         {
-    //           console.log (e);
-    //         }
-    //       }
-    //     });
-    //   }
-    // });
-    // var EXAMPLE_FOLDER_FIRMWARE = 'source/embedded/example/firmware';
-    // var listfirmware = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE);
-    // _.each (listfirmware, function (firmware)
-    // {
-    //   if (firmware[0]!=='.')
-    //   {
-    //     example.firmware[firmware] = {};
-    //     var examplefolder = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware);
-    //     _.each (examplefolder, function (folder)
-    //     {
-    //       if (folder[0]!=='.')
-    //       {
-    //         example.firmware[firmware][folder] = {};
-    //         var examplefile = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder);
-    //         _.each (examplefile, function (file)
-    //         {
-    //           if (file[0]!=='.')
-    //           {
-    //             example.firmware[firmware][folder][file] = fs.readFileSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/'+file+'.ino').toString();
-    //           }
-    //         });
-    //       }
-    //     });
-    //   }
-    // });
+     var EXAMPLE_FOLDER_FIRMWARE = 'source/embedded/example/firmware';
+     var listfirmware = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE);
+     _.each (listfirmware, function (firmware)
+     {
+       if (firmware[0]!=='.')
+       {
+         example.firmware[firmware] = {};
+         var examplefolder = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware);
+         _.each (examplefolder, function (folder)
+         {
+           if (folder[0]!=='.')
+           {
+             example.firmware[firmware][folder] = {};
+             var examplefile = fs.readdirSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder);
+             _.each (examplefile, function (file)
+             {
+               if (file[0]!=='.')
+               {
+                example.firmware[firmware][folder][file] = {};
+                fs.readdirSync(EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/').forEach(actualfile => {
+                  if (actualfile[0]!=='.')
+                  {
+                    example.firmware[firmware][folder][file][actualfile] = fs.readFileSync (EXAMPLE_FOLDER_FIRMWARE+'/'+firmware+'/'+folder+'/'+file+'/'+actualfile).toString();
+                  }
+                });
+               }
+             });
+           }
+         });
+       }
+     });
     mkdirp.sync (CONFIG);
     fs.writeFileSync (CONFIG+'/example.js', '"use strict";\n module.exports = '+JSON.stringify (example)+';');
   });
@@ -530,8 +508,6 @@ module.exports = function(grunt) {
         }
         var buffer = data.join ('\n');
         install.windows[path.basename(installfile, '.cmd')] = 'powershell.exe -OutputFormat Text -EncodedCommand '+new Buffer (buffer, 'utf16le').toString('base64');  
-        // install.windows[path.basename(installfile, '.cmd')] = install.windows[path.basename(installfile, '.cmd')].replace (/\r?\n/g, '^\r\n');
-        // install.windows[path.basename(installfile, '.cmd')] = install.windows[path.basename(installfile, '.cmd')] + '\r\n';
         console.log ('Install: '+path.basename(installfile, '.cmd'));
       }      
     });
@@ -573,8 +549,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask ('locale', 'Locale', function ()
   {
-    var TRANSLATION_FOLDER = 'source/public/translations';
-
     var languagelist = fs.readdirSync (TRANSLATION_FOLDER);
 
     _.each (languagelist, function(file)
@@ -599,13 +573,41 @@ module.exports = function(grunt) {
     });
   });
 
+  grunt.registerTask ('verifyTranslation', 'Verify Translation', function ()
+  {
+    var enFilePath = './' + TRANSLATION_FOLDER + '/messages-en.json';
+    var enFileContent = require (enFilePath);
+    var otherLanguagesFiles = fs.readdirSync(TRANSLATION_FOLDER, {extensions: ['.json', '.JSON']});
+    var keysEn;
+    var missingKeysNo;
+
+    function getMissingIDs() {
+      var enFileIndex = otherLanguagesFiles.indexOf('messages-en.json');
+      keysEn = Object.keys(enFileContent);
+
+      otherLanguagesFiles.splice(enFileIndex, 1);
+
+      otherLanguagesFiles.forEach(function(file) {
+        var fileContent = require ('./' + TRANSLATION_FOLDER + '/' + file);
+        var keys = Object.keys(fileContent);
+        var missingKeys = _.difference(keysEn, keys);
+        missingKeysNo = missingKeys.length;
+        var missingKeysPercentage = (missingKeysNo / keys.length) * 100;
+
+        console.log('There is a percentage of ' + missingKeysPercentage.toFixed(2) + '% missing IDs from ' + file + '.');
+        fs.appendFileSync('missingIDs.log', '[' + file + ']:' + '\n');
+        fs.appendFileSync('missingIDs.log', missingKeys.join("\r\n"));
+        fs.appendFileSync('missingIDs.log', '\n\n');
+      }); 
+    }
+
+    getMissingIDs();
+
+  });
 
   grunt.registerTask ('codingstyle', 'Coding Style', function ()
   {
-    //we use a whitelist approach
-    //let only what we know it is safe to modify here in (folders)
-
-    //options
+  
     var options = {
       "indent_size": 4,
       "indent_char": " ",
@@ -651,10 +653,11 @@ module.exports = function(grunt) {
 
     function recurse(obj, baseSource, baseDest){
       var source = path.join(baseSource, obj.name);
-      var dest = path.join(baseDest, obj.name)+".FIXED"
+      var dest = path.join(baseDest, obj.name)+".FIXED";
+      var stat = null;
       try 
       {
-        var stat = fs.lstatSync(source);
+        stat = fs.lstatSync(source);
       }
       catch (err)
       {
@@ -667,15 +670,13 @@ module.exports = function(grunt) {
         mkdirp(dest);
         var children;
         if (obj.children){
-          //if whitelisted picked folders/files
           children = obj.children;
         }
         else{
-          //all of them
           children = fs.readdirSync(source);
           children = _.map(children, function (n){
             return {name:n};
-          })
+          });
         }
         _.each(children, function (child){
           recurse(child, source, dest);
@@ -724,6 +725,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-nw-builder');
 
   grunt.registerTask('publish', ['clean', 'default', 'cssmin', 'uglify', 'htmlmin', 'compress']);
 
@@ -735,9 +737,22 @@ module.exports = function(grunt) {
     'embedFonts',
     'sass',
     'locale', 
-    // 'cssmin',
-    // 'uglify',
-    // 'htmlmin'
+    'verifyTranslation'
     ]);
 
+  grunt.registerTask('create-package-file', [], function() {
+        var fs = require('fs')
+          , manifest = JSON.parse(fs.readFileSync('./build/manifest.json', 'utf8'))
+          , en_messages = JSON.parse(fs.readFileSync('./build/_locales/en/messages.json', 'utf8'))
+          , appName = en_messages.appName.message
+          , appDesc = en_messages.appDesc.message;
+        
+        manifest.name = appName;
+        manifest.description = appDesc;
+
+        fs.writeFileSync('./build/package.json', JSON.stringify(manifest), 'utf8');
+  });
+  grunt.registerTask('standalone-win', ['create-package-file', 'nwjs:standalone-win']);
+  grunt.registerTask('standalone-linux', ['create-package-file', 'nwjs:standalone-linux']);
+  grunt.registerTask('standalone-osx', ['create-package-file', 'nwjs:standalone-osx']);
 };

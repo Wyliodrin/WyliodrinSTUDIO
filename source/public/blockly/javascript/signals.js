@@ -20,8 +20,6 @@ Blockly.JavaScript['sendsignals'] = function(block) {
 };
 
 Blockly.JavaScript['signal_receivesignal'] = function(block) {
-//  var value_label = Blockly.JavaScript.valueToCode(block, 'label', Blockly.JavaScript.ORDER_ATOMIC);
-  //var statements_commands = Blockly.JavaScript.statementToCode(block, 'commands');
   // TODO: Assemble JavaScript into code variable.
   var code = '//Receiveing signal not supported in javascript\n';
   Blockly.JavaScript.NoSupportFor('signal_receivesignal');

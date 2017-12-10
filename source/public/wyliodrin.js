@@ -47,8 +47,6 @@ var app = angular.module ("wyliodrinApp", ['ui.ace', 'ngSanitize', 'highcharts-n
 app.config([
   '$compileProvider',
   function ($compileProvider) {
-      //  Default imgSrcSanitizationWhitelist: /^\s*((https?|ftp|file|blob):|data:image\/)/
-      //  chrome-extension: will be added to the end of the expression
       $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|ftp|file|blob|chrome-extension):|data:image\/)/);
   }
 ]);
@@ -59,8 +57,6 @@ app.config(function($mdThemingProvider) {
     .primaryPalette('blue')
     .accentPalette('red');
 });
-
-//require ('./translate.js')();
 
 require ('./controllers/TranslateController.js')();
 

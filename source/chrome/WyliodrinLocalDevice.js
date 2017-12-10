@@ -95,16 +95,6 @@ export default class WyliodrinLocalDevice extends EventEmitter
 					{
 						if (m.d.p === 'linux') that.shell = true;
 					}
-					// else 
-					// if (m.t === 'pong') 
-					// {
-					// 	that.pingReceived = true;
-					// 	if (that.status !== 'CONNECTED')
-					// 	{
-					// 		that.status = 'CONNECTED';
-					// 		that.publishStatus ();
-					// 	}
-					// }
 					debug ('Received tag '+m.t+' '+JSON.stringify (m.d));
 					that.emit ('message', m.t, m.d);
 				}
@@ -134,13 +124,6 @@ export default class WyliodrinLocalDevice extends EventEmitter
 			that.status = 'ERROR';
 			that.pingReceived = false;
 			clearInterval (that.sender);
-			// debug (that.device);
-			// if (that.WasInSeparator === false)
-			// {
-			// 	that.emit ('connection_error');
-			// 	that.ShowedErrorMessage = true;
-			// }
-			// else
 			if (that.WasInConnected === false && !that.ShowedErrorMessage)
 			{
 				if (that.options.type !== 'chrome-serial') that.emit ('connection_login_failed');
@@ -223,24 +206,11 @@ export default class WyliodrinLocalDevice extends EventEmitter
 			}
 			that.pingReceived = false;
 			clearInterval (that.sender);
-			// debug (that.device);
 			that.publishStatus ();
 			that.port = null;
 			debug ('Delete device '+that.device);
 			devices.delete (that.device);
 		});
-
-		// this.on ('message', function (m)
-		// {
-		// 	if (m.t === 'i')
-		// 	{
-		// 		debug ('Device type message '+m.d);
-		// 		var data = m.d;
-		// 		debug ('Device '+this.device+' is '+data.n+', category '+data.c);
-		// 		if (data.n) this.name = data.n;
-		// 		if (data.c) this.category = data.c;
-		// 	}
-		// });
 	}
 
 	publishStatus ()
@@ -271,8 +241,6 @@ export default class WyliodrinLocalDevice extends EventEmitter
 			debug ('Sending '+JSON.stringify(data)+' with tag '+tag+' to device '+this.device);
 			var buffer = msgpack.encode ({t:tag, d:data});
 
-			// console.log (this.port.send);
-			// console.log (Buffer.isBuffer (buffer));
 			if (tag === 's' && this.options.type === 'chrome-ssh' && this.shell === false) this.port.shell (data);
 			else this.port.send (buffer);
 		}

@@ -107,6 +107,10 @@
     "message": "Delete",
     "description": ""
   },
+  "TOOLBAR_CLONE": {
+    "message": "Clone",
+    "description": ""
+  },
   "TOOLBAR_IMPORT": {
     "message": "Import",
     "description": ""
@@ -248,7 +252,7 @@
     "description": ""
   },
   "DownloadImage": {
-    "message": "Download the <a href='{{link1}}' target='_blank'>SD Card image (beta)</a>, unzip it and write it on the card. You can find more information on how to write the SD card image on our <a href='{{link2}}' target='_blank'>tutorial page</a>.",
+    "message": "Download the <a href='{{link1}}' target='_blank'>SD Card image</a>, unzip it and write it on the card. You can find more information on how to write the SD card image on our <a href='{{link2}}' target='_blank'>tutorial page</a>.",
     "description": ""
   },
   "AdvancedUser": {
@@ -431,6 +435,10 @@
     "message": "Load an example",
     "description": ""
   },
+  "Load_FirmwwareExample":{
+    "message": "Load a firmware example",
+    "description": ""
+  },
   "LICENSE_UsageLicense": {
     "message": "Usage License",
     "description": ""
@@ -473,6 +481,10 @@
   },
   "RENAME_RenameApp": {
     "message": "Rename Application",
+    "description": ""
+  },
+  "CLONE_CloneApp": {
+    "message": "Clone Application",
     "description": ""
   },
   "RESISTOR_COLORCODE_FromColorToNumber": {
@@ -621,6 +633,10 @@
   },
   "LIBRARY_ProjectErase": {
     "message": "Would you like to delete project {{title}}?",
+    "description": ""
+  },
+  "LIBRARY_ProjectClone": {
+    "message": "This name is already used. Pick another one!",
     "description": ""
   },
   "SCHEMATICS_ERASE": {
@@ -774,14 +790,6 @@
     "message": "Ok",
     "description": ""
   },
-  "Yes": {
-    "message": "Yes",
-    "description": ""
-  },
-  "No": {
-    "message": "No",
-    "description": ""
-  },
   "Cancel": {
     "message": "Cancel",
     "description": ""
@@ -796,6 +804,26 @@
   },
   "will_download": {
     "message": "The file will be downloaded immediately.",
+    "description": ""
+  },
+  "downloadasPNG": {
+    "message": "Download PNG image",
+    "description": ""
+  },
+  "exportvalue": {
+    "message": "Export Value",
+    "description": ""
+  },
+  "PrinttheChart": {
+    "message": "Print Chart",
+    "description": ""
+  },
+  "downloadasJPEG": {
+    "message": "Download JPEG image",
+    "description": ""
+  },
+  "downloadasSVG": {
+    "message": "Download SVG vector image",
     "description": ""
   },
   "folder": {
@@ -995,6 +1023,10 @@
   "status": {
     "message": "status",
     "description": ""
+  },
+  "UPDATE_SD_CARD_IMAGE": {
+    "message":"Please update your SD Card image before running this project",
+    "description":""
   },
   "Deploy": {
     "message": "Deploy",

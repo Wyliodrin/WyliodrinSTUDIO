@@ -32,100 +32,6 @@ Blockly.JavaScript.colors = function ()
     Blockly.JavaScript.definitions_['basic_color'] = 'function basic_color(color)\n'+'{\n'+'  var value = 0;\n'+'  if(color>=128)\n'+'    value = 1;\n'+'  else\n'+'    value = 0;\n'+'  return value;\n'+'}';//de testat
   }
 }
-// Blockly.JavaScript.setpinmode = function (pin, mode)
-// {
-//   if (!isNaN (parseInt(pin)))
-//   {
-    
-//       if (Blockly.JavaScript.definitions_['pin_mode_in_'+pin]) 'print "Pin '+pin+' is used to input and output."';
-//       if (!Blockly.JavaScript.definitions_['pin_mode_out_'+pin]) Blockly.JavaScript.definitions_['pin_mode_out_'+pin] = 'pinMode ('+pin+', '+mode+');\n';
-//   }
-// }
-
-// Blockly.JavaScript.buttons_initial_value= function (button)
-// {
-//   if (!isNaN(parseInt(button)))
-//   {
-//     if (!Blockly.JavaScript.definitions_['buttons_initial_value_'+button])
-//     {
-//       Blockly.JavaScript.definitions_['buttons_initial_value_'+button] = Blockly.JavaScript.buttons+'['+button+'] = digitalRead ('+button+')\n';
-//     }
-//   }
-// }
-
-
-// Blockly.JavaScript.buttons_switched = function ()
-// {
-//   if (!Blockly.JavaScript.definitions_['buttons_switched'])
-//   {
-//     var buttons = Blockly.JavaScript.variableDB_.getDistinctName(
-//         'buttons', Blockly.Generator.NAME_TYPE);
-//     Blockly.JavaScript.definitions_['buttons_variable'] = buttons+' = []\n';
-//     Blockly.JavaScript.buttons = buttons;
-//     Blockly.JavaScript.definitions_['buttons_switched'] = 'function buttonSwitched(button, expectedValue)\n'+'{\n'+
-//                             '  var value = '+Blockly.JavaScript.wyliodrin+'.digitalRead (button);\n'+//prefixez functiile cu wyliodrin (vezi import) 
-//                             '  var stable = true;\n'+
-//                             '  for(var i=0;i<100;i++)\n'+
-//           '  {\n'+
-//                             '    var valuenext = wyliodrin.digitalRead (button);\n'+
-//                             '    if(value!=valuenext)\n'+
-//                             '      stable = false;\n'+
-//                             '    if(stable)\n'+
-//                             '      if(value!=buttons[button])\n'+
-//           '      {\n'+
-//                             '        buttons[button]=value;\n'+
-//                             '        return value == expectedValue;\n'+
-//           '      }\n'+
-//                             '      else\n'+
-//                             '        return false;\n'+
-//           '   }\n'+
-//                             '    return false;\n'+
-//           '}';
-//   }
-// }
-
-// Blockly.JavaScript.mapSetup = function ()
-// {
-//   if (!Blockly.JavaScript.definitions_['mapSetup'])
-//   {
-//     Blockly.JavaScript.definitions_['mapSetup'] = 'function mapFunction(value, fromLow, fromHigh, toLow, toHigh){\n'+
-//                           "  var fromDiff = fromHigh - fromLow;\n"+
-//                           "  var toDiff = toHigh - toLow;\n"+
-//                           "  var ratio = toDiff / fromDiff;\n"+
-//                           "  return toLow + (value - fromLow) * ratio;\n"+
-//                           "}"
-//                             ;
-//   }
-// }
-
-// Blockly.JavaScript.soundSensorSetup = function ()
-// {
-//   if (!Blockly.JavaScript.definitions_['ss_setup'])
-//     {
-//       var auxSS = Blockly.JavaScript.variableDB_.getDistinctName('ss_var', Blockly.Generator.NAME_TYPE);
-//       Blockly.JavaScript.SSVar = auxSS;
-//     }
-// }
-
-// Blockly.JavaScript.temperatureSensorSetup = function ()
-// {
-//   if (!Blockly.JavaScript.definitions_['ts_setup'])
-//     {
-//       var auxTS = Blockly.JavaScript.variableDB_.getDistinctName('ts_var', Blockly.Generator.NAME_TYPE);
-//       Blockly.JavaScript.TSVar = auxTS;
-//     }
-// }
-
-// Blockly.JavaScript.lightSensorSetup = function ()
-// {
-//   if (!Blockly.JavaScript.definitions_['ls_setup'])
-//     {
-//       var auxLS = Blockly.JavaScript.variableDB_.getDistinctName('ls_var', Blockly.Generator.NAME_TYPE);
-//       Blockly.JavaScript.LSVar = auxLS;
-//     }
-// }
-
-
 Blockly.JavaScript.getDegrees = function ()
 {
   if (!Blockly.JavaScript.definitions_['getDegrees'])
@@ -141,9 +47,7 @@ Blockly.JavaScript.getDegrees = function ()
 
 Blockly.JavaScript.LCDSet = function(row, column)
 {
-  // var l = Blockly.visual.prefix_init+Blockly.JavaScript.variableDB_.getDistinctName('lcd_grove', Blockly.Generator.NAME_TYPE);
   Blockly.JavaScript.LCD = Blockly.JavaScript.variable_init ('lcd_grove', 'new '+Blockly.JavaScript.wyliodrin+'.rgb_lcd();#lcd_grove#.begin('+column+', '+row+')');
-  // Blockly.JavaScript.definitions_['LCDSet'] = 'if (!'+Blockly.JavaScript.LCD+') '+Blockly.JavaScript.LCD+' = new '+Blockly.JavaScript.wyliodrin+'.rgb_lcd();\n';
 }
 
 Blockly.JavaScript.BSet = function()
@@ -752,9 +656,6 @@ Blockly.JavaScript['grove_motionsensor'] = function(block) {
 
 Blockly.JavaScript['grove_ledbar'] = function(block) {
   Blockly.JavaScript.grove();
-  //Blockly.JavaScript.ledBarImport();
-  // var value_clk = Blockly.JavaScript.valueToCode(block, 'clk', Blockly.JavaScript.ORDER_ATOMIC);
-  // var value_data = Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_ATOMIC);
   var dropdown_pinvalue = block.getFieldValue('pinValue');
   var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
   Blockly.JavaScript.setpinmode (dropdown_pinvalue, 1);

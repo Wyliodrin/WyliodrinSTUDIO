@@ -111,16 +111,16 @@
                           {{ 'TOOLBAR_UPDATE' | translate }}
                         </md-tooltip>
                     </md-button>
+                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.dep)" class="icon-btn" ng-click="t.deploy()">
+                      <md-icon md-svg-src="/public/drawable/deploy-icon.svg" class="s24" aria-label="Deploy" ></md-icon>
+                        <md-tooltip md-direction="bottom">
+                          {{ 'Deploy' | translate }}
+                        </md-tooltip>
+                    </md-button>
                     <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.fe)" class="icon-btn" ng-click="t.fileexplorer()">
                       <md-icon md-svg-src="/public/drawable/fileexplorer-icon.svg" class="s24" aria-label="File Explorer" ></md-icon>
                         <md-tooltip md-direction="bottom">
                           {{ 'File_explorer' | translate }}
-                        </md-tooltip>
-                    </md-button>
-                    <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.dep)" class="icon-btn" ng-click="t.deploy()">
-                      <md-icon md-svg-src="/public/drawable/run-icon.svg" class="s24" aria-label="Deploy" ></md-icon>
-                        <md-tooltip md-direction="bottom">
-                          {{ 'Deploy' | translate }}
                         </md-tooltip>
                     </md-button>
                     <md-button ng-show="status === 'CONNECTED' && (!device.capabilities || device.capabilities.pm)" class="icon-btn" ng-click="t.packagemanager()">
@@ -166,7 +166,7 @@
 				<div class="{{a.status()}}" >{{status | translate}}</div>
                 <div class="triangle"></div>
         <div class="os-icon" ng-if="connected">
-            <img ng-src="/public/drawable/{{device.platform}}-icon.png" alt="{{ 'PLATFORM_'+device.platform | translate }}"></img>
+            <img ng-src="/public/drawable/{{device.platform}}-icon.png" alt="{{ 'PLATFORM_'+device.platform | translate }}" hspace="50"></img>
             <md-tooltip md-direction="bottom">
               {{ 'PLATFORM_'+device.platform | translate }}
             </md-tooltip>
@@ -276,7 +276,30 @@
                             </md-button>
                           </div>
                         </div>
-
+                        <div align="center" flex="100" ng-show="tree.selectednode.issoftware">
+                          <p style="font-size:150%">Project name: <b>{{project_name}}</b></p>
+                          <img src="/public/drawable/python-logo.svg" ng-show="tree.selectednode.name=='python'" hspace="300"></img>
+                          <img src="/public/drawable/javascript-icon.png" ng-show="tree.selectednode.name=='nodejs'" width="450" height="450" hspace="300"></img>
+                          <img src="/public/drawable/node-red-icon.png" ng-show="tree.selectednode.name=='streams'" width="450" height="450" hspace="300"></img>
+                          <img src="/public/drawable/csharp-icon.png" ng-show="tree.selectednode.name=='csharp'" width="450" height="450" hspace="300"></img>
+                          <img src="/public/drawable/blockly-icon.png" ng-show="tree.selectednode.name=='visual'" hspace="300"></img>
+                          <img src="/public/drawable/powershell-icon.png" ng-show="tree.selectednode.name=='powershell'" hspace="300"></img>
+                          <img src="/public/drawable/Terminal-icon.png" ng-show="tree.selectednode.name=='shell'" width="450" height="450" hspace="300"></img>
+                          <p></p>
+                          <md-button ng-click="p.newFirmwareButton()">
+                            <md-icon md-svg-src="/public/drawable/new-firmware.svg"></md-icon>
+                            {{ 'New_firmware' | translate }}
+                          </md-button>
+                        </div>
+                        <div align="center" flex="100" ng-show="!showEditor && !tree.selectednode.issoftware">
+                            <img src="/public/drawable/arduino-UNO-chip.png" ng-show="tree.selectednode.isarduino" vspace="125" height="250" width="450"></img>
+                            <img src="/public/drawable/OpenMote-chip.png" ng-show="tree.selectednode.isopenmote" vspace="125" height="250" width="450"></img>
+                          <p></p>
+                            <object hspace="375"><md-button ng-click="p.firmwareexample()" ng-show="tree.selectednode.isarduino || tree.selectednode.isopenmote">
+                              <img src="/public/drawable/firmxamples-icon.png" width="18px" height="18px"></img>
+                              {{'Load_FirmwwareExample' | translate}}
+                          </md-button></object>
+                        </div>
                         <div flex="100" ng-show="showEditor" layout="row"><!--editor text-->
     
 

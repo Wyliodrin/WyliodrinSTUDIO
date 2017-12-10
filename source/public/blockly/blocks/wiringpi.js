@@ -920,28 +920,6 @@ Blockly.Blocks['rapiro_wave_hand'] = {
     this.setTooltip('');
   }
 };
-
-// Blockly.Blocks['rapiro_move'] = {
-//   init: function() {
-//     this.setHelpUrl('http://www.example.com/');
-//     this.setColour(150);
-//     this.appendDummyInput()
-//         .appendField("Rapiro Move")
-//         .appendField(new Blockly.FieldDropdown([["Head", "0"], ["Waist", "1"], ["Right Shoulder", "2"], ["Right Arm", "3"], ["Right Hand", "4"], ["Left Shoulder", "5"], ["Left Arm", "6"], ["Left Hand", "7"], ["Right Foot Yaw", "8"], ["Right Foot Pitch", "9"], ["Left Foot Yaw", "10"], ["Left Foot Pitch", "11"]]), "motor")
-//         .appendField("to")
-//         .appendField(new Blockly.FieldAngle("90"), "NAME");
-//     this.appendValueInput("time")
-//         .setCheck("Number")
-//         .appendField("in");
-//     this.appendDummyInput()
-//         .appendField("seconds");
-//     this.setInputsInline(true);
-//     this.setPreviousStatement(true);
-//     this.setNextStatement(true);
-//     this.setTooltip('');
-//   }
-// };
-
 Blockly.Blocks['rapiro_angle'] = {
   init: function() {
     this.setHelpUrl('http://www.example.com/');
@@ -1060,19 +1038,6 @@ Blockly.Blocks['sevensegmdispl_display'] = {
     this.setTooltip('');
   }
 };
- 
-//Blockly.Blocks['upm_adafruit_7segment_setup'] = {
-  //init: function() {
-    //this.setHelpUrl('http://www.example.com/');
-    //this.setColour(260);
-    //this.appendDummyInput()
-    //    .appendField("as adafruit 7segment");
-  //  this.setInputsInline(true);
-   // this.setOutput(true);
-  //  this.setTooltip('');
- // }
-//};
-
 
 Blockly.Blocks['adafruit_7segment_begin'] = {
   init: function() {

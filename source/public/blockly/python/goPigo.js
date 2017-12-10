@@ -21,28 +21,24 @@ Blockly.Python['gopigo_direction'] = function(block) {
 
 Blockly.Python['gopigo_stop'] = function(block) {
     Blockly.Python.goPiGo_setup();
-  //var value_gopigo = Blockly.Python.valueToCode(block, 'gopigo', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code =  Blockly.Python.my_gopigo_import+'.stop()\n';
   return code;
 };
 Blockly.Python['gopigo_increase_speed'] = function(block) {
   Blockly.Python.goPiGo_setup();
-  //var value_gopigo = Blockly.Python.valueToCode(block, 'gopigo', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code =  Blockly.Python.my_gopigo_import+'.increase_speed()\n';
   return code;
 };
 Blockly.Python['gopigo_decrease_speed'] = function(block) {
   Blockly.Python.goPiGo_setup();
-  //var value_gopigo = Blockly.Python.valueToCode(block, 'gopigo', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code =  Blockly.Python.my_gopigo_import+'.decrease_speed()\n';
   return code;
 };
 Blockly.Python['gopigo_volt'] = function(block) {
   Blockly.Python.goPiGo_setup();
-  //var value_gopigo = Blockly.Python.valueToCode(block, 'gopigo', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code =  Blockly.Python.my_gopigo_import+'.volt()';
   // TODO: Change ORDER_NONE to the correct strength.
@@ -51,7 +47,6 @@ Blockly.Python['gopigo_volt'] = function(block) {
 
 Blockly.Python['gopigo_motor_direction'] = function(block) {
   Blockly.Python.goPiGo_setup();
-  //var value_gopigo = Blockly.Python.valueToCode(block, 'gopigo', Blockly.Python.ORDER_ATOMIC);
   var dropdown_direction = block.getFieldValue('motor_direction');
   // TODO: Assemble Python into code variable.
   var code =  Blockly.Python.my_gopigo_import+'.'+dropdown_direction+'()\n';
@@ -68,8 +63,5 @@ Blockly.Python['gopigo_led'] = function(block) {
 };
 
 Blockly.Python['gopigo_enc_tgt'] = function(block) {
-  //var value_gopigo = Blockly.Python.valueToCode(block, 'gopigo', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  //var code = value_gopigo+'.enc_tgt(1,1,18)';
-  //return code;
 };

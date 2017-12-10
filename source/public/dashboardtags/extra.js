@@ -63,12 +63,9 @@ module.exports = function ()
 
 				var update = function (t, values)
 				{
-					// console.log (scope.signal.title);
 					if (t === 'v')
 					{
-						// console.log (values);
 						var v = (values.s?values.s[scope.signal.title]:undefined);
-						// console.log (v);
 						if (v !== undefined)
 						{
 							if (!scope.signal.values) 
@@ -81,8 +78,6 @@ module.exports = function ()
 							scope.update = true;
 							debug ('Signal '+scope.signal.title+' '+v);
 							scope.value = v;
-							// console.log (values.t+', '+v);
-							// console.log (scope.setup.series);
 						}
 					}
 				};

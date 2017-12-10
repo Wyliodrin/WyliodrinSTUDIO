@@ -390,7 +390,6 @@ Blockly.Python['ada_fillscreen'] = function(block) {
   value_lcdvar+'.fillScreen('+Blockly.Python.colorChanged+')\n';
   return code;
 };
-//pt nokia diplay
 Blockly.Python['ada_clearscreen'] = function(block) {
   Blockly.Python.grove();
   // TODO: Assemble Python into code variable.
@@ -398,8 +397,6 @@ Blockly.Python['ada_clearscreen'] = function(block) {
   var code = value_lcdvar+'.clearDisplay()\n';
   return code;
 };
-
-//pt nokia diplay
 Blockly.Python['ada_setcontrast'] = function(block) {
   Blockly.Python.grove();
   var value_lcdvar = Blockly.Python.valueToCode(block, 'lcdVar', Blockly.Python.ORDER_ATOMIC);

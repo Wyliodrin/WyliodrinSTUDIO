@@ -56,9 +56,6 @@ module.exports = function ()
 		{
 			var message = $mdDialog.confirm()
 		          .title($filter('translate')('TOOLBAR_ExitQuestion'))
-		          // .textContent('All of the banks have agreed to forgive you your debts.')
-		          // .ariaLabel('Lucky day')
-		          // .targetEvent(ev)
 		          .ok($filter('translate')('YES'))
 		          .cancel($filter('translate')('NO'));
 		    $mdDialog.show(message).then(function() {
@@ -133,8 +130,6 @@ module.exports = function ()
 		      controller: 'PackageManagerController',
 		      controllerAs: 'pm',
 		      templateUrl: '/public/views/package-manager.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      escapeToClose: false,
 		      clickOutsideToClose: false,
 		      fullscreen: false
@@ -148,8 +143,6 @@ module.exports = function ()
 		      controller: 'UpdateController',
 		      controllerAs: 'u',
 		      templateUrl: '/public/views/update.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      escapeToClose: false,
 		      clickOutsideToClose: false,
 		      fullscreen: false
@@ -163,8 +156,6 @@ module.exports = function ()
 		      controller: 'TaskManagerController',
 		      controllerAs: 'tm',
 		      templateUrl: '/public/views/task-manager.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      escapeToClose: false,
 		      clickOutsideToClose: false,
 		      fullscreen: false
@@ -178,6 +169,19 @@ module.exports = function ()
 		      controller: 'FileExplorerController',
 		      controllerAs: 'fe',
 		      templateUrl: '/public/views/file-explorer.html',
+		      escapeToClose: false,
+		      clickOutsideToClose: false,
+		      fullscreen: false
+		    });
+		};
+
+		this.deploy = function ()
+		{
+			debug ('Deploy');
+			$mdDialog.show({
+		      controller: 'DeployController',
+		      controllerAs: 'dep',
+		      templateUrl: '/public/views/dialogs/deploy.html',
 		      // parent: angular.element(document.body),
 		      // targetEvent: ev,
 		      escapeToClose: false,
@@ -208,8 +212,6 @@ module.exports = function ()
 		      controller: 'NetworkController',
 		      controllerAs: 'net',
 		      templateUrl: '/public/views/network.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      escapeToClose: false,
 		      clickOutsideToClose: false,
 		      fullscreen: false
@@ -217,7 +219,6 @@ module.exports = function ()
 		};
 
 		this.openMenu = function($mdOpenMenu, ev) {
-	      // originatorEv = ev;
 	      $mdOpenMenu(ev);
 	    };
 
@@ -263,26 +264,10 @@ module.exports = function ()
 		      controller: 'ResistorColorCodeController',
 		      controllerAs: 'rs',
 		      templateUrl: '/public/views/resistor-colorcode.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      clickOutsideToClose: true,
 		      fullscreen: false
 		    });
 		};
-
-		// this.example = function ()
-		// {
-		// 	debug ('Show example');
-		// 	$mdDialog.show({
-		//       controller: 'SoftwareExampleController',
-		//       controllerAs: 's',
-		//       templateUrl: '/public/views/software-example.html',
-		//       // parent: angular.element(document.body),
-		//       // targetEvent: ev,
-		//       clickOutsideToClose: false,
-		//       fullscreen: false
-		//     });
-		// };
 
 		this.forum = function ()
 		{
@@ -295,16 +280,10 @@ module.exports = function ()
 			debug ('About');
 			$mdDialog.show({
 		      templateUrl: '/public/views/about.html',
-		      // parent: angular.element(document.body),
 		      controller: function ($scope)
 		      {
 		      	$scope.LICENSE = settings.LICENSE;
 		      	$scope.VERSION = settings.VERSION;
-		      	// this.select = function (device)
-		      	// {
-		      	// 	$scope.device = device;
-		      	// };
-
 		      	library.retrieveValue ('usage', true, function (value)
 		      	{
 		      		$scope.mixpanel = value;
@@ -334,7 +313,6 @@ module.exports = function ()
 		      	};
 		      },
 		      controllerAs: 'p',
-		      // targetEvent: ev,
 		      clickOutsideToClose: true,
 		      fullscreen: false
 		    });
@@ -346,16 +324,10 @@ module.exports = function ()
 			debug ('Welcome');
 			$mdDialog.show({
 		      templateUrl: '/public/views/welcome.html',
-		      // parent: angular.element(document.body),
 		      controller: function ($scope)
 		      {
 		      	$scope.LICENSE = settings.LICENSE;
 		      	$scope.VERSION = settings.VERSION;
-		      	// this.select = function (device)
-		      	// {
-		      	// 	$scope.device = device;
-		      	// };
-
 		      	library.retrieveValue ('usage', true, function (value)
 		      	{
 		      		$scope.mixpanel = value;
@@ -383,7 +355,6 @@ module.exports = function ()
 		      	};
 		      },
 		      controllerAs: 'p',
-		      // targetEvent: ev,
 		      clickOutsideToClose: true,
 		      fullscreen: false
 		    });
@@ -400,14 +371,9 @@ module.exports = function ()
 			debug ('License');
 			$mdDialog.show({
 		      templateUrl: '/public/views/license.html',
-		      // parent: angular.element(document.body),
 		      controller: function ($scope)
 		      {
 		      	$scope.LICENSE = settings.LICENSE;
-		      	// this.select = function (device)
-		      	// {
-		      	// 	$scope.device = device;
-		      	// };
 
 		      	this.exit = function ()
 		      	{
@@ -415,7 +381,6 @@ module.exports = function ()
 		      	};
 		      },
 		      controllerAs: 'p',
-		      // targetEvent: ev,
 		      clickOutsideToClose: true,
 		      fullscreen: false
 		    });
@@ -426,10 +391,8 @@ module.exports = function ()
 			debug ('Board');
 			$mdDialog.show({
 		      templateUrl: '/public/views/board.html',
-		      // parent: angular.element(document.body),
 		      controller: 'BoardController',
 		      controllerAs: 's',
-		      // targetEvent: ev,
 		      clickOutsideToClose: false,
 		      fullscreen: false
 		    });
@@ -442,8 +405,6 @@ module.exports = function ()
 		      controller: 'InstallController',
 		      controllerAs: 'u',
 		      templateUrl: '/public/views/install.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      escapeToClose: false,
 		      clickOutsideToClose: false,
 		      fullscreen: false
@@ -457,8 +418,6 @@ module.exports = function ()
 		      controller: 'LibraryController',
 		      controllerAs: 'l',
 		      templateUrl: '/public/views/library.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      clickOutsideToClose:true,
 		      fullscreen: false
 		    });

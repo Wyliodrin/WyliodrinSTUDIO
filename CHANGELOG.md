@@ -1,5 +1,8 @@
-## Wyliodrin STUDIO 11
-not yet released
+## Wyliodrin STUDIO 12.1
+
+* fixed loading streams projects
+
+## Wyliodrin STUDIO 12
 
 * **Added** notebook
 * **Added** yarn
@@ -24,6 +27,7 @@ com/Wyliodrin/WyliodrinSTUDIO/issues/20))
 * **Fixed** code not saving ([#22](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/22))
 * **Fixed** hotkeys for tree actions (fixes [#28](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/28))
 * **Fixed** duplicate visual tree (fixes [#36](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/36))
+* **Fixed** angular-tree-control patch file (fixes [#67](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/67))
 * **Fixed** defaults to No Firmware (fixes [#32](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/32))
 * **Fixed** disconnect when exit (fixes [#33](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/33))
 * **Fixed** wrong environment for shell for linux (fixes [#54](https://github.com/Wyliodrin/WyliodrinSTUDIO/issues/54))

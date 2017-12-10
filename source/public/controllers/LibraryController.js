@@ -24,23 +24,7 @@ module.exports = function ()
 	{
 		debug ('Registering');
 		var that = this;
-	/*	this.add = function ()
-		{
-			debug ('add project '+$scope.project.title+' language '+$scope.project.language);
-			if ($scope.project.title.trim().length > 3)
-			{
-				library.add ($scope.project.title, $scope.project.language);
-				this.listProjects();
-			}
-			else
-			{
-				debug ("Project name is unacceptable");
-			}
-		};
-	*/
-	
 		this.openMenu = function($mdOpenMenu, ev) {
-	      // originatorEv = ev;
 	      $mdOpenMenu(ev);
 	    };
 
@@ -50,16 +34,16 @@ module.exports = function ()
 			var addProjDialog = $mdDialog.show({
 		      controller: function ($scope)
 		      {
-				  
-				  
+
+
 				$scope.project = {
 					title: '',
 					language: 'python'
 				};
-				
+
 				$scope.languages = settings.LANGUAGES;
-				  
-				  
+
+
 		      	this.add = function ()
 		      	{
 					debug ('Add project '+$scope.project.title+' language '+$scope.project.language);
@@ -99,7 +83,7 @@ module.exports = function ()
 						$wyapp.emit('library');
 					}
 		      	};
-				
+
 				this.cancel = function ()
 		      	{
 					$wyapp.emit('library');
@@ -108,17 +92,14 @@ module.exports = function ()
 		      },
 		      controllerAs: 'a',
 		      templateUrl: '/public/views/add-app.html',
-		      // parent: angular.element(window.body),
-		      // targetEvent: ev,
 		      clickOutsideToClose:true,
 		      fullscreen: false
-		    });	
+		    });
 		};
-		
+
 
 		this.load = function (project)
 		{
-			// console.log (project);
 			$mdDialog.hide ();
 			$wyapp.emit ('load', project);
 		};
@@ -132,11 +113,11 @@ module.exports = function ()
 			var renameProjDialog = $mdDialog.show({
 		      controller: function ($scope)
 		      {
-				  
-				  
+
+
 				$scope.title = project.title;
-				  
-				  
+
+
 		      	this.rename = function ()
 		      	{
 					debug ('Rename project '+project.title+' language '+project.language);
@@ -150,7 +131,7 @@ module.exports = function ()
 					}
 					$wyapp.emit('library');
 		      	};
-				
+
 				this.cancel = function ()
 		      	{
 					$wyapp.emit('library');
@@ -159,13 +140,58 @@ module.exports = function ()
 		      },
 		      controllerAs: 'a',
 		      templateUrl: '/public/views/rename.html',
-		      // parent: angular.element(window.body),
-		      // targetEvent: ev,
 		      clickOutsideToClose:true,
 		      fullscreen: false
-		    });	
+		    });
 		};
-		
+
+		this.clone = function (project)
+		{
+			var that = this;
+
+			mixpanel.track ('Project Clone', {
+				language: project.language
+			});
+			$mdDialog.hide ();
+			var cloneProjDialog = $mdDialog.show({
+				controller: function ($scope)
+				{
+					$scope.title = project.title;
+
+					this.clone = function ()
+					{
+						if ($scope.title != project.title && $scope.title.trim().length > 3)
+						{
+							library.cloneProject(project, $scope.title);
+							$wyapp.emit('library');
+						}
+						else
+						{
+							var message = $mdDialog.alert()
+						          .title($filter('translate')('LIBRARY_ProjectClone', {title:project.title}))
+						          .ok($filter('translate')('OK'));
+
+							$mdDialog.show(message).then(function () {
+								$wyapp.emit('library');
+							}, function() {
+								$wyapp.emit('library');
+							});
+							debug ("Project name is unacceptable");
+						}
+					};
+
+					this.cancel = function ()
+					{
+						$wyapp.emit('library');
+					};
+				},
+				controllerAs: 'a',
+				templateUrl: '/public/views/clone.html',
+				clickOutsideToClose:true,
+				fullscreen: false
+			});
+		};
+
 		this.cancel = function ()
 		{
 			$mdDialog.hide ();
@@ -200,9 +226,6 @@ module.exports = function ()
 			var that = this;
 			var message = $mdDialog.confirm()
 		          .title($filter('translate')('LIBRARY_ProjectErase', {title:project.title}))
-		          // .textContent('All of the banks have agreed to forgive you your debts.')
-		          // .ariaLabel('Lucky day')
-		          // .targetEvent(ev)
 		          .ok($filter('translate')('YES'))
 		          .cancel($filter('translate')('NO'));
 		    $mdDialog.show(message).then(function() {
@@ -213,7 +236,7 @@ module.exports = function ()
 			});
 		      that.listProjects();
 		    }, function() {
-		     	$wyapp.emit ('library'); 
+		     	$wyapp.emit ('library');
 		    });
 		};
 
@@ -224,10 +247,10 @@ module.exports = function ()
 			{
 				type: 'openFile', accepts:[{
 			 		extensions: ['wylioapp']
-			 	}] 
-			}, 
+			 	}]
+			},
 			function(fileEntry) {
-				if(chrome.runtime.lastError) 
+				if(chrome.runtime.lastError)
 				{
 
 				}
@@ -236,7 +259,7 @@ module.exports = function ()
 					return;
 			 	}
 			 	debug ('Reading file');
-			 	fileEntry.file(function(file) 
+			 	fileEntry.file(function(file)
 			 	{
 					debug ('Read project');
 					var fileReader = new FileReader ();
@@ -278,8 +301,6 @@ module.exports = function ()
 		      controller: 'GitHubExampleController',
 		      controllerAs: 'e',
 		      templateUrl: '/public/views/github-example.html',
-		      // parent: angular.element(document.body),
-		      // targetEvent: ev,
 		      clickOutsideToClose: false,
 		      fullscreen: false
 		    });
@@ -290,25 +311,25 @@ module.exports = function ()
 			debug ('Export project '+project.id);
 			chrome.fileSystem.chooseEntry(
 			{
-				type: 'saveFile', 
+				type: 'saveFile',
 				accepts:[{
 					extensions: ['wylioapp']
 				}],
 				suggestedName: project.title+'.wylioapp'
-			}, 
-			function(fileEntry) 
+			},
+			function(fileEntry)
 			{
-				if(chrome.runtime.lastError) 
+				if(chrome.runtime.lastError)
 				{
-					
+
 				}
-				if (!fileEntry) 
+				if (!fileEntry)
 				{
 					debug ('File missing');
 			 		return;
 				}
 				debug ('Write project');
-			 	fileEntry.createWriter(function(fileWriter) 
+			 	fileEntry.createWriter(function(fileWriter)
 			 	{
 			 		var projectexport = _.clone (project);
 			 		delete projectexport.id;
@@ -317,7 +338,7 @@ module.exports = function ()
 					var truncate = false;
 			 		fileWriter.onwriteend = function (e)
 		 			{
-						if (truncate === false) 
+						if (truncate === false)
 		 				{
 							truncate = true;
 							e.currentTarget.truncate (e.currentTarget.position);
@@ -328,7 +349,7 @@ module.exports = function ()
 						}
 		 			};
 		 			fileWriter.onerror = function (error)
-			 		{	
+			 		{
 			 			debug ('Export project '+project.id+' error '+error);
 			 		};
 			 		fileWriter.write (new Blob ([JSON.stringify (projectexport)], {type:'text/json'}), function (error)
@@ -345,7 +366,7 @@ module.exports = function ()
 		{
 			return $scope.programs;
 		};
-		
+
 
 		this.listProjects ();
 	});

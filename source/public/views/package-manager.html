@@ -25,7 +25,6 @@
                             </span>
                             <span style="width:50%;">{{package.d}}</span>
                             <md-button ng-hide="package.loading || package.v" class="md-secondary lib-app-btn right" ng-click="pm.install(package, language.title)">{{ 'TOOLBAR_INSTALL' | translate }}</md-button>
-                            <!-- <md-button ng-show="package.readonly === false && package.v" class="md-secondary lib-app-btn right" ng-click="pm.update(package.n)">Update</md-button> -->
                             <md-button ng-show="package.loading===false && package.readonly === false && package.v" class="md-secondary lib-app-btn right" ng-click="pm.uninstall(package, language.title)">{{ 'TOOLBAR_UNINSTALL' | translate }}</md-button>
                             <a ng-if="package.w" target="_blank" href="{{package.w}}" class="package-link">
                             	<img src="/public/drawable/link-icon.png">

@@ -8,7 +8,7 @@
     "description": ""
   },
   "appDesc": {
-    "message": "Wyliodrin STUDIO est un IDE pour le développement des logiciels et de matériel pour les systèmes IdO comme le Raspberry Pi, UDOO et Arduino",
+    "message": "Wyliodrin STUDIO est un IDE pour le développement des logiciels et de matériel pour les systèmes d'IdO comme le Raspberry Pi, UDOO et Arduino",
     "description": ""
   },
   "DEVICE_CONNECT": {
@@ -28,7 +28,7 @@
     "description": ""
   },
   "DEVICE_Network": {
-    "message": "Reseau",
+    "message": "Réseau",
     "description": ""
   },
   "DEVICE_Serial": {
@@ -52,11 +52,11 @@
     "description": ""
   },
   "TOOLBAR_HELP": {
-    "message": "Aider",
+    "message": "Aide",
     "description": ""
   },
   "TOOLBAR_EXIT": {
-    "message": "Sortir",
+    "message": "Sortie",
     "description": ""
   },
   "TOOLBAR_FULLSCREEN": {
@@ -80,7 +80,7 @@
     "description": ""
   },
   "TOOLBAR_ABOUT": {
-    "message": "Sur le logiciel",
+    "message": "À propos de ce logiciel",
     "description": ""
   },
   "TOOLBAR_CREATE": {
@@ -200,23 +200,23 @@
     "description": ""
   },
   "SD_CARD4_GetAMinimum": {
-    "message": "Prenez une carte SD de minimum (on recommandent 8 GB classe 10)",
+    "message": "Prenez une carte SD- minimum 4GB (on recommande 8 GB, de classe 10)",
     "description": ""
   },
   "InsertTheCard": {
-    "message": "Insérez la carte SD dans le {{device}}, connectez le {{device}} au <b>câble série</b> ou au <b>câble du réseau</b> et allumer-le",
+    "message": "Insérez la carte SD dans le {{device}}, connectez le {{device}} au <b>câble série</b> ou au <b>câble du réseau</b> et allumer le dispositif",
     "description": ""
   },
   "MakeSureYou": {
-    "message": "Assurez-vous que vous vous connectez la carte à l'Internet (Ethernet ou WiFi)",
+    "message": "Assurez-vous que la carte est connectée à l'Internet (Ethernet ou WiFi)",
     "description": ""
   },
   "YouMightHave": {
-    "message": "Vous pourriez avoir à installer des pilotes pour les câbles:",
+    "message": "Il est possible que vous deviez installer des pilotes pour les câbles:",
     "description": ""
   },
   "MakeSureThat": {
-    "message": "Assurez-vous que votre Arduino Yun est à jour. Suivez ces étapes:",
+    "message": "Assurez-vous que votre Arduino Yun est mis à jour. Suivez ces étapes:",
     "description": ""
   },
   "tutorial": {
@@ -224,19 +224,19 @@
     "description": ""
   },
   "InstallNodeJSOn": {
-    "message": "Installez NodeJS sur le Arduino Yun suivant ces étapes",
+    "message": "Installez NodeJS sur Arduino Yun suivant ces étapes",
     "description": ""
   },
   "ConnectViaSsh": {
-    "message": "Connectez-vous via ssh à votre Arduino Yun. L'adress est",
+    "message": "Connectez-vous via ssh à votre Arduino Yun. L'adresse est:",
     "description": ""
   },
   "AndTheUser": {
-    "message": "et l'utilisateur",
+    "message": ",l'utilisateur:",
     "description": ""
   },
   "AndPassword": {
-    "message": "et le mot de passe",
+    "message": "et le mot de passe:",
     "description": ""
   },
   "RunTheWyliodrin": {
@@ -244,11 +244,11 @@
     "description": ""
   },
   "ResetYour": {
-    "message": "Réinitialiser votre Arduino Yun.",
+    "message": "Réinitialisez votre Arduino Yun.",
     "description": ""
   },
   "DownloadImage": {
-    "message": "Téléchargez l' <a href='{{link1}}' target='_blank'>image de la carte SD (bêta)</a>, ouvrir-la et écrivez-la sur la carte SD. Vous pouvez trouver plus d'informations sur la façon d'écrire l'image de la carte SD sur<a href='{{link2}}' target='_blank'>la page des tutoriels</a>.",
+    "message": "Téléchargez l' <a href='{{link1}}' target='_blank'>image de la carte SD</a>, décompressez-la et écrivez-la sur la carte SD. Vous pouvez trouver plus d'informations sur la façon d'écrire l'image de la carte SD sur<a href='{{link2}}' target='_blank'>la page avec tutoriels</a>.",
     "description": ""
   },
   "AdvancedUser": {
@@ -256,11 +256,11 @@
     "description": ""
   },
   "CablePurchase": {
-    "message": "Vous pouvez acheter le câble série dans les magasins en ligne: <a href='{{link1}}' target='_blank'>{{name1}}</a> et <a href='{{link2}}' target='_blank'>{{name2}}</a>.",
+    "message": "Vous pouvez trouver le câble série sur les magasins en ligne: <a href='{{link1}}' target='_blank'>{{name1}}</a> et <a href='{{link2}}' target='_blank'>{{name2}}</a>.",
     "description": ""
   },
   "PortSelectNetwork": {
-    "message": "Votre carte doit apparaître dans la liste des réseaux. Vous aurez besoin de se connecter avec un nom d'utilisateur qui existe sur le carte.",
+    "message": "Votre carte doit apparaître dans la liste des réseaux. Vous aurez besoin de se connecter avec un nom d'utilisateur qui existe sur la carte.",
     "description": ""
   },
   "PortSelectSerial": {
@@ -268,7 +268,7 @@
     "description": ""
   },
   "YouMightSerial": {
-    "message": "Vous pourriez avoir à installer des pilotes pour le port série:",
+    "message": "Il est possible que vous deviez installer des pilotes pour le port série:",
     "description": ""
   },
   "ABOUT_Version": {
@@ -280,7 +280,7 @@
     "description": ""
   },
   "ABOUT_ContributionsBy": {
-    "message": "Contributions par",
+    "message": "Avec la contribution de",
     "description": ""
   },
   "ABOUT_Maintainer": {
@@ -288,7 +288,7 @@
     "description": ""
   },
   "ABOUT_Development": {
-    "message": "Développement",
+    "message": "Développeur",
     "description": ""
   },
   "ABOUT_UI_UX": {
@@ -300,7 +300,7 @@
     "description": ""
   },
   "ABOUT_AnonymousUsageParam": {
-    "message": "Autoriser l'envoi des paramètres d'utilisation anonymes afin de nous aider à améliorer le logiciel",
+    "message": "Autoriser l'envoi des paramètres d'utilisation anonymes pour nous aider à améliorer le logiciel",
     "description": ""
   },
   "ABOUT_ProvidedBy": {
@@ -340,7 +340,7 @@
     "description": ""
   },
   "WELCOME_CreateNewApp": {
-    "message": "Créer nouvelle application",
+    "message": "Créer une nouvelle application",
     "description": ""
   },
   "WELCOME_ConnectBoard": {
@@ -352,15 +352,19 @@
     "description": ""
   },
   "WELCOME_SendAnonUsageParam": {
-    "message": "Autoriser l'envoi des paramètres d'utilisation anonymes afin de nous aider à améliorer le logiciel",
+    "message": "Autoriser l'envoi des paramètres d'utilisation anonymes pour nous aider à améliorer le logiciel",
     "description": ""
   },
   "AUTHENTICATE_ConnectToAddress": {
     "message": "Connecter à l'adresse",
     "description": ""
   },
+  "AUTHENTICATE_IP": {
+    "message": "IP",
+    "description": ""
+  },
   "AUTHENTICATE_Login": {
-    "message": "Connectez-vous avec un utilisateur du dispositif",
+    "message": "Connectez-vous en utilisant n'importe quel utilisateur du dispositif",
     "description": ""
   },
   "BOARD_GetStart": {
@@ -368,7 +372,7 @@
     "description": ""
   },
   "BOARD_SelectBoard": {
-    "message": "Sélectionnez la carte de configurer",
+    "message": "Sélectionnez la carte que vous desirez la configurer",
     "description": ""
   },
   "DASHBOARD_VIEWER_InvalidSignal": {
@@ -400,7 +404,7 @@
     "description": ""
   },
   "DASHBOARD_VIEWER_SignalName": {
-    "message": "Nom du signal doit contenir seulement letters au minuscule sans espaces",
+    "message": "Le nom du signal doit contenir seulement lettres en minuscule sans espaces",
     "description": ""
   },
   "FIRMWARE_EXAMPLE_SelectFirmware": {
@@ -408,11 +412,15 @@
     "description": ""
   },
   "FLASH_FIRMWARE_RunAndFlash": {
-    "message": "Courir et écrire",
+    "message": "Exécuter et écrire",
     "description": ""
   },
   "FLASH_FIRMWARE_RunWithoutFlash": {
-    "message": "Courir sans écrire",
+    "message": "Exécuter sans écrire",
+    "description": ""
+  },
+  "FLASH_FIRMWARE": {
+    "message": "Flash firmware",
     "description": ""
   },
   "LIBRARY_Library": {
@@ -423,16 +431,20 @@
     "message": "Ouvrir un exemple",
     "description": ""
   },
+  "Load_FirmwwareExample":{
+    "message": "Charger un exemple de firmware",
+    "description": ""
+  },
   "LICENSE_UsageLicense": {
     "message": "Licence d'utilisation",
     "description": ""
   },
   "NETWORK_NetworkManager": {
-    "message": "Parameters de réseau",
+    "message": "Gestion de réseau",
     "description": ""
   },
   "NETWORK_PackageManager": {
-    "message": "Gestionnaire des paquets",
+    "message": "Gestion des paquets",
     "description": ""
   },
   "NETWORK_SSID": {
@@ -456,7 +468,7 @@
     "description": ""
   },
   "NETWORK_Disc_ChangeNet": {
-    "message": "Déconnecter / Changer reseau",
+    "message": "Déconnecter / Changer réseau",
     "description": ""
   },
   "PACKAGE_MANAGER_LinkToTheLibrary": {
@@ -464,11 +476,11 @@
     "description": ""
   },
   "RENAME_RenameApp": {
-    "message": "Renommer application",
+    "message": "Renommer l'application",
     "description": ""
   },
   "RESISTOR_COLORCODE_FromColorToNumber": {
-    "message": "De couleur à la valeur",
+    "message": "De couleur à valeur",
     "description": ""
   },
   "RESISTOR_COLORCODE_FromNumberToColor": {
@@ -512,7 +524,7 @@
     "description": ""
   },
   "SIGNAL_PROPERTIES_SignalName": {
-    "message": "Nom du signal",
+    "message": "Nom de signal",
     "description": ""
   },
   "SIGNAL_PROPERTIES_Description": {
@@ -532,7 +544,19 @@
     "description": ""
   },
   "TASK_MANAGER_TaskManager": {
-    "message": "Gestionnaire des tâches",
+    "message": "Gestionnaire de tâches",
+    "description": ""
+  },
+  "File_explorer": {
+    "message": "Explorateur de fichiers",
+    "description": ""
+  },
+  "Show_file_manager": {
+    "message": "Montrer l'explorateur de fichiers",
+    "description": ""
+  },
+  "Hide_file_manager": {
+    "message": "Cacher l'explorateur de fichiers",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_Error": {
@@ -540,15 +564,15 @@
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_RunProject": {
-    "message": "Courir projet",
+    "message": "Lancer le projet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_StopProject": {
-    "message": "Stop project",
+    "message": "Arrêter le projet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_NoInternet": {
-    "message": "n'a pas d'Internet",
+    "message": "n'a pas d'internet",
     "description": ""
   },
   "WYLIODRIN_USERINTERFACE_Examples": {
@@ -604,7 +628,7 @@
     "description": ""
   },
   "SCHEMATICS_ERASE": {
-    "message": "Voulez-vous effacer la schémas?",
+    "message": "Voulez-vous effacer le schéma?",
     "description": ""
   },
   "TOOLBAR_FORUM": {
@@ -617,22 +641,22 @@
   },
   "DEVICE_CONNECTION_TIMEOUT":
   {
-    "message":"Délai de connexion, s'il vous plaît vérifier l'adresse IP de votre carte et assurez-vous qu'il est en cours d'exécution de la Wyliodrin Image.",
+    "message":"Délai de connexion, s'il vous plaît vérifiez l'adresse IP de votre carte et assurez-vous que l'image de Wyliodrin est en cours d'exécution.",
     "description":""
   },
   "DEVICE_CONNECTION_ERROR":
   {
-    "message":"Erreur de connexion, s'il vous plaît vérifier l'adresse IP de votre carte et assurez-vous qu'il est en cours d'exécution de la Wyliodrin Image.",
+    "message":"Erreur de connexion, s'il vous plaît vérifier l'adresse IP de votre carte et assurez-vous assurez-vous que l'image de Wyliodrin est en cours d'exécution.",
     "description":""
   },
   "DEVICE_CONNECTION_FAILED":
   {
-    "message":"Échec de la connexion, s'il vous plaît vérifier votre nom d'utilisateur et mot de passe.",
+    "message":"Échec de connexion, s'il vous plaît vérifiez votre nom d'utilisateur et votre mot de passe.",
     "description":""
   },
   "DEVICE_QUESTION_INSTALL_SHELL":
   {
-    "message":"Wyliodrin est pas installé sur cet appareil, souhaitez-vous l'installer ou juste ouvrir un shell?",
+    "message":"Wyliodrin n'est pas installé sur cet appareil, souhaitez-vous l'installer ou juste ouvrir un shell?",
     "description":""
   },
   "DEVICE_INSTALL":
@@ -647,16 +671,21 @@
   },
   "USER_SecureConnection":
   {
-    "message":"Utiliser une connexion sécurisée - ssh (fonctionne plus lent)",
+    "message":"Utiliser une connexion sécurisée - ssh (fonctionnement lente)",
+    "description":""
+  },
+  "DEVICE_Install":
+  {
+    "message":"Installable",
     "description":""
   },
   "INSTALL_SelectBoard": {
-    "message": "S'il vous plaît sélectionner la carte que vous souhaitez installer sur",
+    "message": "S'il vous plaît sélectionnez la carte sur laquelle vous souhaitez installer",
     "description": ""
   },
   "INSTALL_Success":
   {
-    "message":"l'installation Wyliodrin a réussi, s'il vous plaît déconnecter et se reconnecter à votre carte",
+    "message":"L'installation Wyliodrin a réussi, s'il vous plaît déconnectez vous et reconnectez vous à votre carte",
     "description":""
   },
   "DEVICE_Chrome":
@@ -671,7 +700,7 @@
   },
   "PROJECT_no_language_capability":
   {
-    "message":"Ce dispositif ne sait pas comment gérer un projet dans cette language",
+    "message":"Ce dispositif ne sait pas comment gérer un projet dans ce langage",
     "description":""
   },
   "PROJECT_library":
@@ -679,19 +708,29 @@
     "message":"Bibliothèque projets",
     "description":""
   },
+  "PLATFORM_windows":
+  {
+    "message":"Windows 10 IoT Core",
+    "description":""
+  },
+  "PLATFORM_linux":
+  {
+    "message":"Linux",
+    "description":""
+  },
   "PortSelectSerialChrome":
   {
-    "message":"Select Local Computer as port and connect to it. Connect your Arduino to the USB port of your computer.",
+    "message":"Sélectionez l'ordinateur local comme port et connectez vous à lui. Connectez votre Arduino au port USB de votre ordinateur.",
     "description":""
   },
   "PortSelectSerialFirmata":
   {
-    "message":"You need to specify the port for your Arduino in firmata.connect()",
+    "message":"Vous devez specifier le port pour Arduino en firmata.connect()",
     "description":""
   },
   "BOARD_Connect":
   {
-    "message":"Sélectionnez un appareil pour se connecter à",
+    "message":"Sélectionnez un appareil pour se connecter à lui",
     "description":""
   },
   "WYLIODRIN_USERINTERFACE_devicename":
@@ -704,15 +743,281 @@
     "description": ""
   },
   "IR829_wiki2": {
-    "message": "Le lien contient toutes les informations nécessaires pour se familiariser avec l'environnement Cisco IOS avant d'arriver à la console Linux.",
+    "message": "Le lien contient toutes les informations nécessaires pour se familiariser avec l'environnement Cisco IOS avant de travailler sur la console Linux.",
     "description": ""
   },
   "IR829_wget": {
-    "message": "Dans l'environnement Linux, utilisez wget et télécharger le pack bundle pour le serveur Wyliodrin comme un zip avec la commande suivante:",
+    "message": "Dans l'environnement Linux, utilisez wget et télécharger comme un zip le paquetage bundle pour le serveur Wyliodrin, avec la commande suivante:",
     "description": ""
   },
   "IR829_setup": {
-    "message": "Décompressez, entrez le dossier et exécuter le programme d'installation d'installation avec les commandes suivantes:",
+    "message": "Décompressez, entrez le dossier et exécuter le programme d'installation avec les commandes suivantes:",
     "description": ""
+  },
+  "Empty_folder": {
+    "message": "Dossier vide",
+    "description": ""
+  },
+  "Loading": {
+    "message": "En cours de chargement. . .",
+    "description": ""
+  },
+  "Show_hidden": {
+    "message": "Montrer les chachés",
+    "description": ""
+  },
+  "want_to_delete": {
+    "message": "Êtes-vous sûr que vous voulez le/les supprimer?",
+    "description": ""
+  },
+  "deleting_el": {
+    "message": "Êtes-vous sûr que vous voulez le/les supprimer ",
+    "description": ""
+  },
+  "folder_name": {
+    "message": "Choisissez un nom pour le dossier",
+    "description": ""
+  },
+  "Ok": {
+    "message": "Ok",
+    "description": ""
+  },
+  "Cancel": {
+    "message": "Renoncer",
+    "description": ""
+  },
+  "choose_name": {
+    "message": "Choisissez le nom pour ",
+    "description": ""
+  },
+  "will_upload": {
+    "message": "Le fichier sera téléchargé rapidement vers le serveur.",
+    "description": ""
+  },
+  "will_download": {
+    "message": "Le fichier sera téléchargé rapidement.",
+    "description": ""
+  },
+  "exportvalue": {
+    "message": "Valeur d'exportation",
+    "description": ""
+  },
+  "downloadasPNG": {
+    "message": "Télécharger l'image PNG",
+    "description": ""
+  },
+  "PrinttheChart": {
+    "message": "Imprimer le graphique",
+    "description": ""
+  },
+  "downloadasJPEG": {
+    "message": "Télécharger l'image JPEG",
+    "description": ""
+  },
+  "downloadasSVG": {
+    "message": "Télécharger l'image vectorielle SVG",
+    "description": ""
+  },
+  "folder": {
+    "message": "dossier",
+    "description": ""
+  },
+  "file": {
+    "message": "fichier",
+    "description": ""
+  },
+  "link": {
+    "message": "lien",
+    "description": ""
+  },
+  "Refresh": {
+    "message": "Recharger",
+    "description": ""
+  },
+  "New_folder": {
+    "message": "Nouveau dossier",
+    "description": ""
+  },
+  "New_file": {
+    "message": "Nouveau fichier",
+    "description": ""
+  },
+  "New_firmware": {
+    "message": "Nouveau Firmware",
+    "description": ""
+  },
+  "Upload_here": {
+    "message": "Charger",
+    "description": ""
+  },
+  "Rename": {
+    "message": "Renommer",
+    "description": ""
+  },
+  "Download": {
+    "message": "",
+    "description": "Télécharger"
+  },
+  "Delete": {
+    "message": "Supprimer",
+    "description": ""
+  },
+  "Exit": {
+    "message": "Sortie",
+    "description": ""
+  },
+  "FEinexistent_folder": {
+    "message": "Vous avez acceder à un dossier inéxistant."
+  },
+  "FEread_permission": {
+    "message": "Vous n'avez pas de permissions pour lire ici"
+  },
+  "FEread_permission_local": {
+    "message": "Vous n'avez pas de permissions pour lire pour ce fichier sur votre disk."
+  },
+  "FEwrite_permission": {
+    "message": "Vous n'avez pas de permissions pour écrire ici."
+  },
+  "FEdelete_permission": {
+    "message": "Vous n'avez pas de permissions pour supprimer ici."
+  },
+  "FErename_permission": {
+    "message": "Vous n'avez pas de permissions pour renommer ici."
+  },
+  "FEfile_write": {
+    "message": "L'écriture du fichier sur disk a échoué."
+  },
+  "FEnew_folder": {
+    "message": "Création du nouveau fichier échouée."
+  },
+  "FEdelete": {
+    "message": "Supprimation échouée."
+  },
+  "FErename": {
+    "message" :"L'action de renommer échouée."
+  },
+  "FEupload": {
+    "message": "Chargement échoué."
+  },
+  "FEdownload": {
+    "message": "Téléchargement échoué."
+  },
+  "FEexists": {
+    "message": "Il y a un autre fichier/dossier avec le même nom ici."
+  },
+  "FEunknown": {
+    "message": "Erreur inconnue"
+  },
+  "FEnot_exists": {
+    "message": "Le fichier/dossier n'existe plus."
+  },
+  "DASHBOARD_values_export": {
+    "message": "Exporter"
+  },
+  "TREEsame_name": {
+    "message": "Il y a un fichier ou un dossier avec le même nom à la destination."
+  },
+  "TREEdelete_special": {
+    "message": "Impossible de supprimer."
+  },
+  "TREEdelete_root": {
+    "message": "Impossible de supprimer le dossier racine."
+  },
+  "TREEdelete_software": {
+    "message": "Impossible de supprimer le dossier software."
+  },
+  "TREEno_root": {
+    "message": "Impossible de créer le dossier racine (utilisez New Firmware)."
+  },
+  "PROJECT_NOTEBOOK": {
+    "message": "Notebook"
+  },
+  "GITHUB_EXAMPLE_Example": {
+    "message": "Chargez un exemple"
+  },
+  "GITHUB_EXAMPLE_Empty":
+  {
+    "message": "S'il vous plaît, écrivez le nom du dépôt github qui contient des exemples."
+  },
+  "DEVICE_CONNECTION_BUSY":
+  {
+    "message": "Le dispositif est déjà connecté à un autre utilisateur.",
+    "description":""
+  },
+  "Disconnect": {
+    "message": "Déconnecter",
+    "description": ""
+  },
+  "Reboot_Disconnect": {
+    "message": "Redémarrer et Déconnecter",
+    "description": ""
+  },
+  "Poweroff_Disconnect": {
+    "message": "Arrêter et Déconnecter",
+    "description": ""
+  },
+  "Error": {
+    "message": "Erreur",
+    "description": ""
+  },
+  "Select_board": {
+    "message": "Sélectionnez la plaque",
+    "description": ""
+  },
+  "Port": {
+    "message": "Port",
+    "description": ""
+  },
+  "Pick_firmware": {
+    "message": "Prennez le firmware",
+    "description": ""
+  },
+  "No_firmware": {
+    "message": "Le firmware n'existe pas",
+    "description": ""
+  },
+  "Run": {
+    "message": "Exécuter",
+    "description": ""
+  },
+  "Github": {
+    "message": "Github",
+    "description": ""
+  },
+  "username": {
+    "message": "nom de l'utilisateur",
+    "description": ""
+  },
+  "repository": {
+    "message": "dépôt",
+    "description": ""
+  },
+  "Author": {
+    "message": "Auteur",
+    "description": ""
+  },
+  "Wyliodrin_app_server_version": {
+    "message": "Version de Wyliodrin-app-server",
+    "description": ""
+  },
+  "Libwyliodrin_version": {
+    "message": "Version de Libwyliodrin",
+    "description": ""
+  },
+  "Operating_system": {
+    "message": "Système d'exploitation",
+    "description": ""
+  },
+  "Supported_languages": {
+    "message": "Langages de programmation supportés",
+    "description": ""
+  },
+  "status": {
+    "message": "status",
+    "description": ""
+  },
+  "UPDATE_SD_CARD_IMAGE": {
+    "message":"S'il vous plaît, remettez à jour l'image de la carte SD avant que vous exécutiez le projet",
+    "description":""
   }
 }

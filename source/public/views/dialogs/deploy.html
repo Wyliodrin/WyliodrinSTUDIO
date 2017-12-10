@@ -6,37 +6,63 @@
     </md-toolbar>
 
     <md-dialog-content class="task-box">
-        <md-list>
-            <md-list-item ng-repeat="proj in list" layout-padding class="separator-line task">
+        <div ng-hide="activelogerr || activelogout">
+            <md-list>
+                <md-list-item ng-repeat="proj in list" layout-padding class="separator-line task" ng-controller="ToolbarController as t">
 
-                <!--<md-icon ng-show="task.TT!=='?'" md-svg-src="/public/drawable/process-icon.svg" class="s24" aria-label="Process" ></md-icon>--> 
+                    <!--<md-icon ng-show="task.TT!=='?'" md-svg-src="/public/drawable/process-icon.svg" class="s24" aria-label="Process" ></md-icon>--> 
 
-                <!--code above for putting picture-->
+                    <!--code above for putting picture-->
 
-                <h3>{{proj.title}}</h3>
-                <!--<span>{{proj.status}}</span>-->
-                <md-button ng-hide="!proj.away || ( proj.busy || stopped(proj) )" class="md-secondary lib-app-btn right" ng-click="stop(proj)">Stop</md-button>
-                <md-button ng-hide="!proj.away || (proj.busy || running(proj))" class="md-secondary lib-app-btn right" ng-click="run(proj)">Run</md-button>
-                <md-button ng-hide="!proj.away || (proj.busy || stopped(proj))" class="md-secondary lib-app-btn right" ng-click="restart(proj)">Restart</md-button>
+                    <h3>{{proj.title}}</h3>
+                    <!--<span>{{proj.status}}</span>-->
+                    <md-button ng-hide="!proj.away || ( proj.busy || stopped(proj) )" class="md-secondary lib-app-btn right" ng-click="stop(proj)">Stop</md-button>
+                
+                    <md-button ng-hide="!proj.away || proj.busy " class="md-secondary lib-app-btn right" ng-click="run(proj)">Run</md-button>
+                
+                    <md-button ng-hide="!proj.away || (proj.busy || stopped(proj))" class="md-secondary lib-app-btn right" ng-click="restart(proj)">Restart</md-button>
 
-                <md-button ng-hide="!proj.here || proj.away || proj.busy" class="md-secondary lib-app-btn right" ng-click="deploy(proj)">Deploy</md-button>
+                    <md-button ng-hide="!proj.here || proj.away || proj.busy" class="md-secondary lib-app-btn right" ng-click="deploy(proj)">Deploy</md-button>
 
-                <md-button ng-hide="!proj.away || proj.busy" class="md-secondary lib-app-btn right" ng-click="undeploy(proj)">Undeploy</md-button>
+                    <md-button ng-hide="!proj.away || proj.busy" class="md-secondary lib-app-btn right" ng-click="undeploy(proj)">Undeploy</md-button>
 
-                <md-button ng-hide="( !proj.away || !proj.here ) || proj.busy" class="md-secondary lib-app-btn right" ng-click="redeploy(proj)">Redeploy</md-button>
+                    <md-button ng-hide="( !proj.away || !proj.here ) || proj.busy" class="md-secondary lib-app-btn right" ng-click="redeploy(proj)">Redeploy</md-button>
 
-                <div ng-show="proj.busy"><img src="/public/drawable/loading.gif" /></div>
+                    <md-button ng-hide="!proj.away || proj.busy" class="md-secondary lib-app-btn right" ng-click="logerr(proj) ; logerractive(proj)">Err Log</md-button>
 
-            </md-list-item>
+                    <md-button ng-hide="!proj.away || proj.busy" class="md-secondary lib-app-btn right" ng-click="logout(proj) ; logoutactive(proj)">Out Log</md-button>
 
+                    <div ng-hide="!proj.busy"><img src="/public/drawable/loading.gif" /></div>
 
+                </md-list-item>
 
-        </md-list>
+            </md-list>
+        </div>
+        <div ng-show="activelogerr">
+            <h3 style="margin-left:2em;">Last 50 lines from Error Log</h3>
+            <pre style="margin-left:5em;">{{errlogcontent}}</pre>
+        </div>
+        <div ng-show="activelogout" hspace="10px">
+            <h3 style="margin-left:2em;">Last 50 lines from Output Log</h3>
+            <pre style="margin-left:5em;">{{outlogcontent}}</pre>
+        </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-        <md-button class="md-raised" aria-label="Exit" ng-click="dep.exit()">{{'Exit' | translate}}</md-button>
-        <md-button class="md-raised" aria-label="REFRESH" ng-click="dep.retake()">Refresh</md-button>
+        <div ng-hide="activelogerr || activelogout">
+            <md-button class="md-raised" aria-label="Exit" ng-click="dep.exit()">{{'Exit' | translate}}</md-button>
+            <md-button class="md-raised" aria-label="REFRESH" ng-click="dep.retake()">Refresh</md-button>
+        </div>
+        <div ng-show="activelogerr">
+            <md-button class="md-raised" aria-label="Exit" ng-click="undoerr()">Back</md-button>
+            <md-button class="md-raised" aria-label="Download Log File" ng-click="downloaderr()">Download Log File</md-button>
+            <md-button class="md-raised" aria-label="Clear Log File" ng-click="clearlogerr()">Clear Log File</md-button>
+        </div>
+        <div ng-show="activelogout">
+            <md-button class="md-raised" aria-label="Exit" ng-click="undoout()">Back</md-button>
+            <md-button class="md-raised" aria-label="Download Log File" ng-click="downloadout()">Download Log File</md-button>
+            <md-button class="md-raised" aria-label="Clear Log File" ng-click="clearlogout()">Clear Log File</md-button>
+        </div>
     </md-dialog-actions>
 
 </md-dialog>

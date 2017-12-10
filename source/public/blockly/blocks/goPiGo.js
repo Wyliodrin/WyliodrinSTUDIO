@@ -99,17 +99,3 @@ Blockly.Blocks['gopigo_led'] = {
     this.setTooltip('');
   }
 };
-
-//Blockly.Blocks['gopigo_enc_tgt'] = {
-  //init: function() {
-   // this.setHelpUrl('http://www.example.com/');
-    //this.setColour(210);
-    
-    //this.appendDummyInput()
-        //.appendField("???");
-    //this.setInputsInline(true);
-   // this.setPreviousStatement(true);
-    //this.setNextStatement(true);
-//this.setTooltip('');
-  //}//
-//};

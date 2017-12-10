@@ -74,7 +74,6 @@ export default class SocketChromeDevice extends EventEmitter
 		var that = this;
 		process.nextTick (function ()
 		{
-			// console.log (that.status);
 			if (that.staus <= CONNECTING);
 			that.emit ('connecting');
 			chrome.sockets.tcp.create ({}, function (createInfo)
@@ -89,7 +88,6 @@ export default class SocketChromeDevice extends EventEmitter
 					} 
 					if (result >= 0)
 					{
-						// that.connection = createInfo;
 						if (!that.shouldDisconnect)
 						{
 							debug ('Connected to '+that.address+' with socketId '+createInfo.socketId);
@@ -97,7 +95,6 @@ export default class SocketChromeDevice extends EventEmitter
 							{
 								that.status = SEPARRATOR;
 								that.emit ('separator');
-								// console.log (connection);
 								connections.set (''+createInfo.socketId, that);
 							}
 						}
@@ -159,7 +156,6 @@ export default class SocketChromeDevice extends EventEmitter
 			{
 				this.isSending = true;
 				var arraydata = this.buffers[0];
-				// this.buffers.splice (0, 1);
 				chrome.sockets.tcp.send (this.connection.socketId, arraydata, function (sendInfo)
 				{
 					if (sendInfo.error)
@@ -181,7 +177,6 @@ export default class SocketChromeDevice extends EventEmitter
 						debug ('Sent '+sendInfo.bytesSent+' of '+arraydata.byteLength+' to '+that.address+' using socketId '+that.connection.socketId);
 						if (sendInfo.bytesSent < arraydata.byteLength)
 						{
-							// console.log ('Sent less bytes than request');
 							debug ('Sent less bytes than in data, sending '+(that.buffers[0].byteLength-sendInfo.bytesSent)+' into the bytes next data');
 							that.buffers[0] = that.buffers[0].slice (sendInfo.bytesSent);
 						}
@@ -234,7 +229,6 @@ export default class SocketChromeDevice extends EventEmitter
 						arraydatauint[pos] = data[offset];
 						offset++;
 					}
-					// console.log (arraydatauint[pos]);
 				}	
 				this.buffers.push (arraydata);
 				this._send ();
@@ -255,7 +249,6 @@ export default class SocketChromeDevice extends EventEmitter
 					{
 						arraydatauint[pos] = PACKET_SEPARATOR;
 					}
-					// console.log (arraydatauint[pos]);
 				}
 				this.buffers.push (arraydata);
 				this._send ();
@@ -306,7 +299,6 @@ export default class SocketChromeDevice extends EventEmitter
 		// TODO more efficient to string
 		for (var pos=0; pos<datauint.length; pos++)
 		{
-			// console.log (datauint[pos]);
 			if (this.receivedFirstPacketSeparator)
 			{
 				if (datauint[pos] === PACKET_SEPARATOR)
@@ -341,7 +333,6 @@ export default class SocketChromeDevice extends EventEmitter
 					{
 						debug ('Random bytes for port '+this.address+' using socketId '+this.connection.socketId);
 					}
-					// console.log ('adding byte to data');
 					this._addToBuffer(datauint[pos]);
 					this.previousByte = datauint[pos];
 				}

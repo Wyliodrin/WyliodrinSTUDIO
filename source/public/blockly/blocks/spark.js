@@ -102,11 +102,6 @@ Blockly.Blocks['spark_getvar'] = {
         .appendField(new Blockly.FieldDropdown([["integer number", "int"], ["real number", "float"], ["text", "str"]]), "type")
         .appendField("from Spark device")
         .appendField(new Blockly.FieldVariable("item"), "device");
-    // this.appendDummyInput()
-    //     .appendField("Get")
-    //     .appendField(new Blockly.FieldVariable("variable"), "var")
-    //     .appendField("from Spark device")
-    //     .appendField(new Blockly.FieldVariable("item"), "device");
     this.setInputsInline(true);
     this.setOutput(true);
     this.setTooltip('');
@@ -127,7 +122,6 @@ Blockly.Blocks['spark_digitalwriteVal'] = {
             ["A4", "\"A4\""],["A5", "\"A5\""],["A6", "\"A6\""],["A7", "\"A7\""]]), "pin");
     this.appendValueInput("value")
         .appendField("value");
-        //.appendField(new Blockly.FieldDropdown([["0", "0"], ["1", "1"]]), "value");
     this.setInputsInline(true);
     this.setPreviousStatement(true);
     this.setNextStatement(true);

@@ -59,31 +59,31 @@ function removeComments(str) {
         regex: false,
         blockComment: false,
         lineComment: false,
-        condComp: false 
+        condComp: false
     };
     for (var i = 0, l = str.length; i < l; i++) {
- 
+
         if (mode.regex) {
             if (str[i] === '/' && str[i-1] !== '\'') {
                 mode.regex = false;
             }
             continue;
         }
- 
+
         if (mode.singleQuote) {
             if (str[i] === "'" && str[i-1] !== '\'') {
                 mode.singleQuote = false;
             }
-            continue;
+            continue;//tree
         }
- 
+
         if (mode.doubleQuote) {
             if (str[i] === '"' && str[i-1] !== '\'') {
                 mode.doubleQuote = false;
             }
             continue;
         }
- 
+
         if (mode.blockComment) {
             if (str[i] === '*' && str[i+1] === '/') {
                 str[i+1] = '';
@@ -92,7 +92,7 @@ function removeComments(str) {
             str[i] = '';
             continue;
         }
- 
+
         if (mode.lineComment) {
             if (str[i+1] === 'n' || str[i+1] === 'r') {
                 mode.lineComment = false;
@@ -100,19 +100,19 @@ function removeComments(str) {
             str[i] = '';
             continue;
         }
- 
+
         if (mode.condComp) {
             if (str[i-2] === '@' && str[i-1] === '*' && str[i] === '/') {
                 mode.condComp = false;
             }
             continue;
         }
- 
+
         mode.doubleQuote = str[i] === '"';
         mode.singleQuote = str[i] === "'";
- 
+
         if (str[i] === '/') {
- 
+
             if (str[i+1] === '*' && str[i+2] === '@') {
                 mode.condComp = true;
                 continue;
@@ -128,9 +128,9 @@ function removeComments(str) {
                 continue;
             }
             mode.regex = true;
- 
+
         }
- 
+
     }
     return str.join('').slice(2, -2);
 }
@@ -147,7 +147,7 @@ var app = angular.module ('wyliodrinApp');
 			running: '='
 		};
 
-		$scope.project = 
+		$scope.project =
 		{
 			id: -1,
 			tree:[]
@@ -174,8 +174,6 @@ var app = angular.module ('wyliodrinApp');
 
 		$scope.tree = {};
 
-
-		//$scope.tree.data=[]; used before now $scope.project.tree
 		$scope.tree.selectednode={};
 		$scope.tree.options={
 		    nodeChildren: "children",
@@ -295,7 +293,7 @@ var app = angular.module ('wyliodrinApp');
 						i--;
 					}
 				}
-				
+
 				x.children.forEach( function (y){
 					checkSpecial(y);
 				});
@@ -306,7 +304,10 @@ var app = angular.module ('wyliodrinApp');
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
 		this.treeSelect = function(node){
+      console.log(7);
+      console.log($scope.project.tree);
 			if (node.isspecial || node.isdir){
 				$scope.showEditor = false;
 				$scope.showVisual = false;
@@ -317,17 +318,35 @@ var app = angular.module ('wyliodrinApp');
 
 				if (hasDeepChild(node,$scope.project.tree[0].children[0])){
 					if ($scope.project.language == "visual"){
-						$scope.showVisual = true;
+
+            if (node.isdir == false && node.ismain == true)
+            {
+              $scope.showVisual = true;
+            }
+
+            // hide the visuals in case a text file is selected
+            if(node.isdir == false && node.ismain == undefined)
+            {
+              $scope.showVisual = false;
+            }
 					}
 					else{
 						$scope.showVisual = false;
 					}
 					if ($scope.project.language == "streams"){
 
-						$scope.showStreams = true;
-						red.contentWindow.postMessage ({projectid:$scope.project.id,content:$scope.tree.selectednode.content}, '*');
+            if(node.isdir == false && node.ismain == true)
+            {
+  						$scope.showStreams = true;
+            }
 
-						red.reload();
+            // hide the streams in case a text file is selected
+            if(node.isdir == false && node.ismain == undefined)
+            {
+              console.log("text");
+              $scope.showStreams = false;
+            }
+
 					}
 					else{
 						$scope.showStreams = false;
@@ -385,6 +404,10 @@ var app = angular.module ('wyliodrinApp');
 						softwareEditor.getSession().setUseSoftTabs (true);
 					}
 				}
+				setTimeout (function ()
+				{
+					$(window).trigger ('resize');
+				});
 			}
 		};
 
@@ -426,7 +449,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function (keyEvent)
 					{
 						if ($scope.contentPopupNewFolder.length !== 0)
-						{	
+						{
 							$mdDialog.hide ();
 							that.newFolder($scope.contentPopupNewFolder);
 						}
@@ -439,8 +462,6 @@ var app = angular.module ('wyliodrinApp');
 				},
 				controllerAs: 'dialogFolder',
 				templateUrl: '/public/views/dialogs/new-folder.html',
-				      // parent: $element,
-				      // targetEvent: ev,
 				      clickOutsideToClose:false,
 				      fullscreen: false
 			});
@@ -455,7 +476,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function (keyEvent)
 					{
 						if ($scope.contentPopupNewFile.length !== 0)
-						{	
+						{
 							$mdDialog.hide ();
 							that.newFile($scope.contentPopupNewFile);
 						}
@@ -468,8 +489,6 @@ var app = angular.module ('wyliodrinApp');
 				},
 				controllerAs: 'dialogFile',
 				templateUrl: '/public/views/dialogs/new-file.html',
-				      // parent: $element,
-				      // targetEvent: ev,
 				      clickOutsideToClose:false,
 				      fullscreen: false
 			});
@@ -492,8 +511,6 @@ var app = angular.module ('wyliodrinApp');
 				},
 				controllerAs: 'dialogDelete',
 				templateUrl: '/public/views/dialogs/delete.html',
-				      // parent: $element,
-				      // targetEvent: ev,
 				      clickOutsideToClose:false,
 				      fullscreen: false
 			});
@@ -509,7 +526,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function (keyEvent)
 					{
 						if ($scope.contentPopupRename.length !== 0)
-						{	
+						{
 							$mdDialog.hide ();
 							that.rename($scope.contentPopupRename);
 						}
@@ -522,8 +539,6 @@ var app = angular.module ('wyliodrinApp');
 				},
 				controllerAs: 'dialogRename',
 				templateUrl: '/public/views/dialogs/rename.html',
-				      // parent: $element,
-				      // targetEvent: ev,
 				      clickOutsideToClose:false,
 				      fullscreen: false
 			});
@@ -563,7 +578,7 @@ var app = angular.module ('wyliodrinApp');
 					this.ok = function (keyEvent)
 					{
 						if ($scope.contentPopupNewFirmware.text && $scope.contentPopupNewFirmware.type)
-						{	
+						{
 							$mdDialog.hide ();
 							that.newFirmware($scope.contentPopupNewFirmware);
 						}
@@ -576,8 +591,6 @@ var app = angular.module ('wyliodrinApp');
 				},
 				controllerAs: 'dialogFirmware',
 				templateUrl: '/public/views/dialogs/new-firmware.html',
-				      // parent: $element,
-				      // targetEvent: ev,
 				      clickOutsideToClose:false,
 				      fullscreen: false
 			});
@@ -597,8 +610,6 @@ var app = angular.module ('wyliodrinApp');
 				},
 				controllerAs: 'dialogError',
 				templateUrl: '/public/views/dialogs/error.html',
-				      // parent: $element,
-				      // targetEvent: ev,
 				      clickOutsideToClose:false,
 				      fullscreen: false
 			});
@@ -616,8 +627,20 @@ var app = angular.module ('wyliodrinApp');
 
 		this.newFirmware = function(arg){
 			var obj = {name:arg.text,id:makeID($scope.project.tree[0]),isdir:true,isfirmware:true,ftype:arg.type,fport:"auto",children:[]};
+			if(arg.type=='openmote')
+			{
+				obj.isopenmote = true;
+			}
+			if(arg.type=='arduino')
+			{
+				obj.isarduino = true;
+			}
 			this.newSomething(obj,$scope.project.tree[0]);
 			checkEmptyFolders($scope.project.tree[0]);
+			if(arg.type=='openmote')
+				this.newSomething({name:'main.cpp',isdir:false,children:[]},$scope.project.tree[0].children[$scope.project.tree[0].children.length-1]);
+			else if(arg.type=='arduino')
+				this.newSomething({name:'arduino.ino',isdir:false,children:[]},$scope.project.tree[0].children[$scope.project.tree[0].children.length-1]);
 		};
 
 		this.newSomething = function(obj,parent){
@@ -652,19 +675,6 @@ var app = angular.module ('wyliodrinApp');
 		};
 
 		this.delete = function(){
-			/*if ($scope.tree.selectednode.isspecial){
-				$scope.tree.contentPopupError = $translate.instant('TREEdelete_special');
-				$scope.tree.showPopupError = 1;
-			}
-			else if($scope.tree.selectednode.isroot){
-				$scope.tree.contentPopupError = $translate.instant('TREEdelete_root');
-				$scope.tree.showPopupError = 1;
-			}
-			else if($scope.tree.selectednode.issoftware){
-				$scope.tree.contentPopupError = $translate.instant('TREEdelete_software');
-				$scope.tree.showPopupError = 1;
-			}
-			else{*/
 			if (true){
 				var parent = findParent($scope.tree.selectednode, $scope.project.tree[0]);
 				for (var i = 0; i<parent.children.length;i++){
@@ -679,7 +689,7 @@ var app = angular.module ('wyliodrinApp');
 			$scope.aceSoftwareChanged();
 		};
 
-		
+
 
 		function findParent(node, tree){
 
@@ -753,17 +763,6 @@ var app = angular.module ('wyliodrinApp');
 			},
 		};
 
-		// window.getProject = function ()
-		// {
-		// 	return $scope.project;
-		// };
-
-		// window.storeProject = function (data)
-		// {
-		// 	$scope.project.main = data;
-		// 	library.storeMain ($scope.project.id, $scope.project.main);
-		// };
-
 		window.getProgram = function ()
 		{
 			debug ('Loading working project');
@@ -799,12 +798,12 @@ var app = angular.module ('wyliodrinApp');
 
 		this.firmwareexample = function ()
 		{
+			window.wyliodrinSTUDIO_selectedftype=$scope.tree.selectednode.ftype;
+			window.wyliodrinSTUDIO_selectedname=$scope.tree.selectednode.name;
 			$mdDialog.show({
 		      controller: 'FirmwareExampleController',
 		      controllerAs: 'f',
 		      templateUrl: '/public/views/firmware-example.html',
-		      // parent: $element,
-		      // targetEvent: ev,
 		      clickOutsideToClose:true,
 		      fullscreen: false
 		    });
@@ -815,8 +814,6 @@ var app = angular.module ('wyliodrinApp');
 			var $xterm = $element.find('#xterm');
 			cols = Math.floor(($xterm.width ())/9);
 	  		rows = Math.floor(($xterm.height()-12)/15);
-
-	  		// console.log ('cols '+cols+' rows '+rows);
 
 			shell.resize (cols, rows);
 			$wydevice.send ('r', {a:'r', c:cols, r: rows});
@@ -851,8 +848,6 @@ var app = angular.module ('wyliodrinApp');
 	        			wyliodrinFunction.snippet = wyliodrinFunction.snippet+'${'+(p+1)+':'+wyliodrinFunction.params[p].name+'}'+(p === wyliodrinFunction.params.length-1?'':', ');
 	        		}
 	        		wyliodrinFunction.snippet = wyliodrinFunction.snippet+')';
-		        	// wyliodrinFunction.score = -45;
-		        	// console.log (wyliodrinFunction);
 		            wyliodrinFunctions[language.title].push ({snippet:wyliodrinFunction.snippet, caption:wyliodrinFunction.name, type:"libwyliodrin", description:wyliodrinFunction});
 
 		          }
@@ -870,17 +865,16 @@ var app = angular.module ('wyliodrinApp');
 	        			wyliodrinFunction.snippet = wyliodrinFunction.snippet+'${'+(p+1)+':'+wyliodrinFunction.params[p].name+'}'+(p === wyliodrinFunction.params.length-1?'':', ');
 	        		}
 	        		wyliodrinFunction.snippet = wyliodrinFunction.snippet+')';
-		        	// wyliodrinFunction.score = -45;
 		            wyliodrinFunctions.c_cpp.push ({snippet:wyliodrinFunction.snippet, caption:wyliodrinFunction.name, type:"libwyliodrin", description:wyliodrinFunction});
 
 		          }
 
 			var snippetCompleter = {
-		        getCompletions: function (editor, session, pos, prefix, callback) 
+		        getCompletions: function (editor, session, pos, prefix, callback)
 		        {
 		          callback (null, wyliodrinFunctions[editor.language]);
 		        },
-		        getDocTooltip: function (item) 
+		        getDocTooltip: function (item)
 		        {
 		          if (item.type === 'libwyliodrin')
 		          {
@@ -908,13 +902,13 @@ var app = angular.module ('wyliodrinApp');
 		            else
 		              title = title + ")";
 
-		            item.docHTML = "<b>" + lang.escapeHTML (title) + "</b><br>" + lang.escapeHTML (f.description) + 
+		            item.docHTML = "<b>" + lang.escapeHTML (title) + "</b><br>" + lang.escapeHTML (f.description) +
 		                                "<br>" + argsDescription;
 		          }
 		       },
 		       updateArgsHints: function (item)
 		       {
-		       	
+
 		       }
 		    };
 
@@ -923,8 +917,6 @@ var app = angular.module ('wyliodrinApp');
 
 		$scope.aceSoftwareChanged = function ()
 		{
-			// console.log ($scope.project);
-			// console.log (softwareEditor.$blockScrolling);
 			if ($scope.project.id > 0)
 			{
 				library.storeTree ($scope.project.id, $scope.project.tree);
@@ -969,7 +961,6 @@ var app = angular.module ('wyliodrinApp');
 			else
 			if (t === 'v')
 			{
-				// console.log (p);
 			}
 			else
 			if (t === 'i')
@@ -988,12 +979,11 @@ var app = angular.module ('wyliodrinApp');
 		shell.open ($element.find ('#xterm')[0]);
 		$timeout (function ()
 		{
-			setSizes (); 
+			setSizes ();
 		});
 
 		shell.on ('data', function (key)
 		{
-			// xterm.write (key);
 			$wydevice.send ('tp', {a:'k', t:key});
 		});
 
@@ -1023,7 +1013,6 @@ var app = angular.module ('wyliodrinApp');
 			else
 			if (project.language === "visual")
 			{
-				//program.load (project, $wydevice.device);
 			}
 			else
 			if (project.language === "csharp")
@@ -1039,7 +1028,17 @@ var app = angular.module ('wyliodrinApp');
 			{
 				if (project.tree === undefined){
 					//older style projects
+					$mdDialog.show(
+				      $mdDialog.alert()
+				        .clickOutsideToClose(true)
+				        .title($filter('translate')('TOOLBAR_UPDATE'))
+				        .textContent($filter('translate')('UPDATE_SD_CARD_IMAGE'))
+				        .ariaLabel($filter('translate')('UPDATE_SD_CARD_IMAGE'))
+				        .ok($filter('translate')('Ok'))
+				    );
 					project = library.convertToTree(project);
+					console.log ('Project');
+					console.log (project);
 					library.storeTree (project.id, project.tree);
 
 				}
@@ -1050,22 +1049,15 @@ var app = angular.module ('wyliodrinApp');
 				if (red === null)
 				{
 					red = $element.find ('#red')[0];
-					// console.log (red);
 					if (red)
 					{
 						window.addEventListener ('message', function (message)
 						{
-							// console.log (message);
 							try
 							{
-								// console.log(message);
 								var parsedmessage = message.data;
-								// console.log (parsedmessage);
-								// console.log ($scope.project.id);
-								if (parsedmessage.type === 'flow')// && parsedmessage.projectId === $scope.project.id)
+								if (parsedmessage.type === 'flow')
 								{
-									// console.log ('store');
-								// here put the new stream nodes \|/
 									$scope.tree.selectednode.content = parsedmessage.flow;
 									library.storeTree ($scope.project.id, $scope.project.tree);
 								}
@@ -1075,38 +1067,17 @@ var app = angular.module ('wyliodrinApp');
 
 							}
 						});
-						// red.addEventListener ('consolemessage', function (message)
-						// {
-						// 	console.log (message);
-						// 	try
-						// 	{
-						// 		var parsedmessage = JSON.parse (message.message);
-						// 		console.log (parsedmessage);
-						// 		console.log (project.id);
-						// 		if (parsedmessage.type === 'flow' && parsedmessage.projectId === project.id)
-						// 		{
-						// 			console.log ('store');
-						// 			library.storeMain (project.id,parsedmessage.flow);
-						// 		}
-						// 	}
-						// 	catch (e)
-						// 	{
-
-						// 	}
-						// });
 						red.addEventListener ('contentload', function ()
 						{
 							console.log ('contentload');
 							if ($scope.project.language === 'streams')
 							{
-								// here put when streams load \|/
 								console.log($scope.tree.selectednode.content);
 								red.contentWindow.postMessage ({projectid:project.id,content:$scope.tree.selectednode.content}, '*');
 							}
 						});
 					}
 				}
-				// console.log ($scope.project.language);
 				if (red && $scope.project.language === 'streams')
 				{
 					red.reload ();
@@ -1121,10 +1092,42 @@ var app = angular.module ('wyliodrinApp');
 			$timeout (function ()
 			{
 				$scope.project.firmware = firmware;
+				var index;
+				var indexfirm;
+				var i=0;
+				console.log(firmware);
+				for(index=0;$scope.project.tree[0].children[index].name!=window.wyliodrinSTUDIO_selectedname;index++)
+				{
+				}
+				if($scope.project.tree[0].children[index].children.length==1)
+				{
+					i=0;
+					$scope.project.tree[0].children[index].children.splice(0,1);
+					_.each (firmware, function (firmwareData, firmwareFilename)
+					{
+						that.newFile(firmwareFilename);
+						$scope.project.tree[0].children[index].children[i].content=firmwareData;
+						i++;
+					});
+				}
+				else
+				{
+				 	for(var index1=$scope.project.tree[0].children[index].children.length-1;index1>=0;index1--)
+					{
+						$scope.project.tree[0].children[index].children.splice(index1,1);
+					}
+					i=0;
+					_.each(firmware,function(firmwareData, firmwareFilename){
+
+						that.newFile(firmwareFilename);
+						$scope.project.tree[0].children[index].children[i].content=firmwareData;
+						i++;	
+					});
+				}
 			});
 			mixpanel.track ('Project Load Firmware',
 			{
-				langauge: $scope.project.language,
+				langauge: $scope.project.language
 			});
 		});
 
@@ -1164,11 +1167,9 @@ var app = angular.module ('wyliodrinApp');
 							if ( _.filter(ports, { 'pick' : child.name } ).length === 0){
 								child.enable = false;
 								return;
-								//no more code
 							}
 							else{
 								child.enable = true;
-								//code runs below
 							}
 
 							var found = _.filter(ports, { 'pick' : child.name } );
@@ -1185,7 +1186,6 @@ var app = angular.module ('wyliodrinApp');
 
 							if (make_os.compileHere && make_os.compileHere[$wydevice.device.category] && make_os.compileHere[$wydevice.device.category][child.ftype])
 							{
-								//if make compile here exists
 								m.ch = make_os.compileHere[$wydevice.device.category][child.ftype];
 								m.ca = make_os.compileAway[child.ftype];
 								m.s = null;
@@ -1199,11 +1199,6 @@ var app = angular.module ('wyliodrinApp');
 							m.f = make_os.flash[$wydevice.device.category][child.ftype];
 
 							child.m = m;
-								/*settings.MAKE_FIRMWARE[$wydevice.device.category][tree.children[i].ftype](
-									'app_project',
-									null,
-									tree.children[i].fport
-								);*/
 						}
 					});
 				}
@@ -1228,7 +1223,6 @@ var app = angular.module ('wyliodrinApp');
 				});
 			}
 
-
 			var firmwareAvailable = [];
 			for (var i=0; i<$scope.project.tree[0].children.length;i++){
 				if ($scope.project.tree[0].children[i].isfirmware){
@@ -1236,8 +1230,6 @@ var app = angular.module ('wyliodrinApp');
 				}
 			}
 
-
-			//var firmwareAvailable = $scope.project.firmware && removeComments ($scope.project.firmware).trim().length>0;
 			if (!$scope.device.capabilities || $scope.device.capabilities.l[$scope.project.language])
 			{
 				if (firmwareAvailable.length !== 0)
@@ -1252,7 +1244,6 @@ var app = angular.module ('wyliodrinApp');
 				      	$scope.map = usb_mapping; //code to Board Name
 
 				      	$scope.ports = _.cloneDeep($wydevice.device.peripherals);
-				      	//$scope.ports=[{"vid":"0x10c4","pid":"0xea60","p":"/dev/ttyUSB0"}];
 				      	for (var i =0;i<$scope.ports.length;i++){
 				      		var pid = parseInt($scope.ports[i].pid);
 				      		var vid = parseInt($scope.ports[i].vid);
@@ -1273,7 +1264,6 @@ var app = angular.module ('wyliodrinApp');
 
 				      	}
 
-				      	//workaround for NO FIRMWARE default
 				      	$scope.EMPTY = make_empty($scope.tree);
 
 				      	function rand(min, max) {
@@ -1310,14 +1300,8 @@ var app = angular.module ('wyliodrinApp');
 						  	return false;
 						  };
 						};
-				      	
-				      	$scope.path = path;
 
-				      	/*this.runAndFlash = function ()
-				      	{
-				      		run ($scope.tree, $scope.ports, true);
-				      		$mdDialog.hide ();
-				      	};*/
+				      	$scope.path = path;
 
 				      	this.run = function ()
 				      	{
@@ -1327,8 +1311,6 @@ var app = angular.module ('wyliodrinApp');
 				      },
 				      controllerAs: 'f',
 				      templateUrl: '/public/views/flash-firmware.html',
-				      // parent: $element,
-				      // targetEvent: ev,
 				      clickOutsideToClose:true,
 				      fullscreen: false
 				    });
@@ -1342,9 +1324,6 @@ var app = angular.module ('wyliodrinApp');
 			{
 				var message = $mdDialog.confirm()
 			          .title($filter('translate')('PROJECT_no_language_capability'))
-			          // .textContent('All of the banks have agreed to forgive you your debts.')
-			          // .ariaLabel('Lucky day')
-			          // .targetEvent(ev)
 			          .ok($filter('translate')('PROJECT_library'))
 			          .cancel($filter('translate')('OK'));
 			    $mdDialog.show(message).then(function() {

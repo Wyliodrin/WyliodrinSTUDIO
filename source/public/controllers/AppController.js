@@ -44,13 +44,11 @@ module.exports = function ()
 
 		this.application = function ()
 		{
-			// console.log ('application');
 			$wyapp.emit ('tab_application');
 		};
 
 		this.shell = function ()
 		{
-			// console.log ('shell');
 			$wyapp.emit ('tab_shell');
 		};
 
@@ -108,7 +106,6 @@ module.exports = function ()
 		$wydevice.on ('status', function (status)
 		{
 			debug ('Status '+status);
-			// console.log (status);
 			mixpanel.track ('Status',
 			{
 				category: $scope.device.category,

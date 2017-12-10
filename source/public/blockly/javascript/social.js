@@ -42,7 +42,6 @@ Blockly.JavaScript.mailSetVar = function ()
                                                       " from: fromAdd,\n"+
                                                       " to: toAdd,\n"+
                                                       " subject: subj,\n"+
-                                                      //" text: Plaintext body,\n"+
                                                       " html: mess\n"+
                                                       " }\n"+
                                                       "smtpTransport.sendMail(mailOptions, function(error, response){\n"+
@@ -183,12 +182,7 @@ Blockly.JavaScript['mail_send'] = function(block) {
 
 
 Blockly.JavaScript['attachment_mail_send'] = function(block) {
-  // Blockly.JavaScript.mailSetVar();
-  // var value_toaddr = Blockly.JavaScript.valueToCode(block, 'toAddr', Blockly.JavaScript.ORDER_ATOMIC);
-  // var value_subj = Blockly.JavaScript.valueToCode(block, 'subj', Blockly.JavaScript.ORDER_ATOMIC);
-  // var value_msg = Blockly.JavaScript.valueToCode(block, 'msg', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
- //var code = 'sendMail('+Blockly.JavaScript.mailName+', '+Blockly.JavaScript.mailPassword+', '+value_toaddr+', '+value_subj+', '+value_msg+');\n';
   var code = "//AttachmentMailSend block not supported in javascript\n";
   return code;
 };
@@ -304,7 +298,6 @@ Blockly.JavaScript['twitter_user_timeline'] = function(block) {
 
 
 Blockly.JavaScript['twilio_setup'] = function(block) {
-  //Blockly.JavaScript.twilioImport()
   var value_twi_account = Blockly.JavaScript.valueToCode(block, 'twi_account', Blockly.JavaScript.ORDER_ATOMIC);
   var value_twi_token = Blockly.JavaScript.valueToCode(block, 'twi_token', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
@@ -393,8 +386,6 @@ Blockly.JavaScript['twilio_getSMS'] = function(block) {
 };
 
 Blockly.JavaScript['communication_open_connection'] = function(block) {
-//  var value_label = Blockly.JavaScript.valueToCode(block, 'label', Blockly.JavaScript.ORDER_ATOMIC);
-  //var statements_commands = Blockly.JavaScript.statementToCode(block, 'commands');
   // TODO: Assemble JavaScript into code variable.
   var code = '//Communication open connection block not supported in javascript\n';
   Blockly.JavaScript.NoSupportFor('communication_open_connection');
@@ -402,8 +393,6 @@ Blockly.JavaScript['communication_open_connection'] = function(block) {
 };
 
 Blockly.JavaScript['communication_open_connection_label'] = function(block) {
-//  var value_label = Blockly.JavaScript.valueToCode(block, 'label', Blockly.JavaScript.ORDER_ATOMIC);
-  //var statements_commands = Blockly.JavaScript.statementToCode(block, 'commands');
   // TODO: Assemble JavaScript into code variable.
   var code = '//Communication open connection label block not supported in javascript\n';
   Blockly.JavaScript.NoSupportFor('communication_open_connection_label');

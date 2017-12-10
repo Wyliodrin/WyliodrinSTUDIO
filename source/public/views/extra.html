@@ -8,7 +8,6 @@ var links = [];
 var data = -1;
 window.addEventListener ('message', function (event)
 {
-	// console.log (event.data);
 	if (typeof (event.data) === 'object')
 	{
 		document.getElementById ('title').innerHTML = event.data.title;
@@ -35,10 +34,8 @@ window.addEventListener ('message', function (event)
 	}
 	else
 	{
-		// console.log (event.data);
 		if (event.data >= 0 && event.data < links.length)
 		{
-			// console.log (links[event.data]);
 			data = event.data;
 			document.getElementById ('link').src = links[event.data];
 		}

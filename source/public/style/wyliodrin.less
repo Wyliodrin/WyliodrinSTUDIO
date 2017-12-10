@@ -437,7 +437,8 @@ md-dialog md-dialog-actions {border-top-width: 1px; border-top-style: solid; bor
 	font-size:12px;
 	line-height: 28px;
     min-height: 28px;
-	padding:0;
+	padding:0 10px;
+	margin:auto !important;
 }
 
 .dash-btn {
@@ -455,7 +456,7 @@ md-dialog md-dialog-actions {border-top-width: 1px; border-top-style: solid; bor
 .lib-app-btn:hover, .dash-btn:hover { 
 	background:#e54225 !important;
 	color:#fff !important;
-	border:#e54225 0px solid;
+	border:#e54225 1px solid;
 }
 
 .dash-btn md-icon {
@@ -550,8 +551,7 @@ img.separator {
 
 .device-img {height:36px;}
 
-
-.task-box {	background: url('../drawable/loading.gif') no-repeat 50% 50% transparent; height:100%;}
+.task-box {background: url('../drawable/loading4.gif') no-repeat 50% 50% transparent; height:100%; width: 1000px;}
 .task-box md-list { background:#fff;}
 
 .separator-line {
@@ -683,7 +683,7 @@ md-progress-linear .md-container {background:#e5eef1;}
 md-progress-linear .md-bar{background:#e54225;}
 
 .packages-tabs-box md-tab-content {	background: url('../drawable/loading.gif') no-repeat 50% 50% transparent; overflow-x:hidden;}
-.packages-tabs-box md-tab-content > div { background:#fff;}
+.packages-tabs-box md-tab-content > div > md-list { background:#fff;}
 
 .pre-box {margin:15px; font-size:11px;}
 
@@ -699,7 +699,7 @@ md-progress-linear .md-bar{background:#e54225;}
 .auth-box .showpass {margin:0!important; position: absolute; left: 18px; bottom: 17px;}
 
 
-.ssid-list md-list-item {cursor:pointer;}
+.ssid-list md-list-item {cursor:pointer; }
 .ssid-list {
 	md-list-item:hover {background:#eaeaea;}
 	md-input-container {margin:18px 0 0 0; height:30px;}
@@ -788,7 +788,7 @@ md-pagination-wrapper, md-tab-item {width:initial !important;}
 .about-logo{position:relative; margin:auto; text-align:center; padding: 30px 0;}
 .about-logo span{position:absolute; right:100px; top:87px; font-size:14px;}
 
-.developers {margin:auto; text-align:center; overflow: auto; display: block; max-height: 190px;}
+.developers {margin:auto; text-align:center; overflow: auto; display: block; max-height: 212px;}
 .developers h3{font-weight:bold; width:100%; font-size:18px;}
 .developers p{width:100%; font-size:14px;}
 

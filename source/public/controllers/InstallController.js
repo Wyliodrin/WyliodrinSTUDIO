@@ -100,7 +100,6 @@ module.exports = function ()
 		{
 			if ($scope.runinstall === true)
 			{
-				// $scope.runinstall = false;
 				$wydevice.send ('install', {a:'s'});
 			}
 			else

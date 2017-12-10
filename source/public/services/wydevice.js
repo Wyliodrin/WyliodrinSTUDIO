@@ -26,9 +26,6 @@ app.factory ('$wydevice', function ($http)
 	debug ('Registering');
 	var device = null;
 
-	// var WyliodrinDevice = null;
-	// var service = null;
-
 	if (settings.platform.CHROME)
 	{
 		chrome.runtime.getBackgroundPage(function (backgroundPage) {
@@ -46,8 +43,6 @@ app.factory ('$wydevice', function ($http)
 			debug (options);
 			var categoryhint = (options?options.category:undefined);
 			var platformhint = (options?options.platform:undefined);
-			//console.log (categoryhint);
-			//console.log (platformhint);
 			device = new WyliodrinLocalDevice (strdevice, options);
 			var that = this;
 			
@@ -81,7 +76,6 @@ app.factory ('$wydevice', function ($http)
 					device.removeAllListeners ();
 					device = null;
 				}
-				//console.log (deviceService.device);
 				that.emit ('status', _status);
 			});
 
@@ -89,7 +83,6 @@ app.factory ('$wydevice', function ($http)
 			{
 				if (t === 'i')
 				{
-					// console.log (d);
 					if (!deviceService.device) deviceService.device = {};
 					deviceService.device.name = d.n;
 					deviceService.device.category = d.c;
@@ -102,7 +95,10 @@ app.factory ('$wydevice', function ($http)
 				if (t === 'capabilities')
 				{
 					debug (d);
+					console.log(d);
+
 					deviceService.device.capabilities = d;
+					console.log(deviceService.device.capabilities);
 				}
 				else
 				if ((t === 'v' || t === 'sv') && !d.s)

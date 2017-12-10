@@ -40,7 +40,6 @@ module.exports = function ()
 						},
 			            pane: {
 							center: ['50%', '90%'],
-							//size: '140%',
 							startAngle: -90,
 							endAngle: 90,
 							background: {
@@ -125,18 +124,6 @@ module.exports = function ()
 				{
 					debug ('Signal setup');
 					$wyapp.emit ('dashboard');
-					// console.log ('signal');
-					// console.log ($scope.signal);
-					// console.log ($scope.signal.properties);
-					// $scope.setup.options.chart.type = $scope.signal.type;
-					// $scope.setup.series =
-					// [{
-					// 	title: $scope.signal.title,
-					// 	color: $scope.signal.color,
-					// 	data: []
-					// }];
-
-					// $scope.setup.title.text = $scope.signal.title;
 					$scope.setup.options.yAxis.min = $scope.signal.properties.minimum_value;
 					$scope.setup.options.yAxis.max = $scope.signal.properties.maximum_value;
 					$scope.setup.options.yAxis.title.text = $scope.signal.properties.units;
@@ -174,11 +161,9 @@ module.exports = function ()
 
 				var update = function (t, values)
 				{
-					// console.log (scope.signal.title);
 					if (t === 'v')
 					{
 						var v = (values.s?values.s[scope.signal.title]:undefined);
-						// console.log (v);
 						if (v !== undefined)
 						{
 							scope.update = true;
@@ -190,12 +175,7 @@ module.exports = function ()
 									scope.signal.values = true;
 								});
 							}
-							// var vu = this.log10 (value/(this.parameters.maximum_value.value*0.74))*20;
-							// if (vu < -20) vu = -20;
-							// if (vu > 6) vu = 6;
 							scope.value = v;
-							// console.log (values.t+', '+v);
-							// console.log (scope.setup.series);
 						}
 					}
 				};

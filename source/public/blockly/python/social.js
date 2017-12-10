@@ -443,7 +443,6 @@ Blockly.Python['twilio_call_say'] = function(block) {
   var dropdown_twi_language = block.getFieldValue('twi_language');
   // TODO: Assemble Python into code variable.
   var code = 'call ='+ Blockly.Python.twilioClient+'.calls.create(to='+value_twi_to+', from_='+value_twi_from+", url='http://twimlets.com/echo?'+urlencode({'Twiml':'<Response><Say voice=\"alice\" language=\""+dropdown_twi_language+"\">'+"+value_twi_say+"+'</Say></Response>'}))\n"
-  //'print call.sid'
   ;
   return code;
 };
@@ -456,7 +455,6 @@ Blockly.Python['twilio_call_music_url'] = function(block) {
   var value_twi_music_url = Blockly.Python.valueToCode(block, 'twi_music_url', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = 'call ='+ Blockly.Python.twilioClient+'.calls.create(to='+value_twi_to+', from_='+value_twi_from+", url='http://twimlets.com/message?'+urlencode({'Message[0]':"+value_twi_music_url+"}))\n"
-  //'print call.sid'
   ;
   return code;
 };

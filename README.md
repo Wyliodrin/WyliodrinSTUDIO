@@ -61,7 +61,40 @@ You will need
 * [grunt](http://gruntjs.com/)
 * [yarn](https://yarnpkg.com/) (optional)
 
-You may build Wyliodrin STUDIO yourself
+### Build Instructions for Windows users
+
+#### Build using the provided script
+
+Just run the [build.cmd](./build.cmd) script as administrator.
+
+*or*
+
+#### You may build Wyliodrin STUDIO yourself
+
+    git clone https://www.github.com/Wyliodrin/WyliodrinSTUDIO
+    cd WyliodrinSTUDIO
+    yarn & REM npm install works slow
+    cd patches
+    patch.exe ../node_modules/highcharts-ng/dist/highcharts-ng.js highcharts-ng.patch
+    patch.exe ../node_modules/angular-tree-control/css/tree-control-attribute.css tree-control-attribute.patch
+    patch.exe ../node_modules/marked/lib/marked.js marked.patch
+    patch.exe ../node_modules/angular-ui-ace/src/ui-ace.js angular-ui-ace.patch
+    cd ..
+    grunt
+
+Install grunt 
+
+    npm install -g grunt-cli 
+
+### Build Instructions for Linux users
+
+#### Build using the provided script
+
+Just run the [build.sh](./build.sh) script.
+
+*or*
+
+#### You may build Wyliodrin STUDIO yourself
 
     git clone https://www.github.com/Wyliodrin/WyliodrinSTUDIO
     cd WyliodrinSTUDIO
@@ -72,7 +105,7 @@ You may build Wyliodrin STUDIO yourself
     patch node_modules/angular-ui-ace/src/ui-ace.js patches/angular-ui-ace.patch
     grunt
 
-### Install grunt 
+Install grunt 
 
     sudo npm install -g grunt-cli 
 
@@ -82,6 +115,19 @@ The build is in the *build* folder
 
 * DEBUG_WYLIODRIN='wyliodrin.*' - enable debug messages (this will have a performance impact)
 * MIXPANEL_WYLIODRIN='' - mixpanel token for anonymous statistics sending
+
+## Loading the app
+
+First step in loading the app is to install chrome explorer if you haven't already installed
+it [Download chrome](https://www.google.com/chrome/browser/desktop/index.html)
+
+After the installation:
+* open the options tab (the 3 dots button in the top-right corner)
+* go to More tools
+* in the More tools menu choose the Extensions option 
+* check the developer mode box (top of the page)
+* another three options will appear including one called 'Load unpacked extension'
+* Select 'Load unpacked extension', go to the the folder where you have built the project and open the folder called 'build', then press open.
 
 ## Contribute
 
@@ -93,8 +139,10 @@ Wyliodrin STUDIO is a product of [Wyliodrin](http://www.wyliodrin.com)
 
 * [Alexandru Radovici](https://www.github.com/alexandruradovici) - Maintainer
 * [Razvan Serban](https://www.github.com/serban-razvan) - Developer
+* [Alexandru Neculai](https://www.github.com/NeculaiAlex) - Developer
 * [Ioana Culic](https://www.github.com/ioanaculic) - Developer
 * [Ovidiu Stoica](https://www.github.com/oviska) - UX / UI
+* [Catalin Dabuleanu](https://github.com/CatalinDabuleanu) - Developer
 
 Contributions
 
@@ -106,7 +154,7 @@ Wyliodrin is a trademark of Wyliodrin SRL. All rights reservered.
 
 ## License
 
-GPLv3
+GPLv3 for private, non profit and educational use.
 
 Please consider contacting us at office@wyliodrin.com if you plan to use it in a commercial software.
 This license allows you to write/distribute/sell an applications written in Wyliodrin STUDIO. If does not allow you to sell Wyliodrin STUDIO or any derived products.

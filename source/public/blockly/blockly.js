@@ -1,57 +1,6 @@
 
 "use strict";
 
-/* blockly core/field_variable.js
-Blockly.FieldVariable.dropdownChange = function(text) {
-  function promptName(promptText, defaultText, done) {
-    Blockly.hideChaff();
-    window.prompt(promptText, defaultText, function (newVar)
-      {
-        // Merge runs of whitespace.  Strip leading and trailing whitespace.
-        // Beyond this, all names are legal.
-        if (newVar) {
-          newVar = newVar.replace(/[\s\xa0]+/g, ' ').replace(/^ | $/g, '');
-          if (newVar == Blockly.Msg.RENAME_VARIABLE ||
-              newVar == Blockly.Msg.NEW_VARIABLE) {
-            // Ok, not ALL names are legal...
-            newVar = null;
-          }
-        }
-        done (newVar);
-      });
-  }
-  var workspace = this.sourceBlock_.workspace;
-  if (text == Blockly.Msg.RENAME_VARIABLE) {
-    var oldVar = this.getText();
-    promptName(Blockly.Msg.RENAME_VARIABLE_TITLE.replace('%1', oldVar),
-                      oldVar, function (vtitle)
-                      {
-                        console.log ('oldvar '+oldVar);
-                        console.log ('vtitle '+vtitle);
-                        if (vtitle) {
-                          Blockly.Variables.renameVariable(oldVar, vtitle, workspace);
-                        }
-                        return null;
-                      });
-    return oldVar;
-  } else if (text == Blockly.Msg.NEW_VARIABLE) {
-    promptName(Blockly.Msg.NEW_VARIABLE_TITLE, '', function (vtitle)
-      {
-        // Since variables are case-insensitive, ensure that if the new variable
-        // matches with an existing variable, the new case prevails throughout.
-        if (vtitle) {
-          Blockly.Variables.renameVariable(text, vtitle, workspace);
-        }    
-      });
-    
-    return undefined;
-  }
-  return undefined;
-};
-
-
-*/
-
 var $ = require ('jquery');
 var settings = require ('settings');
 require ('debug').enable (settings.debug);
@@ -86,7 +35,6 @@ var program = null;
           animation: "slide-from-top",   
           inputValue: text 
         }, function(inputValue){ 
-          // console.log (inputValue);
           done (inputValue);
         });
       };
@@ -127,23 +75,18 @@ var program = null;
         toolsbox.append ($("#toolbox_data_in_motion").children());
 
        Blockly.HSV_SATURATION = 0.75;
-        // Blockly.HSV_VALUE = 0.78;
         Blockly.inject(document.body,
             {path: 'blockly/', readOnly: readOnly, maxBlocks: getParameterByName ('blocks') ,trashcan: true, zoom: {controls: true, wheel: false, startScale: 1.0}, toolbox: toolbox});
         // Let the top-level application know that Blockly is ready.
         var nrfile = getParameterByName('nrfile');
-
-       // debug ('Load visual for project with nr '+nrfile);
 
        var device = null;
 
         setTimeout (function ()
         {
           program = window.parent.getProgram ();
-          // console.log (program);
           program.device = function (runningDevice)
           {
-            // console.log (device);
             device = runningDevice;
             if (device && device.category === 'chrome')
             {
@@ -157,12 +100,11 @@ var program = null;
             }
             generateSource ();
           },
-          program.load = function (_project, _node, device) //_project_id
+          program.load = function (_project, _node, device)
           {
             program.device (device);
             node = _node;
             project = _project;
-            // console.log (project);
             debug ('Load project '+project.title+', loading project visual');
             Blockly.mainWorkspace.clear ();
             try
@@ -179,27 +121,6 @@ var program = null;
             }
           };
         }, 1000);
-
-        // if (window.parent.getProject)
-        // {
-        //   project = window.parent.getProject (); 
-        //   // console.log (project);
-        //   if (project && project.language === 'visual')
-        //   {
-        //       debug ('Project found '+project.title+', loading project visual');
-        //       try
-        //       {
-        //         versions.push (project.main);
-        //         var xml = Blockly.Xml.textToDom(project.main);
-        //         Blockly.mainWorkspace.clear ();
-        //         Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);  
-        //       }
-        //       catch (e)
-        //       {
-
-        //       }
-        //   }
-        // }
 
         function generateSource ()
         {
@@ -233,7 +154,6 @@ var program = null;
             {
               debug (e.stack);
             }
-            // console.log (versions);
             program.storeProject ();
           }
         }
@@ -246,70 +166,6 @@ var program = null;
             generateSource ();
           }
         });
-
-        // try
-        // {
-        //   window.parent.blocklyLoaded(Blockly, nrfile);
-        // }
-        // catch (e)
-        // {
-        //   console.log (e);
-        // }
-
-
-
-        // if (!display)
-        // {
-        //   try
-        //   {
-        //     window.parent.blocklyLoaded(Blockly, nrfile);
-        //   }
-        //   catch (e)
-        //   {
-        //     console.log (e);
-        //   }
-        // }
-        // else
-        // {
-        //   try
-        //   {
-        //     var filename = Base64.decode(display);
-        //     var projectid = filename.substr (0, filename.indexOf ('/'));
-        //     var sourcename = filename.substr (filename.indexOf('/')+1);
-        //     jsonRequest ('/projects/readsource', {projectid:projectid, sourcename:sourcename}, function (err, data)
-        //     {
-        //       if (!err)
-        //       {
-        //         var xml = Blockly.Xml.textToDom(data.sourcelines);
-        //         console.log (xml);
-        //         Blockly.mainWorkspace.clear ();
-        //         Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml); 
-        //       }
-        //     });
-
-        //     mixpanel.track ('Share Snippet', {
-        //       projectid:projectid,
-        //       sourcename: sourcename
-        //     });
-        //   }
-        //   catch (e)
-        //   {
-        //     console.log (e);
-        //   }
-        // }
-        // if (display)
-        // {
-        //   $('#codestatus').hide ();
-        // }
-        // if (readOnly)
-        // {
-        //   $('#undo-btn').hide ();
-        //   $('#import-btn').hide ();
-        // }
-        // if (nrfile == "toolbox")
-        // {
-        //   $('#import-btn').hide ();
-        // }
         $("#codestatus").on ('click', function (e)
         {
           e.preventDefault ();
@@ -317,19 +173,10 @@ var program = null;
         });
 
         $("#undo-btn").on ('click', function (e){
-          // e.preventDefault ();
           undo ();
-          // Blockly.mainWorkspace.undo();
         });
-
-        // $("#import-btn").on ('click', function (){
-        //   window.parent.loadsave('blockly', nrfile);
-        // });
-
-        // trigger undo from wyliodio.js
         $(document).keydown(function(e){
             if( e.which === 90 && e.ctrlKey ){
-            // Blockly.mainWorkspace.undo();
             undo ();
             }          
         });
@@ -343,7 +190,6 @@ var program = null;
           versions.pop ();
           var xmlversion = versions[versions.length-1];
           pendingUndo = true;
-          // console.log (xmlversion);
           try
           {
             var xml = Blockly.Xml.textToDom(xmlversion);

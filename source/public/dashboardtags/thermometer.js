@@ -100,23 +100,10 @@ module.exports = function ()
 				{
 					debug ('Signal setup');
 					$wyapp.emit ('dashboard');
-					// console.log ('signal');
-					// console.log ($scope.signal);
-					// console.log ($scope.signal.properties);
-					// $scope.setup.options.chart.type = $scope.signal.type;
-					// $scope.setup.series =
-					// [{
-					// 	title: $scope.signal.title,
-					// 	color: $scope.signal.color,
-					// 	data: []
-					// }];
-
-					// $scope.setup.title.text = $scope.signal.title;
 
 					$scope.setup.options.yAxis[0].min = $scope.signal.properties.minAxisValue;
 					$scope.setup.options.yAxis[0].max = $scope.signal.properties.maxAxisValue;
 					$scope.setup.options.yAxis[0].title = $scope.signal.properties.axisName;
-					// $scope.setup.options.yAxis[0].min = $scope.signal.properties.minAxisValue;
 					$scope.setup.options.yAxis[1].max = $scope.signal.properties.maxAxisValue - $scope.signal.properties.minAxisValue;
 					$scope.setup.title.text = $scope.signal.properties.title;
 				});
@@ -148,11 +135,9 @@ module.exports = function ()
 
 				var update = function (t, values)
 				{
-					// console.log (scope.signal.title);
 					if (t === 'v')
 					{
 						var v = (values.s?values.s[scope.signal.title]:undefined);
-						// console.log (v);
 						if (v !== undefined)
 						{
 							scope.value = v;
@@ -165,8 +150,6 @@ module.exports = function ()
 								});
 							}
 							scope.update = true;
-							// console.log (values.t+', '+v);
-							// console.log (scope.setup.series);
 						}
 					}
 				};

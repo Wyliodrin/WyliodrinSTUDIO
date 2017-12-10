@@ -30,8 +30,16 @@ module.exports = function ()
 
 		var that = this;
 
+		$scope.activelogerr=false;
+		$scope.activelogout=false;
+		$scope.downloadvars={};
+
 		var message = function (t, p)
 		{
+			if(t === 'fe6')
+			{
+					console.log(p);
+			}
 			if (t === 'dep')
 			{
 				$timeout ( function ()
@@ -47,9 +55,135 @@ module.exports = function ()
 						if (p.a === 'ls')
 						{
 							$scope.board = p.b;
-							console.log("de pe board am primit");
-							console.log($scope.board);
+							//console.log("de pe board am primit");
+							//console.log($scope.board);
 							$scope.joinLists($scope.local, $scope.board);
+						}
+						if(p.a === 'errlogcontent')
+						{
+							$scope.errlogcontent=p.b;
+						}
+						if(p.a === 'outlogcontent')
+							$scope.outlogcontent=p.b;
+						if(p.a === 'clearlog')
+							window.alert("Fisierul a fost sters cu succes");
+						if(p.a === 'errlogpath')
+							$scope.errlogpath=p.b;
+						if(p.a === 'outlogpath')
+							$scope.errlogpath=p.b;
+						if(p.a === 'fe3')
+						{
+							$timeout (function ()
+							{
+								var temp = new Buffer(p.f);
+								if (typeof $scope.downloadvars.c === 'undefined')
+								{
+									$scope.downloadvars.c = temp;
+								}
+								else
+								{
+									$scope.downloadvars.c = Buffer.concat([$scope.downloadvars.c,temp]);
+								}
+								$scope.downloadvars.d = p.all; //file size on the board
+			
+								if (typeof $scope.downloadvars.call === 'undefined')
+								{
+			
+									chrome.fileSystem.chooseEntry(
+									{
+										type: 'saveFile',
+										suggestedName: $scope.errlogpath,
+									}, 
+									function(fileEntry) 
+									{
+										if(chrome.runtime.lastError) 
+										{
+			
+										}
+										if (!fileEntry) 
+										{
+											 return;
+										}
+			
+										$scope.downloadvars.call=fileEntry;
+										$scope.showPopupDownload = 1;
+										if (p.end)
+										{
+											var toArrayBuffer = function(buffer) {
+												var ab = new ArrayBuffer(buffer.length);
+												var view = new Uint8Array(ab);
+												for (var i = 0; i < buffer.length; ++i) {
+													view[i] = buffer[i];
+												}
+												return ab;
+											};
+											var vasile = toArrayBuffer($scope.downloadvars.c);
+			
+											$scope.downloadvars.call.createWriter(function(fileWriter) 
+											{
+												 fileWriter.onerror = function (error)
+												 {
+													 $scope.contentPopupError = $translate.instant('FEfile_write');
+													 $scope.showPopupError = 1;
+												 };
+												 fileWriter.write (new Blob ([vasile], {type:''}), function (error)
+												 {
+													 $scope.contentPopupError = $translate.instant('FEfile_write');
+													 $scope.showPopupError = 1;
+												 });
+											 });
+											 $scope.showPopupDownload = 0;
+											 $scope.downloadvars={};
+										}
+										else
+										{
+											that.download('/var/tmp/',$scope.errlogpath,p.i);
+										}
+			
+									});
+								}
+								else
+								{	if($scope.showPopupDownload === 1 )
+									{
+										if (p.end)
+										{
+											var toArrayBuffer = function(buffer) {
+												var ab = new ArrayBuffer(buffer.length);
+												var view = new Uint8Array(ab);
+												for (var i = 0; i < buffer.length; ++i) {
+													view[i] = buffer[i];
+												}
+												return ab;
+											};
+											var vasile = toArrayBuffer($scope.downloadvars.c);
+			
+											$scope.downloadvars.call.createWriter(function(fileWriter) 
+											{
+												 fileWriter.onerror = function (error)
+												 {
+													 $scope.contentPopupError = $translate.instant('FEfile_write');
+													 $scope.showPopupError = 1;
+												 };
+												 fileWriter.write (new Blob ([vasile], {type:''}), function (error)
+												 {
+													 $scope.contentPopupError = $translate.instant('FEfile_write');
+													 $scope.showPopupError = 1;
+												 });
+											 });
+											 $scope.showPopupDownload = 0;
+											 $scope.downloadvars={};
+										}
+										else
+										{
+											that.download('/var/tmp/',$scope.errlogpath,p.i);
+										}
+									}
+									else
+									{
+										$scope.downloadvars = {};
+									}
+								}
+							});
 						}
 					});
 			}
@@ -225,9 +359,11 @@ module.exports = function ()
 				user:"pi",
 				autostart:"true",
 				exitcodes:"255",
-				autorestart:"unexpected",
+				autorestart:"true",
 				environment:"NODE_PATH=\"/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules\"",
-				priority:"40"};
+				priority:"40",
+				umask: "022"
+			};
 
 			action(obj, obj, "deploy");
 		};
@@ -242,6 +378,63 @@ module.exports = function ()
 			action(obj, obj, "redeploy");
 		};
 
+		$scope.logerr=function(obj)
+		{
+			action(obj, obj, "logerr");
+		};
+
+		$scope.logerractive=function(obj)
+		{
+			$scope.activelogerr=true;
+			$scope.thisobject=obj;
+		};
+
+		$scope.logoutactive=function(obj)
+		{
+			$scope.activelogout=true;
+			$scope.thisobject=obj;
+		};
+
+		$scope.logout=function(obj)
+		{
+			action(obj, obj, "logout");
+		};
+
+		$scope.clearlogerr = function()
+		{
+			var thisobj= $scope.thisobject;
+			action(thisobj, thisobj, "clearlogerr");
+			$scope.errlogcontent="";
+		};
+
+		$scope.clearlogout = function()
+		{
+			var thisobj= $scope.thisobject;
+			action(thisobj, thisobj, "clearlogout");
+			$scope.outlogcontent="";
+		};
+
+		$scope.undoerr= function()
+		{
+			$scope.activelogerr=false;
+		};
+
+		$scope.undoout= function()
+		{
+			$scope.activelogout=false;
+		};
+
+		$scope.downloaderr = function()
+		{
+			var thisobj= $scope.thisobject;
+			action(thisobj,thisobj, "downloaderr");
+		};
+		$scope.downloadout = function()
+		{
+			var thisobj= $scope.thisobject;
+			action(thisobj,thisobj, "downloadout");
+		};
+
 		$wydevice.on ('message', message);
 
 
@@ -249,6 +442,16 @@ module.exports = function ()
 		{
 			$wydevice.send ('dep', {a:"exit"});
 			$mdDialog.hide ();
+		};
+
+		this.download = function(cwd,filename,index=0)
+		{
+			if (index === 0)
+			{
+				
+			}
+			$wydevice.send ('dep', {a:'downloaderr',b:cwd,c:filename,z:index,size:$scope.MAXPACKET});
+
 		};
 
 		this.retake = function ()

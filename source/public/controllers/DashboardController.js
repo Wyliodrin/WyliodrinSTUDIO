@@ -25,7 +25,7 @@ module.exports = function ()
 
 	var app = angular.module ('wyliodrinApp');
 
-	app.controller('DashboardController', function($scope, $element, $wyapp, $wydevice, $timeout, $wysignalproperties, $mdDialog){
+	app.controller('DashboardController', function($scope, $element, $wyapp, $wydevice, $timeout, $wysignalproperties, $mdDialog, $filter){
 		debug ('Registering');
 		$scope.project = 
 		{
@@ -41,7 +41,10 @@ module.exports = function ()
 
 		$wyapp.on ('dashboard', function ()
 		{
-			library.storeDashboard ($scope.project.id, $scope.project.dashboard);
+			if ($scope.project.id)
+			{
+				library.storeDashboard ($scope.project.id, $scope.project.dashboard);
+			}
 			$timeout (function ()
 			{
 				$(window).trigger ('resize');
@@ -121,12 +124,9 @@ module.exports = function ()
 		this.erase = function (signal)
 		{
 			var message = $mdDialog.confirm()
-		          .title('Would you like to delete '+signal.title+'?')
-		          // .textContent('All of the banks have agreed to forgive you your debts.')
-		          // .ariaLabel('Lucky day')
-		          // .targetEvent(ev)
-		          .ok('Yes')
-		          .cancel('No');
+		          .title(($filter('translate')('deleting_el'))+' '+signal.title+'?')
+		          .ok(($filter('translate')('YES')))
+		          .cancel(($filter('translate')('NO')));
 		    $mdDialog.show(message).then(function() {
 		    	var pos = _.indexOf($scope.project.dashboard, signal);
 		    	mixpanel.track ('Dashboard Erase',
@@ -173,7 +173,6 @@ module.exports = function ()
 
 			_.each (settings.SIGNAL_PROPERTIES[style], function (propertyValue, property)
 			{
-				// console.log (property);
 				signal.properties[property] = propertyValue.value;
 			});
 
@@ -182,6 +181,7 @@ module.exports = function ()
 
 		$wyapp.on ('load', function (project)
 		{
+			console.log (project);
 			$timeout (function ()
 			{
 				$scope.project = project;
@@ -223,30 +223,6 @@ module.exports = function ()
 			replace: true,
 			link: function (scope, element, attrs)
 			{
-				// console.log (element.text);
-				// var chart = new highcharts.Chart({
-			 //        chart: {
-			 //          renderTo: element.find('#viewer')[0],
-			 //          plotBackgroundColor: null,
-			 //          plotBorderWidth: null,
-			 //          plotShadow: true
-			 //        },
-			 //        title: {
-			 //          text: scope.signal.title
-			 //        },
-			 //        plotOptions: {
-			          
-			 //        },
-			 //        series: [{
-			 //          type: 'spline',
-			 //          name: scope.signal.title,
-			 //          data: [4,5,245,23,4,45,23,532,53245],
-			 //          color: scope.signal.color
-			 //        }]
-			 //      });
-				// scope.$watch("value", function (newValue) {
-			 //        chart.series[0].setData(newValue, true);
-			 //      }, true);
 			}
 		};
 	});

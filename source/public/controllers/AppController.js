@@ -44,7 +44,7 @@ module.exports = function ()
 
 		setTimeout (function ()
 		{
-			$.get ('http://wyliodrin-try.westeurope.cloudapp.azure.com:8080/studio/information', {language: $translate.proposedLanguage() || $translate.use()}, function (response)
+			$.get ('https://www.wyliodrin.com/studio/information', {language: $translate.proposedLanguage() || $translate.use()}, function (response)
 			{
 				console.log (response);
 				if (response && response.id && response.title && response.message)

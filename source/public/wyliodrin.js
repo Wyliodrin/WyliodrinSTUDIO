@@ -115,4 +115,18 @@ else
   startup ();
 }
 
+if (nodeRequire)
+{
+  $(document).click (function (event)
+  {
+    if ($(event.target).is ('a'))
+    {
+      console.log (event.target);
+      var ui = nodeRequire ('nw.gui');
+      ui.Shell.openExternal ($(event.target).attr ('href'));
+      event.stopPropagation ();
+      event.preventDefault ();
+    }
+  });
+}
 

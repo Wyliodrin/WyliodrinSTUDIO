@@ -4,11 +4,11 @@
   "description": "Wyliodrin STUDIO is a Chrome based IDE for software and hardware development in IoT and Embedded Linux",
   "author": "Wyliodrin SRL",
   "license": "GPL-3.0",
-  "default_locale":"en",
+  "default_locale": "en",
   "main": "wyliodrin.js",
-  "window":{
-  	"title":"WyliodrinSTUDIO",
-  	"icon":"wyliodrin-studio-icon.png"
+  "window": {
+    "title": "WyliodrinSTUDIO",
+    "icon": "wyliodrin-studio-icon.png"
   },
   "repository": "https://www.github.com/wyliodrin/WyliodrinSTUDIO",
   "devDependencies": {
@@ -26,7 +26,7 @@
     "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-less": "^1.4.1",
-    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-embed-fonts": "^0.5.0",
     "grunt-ng-annotate": "^3.0.0",
@@ -40,7 +40,7 @@
     "angular": "~1.6.5",
     "angular-animate": "~1.6.4",
     "angular-aria": "~1.6.4",
-    "angular-material": "^1.1.4",
+    "angular-material": "^1.1.5",
     "angular-sanitize": "^1.6.4",
     "angular-translate": "^2.13.1",
     "angular-translate-loader-static-files": "^2.13.1",

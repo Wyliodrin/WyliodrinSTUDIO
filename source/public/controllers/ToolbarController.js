@@ -214,10 +214,19 @@ module.exports = function ()
 
 		this.documentation = function ()
 		{
+			//console.log("showing api");
 			debug ('Show documentation');
 			if (settings.platform.CHROME)
 			{
-				chrome.app.window.create('/public/views/documentation.html', {
+				if(nodeRequire)
+				{	
+					//console.log("standalone");
+					window.open('/public/documentation/index.html', "documentation", "width=1200,height=750");
+				}
+				else
+				{
+					//console.log("browser");
+					chrome.app.window.create('/public/views/documentation.html', {
 					id: 'documentation',
 					innerBounds: {
 						width: 1200,
@@ -225,8 +234,9 @@ module.exports = function ()
 						minWidth: 960,
 						minHeight: 700
 					}
-				});
-			}
+					});
+				}
+			}			
 		};
 
 		this.resistorcolorcode = function ()

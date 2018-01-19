@@ -121,11 +121,15 @@ if (nodeRequire)
   {
     if ($(event.target).is ('a'))
     {
-      console.log (event.target);
-      var ui = nodeRequire ('nw.gui');
-      ui.Shell.openExternal ($(event.target).attr ('href'));
-      event.stopPropagation ();
-      event.preventDefault ();
+      let href = $(event.target).attr('href');
+      if (href !== '' && href !== '#')
+      {
+        console.log (event.target);
+        var ui = nodeRequire ('nw.gui');
+        ui.Shell.openExternal (href);
+        event.stopPropagation ();
+        event.preventDefault ();
+      }
     }
   });
 }

@@ -132,5 +132,17 @@ if (nodeRequire)
       }
     }
   });
+  var express = nodeRequire ('express');
+  var path = nodeRequire ('path');
+  var app = express ();
+
+  app.get ('/dir', function (req, res)
+  {
+    res.send (''+pwd);
+    // res.send (path.dirname(process.execPath));
+    // res.send (path.join (__dirname, '..'));
+  });
+  app.use ('/', express.static (pwd));
+  app.listen (50000, '127.0.0.1');
 }
 

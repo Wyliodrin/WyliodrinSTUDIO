@@ -221,7 +221,7 @@ module.exports = function ()
 				if(nodeRequire)
 				{	
 					//console.log("standalone");
-					window.open('/public/documentation/index.html', "documentation", "width=1200,height=750");
+					window.open('http://localhost:50000/public/documentation/index.html', "documentation", "width=1200,height=750");
 				}
 				else
 				{

@@ -155,6 +155,8 @@ var app = angular.module ('wyliodrinApp');
 
 		$scope.showXterm = false;
 
+		$scope.nodeRequire = nodeRequire;
+
 		var shell;
 
 		var cols;

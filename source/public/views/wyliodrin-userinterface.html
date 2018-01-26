@@ -333,7 +333,9 @@
                                                 }" ng-model="tree.selectednode.content"></div>
                                             </div>
                                             <div id="divred" ng-show="showStreams" flex="100">
-                                              <webview id="red" src="/public/red/red.html" partition="red">
+                                              <webview ng-if="nodeRequire" id="red" ng-src="http://localhost:50000/public/red/red.html" partition="red">
+                                              </webview>
+                                              <webview ng-if="!nodeRequire" id="red" ng-src="/public/red/red.html" partition="red">
                                               </webview>
                                             </div>
                                         </div>

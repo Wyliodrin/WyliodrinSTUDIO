@@ -36,7 +36,8 @@ module.exports = function(grunt) {
           Blob: true,
           FileReader: true,
           navigator: true,
-          nodeRequire: true
+          nodeRequire: true,
+          pwd: true
         }
       }
     },
@@ -107,7 +108,7 @@ module.exports = function(grunt) {
         postBundleCB: function (err, src, next) {
           // HACK: save Node's `require` before it gets overrided by browserify
           // console.log (src.toString ());
-          next(err, 'if (typeof storedNodeRequire === "undefined") { var storedNodeRequire = "yes"; var nodeRequire = undefined; if (typeof require !== "undefined") nodeRequire = require; } console.log (nodeRequire);' + src);
+          next(err, 'if (typeof storedNodeRequire === "undefined") { var storedNodeRequire = "yes"; var nodeRequire = undefined; console.log ("pwd"); var pwd = process.cwd (); console.log (pwd); console.log (process); if (typeof require !== "undefined") nodeRequire = require; } console.log (nodeRequire);' + src);
         }
       }
     },

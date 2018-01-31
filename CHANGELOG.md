@@ -1,3 +1,8 @@
+## Wyliodrin STUDIO 12.5
+
+* **Fixed** Streams does not show up in Windows 
+* **Fixed** Issue regarding the new standalone version on Win64
+
 ## Wyliodrin STUDIO 12.1
 
 * fixed loading streams projects

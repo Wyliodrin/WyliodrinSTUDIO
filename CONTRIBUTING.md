@@ -1,8 +1,8 @@
 # Contributing to WyliodrinSTUDIO
 
-:+1::tada: Thank you for imporving IoT Education :tada::+1:
+:+1::tada: Thank you for improving IoT Education :tada::+1:
 
-We are a small project that is trying to make IoT education easier fro everyone.
+We are a small project that is trying to make IoT education easier for everyone.
 We would love your help with
 
  - [Translating](#translating)
@@ -16,7 +16,7 @@ We would love your help with
 We would like to see WyliodrinSTUDIO in as many languages as possible. For this
 we need your help.
 
-All you need to do is translate the [source/public/translations/messages-en.json](source/public/translations/messages-en.json) file. Make a new file, called messages-your_langauge_code.json. The lanuage code
+All you need to do is translate the [source/public/translations/messages-en.json](source/public/translations/messages-en.json) file. Make a new file, called messages-your_langauge_code.json. The language code
 is a two letter code for each language.
 
 To get started, clone the repository and start translating the messages.
@@ -61,7 +61,7 @@ For translation, only the message is necessarry:
     	...
     }
 
-It would be very good for the project if you could transalte it in:
+It would be very good for the project if you could translate it into:
  - Spanish
  - German
  - Chinese
@@ -80,7 +80,7 @@ Export the project and place it in [source/embedded/example/software/](source/em
 If the example is for all the boards, place it in the *board* folder
 
 ## Issues
-Please send us any issues that you have using the github issues option.
+Please send us any issues that you have using the GitHub issues option.
 
 Please write the following data:
  - WyliodrinSTUDIO version (in the About menu)
@@ -88,7 +88,7 @@ Please write the following data:
 
 ## Contributing Code
 ###  Fork the repository
-A fork of the project is needed in order to temporary commit changes to the original project without affecting the master branch. You can use this to propose new changes or fix a few bugs.
+A fork of the project is needed in order to temporarily commit changes to the original project without affecting the master branch. You can use this to propose new changes or fix a few bugs.
 
 ####  FORK OUR REPOSITORY
  1. Open the [Wyliodrin/WyliodrinSTUDIO](https://github.com/Wyliodrin/WyliodrinSTUDIO) repository in the GitHub webpage.
@@ -113,7 +113,7 @@ Every time you want to fix a bug or add a feature, you need to create a branch f
 
 ### Merge the branch back
 - Open Git Bash and go to the top level of your local repository.
-- Type ```git status``` to make sure you are on the corect branch and to check if you have all your changes committed.
+- Type ```git status``` to make sure you are on the correct branch and to check if you have all your changes committed.
 - Change the branch ```git checkout master```.
 - Merge changes from your branch into the master branch ```git merge name_your_branch```.
 

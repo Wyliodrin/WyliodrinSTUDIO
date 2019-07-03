@@ -63,7 +63,6 @@ For translation, only the message is necessarry:
 
 It would be very good for the project if you could transalte it in:
  - Spanish
- - German
  - Chinese
  - Italian
  - Dutch

@@ -8,7 +8,6 @@ if !(hash npm 2> /dev/null) ; then
     echo -e "$(tput setaf 1)Npm is not installed.\033[0m"
     exit 1
 fi
-npm install
 
 if !(hash grunt 2> /dev/null) ; then
     char='0'
@@ -23,11 +22,25 @@ if !(hash grunt 2> /dev/null) ; then
     echo -e "\033[0m"
 
     if [ $char == 'Y' ] || [ $char == 'y' ]; then
-         sudo npm install -g grunt-cli
+        # Install grunt-cli globally using npm or yarn
+        if ! hash yarn 2>/dev/null; then
+            sudo npm install -g grunt-cli
+        else
+            # You don't need sudo for yarn,
+            # it will be installed in ~
+            yarn global add grunt-cli
+        fi
     elif [ $char == 'N' ] || [ $char == 'n' ]; then
 		echo -e "$(tput setaf 1)Can't build: grunt is not installed.\033[0m"
         exit 2
     fi
+fi
+
+# Install dependencies using npm or yarn
+if ! hash yarn 2>/dev/null; then
+    npm install
+else
+    yarn
 fi
 
 patch node_modules/highcharts-ng/dist/highcharts-ng.js patches/highcharts-ng.patch

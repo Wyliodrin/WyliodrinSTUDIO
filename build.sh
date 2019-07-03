@@ -4,13 +4,13 @@
 # exit 2 ~ grunt is not installed
 # exit 3 ~ grunt failed
 
-if !(which npm > /dev/null) ; then
     echo "$(tput setaf 1)Npm is not installed."
+if !(hash npm 2> /dev/null) ; then
     exit 1
 fi
 npm install
 
-if !(which grunt > /dev/null) ; then
+if !(hash grunt 2> /dev/null) ; then
     char='0'
     while [ $char != 'N' ] &&
           [ $char != 'n' ] &&

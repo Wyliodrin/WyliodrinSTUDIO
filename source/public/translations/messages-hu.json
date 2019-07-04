@@ -1,0 +1,1044 @@
+{
+  "LANGUAGE": {
+    "message": "Magyar",
+    "description": ""
+  },
+  "appName": {
+    "message": "Wyliodrin STUDIO",
+    "description": ""
+  },
+  "appDesc": {
+    "message": "A Wyliodrin STUDIO egy olyan IDE, amely szoftver- és hardverfejlesztést kínál IoT rendszerek, mint például a Raspberry Pi, az UDOO és az Arduino számára.",
+	"description": ""
+  },
+  "DEVICE_CONNECT": {
+    "message": "Csatlakozás",
+    "description": ""
+  },
+  "DEVICE_ADDRESS": {
+    "message": "IP cím",
+    "description": ""
+  },
+  "DEVICE_PORT": {
+    "message": "Port",
+    "description": ""
+  },
+  "DEVICE_DISCONNECT": {
+    "message": "Szétkapcsolás",
+    "description": ""
+  },
+  "DEVICE_Network": {
+    "message": "Hálózat",
+    "description": ""
+  },
+  "DEVICE_Serial": {
+    "message": "Sorozatszám",
+    "description": ""
+  },
+  "USER_Username": {
+    "message": "Felhasználónév",
+    "description": ""
+  },
+  "USER_Password": {
+    "message": "Jelszó",
+    "description": ""
+  },
+  "USER_ShowPassword": {
+    "message": "Jelszó megjelenítése",
+    "description": ""
+  },
+  "TOOLBAR_PROJECTS": {
+    "message": "Projektek",
+    "description": ""
+  },
+  "TOOLBAR_HELP": {
+    "message": "Segítség",
+    "description": ""
+  },
+  "TOOLBAR_EXIT": {
+    "message": "Kilépés",
+    "description": ""
+  },
+  "TOOLBAR_FULLSCREEN": {
+    "message": "Teljes képernyő",
+    "description": ""
+  },
+  "TOOLBAR_RESTORE": {
+    "message": "Visszaálítás",
+    "description": ""
+  },
+  "TOOLBAR_MINIMIZE": {
+    "message": "Lekicsinyítés",
+    "description": ""
+  },
+  "TOOLBAR_SETUP": {
+    "message": "Telepítés",
+    "description": ""
+  },
+  "TOOLBAR_RESISTOR_COLOR_CODE": {
+    "message": "Ellenállás színkódja",
+    "description": ""
+  },
+  "TOOLBAR_ABOUT": {
+    "message": "A szoftverről",
+    "description": ""
+  },
+  "TOOLBAR_CREATE": {
+    "message": "Létrehozás",
+    "description": ""
+  },
+  "TOOLBAR_CANCEL": {
+    "message": "Mégse",
+    "description": ""
+  },
+  "TOOLBAR_EXPORT": {
+    "message": "Exportálás",
+    "description": ""
+  },
+  "TOOLBAR_OPTIONS": {
+    "message": "Beállítások",
+    "description": ""
+  },
+  "TOOLBAR_RENAME": {
+    "message": "Átnevezés",
+    "description": ""
+  },
+  "TOOLBAR_DELETE": {
+    "message": "Törlés",
+    "description": ""
+  },
+  "TOOLBAR_CLONE": {
+    "message": "",
+    "description": "Másolás"
+  },
+  "TOOLBAR_IMPORT": {
+    "message": "Importálás",
+    "description": ""
+  },
+  "TOOLBAR_INSTALL": {
+    "message": "Telepítés",
+    "description": ""
+  },
+  "TOOLBAR_UNINSTALL": {
+    "message": "Eltávolítás",
+    "description": ""
+  },
+  "TOOLBAR_ADD": {
+    "message": "Hozzáad",
+    "description": ""
+  },
+  "TOOLBAR_CLOSE": {
+    "message": "Bezár",
+    "description": ""
+  },
+  "TOOLBAR_STOP": {
+    "message": "Megállít",
+    "description": ""
+  },
+  "TOOLBAR_UPDATE": {
+    "message": "Frissít",
+    "description": ""
+  },
+  "TOOLBAR_NETWORK": {
+    "message": "Hálózat",
+    "description": ""
+  },
+  "SCHEMATICS_LOAD": {
+    "message": "Betölt",
+    "description": ""
+  },
+  "TOOLBAR_ERASE": {
+    "message": "Törlés",
+    "description": ""
+  },
+  "PROJECT_APPLICATION": {
+    "message": "Alkalmazás",
+    "description": ""
+  },
+  "PROJECT_DASHBOARD": {
+    "message": "Vezérlőpult",
+    "description": ""
+  },
+  "PROJECT_SCHEMATICS": {
+    "message": "Sémák",
+    "description": ""
+  },
+  "PROJECT_PINLAYOUT": {
+    "message": "Pin Kiosztás",
+    "description": ""
+  },
+  "PROJECT_SHELL": {
+    "message": "Shell",
+    "description": ""
+  },
+  "PROJECT_ShowConsole": {
+    "message": "Konzol Megjelenítése",
+    "description": ""
+  },
+  "PROJECT_HideConsole": {
+    "message": "Konzol Elrejtése",
+    "description": ""
+  },
+  "DISCONNECTED": {
+    "message": "SZÉTKAPCSOLT",
+    "description": ""
+  },
+  "CONNECTED": {
+    "message": "CSATLAKOZVA",
+    "description": ""
+  },
+  "CONNECTING": {
+    "message": "CSATLAKOZÁS",
+    "description": ""
+  },
+  "SEPARATOR": {
+    "message": "VÁRAKOZÁS",
+    "description": ""
+  },
+  "ERROR": {
+    "message": "HIBA",
+    "description": ""
+  },
+  "PING": {
+    "message": "PING",
+    "description": ""
+  },
+  "SD_CARD4_GetAMinimum": {
+    "message": "Szerezz egy legalább 4 GB-os SD Kártyát (ajánlott: 8 GB class 10)",
+    "description": ""
+  },
+  "InsertTheCard": {
+    "message": "Helyezd a kártyát a {{device}} eszközbe, csatlakoztasd a(z) {{device}} eszközt <b>soros kábellel</b> vagy <b>hálózati kábellel</b> és kapcsold be",
+    "description": ""
+  },
+  "MakeSureYou": {
+    "message": "Győződj meg róla, hogy kapcsolódik az internethez (Ethernet vagy WiFi)",
+    "description": ""
+  },
+  "YouMightHave": {
+    "message": "Elképzelhető, hogy drivereket kell feltelepítened a kábelekhez:",
+    "description": ""
+  },
+  "MakeSureThat": {
+    "message": "Győzödj meg róla, hogy az Arduino Yun a legfrissebb verzióval rendelkezik. Kérlek kövesd ezt",
+    "description": ""
+  },
+  "tutorial": {
+    "message": "Útmutató",
+    "description": ""
+  },
+  "InstallNodeJSOn": {
+    "message": "Ezt követően telepítsd a NodeJS-t az Arduino Yun-on",
+    "description": ""
+  },
+  "ConnectViaSsh": {
+    "message": "    Kapcsolódj ssh-n keresztül az Arduino Yun-hoz. A cím",
+	"description": ""
+  },
+  "AndTheUser": {
+    "message": "és a felhasználónév",
+    "description": ""
+  },
+  "AndPassword": {
+    "message": "és jelszó",
+    "description": ""
+  },
+  "RunTheWyliodrin": {
+    "message": "Futtasd a Wyliodrin telepítőt.", 
+    "description": ""
+  },
+  "ResetYour": {
+    "message": "Indítsd újra az Arduino Yun-t.",
+    "description": ""
+  },
+  "DownloadImage": {
+    "message": " Töltsd le a(z) <a href='{{link1}}' target='_blank'>SD Kártya lemezképet</a>, csomagold ki és írd ki a kártyára. Bővebb információt találsz az SD kártya írásáról a(z) <a href='{{link2}}' target='_blank'>bemutató oldalon</a>.",
+    "description": ""
+  },
+  "AdvancedUser": {
+    "message": "Ha tapasztalt felhasználó vagy, telepítheted a(z) <a href='{{link1}}' target='_blank'> Wyliodring App Server-t</a>.",
+    "description": ""
+  },
+  "CablePurchase": {
+    "message": 	"Lehetőséged van soros kábel vásárlására a <a href='{{link1}}' target='_blank'>{{name1}}</a> és <a href='{{link2}}' target='_blank'>{{name2}}</a> online üzletekben.",
+    "description": ""
+  },
+  "PortSelectNetwork": {
+    "message": "Az eszköz meg fog jelenni a Hálózati eszközök listájában. Jelentkezz be egy érvényes felhasználónévvel az eszközre.",
+    "description": "" 
+ },
+  "PortSelectSerial": {
+    "message": "Válasz ki a soros portot, és kattints a Csatlakozás gombra. A port nevek különbözőek más operációs rendszerek esetén:",
+    "description": ""
+	
+  },
+  "YouMightSerial": {
+    "message": "Elképzelhető, hogy telepítened kell illesztőprogramokat a soros portokhoz:",
+    "description": ""
+  },
+  "ABOUT_Version": {
+    "message": "Verzió",
+    "description": ""
+  },
+  "ABOUT_DevelopedBy": {
+    "message": "A szoftvert fejlesztette",
+    "description": ""
+  },
+  "ABOUT_ContributionsBy": {
+    "message": "A szoftverhez hozzájárultak",
+    "description": ""
+  },
+  "ABOUT_Maintainer": {
+    "message": "A szoftvert karbantartja",
+    "description": ""
+  },
+  "ABOUT_Development": {
+    "message": "A fejlesztésről",
+    "description": ""
+  },
+  "ABOUT_UI_UX": {
+    "message": "UI / UX",
+    "description": ""
+  },
+  "ABOUT_UsageParam": {
+    "message": "Felhasználói paraméterek küldésének engedélyezése",
+    "description": ""
+  },
+  "ABOUT_AnonymousUsageParam": {
+    "message": "Böngészési adatok küldésének engedélyezése a szoftver fejlesztésének érdekében",
+    "description": ""
+  },
+  "ABOUT_ProvidedBy": {
+    "message": "A szoftvert biztosítja",
+    "description": ""
+  },
+  "ABOUT_Sponsor": {
+    "message": "Szponzor",
+    "description": ""
+  },
+  "ABOUT_License": {
+    "message": "Licensz",
+    "description": ""
+  },
+  "ADD_APP_AddApp": {
+    "message": "Alkalmazás hozzáadása",
+    "description": ""
+  },
+  "TOOLBAR_AddNewApp": {
+    "message": "Új alkalmazás hozzáadása",
+    "description": ""
+  },
+  "ADD_APP_Title": {
+    "message": "Cím",
+    "description": ""
+  },
+  "ADD_APP_Language": {
+    "message": "Nyelv",
+    "description": ""
+  },
+  "WELCOME_Welcome": {
+    "message": "Üdvözöllek a Wyliodrin STUDIO-ban",
+    "description": ""
+  },
+  "WELCOME_StartWork": {
+    "message": "Kezdj el dolgozni a projektjeiden azonnal!",
+    "description": ""
+  },
+  "WELCOME_CreateNewApp": {
+    "message": "Új alkalmazás készítése",
+    "description": ""
+  },
+  "WELCOME_ConnectBoard": {
+    "message": "Csatlakoztasd a panelt",
+    "description": ""
+  },
+  "WELCOME_SendUsageParam": {
+    "message": "Böngészési paraméterek küldésének engedélyezése",
+    "description": ""
+  },
+  "WELCOME_SendAnonUsageParam": {
+    "message": "Böngészési adatok küldésének engedélyezése a szoftver fejlesztésének érdekében",
+    "description": ""
+  },
+  "AUTHENTICATE_ConnectToAddress": {
+    "message": "Kapcsolódás a címhez",
+    "description": ""
+  },
+  "AUTHENTICATE_IP": {
+    "message": "IP",
+    "description": "Internet Protocol (IP)"
+  },
+  "AUTHENTICATE_Login": {
+    "message": "Jelentkezz be bármely felhasználóval az eszközről",
+    "description": ""
+  },
+  "BOARD_GetStart": {
+    "message": "Első Lépések",
+    "description": ""
+  },
+  "BOARD_SelectBoard": {
+    "message": "Kérlek válaszd ki a panelt, amit telepíteni szeretnél",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_InvalidSignal": {
+    "message": "Jel neve nem megfelelő",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveLeft": {
+    "message": "Balra mozgás",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveRight": {
+    "message": "Jobbra mozgás",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_GraphSettings": {
+    "message": "Diagram beállítások",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_EraseGraph": {
+    "message": "Diagram törlése",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_BlockSendSignalValues": {
+    "message": "Használd a jelKüldés blokkot, hogy jelértékeket küldj",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SendSignalValues": {
+    "message": "Használd a jelKüldés függvényt, hogy jelértékeket küldj",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SignalName": {
+    "message": "A jel neve kisbetűs legyen szóközök nélkül",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_SelectFirmware": {
+    "message": "Válassz firmware-t",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunAndFlash": {
+    "message": "Futtatás és írás",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunWithoutFlash": {
+    "message": "Futtatás írás nélkül",
+    "description": ""
+  },
+  "FLASH_FIRMWARE": {
+    "message": "Firmware írása",
+    "description": ""
+  },
+  "LIBRARY_Library": {
+    "message": "Könytár",
+    "description": ""
+  },
+  "LIBRARY_LoadAnExample": {
+    "message": "Példa betöltése",
+    "description": ""
+  },
+  "Load_FirmwwareExample":{
+    "message": "Firmware példa betöltése",
+    "description": ""
+  },
+  "LICENSE_UsageLicense": {
+    "message": "Felhasználói Licensz",
+    "description": ""
+  },
+  "NETWORK_NetworkManager": {
+    "message": "Hálózat Kezelő",
+    "description": ""
+  },
+  "NETWORK_PackageManager": {
+    "message": "Csomag Kezelő",
+    "description": ""
+  },
+  "NETWORK_SSID": {
+    "message": "SSID",
+    "description": ""
+  },
+  "NETWORK_IP": {
+    "message": "IP",
+    "description": ""
+  },
+  "NETWORK_Mask": {
+    "message": "Maszk",
+    "description": ""
+  },
+  "NETWORK_Broadcast": {
+    "message": "Szóráscím",
+    "description": ""
+  },
+  "NETWORK_SignalStrength": {
+    "message": "Jelerősség",
+    "description": ""
+  },
+  "NETWORK_Disc_ChangeNet": {
+    "message": "Szétkapcsolás / Hálózat váltása",
+    "description": ""
+  },
+  "PACKAGE_MANAGER_LinkToTheLibrary": {
+    "message": "Link a könyvtárhoz",
+    "description": ""
+  },
+  "RENAME_RenameApp": {
+    "message": "Alkalmazás átnevezése",
+    "description": ""
+  },
+  "CLONE_CloneApp": {
+    "message": "Alkalmazás másolása",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromColorToNumber": {
+    "message": "Színektől a számokig",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromNumberToColor": {
+    "message": "Számoktól a színekig",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripes": {
+    "message": "Csíkok",
+    "description": ""
+  },
+  "VALUE_Four": {
+    "message": "Négy",
+    "description": ""
+  },
+  "VALUE_Five": {
+    "message": "Öt",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripe": {
+    "message": "Csík",
+    "description": ""
+  },
+  "VALUE_Value": {
+    "message": "Érték",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Resistance": {
+    "message": "Ellenállás",
+    "description": ""
+  },
+  "VALUE_Tolerance": {
+    "message": "Tolerancia",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Signal": {
+    "message": "Jel",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_AddSignal": {
+    "message": "Jel hozzáadása",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalName": {
+    "message": "Jel Megnevezése",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Description": {
+    "message": "Leírás",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalColor": {
+    "message": "Szín",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_Example": {
+    "message": "Példa",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_SelectSoftware": {
+    "message": "Szoftver kiválasztása",
+    "description": ""
+  },
+  "TASK_MANAGER_TaskManager": {
+    "message": "Feladatkezelő",
+    "description": ""
+  },
+  "File_explorer": {
+    "message": "Fájl Böngésző",
+    "description": ""
+  },
+  "Show_file_manager": {
+    "message": "Fájlkezelő megjelenítése",
+    "description": ""
+  },
+  "Hide_file_manager": {
+    "message": "Fájlkezelő elrejtése",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Error": {
+    "message": "elképzelhető, hogy hibás",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_RunProject": {
+    "message": "Projekt futtatása",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_StopProject": {
+    "message": "Projekt megállítása",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_NoInternet": {
+    "message": "nincs Internet",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Examples": {
+    "message": "példák",
+    "description": ""
+  },
+  "SIGNAL_line": {
+    "message": "Sor",
+    "description": ""
+  },
+  "SIGNAL_thermometer": {
+    "message": "Hőmérő",
+    "description": ""
+  },
+  "SIGNAL_speedometer": {
+    "message": "Sebességmérő",
+    "description": ""
+  },
+  "SIGNAL_vumeter": {
+    "message": "VUMéter",
+    "description": ""
+  },
+  "SIGNAL_gauge": {
+    "message": "Nyomtáv",
+    "description": ""
+  },
+  "SIGNAL_extra": {
+    "message": "Extra",
+    "description": ""
+  },
+  "SIGNAL_switch": {
+    "message": "Kapcsoló",
+    "description": ""
+  },
+  "SIGNAL_slider": {
+    "message": "Csúszka",
+    "description": ""
+  },
+  "TOOLBAR_ExitQuestion": {
+    "message": "Biztosan ki szeretnél lépni?",
+    "description": ""
+  },
+  "YES": {
+    "message": "Igen",
+    "description": ""
+  },
+  "NO": {
+    "message": "Nem",
+    "description": ""
+  },
+  "LIBRARY_ProjectErase": {
+    "message": "Biztosan ki szeretnéd törölni a projektet {{title}}?",
+    "description": ""
+  },
+  "LIBRARY_ProjectClone": {
+    "message": "Ez a név már használatban van. Kérlek válassz egy másikat!",
+    "description": ""
+  },
+  "SCHEMATICS_ERASE": {
+    "message": "Ki szeretnéd törölni a sémát?",
+    "description": ""
+  },
+  "TOOLBAR_FORUM": {
+    "message": "Fórum",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_Example": {
+    "message": "Példa",
+    "description": ""
+  },
+  "DEVICE_CONNECTION_TIMEOUT":
+  {
+    "message":"Kapcsolat megszakadt, kérlek ellenőrizd a panel IP címét és győződj meg hogy fut rajta a Wyliodring Lemezkép.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_ERROR":
+  {
+    "message":"Kapcsolódási hiba, kérlek ellenőrizd a panel IP címét és győződj meg róla hogy fut rajta a Wyliodring Lemezkép.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_FAILED":
+  {
+    "message":"Bejelentkezés sikertelen, kérlek ellenőrizd a felhasználónevet és jelszót.",
+    "description":""
+  },
+  "DEVICE_QUESTION_INSTALL_SHELL":
+  {
+    "message":"A Wyliodrin nincs telepítve ezen az eszközön, szeretnéd telepíteni vagy csak egy parancssort nyitni?",
+    "description":""
+  },
+  "DEVICE_INSTALL":
+  {
+    "message":"Telepítés",
+    "description":""
+  },
+  "TOOLBAR_INSTALL":
+  {
+    "message":"Telepítés",
+    "description":""
+  },
+  "USER_SecureConnection":
+  {
+    "message":"Használj biztonságos kapcsolatot - ssh (lassabban működik)",
+    "description":""
+  },
+  "DEVICE_Install":
+  {
+    "message":"Telepíthető",
+    "description":""
+  },
+  "INSTALL_SelectBoard": {
+    "message": "Kérlek válaszd ki a panelt amire telepíteni szeretnéd",
+    "description": ""
+  },
+  "INSTALL_Success":
+  {
+    "message":"Wyliodrin telepítés sikeres volt, kérlek válaszd le a kábelt és csatlakoztasd újra a panelhez",
+    "description":""
+  },
+  "DEVICE_Chrome":
+  {
+    "message":"Chrome",
+    "description":""
+  },
+  "chrome":
+  {
+    "message":"Helyi Számítógép",
+    "description":""
+  },
+  "PROJECT_no_language_capability":
+  {
+    "message":"Ez az eszköz nem alkalmas projekt futtatására ezen a nyelven",
+    "description":""
+  },
+  "PROJECT_library":
+  {
+    "message":"Projekt Könyvtár",
+    "description":""
+  },
+  "PLATFORM_windows":
+  {
+    "message":"Windows 10 IoT Core",
+    "description":""
+  },
+  "PLATFORM_linux":
+  {
+    "message":"Linux",
+    "description":""
+  },
+  "PortSelectSerialChrome":
+  {
+    "message":"Válaszd ki a Helyi Számítógépet mint portot és csatlakozz hozzá. Csatlakoztasd az Arduinot a számítógéped USB portjához.",
+    "description":""
+  },
+  "PortSelectSerialFirmata":
+  {
+    "message":"Meg kell határoznod a portot az Arduinohoz a firmata.connect()-ben",
+    "description":""
+  },
+  "BOARD_Connect":
+  {
+    "message":"Válassz ki egy eszközt amihez csatlakozni szeretnél",
+    "description":""
+  },
+  "WYLIODRIN_USERINTERFACE_devicename":
+  {
+    "message":"Eszköz átnevezése",
+    "description":""
+  },
+  "IR829_wiki1": {
+    "message": "Kövesd az utasításokat <a href='{{link1}}' target='_blank'>itt</a> és férj hozzá egy Linux környezethez a routeren belül.",
+    "description": ""
+  },
+  "IR829_wiki2": {
+    "message": "A link tartalmazza az összes szükséges információt a magabiztos Cisco IOS környezet kezeléséhez, mielőtt hozzáférnél a Linux konzolhoz.",
+    "description": ""
+  },
+  "IR829_wget": {
+    "message": "A Linux környezetben használd a wget parancsot, hogy letöltsd a csomagokat a Wyliodrin szerverhez egy zip állományként a következő paranccsal:",
+    "description": ""
+  },
+  "IR829_setup": {
+    "message": "Csomagold ki, add meg a mappát és futtasd a telepítőt a következő parancsokkal:",
+    "description": ""
+  },
+  "Empty_folder": {
+    "message": "Üres Mappa",
+    "description": ""
+  },
+  "Loading": {
+    "message": "Betöltés . . .",
+    "description": ""
+  },
+  "Show_hidden": {
+    "message": "Rejtett megjelenítése",
+    "description": ""
+  },
+  "want_to_delete": {
+    "message": "Biztosan törölni szeretnéd",
+    "description": ""
+  },
+  "folder_name": {
+    "message": "Válassz egy nevet a mappának",
+    "description": ""
+  },
+  "Ok": {
+    "message": "Ok",
+    "description": ""
+  },
+  "Cancel": {
+    "message": "Mégse",
+    "description": ""
+  },
+  "choose_name": {
+    "message": "Válasz ki a nevet a(z) ",
+    "description": ""
+  },
+  "will_upload": {
+    "message": "A fájl azonnal fel lesz töltve.",
+    "description": ""
+  },
+  "will_download": {
+    "message": "A fájl azonnal le lesz töltve.",
+    "description": ""
+  },
+  "downloadasPNG": {
+    "message": "PNG kép letöltése",
+    "description": ""
+  },
+  "exportvalue": {
+    "message": "Érték Exportálása",
+    "description": ""
+  },
+  "PrinttheChart": {
+    "message": "Diagram nyomtatása",
+    "description": ""
+  },
+  "downloadasJPEG": {
+    "message": "JPEG kép letöltése",
+    "description": ""
+  },
+  "downloadasSVG": {
+    "message": "SVG vector kép letöltése",
+    "description": ""
+  },
+  "folder": {
+    "message": "mappa",
+    "description": ""
+  },
+  "file": {
+    "message": "fájl",
+    "description": ""
+  },
+  "link": {
+    "message": "link",
+    "description": ""
+  },
+  "Refresh": {
+    "message": "Frissítés",
+    "description": ""
+  },
+  "New_folder": {
+    "message": "Új Mappa",
+    "description": ""
+  },
+  "New_file": {
+    "message": "Új Fájl",
+    "description": ""
+  },
+  "New_firmware": {
+    "message": "Úf Firmware",
+    "description": ""
+  },
+  "Upload_here": {
+    "message": "Feltöltés Itt",
+    "description": ""
+  },
+  "Rename": {
+    "message": "Átnevezés",
+    "description": ""
+  },
+  "Download": {
+    "message": "Letöltés",
+    "description": ""
+  },
+  "Delete": {
+    "message": "Törlés",
+    "description": ""
+  },
+  "Exit": {
+    "message": "Kilépés",
+    "description": ""
+  },
+  "FEinexistent_folder": {
+    "message": "Egy nem létező mappát adtál meg."
+  },
+  "FEread_permission": {
+    "message": "Itt nincs olvasási jogosulságod."
+  },
+  "FEread_permission_local": {
+    "message": "Nem rendelkezel olvasási jogosultsággal ahoz a fájlhoz a lemezen."
+  },
+  "FEwrite_permission": {
+    "message": "Nem rendelkezel írási jogossultsággal."
+  },
+  "FEdelete_permission": {
+    "message": "Nem rendelkezel törlési jogossultsággal."
+  },
+  "FErename_permission": {
+    "message": "Nem rendelkezel átnevezési jogossultsággal."
+  },
+  "FEfile_write": {
+    "message": "A lemezre írás sikertelen volt."
+  },
+  "FEnew_folder": {
+    "message": "Új mappa létrehozása sikertelen volt. "
+  },
+  "FEdelete": {
+    "message": "Törlés sikertelen volt. "
+  },
+  "FErename": {
+    "message" :"Átnevezés sikertelen volt. "
+  },
+  "FEupload": {
+    "message": "Feltöltés sikertelen volt. "
+  },
+  "FEdownload": {
+    "message": "Letöltés sikertelen volt. "
+  },
+  "FEexists": {
+    "message": "Egy másik fájl/mappa ugyan ezzel a névvel már létezik."
+  },
+  "FEunknown": {
+    "message": "Ismeretlen hiba."
+  },
+  "FEnot_exists": {
+    "message": "A fájl/mappa nem létezik többé."
+  },
+  "DASHBOARD_values_export": {
+    "message": "Export"
+  },
+  "TREEsame_name": {
+    "message": "A fájl vagy mappa ugyan azzal a névvel már létezik a célterületen."
+  },
+  "TREEdelete_special": {
+    "message": "Nem törölhető."
+  },
+  "TREEdelete_root": {
+    "message": "A gyökér mappa nem törölhető."
+  },
+  "TREEdelete_software": {
+    "message": "A szoftver mappa nem törölhető."
+  },
+  "TREEno_root": {
+    "message": "Nem hozható létre a gyökér mappa (használj Új Firmware-t helyette)."
+  },
+  "PROJECT_NOTEBOOK": {
+    "message": "Notebook"
+  },
+  "GITHUB_EXAMPLE_Example": {
+    "message": "Egy példa betöltése"
+  },
+  "GITHUB_EXAMPLE_Empty":
+  {
+    "message" :"Kérlek írd le a github projekt nevét amely rendelkezik példákkal"
+  },
+  "DEVICE_CONNECTION_BUSY":
+  {
+    "message":"Az eszköz már csatlakozik egy másik felhasználóhoz.",
+    "description":""
+  },
+  "Disconnect": {
+    "message": "Szétkapcsolás",
+    "description": ""
+  },
+  "Reboot_Disconnect": {
+    "message": "Újraindítás és Szétkapcsolás",
+    "description": ""
+  },
+  "Poweroff_Disconnect": {
+    "message": "Kikapcsolás és Szétkapcsolás",
+    "description": ""
+  },
+  "Error": {
+    "message": "Hiba",
+    "description": ""
+  },
+  "Select_board": {
+    "message": "Panel kiválasztása",
+    "description": ""
+  },
+  "Port": {
+    "message": "Port",
+    "description": ""
+  },
+  "Pick_firmware": {
+    "message": "Válassz firmware-t",
+    "description": ""
+  },
+  "No_firmware": {
+    "message": "Nincs firmware",
+    "description": ""
+  },
+  "Run": {
+    "message": "Futtatás",
+    "description": ""
+  },
+  "Github": {
+    "message": "Github",
+    "description": ""
+  },
+  "username": {
+    "message": "felhasználónév",
+    "description": ""
+  },
+  "repository": {
+    "message": "projekt",
+    "description": ""
+  },
+  "Author": {
+    "message": "Szerző",
+    "description": ""
+  },
+  "Wyliodrin_app_server_version": {
+    "message": "Wyliodrin-app-server verzió",
+    "description": ""
+  },
+  "Libwyliodrin_version": {
+    "message": "Libwyliodrin verzió",
+    "description": ""
+  },
+  "Operating_system": {
+    "message": "Operációs Rendszer",
+    "description": ""
+  },
+  "Supported_languages": {
+    "message": "Támogatott nyelvek",
+    "description": ""
+  },
+  "status": {
+    "message": "státusz",
+    "description": ""
+  },
+  "UPDATE_SD_CARD_IMAGE": {
+    "message":"Kérlek frissítsd az SD Kártya lemezképet mielőtt futtatod ezt a projektet",
+    "description":""
+  },
+  "delete_el": {
+    "message":"Biztosan ki szeretnéd törölni az elemet?",
+    "description":""
+  },
+  "EXPORT_PROJECTS": {
+    "message":"Az összes projekted exportálása",
+    "description":""
+  },
+  "DOWNLOAD_STANDALONE": {
+    "message":"Önálló verzió letöltése",
+    "description":""
+  }
+}

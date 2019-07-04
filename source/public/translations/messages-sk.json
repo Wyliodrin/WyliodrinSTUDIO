@@ -1,0 +1,1043 @@
+{
+  "LANGUAGE": {
+    "message": "Slovenský",
+    "description": ""
+  },
+  "appName": {
+    "message": "Wyliodrin STUDIO",
+    "description": ""
+  },
+  "appDesc": {
+    "message": "Wyliodrin STUDIO je IDE pre vývoj softvéru a hardvéru pre systémy internetu vecí ako sú Raspberry Pi, UDOO a Arduino",
+    "description": ""
+  },
+  "DEVICE_CONNECT": {
+    "message": "Pripojiť",
+    "description": ""
+  },
+  "DEVICE_ADDRESS": {
+    "message": "IP Adresa",
+    "description": ""
+  },
+  "DEVICE_PORT": {
+    "message": "Port",
+    "description": ""
+  },
+  "DEVICE_DISCONNECT": {
+    "message": "Odpojiť",
+    "description": ""
+  },
+  "DEVICE_Network": {
+    "message": "Sieť",
+    "description": ""
+  },
+  "DEVICE_Serial": {
+    "message": "Sériový",
+    "description": ""
+  },
+  "USER_Username": {
+    "message": "Používateľské meno",
+    "description": ""
+  },
+  "USER_Password": {
+    "message": "Heslo",
+    "description": ""
+  },
+  "USER_ShowPassword": {
+    "message": "Zobraziť heslo",
+    "description": ""
+  },
+  "TOOLBAR_PROJECTS": {
+    "message": "Projekty",
+    "description": ""
+  },
+  "TOOLBAR_HELP": {
+    "message": "Pomoc",
+    "description": ""
+  },
+  "TOOLBAR_EXIT": {
+    "message": "Ukončiť",
+    "description": ""
+  },
+  "TOOLBAR_FULLSCREEN": {
+    "message": "Celá obrazovka",
+    "description": ""
+  },
+  "TOOLBAR_RESTORE": {
+    "message": "Obnoviť",
+    "description": ""
+  },
+  "TOOLBAR_MINIMIZE": {
+    "message": "Minimalizovať",
+    "description": ""
+  },
+  "TOOLBAR_SETUP": {
+    "message": "Nastavenia",
+    "description": ""
+  },
+  "TOOLBAR_RESISTOR_COLOR_CODE": {
+    "message": "Farebný kód rezistora",
+    "description": ""
+  },
+  "TOOLBAR_ABOUT": {
+    "message": "Informácie o",
+    "description": ""
+  },
+  "TOOLBAR_CREATE": {
+    "message": "Vytvoriť",
+    "description": ""
+  },
+  "TOOLBAR_CANCEL": {
+    "message": "Ukončiť",
+    "description": ""
+  },
+  "TOOLBAR_EXPORT": {
+    "message": "Exportovať",
+    "description": ""
+  },
+  "TOOLBAR_OPTIONS": {
+    "message": "Možnosti",
+    "description": ""
+  },
+  "TOOLBAR_RENAME": {
+    "message": "Premenovať",
+    "description": ""
+  },
+  "TOOLBAR_DELETE": {
+    "message": "Vymazať",
+    "description": ""
+  },
+  "TOOLBAR_CLONE": {
+    "message": "Klonovať",
+    "description": ""
+  },
+  "TOOLBAR_IMPORT": {
+    "message": "Importovať",
+    "description": ""
+  },
+  "TOOLBAR_INSTALL": {
+    "message": "Inštalovať",
+    "description": ""
+  },
+  "TOOLBAR_UNINSTALL": {
+    "message": "Odinštalovať",
+    "description": ""
+  },
+  "TOOLBAR_ADD": {
+    "message": "Pridať",
+    "description": ""
+  },
+  "TOOLBAR_CLOSE": {
+    "message": "Zatvoriť",
+    "description": ""
+  },
+  "TOOLBAR_STOP": {
+    "message": "Zastaviť",
+    "description": ""
+  },
+  "TOOLBAR_UPDATE": {
+    "message": "Aktualizovať",
+    "description": ""
+  },
+  "TOOLBAR_NETWORK": {
+    "message": "Sieť",
+    "description": ""
+  },
+  "SCHEMATICS_LOAD": {
+    "message": "Načítať",
+    "description": ""
+  },
+  "TOOLBAR_ERASE": {
+    "message": "Vymazať",
+    "description": ""
+  },
+  "PROJECT_APPLICATION": {
+    "message": "Aplikácia",
+    "description": ""
+  },
+  "PROJECT_DASHBOARD": {
+    "message": "Riadiaca dosks",
+    "description": ""
+  },
+  "PROJECT_SCHEMATICS": {
+    "message": "Schémy",
+    "description": ""
+  },
+  "PROJECT_PINLAYOUT": {
+    "message": "Rozvrhnutie Pinov",
+    "description": ""
+  },
+  "PROJECT_SHELL": {
+    "message": "Shell",
+    "description": ""
+  },
+  "PROJECT_ShowConsole": {
+    "message": "Ukázať Konzolu",
+    "description": ""
+  },
+  "PROJECT_HideConsole": {
+    "message": "Skryť Konzolu",
+    "description": ""
+  },
+  "DISCONNECTED": {
+    "message": "ODPOJENÝ",
+    "description": ""
+  },
+  "CONNECTED": {
+    "message": "ZAPOJENÝ",
+    "description": ""
+  },
+  "CONNECTING": {
+    "message": "PRIPÁJA SA",
+    "description": ""
+  },
+  "SEPARATOR": {
+    "message": "ČAKÁ",
+    "description": ""
+  },
+  "ERROR": {
+    "message": "CHYBA",
+    "description": ""
+  },
+  "PING": {
+    "message": "PING",
+    "description": ""
+  },
+  "SD_CARD4_GetAMinimum": {
+    "message": "Použite Minimálne 4 GB SD Kartu (odporúčame 8 GB triedy 10)",
+    "description": ""
+  },
+  "InsertTheCard": {
+    "message": "Vložte kartu do {{device}}, pripojte {{device}} k <b>sériovému káblu</b> alebo k <b>sieťovému káblu</b> a zapnite ho",
+    "description": ""
+  },
+  "MakeSureYou": {
+    "message": "Uistite sa, že máte pripojenie na Internet (Ethernet alebo WiFi)",
+    "description": ""
+  },
+  "YouMightHave": {
+    "message": "Musíte nainštalovať ovládače pre káble",
+    "description": ""
+  },
+  "MakeSureThat": {
+    "message": "Uistite sa, že verzia vášho Arduino Yun je aktuálna. Prosím nasledujte",
+    "description": ""
+  },
+  "tutorial": {
+    "message": "tutoriál",
+    "description": ""
+  },
+  "InstallNodeJSOn": {
+    "message": "Nainštalujte NodeJS na Arduino Yun podľa",
+    "description": ""
+  },
+  "ConnectViaSsh": {
+    "message": "Pripojte sa pomocou ssh k vášmu Arduino Yun. Adresa je",
+    "description": ""
+  },
+  "AndTheUser": {
+    "message": "a používateľ",
+    "description": ""
+  },
+  "AndPassword": {
+    "message": "a heslo",
+    "description": ""
+  },
+  "RunTheWyliodrin": {
+    "message": "Spustite skript pre inštaláciu Wyliodrin.",
+    "description": ""
+  },
+  "ResetYour": {
+    "message": "Reštartujte vaše Arduino Yun.",
+    "description": ""
+  },
+  "DownloadImage": {
+    "message": "Stiahnite <a href='{{link1}}' target='_blank'>obraz SD karty</a>, rozbaľte ho a zapíšte na kartu. Ďalšie informácie o tom, ako napísať obraz karty SD, nájdete na našej stránke <a href='{{link2}}' target='_blank'>tutoriál</a>.",
+    "description": ""
+  },
+  "AdvancedUser": {
+    "message": "Ak ste pokročilý používateľ, môžete nainštalovať <a href='{{link1}}' target='_blank'>Wyliodrin App Server</a>.",
+    "description": ""
+  },
+  "CablePurchase": {
+    "message": "Sériový kábel môžete získať z <a href='{{link1}}' target='_blank'>{{name1}}</a> a <a href='{{link2}}' target='_blank'>{{name2}}</a> online obchodov.",
+    "description": ""
+  },
+  "PortSelectNetwork": {
+    "message": "Vaša doska by sa mala objaviť v zozname sietí. Budete sa musieť prihlásiť pomocou používateľského mena, ktoré sa v zariadení nachádza.",
+    "description": ""
+  },
+  "PortSelectSerial": {
+    "message": "Vyberte sériový port a stlačte tlačidlo Pripojiť. Mená portov sú iné pre každý OS:",
+    "description": ""
+  },
+  "YouMightSerial": {
+    "message": "Možno budete musieť nainštalovať ovládače pre sériový port:",
+    "description": ""
+  },
+  "ABOUT_Version": {
+    "message": "Verzia",
+    "description": ""
+  },
+  "ABOUT_DevelopedBy": {
+    "message": "Vytvoril",
+    "description": ""
+  },
+  "ABOUT_ContributionsBy": {
+    "message": "Spolupracovali",
+    "description": ""
+  },
+  "ABOUT_Maintainer": {
+    "message": "Udržovateľ",
+    "description": ""
+  },
+  "ABOUT_Development": {
+    "message": "Vývoj",
+    "description": ""
+  },
+  "ABOUT_UI_UX": {
+    "message": "UI / UX",
+    "description": ""
+  },
+  "ABOUT_UsageParam": {
+    "message": "Povoliť odosielanie parametrov používania",
+    "description": ""
+  },
+  "ABOUT_AnonymousUsageParam": {
+    "message": "Povoliť odosielanie anonymných parametrov používania, aby ste nám pomohli vylepšiť softvér",
+    "description": ""
+  },
+  "ABOUT_ProvidedBy": {
+    "message": "Poskytuje",
+    "description": ""
+  },
+  "ABOUT_Sponsor": {
+    "message": "Sponzor",
+    "description": ""
+  },
+  "ABOUT_License": {
+    "message": "Licencia",
+    "description": ""
+  },
+  "ADD_APP_AddApp": {
+    "message": "Pridať aplikáciu",
+    "description": ""
+  },
+  "TOOLBAR_AddNewApp": {
+    "message": "Pridať novú aplikáciu",
+    "description": ""
+  },
+  "ADD_APP_Title": {
+    "message": "Názov",
+    "description": ""
+  },
+  "ADD_APP_Language": {
+    "message": "Jazyk",
+    "description": ""
+  },
+  "WELCOME_Welcome": {
+    "message": "Vitajte vo Wyliodrin STUDIO",
+    "description": ""
+  },
+  "WELCOME_StartWork": {
+    "message": "Začnite hneď pracovať na svojich projektoch!",
+    "description": ""
+  },
+  "WELCOME_CreateNewApp": {
+    "message": "Vytvoriť novú aplikáciu",
+    "description": ""
+  },
+  "WELCOME_ConnectBoard": {
+    "message": "Pripojte dosku",
+    "description": ""
+  },
+  "WELCOME_SendUsageParam": {
+    "message": "Povoliť odosielanie parametrov používania",
+    "description": ""
+  },
+  "WELCOME_SendAnonUsageParam": {
+    "message": "Povoliť odosielanie anonymných parametrov používania, aby ste nám pomohli vylepšiť softvér",
+    "description": ""
+  },
+  "AUTHENTICATE_ConnectToAddress": {
+    "message": "Pripojiť k adrese",
+    "description": ""
+  },
+  "AUTHENTICATE_IP": {
+    "message": "IP",
+    "description": "Internet Protocol (IP)"
+  },
+  "AUTHENTICATE_Login": {
+    "message": "Prihlásiť sa pomocou akéhokoľvek používateľa zo zariadenia",
+    "description": ""
+  },
+  "BOARD_GetStart": {
+    "message": "Začíname",
+    "description": ""
+  },
+  "BOARD_SelectBoard": {
+    "message": "Vyberte dosku, ktorú chcete nastaviť",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_InvalidSignal": {
+    "message": "Neplatný názov signálu",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveLeft": {
+    "message": "Presunúť doľava",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_MoveRight": {
+    "message": "Presunúť doprava",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_GraphSettings": {
+    "message": "Nastavenia grafu",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_EraseGraph": {
+    "message": "Vymazať graf",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_BlockSendSignalValues": {
+    "message": "Na odosielanie hodnôt signálu použite blok sendSignal",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SendSignalValues": {
+    "message": "Na odosielanie hodnôt signálu použite funkciu sendSignal",
+    "description": ""
+  },
+  "DASHBOARD_VIEWER_SignalName": {
+    "message": "Názov signálu musí byť malými písmenami, bez medzier",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_SelectFirmware": {
+    "message": "Vyberte firmvér",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunAndFlash": {
+    "message": "Spustiť a písať",
+    "description": ""
+  },
+  "FLASH_FIRMWARE_RunWithoutFlash": {
+    "message": "Spustiť bez písania",
+    "description": ""
+  },
+  "FLASH_FIRMWARE": {
+    "message": "Flash firmvér",
+    "description": ""
+  },
+  "LIBRARY_Library": {
+    "message": "Knižnica",
+    "description": ""
+  },
+  "LIBRARY_LoadAnExample": {
+    "message": "Načítať príklad",
+    "description": ""
+  },
+  "Load_FirmwwareExample":{
+    "message": "Načítajte príklad firmvéru",
+    "description": ""
+  },
+  "LICENSE_UsageLicense": {
+    "message": "Licencia na používanie",
+    "description": ""
+  },
+  "NETWORK_NetworkManager": {
+    "message": "Správca siete",
+    "description": ""
+  },
+  "NETWORK_PackageManager": {
+    "message": "Správca balíkov",
+    "description": ""
+  },
+  "NETWORK_SSID": {
+    "message": "SSID",
+    "description": ""
+  },
+  "NETWORK_IP": {
+    "message": "IP",
+    "description": ""
+  },
+  "NETWORK_Mask": {
+    "message": "Maska",
+    "description": ""
+  },
+  "NETWORK_Broadcast": {
+    "message": "Broadcast",
+    "description": ""
+  },
+  "NETWORK_SignalStrength": {
+    "message": "Sila signálu",
+    "description": ""
+  },
+  "NETWORK_Disc_ChangeNet": {
+    "message": "Odpojiť / Zmeniť sieť",
+    "description": ""
+  },
+  "PACKAGE_MANAGER_LinkToTheLibrary": {
+    "message": "Odkaz na knižnicu",
+    "description": ""
+  },
+  "RENAME_RenameApp": {
+    "message": "Premenovať aplikáciu",
+    "description": ""
+  },
+  "CLONE_CloneApp": {
+    "message": "Klonovať aplikáciu",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromColorToNumber": {
+    "message": "Z farby číslo",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_FromNumberToColor": {
+    "message": "Z čísla farba",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripes": {
+    "message": "Pásiky",
+    "description": ""
+  },
+  "VALUE_Four": {
+    "message": "štyri",
+    "description": ""
+  },
+  "VALUE_Five": {
+    "message": "päť",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Stripe": {
+    "message": "Pásik",
+    "description": ""
+  },
+  "VALUE_Value": {
+    "message": "Hodnota",
+    "description": ""
+  },
+  "RESISTOR_COLORCODE_Resistance": {
+    "message": "Odpor",
+    "description": ""
+  },
+  "VALUE_Tolerance": {
+    "message": "Tolerancia",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Signal": {
+    "message": "Signál",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_AddSignal": {
+    "message": "Pridať signál",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalName": {
+    "message": "Názov signálu",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_Description": {
+    "message": "Popis",
+    "description": ""
+  },
+  "SIGNAL_PROPERTIES_SignalColor": {
+    "message": "Farba",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_Example": {
+    "message": "Príklad",
+    "description": ""
+  },
+  "SOFTWARE_EXAMPLE_SelectSoftware": {
+    "message": "Vyberte softvér",
+    "description": ""
+  },
+  "TASK_MANAGER_TaskManager": {
+    "message": "Správca úloh",
+    "description": ""
+  },
+  "File_explorer": {
+    "message": "Prieskumník súborov",
+    "description": ""
+  },
+  "Show_file_manager": {
+    "message": "Zobraziť správcu súborov",
+    "description": ""
+  },
+  "Hide_file_manager": {
+    "message": "Skryť správcu súborov",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Error": {
+    "message": "Môže obsahovať chybu",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_RunProject": {
+    "message": "Spustiť projekt",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_StopProject": {
+    "message": "Zastaviť projekt",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_NoInternet": {
+    "message": "Žiadny internet",
+    "description": ""
+  },
+  "WYLIODRIN_USERINTERFACE_Examples": {
+    "message": "Príklady",
+    "description": ""
+  },
+  "SIGNAL_line": {
+    "message": "Linka",
+    "description": ""
+  },
+  "SIGNAL_thermometer": {
+    "message": "Teplomer",
+    "description": ""
+  },
+  "SIGNAL_speedometer": {
+    "message": "Rýchlomer",
+    "description": ""
+  },
+  "SIGNAL_vumeter": {
+    "message": "VUMeter",
+    "description": ""
+  },
+  "SIGNAL_gauge": {
+    "message": "Meradlo",
+    "description": ""
+  },
+  "SIGNAL_extra": {
+    "message": "Extra",
+    "description": ""
+  },
+  "SIGNAL_switch": {
+    "message": "Prepínač",
+    "description": ""
+  },
+  "SIGNAL_slider": {
+    "message": "Potenciometer",
+    "description": ""
+  },
+  "TOOLBAR_ExitQuestion": {
+    "message": "Ste si istý že chcete odísť?",
+    "description": ""
+  },
+  "YES": {
+    "message": "Áno",
+    "description": ""
+  },
+  "NO": {
+    "message": "Nie",
+    "description": ""
+  },
+  "LIBRARY_ProjectErase": {
+    "message": "Chcete odstrániť projekt {{title}}?",
+    "description": ""
+  },
+  "LIBRARY_ProjectClone": {
+    "message": "Tento názov sa už používa. Vyberte iný!",
+    "description": ""
+  },
+  "SCHEMATICS_ERASE": {
+    "message": "Chcete ste vymazať schémy?",
+    "description": ""
+  },
+  "TOOLBAR_FORUM": {
+    "message": "Fórum",
+    "description": ""
+  },
+  "FIRMWARE_EXAMPLE_Example": {
+    "message": "Príklad",
+    "description": ""
+  },
+  "DEVICE_CONNECTION_TIMEOUT":
+  {
+    "message":"Časový limit pripojenia uplynul, skontrolujte IP adresu vašej dosky a uistite sa, že je spustený Wyliodrin Image.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_ERROR":
+  {
+    "message":"Chyba pripojenia, skontrolujte IP adresu vašej dosky a uistite sa, že je spustený Wyliodrin Image.",
+    "description":""
+  },
+  "DEVICE_CONNECTION_FAILED":
+  {
+    "message":"Prihlásenie zlyhalo, skontrolujte prosím svoje používateľské meno a heslo.",
+    "description":""
+  },
+  "DEVICE_QUESTION_INSTALL_SHELL":
+  {
+    "message":"Wyliodrin nie je na tomto zariadení nainštalovaný, chcete ho nainštalovať alebo iba otvoriť shell?",
+    "description":""
+  },
+  "DEVICE_INSTALL":
+  {
+    "message":"Inštalovať",
+    "description":""
+  },
+  "TOOLBAR_INSTALL":
+  {
+    "message":"Inštalovať",
+    "description":""
+  },
+  "USER_SecureConnection":
+  {
+    "message":"Použite zabezpečené pripojenie - ssh (pracuje pomalšie)",
+    "description":""
+  },
+  "DEVICE_Install":
+  {
+    "message":"Môže byť nainštalovaný",
+    "description":""
+  },
+  "INSTALL_SelectBoard": {
+    "message": "Vyberte dosku, na ktorú chcete nainštalovať",
+    "description": ""
+  },
+  "INSTALL_Success":
+  {
+    "message":"Inštalácia Wyliodrinu bola úspešná, odpojte a znovu sa pripojte k vašej doske",
+    "description":""
+  },
+  "DEVICE_Chrome":
+  {
+    "message":"Chrome",
+    "description":""
+  },
+  "chrome":
+  {
+    "message":"Lokálny počítač",
+    "description":""
+  },
+  "PROJECT_no_language_capability":
+  {
+    "message":"Toto zariadenie nevie spúšťať projekt v tomto jazyku",
+    "description":""
+  },
+  "PROJECT_library":
+  {
+    "message":"Knižnica projektov",
+    "description":""
+  },
+  "PLATFORM_windows":
+  {
+    "message":"Windows 10 IoT Core",
+    "description":""
+  },
+  "PLATFORM_linux":
+  {
+    "message":"Linux",
+    "description":""
+  },
+  "PortSelectSerialChrome":
+  {
+    "message":"Vyberte Lokálny počítač ako port a pripojte sa k nemu. Pripojte vaše Arduino k USB portu vášho počítača.",
+    "description":""
+  },
+  "PortSelectSerialFirmata":
+  {
+    "message":"Zadajte port pre vaše Arduino vo firmata.connect()",
+    "description":""
+  },
+  "BOARD_Connect":
+  {
+    "message":"Vyberte zariadenie, ku ktorému sa chcete pripojiť",
+    "description":""
+  },
+  "WYLIODRIN_USERINTERFACE_devicename":
+  {
+    "message":"Premenovať zariadenie",
+    "description":""
+  },
+  "IR829_wiki1": {
+    "message": "Nasledujte inštrukcie <a href='{{link1}}' target='_blank'>tu</a> a dostanete sa do prostredia Linuxu v rámci smerovača.",
+    "description": ""
+  },
+  "IR829_wiki2": {
+    "message": "Odkaz obsahuje všetky potrebné informácie, aby ste sa mohli zoznámiť s prostredím IOS spoločnosti Cisco predtým, ako sa dostanete na konzolu Linuxu.",
+    "description": ""
+  },
+  "IR829_wget": {
+    "message": "V prostredí Linuxu použite wget a stiahnite balík pre Wyliodrin server ako zip s nasledujúcim príkazom:",
+    "description": ""
+  },
+  "IR829_setup": {
+    "message": "Rozbaľte, vstúpte do priečinka a spustite inštalačný program s nasledujúcimi príkazmi:",
+    "description": ""
+  },
+  "Empty_folder": {
+    "message": "Prázdny priečinok",
+    "description": ""
+  },
+  "Loading": {
+    "message": "Načítava . . .",
+    "description": ""
+  },
+  "Show_hidden": {
+    "message": "Zobraziť skryté",
+    "description": ""
+  },
+  "want_to_delete": {
+    "message": "Naozaj chcete odstrániť",
+    "description": ""
+  },
+  "folder_name": {
+    "message": "Vyberte názov priečinka",
+    "description": ""
+  },
+  "Ok": {
+    "message": "Ok",
+    "description": ""
+  },
+  "Cancel": {
+    "message": "Zrušiť",
+    "description": ""
+  },
+  "choose_name": {
+    "message": "Vyberte názov pre ",
+    "description": ""
+  },
+  "will_upload": {
+    "message": "Súbor sa okamžite nahrá.",
+    "description": ""
+  },
+  "will_download": {
+    "message": "Súbor sa stiahne okamžite.",
+    "description": ""
+  },
+  "downloadasPNG": {
+    "message": "Stiahnite si PNG obrázok",
+    "description": ""
+  },
+  "exportvalue": {
+    "message": "Hodnota exportu",
+    "description": ""
+  },
+  "PrinttheChart": {
+    "message": "Tlačová tabuľka",
+    "description": ""
+  },
+  "downloadasJPEG": {
+    "message": "Stiahnite si JPEG obrázok",
+    "description": ""
+  },
+  "downloadasSVG": {
+    "message": "Stiahnite si SVG vector obrázok",
+    "description": ""
+  },
+  "folder": {
+    "message": "priečinok",
+    "description": ""
+  },
+  "file": {
+    "message": "súbor",
+    "description": ""
+  },
+  "link": {
+    "message": "link",
+    "description": ""
+  },
+  "Refresh": {
+    "message": "Obnoviť",
+    "description": ""
+  },
+  "New_folder": {
+    "message": "Nový priečinok",
+    "description": ""
+  },
+  "New_file": {
+    "message": "Nový súbor",
+    "description": ""
+  },
+  "New_firmware": {
+    "message": "Nový firmvér",
+    "description": ""
+  },
+  "Upload_here": {
+    "message": "Nahrať tu",
+    "description": ""
+  },
+  "Rename": {
+    "message": "Premenovať",
+    "description": ""
+  },
+  "Download": {
+    "message": "Stiahnuť",
+    "description": ""
+  },
+  "Delete": {
+    "message": "Odstrániť",
+    "description": ""
+  },
+  "Exit": {
+    "message": "Ukončiť",
+    "description": ""
+  },
+  "FEinexistent_folder": {
+    "message": "Zadali ste neexistujúci priečinok."
+  },
+  "FEread_permission": {
+    "message": "Nemáte tu práva na čítanie."
+  },
+  "FEread_permission_local": {
+    "message": "Nemáte práva na čítanie pre tento súbor na disku."
+  },
+  "FEwrite_permission": {
+    "message": "Nemáte tu práva na písanie."
+  },
+  "FEdelete_permission": {
+    "message": "Nemáte tu práva na odstraňovanie."
+  },
+  "FErename_permission": {
+    "message": "Nemáte tu práva na premenovávanie."
+  },
+  "FEfile_write": {
+    "message": "Nepodarilo sa zapísať súbor na disk."
+  },
+  "FEnew_folder": {
+    "message": "Vytvorenie nového priečinka zlyhalo. "
+  },
+  "FEdelete": {
+    "message": "Odstránenie zlyhalo. "
+  },
+  "FErename": {
+    "message" :"Premenovanie zlyhalo. "
+  },
+  "FEupload": {
+    "message": "Nahrávanie zlyhalo. "
+  },
+  "FEdownload": {
+    "message": "Sťahovanie zlyhalo. "
+  },
+  "FEexists": {
+    "message": "Existuje už iný súbor / priečinok s rovnakým názvom."
+  },
+  "FEunknown": {
+    "message": "Neznáma chyba."
+  },
+  "FEnot_exists": {
+    "message": "Súbor / priečinok už neexistuje."
+  },
+  "DASHBOARD_values_export": {
+    "message": "Export"
+  },
+  "TREEsame_name": {
+    "message": "Existuje súbor alebo priečinok s rovnakým názvom."
+  },
+  "TREEdelete_special": {
+    "message": "Nie je možné odstrániť."
+  },
+  "TREEdelete_root": {
+    "message": "Nie je možné odstrániť koreňový priečinok."
+  },
+  "TREEdelete_software": {
+    "message": "Nie je možné odstrániť priečinok so softvérom."
+  },
+  "TREEno_root": {
+    "message": "Nemožné vytvárať do koreňového priečinka (namiesto toho použite nový firmvér)."
+  },
+  "PROJECT_NOTEBOOK": {
+    "message": "Notebook"
+  },
+  "GITHUB_EXAMPLE_Example": {
+    "message": "Načítajte príklad"
+  },
+  "GITHUB_EXAMPLE_Empty":
+  {
+    "message" :"Napíšte prosím názov úložiska github, ktoré obsahuje príklady"
+  },
+  "DEVICE_CONNECTION_BUSY":
+  {
+    "message":"Zariadenie je už pripojené k inému používateľovi.",
+    "description":""
+  },
+  "Disconnect": {
+    "message": "Odpojiť",
+    "description": ""
+  },
+  "Reboot_Disconnect": {
+    "message": "Reštartovať a odpojiť",
+    "description": ""
+  },
+  "Poweroff_Disconnect": {
+    "message": "Vypnúť a odpojiť",
+    "description": ""
+  },
+  "Error": {
+    "message": "Chyba",
+    "description": ""
+  },
+  "Select_board": {
+    "message": "Vyberte dosku",
+    "description": ""
+  },
+  "Port": {
+    "message": "Port",
+    "description": ""
+  },
+  "Pick_firmware": {
+    "message": "Vyberte firmvér",
+    "description": ""
+  },
+  "No_firmware": {
+    "message": "Žiadny firmvér",
+    "description": ""
+  },
+  "Run": {
+    "message": "Spustiť",
+    "description": ""
+  },
+  "Github": {
+    "message": "Github",
+    "description": ""
+  },
+  "username": {
+    "message": "používateľské meno",
+    "description": ""
+  },
+  "repository": {
+    "message": "repozitár",
+    "description": ""
+  },
+  "Author": {
+    "message": "Autor",
+    "description": ""
+  },
+  "Wyliodrin_app_server_version": {
+    "message": "Verzia Wyliodrin-app-server",
+    "description": ""
+  },
+  "Libwyliodrin_version": {
+    "message": "Verzia Libwyliodrin",
+    "description": ""
+  },
+  "Operating_system": {
+    "message": "Operačný systém",
+    "description": ""
+  },
+  "Supported_languages": {
+    "message": "Podporované jazyky",
+    "description": ""
+  },
+  "status": {
+    "message": "status",
+    "description": ""
+  },
+  "UPDATE_SD_CARD_IMAGE": {
+    "message":"Pred spustením tohto projektu aktualizujte obraz SD karty",
+    "description":""
+  },
+  "delete_el": {
+    "message":"Naozaj chcete odstrániť prvok?",
+    "description":""
+  },
+  "EXPORT_PROJECTS": {
+    "message":"Exportujte všetky svoje projekty",
+    "description":""
+  },
+  "DOWNLOAD_STANDALONE": {
+    "message":"Stiahnite si samostatnú verziu",
+    "description":""
+  }
+}

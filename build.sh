@@ -4,28 +4,43 @@
 # exit 2 ~ grunt is not installed
 # exit 3 ~ grunt failed
 
-if !(which npm > /dev/null) ; then
-    echo "$(tput setaf 1)Npm is not installed."
+if !(hash npm 2> /dev/null) ; then
+    echo -e "$(tput setaf 1)Npm is not installed.\033[0m"
     exit 1
 fi
-npm install
 
-if !(which grunt > /dev/null) ; then
+if !(hash grunt 2> /dev/null) ; then
     char='0'
     while [ $char != 'N' ] &&
           [ $char != 'n' ] &&
           [ $char != 'Y' ] &&
           [ $char != 'y' ]  ; do
-	echo "$(tput setaf 4)Grunt is not installed. Do you want to install it? [Y]/[N]"
-    read char
+	    echo -en "$(tput setaf 4)Grunt is not installed. Do you want to install it? [Y]/[N]: "
+      read char
     done
 
+    echo -e "\033[0m"
+
     if [ $char == 'Y' ] || [ $char == 'y' ]; then
-         sudo npm install -g grunt-cli
+        # Install grunt-cli globally using npm or yarn
+        if ! hash yarn 2>/dev/null; then
+            sudo npm install -g grunt-cli
+        else
+            # You don't need sudo for yarn,
+            # it will be installed in ~
+            yarn global add grunt-cli
+        fi
     elif [ $char == 'N' ] || [ $char == 'n' ]; then
-		echo "$(tput setaf 1)Can't build: grunt is not installed."
+		echo -e "$(tput setaf 1)Can't build: grunt is not installed.\033[0m"
         exit 2
     fi
+fi
+
+# Install dependencies using npm or yarn
+if ! hash yarn 2>/dev/null; then
+    npm install
+else
+    yarn
 fi
 
 patch node_modules/highcharts-ng/dist/highcharts-ng.js patches/highcharts-ng.patch
@@ -36,9 +51,9 @@ patch node_modules/angular-ui-ace/src/ui-ace.js patches/angular-ui-ace.patch
 grunt
 
 if [ $? -ne 0 ] ; then
-	echo "$(tput setaf 1)Grunt failed."
+	echo -e "$(tput setaf 1)Grunt failed.\033[0m"
 	exit 3
 fi
 
-echo "$(tput setaf 2)Build succeeded."
+echo -e "$(tput setaf 2)Build succeeded.\033[0m"
 exit 0

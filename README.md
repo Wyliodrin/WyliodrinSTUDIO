@@ -150,7 +150,7 @@ Contributions
 * [Daniel Dosaru](https://www.github.com/dosarudaniel) - Developer
 * [Mihai Popescu](https://www.github.com/mhpopescu) - Developer
 
-Wyliodrin is a trademark of Wyliodrin SRL. All rights reservered.
+Wyliodrin is a trademark of Wyliodrin SRL. All rights reserved.
 
 ## License
 

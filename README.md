@@ -1,3 +1,5 @@
+This repository is deprecated, please take a look at the new version of WyliodrinSTUDIO at [the new reposository](https://github.com/wyliodrinstudio/WyliodrinSTUDIO)
+
 # Wyliodrin STUDIO
 
 [![Build Status](https://travis-ci.org/Wyliodrin/WyliodrinSTUDIO.svg?branch=master)](https://travis-ci.org/Wyliodrin/WyliodrinSTUDIO)
